@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f369472409154859a76c93b7d65d5a6f" Name="Diagram1" ZoomLevel="41">
+        <EntityTypeShape EntityType="PhNetworkModel.AccountTB" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.CallCenterEmailApproval" Width="1.5" PointX="9.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Category" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.ClaimsApproval" Width="1.5" PointX="0.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.ClientNote" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.ColorAlert" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Complaint" Width="1.5" PointX="11.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.DoctorTB" Width="1.5" PointX="2.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalLogsDetail" Width="1.5" PointX="10.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalLogTypeDIM" Width="1.5" PointX="8.25" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalReceivingReceipt" Width="1.5" PointX="7.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalRequest" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsCategoryDIM" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsConfiguration" Width="1.5" PointX="9.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsFailedTransaction" Width="1.5" PointX="4.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsGroup_User" Width="1.5" PointX="21" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsGroup" Width="1.5" PointX="17.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsPriorityDIM" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsTechnicalDestinationDim" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsUser_Email" Width="1.5" PointX="20" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailRequestAttachmentsDetail" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailRequestMailingDetail" Width="1.5" PointX="7.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailRequestRequest_TechnicalDestination" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailRequestStatusDIM" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Feedback" Width="1.5" PointX="19.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.HospitalTB" Width="1.5" PointX="11.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.LaboratoryTB" Width="1.5" PointX="21.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.LocationsTB" Width="1.5" PointX="20.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Loginer" Width="1.5" PointX="22.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Medicalid" Width="1.5" PointX="21.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.NewsFeed" Width="1.5" PointX="22.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.NoteAttachment" Width="1.5" PointX="13.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_AttachmentTypeDIM" Width="1.5" PointX="15.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_Configrations" Width="1.5" PointX="22.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_DemandedDrugsDetails" Width="1.5" PointX="15" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_DrugsListDIM" Width="1.5" PointX="12.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_FailedTransactions" Width="1.5" PointX="19.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_Inovices" Width="1.5" PointX="15" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_LoginKeys" Width="1.5" PointX="20" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_LogsDetails" Width="1.5" PointX="15" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_LogTypeDIM" Width="1.5" PointX="12.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_ProviderTypeDIM" Width="1.5" PointX="17.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_RequestAttachment" Width="1.5" PointX="18" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_RequestDetails" Width="1.5" PointX="18" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_RequestDetailsTypeDIM" Width="1.5" PointX="15.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_Requests" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_RequestStatusDIM" Width="1.5" PointX="21.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OnlineApprovals_RequestTypeDIM" Width="1.5" PointX="4.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.OpticalTB" Width="1.5" PointX="23.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.PharmacyTB" Width="1.5" PointX="17.75" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.PhLog" Width="1.5" PointX="23.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.pic" Width="1.5" PointX="23.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.ProviderAppUser" Width="1.5" PointX="23.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.SubLocatiobTB" Width="1.5" PointX="24.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.TicketType" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.TLoginer" Width="1.5" PointX="24.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.WebsiteAccount" Width="1.5" PointX="0.75" PointY="26.875" IsExpanded="true" />
+        <AssociationConnector Association="PhNetworkModel.FK_ColorAlert_TicketType" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_ColorAlert" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_Logs_EmailApprovalRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_Logs_LogTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalReceivingReceipt_EmailApprovalRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_EmailApprovalsCategoryDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_EmailApprovalsPriorityDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_EmailRequestStatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_TicketType" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailRequestAttachmentsDetails_EmailApprovalRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailRequestMailingDetails_EmailApprovalRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_Request_TechnicalDestination_EmailApprovalRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalsGroup_User_EmailApprovalsGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalsUser_Email_EmailApprovalsGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovalsLoginKeys_PharmacyTB" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_Logs_EmailApprovalRequests_OnlineApproval" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_Logs_LogTypeDIM_OnlineApproval" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PhNetworkModel.CallCenterAppUser" Width="1.5" PointX="5.25" PointY="27.625" />
+        <AssociationConnector Association="PhNetworkModel.FK_CallCenterAppUser_EmailApprovalsCategoryDIM" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalsGroup_User_CallCenterAppUser" />
+        <AssociationConnector Association="PhNetworkModel.FK_Logs_CallCenterAppUser1" />
+        <AssociationConnector Association="PhNetworkModel.FK_Logs_CallCenterAppUser1_OnlineApproval" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

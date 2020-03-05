@@ -1,0 +1,7 @@
+﻿form button, form input, form .form-control {
+    pointer-events: none;
+}
+.formOverlay
+{
+    display:none;
+}

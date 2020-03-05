@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archiving-Manager", "WebApplication1\Archiving-Manager.csproj", "{CF2B9D23-43F3-4A82-8E70-6DED531FD397}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF2B9D23-43F3-4A82-8E70-6DED531FD397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF2B9D23-43F3-4A82-8E70-6DED531FD397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF2B9D23-43F3-4A82-8E70-6DED531FD397}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF2B9D23-43F3-4A82-8E70-6DED531FD397}.Debug|x86.Build.0 = Debug|Any CPU
+		{CF2B9D23-43F3-4A82-8E70-6DED531FD397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF2B9D23-43F3-4A82-8E70-6DED531FD397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF2B9D23-43F3-4A82-8E70-6DED531FD397}.Release|x86.ActiveCfg = Release|x86
+		{CF2B9D23-43F3-4A82-8E70-6DED531FD397}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7F9292A-34D1-469D-87AA-050CBDB6E9A6}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WebApplication1\\Archiving-Manager.csproj
+		SccProjectName1 = WebApplication1
+		SccLocalPath1 = WebApplication1
+	EndGlobalSection
+EndGlobal

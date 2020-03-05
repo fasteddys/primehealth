@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "CreateFilterationRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/CustomCss/CustomCSS.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 Mcenter">
+            <h4 class="text-center marginBottom">
+
+                Filteration Request ID : <b style="font-size:large;" id="FilterationRequestID">@ViewBag.FilterationRequest.FilterationRequestID</b>
+            </h4>
+            <form class="form ">
+                @*//2*@
+                <div class="formOverlay">
+                    <i class="btn btn-primary fa fa-lock "></i>
+                </div>
+                <div id="FilterationDetailsData"></div>
+                @*<div class="form-group row">
+                <div class="col-md-5">
+                    <label for="InPatientPrimeHealth">InPatient Prime Health <span class="red"> *</span> </label>
+                </div>
+                <div class="col-md-7">
+                    <input type="number" class="form-control" id="InPatientPrimeHealth" placeholder="InPatient Prime Health" />
+                </div>
+            </div>*@
+                @*<!--*****************************************************************-->
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label for="InPatientMedGulf">InPatient MedGulf <span class="red"> *</span> </label>
+                </div>
+                <div class="col-md-7">
+                    <input type="number" class="form-control" id="InPatientMedGulf" placeholder="InPatient MedGulf" />
+                </div>
+            </div>
+            <!--*****************************************************************-->
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label for="InPatientMisrInsurance">InPatient Misr Insurance <span class="red"> *</span></label>
+                </div>
+                <div class="col-md-7">
+                    <input type="number" class="form-control" id="InPatientMisrInsurance" placeholder="InPatient Misr Insurance" />
+                </div>
+            </div>
+            <!--*****************************************************************-->
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label for="OutPatientPrimeHealth">OutPatient Prime Health <span class="red"> *</span> </label>
+                </div>
+                <div class="col-md-7">
+                    <input type="number" class="form-control" id="OutPatientPrimeHealth" placeholder="OutPatient Prime Health" />
+                </div>
+            </div>
+            <!--*****************************************************************-->
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label for="OutPatientMedGulf">OutPatient MedGulf <span class="red"> *</span> </label>
+                </div>
+                <div class="col-md-7">
+                    <input type="number" class="form-control" id="OutPatientMedGulf" placeholder="OutPatient MedGulf" />
+                </div>
+            </div>
+            <!--*****************************************************************-->*@
+                <br />
+                <div class="form-group row" id="FilterationCommentDiv">
+                    <div class="col-md-5">
+                        <label for="ReceivedComment">Comment </label>
+
+                    </div>
+                    <div class="col-md-7">
+                        <textarea name="Comment" class="form-control" id="FilterationComment" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 ">
+                        <div class="row">
+                            <div class="col viewClaimsvalue">
+                                <label class="border marginLeft red padding" for="RecievingTotalClaimsCount">R</label>
+                                <input type="text" class="form-control" value='0' id="RecievingTotalClaimsCount" disabled>
+                            </div>
+                            <div class="col viewClaimsvalue">
+                                <label class="border marginLeft padding blueviolet" for="RecievingTotalClaimsCount">&</label>
+                                <input type="text" class="form-control" value=">" id="differentBetweenRecievingAndFilteration" disabled>
+                            </div>
+                            <div class="col viewClaimsvalue">
+                                <label class="border marginLeft green padding " for="RecievingTotalClaimsCount">F</label>
+                                <input type="text" class="form-control" value="0" id="FilterationTotalClaimsCount" disabled>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-4 marginTop">
+                        <button type="button" class="btn btn-primary form-control text-5 " style="display:none;" id="SaveCountOfFilteration" data-toggle="modal" @*data-target="#sendToProvidersTeam"*@>Save</button>
+                        <button type="button" class="btn btn-primary" style="display:none;" id="SendToBatching">Send To Batching</button>
+
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+            </form>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnLock" style="display:none;">Lock</button>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnUnLock" style="display:none;">UnLock</button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <!--*************************************************************************-->
+        <div class="modal fade" id="SendToBatchingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel">Warning Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color:white">Send To Batching!!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="CloseFiltration">Close Filtration</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--*************************************************************************-->
+        <div class="modal fade" id="SendToProvidersTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel">Warning Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color:white">
+                            Please Not That Your Count Is different from receiving <br />
+                            Are you sure  Send To Providers!!
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Send To Providers</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--*************************************************************************-->
+        <div class="modal fade" id="IsLastBatchingRequestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel">Warning Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color:white">Is it The last Filterattion Calims ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="NotTheLastBatchingRequest" data-dismiss="modal">No</button>
+                        <button type="button" id="YesIsTheLastBatchingRequest" class="btn btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--*************************************************************************-->
+        <div class="modal fade" id="ConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel">Warning Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color:white;">Please Save This Number Of Request ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="btnSaveFilterationRequest">Confirm Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/CustomJavaScript/FilterationJS/CreateFilterationRequest.js"></script>

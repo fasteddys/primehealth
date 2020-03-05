@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="688b134011ee4afc83b81d4ab5414bc7" Name="Diagram1">
+        <EntityTypeShape EntityType="BNCModel.ActionDIM" Width="1.5" PointX="9" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.AuditCategoryDIM" Width="1.5" PointX="11.25" PointY="63.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.AuditFlow" Width="1.5" PointX="9" PointY="75.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.AuditFlowBatchDetail" Width="1.5" PointX="13.5" PointY="56.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.AuditFlowDetail" Width="1.5" PointX="11.25" PointY="75.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.BatchAuditingRequest" Width="1.5" PointX="16.5" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.BatchClosingRequest" Width="1.5" PointX="5.25" PointY="52.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.BatchingFilterationDetail" Width="1.5" PointX="18.75" PointY="46.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.BatchingRequest" Width="1.5" PointX="8.25" PointY="55.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.ClaimsActCategoryDIM" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.ClosedBatchReAdministrationRequest" Width="1.5" PointX="10.5" PointY="57.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.Company" Width="1.5" PointX="9" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.ContactDIM" Width="1.5" PointX="9" PointY="79.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.DataEntryAdminstrationRequest" Width="1.5" PointX="13.5" PointY="62" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.DataEntryBatchAssigningRequest" Width="1.5" PointX="15.75" PointY="63" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.FailedTransaction" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.FilterationCategoriesDIM" Width="1.5" PointX="6.75" PointY="75.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.FilterationRequest" Width="1.5" PointX="16.5" PointY="46.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.FilterationRequestDetail" Width="1.5" PointX="5.25" PointY="58.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.FinancialAuditRequest" Width="1.5" PointX="18.75" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.GovernmentDIM" Width="1.5" PointX="9" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.InsuranceSystemDIM" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.LockLogge" Width="1.5" PointX="11.25" PointY="53" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.MedicalAuditRequest" Width="1.5" PointX="21.75" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.MIAuditRequest" Width="1.5" PointX="24.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.Provider" Width="1.5" PointX="9" PointY="64.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.ProviderContact" Width="1.5" PointX="11.25" PointY="67.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.ProviderTypeDIM" Width="1.5" PointX="6.75" PointY="65.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.ReceivingRequest" Width="1.5" PointX="11.25" PointY="45.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.ReconciliationAuditRequest" Width="1.5" PointX="18.75" PointY="60.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.ReleaseActionDIM" Width="1.5" PointX="6" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPActionDIM" Width="1.5" PointX="5.25" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPAuditRequest" Width="1.5" PointX="24" PointY="60.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPCategoryDIM" Width="1.5" PointX="11.25" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPEnitty" Width="1.5" PointX="22.5" PointY="66.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPReason" Width="1.5" PointX="24.75" PointY="65.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SpReqReason" Width="1.5" PointX="27" PointY="61" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPRequest" Width="1.5" PointX="21.75" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPRequestUser" Width="1.5" PointX="7.5" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPStatusDIM" Width="1.5" PointX="19.5" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPTeam" Width="1.5" PointX="3" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPUser" Width="1.5" PointX="5.25" PointY="47.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SPUserCategory" Width="1.5" PointX="13.5" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.StatusDIM" Width="1.5" PointX="9" PointY="70" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SystemEntitiesDIM" Width="1.5" PointX="6.75" PointY="70.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.Team" Width="1.5" PointX="0.75" PointY="44.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.TransferReasonDIM" Width="1.5" PointX="6" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.TransferRequestHistory" Width="1.5" PointX="8.25" PointY="48" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.User" Width="1.5" PointX="3" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SpecialApprovalFinincalReq" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BNCModel.SpecialApprovalMedicalReq" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="BNCModel.FK_LockLogges_ActionDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_AuditFlowBatchDetails_AuditCategoryDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_AuditFlowDetails_AuditCategoryDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_AuditFlow_AuditFlow" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_AuditFlowDetails_AuditFlow" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_AuditFlowBatchDetails_AuditFlowDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_AuditFlowBatchDetails_BatchAuditingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_AuditFlowBatchDetails_BatchingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_BatchAuditingRequest_BatchingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_BatchAuditingRequest_StatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_FinancialAuditRequest_BatchAuditingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_MedicalAuditRequest_BatchAuditingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_MIAuditRequest_BatchAuditingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ReconciliationAuditRequest_BatchAuditingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPRequest_BatchAuditingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_BatchClosingRequest_DataEntryAdminstrationRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_BatchClosingRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ClosedBatchReadmissionRequest_BatchClosingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_BatchingFilterationDetails_FilterationRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_BatchingFilterationDetails_StatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_BatchingRequest_BatchingFilterationDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_BatchingRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_DataEntryAdminstrationRequest_BatchingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ClosedBatchReadmissionRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ReceivingRequest_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ProviderContact_ContactDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_DataEntryAdminstrationRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_DataEntryBatchAssigningRequest_DataEntryAdminstrationRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_DataEntryBatchAssigningRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_FilterationRequestDetails_FilterationCategoriesDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_FilterationRequest_ReceivingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_FilterationRequest_StatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_FilterationRequestDetails_FilterationRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_FilterationRequestDetails_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_FinancialAuditRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_Provider_GovernmentDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ReceivingRequest_GovernmentDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_LockLogges_SystemEntitiesDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_LockLogges_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_MedicalAuditRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_MIAuditRequest_MIAuditRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_MIAuditRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_MIAuditRequest_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_Provider_ProviderTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ProviderAddress_Provider" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ReceivingRequest_Provider" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ReceivingRequest_StatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ReceivingRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_ReconciliationAuditRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_TransferRequestHistory_ReleaseActionDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPRequestUser_SPActionDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPAuditRequest_SPRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPUserCategory_SPCategoryDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPEnitty_SystemEntitiesDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPReason_SPEnitty" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SpReqReasons_SPReason" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SpReqReasons_SPRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPRequest_SPStatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPRequest_SystemEntitiesDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPRequestUser_SPRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPRequestUser_SPUser" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPTeam_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPUser_SPTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPUser_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_SPUserCategory_SPUser" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_StatusDIM_SystemEntitiesDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_TransferRequestHistory_StatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_TransferRequestHistory_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_User_Team1" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_TransferRequestHistory_TransferReasonDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_TransferRequestHistory_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_TransferRequestHistory_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="BNCModel.FK_TransferRequestHistory_User2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

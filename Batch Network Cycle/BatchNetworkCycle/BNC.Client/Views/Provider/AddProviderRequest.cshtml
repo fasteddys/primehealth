@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "AddProviderRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 Mcenter">
+            <h4 class="text-center marginBottom">
+                Provider Request</h4>
+                <form class="form">
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label for="InPatientPrimeHealth">InPatient Prime Health <span class="red"> *</span> </label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" id="InPatientPrimeHealth" placeholder="InPatient Prime Health" />
+                        </div>
+                    </div>
+                    <!--*****************************************************************-->
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label for="InPatientMedGulf">InPatient MedGulf <span class="red"> *</span> </label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" id="InPatientMedGulf" placeholder="InPatient MedGulf" />
+                        </div>
+                    </div>
+                    <!--*****************************************************************-->
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label for="InPatientMisrInsurance">InPatient Misr Insurance <span class="red"> *</span></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" id="InPatientMisrInsurance" placeholder="InPatient Misr Insurance" />
+                        </div>
+                    </div>
+                    <!--*****************************************************************-->
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label for="OutPatientPrimeHealth">OutPatient Prime Health <span class="red"> *</span> </label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" id="OutPatientPrimeHealth" placeholder="OutPatient Prime Health" />
+                        </div>
+                    </div>
+                    <!--*****************************************************************-->
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label for="OutPatientMedGulf">OutPatient MedGulf <span class="red"> *</span> </label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" id="OutPatientMedGulf" placeholder="OutPatient MedGulf" />
+                        </div>
+                    </div>
+                    <!--*****************************************************************-->
+                    <div class="row">
+                        <div class="col-md-5 ">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="border marginLeft red padding" for="RecievingTotalClaimsCount">R</label>
+                                    <input type="text" class="form-control" value='20' id="RecievingTotalClaimsCount" disabled>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="border marginLeft padding blueviolet" for="RecievingTotalClaimsCount">&</label>
+                                    <input type="text" class="form-control" value=">" id="differentBetweenRecievingAndFilteration" disabled>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="border marginLeft green padding " for="RecievingTotalClaimsCount">F</label>
+                                    <input type="text" class="form-control" value="18" id="FilterationTotalClaimsCount" disabled>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-7 marginTop">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary form-control text-4 " data-toggle="modal" data-target="#ApproveFilterationTeam" id="btnApproveFilterationTeam">Approve </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary form-control text-4 " data-toggle="modal" data-target="#ApproveRecievingTeam" id="btnApproveRecievingTeam">edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--*****************************************************************-->
+                </form>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ApproveFilterationTeam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel">Warning Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are You Sure You wanna to Approve Filteration Team ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--*************************************************************************-->
+
+    </div>
+</div>
+

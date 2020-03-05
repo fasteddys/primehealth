@@ -1,0 +1,303 @@
+﻿
+@{
+    ViewBag.Title = "searchSpecialApprovalReq";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section role="main" class="content-body">
+    <!--Start Header-->
+    <header class="page-header">
+        <h2>Special Approval Requests </h2>
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li><span>Provider</span></li>
+                <li><span>Special Approval Requests</span></li>
+            </ol>
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+        </div>
+    </header>
+    <!--Start Card-->
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">Special Approval Requests</h2>
+        </header>
+        <div class="card-body">
+            <div class="formSearchSpecialApproval">
+                <div id="SPRequests" class="tab-pane active">
+                    <div class="form-group row">
+                        <div class="col-lg-3 col-md-6">
+                            <label class="col-lg-10 control-label">Status<span class="red">*</span></label>
+                            @Html.DropDownList("SpStatutsFK", null, "Select Status", htmlAttributes: new { @class = "form-control", @id = "SpStatutsFK" })
+                        </div>
+                        <div class="col-lg-3 col-md-6 ">
+                            <label class="col-lg-10 control-label">Batch Number</label>
+                            <input id="SPReqBatchNumber" type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-3 col-md-6 ">
+                            <label class="col-lg-10 control-label">From</label>
+                            <input id="SPReqFrom" type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-3 col-md-6 ">
+                            <label class="col-lg-10 control-label">To</label>
+                            <input id="SPReqTo" type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-3 col-md-6 ">
+                            <label class="col-lg-10 control-label">Requested By</label>
+                            @Html.DropDownList("UsersFK", null, "Requested By", htmlAttributes: new { @class = "form-control", @id = "UsersFK" })
+
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label class="col-lg-10 control-label">Provider Name</label>
+                            @Html.DropDownList("ProvidersFK", null, "Select Provider", htmlAttributes: new { @class = "form-control", @id = "ProvidersFK" })
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label class="col-lg-10 control-label">Reasons</label>
+                            @Html.DropDownList("SpReasonsFK", null, "Select Reason", htmlAttributes: new { @class = "form-control", @id = "SpReasonsFK" })
+                        </div>
+                        <div class=" col-lg-3  col-md-6">
+                            <label class="col-lg-10 control-label"></label>
+                            <button class="btn btn-primary" id="btngetAllSPReq">Search</button>
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#spDataDetailsReq">
+                            Show Pop
+                        </button>
+                    </div>
+
+               </div>
+               
+
+                <!--Start  Modal -->
+   
+                <div class="modal fade" id="spDataDetailsReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Special Approval</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="SPRequestsInfo row">
+                                    <!-- start First Section-->
+                                    <div class="col-md-12">
+                                        <form class="specialApprovalForm">
+                                            <fieldset>
+                                                <legend>Approving Special Approval </legend>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-1 col-sm-3">
+                                                        <label class="control-label">PIN:</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-sm-3">
+                                                        <input type="text" id="hcpPin" class="form-control" placeholder="HCP PIN">
+                                                    </div>
+                                                    <div class="col-lg-2 col-sm-3">
+                                                        <input type="text" id="System" class="form-control" placeholder="System">
+                                                    </div>
+                                                    <div class="col-lg-3 col-sm-3">
+                                                        <input type="text" id="ProviderName" class="form-control" placeholder="Provider Name">
+                                                    </div>
+                                                    <div class="col-lg-1 col-sm-4">
+                                                        <label class="control-label">Biling</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-sm-4">
+                                                        <input type="text" id="Year" class="form-control" placeholder="Year">
+                                                    </div>
+                                                    <div class="col-lg-1 col-sm-4">
+                                                        <input type="text" id="Month" class="form-control" placeholder="M">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3 col-sm-4">
+                                                        <label class="control-label">Team/Requested By User:</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-sm-4">
+                                                        <input type="text" id="Team" class="form-control" placeholder="Team">
+                                                    </div>
+                                                    <div class="col-lg-3 col-sm-4">
+                                                        <input type="text" id="RequestedBy" class="form-control" placeholder="Requested By">
+                                                    </div>
+                                                    <div class="col-lg-1 col-sm-6">
+                                                        <label class="control-label">Created @*On*@</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-sm-6">
+                                                        <input type="text" id="CreatedOn" class="form-control" placeholder="Created On">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3 col-sm-4">
+                                                        <label class="control-label">Pending Claims/Batch Number:</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-sm-4">
+                                                        <input type="text" id="PendingClaims" class="form-control" placeholder="Pending Claims">
+                                                    </div>
+                                                    <div class="col-lg-3 col-sm-4">
+                                                        <input type="text" id="BatchNumber" class="form-control" placeholder="Batch Number">
+                                                    </div>
+                                                    <div class="col-lg-1 col-sm-6 spUserInfo">
+                                                        <label class="control-label">Action @*On*@</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-sm-6 spUserInfo">
+                                                        <input type="text" id="ActionOn" class="form-control" placeholder="Action On">
+                                                    </div>
+
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <!-- End First Section-->
+                                    <!-- start Second Section-->
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <form class="specialApprovalForm">
+                                                    <fieldset>
+                                                        <legend>Special Approval Reasons </legend>
+                                                        <div   class="form-group row">
+                                                            <ul id="SpecialApprovalReasons">
+                                                                <li>Pending Audit</li>
+                                                            </ul>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <form class="specialApprovalForm">
+                                                    <fieldset>
+                                                        <legend>Special Approval Notes</legend>
+                                                        <textarea id="SpecialApprovalNotes" class="form-control" placeholder="Special Approval Notes"></textarea>
+                                                    </fieldset>
+
+                                                    <fieldset class="spUserInfo">
+                                                        <legend> Approval User Notes</legend>
+                                                        <textarea id="ApprovalUserNotes" class="form-control" placeholder="Approval User Notes"></textarea>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Second Section-->
+
+                                    <!-- start Third Section-->
+                                    <div class="col-md-12 ">
+                                        <div class="form-group row ">
+                                            <div class="col-lg-4 col-sm-4 spUserInfo">
+                                                <label class="control-label "><span id="SpecialApprovalStatusLabel" class="red" >Approved</span> By:</label>
+                                            </div>
+                                            
+                                            @*<div class="col-lg-3 col-sm-6">
+                                                <input type="text" id="fullname" class="form-control" placeholder="full name ">
+                                            </div>*@
+                                            <div class="col-lg-4 col-sm-4 spUserInfo">
+                                                <input type="text" id="userSystemName" class="form-control" placeholder="user System Name">
+                                            </div>
+                                            <div class="col-lg-4 col-sm-4">
+                                                <input type="text" id="SpecialApprovalStatus" class="form-control" placeholder="Special Approval Approved">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Second Section-->
+
+                                    <!--Start Form input claims-->
+                                    <div class="spFormEnterData col-md-12 row">
+                                        <div class="col-md-7 ">
+                                            <table class="SPAuditData">
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Claims Count</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Pending</td>
+                                                    <td class="FormPendingClaims">
+                                                        <input id="PendingClaimsCount" type="number" disabled class="form-control" />
+                                                        <input id="RemainingPendingClaims" type="text" disabled class="form-control" />
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Approve</td>
+                                                    <td><input id="ApprovedClaims" type="number" class="form-control" /></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Reject </td>
+                                                    <td><input id="RejectClaims" type="number" class="form-control" /></td>
+                                                </tr>
+                                                @*<tr>
+                    <td>Action</td>
+                    <td><button class="btn btn-primary" id="btnSaveSpecialApprovalData">Save</button></td>
+                </tr>*@
+
+                                            </table>
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <form class="specialApprovalForm formUserComment">
+                                                <fieldset>
+                                                    <legend>Approval User Notes</legend>
+                                                    <textarea id="SPProviderComment" class="form-control" placeholder="Please Enter Your Notes"></textarea>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                
+                                    <!--End Form input claims-->
+                                    <!------------------------------>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary spFormEnterData" data-dismiss="modal" id="btnSaveSpecialApprovalData">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End  Modal -->
+
+           </div>
+            
+       </div>
+
+        <!--display Data -->
+        <div class="card-body">
+            <table class="table table-bordered table-striped mb-0" id="SpApprovalReqDataTable">
+                <thead>
+                    <tr>
+                        <th>SPReqID</th>
+                        @*<th>ReqByUserFk</th>
+                        <th>SPStatusFK</th>*@
+                        <th>ReqByUserName</th>
+                        <th>SPStatusName</th>
+                        <th>ReqFK</th>
+                        @*<th>EntrityFK</th>*@
+                        <th>EntrityName</th>
+                        <th>CreationDate</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+    <!--End Card-->
+    <!--End Header-->
+</section>
+
+
+<!--End Html-->
+<script>
+    $("#SPReqFrom").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+    $("#SPReqTo").datepicker({
+
+        dateFormat: 'dd/mm/yy',
+    });
+</script>
+<style>
+
+</style>
+<link href="~/Content/SpecialApprovalCss.css" rel="stylesheet" />
+<script src="~/CustomJavaScript/ProviderJS/SearchSpecialApproval.js"></script>

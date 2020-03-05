@@ -1,0 +1,193 @@
+/*************************************************************************/
+/* Cursor */
+.cur-pointer {
+    cursor: pointer;
+}
+
+/* Font Size */
+.text-xs {
+    font-size: 16px;
+    font-size: 1rem;
+}
+
+.text-sm {
+    font-size: 20.8px;
+    font-size: 1.3rem;
+}
+
+.text-md {
+    font-size: 25.6px;
+    font-size: 1.6rem;
+}
+
+.text-lg {
+    font-size: 30.4px;
+    font-size: 1.9rem;
+}
+
+.text-xl {
+    font-size: 35.2px;
+    font-size: 2.2rem;
+}
+
+.text-1 {
+    font-size: .8em !important;
+}
+
+.text-2 {
+    font-size: .9em !important;
+}
+
+.text-3 {
+    font-size: 1em !important;
+}
+
+.text-4 {
+    font-size: 1.1em !important;
+}
+
+.text-5 {
+    font-size: 1.50em !important;
+}
+
+.text-6 {
+    font-size: 1.80em !important;
+}
+
+.text-7 {
+    font-size: 2em !important;
+}
+
+.text-8 {
+    font-size: 2.30em !important;
+}
+
+.text-9 {
+    font-size: 2.50em !important;
+}
+
+.text-10 {
+    font-size: 2.75em !important;
+}
+/*************************************************************************/
+/*Start Color*/
+.red
+{
+    color: red;
+}
+.green
+{
+    color: green
+}
+.blueviolet
+{
+    color: blueviolet;
+}
+/*************************************************************************/
+/*Start margin*/
+.marginBottom
+{
+    margin-bottom: 20px;
+}
+.marginTop
+{
+    margin-top: 30px;
+}
+.marginLeft
+{
+    display:block;
+    text-align:center;
+    width:50%;
+    margin:0 auto;
+    margin-bottom:10px;
+}
+/*************************************************************************/
+/*Start padding*/
+.padding
+{
+    padding:5px;
+}
+/*************************************************************************/
+.Mcenter {
+    margin: 0 auto;
+}
+.form {
+    border: 2px dotted #00a8ff;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.formOverlay
+{
+    padding:0px;
+    margin:0px;
+    width:100%;
+    height:100%;
+    background-color:rgba(52, 152, 219, .1);
+    z-index:999;
+    position:absolute;
+    overflow:hidden;
+    margin:-20px;
+    cursor:pointer;
+}
+.formOverlay .fa-lock
+{
+    margin:0px auto;
+    text-align:center;
+    display:block;
+    width:25%;
+    height:25%;
+    font-size:650%;
+    transition:1s all ease-in-out;
+    cursor:pointer;
+}
+.formOverlay:hover .fa-lock
+{
+    transform:rotate(360deg);
+    margin-top:170px;
+}
+/*************************************************************************/
+.placeHolderSmallSize::-webkit-input-placeholder
+{
+    font-size: small;
+}
+.container {
+    margin-top: -50px;
+}
+.container, .row, .Mcenter, form, .form-group {
+    /*border: 1px solid red;*/
+}
+label
+{
+    color:white;
+}
+.viewClaimsvalue {
+    padding-left: 5px !important;
+    padding-right: 5px !important
+}
+.viewClaimsvalue input
+{
+    text-align:center;
+}
+.border
+{
+    border:1px solid red;
+}
+.block
+{
+    display:block;
+}
+.container {
+    width: 73%;
+    margin-left: 25% !important;
+}
+/**********************************************************************/
+ fieldset {
+    border: 2px solid #282D36;
+}
+fieldset legend {
+    background-color: #282D36;
+    font-style: italic;
+    padding: 10px;
+    color: white;
+}

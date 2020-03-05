@@ -1,0 +1,6 @@
+namespace AMSTrackingService.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}

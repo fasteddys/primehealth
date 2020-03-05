@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "AddMedicalAuditRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/CustomCss/CustomCSS.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 Mcenter">
+            <h4 class="text-center marginBottom">
+                Medical Audit Request
+            </h4>
+            <form class="form">
+                <div class="formOverlay">
+                    <i class="btn btn-primary fa fa-lock "></i>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="BatchID">Batch ID</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="placeHolderSmallSize  form-control" id="BatchID" placeholder="Batch ID" disabled />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="ClaimsCount">Claims Count</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="placeHolderSmallSize  form-control" id="ClaimsCount" placeholder="Claims Count" value="0" disabled />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <!--Approve Claims-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="MedicalNumberOfApprovedClaims">Number Of Approved Claims <span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control " id="MedicalNumberOfApprovedClaims" placeholder="Number Of Approved Claims" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="MedicalAmountOfApprovedClaims"><span class="red">Amount</span> Of Approved Claims<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="MedicalAmountOfApprovedClaims" placeholder="Amount Of Approved Claims" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <!--Pending Claims-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="MedicalNumberOfPendingClaims">Number Of Pending Claims <span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="MedicalNumberOfPendingClaims" placeholder="Number Of Pending Claims" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="MedicalAmountOfPendingClaims"><span class="red">Amount</span> Of Pending Claims<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="MedicalAmountOfPendingClaims" placeholder="Amount Of Pending Claims" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <!--Reject Claims-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="MedicalNumberOfRejectClaims">Number Of Reject Claims <span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="MedicalNumberOfRejectClaims" placeholder="Number Of Reject Claims" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="MedicalAmountOfRejectClaims"><span class="red">Amount</span> Of Reject Claims<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="MedicalAmountOfRejectClaims" placeholder="Amount Of Reject Claims" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="MedicalComment">Comment</label>
+
+                    </div>
+                    <div class="col-md-6">
+                        <textarea name="Comment" class="placeHolderSmallSize form-control" id="MedicalComment" placeholder="Comment" rows="2"></textarea>
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <button type="button" class="btn btn-primary form-control text-5 " style="display:none" id="btnTransferRequest">Transfer</button>
+
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary form-control text-5 " style="display:none" id="btnSaveMedicalRequest" >Save</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-warning form-control text-5 " style="display:none" id="btnAssignMedicalRequest">Assign</button>
+                    </div>
+
+                </div>
+
+            </form>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnLock" style="display:none;">Lock</button>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnUnLock" style="display:none;">UnLock</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+ <script src="~/CustomJavaScript/MedicalAuditJS/MedicalAudit.js"></script>
+
+<style>
+  
+    .close
+    {
+        font-size:xx-large;
+        color:red;
+    }
+    .close:hover
+    {
+        color:#eb0808;
+    }
+
+
+</style>

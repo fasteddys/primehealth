@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "DataEntryAction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DataEntryAction</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 Mcenter">
+            <h4 class="text-center marginBottom">
+                Data Entry Action
+            </h4>
+            <form class="form">
+                <div class="formOverlay">
+                    <i class="btn btn-primary fa fa-lock "></i>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="DataEntryAdminstrationClaimsCount">Assigned Claims<span class="red"> </span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" id="AssignedClaims" placeholder="Assigned Claims" disabled />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="DataEntryComment">Comment </label>
+                    </div>
+                    <div class="col-md-7">
+                        <textarea name="Comment" class="placeHolderSmallSize form-control" id="DataEntryComment" placeholder="Comment" rows="2"></textarea>
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary form-control text-5 " id="btnConfirmDataEntryRequest" style="display:none;">Confirm</button>
+                        <button type="button" class="btn btn-primary form-control text-5 " id="btnFinishDataEntryRequest" style="display:none;">Finish</button>
+
+                    </div>
+                </div>
+
+            </form>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnLock" style="display:none;">Lock</button>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnUnLock" style="display:none;">UnLock</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/CustomJavaScript/DataEntryJS/DataEntryActions.js"></script>

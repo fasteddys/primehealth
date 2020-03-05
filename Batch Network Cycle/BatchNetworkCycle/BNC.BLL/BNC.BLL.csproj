@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BNC.BLL</RootNamespace>
+    <AssemblyName>BNC.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbObjects\Helpers.cs" />
+    <Compile Include="DbObjects\StoredFunctions.cs" />
+    <Compile Include="Logic\Helpers\Logger.cs" />
+    <Compile Include="Logic\Shared Logic\MapperBLL.cs" />
+    <Compile Include="Logic\Shared Logic\SharedDataEntryBatchBLL.cs" />
+    <Compile Include="Logic\Shared Logic\SharedAuditBatchBLL.cs" />
+    <Compile Include="Logic\Shared Logic\SharedProviderBLL.cs" />
+    <Compile Include="Logic\Shared Logic\SharedReceivingFilterationBLL.cs" />
+    <Compile Include="Logic\Shared Logic\SharedBncBLL.cs" />
+    <Compile Include="Logic\Shared Logic\SharedSearchBLL.cs" />
+    <Compile Include="Logic\Tables\ProviderTypeBLL.cs" />
+    <Compile Include="Logic\Tables\SPRequestUserBLL.cs" />
+    <Compile Include="Logic\Tables\SPAuditRequestBLL.cs" />
+    <Compile Include="Logic\Tables\SpecialApprovalMedicalReqBLL.cs" />
+    <Compile Include="Logic\Tables\SpecialApprovalFinincalReqBLL.cs" />
+    <Compile Include="Logic\Tables\ActionBLL.cs" />
+    <Compile Include="Logic\Tables\GovernmentBLL.cs" />
+    <Compile Include="Logic\Tables\SpReqReasonBLL.cs" />
+    <Compile Include="Logic\Tables\SPReasonsBLL.cs" />
+    <Compile Include="Logic\Tables\SPStatusBLL.cs" />
+    <Compile Include="Logic\Tables\SPRequestBLL.cs" />
+    <Compile Include="Logic\Tables\LockLoggesBLL.cs" />
+    <Compile Include="Logic\Tables\SpUserBLL.cs" />
+    <Compile Include="Logic\Tables\UserBLL.cs" />
+    <Compile Include="Logic\Tables\TransferRequestHistoryBLL.cs" />
+    <Compile Include="Logic\Tables\TransferReasonBLL.cs" />
+    <Compile Include="Logic\Tables\TeamBLL.cs" />
+    <Compile Include="Logic\Tables\SystemEntitiesBLL.cs" />
+    <Compile Include="Logic\Tables\InsuranceSystemBLL.cs" />
+    <Compile Include="Logic\Tables\StatusBLL.cs" />
+    <Compile Include="Logic\Tables\ReleaseActionBLL.cs" />
+    <Compile Include="Logic\Tables\ReconciliationAuditRequestBLL.cs" />
+    <Compile Include="Logic\Tables\ProviderContactBLL.cs" />
+    <Compile Include="Logic\Tables\MIAuditRequestBLL.cs" />
+    <Compile Include="Logic\Tables\MedicalAuditRequestBLL.cs" />
+    <Compile Include="Logic\Tables\FinancialAuditRequestBLL.cs" />
+    <Compile Include="Logic\Tables\FilterationRequestDetailsBLL.cs" />
+    <Compile Include="Logic\Tables\FilterationRequestBLL.cs" />
+    <Compile Include="Logic\Tables\FilterationCategoriesBLL.cs" />
+    <Compile Include="Logic\Tables\DataEntryBatchAssigningRequestBLL.cs" />
+    <Compile Include="Logic\Tables\DataEntryAdminstrationRequestBLL.cs" />
+    <Compile Include="Logic\Tables\CompanyBLL.cs" />
+    <Compile Include="Logic\Tables\ClosedBatchReAdministrationRequestBLL.cs" />
+    <Compile Include="Logic\Tables\ClaimsActCategoryBLL.cs" />
+    <Compile Include="Logic\Tables\BatchingRequestBLL.cs" />
+    <Compile Include="Logic\Tables\BatchingFilterationDetailsBLL.cs" />
+    <Compile Include="Logic\Tables\BatchClosingRequestBLL.cs" />
+    <Compile Include="Logic\Tables\BatchAuditingRequestBLL.cs" />
+    <Compile Include="Logic\Tables\AuditFlowDetailsBLL.cs" />
+    <Compile Include="Logic\Tables\AuditFlowBatchDetailsBLL.cs" />
+    <Compile Include="Logic\Tables\AuditFlowBLL.cs" />
+    <Compile Include="Logic\Tables\AuditCategoryBLL.cs" />
+    <Compile Include="Logic\Tables\ReceivingRequestBLL.cs" />
+    <Compile Include="Logic\Tables\ProvidersBLL.cs" />
+    <Compile Include="Logic\Tables\LogsDetailControlUserBLL.cs" />
+    <Compile Include="StaticData\StaticEnums.cs" />
+    <Compile Include="StaticData\StaticLists.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BNC.DAL\BNC.DAL.csproj">
+      <Project>{3ea492ca-6dcb-477e-94a0-51ef10192535}</Project>
+      <Name>BNC.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BNC.DTOs\BNC.DTOs.csproj">
+      <Project>{ae54f77a-e3f1-4710-8592-6b5a88534888}</Project>
+      <Name>BNC.DTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BNC.Entities\BNC.Entities\BNC.Entities.csproj">
+      <Project>{ac1a2310-5529-4ba8-97b0-03e3fec78823}</Project>
+      <Name>BNC.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BNC.GlobalResources\BNC.GlobalResources.csproj">
+      <Project>{76675779-7e34-4a1a-abe2-182ff242175d}</Project>
+      <Name>BNC.GlobalResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BNC.Utilities\BNC.Utilities.csproj">
+      <Project>{ae8a1b7b-3ef8-44b5-a346-238611d53407}</Project>
+      <Name>BNC.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="Logic\Views\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\BNC.BLL.dll" />
+    <Content Include="bin\Debug\BNC.BLL.pdb" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

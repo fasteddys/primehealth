@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "getRequestLifeCycle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+  
+    #searchByBilllingMonthAndYear,
+    #searchByBatchId,
+    .timeline,
+    #ReceivingData,
+    #BatchingFilterationData,
+    #BatchingData,
+    .ReceivingTableButtonShowAndHide,
+    .FilitrationTableButtonShowAndHide,
+    .BatchTableButtonShowAndHide {
+        display: none;
+    }
+</style>
+<!---------------------------------------------------------------------->
+<!--Start Html-->
+<div class="container @*border*@">
+    <div class="row">
+        <!--select search by-->
+        <div class=" col-md-8 Mcenter input-group mt-2  @*border*@">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="selectSearchBy">Select Search by</label>
+            </div>
+            <select class="custom-select" id="selectSearchBy">
+                <option selected>Choose...</option>
+                <option value="1">Batch</option>
+                <option value="2">Billling Month & Year</option>
+            </select>
+        </div>
+        <!--*****************************************************************-->
+        <!--Forms-->
+        <div class="col-md-11 Mcenter  mt-2 @*border*@">
+            <form class="form" id="searchByBilllingMonthAndYear">
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="BilllingMonthAndYear">Billling Month & Year<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="month" class="form-control" id="BilllingMonthAndYear" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="providersName">Provider Name<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownList("ProvidersFK", null, "Select Provider Name", htmlAttributes: new { @class = "form-control ", @id = "ProviderID" })
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary form-control text-5 " id="btnSearchRequestByBilllingMonthAndYear">Search</button>
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+            </form>
+        </div>
+        <div class="col-md-11 Mcenter  mt-2 @*border*@">
+            <form class="form" id="searchByBatchId">
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="BatchIdOnSystem">Batch Id <span class="red">*</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" id="BatchIdOnSystem" placeholder="Batch Id On System" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="SystemName">System Name<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownList("InsuranceSystem", null, "Select System Name", htmlAttributes: new { @class = "form-control", @id = "SystemNameFk" })
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary form-control text-5 " id="btnSearchRequestByBatchId">Search</button>
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+            </form>
+        </div>
+        <!--*****************************************************************-->
+        <!--buttons  For Display Tables -->
+        <div class="buttonToShowTables col-md-8 Mcenter mt-2">
+            <button type="button" class="ReceivingTableButtonShowAndHide mr-2 btn btn-primary">Show Receiving Table</button>
+            <button type="button" class="FilitrationTableButtonShowAndHide mr-2 btn btn-danger">Show Filitration Table</button>
+            <button type="button" class="BatchTableButtonShowAndHide mr-2 btn btn-secondary">Show Batch Table</button>
+
+        </div>
+        <!--*****************************************************************-->
+        <!--Tables that will display-->
+        <div id="ReceivingData" class="col-md-12 Mcenter mt-2">
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Receiving Requests</h2>
+                </header>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped mb-0" id="RecievingRequestDatabale">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>PrvName</th>
+                                <th>CalimsCount</th>
+                                <th>Year</th>
+                                <th>Month</th>
+                                <th>CreationDate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <div id="BatchingFilterationData" class="col-md-12 Mcenter mt-2">
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Batching Filteration Requests</h2>
+                </header>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped mb-0" id="BatchingFilterationRequestsDataTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>TClaimsCount</th>
+                                <th>RClaimsCount</th>
+                                <th>Category</th>
+                                <th>CreationDate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <div  id="BatchingData" class="col-md-12 Mcenter mt-2">
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Batching Request </h2>
+                </header>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped mb-0" id="BatchingRequestsDataTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ClaimsCount</th>
+                                <th>System</th>
+                                <th>BatchNumber</th>
+                                <th>CreationDate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <!--*****************************************************************-->
+        <!--TimeLine Life Cycle for batch-->
+        <div  class="col-md-8 Mcenter  mt-2  @*border*@">
+
+            <div class="timeline">
+                <div class="tm-body mb-100">
+                    <div id="BatchingTeam">
+                    </div>
+                    <!-------------------------------------------------------------------------------------------------------------->
+                    <div id="AuditingTeam">
+                    </div>
+                    <!-------------------------------------------------------------------------------------------------------------->
+                    <div id="AuditCategTeam">
+                    </div>
+                    <!-------------------------------------------------------------------------------------------------------------->
+                    <div id="DataEntryAdminstrationTeam">
+                    </div>
+                    <!-------------------------------------------------------------------------------------------------------------->
+                    <div id="DataEntryBatchAssigning">
+                    </div>
+                    <!-------------------------------------------------------------------------------------------------------------->
+                    <div id="BatchClosingTeam">
+                    </div>
+                    <!-------------------------------------------------------------------------------------------------------------->
+                    <div id="BatchClosingReAdministrationTeam">
+                    </div>
+                    <!-------------------------------------------------------------------------------------------------------------->
+                    <div style="height:40px" class="">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!--*****************************************************************-->
+ 
+    </div>
+
+
+</div>
+
+
+<!--End Html-->
+<!---------------------------------------------------------------------->
+<script src="~/CustomJavaScript/LifeCycleRequest/LifeCycleRequest.js"></script>

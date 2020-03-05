@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "FinishClosingReAdministrationTeamRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 Mcenter">
+            <h4 class="text-center marginBottom">
+                Finish ReAdministration Closing Request
+            </h4>
+            <form class="form">
+                @*<div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="DataEntryAdminstrationComment">Archiving System Ticket No.<span class="red"> *</span></label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" id="ArchivingSystemTicketNo" placeholder="Archiving System Ticket No." />
+                    </div>
+                </div>*@
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="DataEntryAdminstrationComment">Comment</span></label>
+                    </div>
+                    <div class="col-md-7">
+                        <textarea name="Comment" class="placeHolderSmallSize form-control" id="ClosingFinishComment" placeholder="Comment" rows="2"></textarea>
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary form-control text-5 " id="btnFinishClosingRequest">Finish</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/CustomJavaScript/ReAdministration/FinishClosingReAdministrationRequest.js"></script>

@@ -1,0 +1,109 @@
+﻿.sidebar-header {
+    /*border: 1px solid red;*/
+    margin-bottom: 4px !important;
+}
+.sidebar-title {
+    padding: 0px !important;
+}
+.systemName {
+    margin: 0px !important;
+}
+.breadcrumbs {
+    margin-right:12px !important;
+}
+.logo-container 
+{
+float:left;
+}
+/*.logo-container,
+.logo,
+.newLogo {
+    border: 1px solid red;
+}*/
+.newLogo {
+    margin-top: 4px;
+    width: 50px;
+    height: 50px;
+    margin-left: 0px;
+    border-radius: 50%;
+    transition: 1s all ease-in-out;
+}
+.newLogo:hover
+{
+    transform:rotate(360deg);
+}
+.clearboth
+{
+    clear:both;
+}
+/*Start show alert*/
+body {
+    overflow-y: auto;
+}
+.overlay {
+    opacity: 0.8;
+    background: #000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 19999;
+}
+.Alertstyle {
+    opacity: 1.0 !important;
+    color: #fff;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 999999;
+    padding: 70px;
+}
+.Alertstyle-Danger {
+    background-color: #bA3030;
+}
+.Alertstyle-Sucess {
+    background-color: #279c83;
+}
+.Alertstyle-Warning {
+    background-color: #FBBC05;
+}
+.Alertstyle-info {
+    background-color: #0088CC;
+}
+.AlertButtonStyle {
+    margin-top: 95px !important;
+    color: #fff !important;
+    background-color: inherit !important;
+    border-bottom-width: thin !important;
+    border-color: #fff !important;
+    border-radius: unset !important;
+}
+/*End show alert*/
+.btnloaderbg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.9);
+    z-index: 999999;
+    position: fixed;
+}
+.Rotator {
+    margin: 0 auto;
+    text-align: center;
+    /*display:none;*/
+    margin-top: 280px;
+    /*border:1px solid red;*/
+}
+.nav li ,.nav-link {
+    cursor: pointer !important;
+}
+/*------------------------------*/
+.header
+{
+    z-index:9999!important;
+}
+.modal {
+    z-index: 99999 !important;
+}

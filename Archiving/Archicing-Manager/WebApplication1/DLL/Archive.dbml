@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Archiving" Class="ArchiveDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ANDROIDDB;Initial Catalog=Archiving;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ArchivingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Outpatient" Member="Outpatients">
+    <Type Name="Outpatient">
+      <Column Name="BoxID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BatchID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ClaimCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SetID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddedBy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NumOfClaims" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.remb" Member="rembs">
+    <Type Name="remb">
+      <Column Name="BoxID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BatchID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddedBy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.requestTB" Member="requestTBs">
+    <Type Name="requestTB">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rSubject" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rFrom" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="rStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AssigenPerson" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AssignedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FinishedArchivingDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ApprovedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PendingCliamsStart" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PendingClaimsEnd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="rBody" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rAttach" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rApproved" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rStatusColor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Assigned" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ArchivingComment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rAddedByType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RembConfirm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NumberOfReqClaims" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumberOfFoundClaims" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Reply" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PendClaimsassignee" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="pendingclaims" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="pendingcomments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="pendingassigned" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="submittedbyrembtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="sumbited" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="userpendingclaimscomment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.submissionrequestTB" Member="submissionrequestTBs">
+    <Type Name="submissionrequestTB">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rSubject" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rFrom" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="rStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AssigenPerson" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AssignedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FinishedArchivingDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ApprovedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ConfirmTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="rBody" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rApproved" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rStatusColor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Assigned" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ArchivingComment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NumberSentOfBatches" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumberSentOfRecBatches" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumberOfRecClaims" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="confirmed" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Submittype" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Month" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Year" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ClosedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TPAcomment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PendingTPABy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PendingTPAByTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AttachedPath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Transaction]" Member="Transactions">
+    <Type Name="Transaction">
+      <Column Name="BoxID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BatchID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pre_AuthID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SetID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Provider_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddedBy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.userTB" Member="userTBs">
+    <Type Name="userTB">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IsOnline" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

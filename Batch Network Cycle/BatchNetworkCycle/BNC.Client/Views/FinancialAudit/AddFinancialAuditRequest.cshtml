@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "AddFinancialAuditRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/CustomCss/CustomCSS.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 Mcenter">
+            <h4 class="text-center marginBottom">Financial Audit Request</h4>
+            <form class="form">
+                <div class="formOverlay">
+                    <i class="btn btn-primary fa fa-lock "></i>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="BatchID">Batch ID</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="placeHolderSmallSize  form-control" id="BatchID" placeholder="Batch ID" disabled />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="ClaimsCount">Claims Count</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="placeHolderSmallSize  form-control" id="ClaimsCount" placeholder="Claims Count" value="0" disabled />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <!--Approve Claims-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="FinancialNumberOfApprovedClaims">Number Of Approved Claims <span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control " id="FinancialNumberOfApprovedClaims" placeholder="Number Of Approved Claims" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="FinancialAmountOfApprovedClaims"><span class="red">Amount</span> Of Approved Claims<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="FinancialAmountOfApprovedClaims" placeholder="Amount Of Approved Claims" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <!--Pending Claims-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="FinancialNumberOfPendingClaims">Number Of Pending Claims <span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="FinancialNumberOfPendingClaims" placeholder="Number Of Pending Claims" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="FinancialAmountOfPendingClaims"><span class="red"> Amount</span> Of Pending Claims<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="FinancialAmountOfPendingClaims" placeholder="Amount Of Pending Claims" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <!--Reject Claims-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="FinancialNumberOfRejectClaims">Number Of Reject Claims <span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="FinancialNumberOfRejectClaims" placeholder="Number Of Reject Claims" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="FinancialAmountOfRejectClaims"><span class="red">Amount</span> Of Reject Claims<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="placeHolderSmallSize form-control" id="FinancialAmountOfRejectClaims" placeholder="Amount Of Reject Claims" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="FinancialComment">Comment</label>
+
+                    </div>
+                    <div class="col-md-6">
+                        <textarea name="Comment" class="placeHolderSmallSize form-control" id="FinancialComment" placeholder="Comment" rows="2"></textarea>
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary form-control text-5 " style="display:none" id="btnTransferRequest">Transfer</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary form-control text-5 " style="display:none" id="btnSaveFinancialRequest">Save</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary form-control text-5 " style="display:none" id="btnAssignFinancialRequest">Assign</button>
+                    </div>
+
+                </div>
+
+            </form>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnLock" style="display:none;">Lock</button>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnUnLock" style="display:none;">UnLock</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/CustomJavaScript/FinancialJs/Financial.js"></script>
+<style>
+    .close {
+        font-size: xx-large;
+        color: red;
+    }
+    .close:hover {
+        color: #eb0808;
+    }
+</style>

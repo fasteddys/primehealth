@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "AddRecievingRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/vendor/select2/css/select2.min.css" rel="stylesheet" />
+<link href="~/CustomCss/CustomCSS.css" rel="stylesheet" />
+<script src="~/vendor/select2/js/select2.min.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 Mcenter ">
+            <h4 class="text-center marginBottom">
+                Recieving Request
+            </h4>
+            <form class="form">
+                <div class="formOverlay">
+                    <i class="btn btn-primary fa fa-lock "></i>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="providersName">Provider Name<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownList("ProvidersFK", null, "Select Provider Name", htmlAttributes: new { @class = "form-control select2-search--dropdown", @id = "ProviderID" })
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="CompaniesName">Comany Name<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownList("CompaniesFK", null, "Select Company Name", htmlAttributes: new { @class = "form-control select2-search--dropdown", @id = "CompanyID" })
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="CompaniesName">Government Name<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownList("GovernmentFK", null, "Select Government Name", htmlAttributes: new { @class = "form-control select2-search--dropdown", @id = "GovernmentID" })
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="ReceivedClaimsCount">Received Claims Count<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" id="ReceivedClaimsCount" placeholder="Received Claims Count" min="0" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="ReceivedClaimsCount">Officer Claims Count<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" id="ReceivedOfficerClaimsCount" placeholder="Received Officer Claims Count" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="ExpectedAmount">Expected Amount<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" id="ExpectedAmount" placeholder="Expected Amount" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="BilllingMonthAndYear">Billling Month & Year<span class="red"> *</span> </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="month" class="form-control" id="BilllingMonthAndYear" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="ReceivedComment">Agent Name </label>
+
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" id="AgentName" />
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="ReceivedComment">Comment </label>
+
+                    </div>
+                    <div class="col-md-7">
+                        <textarea name="Comment" class="form-control" id="ReceivedComment" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <!--*****************************************************************-->
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary form-control text-5" style="display:none;" id="btnAddRecievingRequest">Add</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-primary form-control text-5" id="btnPrint" style="display:none;">Print</button>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-primary form-control text-5" id="btnRePrint" style="display:none;">Print</button>
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-danger form-control text-5" style="display:none;" id="btnTransferRequest">Transfer</button>
+                    </div>
+
+                </div>
+
+                <!--*****************************************************************-->
+            </form>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnLock" style="display:none;">Lock</button>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary form-control text-5 " id="btnUnLock" style="display:none;">UnLock</button>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<script src="~/CustomJavaScript/ReceivingJS/CreateReceivingRequest.js"></script>

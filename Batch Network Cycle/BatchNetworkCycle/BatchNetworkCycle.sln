@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNC.BLL", "BNC.BLL\BNC.BLL.csproj", "{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNC.DAL", "BNC.DAL\BNC.DAL.csproj", "{3EA492CA-6DCB-477E-94A0-51EF10192535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNC.DTOs", "BNC.DTOs\BNC.DTOs.csproj", "{AE54F77A-E3F1-4710-8592-6B5A88534888}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNC.Utilities", "BNC.Utilities\BNC.Utilities.csproj", "{AE8A1B7B-3EF8-44B5-A346-238611D53407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNC.GlobalResources", "BNC.GlobalResources\BNC.GlobalResources.csproj", "{76675779-7E34-4A1A-ABE2-182FF242175D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNC.Exceptions", "BNC.Exceptions\BNC.Exceptions.csproj", "{4828D52D-414A-428C-A37B-8A3624679A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNC.Client", "BNC.Client\BNC.Client.csproj", "{E5CB1E1E-EEC9-4572-A7A9-B0B0B64E3E59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNC.Entities", "BNC.Entities\BNC.Entities\BNC.Entities.csproj", "{AC1A2310-5529-4BA8-97B0-03E3FEC78823}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76675779-7E34-4A1A-ABE2-182FF242175D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76675779-7E34-4A1A-ABE2-182FF242175D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76675779-7E34-4A1A-ABE2-182FF242175D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76675779-7E34-4A1A-ABE2-182FF242175D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4828D52D-414A-428C-A37B-8A3624679A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4828D52D-414A-428C-A37B-8A3624679A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4828D52D-414A-428C-A37B-8A3624679A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4828D52D-414A-428C-A37B-8A3624679A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5CB1E1E-EEC9-4572-A7A9-B0B0B64E3E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5CB1E1E-EEC9-4572-A7A9-B0B0B64E3E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5CB1E1E-EEC9-4572-A7A9-B0B0B64E3E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5CB1E1E-EEC9-4572-A7A9-B0B0B64E3E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1A2310-5529-4BA8-97B0-03E3FEC78823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1A2310-5529-4BA8-97B0-03E3FEC78823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1A2310-5529-4BA8-97B0-03E3FEC78823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1A2310-5529-4BA8-97B0-03E3FEC78823}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {464D920E-D639-4692-99C2-CB07C756387A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BNC.BLL\\BNC.BLL.csproj
+		SccProjectName1 = BNC.BLL
+		SccLocalPath1 = BNC.BLL
+		SccProjectUniqueName2 = BNC.DAL\\BNC.DAL.csproj
+		SccProjectName2 = BNC.DAL
+		SccLocalPath2 = BNC.DAL
+		SccProjectUniqueName3 = BNC.DTOs\\BNC.DTOs.csproj
+		SccProjectName3 = BNC.DTOs
+		SccLocalPath3 = BNC.DTOs
+		SccProjectUniqueName4 = BNC.Utilities\\BNC.Utilities.csproj
+		SccProjectName4 = BNC.Utilities
+		SccLocalPath4 = BNC.Utilities
+		SccProjectUniqueName5 = BNC.GlobalResources\\BNC.GlobalResources.csproj
+		SccProjectName5 = BNC.GlobalResources
+		SccLocalPath5 = BNC.GlobalResources
+		SccProjectUniqueName6 = BNC.Exceptions\\BNC.Exceptions.csproj
+		SccProjectName6 = BNC.Exceptions
+		SccLocalPath6 = BNC.Exceptions
+		SccProjectUniqueName7 = BNC.Client\\BNC.Client.csproj
+		SccProjectName7 = BNC.Client
+		SccLocalPath7 = BNC.Client
+		SccProjectUniqueName8 = BNC.Entities\\BNC.Entities\\BNC.Entities.csproj
+		SccProjectName8 = BNC.Entities/BNC.Entities
+		SccLocalPath8 = BNC.Entities\\BNC.Entities
+	EndGlobalSection
+EndGlobal

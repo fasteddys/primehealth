@@ -1,0 +1,947 @@
+﻿<!doctype html>
+<html class="fixed dark">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <meta name="keywords" content="HTML5 Admin Template" />
+    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    @*<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">*@
+
+    <!-- ~/vendor CSS -->
+    <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/vendor/animate/animate.css">
+
+    <link rel="stylesheet" href="~/vendor/font-awesome/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="~/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="~/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+
+    <!-- Specific Page ~/vendor CSS -->
+    <link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+    <link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+    <link rel="stylesheet" href="~/vendor/morris/morris.css" />
+    <link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="~/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/css/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="~/css/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/css/custom.css">
+    <link href="~/Content/layout.css" rel="stylesheet" />
+    <!-- Head Libs -->
+    <script src="~/vendor/modernizr/modernizr.js"></script>
+    <!-- shared -->
+    <link href="~/Content/shared.css" rel="stylesheet" />
+    <script src="~/vendor/jquery/jquery.js"></script>
+    <script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+    <script src="~/vendor/moment/moment.js"></script>
+    <script src="~/CustomJavaScript/Layout/layout.js"></script>
+    <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+</head>
+@{
+    BNC.DTOs.Business.UserDTO User = Newtonsoft.Json.JsonConvert.DeserializeObject<BNC.DTOs.Business.UserDTO>(Request.Cookies["UserData"].Value);
+
+    int NewAdministrationStatus = (int)BNC.BLL.StaticData.StaticEnums.Status.NewAdministrationRequest;
+    int AdminAssignStatus = (int)BNC.BLL.StaticData.StaticEnums.Status.DataEntryAdminAssign;
+    int ClosingPendingTransfer = (int)BNC.BLL.StaticData.StaticEnums.Status.ClosingPendingTransfer;
+    int PendingTransferToClosing = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingTransferToClosingTeam;
+
+    int PendingDataEntryConfirm = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingDataEntryConfirm;
+    int PendingDataEntryFinish = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingDataEntryFinish;
+
+    int CloseNewStatus = (int)BNC.BLL.StaticData.StaticEnums.Status.NewClosingRequest;
+    int PendingClosing = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingTransferToClosingTeam;
+    int AssignToClosing = (int)BNC.BLL.StaticData.StaticEnums.Status.AssignToClosing;
+    int ClosingConfirmReceiving = (int)BNC.BLL.StaticData.StaticEnums.Status.ClosingConfirmReceiving;
+    int ClosingFinished = (int)BNC.BLL.StaticData.StaticEnums.Status.ClosingFinished;
+
+    int ReAdNewStatus = (int)BNC.BLL.StaticData.StaticEnums.Status.ReAdministrationNewRequest;
+    int ReAdAssignStatus = (int)BNC.BLL.StaticData.StaticEnums.Status.ReAdministrationAssign;
+    int ReAdConfirmRecevingStatus = (int)BNC.BLL.StaticData.StaticEnums.Status.ReAdministrationConfirmReceving;
+    int ReAdFinishedStatus = (int)BNC.BLL.StaticData.StaticEnums.Status.ReAdministrationFinished;
+    int PendingFindincial = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingFindincial;
+    int PendingTransferFromFindincialAudit = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingTransferFromFindincialAudit;
+    int PendingMedical = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingMedical;
+    int PendingTransferFromMidecalAudit = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingTransferFromMidecalAudit;
+    int PendingReconilition = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingReconilition;
+    int PendingTransferFromReconilitionAudit = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingTransferFromReconilitionAudit;
+    int PendingMi = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingMi;
+    int PendingTransferFromMIAudit = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingTransferFromMIAudit;
+    int NewReceived = (int)BNC.BLL.StaticData.StaticEnums.Status.NewReceived;
+    int PendingFiltration = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingFiltration;
+    int UnderFiltrationProcess = (int)BNC.BLL.StaticData.StaticEnums.Status.UnderFiltrationProcess;
+    int PendingAudit = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingAudit;
+    int PendingBatching = (int)BNC.BLL.StaticData.StaticEnums.Status.PendingBatching;
+    int UnderBatchingProcess = (int)BNC.BLL.StaticData.StaticEnums.Status.UnderBatchingProcess;
+    int FinishedBatching = (int)BNC.BLL.StaticData.StaticEnums.Status.FinishedBatching;
+    int NewBatch = (int)BNC.BLL.StaticData.StaticEnums.Status.NewBatch;
+    int NewAdministrationRequest = (int)BNC.BLL.StaticData.StaticEnums.Status.NewAdministrationRequest;
+
+
+
+
+
+
+
+}
+<body>
+    <section class="body">
+        <!-- Modal -->
+            <div class="row">
+            <div class="col-md-6">
+                <div class="modal fade" id="SendToSpecialApprovalModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog " role="document">
+                        <div class="modal-content">
+                            <fieldset>
+                                <legend>
+                                    Special Approval
+                                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </legend>
+                                <div class="modal-body">
+                                    <p>This Request Will Send To Provider To Get Have Special Approval</p>
+                                    <p>Are You Sure Want Special Approval at <span class="red" id="spPendingClaimsCount"></span> Claims?</p>
+                                    <p>If Yes Click <span class=" text-secondary">Send</span> </p>
+                                    <p>If No Click <span class=" text-primary">Close</span>  </p>
+                                    <form class="specialApprovalForm">
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="specialApprovalUserComment">Comment</label>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <textarea name="Comment" class="placeHolderSmallSize form-control" id="specialApprovalUserComment" placeholder="Special Approval Comment" rows="2"></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="btnSendToSpecialApproval">Send</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--*****************************************************************-->
+            <div id="LoadingDiv" class="btnloaderbg">
+                <div class="Rotator ">
+                    <img src="~/img/cypress-log-left.png" id="image" width="150" height="150">
+                    @*<img src="~/img/cypress-logo-right.png" id="image" width="300" height="120" style="margin-top:10px">*@
+                </div>
+           </div>
+            <!--Start ShowAlert-->
+            <div id="ShowALertDanger" style="display:none">
+                <div class="overlay"></div>
+                <div class="Alertstyle Alertstyle-Danger">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span class="fa fa-times-circle fa-7x"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="title text-10">Oops...</div>
+                                <br />
+                                <br />
+                                <div class="body text-6" id="AlertDangerText"></div>
+
+                            </div>
+                            <span class="col-md-2">
+                                <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertDangerButton" onclick="HideALer(4)">Ok</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ShowALertSuccess" style="display:none">
+                <div class="overlay"></div>
+                <div class="Alertstyle Alertstyle-Sucess">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span class="fa fa-check-circle  fa-7x"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="title text-10">Success...</div>
+                                <br />
+                                <br />
+                                <div class="body text-6" id="AlertSuccessText"></div>
+
+                            </div>
+                            <span class="col-md-2">
+                                <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertSuccessButton" onclick="HideALer(2)">Ok</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ShowALertWarning" style="display:none">
+                <div class="overlay"></div>
+                <div class="Alertstyle Alertstyle-Warning">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span class="fa fa-exclamation-triangle  fa-7x"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="title text-10">Warning...</div>
+                                <br />
+                                <br />
+                                <div class="body text-6" id="AlertWarningText"></div>
+
+                            </div>
+                            <span class="col-md-2">
+                                <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertWarningButton" onclick="HideALer(3)">Ok</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ShowALertInfo" style="display:none">
+                <div class="overlay"></div>
+                <div class="Alertstyle Alertstyle-info">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span class="fa fa-exclamation   fa-7x"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="title text-10">Info...</div>
+                                <br />
+                                <br />
+                                <div class="body text-6" id="AlertInfoText"></div>
+
+                            </div>
+                            <span class="col-md-2">
+                                <button class="btn btn-default AlertButtonStyle " id="AlertInfoButton" onclick="HideALer(1)">Ok</button>
+                            </span>ShowAlertDismiss
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end ShowAlert-->
+            <!-- start: header -->
+            <header class="header">
+                <div class="logo-container">
+                    <a href="../2.1.1" class="">
+                        <img class="newLogo" src="~/img/Arne_Haeger_Icon_Settings.png" width="100" height="50" alt="Porto Admin" />
+                    </a>
+                    <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+                        <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+                    </div>
+                </div>
+
+                <!-- start: search & user box -->
+                <div class="header-right ">
+                    <div id="userbox" class="userbox">
+                        <a href="#" data-toggle="dropdown">
+                            <figure class="profile-picture">
+                                <img src="~/img/!logged-user.jpg" alt="Joseph Doe" class="rounded-circle" data-lock-picture="~/img/!logged-user.jpg" />
+                            </figure>
+                            <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                                <span class="name">@User.UserName</span>
+                                <span class="role">@User.TeamName</span>
+                            </div>
+
+                            <i class="fa custom-caret"></i>
+                        </a>
+
+                        <div class="dropdown-menu">
+                            <ul class="list-unstyled mb-2">
+                                <li class="divider"></li>
+                                <li>
+                                    <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fas fa-user"></i> My Profile</a>
+                                </li>
+                                <li>
+                                    <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fas fa-lock"></i> Lock Screen</a>
+                                </li>
+                                <li>
+                                    <a role="menuitem" tabindex="-1" href="/User/LogOut"><i class="fas fa-power-off"></i> Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: search & user box -->
+
+            </header>
+            <!-- end: header -->
+            <div class="inner-wrapper">
+                <!-- start: sidebar -->
+                <aside id="sidebar-left" class="sidebar-left">
+
+                    <div class="sidebar-header">
+                        <div class="sidebar-title  ">
+                            <h4 class="alert alert-primary systemName"> Network Batch Cycle</h4>
+                        </div>
+                        <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+                            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+                        </div>
+                    </div>
+
+                    <div class="nano">
+                        <div class="nano-content">
+                            <nav id="menu" class="nav-main" role="navigation">
+                                <ul class="nav nav-main">
+                                    <li>
+                                        <a class="nav-link" href="/Receiving/AddRecievingRequest">
+                                            <i class="fas fa-home" aria-hidden="true"></i>
+                                            <span>Home</span>
+                                        </a>
+                                    </li>
+                                    @{ if (User.TeamName == "Recieving" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent ">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Receiving Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Receiving/AddRecievingRequest">
+                                                            <i class="fa fa-plus-circle"></i>Add New Request
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Receiving/ShowRecievingRequests">
+                                                            <i class="fa fa-plus-circle"></i>All Recieving Requests
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Receiving/MyRecievingRequest">
+                                                            <i class="fa fa-plus-circle"></i>My Receiving Request
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Receiving/ShowRecievingRequest?Status=@NewReceived">
+                                                            <i class="fa fa-plus-circle"></i>Pending Print
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                                @*<ul class="nav nav-children">
+                        <li>
+                            <a class="nav-link" href="/Receiving/MyRecievingRequest">
+                                <i class="fa fa-plus-circle"></i>My Receiving Request
+                            </a>
+                        </li>
+
+                    </ul>*@
+                                                @*<ul class="nav nav-children">
+                        <li>
+                            <a class="nav-link" href="/Receiving/MyRecievingRequest">
+                                <i class="fa fa-plus-circle"></i>Pending Recieving Request
+                            </a>
+                        </li>
+
+                    </ul>*@
+
+
+                                            </li>
+                                            @*<li class="nav-parent">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-columns" aria-hidden="true"></i>
+                            <span>Receiving Team</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" href="/Receiving/AddRecievingRequest">
+                                    <i class="fa fa-plus-circle"></i>Add Request
+                                </a>
+                            </li>
+                        </ul>
+                    </li>*@
+                                        }
+
+                                    }
+
+                                    @{
+                                        if (User.TeamName == "Filteration" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Filteration Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+
+                                                    <li>
+                                                        <a class="nav-link" href="/Filteration/ShowFilterationRequest?Status=@PendingFiltration">
+                                                            <i class="fa fa-plus-circle"></i>Pending Filteration
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Filteration/ShowFilterationRequest?Status=@UnderFiltrationProcess">
+                                                            <i class="fa fa-plus-circle"></i>Under Filteration
+                                                        </a>
+                                                    </li>
+
+
+                                                    <li>
+                                                        <a class="nav-link" href="/Filteration/GetAllFilterationRequests">
+                                                            <i class="fa fa-plus-circle"></i>All Filteration Requests
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+
+                                    @{
+                                        if (User.TeamName == "Batching" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent ">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Batching Pools</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Batching/ShowBatchingFilterationDetails?Status=@PendingBatching">
+                                                            <i class="fa fa-plus-circle"></i>Pools Pending Batching<span class="number btn btn-danger" onclick="return false;" id="BatchingPendingCount">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Batching/ShowBatchingFilterationDetails?Status=@UnderBatchingProcess">
+                                                            <i class="fa fa-plus-circle"></i>Pools Under Process<span class="number btn btn-danger" onclick="return false;" id="BatchingUnderPatchingProcessCount">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Batching/ShowBatchingFilterationDetails?Status=@FinishedBatching">
+                                                            <i class="fa fa-plus-circle"></i>Pools Finished<span class="number btn btn-success" onclick="return false;" id="BatchingFinishedCount">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Batching/getAllFilitrationBatchingRequests">
+                                                            <i class="fa fa-plus-circle"></i>All<span class="number btn btn-info" onclick="return false;" id="BatchingAllCount">0</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                            </li>
+
+                                            <li class="nav-parent ">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Batching Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Batching/getMyBatching">
+                                                            <i class="fa fa-plus-circle"></i>My Batching <span class="number btn btn-primary" onclick="return false;" id="myBatchingCount">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Batching/ShowBatchingRequests?Status=@PendingAudit">
+                                                            <i class="fa fa-plus-circle"></i> Pending Audit Action <span class="number btn btn-light" onclick="return false;" id="BatchingCreatedCount">1</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Batching/ShowBatchingRequests?Status=@NewBatch">
+                                                            <i class="fa fa-plus-circle"></i>Pending Tramsfer To Auditing <span class="number btn btn-light" onclick="return false;" id="BatchingCreatedCount">1</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Batching/GetAllBatchingRequests">
+                                                            <i class="fa fa-plus-circle"></i>All Batching Requests<span class="number btn btn-light" onclick="return false;" id="BatchingCreatedCount">1</span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+
+                                        }
+
+                                    }
+
+
+
+
+
+
+                                    @{
+                                        if (User.TeamName == "MedicalAudit" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Medical Audit Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/MedicalAudit/ShowBatchingAuditRequestsMedical?Status=@PendingMedical">
+                                                            <i class="fa fa-shield-alt"></i>Requests Pending Medical
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/MedicalAudit/ShowBatchingAuditRequestsMedical?Status=@PendingTransferFromMidecalAudit">
+                                                            <i class="fa fa-shield-alt"></i>Requests Pending Transfer
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+                                    @{
+                                        if (User.TeamName == "FinincialAudit" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+                                                    <span>Financial Audit Team</span>
+                                                </a>
+
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/FinancialAudit/ShowBatchingAuditRequestsFinancial?Status=@PendingFindincial">
+                                                            <i class="fa fa-shield-alt"></i>Requests Pending Financial
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/FinancialAudit/ShowBatchingAuditRequestsFinancial?Status=@PendingTransferFromFindincialAudit">
+                                                            <i class="fa fa-shield-alt"></i>Requests Pending Transfer
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+                                    @{
+                                        if (User.TeamName == "ReconciliationAudit" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Reconciliation Audit Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/ReconciliationAudit/ShowBatchingAuditRequestsReconciliation?Status=@PendingReconilition">
+                                                            <i class="fa fa-shield-alt"></i>Requests Pending Reconciliation
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/ReconciliationAudit/ShowBatchingAuditRequestsReconciliation?Status=@PendingTransferFromReconilitionAudit">
+                                                            <i class="fa fa-shield-alt"></i>Requests Pending Transfer
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+
+                                    @{
+                                        if (User.TeamName == "MisrInsuranceAudit" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+                                                    <span>MI Audit Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/MIAudit/ShowBatchingAuditRequestsMI?Status=@PendingMi">
+                                                            <i class="fa fa-shield-alt"></i>Requests Pending MI
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/MIAudit/ShowBatchingAuditRequestsMI?Status=@PendingTransferFromMIAudit">
+                                                            <i class="fa fa-shield-alt"></i>Requests Pending Transfer
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+
+                                        }
+                                    }
+                                    @{
+                                        if (User.TeamName == "DataEntryAdmin" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Data Entry Admin</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/DataEntryAdminstration/ViewAllDataEntryAdminstrationRequests">
+                                                            <i class="fa fa-plus-circle"></i>All Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/DataEntryAdminstration/ViewDataEntryAdminstrationRequests?Status=@NewAdministrationRequest">
+                                                            <i class="fa fa-plus-circle"></i>New Adminstration Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/DataEntryAdminstration/ViewDataEntryAdminstrationRequests?Status=@AdminAssignStatus">
+                                                            <i class="fa fa-plus-circle"></i>Pending DataEntry Assign
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/DataEntryAdminstration/ViewDataEntryAdminstrationRequests?Status=@PendingTransferToClosing">
+                                                            <i class="fa fa-plus-circle"></i>Pending Transfer To Closing
+                                                        </a>
+                                                    </li>
+                                                    
+
+                                                    @*<li>
+                            <a class="nav-link" href="/DataEntryAdminstration/ViewDataEntryAdminstrationRequests?Status=@NewAdministrationStatus">
+                                <i class="fa fa-plus-circle"></i>New Adminstration Requests
+                            </a>
+                        </li>*@
+
+                                                    @*<li>
+                            <a class="nav-link" href="/DataEntryAdminstration/AssignDataEntryAdminstrationRequest?ID=16">
+                                <i class="fa fa-plus-circle"></i>Admin Assigne Batchs
+                            </a>
+                        </li>*@
+                                                    <li>
+                                                        @*<a class="nav-link" href="/DataEntry/AddDataEntryRequest?ID=16">
+                                    <i class="fa fa-plus-circle"></i>Add Request
+                                </a>
+                            </li>*@
+
+                                                        @*<li>
+                                <a class="nav-link" href="/DataEntry/ViewDataEntryRequests?Status=@PendingDataEntryConfirm">
+                                    <i class="fa fa-plus-circle"></i>My Pending Confirmation Requests
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="/DataEntry/ViewDataEntryRequests?Status=@PendingDataEntryFinish">
+                                    <i class="fa fa-plus-circle"></i>My Pending Finish Requests
+                                </a>
+                            </li>*@
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+
+                                    @*@{
+            if (User.TeamName == "DataEntryAdmin" || User.TeamName == "Admin")
+            {
+                <li class="nav-parent">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-columns" aria-hidden="true"></i>
+                        <span>Data Entry Adminstration Team</span>
+                    </a>
+                    <ul class="nav nav-children">
+                        <li>
+                            <a class="nav-link" href="/DataEntryAdminstration/ViewAllDataEntryAdminstrationRequests">
+                                <i class="fa fa-plus-circle"></i>All New Requests
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/DataEntryAdminstration/ViewDataEntryAdminstrationRequests?Status=@AdminAssignStatus">
+                                <i class="fa fa-plus-circle"></i>My Adminstration Requests
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+
+        }*@
+                                    @{
+                                        if (User.TeamName == "DataEntry" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Data Entry Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/DataEntry/ViewAllDataEntryRequests">
+                                                            <i class="fa fa-plus-circle"></i>All Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/DataEntry/ViewDataEntryRequests?Status=@PendingDataEntryConfirm">
+                                                            <i class="fa fa-plus-circle"></i>Pending Confirmation Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/DataEntry/ViewDataEntryRequests?Status=@PendingDataEntryFinish">
+                                                            <i class="fa fa-plus-circle"></i>Pending Finish Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/DataEntry/ViewMyDataEntryRequests?Status=@PendingDataEntryConfirm">
+                                                            <i class="fa fa-plus-circle"></i>My Pending Confirm Requests
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+
+                                    }
+                                    @{
+                                        if (User.TeamName == "Closing" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent ">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Closing Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Closing/ViewAllClosingTeamRequest">
+                                                            <i class="fa fa-plus-circle"></i>All Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Closing/ViewClosingTeamRequest?Status=@AssignToClosing">
+                                                            <i class="fa fa-shield-alt"></i>Pending Receive Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Closing/ViewClosingTeamRequest?Status=@ClosingConfirmReceiving">
+                                                            <i class="fa fa-shield-alt"></i>Pending Finish Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Closing/ViewMyClosingTeamRequest?Status=@ClosingPendingTransfer">
+                                                            <i class="fa fa-shield-alt"></i>My Pending Transfer Requests
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+
+                                    }
+                                    @{
+                                        if (User.TeamName == "Readministration" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent ">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>ReAdministration Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/ReAdministration/ViewAllClosingReAdministrationTeamRequest">
+                                                            <i class="fa fa-plus-circle"></i>All Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/ReAdministration/ViewClosingReAdministrationTeamRequest?Status=@ReAdAssignStatus">
+                                                            <i class="fa fa-shield-alt"></i>Pending Receive Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/ReAdministration/ViewClosingReAdministrationTeamRequest?Status=@ReAdConfirmRecevingStatus">
+                                                            <i class="fa fa-shield-alt"></i> Pending Finish Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/ReAdministration/ViewMyClosingReAdministrationTeamRequest?Status=@ReAdConfirmRecevingStatus">
+                                                            <i class="fa fa-shield-alt"></i>My Pending Finish Requests
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+
+                                    }
+                                    @{
+                                        if (User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Report Search</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Receiving/getRequestLifeCycle">
+                                                            <i class="fa fa-plus-circle"></i>Life Cycle Request
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+
+                                    }
+
+                                    @{
+                                        if (User.TeamName == "Provider" || User.TeamName == "Admin")
+                                        {
+                                            <li class="nav-parent ">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fas fa-columns" aria-hidden="true"></i>
+
+                                                    <span>Provider Team</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li>
+                                                        <a class="nav-link" href="/Provider/serachRequestsForLocked">
+                                                            <i class="fa fa-plus-circle"></i>Search Locked Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Provider/ViewLockRequests">
+                                                            <i class="fa fa-plus-circle"></i>Lock Requests
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Provider/searchSpecialApprovalReq">
+                                                            <i class="fa fa-plus-circle"></i>Search Special Approval
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link" href="/Provider/AddProvidersData">
+                                                            <i class="fa fa-plus-circle"></i>Add Providers Data
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+
+                                    }
+
+                                </ul>
+
+
+                            </nav>
+
+
+                        </div>
+
+                        <script>
+                            // Maintain Scroll Position
+                            if (typeof localStorage !== 'undefined') {
+                                if (localStorage.getItem('sidebar-left-position') !== null) {
+                                    var initialPosition = localStorage.getItem('sidebar-left-position'),
+                                        sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+                                    sidebarLeft.scrollTop = initialPosition;
+                                }
+                            }
+                        </script>
+
+
+                    </div>
+
+                </aside>
+                <!-- end: sidebar -->
+                <!-- start: page -->
+                <div class=" row">
+                    @RenderBody()
+                </div>
+            </div>
+</section>
+
+    <!-- ~/vendor -->
+    <script src="~/vendor/jquery/jquery.js"></script>
+    <script src="~/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="~/vendor/popper/umd/popper.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="~/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/vendor/common/common.js"></script>
+    <script src="~/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="~/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+    <script src="~/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+
+    <!-- Specific Page ~/vendor -->
+    <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+    <script src="~/vendor/jquery-appear/jquery-appear.js"></script>
+    <script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <script src="~/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="~/vendor/flot/jquery.flot.js"></script>
+    <script src="~/vendor/flot.tooltip/flot.tooltip.js"></script>
+    <script src="~/vendor/flot/jquery.flot.pie.js"></script>
+    <script src="~/vendor/flot/jquery.flot.categories.js"></script>
+    <script src="~/vendor/flot/jquery.flot.resize.js"></script>
+    <script src="~/vendor/jquery-sparkline/jquery-sparkline.js"></script>
+    <script src="~/vendor/raphael/raphael.js"></script>
+    <script src="~/vendor/morris/morris.js"></script>
+    <script src="~/vendor/gauge/gauge.js"></script>
+    <script src="~/vendor/snap.svg/snap.svg.js"></script>
+    <script src="~/vendor/liquid-meter/liquid.meter.js"></script>
+    <script src="~/vendor/jqvmap/jquery.vmap.js"></script>
+    <script src="~/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>
+    <script src="~/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
+    <!-- Specific Page Vendor -->
+    <script src="~/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+   
+    @*<script src="~/js/theme.js"></script>*@
+    <script src="~/vendor/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/js/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="~/js/custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="~/js/theme.init.js"></script>
+
+    <!-- Examples -->
+    <script src="~/js/examples/examples.dashboard.js"></script>
+
+
+</body>
+</html>
+<style>
+    .number {
+        border-radius: 50%;
+        padding: 5px 10px;
+        color: #000 !important;
+        margin-left: 5px;
+        font-size: small;
+        display: inline !important;
+    }
+</style>

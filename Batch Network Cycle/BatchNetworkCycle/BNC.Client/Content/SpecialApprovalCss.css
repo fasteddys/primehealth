@@ -1,0 +1,89 @@
+﻿.card-body #SPRequests .form-group > div,
+.SPRequestsInfo > div {
+    margin-top: 20px !important;
+    /*border: 1px solid red;*/
+}
+
+.btn {
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    /*padding: 10px;*/
+    font-size: x-large;
+    width: 100%;
+}
+
+#SPRequests .btn {
+    width: 70%;
+}
+
+.modal-footer .btn {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.specialApprovalForm {
+    /*margin-top:100px !important;*/
+    padding: 5px;
+    overflow: hidden;
+}
+
+.specialApprovalForm fieldset {
+    padding: 20px;
+}
+
+
+.specialApprovalForm label {
+    font-size: small;
+    font-weight: bold;
+}
+
+.SPAuditData, .SPAuditData tr, .SPAuditData td, .SPAuditData th {
+    border: 1px solid #282D36;
+    padding: 10px !important;
+    font-weight: bold;
+    font-size: large;
+}
+
+.modal-lg {
+    max-width: 1000px;
+}
+
+.close {
+    font-size: xx-large;
+    color: red;
+}
+
+.close:hover {
+    color: #eb0808;
+}
+
+.modal .form-control, #btnSaveSpecialApprovalData {
+    pointer-events: none;
+}
+
+.FormPendingClaims input {
+    display: inline-block;
+    width: 45%;
+}
+
+.FormPendingClaims input:first-child {
+    margin-right: 8%;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.btn {
+    cursor: pointer !important;
+}
+
+
+.formUserComment fieldset {
+    height: 250px !important;
+}
+
+.formUserComment #SPProviderComment {
+    height: 80%;
+}

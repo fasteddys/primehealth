@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "ViewAllClosingReAdministrationTeamRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title>All ReAdministration Closing Team Request</title>
+    @*<meta name="keywords" content="HTML5 Admin Template" />
+        <meta name="description" content="Porto Admin - Responsive HTML5 Template">
+        <meta name="author" content="okler.net">*@
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <section class="body">
+
+        <!-- start: header -->
+        <!-- end: header -->
+
+        <div>
+            <!-- start: sidebar -->
+            <!-- end: sidebar -->
+
+            <section role="main" class="content-body">
+
+                @*<h4 class="text-center marginBottom">
+                    All ReAdministration Closing Team Request
+                </h4>*@
+                <!-- start: page -->
+
+                <div class="row">
+                    <div class="col">
+                        <section class="card">
+                            <header class="card-header">
+                                @*<div class="card-actions">
+                                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                                    </div>*@
+
+                                <h2 class="card-title">All ReAdministration Closing Team Requests</h2>
+                            </header>
+                            <div class="card-body">
+                                <div class="formSearchAboutRequestsUnLocked">
+                                    <div id="RequestsUnLocked" class="tab-pane active">
+                                        <div class="form-group row">
+                                            <div class="col-lg-3 col-md-6 ">
+                                                <label class="col-lg-10 control-label">From<span class="red">*</span></label>
+                                                <input id="RequestsFrom" type="text" @*data-plugin-datepicker=""*@ class="form-control">
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <label class="col-lg-10 control-label">To<span class="red">*</span></label>
+                                                <input id="RequestsTo" type="text" @*data-plugin-datepicker=""*@ class="form-control">
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <label class="col-lg-10 control-label">Status</label>
+                                                <select id="RequestsStatus" class="form-control">
+                                                    <option value="default" disabled selected>Select Status</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 mt-3">
+                                                <button class="btn btn-primary" id="btnGetAllRequest">Search</button>
+                                            </div>
+                                        </div>
+                                        <div id="showData">
+
+                                        </div>
+                                        <table class="table table-bordered table-striped mb-0" id="AllBatchReAdministrationClosingRequests">
+                                            <thead>
+                                                <tr>
+                                                    <th>ReAdminstration Request ID</th>
+                                                    <th>Request Status</th>
+                                                    <th>Total Claims Count</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <!--Start Table-->
+                                        @*coder here table*@
+                                        <!--End table-->
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- end: page -->
+            </section>
+        </div>
+    </section>
+</body>
+</html>
+
+<script src="~/CustomJavaScript/ReAdministration/ViewAllClosingReAdministrationTeamRequest.js"></script>
+
+<script>
+    $("#RequestsFrom").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+
+    $("#RequestsTo").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+
+</script>

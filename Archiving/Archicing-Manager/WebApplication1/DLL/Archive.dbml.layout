@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 10.375" name="Archive">
+  <DataContextMoniker Name="/ArchiveDataContext" />
+  <nestedChildShapes>
+    <classShape Id="ab1eca60-33f2-4eab-b9f8-cc1cf634a917" absoluteBounds="0.75, 0.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/ArchiveDataContext/Outpatient" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da897e64-760a-4df4-ae02-a76bdb9820c4" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d89d65ff-b7f9-4b23-b161-f1b6beb3e132" absoluteBounds="3.75, 0.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ArchiveDataContext/remb" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5e0d8fb5-7076-4338-9f91-c57ff27f1559" absoluteBounds="3.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a9e382e9-e86c-4160-bd59-cb6d5b1685f2" absoluteBounds="3.75, 3.75, 2, 6.3861311848958326">
+      <DataClassMoniker Name="/ArchiveDataContext/requestTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ddd3dcc8-57f4-44d1-a7c6-094d04c1bcf6" absoluteBounds="3.765, 4.21, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7c454184-fc1b-4fa5-8bd0-99c3e6420381" absoluteBounds="6.75, 0.75, 2, 6.0015283203125">
+      <DataClassMoniker Name="/ArchiveDataContext/submissionrequestTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="512898e0-4b20-47e5-aeb0-c1db2dcdf2e2" absoluteBounds="6.765, 1.21, 1.9700000000000002, 5.4415283203125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d490ab1f-d6cd-4f4d-b6b7-3867440aa4f8" absoluteBounds="6.75, 7.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/ArchiveDataContext/Transaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="93f3df25-b60f-408c-820b-9d29df2f64f6" absoluteBounds="6.765, 8.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2ddefbb5-8657-4992-9c59-7fc90d1bc34c" absoluteBounds="9.75, 0.75, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/ArchiveDataContext/userTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="84bd9715-75e9-474b-bef3-0191b7ea861e" absoluteBounds="9.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

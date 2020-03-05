@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RecievingRequestDataSet" targetNamespace="http://tempuri.org/RecievingRequestDataSet.xsd" xmlns:mstns="http://tempuri.org/RecievingRequestDataSet.xsd" xmlns="http://tempuri.org/RecievingRequestDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RecievingRequestDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RecievingRequestDataSet" msprop:Generator_UserDSName="RecievingRequestDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RecievingRequest" msprop:Generator_TableClassName="RecievingRequestDataTable" msprop:Generator_TableVarName="tableRecievingRequest" msprop:Generator_RowChangedName="RecievingRequestRowChanged" msprop:Generator_TablePropName="RecievingRequest" msprop:Generator_RowDeletingName="RecievingRequestRowDeleting" msprop:Generator_RowChangingName="RecievingRequestRowChanging" msprop:Generator_RowEvHandlerName="RecievingRequestRowChangeEventHandler" msprop:Generator_RowDeletedName="RecievingRequestRowDeleted" msprop:Generator_RowClassName="RecievingRequestRow" msprop:Generator_UserTableName="RecievingRequest" msprop:Generator_RowEvArgName="RecievingRequestRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RecievingRequestID" msprop:Generator_ColumnVarNameInTable="columnRecievingRequestID" msprop:Generator_ColumnPropNameInRow="RecievingRequestID" msprop:Generator_ColumnPropNameInTable="RecievingRequestIDColumn" msprop:Generator_UserColumnName="RecievingRequestID" type="xs:string" minOccurs="0" />
+              <xs:element name="RecievingproviderName" msdata:Caption="RecievingDate" msprop:Generator_ColumnVarNameInTable="columnRecievingproviderName" msprop:Generator_ColumnPropNameInRow="RecievingproviderName" msprop:Generator_ColumnPropNameInTable="RecievingproviderNameColumn" msprop:Generator_UserColumnName="RecievingproviderName" type="xs:string" minOccurs="0" />
+              <xs:element name="RecievingMonth" msdata:Caption="RecievingDate" msprop:Generator_ColumnVarNameInTable="columnRecievingMonth" msprop:Generator_ColumnPropNameInRow="RecievingMonth" msprop:Generator_ColumnPropNameInTable="RecievingMonthColumn" msprop:Generator_UserColumnName="RecievingMonth" type="xs:string" minOccurs="0" />
+              <xs:element name="RecievingYear" msdata:Caption="RecievingDate" msprop:Generator_ColumnVarNameInTable="columnRecievingYear" msprop:Generator_ColumnPropNameInRow="RecievingYear" msprop:Generator_ColumnPropNameInTable="RecievingYearColumn" msprop:Generator_UserColumnName="RecievingYear" type="xs:string" minOccurs="0" />
+              <xs:element name="NoClaims" msdata:Caption="RecievingDate" msprop:Generator_ColumnVarNameInTable="columnNoClaims" msprop:Generator_ColumnPropNameInRow="NoClaims" msprop:Generator_ColumnPropNameInTable="NoClaimsColumn" msprop:Generator_UserColumnName="NoClaims" type="xs:string" minOccurs="0" />
+              <xs:element name="RecievingDate" msprop:Generator_ColumnVarNameInTable="columnRecievingDate" msprop:Generator_ColumnPropNameInRow="RecievingDate" msprop:Generator_ColumnPropNameInTable="RecievingDateColumn" msprop:Generator_UserColumnName="RecievingDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ProviderOfficer" msprop:Generator_ColumnVarNameInTable="columnProviderOfficer" msprop:Generator_ColumnPropNameInRow="ProviderOfficer" msprop:Generator_ColumnPropNameInTable="ProviderOfficerColumn" msprop:Generator_UserColumnName="ProviderOfficer" type="xs:string" minOccurs="0" />
+              <xs:element name="IbnSinaProviderPin" msdata:Caption="MCAProviderPin" msprop:Generator_ColumnVarNameInTable="columnIbnSinaProviderPin" msprop:Generator_ColumnPropNameInRow="IbnSinaProviderPin" msprop:Generator_ColumnPropNameInTable="IbnSinaProviderPinColumn" msprop:Generator_UserColumnName="IbnSinaProviderPin" type="xs:string" minOccurs="0" />
+              <xs:element name="MCAProviderPin" msprop:Generator_ColumnVarNameInTable="columnMCAProviderPin" msprop:Generator_ColumnPropNameInRow="MCAProviderPin" msprop:Generator_ColumnPropNameInTable="MCAProviderPinColumn" msprop:Generator_UserColumnName="MCAProviderPin" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

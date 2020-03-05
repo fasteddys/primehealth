@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "FinishClosingTeamRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 Mcenter">
+            <h4 class="text-center marginBottom">
+                Finish Closing Request
+            </h4>
+            <form class="form">
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label for="DataEntryAdminstrationComment">Comment</span></label>
+                    </div>
+                    <div class="col-md-7">
+                        <textarea name="Comment" class="placeHolderSmallSize form-control" id="ClosingFinishComment" placeholder="Comment" rows="2"></textarea>
+                    </div>
+                </div>
+                <!--*****************************************************************-->
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary form-control text-5 " id="btnFinishClosingRequest">Finish</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/CustomJavaScript/ClosingJS/FinishBatchClosingRequest.js"></script>

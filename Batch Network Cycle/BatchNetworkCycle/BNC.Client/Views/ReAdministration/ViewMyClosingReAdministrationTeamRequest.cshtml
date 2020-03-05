@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "ViewMyClosingReAdministrationTeamRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title>My Request</title>
+    @*<meta name="keywords" content="HTML5 Admin Template" />
+        <meta name="description" content="Porto Admin - Responsive HTML5 Template">
+        <meta name="author" content="okler.net">*@
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <section class="body">
+
+        <!-- start: header -->
+        <!-- end: header -->
+
+        <div>
+            <!-- start: sidebar -->
+            <!-- end: sidebar -->
+
+            <section role="main" class="content-body">
+
+                <h4 class="text-center marginBottom">
+                    My Request
+                </h4>
+                <!-- start: page -->
+
+                <div class="row">
+                    <div class="col">
+                        <section class="card">
+                            <header class="card-header">
+                                @*<div class="card-actions">
+                                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                                    </div>*@
+
+                                @*<h2 class="card-title">Basic with Table Tools</h2>*@
+                            </header>
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped mb-0" id="MyBatchClosingReAdministrationRequests">
+                                    <thead>
+                                        <tr>
+                                            <th>Adminstration Request ID</th>
+                                            <th>Request Status</th>
+                                            <th>Total Claims Number</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- end: page -->
+            </section>
+        </div>
+    </section>
+</body>
+</html>
+
+<script src="~/CustomJavaScript/ReAdministration/ViewMyClosingReAdministrationTeamRequest.js"></script>
+

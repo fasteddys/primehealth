@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "AddProvidersData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title>Add Provider Data</title>
+    @*<meta name="keywords" content="HTML5 Admin Template" />
+        <meta name="description" content="Porto Admin - Responsive HTML5 Template">
+        <meta name="author" content="okler.net">*@
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    @*<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">*@
+</head>
+<body>
+    <section role="main" class="content-body">
+
+        <!-- start: page -->
+        <div class="row">
+            <div class="col">
+                <section class="card">
+                    <header class="card-header">
+                        @*<div class="card-actions">
+                            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                        </div>*@
+                        <h2 class="card-title">Add Providers Data</h2>
+                    </header>
+                    <div class="card-body">
+                        <div class="tabs">
+                            <ul class="nav nav-tabs ">
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#DownloadTemplate" data-toggle="tab">Download Template</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#UploadShifts" data-toggle="tab">Upload Data</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="DownloadTemplate" class="tab-pane active">
+                                    <div class="form-group row">
+                                        <div class="col-lg-2">
+                                            <label class="col-lg-10 control-label "></label>
+                                            <div class="form-group row">
+                                                <a class="nav-link" href="#" onclick="GetTemplateData();" id="Export">
+                                                    <i class="fa fa-file-excel fa-2x" aria-hidden="true"></i>
+                                                    <span>Export Excel</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="UploadShifts" class="tab-pane">
+                                    <div class="col-lg-5">
+                                        <input type="file" id="myfile" class="form-control Cimgupload" />
+                                        <br>
+                                        <button type="button" class="btn btn-primary" onclick="UploadFile();">Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+
+        <!-- end: page -->
+    </section>
+</body>
+</html>
+
+<script src="~/CustomJavaScript/ProviderJS/AddProvidersData.js"></script>
+
+<style>
+.tab-content{
+    border-radius: 0 0 4px 4px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-top: 0;
+    padding: 20px 15px;
+}
+.nav-tabs li .nav-link {
+    border-bottom: none;
+    border-left: 1px solid #EEE;
+    border-right: 1px solid #EEE;
+    border-top: 3px solid #EEE;
+    color: white !important;
+}
+.nav-tabs li .nav-link, .nav-tabs li .nav-link:hover 
+{
+    background:none !important;
+
+}
+.nav-tabs li .nav-link.active {
+    background-color: #0088CC !important;
+}
+</style>

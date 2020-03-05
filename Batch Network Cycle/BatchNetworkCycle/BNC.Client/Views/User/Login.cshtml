@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+
+}
+
+
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+    <title>Login - BNC</title>
+    <meta name="keywords" content="HTML5 Admin Template" />
+    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    @*<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">*@
+    <link rel="icon" type="~/image/png" sizes="16x16" href="~/img/cypress-log-left.png">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/vendor/animate/animate.css">
+
+    <link rel="stylesheet" href="~/vendor/font-awesome/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="~/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="~/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+    @*<link href="~/Scripts/sweetalert.css" rel="stylesheet" />*@
+    @*<link href="~/CustomCSS/LoginCSS/CustomLoginCSS.css" rel="stylesheet" />*@
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/css/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="~/css/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/css/custom.css">
+
+    <!-- Head Libs -->
+    <script src="~/vendor/modernizr/modernizr.js"></script>
+    <link href="~/Content/login.css" rel="stylesheet" />
+    @{
+        var ApiURL = "";
+        using (BaseController baseController = new BaseController())
+        {
+          //  ApiURL = baseController.ApiURL;
+
+        }
+    }
+   
+</head>
+
+<body class="black">
+    <!-- start: page -->
+    <!--Start ShowAlert-->
+    <div id="ShowALertDanger" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Danger">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-times-circle fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="title text-10">Oops...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertDangerText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertDangerButton" onclick="HideALer(4)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertSuccess" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Sucess">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-check-circle  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="title text-10">Success...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertSuccessText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertSuccessButton" onclick="HideALer(2)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertWarning" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Warning">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-exclamation-triangle  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="title text-10">Warning...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertWarningText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertWarningButton" onclick="HideALer(3)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertInfo" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-exclamation   fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="title text-10">Info...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertInfoText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle " id="AlertInfoButton" onclick="HideALer(1)">Ok</button>
+                    </span>ShowAlertDismiss
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end ShowAlert-->
+    <section class="body-sign">
+        <div class="center-sign @*border*@">
+            <a href="/" class="logo float-left @*border*@ ">
+                <img class="newLogo" src="~/img/Arne_Haeger_Icon_Settings.png"  />
+            </a>
+
+            <div class="panel card-sign @*border*@">
+                <div class="card-title-sign mt-3 text-right">
+                    <h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i> Sign In</h2>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="form-group mb-3">
+                            <label class="float-left">Username <span class="red">*</span></label>
+                            <div class="input-group">
+                                <input id="UserName" class="form-control form-control-lg" type="text" />
+                                <span class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="clearfix">
+                                <label class="float-left">Password <span class="red">*</span></label>
+                            </div>
+                            <div class="input-group">
+                                <input name="pwd" id="Password" type="password" class="form-control form-control-lg" />
+                                <span class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-8">
+                     
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <button class="btn btn-primary mt-2" id="Login">Sign In</button>
+                            </div>
+                        </div>
+                        <div class="overlayLoadingLogin" style="display:none;">
+                            <div class="Loginspinner"></div>
+                            <br />
+                            Loading...
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="GlobalApiURL" value="@ApiURL">
+
+            <p class="footer text-center text-4 text-muted mt-3 mb-3">&copy; MedGulf Egypt @DateTime.Now.Year - Developed by Software Development Team.</p>
+        </div>
+    </section>
+    <!-- end: page -->
+    <!-- Vendor -->
+    <script src="~/vendor/jquery/jquery.js"></script>
+    <script src="~/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="~/vendor/popper/umd/popper.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="~/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/vendor/common/common.js"></script>
+    <script src="~/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="~/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+    <script src="~/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+    @*<script src="~/Scripts/sweetalert.js"></script>
+        <script src="~/Scripts/sweetalert.min.js"></script>*@
+
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/js/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="~/js/custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="~/js/theme.init.js"></script>
+    <script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+    <script src="~/CustomJavaScript/UserJS/Login.js"></script>
+
+</body>
+</html>
+
+

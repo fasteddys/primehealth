@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "ShowBatchingFilterationDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div id="BatchingFilterationData" class="col-md-12 Mcenter mt-2">
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Batching Filteration Requests</h2>
+                </header>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped mb-0" id="BatchingFilterationRequestsDataTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>TClaimsCount</th>
+                                <th>RClaimsCount</th>
+                                <th>Category</th>
+                                <th>CreationDate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script src="~/CustomJavaScript/BatchingJS/ShowBatchingFilterationDetails.js"></script>

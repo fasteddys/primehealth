@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FaxApprovalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FaxConfiguration">
+          <Key>
+            <PropertyRef Name="ConfigurationID" />
+          </Key>
+          <Property Name="ConfigurationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigurationKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConfigurationValue" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FaxSenderQueue">
+          <Key>
+            <PropertyRef Name="FaxQueueID" />
+          </Key>
+          <Property Name="FaxQueueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderFaxNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecevingFaxNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AttachmentPath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AttachmentName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NumberOfTries" Type="int" Nullable="false" />
+          <Property Name="EmailApprovalReqFK" Type="int" Nullable="false" />
+          <Property Name="IsSent" Type="bit" Nullable="false" />
+          <Property Name="FaxSubject" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SuccessSendingTime" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FaxSenderQueueDetails">
+          <Key>
+            <PropertyRef Name="FaxQueueDetailsID" />
+          </Key>
+          <Property Name="FaxQueueDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FaxQueueFK" Type="int" />
+          <Property Name="IsSent" Type="bit" />
+          <Property Name="SuccessSendingTime" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_FaxSenderQueueDetails_FaxSenderQueue">
+          <End Role="FaxSenderQueue" Type="Self.FaxSenderQueue" Multiplicity="0..1" />
+          <End Role="FaxSenderQueueDetails" Type="Self.FaxSenderQueueDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FaxSenderQueue">
+              <PropertyRef Name="FaxQueueID" />
+            </Principal>
+            <Dependent Role="FaxSenderQueueDetails">
+              <PropertyRef Name="FaxQueueFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FaxApprovalModelStoreContainer">
+          <EntitySet Name="FaxConfiguration" EntityType="Self.FaxConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FaxSenderQueue" EntityType="Self.FaxSenderQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FaxSenderQueueDetails" EntityType="Self.FaxSenderQueueDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FaxSenderQueueDetails_FaxSenderQueue" Association="Self.FK_FaxSenderQueueDetails_FaxSenderQueue">
+            <End Role="FaxSenderQueue" EntitySet="FaxSenderQueue" />
+            <End Role="FaxSenderQueueDetails" EntitySet="FaxSenderQueueDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FaxApprovalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FaxConfiguration">
+          <Key>
+            <PropertyRef Name="ConfigurationID" />
+          </Key>
+          <Property Name="ConfigurationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigurationKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfigurationValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FaxSenderQueue">
+          <Key>
+            <PropertyRef Name="FaxQueueID" />
+          </Key>
+          <Property Name="FaxQueueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderFaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecevingFaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttachmentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttachmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfTries" Type="Int32" Nullable="false" />
+          <Property Name="EmailApprovalReqFK" Type="Int32" Nullable="false" />
+          <Property Name="IsSent" Type="Boolean" Nullable="false" />
+          <Property Name="FaxSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SuccessSendingTime" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FaxSenderQueueDetails" Relationship="Self.FK_FaxSenderQueueDetails_FaxSenderQueue" FromRole="FaxSenderQueue" ToRole="FaxSenderQueueDetails" />
+        </EntityType>
+        <EntityType Name="FaxSenderQueueDetail">
+          <Key>
+            <PropertyRef Name="FaxQueueDetailsID" />
+          </Key>
+          <Property Name="FaxQueueDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FaxQueueFK" Type="Int32" />
+          <Property Name="IsSent" Type="Boolean" />
+          <Property Name="SuccessSendingTime" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FaxSenderQueue" Relationship="Self.FK_FaxSenderQueueDetails_FaxSenderQueue" FromRole="FaxSenderQueueDetails" ToRole="FaxSenderQueue" />
+        </EntityType>
+        <Association Name="FK_FaxSenderQueueDetails_FaxSenderQueue">
+          <End Role="FaxSenderQueue" Type="Self.FaxSenderQueue" Multiplicity="0..1" />
+          <End Role="FaxSenderQueueDetails" Type="Self.FaxSenderQueueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FaxSenderQueue">
+              <PropertyRef Name="FaxQueueID" />
+            </Principal>
+            <Dependent Role="FaxSenderQueueDetails">
+              <PropertyRef Name="FaxQueueFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FaxApprovalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FaxConfigurations" EntityType="Self.FaxConfiguration" />
+          <EntitySet Name="FaxSenderQueues" EntityType="Self.FaxSenderQueue" />
+          <EntitySet Name="FaxSenderQueueDetails" EntityType="Self.FaxSenderQueueDetail" />
+          <AssociationSet Name="FK_FaxSenderQueueDetails_FaxSenderQueue" Association="Self.FK_FaxSenderQueueDetails_FaxSenderQueue">
+            <End Role="FaxSenderQueue" EntitySet="FaxSenderQueues" />
+            <End Role="FaxSenderQueueDetails" EntitySet="FaxSenderQueueDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FaxApprovalModelStoreContainer" CdmEntityContainer="FaxApprovalEntities">
+          <EntitySetMapping Name="FaxConfigurations">
+            <EntityTypeMapping TypeName="FaxApprovalModel.FaxConfiguration">
+              <MappingFragment StoreEntitySet="FaxConfiguration">
+                <ScalarProperty Name="ConfigurationID" ColumnName="ConfigurationID" />
+                <ScalarProperty Name="ConfigurationKey" ColumnName="ConfigurationKey" />
+                <ScalarProperty Name="ConfigurationValue" ColumnName="ConfigurationValue" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FaxSenderQueues">
+            <EntityTypeMapping TypeName="FaxApprovalModel.FaxSenderQueue">
+              <MappingFragment StoreEntitySet="FaxSenderQueue">
+                <ScalarProperty Name="FaxQueueID" ColumnName="FaxQueueID" />
+                <ScalarProperty Name="SenderFaxNumber" ColumnName="SenderFaxNumber" />
+                <ScalarProperty Name="RecevingFaxNumber" ColumnName="RecevingFaxNumber" />
+                <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+                <ScalarProperty Name="AttachmentName" ColumnName="AttachmentName" />
+                <ScalarProperty Name="NumberOfTries" ColumnName="NumberOfTries" />
+                <ScalarProperty Name="EmailApprovalReqFK" ColumnName="EmailApprovalReqFK" />
+                <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+                <ScalarProperty Name="FaxSubject" ColumnName="FaxSubject" />
+                <ScalarProperty Name="SuccessSendingTime" ColumnName="SuccessSendingTime" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FaxSenderQueueDetails">
+            <EntityTypeMapping TypeName="FaxApprovalModel.FaxSenderQueueDetail">
+              <MappingFragment StoreEntitySet="FaxSenderQueueDetails">
+                <ScalarProperty Name="FaxQueueDetailsID" ColumnName="FaxQueueDetailsID" />
+                <ScalarProperty Name="FaxQueueFK" ColumnName="FaxQueueFK" />
+                <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+                <ScalarProperty Name="SuccessSendingTime" ColumnName="SuccessSendingTime" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
