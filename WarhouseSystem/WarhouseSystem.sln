@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarhouseSystem.Tests", "WarhouseSystem.Tests\WarhouseSystem.Tests.csproj", "{AFD9A30F-FFCD-4263-9D44-7D4B330A16E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarhouseSystem.DB", "WarhouseSystem.DB\WarhouseSystem.DB.csproj", "{5B3071A2-6721-446B-9D52-3615F854EDC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarhouseSystem.EF", "WarhouseSystem.EF\WarhouseSystem.EF.csproj", "{C6C2EC83-0026-492D-BB15-C09029ECC574}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarhouseSystem.Application", "WarhouseSystem.Application\WarhouseSystem.Application.csproj", "{15052827-FA31-4D9D-937D-39403492DB2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarhosueSystem.Validation", "WarhosueSystem.Validation\WarhosueSystem.Validation.csproj", "{B569D65C-6F49-4F78-B4C0-288BB0C356B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarhouseSystem.Common", "WarhouseSystem.Common\WarhouseSystem.Common.csproj", "{DD81965B-7560-48CB-8662-2B017B455F1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WareHouseClinet", "WareHouseClinet\WareHouseClinet.csproj", "{9E9C379D-0926-4415-BAC3-A1529EF4067D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarhouseSystem", "WarhouseSystem\WarhouseSystem.csproj", "{1D6F1B4F-3B02-4407-86C3-FF390237C819}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFD9A30F-FFCD-4263-9D44-7D4B330A16E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD9A30F-FFCD-4263-9D44-7D4B330A16E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD9A30F-FFCD-4263-9D44-7D4B330A16E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD9A30F-FFCD-4263-9D44-7D4B330A16E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B3071A2-6721-446B-9D52-3615F854EDC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B3071A2-6721-446B-9D52-3615F854EDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B3071A2-6721-446B-9D52-3615F854EDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B3071A2-6721-446B-9D52-3615F854EDC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C2EC83-0026-492D-BB15-C09029ECC574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C2EC83-0026-492D-BB15-C09029ECC574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C2EC83-0026-492D-BB15-C09029ECC574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C2EC83-0026-492D-BB15-C09029ECC574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15052827-FA31-4D9D-937D-39403492DB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15052827-FA31-4D9D-937D-39403492DB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15052827-FA31-4D9D-937D-39403492DB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15052827-FA31-4D9D-937D-39403492DB2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B569D65C-6F49-4F78-B4C0-288BB0C356B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B569D65C-6F49-4F78-B4C0-288BB0C356B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B569D65C-6F49-4F78-B4C0-288BB0C356B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B569D65C-6F49-4F78-B4C0-288BB0C356B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD81965B-7560-48CB-8662-2B017B455F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD81965B-7560-48CB-8662-2B017B455F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD81965B-7560-48CB-8662-2B017B455F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD81965B-7560-48CB-8662-2B017B455F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E9C379D-0926-4415-BAC3-A1529EF4067D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9C379D-0926-4415-BAC3-A1529EF4067D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9C379D-0926-4415-BAC3-A1529EF4067D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9C379D-0926-4415-BAC3-A1529EF4067D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D6F1B4F-3B02-4407-86C3-FF390237C819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D6F1B4F-3B02-4407-86C3-FF390237C819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D6F1B4F-3B02-4407-86C3-FF390237C819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D6F1B4F-3B02-4407-86C3-FF390237C819}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6567583-FC73-403B-ABDC-D66D153EE2E2}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WarhosueSystem.Validation\\WarhosueSystem.Validation.csproj
+		SccProjectName1 = WarhosueSystem.Validation
+		SccLocalPath1 = WarhosueSystem.Validation
+		SccProjectUniqueName2 = WarhouseSystem.Application\\WarhouseSystem.Application.csproj
+		SccProjectName2 = WarhouseSystem.Application
+		SccLocalPath2 = WarhouseSystem.Application
+		SccProjectUniqueName3 = WarhouseSystem.Common\\WarhouseSystem.Common.csproj
+		SccProjectName3 = WarhouseSystem.Common
+		SccLocalPath3 = WarhouseSystem.Common
+		SccProjectUniqueName4 = WarhouseSystem.DB\\WarhouseSystem.DB.csproj
+		SccProjectName4 = WarhouseSystem.DB
+		SccLocalPath4 = WarhouseSystem.DB
+		SccProjectUniqueName5 = WarhouseSystem.EF\\WarhouseSystem.EF.csproj
+		SccProjectName5 = WarhouseSystem.EF
+		SccLocalPath5 = WarhouseSystem.EF
+		SccProjectUniqueName6 = WarhouseSystem.Tests\\WarhouseSystem.Tests.csproj
+		SccProjectName6 = WarhouseSystem.Tests
+		SccLocalPath6 = WarhouseSystem.Tests
+		SccProjectUniqueName7 = WareHouseClinet\\WareHouseClinet.csproj
+		SccProjectName7 = WareHouseClinet
+		SccLocalPath7 = WareHouseClinet
+		SccProjectUniqueName8 = WarhouseSystem\\WarhouseSystem.csproj
+		SccProjectName8 = WarhouseSystem
+		SccLocalPath8 = WarhouseSystem
+	EndGlobalSection
+EndGlobal
