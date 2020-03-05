@@ -1,0 +1,332 @@
+﻿@*<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>*@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - Call Center Technical Approvals</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="~/image/png" sizes="16x16" href="~/global_assets/images/Medgulf-Logo.png">
+
+    <link href="~/assets/css/core.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script src="~/global_assets/js/plugins/loaders/pace.min.js"></script>
+    <script src="~/global_assets/js/core/libraries/jquery.min.js"></script>
+    <script src="~/global_assets/js/core/libraries/bootstrap.min.js"></script>
+    <script src="~/global_assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script src="~/global_assets/js/plugins/visualization/d3/d3.min.js"></script>
+    <script src="~/global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+    <script src="~/global_assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script src="~/global_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+    <script src="~/global_assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script src="~/global_assets/js/plugins/pickers/daterangepicker.js"></script>
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/global_assets/js/demo_pages/dashboard.js"></script>
+    <script src="~/global_assets/js/plugins/ui/ripple.min.js"></script>
+    <script src="~/global_assets/js/plugins/notifications/sweet_alert.min.js"></script>
+
+    <!-- /theme JS files -->
+</head>
+<body>
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse bg-indigo navbar-static-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../Request/RequestsList?id=1"><img src="~/global_assets/images/logo_light.png" alt=""></a>
+            <ul class="nav navbar-nav visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav">
+                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+
+            </ul>
+            <div class="navbar-right">
+                @{ string partOfDay;
+                    var hours = DateTime.Now.Hour;
+                    if (hours > 16)
+                    {
+                        partOfDay = "Evening";
+                    }
+                    else if (hours > 11)
+                    {
+                        partOfDay = "Afternoon";
+                    }
+                    else
+                    {
+                        partOfDay = "Morning";
+                    }
+                <p class="navbar-text">@partOfDay, @Request.Cookies["UserNameCookie"].Value</p>
+                <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+                }
+                
+            </div>
+        </div>
+    </div>
+    <!-- /main navbar -->
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-main sidebar-default">
+                <div class="sidebar-content">
+                    <!-- User menu -->
+                    <div class="sidebar-user-material">
+                        <div class="category-content">
+                            <div class="sidebar-user-material-content">
+                                <a href="#"><img src="~/global_assets/images/placeholders/placeholder.jpg" class="img-circle img-responsive" alt=""></a>
+                                <h6>@Request.Cookies["UserNameCookie"].Value</h6>
+                                @{
+                                    if (Request.Cookies["UserTypeCookie"].Value == "1")
+                                    {
+                                        <span class="text-size-small">Provider</span>
+                                    }
+                                    if (Request.Cookies["UserTypeCookie"].Value == "2")
+                                    {
+                                        <span class="text-size-small">Account Manager</span>
+                                    }
+                                }
+                               
+                            </div>
+
+                            <div class="sidebar-user-material-menu">
+                                <a href="#user-nav" data-toggle="collapse"><span>My account</span> <i class="caret"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="navigation-wrapper collapse" id="user-nav">
+                            <ul class="navigation">
+                                <li><a id="ChangePassword" data-toggle="modal" data-target="#modal_ChangePassword"><i class="icon-user-lock"></i><span>Change Password</span></a></li>
+                                <li><a href="~/login/logout"><i class="icon-switch2"></i> <span>Logout</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /user menu -->
+                    <!-- Main navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+                                <!-- Main -->
+                                <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+                                <li><a href="~/request/requestslist?id=1"><i class="icon-pencil7"></i> <span>Pending Assign</span></a></li>
+                                <li><a href="~/request/requestslist?id=2"><i class="icon-person"></i> <span>Assigned</span></a></li>
+                                <li><a href="~/request/requestslist?id=3"><i class="icon-stack-check"></i> <span>My Requests</span></a></li>
+                                @{ 
+                                    if (Request.Cookies["UserTypeCookie"].Value == "2")
+                                    {
+                                        <li><a href="~/request/ClientResponseTime"><i class="icon-stack-check"></i> <span>Client Response Time</span></a></li>
+
+                                    }
+                                }
+                                <!-- /main -->
+                                <!-- Forms -->
+                                <!-- /forms -->
+                                <!-- /page kits -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /main navigation -->
+                </div>
+            </div>
+            <!-- /main sidebar -->
+            <!-- Main content -->
+            <div class="content-wrapper">
+                @RenderBody()
+                <!-- Page header -->
+                
+                <!-- /page header -->
+                <!-- Content area -->
+                <div class="content" >
+                    <!-- Footer -->
+                    <div class="footer text-muted" >
+                        &copy; @DateTime.Now.Year. <a href="#">MedGulf Egypt </a> by <a href="#">Software Development Team</a>
+                    </div>
+                    <!-- /footer -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <div id="modal_ChangePassword" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Change Password</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger no-border" id="Alert-Div-Pass" style="display:none">
+                        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+                        <span class="text-semibold" id="Alert-Div-Pass-Text">Morning!</span>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <label>Old Password</label>
+                                <input id="OldPassword" type="password" placeholder="****" class="form-control ClearInputFields">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <label>New Password</label>
+                                <input id="NewPassword" type="password" placeholder="****" class="form-control ClearInputFields">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <label>Confirm New Password</label>
+                                <input id="ConfirmPassword" type="password" placeholder="****" class="form-control ClearInputFields">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">cancel</button>
+                    <button id="SumbitChangePassword" type="button" class="btn btn-danger">Submit New Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page container -->
+    <script src="~/Scripts/HelperScript.js"></script>
+    <script>
+        $(document).ready(function () {
+            ClearInputFields();
+        })
+        $('#SumbitChangePassword').on('click', function () {
+            $("#Alert-Div-Pass").hide();
+            debugger;
+            var OldPass = $("#OldPassword").val();
+            var NewPass = $("#NewPassword").val();
+            var ConfirmPass = $("#ConfirmPassword").val();
+            if (OldPass == "" || NewPass == "" || ConfirmPass == "") {
+                document.getElementById("Alert-Div-Pass-Text").innerHTML = "You Must Fill All Data"
+                $("#Alert-Div-Pass").show();
+            }
+            else if (NewPass != ConfirmPass) {
+                document.getElementById("Alert-Div-Pass-Text").innerHTML = "Confirm Password must be identical to new Password please Retype it again"
+                $("#Alert-Div-Pass").show();
+
+            }
+            else if (OldPass == NewPass) {
+                document.getElementById("Alert-Div-Pass-Text").innerHTML = "New Password Can't be as the old one .. Please Pick a new one"
+                $("#Alert-Div-Pass").show();
+            }
+            else {
+                var ChangeObj = {
+                    OldPassword: OldPass,
+                    NewPassword: NewPass,
+                    ConfirmPassword: ConfirmPass
+                }
+                var url = '@Url.Action("ChangePassword", "home")';
+
+
+                        Common.Ajax('post', url, ChangeObj, 'json', SuccessChange);
+                    }
+
+
+                })
+        function SuccessChange(data) {
+            if (data == 1) {
+                ClearInputFields();
+                $('#modal_ChangePassword').modal('toggle');
+                swal({
+                    title: "Success",
+                    text: "You Password Changed Successfully",
+                    confirmButtonColor: "#66BB6A",
+                    type: "success"
+                });
+            }
+            else if (data == 0) {
+                ClearInputFields();
+
+                swal({
+                    title: "Oops...",
+                    text: "You didn't Type the Correct Old Password ... Please Try again",
+                    confirmButtonColor: "#EF5350",
+                    type: "error"
+                });
+            }
+            else if (data == 2) {
+                ClearInputFields();
+
+                swal({
+                    title: "Oops...",
+                    text: "your Password was not changed ... Please Try again",
+                    confirmButtonColor: "#EF5350",
+                    type: "error"
+                });
+            }
+        }
+
+
+        function ClearInputFields() {
+            $(".ClearInputFields").val('');           
+        }
+    </script>
+</body>
+</html>
+

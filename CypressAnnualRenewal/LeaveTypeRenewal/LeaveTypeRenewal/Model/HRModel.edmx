@@ -1,0 +1,1739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LeaveTypeAccuralPeriodDIM">
+          <Key>
+            <PropertyRef Name="AccuralPeriodID" />
+          </Key>
+          <Property Name="AccuralPeriodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccuralPeriodName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypeAccuralRules">
+          <Key>
+            <PropertyRef Name="LeaveTypeAccuralRuleID" />
+          </Key>
+          <Property Name="LeaveTypeAccuralRuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="GainingEligibilityMethodFK" Type="int" />
+          <Property Name="AfterHireEligibilityMonths" Type="int" />
+          <Property Name="AccuralPeriodFK" Type="int" />
+          <Property Name="EveryMonthAccuralDay" Type="int" />
+          <Property Name="EffectiveDate" Type="datetime" />
+          <Property Name="EmployeeEarnsNumberOfUnits" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OverSeniorityYears" Type="int" />
+          <Property Name="OverSeniorityEmployeeEarns" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FirstAccuralMethodFK" Type="int" />
+          <Property Name="ProrateCalculationModeFK" Type="int" />
+          <Property Name="ProrateMethodFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypeCarryOverRules">
+          <Key>
+            <PropertyRef Name="CarryOverRuleID" />
+          </Key>
+          <Property Name="CarryOverRuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="CarryOverUnusedEntitlements" Type="bit" />
+          <Property Name="CarryOverMaxEntitlementsUnit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CarryOverNegativeEntitlement" Type="bit" />
+          <Property Name="ExpireCarriedOverEntitlements" Type="bit" />
+          <Property Name="ExpireCarriedOverEntitlementMonths" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedContractTypes">
+          <Key>
+            <PropertyRef Name="LeaveContractTypeRestrictionID" />
+          </Key>
+          <Property Name="LeaveContractTypeRestrictionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="ContractTypeFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedDeps">
+          <Key>
+            <PropertyRef Name="LeaveDepartmentRestrictionID" />
+          </Key>
+          <Property Name="LeaveDepartmentRestrictionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="DepartmentFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedEmployees">
+          <Key>
+            <PropertyRef Name="LeaveEmployeeRestrictionID" />
+          </Key>
+          <Property Name="LeaveEmployeeRestrictionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeFK" Type="int" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedGenders">
+          <Key>
+            <PropertyRef Name="LeaveGenderRestrictionID" />
+          </Key>
+          <Property Name="LeaveGenderRestrictionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="GenderFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedSubDeps">
+          <Key>
+            <PropertyRef Name="LeaveTeamRestrictionID" />
+          </Key>
+          <Property Name="LeaveTeamRestrictionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubDepartmentFK" Type="int" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypes">
+          <Key>
+            <PropertyRef Name="LeaveTypeID" />
+          </Key>
+          <Property Name="LeaveTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveTypeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConsiderAsFK" Type="int" />
+          <Property Name="EntitlementSourceFK" Type="int" />
+          <Property Name="DurationUnitFK" Type="int" />
+          <Property Name="ParentLeaveTypeFK" Type="int" />
+          <Property Name="TakeMaxAmountFromParent" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DeductionFromParentLeaveDurationPercentage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EntitlementTypeFK" Type="int" />
+          <Property Name="OneDayMinDurationFK" Type="int" />
+          <Property Name="AllowNegativeEntitlement" Type="bit" />
+          <Property Name="MaxAllowedNegativeEntitlement" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HasAttachments" Type="bit" />
+          <Property Name="IsAttachmentsRequired" Type="bit" />
+          <Property Name="AllowSameDayPartialEntitlement" Type="bit" />
+          <Property Name="IncludePublicHolidayInRequestLength" Type="bit" />
+          <Property Name="IsSuspended" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RequestHandler">
+          <Key>
+            <PropertyRef Name="RequestHandlerID" />
+          </Key>
+          <Property Name="RequestHandlerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RequestFK" Type="int" />
+          <Property Name="LeaveTypeFK" Type="int" Nullable="false" />
+          <Property Name="RquestStatusFK" Type="int" />
+          <Property Name="UserFK" Type="int" />
+          <Property Name="Offday" Type="date" />
+          <Property Name="RequestDuration" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="DurationUnitFK" Type="int" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="UserFK" Type="int" />
+          <Property Name="RequesStatusFK" Type="int" />
+          <Property Name="DurationFrom" Type="datetime" Nullable="false" />
+          <Property Name="DurationTo" Type="datetime" Nullable="false" />
+          <Property Name="BackToWork" Type="datetime" Nullable="false" />
+          <Property Name="RequestDuration" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Level" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="LeaveDurationUnitFK" Type="int" />
+          <Property Name="PartialDurationUnitFK" Type="int" />
+          <Property Name="Substitute" Type="int" />
+          <Property Name="Reason" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="OnBehalfOfRequesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="UserEntitlementChange">
+          <Key>
+            <PropertyRef Name="UserEntitlementChangesID" />
+          </Key>
+          <Property Name="UserEntitlementChangesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="EntitlementBefore" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="EntitlementAfter" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DurationFrom" Type="datetime" />
+          <Property Name="DurationTo" Type="datetime" />
+          <Property Name="BackToWork" Type="datetime" />
+          <Property Name="ActionDate" Type="datetime" Nullable="false" />
+          <Property Name="RequestDuration" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UserFK" Type="int" Nullable="false" />
+          <Property Name="UserEntitlementFK" Type="int" />
+          <Property Name="RequestFK" Type="int" />
+          <Property Name="EntitlementChangedByFK" Type="int" />
+          <Property Name="UserChangeEntitlementFK" Type="int" />
+          <Property Name="LeaveDurationUnitFK" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="Year" Type="int" />
+        </EntityType>
+        <EntityType Name="UserEntitlements">
+          <Key>
+            <PropertyRef Name="UserEntitlementID" />
+          </Key>
+          <Property Name="UserEntitlementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntitlementTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UserFK" Type="int" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" Nullable="false" />
+          <Property Name="LeaveDurationUnitFK" Type="int" Nullable="false" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="EffectiveDateFrom" Type="date" />
+          <Property Name="EffectiveDateTo" Type="date" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="HireDate" Type="datetime" />
+          <Property Name="IsOnline" Type="bit" />
+          <Property Name="LDAPUserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubDepartmentFK" Type="int" />
+          <Property Name="DepartmentFK" Type="int" />
+          <Property Name="AccessControlUserFK" Type="int" />
+          <Property Name="DirectManagerFK" Type="int" />
+          <Property Name="PositionFK" Type="int" />
+          <Property Name="ApprovalFlowFK" Type="int" />
+          <Property Name="ContractTypeFK" Type="int" />
+          <Property Name="LevelFK" Type="int" />
+          <Property Name="ProfilePictureURL" Type="nvarchar(max)" />
+          <Property Name="ProbationDate" Type="datetime" />
+          <Property Name="TerminationDate" Type="datetime" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="SeniorityBeforeHireYears" Type="int" />
+          <Property Name="GenderFK" Type="int" />
+          <Property Name="SeniorityBeforeHireMonth" Type="int" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomNote" Type="nvarchar(max)" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsHR" Type="bit" />
+          <Property Name="WorkingWeekFK" Type="int" />
+          <Property Name="PrivatePhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="NationalID" Type="nvarchar" MaxLength="20" />
+          <Property Name="HomeAddress" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="MedicalID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsFirstLogin" Type="bit" />
+          <Property Name="HasCompletedUserProfileData" Type="bit" />
+          <Property Name="UserPersonalEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="CompanyFK" Type="int" />
+          <Property Name="ExtNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsOutDomainUser" Type="bit" />
+          <Property Name="OutDomainPassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypeRestrictedContractTypes" Type="Self.LeaveTypeRestrictedContractTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedContractTypes">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypeRestrictedEmployees" Type="Self.LeaveTypeRestrictedEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedEmployees">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="LeaveTypeRestrictedEmployees" Type="Self.LeaveTypeRestrictedEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedEmployees">
+              <PropertyRef Name="EmployeeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypeRestrictedGenders" Type="Self.LeaveTypeRestrictedGenders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedGenders">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypeRestrictedSubDeps" Type="Self.LeaveTypeRestrictedSubDeps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedSubDeps">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Requests_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+          <End Role="UserEntitlementChange" Type="Self.UserEntitlementChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="UserEntitlementChange">
+              <PropertyRef Name="RequestFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK">
+          <End Role="UserEntitlements" Type="Self.UserEntitlements" Multiplicity="0..1" />
+          <End Role="UserEntitlementChange" Type="Self.UserEntitlementChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserEntitlements">
+              <PropertyRef Name="UserEntitlementID" />
+            </Principal>
+            <Dependent Role="UserEntitlementChange">
+              <PropertyRef Name="UserEntitlementFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserEntitlementChange" Type="Self.UserEntitlementChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserEntitlementChange">
+              <PropertyRef Name="UserChangeEntitlementFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlementChanges_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserEntitlementChange" Type="Self.UserEntitlementChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserEntitlementChange">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserEntitlements" Type="Self.UserEntitlements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="UserEntitlements">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlements_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserEntitlements" Type="Self.UserEntitlements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserEntitlements">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM">
+          <End Role="LeaveTypeAccuralPeriodDIM" Type="Self.LeaveTypeAccuralPeriodDIM" Multiplicity="0..1" />
+          <End Role="LeaveTypeAccuralRules" Type="Self.LeaveTypeAccuralRules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypeAccuralPeriodDIM">
+              <PropertyRef Name="AccuralPeriodID" />
+            </Principal>
+            <Dependent Role="LeaveTypeAccuralRules">
+              <PropertyRef Name="AccuralPeriodFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypeAccuralRules_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypeAccuralRules" Type="Self.LeaveTypeAccuralRules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeAccuralRules">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypeCarryOverRules_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypeCarryOverRules" Type="Self.LeaveTypeCarryOverRules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeCarryOverRules">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypeRestrictedDeps_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypeRestrictedDeps" Type="Self.LeaveTypeRestrictedDeps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedDeps">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypes_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypes1" Type="Self.LeaveTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypes1">
+              <PropertyRef Name="ParentLeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestHandler_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="1" />
+          <End Role="RequestHandler" Type="Self.RequestHandler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="RequestHandler">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestHandler_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+          <End Role="RequestHandler" Type="Self.RequestHandler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="RequestHandler">
+              <PropertyRef Name="RequestFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestHandler_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="RequestHandler" Type="Self.RequestHandler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RequestHandler">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="Substitute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users1" Type="Self.Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Users1">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRMSModelStoreContainer">
+          <EntitySet Name="LeaveTypeAccuralPeriodDIM" EntityType="Self.LeaveTypeAccuralPeriodDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypeAccuralRules" EntityType="Self.LeaveTypeAccuralRules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypeCarryOverRules" EntityType="Self.LeaveTypeCarryOverRules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypeRestrictedContractTypes" EntityType="Self.LeaveTypeRestrictedContractTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypeRestrictedDeps" EntityType="Self.LeaveTypeRestrictedDeps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypeRestrictedEmployees" EntityType="Self.LeaveTypeRestrictedEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypeRestrictedGenders" EntityType="Self.LeaveTypeRestrictedGenders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypeRestrictedSubDeps" EntityType="Self.LeaveTypeRestrictedSubDeps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypes" EntityType="Self.LeaveTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestHandler" EntityType="Self.RequestHandler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEntitlementChange" EntityType="Self.UserEntitlementChange" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEntitlements" EntityType="Self.UserEntitlements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedContractTypes" EntitySet="LeaveTypeRestrictedContractTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedEmployees" EntitySet="LeaveTypeRestrictedEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK" Association="Self.FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LeaveTypeRestrictedEmployees" EntitySet="LeaveTypeRestrictedEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedGenders" EntitySet="LeaveTypeRestrictedGenders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedSubDeps" EntitySet="LeaveTypeRestrictedSubDeps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Requests_dbo_Users_UserFK" Association="Self.FK_dbo_Requests_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK" Association="Self.FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="UserEntitlementChange" EntitySet="UserEntitlementChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK" Association="Self.FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK">
+            <End Role="UserEntitlements" EntitySet="UserEntitlements" />
+            <End Role="UserEntitlementChange" EntitySet="UserEntitlementChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK" Association="Self.FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEntitlementChange" EntitySet="UserEntitlementChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlementChanges_dbo_Users_UserFK" Association="Self.FK_dbo_UserEntitlementChanges_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEntitlementChange" EntitySet="UserEntitlementChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="UserEntitlements" EntitySet="UserEntitlements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlements_dbo_Users_UserFK" Association="Self.FK_dbo_UserEntitlements_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEntitlements" EntitySet="UserEntitlements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM" Association="Self.FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM">
+            <End Role="LeaveTypeAccuralPeriodDIM" EntitySet="LeaveTypeAccuralPeriodDIM" />
+            <End Role="LeaveTypeAccuralRules" EntitySet="LeaveTypeAccuralRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypeAccuralRules_LeaveTypes" Association="Self.FK_LeaveTypeAccuralRules_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeAccuralRules" EntitySet="LeaveTypeAccuralRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypeCarryOverRules_LeaveTypes" Association="Self.FK_LeaveTypeCarryOverRules_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeCarryOverRules" EntitySet="LeaveTypeCarryOverRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypeRestrictedDeps_LeaveTypes" Association="Self.FK_LeaveTypeRestrictedDeps_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedDeps" EntitySet="LeaveTypeRestrictedDeps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypes_LeaveTypes" Association="Self.FK_LeaveTypes_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypes1" EntitySet="LeaveTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestHandler_LeaveTypes" Association="Self.FK_RequestHandler_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="RequestHandler" EntitySet="RequestHandler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestHandler_Requests" Association="Self.FK_RequestHandler_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="RequestHandler" EntitySet="RequestHandler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestHandler_Users" Association="Self.FK_RequestHandler_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RequestHandler" EntitySet="RequestHandler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Users" Association="Self.FK_Requests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Users1" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LeaveTypeAccuralPeriodDIM">
+          <Key>
+            <PropertyRef Name="AccuralPeriodID" />
+          </Key>
+          <Property Name="AccuralPeriodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccuralPeriodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveTypeAccuralRules" Relationship="Self.FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM" FromRole="LeaveTypeAccuralPeriodDIM" ToRole="LeaveTypeAccuralRules" />
+        </EntityType>
+        <EntityType Name="LeaveTypeAccuralRule">
+          <Key>
+            <PropertyRef Name="LeaveTypeAccuralRuleID" />
+          </Key>
+          <Property Name="LeaveTypeAccuralRuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="GainingEligibilityMethodFK" Type="Int32" />
+          <Property Name="AfterHireEligibilityMonths" Type="Int32" />
+          <Property Name="AccuralPeriodFK" Type="Int32" />
+          <Property Name="EveryMonthAccuralDay" Type="Int32" />
+          <Property Name="EffectiveDate" Type="DateTime" Precision="3" />
+          <Property Name="EmployeeEarnsNumberOfUnits" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OverSeniorityYears" Type="Int32" />
+          <Property Name="OverSeniorityEmployeeEarns" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FirstAccuralMethodFK" Type="Int32" />
+          <Property Name="ProrateCalculationModeFK" Type="Int32" />
+          <Property Name="ProrateMethodFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveTypeAccuralPeriodDIM" Relationship="Self.FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM" FromRole="LeaveTypeAccuralRules" ToRole="LeaveTypeAccuralPeriodDIM" />
+          <NavigationProperty Name="LeaveType" Relationship="Self.FK_LeaveTypeAccuralRules_LeaveTypes" FromRole="LeaveTypeAccuralRules" ToRole="LeaveTypes" />
+        </EntityType>
+        <EntityType Name="LeaveType">
+          <Key>
+            <PropertyRef Name="LeaveTypeID" />
+          </Key>
+          <Property Name="LeaveTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConsiderAsFK" Type="Int32" />
+          <Property Name="EntitlementSourceFK" Type="Int32" />
+          <Property Name="DurationUnitFK" Type="Int32" />
+          <Property Name="ParentLeaveTypeFK" Type="Int32" />
+          <Property Name="TakeMaxAmountFromParent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DeductionFromParentLeaveDurationPercentage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EntitlementTypeFK" Type="Int32" />
+          <Property Name="OneDayMinDurationFK" Type="Int32" />
+          <Property Name="AllowNegativeEntitlement" Type="Boolean" />
+          <Property Name="MaxAllowedNegativeEntitlement" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HasAttachments" Type="Boolean" />
+          <Property Name="IsAttachmentsRequired" Type="Boolean" />
+          <Property Name="AllowSameDayPartialEntitlement" Type="Boolean" />
+          <Property Name="IncludePublicHolidayInRequestLength" Type="Boolean" />
+          <Property Name="IsSuspended" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveTypeAccuralRules" Relationship="Self.FK_LeaveTypeAccuralRules_LeaveTypes" FromRole="LeaveTypes" ToRole="LeaveTypeAccuralRules" />
+          <NavigationProperty Name="UserEntitlements" Relationship="Self.FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveTypes" ToRole="UserEntitlements" />
+          <NavigationProperty Name="LeaveTypes1" Relationship="Self.FK_LeaveTypes_LeaveTypes" FromRole="LeaveTypes" ToRole="LeaveTypes1" />
+          <NavigationProperty Name="LeaveType1" Relationship="Self.FK_LeaveTypes_LeaveTypes" FromRole="LeaveTypes1" ToRole="LeaveTypes" />
+          <NavigationProperty Name="LeaveTypeRestrictedContractTypes" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveType" ToRole="LeaveTypeRestrictedContractType" />
+          <NavigationProperty Name="LeaveTypeRestrictedDeps" Relationship="HRMSModel.FK_LeaveTypeRestrictedDeps_LeaveTypes" FromRole="LeaveType" ToRole="LeaveTypeRestrictedDep" />
+          <NavigationProperty Name="LeaveTypeRestrictedEmployees" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveType" ToRole="LeaveTypeRestrictedEmployee" />
+          <NavigationProperty Name="LeaveTypeRestrictedGenders" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveType" ToRole="LeaveTypeRestrictedGender" />
+          <NavigationProperty Name="LeaveTypeRestrictedSubDeps" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveType" ToRole="LeaveTypeRestrictedSubDep" />
+          <NavigationProperty Name="LeaveTypeCarryOverRules" Relationship="HRMSModel.FK_LeaveTypeCarryOverRules_LeaveTypes" FromRole="LeaveType" ToRole="LeaveTypeCarryOverRule" />
+          <NavigationProperty Name="Requests" Relationship="HRMSModel.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveType" ToRole="Request" />
+          <NavigationProperty Name="RequestHandlers" Relationship="HRMSModel.FK_RequestHandler_LeaveTypes" FromRole="LeaveType" ToRole="RequestHandler" />
+        </EntityType>
+        <EntityType Name="UserEntitlementChange">
+          <Key>
+            <PropertyRef Name="UserEntitlementChangesID" />
+          </Key>
+          <Property Name="UserEntitlementChangesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EntitlementBefore" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="EntitlementAfter" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DurationFrom" Type="DateTime" Precision="3" />
+          <Property Name="DurationTo" Type="DateTime" Precision="3" />
+          <Property Name="BackToWork" Type="DateTime" Precision="3" />
+          <Property Name="ActionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RequestDuration" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UserFK" Type="Int32" Nullable="false" />
+          <Property Name="UserEntitlementFK" Type="Int32" />
+          <Property Name="RequestFK" Type="Int32" />
+          <Property Name="EntitlementChangedByFK" Type="Int32" />
+          <Property Name="UserChangeEntitlementFK" Type="Int32" />
+          <Property Name="LeaveDurationUnitFK" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <Property Name="Year" Type="Int32" />
+          <NavigationProperty Name="UserEntitlement" Relationship="Self.FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK" FromRole="UserEntitlementChange" ToRole="UserEntitlements" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK" FromRole="UserEntitlementChange" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_dbo_UserEntitlementChanges_dbo_Users_UserFK" FromRole="UserEntitlementChange" ToRole="Users" />
+          <NavigationProperty Name="Request" Relationship="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK" FromRole="UserEntitlementChange" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="UserEntitlement">
+          <Key>
+            <PropertyRef Name="UserEntitlementID" />
+          </Key>
+          <Property Name="UserEntitlementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntitlementTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UserFK" Type="Int32" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="Int32" Nullable="false" />
+          <Property Name="LeaveDurationUnitFK" Type="Int32" Nullable="false" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="EffectiveDateFrom" Type="DateTime" Precision="0" />
+          <Property Name="EffectiveDateTo" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveType" Relationship="Self.FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK" FromRole="UserEntitlements" ToRole="LeaveTypes" />
+          <NavigationProperty Name="UserEntitlementChanges" Relationship="Self.FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK" FromRole="UserEntitlements" ToRole="UserEntitlementChange" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_UserEntitlements_dbo_Users_UserFK" FromRole="UserEntitlements" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="3" />
+          <Property Name="IsOnline" Type="Boolean" />
+          <Property Name="LDAPUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubDepartmentFK" Type="Int32" />
+          <Property Name="DepartmentFK" Type="Int32" />
+          <Property Name="AccessControlUserFK" Type="Int32" />
+          <Property Name="DirectManagerFK" Type="Int32" />
+          <Property Name="PositionFK" Type="Int32" />
+          <Property Name="ApprovalFlowFK" Type="Int32" />
+          <Property Name="ContractTypeFK" Type="Int32" />
+          <Property Name="LevelFK" Type="Int32" />
+          <Property Name="ProfilePictureURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProbationDate" Type="DateTime" Precision="3" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="3" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="SeniorityBeforeHireYears" Type="Int32" />
+          <Property Name="GenderFK" Type="Int32" />
+          <Property Name="SeniorityBeforeHireMonth" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="IsHR" Type="Boolean" />
+          <Property Name="WorkingWeekFK" Type="Int32" />
+          <Property Name="PrivatePhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NationalID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MedicalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsFirstLogin" Type="Boolean" />
+          <Property Name="HasCompletedUserProfileData" Type="Boolean" />
+          <Property Name="UserPersonalEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyFK" Type="Int32" />
+          <Property Name="ExtNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsOutDomainUser" Type="Boolean" />
+          <Property Name="OutDomainPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserEntitlementChanges" Relationship="Self.FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK" FromRole="Users" ToRole="UserEntitlementChange" />
+          <NavigationProperty Name="UserEntitlementChanges1" Relationship="Self.FK_dbo_UserEntitlementChanges_dbo_Users_UserFK" FromRole="Users" ToRole="UserEntitlementChange" />
+          <NavigationProperty Name="UserEntitlements" Relationship="Self.FK_dbo_UserEntitlements_dbo_Users_UserFK" FromRole="Users" ToRole="UserEntitlements" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_Users_Users" FromRole="Users" ToRole="Users1" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Users_Users" FromRole="Users1" ToRole="Users" />
+          <NavigationProperty Name="LeaveTypeRestrictedEmployees" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK" FromRole="User" ToRole="LeaveTypeRestrictedEmployee" />
+          <NavigationProperty Name="Requests" Relationship="HRMSModel.FK_dbo_Requests_dbo_Users_UserFK" FromRole="User" ToRole="Request" />
+          <NavigationProperty Name="Requests1" Relationship="HRMSModel.FK_Requests_Users" FromRole="User" ToRole="Request" />
+          <NavigationProperty Name="RequestHandlers" Relationship="HRMSModel.FK_RequestHandler_Users" FromRole="User" ToRole="RequestHandler" />
+        </EntityType>
+        <Association Name="FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM">
+          <End Role="LeaveTypeAccuralPeriodDIM" Type="Self.LeaveTypeAccuralPeriodDIM" Multiplicity="0..1" />
+          <End Role="LeaveTypeAccuralRules" Type="Self.LeaveTypeAccuralRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypeAccuralPeriodDIM">
+              <PropertyRef Name="AccuralPeriodID" />
+            </Principal>
+            <Dependent Role="LeaveTypeAccuralRules">
+              <PropertyRef Name="AccuralPeriodFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypeAccuralRules_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveType" Multiplicity="0..1" />
+          <End Role="LeaveTypeAccuralRules" Type="Self.LeaveTypeAccuralRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeAccuralRules">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserEntitlements" Type="Self.UserEntitlement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="UserEntitlements">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypes_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveType" Multiplicity="0..1" />
+          <End Role="LeaveTypes1" Type="Self.LeaveType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypes1">
+              <PropertyRef Name="ParentLeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK">
+          <End Role="UserEntitlements" Type="Self.UserEntitlement" Multiplicity="0..1" />
+          <End Role="UserEntitlementChange" Type="Self.UserEntitlementChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserEntitlements">
+              <PropertyRef Name="UserEntitlementID" />
+            </Principal>
+            <Dependent Role="UserEntitlementChange">
+              <PropertyRef Name="UserEntitlementFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserEntitlementChange" Type="Self.UserEntitlementChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserEntitlementChange">
+              <PropertyRef Name="UserChangeEntitlementFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlementChanges_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserEntitlementChange" Type="Self.UserEntitlementChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserEntitlementChange">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlements_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserEntitlements" Type="Self.UserEntitlement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserEntitlements">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Users1" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Users1">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LeaveTypeAccuralPeriodDIMs" EntityType="Self.LeaveTypeAccuralPeriodDIM" />
+          <EntitySet Name="LeaveTypeAccuralRules" EntityType="Self.LeaveTypeAccuralRule" />
+          <EntitySet Name="LeaveTypes" EntityType="Self.LeaveType" />
+          <EntitySet Name="UserEntitlementChanges" EntityType="Self.UserEntitlementChange" />
+          <EntitySet Name="UserEntitlements" EntityType="Self.UserEntitlement" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM" Association="Self.FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM">
+            <End Role="LeaveTypeAccuralPeriodDIM" EntitySet="LeaveTypeAccuralPeriodDIMs" />
+            <End Role="LeaveTypeAccuralRules" EntitySet="LeaveTypeAccuralRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypeAccuralRules_LeaveTypes" Association="Self.FK_LeaveTypeAccuralRules_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeAccuralRules" EntitySet="LeaveTypeAccuralRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="UserEntitlements" EntitySet="UserEntitlements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypes_LeaveTypes" Association="Self.FK_LeaveTypes_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypes1" EntitySet="LeaveTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK" Association="Self.FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK">
+            <End Role="UserEntitlements" EntitySet="UserEntitlements" />
+            <End Role="UserEntitlementChange" EntitySet="UserEntitlementChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK" Association="Self.FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEntitlementChange" EntitySet="UserEntitlementChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlementChanges_dbo_Users_UserFK" Association="Self.FK_dbo_UserEntitlementChanges_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEntitlementChange" EntitySet="UserEntitlementChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlements_dbo_Users_UserFK" Association="Self.FK_dbo_UserEntitlements_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEntitlements" EntitySet="UserEntitlements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Users1" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="LeaveTypeRestrictedContractTypes" EntityType="HRMSModel.LeaveTypeRestrictedContractType" />
+          <EntitySet Name="LeaveTypeRestrictedDeps" EntityType="HRMSModel.LeaveTypeRestrictedDep" />
+          <EntitySet Name="LeaveTypeRestrictedEmployees" EntityType="HRMSModel.LeaveTypeRestrictedEmployee" />
+          <EntitySet Name="LeaveTypeRestrictedGenders" EntityType="HRMSModel.LeaveTypeRestrictedGender" />
+          <EntitySet Name="LeaveTypeRestrictedSubDeps" EntityType="HRMSModel.LeaveTypeRestrictedSubDep" />
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK" Association="HRMSModel.FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedContractType" EntitySet="LeaveTypeRestrictedContractTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypeRestrictedDeps_LeaveTypes" Association="HRMSModel.FK_LeaveTypeRestrictedDeps_LeaveTypes">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedDep" EntitySet="LeaveTypeRestrictedDeps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK" Association="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedEmployee" EntitySet="LeaveTypeRestrictedEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK" Association="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK">
+            <End Role="User" EntitySet="Users" />
+            <End Role="LeaveTypeRestrictedEmployee" EntitySet="LeaveTypeRestrictedEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK" Association="HRMSModel.FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedGender" EntitySet="LeaveTypeRestrictedGenders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK" Association="HRMSModel.FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeRestrictedSubDep" EntitySet="LeaveTypeRestrictedSubDeps" />
+          </AssociationSet>
+          <EntitySet Name="LeaveTypeCarryOverRules" EntityType="HRMSModel.LeaveTypeCarryOverRule" />
+          <AssociationSet Name="FK_LeaveTypeCarryOverRules_LeaveTypes" Association="HRMSModel.FK_LeaveTypeCarryOverRules_LeaveTypes">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypeCarryOverRule" EntitySet="LeaveTypeCarryOverRules" />
+          </AssociationSet>
+          <EntitySet Name="Requests" EntityType="HRMSModel.Request" />
+          <AssociationSet Name="FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" Association="HRMSModel.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Requests_dbo_Users_UserFK" Association="HRMSModel.FK_dbo_Requests_dbo_Users_UserFK">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK" Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="UserEntitlementChange" EntitySet="UserEntitlementChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Users" Association="HRMSModel.FK_Requests_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <EntitySet Name="RequestHandlers" EntityType="HRMSModel.RequestHandler" />
+          <AssociationSet Name="FK_RequestHandler_LeaveTypes" Association="HRMSModel.FK_RequestHandler_LeaveTypes">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="RequestHandler" EntitySet="RequestHandlers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestHandler_Requests" Association="HRMSModel.FK_RequestHandler_Requests">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="RequestHandler" EntitySet="RequestHandlers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestHandler_Users" Association="HRMSModel.FK_RequestHandler_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RequestHandler" EntitySet="RequestHandlers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="LeaveTypeRestrictedContractType">
+          <Key>
+            <PropertyRef Name="LeaveContractTypeRestrictionID" />
+          </Key>
+          <Property Name="LeaveContractTypeRestrictionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="ContractTypeFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveType" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveTypeRestrictedContractType" ToRole="LeaveType" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedDep">
+          <Key>
+            <PropertyRef Name="LeaveDepartmentRestrictionID" />
+          </Key>
+          <Property Name="LeaveDepartmentRestrictionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="DepartmentFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveType" Relationship="HRMSModel.FK_LeaveTypeRestrictedDeps_LeaveTypes" FromRole="LeaveTypeRestrictedDep" ToRole="LeaveType" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedEmployee">
+          <Key>
+            <PropertyRef Name="LeaveEmployeeRestrictionID" />
+          </Key>
+          <Property Name="LeaveEmployeeRestrictionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeFK" Type="Int32" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveType" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveTypeRestrictedEmployee" ToRole="LeaveType" />
+          <NavigationProperty Name="User" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK" FromRole="LeaveTypeRestrictedEmployee" ToRole="User" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedGender">
+          <Key>
+            <PropertyRef Name="LeaveGenderRestrictionID" />
+          </Key>
+          <Property Name="LeaveGenderRestrictionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="GenderFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveType" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveTypeRestrictedGender" ToRole="LeaveType" />
+        </EntityType>
+        <EntityType Name="LeaveTypeRestrictedSubDep">
+          <Key>
+            <PropertyRef Name="LeaveTeamRestrictionID" />
+          </Key>
+          <Property Name="LeaveTeamRestrictionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubDepartmentFK" Type="Int32" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveType" Relationship="HRMSModel.FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveTypeRestrictedSubDep" ToRole="LeaveType" />
+        </EntityType>
+        <Association Name="FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK">
+          <End Type="HRMSModel.LeaveType" Role="LeaveType" Multiplicity="0..1" />
+          <End Type="HRMSModel.LeaveTypeRestrictedContractType" Role="LeaveTypeRestrictedContractType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedContractType">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypeRestrictedDeps_LeaveTypes">
+          <End Type="HRMSModel.LeaveType" Role="LeaveType" Multiplicity="0..1" />
+          <End Type="HRMSModel.LeaveTypeRestrictedDep" Role="LeaveTypeRestrictedDep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedDep">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK">
+          <End Type="HRMSModel.LeaveType" Role="LeaveType" Multiplicity="0..1" />
+          <End Type="HRMSModel.LeaveTypeRestrictedEmployee" Role="LeaveTypeRestrictedEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedEmployee">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK">
+          <End Type="HRMSModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="HRMSModel.LeaveTypeRestrictedEmployee" Role="LeaveTypeRestrictedEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedEmployee">
+              <PropertyRef Name="EmployeeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK">
+          <End Type="HRMSModel.LeaveType" Role="LeaveType" Multiplicity="0..1" />
+          <End Type="HRMSModel.LeaveTypeRestrictedGender" Role="LeaveTypeRestrictedGender" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedGender">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK">
+          <End Type="HRMSModel.LeaveType" Role="LeaveType" Multiplicity="0..1" />
+          <End Type="HRMSModel.LeaveTypeRestrictedSubDep" Role="LeaveTypeRestrictedSubDep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeRestrictedSubDep">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LeaveTypeCarryOverRule">
+          <Key>
+            <PropertyRef Name="CarryOverRuleID" />
+          </Key>
+          <Property Name="CarryOverRuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="CarryOverUnusedEntitlements" Type="Boolean" />
+          <Property Name="CarryOverMaxEntitlementsUnit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CarryOverNegativeEntitlement" Type="Boolean" />
+          <Property Name="ExpireCarriedOverEntitlements" Type="Boolean" />
+          <Property Name="ExpireCarriedOverEntitlementMonths" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LeaveType" Relationship="HRMSModel.FK_LeaveTypeCarryOverRules_LeaveTypes" FromRole="LeaveTypeCarryOverRule" ToRole="LeaveType" />
+        </EntityType>
+        <Association Name="FK_LeaveTypeCarryOverRules_LeaveTypes">
+          <End Type="HRMSModel.LeaveType" Role="LeaveType" Multiplicity="0..1" />
+          <End Type="HRMSModel.LeaveTypeCarryOverRule" Role="LeaveTypeCarryOverRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypeCarryOverRule">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="UserFK" Type="Int32" />
+          <Property Name="RequesStatusFK" Type="Int32" />
+          <Property Name="DurationFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DurationTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BackToWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RequestDuration" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <Property Name="LeaveDurationUnitFK" Type="Int32" />
+          <Property Name="PartialDurationUnitFK" Type="Int32" />
+          <Property Name="Substitute" Type="Int32" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OnBehalfOfRequesterID" Type="Int32" />
+          <NavigationProperty Name="LeaveType" Relationship="HRMSModel.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" FromRole="Request" ToRole="LeaveType" />
+          <NavigationProperty Name="User" Relationship="HRMSModel.FK_dbo_Requests_dbo_Users_UserFK" FromRole="Request" ToRole="User" />
+          <NavigationProperty Name="UserEntitlementChanges" Relationship="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK" FromRole="Request" ToRole="UserEntitlementChange" />
+          <NavigationProperty Name="User1" Relationship="HRMSModel.FK_Requests_Users" FromRole="Request" ToRole="User" />
+          <NavigationProperty Name="RequestHandlers" Relationship="HRMSModel.FK_RequestHandler_Requests" FromRole="Request" ToRole="RequestHandler" />
+        </EntityType>
+        <Association Name="FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK">
+          <End Type="HRMSModel.LeaveType" Role="LeaveType" Multiplicity="0..1" />
+          <End Type="HRMSModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Requests_dbo_Users_UserFK">
+          <End Type="HRMSModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="HRMSModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK">
+          <End Type="HRMSModel.Request" Role="Request" Multiplicity="0..1" />
+          <End Type="HRMSModel.UserEntitlementChange" Role="UserEntitlementChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="UserEntitlementChange">
+              <PropertyRef Name="RequestFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Users">
+          <End Type="HRMSModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="HRMSModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Substitute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RequestHandler">
+          <Key>
+            <PropertyRef Name="RequestHandlerID" />
+          </Key>
+          <Property Name="RequestHandlerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RequestFK" Type="Int32" />
+          <Property Name="LeaveTypeFK" Type="Int32" Nullable="false" />
+          <Property Name="RquestStatusFK" Type="Int32" />
+          <Property Name="UserFK" Type="Int32" />
+          <Property Name="Offday" Type="DateTime" Precision="0" />
+          <Property Name="RequestDuration" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <Property Name="DurationUnitFK" Type="Int32" />
+          <NavigationProperty Name="LeaveType" Relationship="HRMSModel.FK_RequestHandler_LeaveTypes" FromRole="RequestHandler" ToRole="LeaveType" />
+          <NavigationProperty Name="Request" Relationship="HRMSModel.FK_RequestHandler_Requests" FromRole="RequestHandler" ToRole="Request" />
+          <NavigationProperty Name="User" Relationship="HRMSModel.FK_RequestHandler_Users" FromRole="RequestHandler" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_RequestHandler_LeaveTypes">
+          <End Type="HRMSModel.LeaveType" Role="LeaveType" Multiplicity="1" />
+          <End Type="HRMSModel.RequestHandler" Role="RequestHandler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="RequestHandler">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestHandler_Requests">
+          <End Type="HRMSModel.Request" Role="Request" Multiplicity="0..1" />
+          <End Type="HRMSModel.RequestHandler" Role="RequestHandler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="RequestHandler">
+              <PropertyRef Name="RequestFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestHandler_Users">
+          <End Type="HRMSModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="HRMSModel.RequestHandler" Role="RequestHandler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RequestHandler">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRMSModelStoreContainer" CdmEntityContainer="HRMSEntities">
+          <EntitySetMapping Name="LeaveTypeAccuralPeriodDIMs">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveTypeAccuralPeriodDIM">
+              <MappingFragment StoreEntitySet="LeaveTypeAccuralPeriodDIM">
+                <ScalarProperty Name="AccuralPeriodID" ColumnName="AccuralPeriodID" />
+                <ScalarProperty Name="AccuralPeriodName" ColumnName="AccuralPeriodName" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypeAccuralRules">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveTypeAccuralRule">
+              <MappingFragment StoreEntitySet="LeaveTypeAccuralRules">
+                <ScalarProperty Name="LeaveTypeAccuralRuleID" ColumnName="LeaveTypeAccuralRuleID" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="GainingEligibilityMethodFK" ColumnName="GainingEligibilityMethodFK" />
+                <ScalarProperty Name="AfterHireEligibilityMonths" ColumnName="AfterHireEligibilityMonths" />
+                <ScalarProperty Name="AccuralPeriodFK" ColumnName="AccuralPeriodFK" />
+                <ScalarProperty Name="EveryMonthAccuralDay" ColumnName="EveryMonthAccuralDay" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="EmployeeEarnsNumberOfUnits" ColumnName="EmployeeEarnsNumberOfUnits" />
+                <ScalarProperty Name="OverSeniorityYears" ColumnName="OverSeniorityYears" />
+                <ScalarProperty Name="OverSeniorityEmployeeEarns" ColumnName="OverSeniorityEmployeeEarns" />
+                <ScalarProperty Name="FirstAccuralMethodFK" ColumnName="FirstAccuralMethodFK" />
+                <ScalarProperty Name="ProrateCalculationModeFK" ColumnName="ProrateCalculationModeFK" />
+                <ScalarProperty Name="ProrateMethodFK" ColumnName="ProrateMethodFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypes">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveType">
+              <MappingFragment StoreEntitySet="LeaveTypes">
+                <ScalarProperty Name="LeaveTypeID" ColumnName="LeaveTypeID" />
+                <ScalarProperty Name="LeaveTypeName" ColumnName="LeaveTypeName" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="ConsiderAsFK" ColumnName="ConsiderAsFK" />
+                <ScalarProperty Name="EntitlementSourceFK" ColumnName="EntitlementSourceFK" />
+                <ScalarProperty Name="DurationUnitFK" ColumnName="DurationUnitFK" />
+                <ScalarProperty Name="ParentLeaveTypeFK" ColumnName="ParentLeaveTypeFK" />
+                <ScalarProperty Name="TakeMaxAmountFromParent" ColumnName="TakeMaxAmountFromParent" />
+                <ScalarProperty Name="DeductionFromParentLeaveDurationPercentage" ColumnName="DeductionFromParentLeaveDurationPercentage" />
+                <ScalarProperty Name="EntitlementTypeFK" ColumnName="EntitlementTypeFK" />
+                <ScalarProperty Name="OneDayMinDurationFK" ColumnName="OneDayMinDurationFK" />
+                <ScalarProperty Name="AllowNegativeEntitlement" ColumnName="AllowNegativeEntitlement" />
+                <ScalarProperty Name="MaxAllowedNegativeEntitlement" ColumnName="MaxAllowedNegativeEntitlement" />
+                <ScalarProperty Name="HasAttachments" ColumnName="HasAttachments" />
+                <ScalarProperty Name="IsAttachmentsRequired" ColumnName="IsAttachmentsRequired" />
+                <ScalarProperty Name="AllowSameDayPartialEntitlement" ColumnName="AllowSameDayPartialEntitlement" />
+                <ScalarProperty Name="IncludePublicHolidayInRequestLength" ColumnName="IncludePublicHolidayInRequestLength" />
+                <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEntitlementChanges">
+            <EntityTypeMapping TypeName="HRMSModel.UserEntitlementChange">
+              <MappingFragment StoreEntitySet="UserEntitlementChange">
+                <ScalarProperty Name="UserEntitlementChangesID" ColumnName="UserEntitlementChangesID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="EntitlementBefore" ColumnName="EntitlementBefore" />
+                <ScalarProperty Name="EntitlementAfter" ColumnName="EntitlementAfter" />
+                <ScalarProperty Name="DurationFrom" ColumnName="DurationFrom" />
+                <ScalarProperty Name="DurationTo" ColumnName="DurationTo" />
+                <ScalarProperty Name="BackToWork" ColumnName="BackToWork" />
+                <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+                <ScalarProperty Name="RequestDuration" ColumnName="RequestDuration" />
+                <ScalarProperty Name="UserFK" ColumnName="UserFK" />
+                <ScalarProperty Name="UserEntitlementFK" ColumnName="UserEntitlementFK" />
+                <ScalarProperty Name="RequestFK" ColumnName="RequestFK" />
+                <ScalarProperty Name="EntitlementChangedByFK" ColumnName="EntitlementChangedByFK" />
+                <ScalarProperty Name="UserChangeEntitlementFK" ColumnName="UserChangeEntitlementFK" />
+                <ScalarProperty Name="LeaveDurationUnitFK" ColumnName="LeaveDurationUnitFK" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEntitlements">
+            <EntityTypeMapping TypeName="HRMSModel.UserEntitlement">
+              <MappingFragment StoreEntitySet="UserEntitlements">
+                <ScalarProperty Name="UserEntitlementID" ColumnName="UserEntitlementID" />
+                <ScalarProperty Name="EntitlementTotal" ColumnName="EntitlementTotal" />
+                <ScalarProperty Name="UserFK" ColumnName="UserFK" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="LeaveDurationUnitFK" ColumnName="LeaveDurationUnitFK" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="EffectiveDateFrom" ColumnName="EffectiveDateFrom" />
+                <ScalarProperty Name="EffectiveDateTo" ColumnName="EffectiveDateTo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HRMSModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="LDAPUserName" ColumnName="LDAPUserName" />
+                <ScalarProperty Name="SubDepartmentFK" ColumnName="SubDepartmentFK" />
+                <ScalarProperty Name="DepartmentFK" ColumnName="DepartmentFK" />
+                <ScalarProperty Name="AccessControlUserFK" ColumnName="AccessControlUserFK" />
+                <ScalarProperty Name="DirectManagerFK" ColumnName="DirectManagerFK" />
+                <ScalarProperty Name="PositionFK" ColumnName="PositionFK" />
+                <ScalarProperty Name="ApprovalFlowFK" ColumnName="ApprovalFlowFK" />
+                <ScalarProperty Name="ContractTypeFK" ColumnName="ContractTypeFK" />
+                <ScalarProperty Name="LevelFK" ColumnName="LevelFK" />
+                <ScalarProperty Name="ProfilePictureURL" ColumnName="ProfilePictureURL" />
+                <ScalarProperty Name="ProbationDate" ColumnName="ProbationDate" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="SeniorityBeforeHireYears" ColumnName="SeniorityBeforeHireYears" />
+                <ScalarProperty Name="GenderFK" ColumnName="GenderFK" />
+                <ScalarProperty Name="SeniorityBeforeHireMonth" ColumnName="SeniorityBeforeHireMonth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CustomNote" ColumnName="CustomNote" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsHR" ColumnName="IsHR" />
+                <ScalarProperty Name="WorkingWeekFK" ColumnName="WorkingWeekFK" />
+                <ScalarProperty Name="PrivatePhoneNumber" ColumnName="PrivatePhoneNumber" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="IsFirstLogin" ColumnName="IsFirstLogin" />
+                <ScalarProperty Name="HasCompletedUserProfileData" ColumnName="HasCompletedUserProfileData" />
+                <ScalarProperty Name="UserPersonalEmail" ColumnName="UserPersonalEmail" />
+                <ScalarProperty Name="CompanyFK" ColumnName="CompanyFK" />
+                <ScalarProperty Name="ExtNumber" ColumnName="ExtNumber" />
+                <ScalarProperty Name="IsOutDomainUser" ColumnName="IsOutDomainUser" />
+                <ScalarProperty Name="OutDomainPassword" ColumnName="OutDomainPassword" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypeRestrictedContractTypes">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveTypeRestrictedContractType">
+              <MappingFragment StoreEntitySet="LeaveTypeRestrictedContractTypes">
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ContractTypeFK" ColumnName="ContractTypeFK" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="LeaveContractTypeRestrictionID" ColumnName="LeaveContractTypeRestrictionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypeRestrictedDeps">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveTypeRestrictedDep">
+              <MappingFragment StoreEntitySet="LeaveTypeRestrictedDeps">
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DepartmentFK" ColumnName="DepartmentFK" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="LeaveDepartmentRestrictionID" ColumnName="LeaveDepartmentRestrictionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypeRestrictedEmployees">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveTypeRestrictedEmployee">
+              <MappingFragment StoreEntitySet="LeaveTypeRestrictedEmployees">
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="EmployeeFK" ColumnName="EmployeeFK" />
+                <ScalarProperty Name="LeaveEmployeeRestrictionID" ColumnName="LeaveEmployeeRestrictionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypeRestrictedGenders">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveTypeRestrictedGender">
+              <MappingFragment StoreEntitySet="LeaveTypeRestrictedGenders">
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="GenderFK" ColumnName="GenderFK" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="LeaveGenderRestrictionID" ColumnName="LeaveGenderRestrictionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypeRestrictedSubDeps">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveTypeRestrictedSubDep">
+              <MappingFragment StoreEntitySet="LeaveTypeRestrictedSubDeps">
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="SubDepartmentFK" ColumnName="SubDepartmentFK" />
+                <ScalarProperty Name="LeaveTeamRestrictionID" ColumnName="LeaveTeamRestrictionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypeCarryOverRules">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveTypeCarryOverRule">
+              <MappingFragment StoreEntitySet="LeaveTypeCarryOverRules">
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExpireCarriedOverEntitlementMonths" ColumnName="ExpireCarriedOverEntitlementMonths" />
+                <ScalarProperty Name="ExpireCarriedOverEntitlements" ColumnName="ExpireCarriedOverEntitlements" />
+                <ScalarProperty Name="CarryOverNegativeEntitlement" ColumnName="CarryOverNegativeEntitlement" />
+                <ScalarProperty Name="CarryOverMaxEntitlementsUnit" ColumnName="CarryOverMaxEntitlementsUnit" />
+                <ScalarProperty Name="CarryOverUnusedEntitlements" ColumnName="CarryOverUnusedEntitlements" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="CarryOverRuleID" ColumnName="CarryOverRuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="HRMSModel.Request">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="OnBehalfOfRequesterID" ColumnName="OnBehalfOfRequesterID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Substitute" ColumnName="Substitute" />
+                <ScalarProperty Name="PartialDurationUnitFK" ColumnName="PartialDurationUnitFK" />
+                <ScalarProperty Name="LeaveDurationUnitFK" ColumnName="LeaveDurationUnitFK" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="RequestDuration" ColumnName="RequestDuration" />
+                <ScalarProperty Name="BackToWork" ColumnName="BackToWork" />
+                <ScalarProperty Name="DurationTo" ColumnName="DurationTo" />
+                <ScalarProperty Name="DurationFrom" ColumnName="DurationFrom" />
+                <ScalarProperty Name="RequesStatusFK" ColumnName="RequesStatusFK" />
+                <ScalarProperty Name="UserFK" ColumnName="UserFK" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestHandlers">
+            <EntityTypeMapping TypeName="HRMSModel.RequestHandler">
+              <MappingFragment StoreEntitySet="RequestHandler">
+                <ScalarProperty Name="DurationUnitFK" ColumnName="DurationUnitFK" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RequestDuration" ColumnName="RequestDuration" />
+                <ScalarProperty Name="Offday" ColumnName="Offday" />
+                <ScalarProperty Name="UserFK" ColumnName="UserFK" />
+                <ScalarProperty Name="RquestStatusFK" ColumnName="RquestStatusFK" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="RequestFK" ColumnName="RequestFK" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RequestHandlerID" ColumnName="RequestHandlerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

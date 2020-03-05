@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Client Response Time";
+}
+
+<form class="formUploadFile ml-5">
+
+ 
+        <div class="custom-file row">
+            <div class="col-md-8 ">
+                <input type="file" id="fileUpload"  multiple />
+            </div>
+            <div class="col-md-4">
+                <input type="button" id="UploadExcel" class="btn btn-info" value="Upload Users Medical Ids">
+                        </div>
+
+        </div>
+</form>
+<style>
+    .border{
+        border:1px solid red;
+
+    }
+    .formUploadFile {
+        border: 1px solid #ccc;
+        display: block;
+        padding:20px 40px;
+        width: 50%;
+        margin: 20px auto !important;
+    }
+    .fileUpload
+    {
+        border:1px solid #cdcdcd;
+    }
+    #fileUpload
+    {
+        width:100%;
+        padding:8px;
+    }
+
+</style>
+<script>
+
+    $("#UploadExcel").click(function () { UploadDownloadExcel() });
+
+    function UploadFile() {
+        var formData = new FormData();
+                            var totalFiles = document.getElementById('fileUpload').files.length;
+                            for (var i = 0; i < totalFiles; i++) {
+                                var file = document.getElementById('fileUpload').files[i];
+                                formData.append('fileUpload', file, file.name);
+                            }
+                            $.ajax({
+                                type: "POST", url: '/CallCenterTechnicalApprovals/Request/MyFileUpload',
+                                data: formData, dataType: 'json', contentType: false, processData: false,
+                                success(Result) {
+                                    var x = Result;
+
+                               
+                                }});};
+
+
+    function UploadDownloadExcel() {
+        var today = new Date();
+        var date ="ExtractedData";
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            var a;
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
+                // Trick for making downloadable link
+                a = document.createElement('a');
+                a.href = window.URL.createObjectURL(xhttp.response);
+                // Give filename you wish to download
+                a.download = "CallCenter.xlsx";
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+            }
+        };
+        // Post data to URL which handles post request
+        xhttp.open("POST", '/CallCenterTechnicalApprovals/Request/MyFileUpload');
+       // xhttp.setRequestHeader("Content-Type", "application/json");
+        // You should set responseType as blob for binary responses
+        xhttp.responseType = 'blob';
+        var formData = new FormData();
+        var totalFiles = document.getElementById('fileUpload').files.length;
+        for (var i = 0; i < totalFiles; i++) {
+            var file = document.getElementById('fileUpload').files[i];
+            formData.append('fileUpload', file, file.name);
+        }
+        xhttp.send(formData);
+
+
+    }
+
+</script>

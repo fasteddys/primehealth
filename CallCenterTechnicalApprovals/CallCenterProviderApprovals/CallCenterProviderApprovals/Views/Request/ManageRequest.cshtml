@@ -1,0 +1,277 @@
+﻿@model CallCenterProviderApprovals.DTO.AllRequestDataDTO
+@{
+    ViewBag.Title = "Manage Request";
+}
+<script src="~/global_assets/js/plugins/editors/wysihtml5/wysihtml5.min.js"></script>
+<script src="~/global_assets/js/plugins/editors/wysihtml5/toolbar.js"></script>
+<script src="~/global_assets/js/plugins/editors/wysihtml5/parsers.js"></script>
+<script src="~/global_assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ua-UA.js"></script>
+<script src="~/global_assets/js/demo_pages/editor_wysihtml5.js"></script>
+<script src="~/global_assets/js/demo_pages/editor_wysihtml5.js"></script>
+<script src="~/global_assets/js/plugins/ui/ripple.min.js"></script>
+<div class="page-header page-header-default">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Manage Request</span> - @Model.Request.ID</h4>
+        </div>
+
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="icon-home2 position-left"></i>Home</a></li>
+            <li><a href="#">Manage Request</a></li>
+            <li class="active">@Model.Request.ID</li>
+        </ul>
+
+    </div>
+</div>
+<div class="content">
+    <div class="alert alert-success no-border" id="Success-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Success-Div-Text">Morning!</span>
+    </div>
+    <div class="alert alert-warning no-border" id="Warning-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Warning-Div-Text">Morning!</span>
+    </div>
+    <div class="alert alert-danger no-border" id="Alert-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Alert-Div-Text">Morning!</span>
+    </div>
+    <div id="PartialView">
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Request Details</h5>
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Subject:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.Request.MailSubject</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Medical ID:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.Request.Medical_ID</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Creation time:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.Request.CreationDate</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Member name:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.Request.PatientName</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Client Name:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.Request.CompanyName</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Provider Name:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.Request.ProviderName</div>
+                    </div>
+                </div>
+                @{
+                if (Model.Request.DoctorAssignee != null)
+                {
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Doctor Assignee:</label>
+                            <div class="col-lg-9">
+                                <div class="form-control-static">@Model.Request.DoctorAssignee</div>
+                            </div>
+                        </div>
+                }
+                if (Model.Request.AuditAssignee != null)
+                {
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Audit Assignee:</label>
+                            <div class="col-lg-9">
+                                <div class="form-control-static">@Model.Request.AuditAssignee</div>
+                            </div>
+                        </div>
+                }
+                }
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Technical Approval Notes:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.TechnicalApprovalRequest.CallCenterNote</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Request body:</label>
+                    <div class="col-lg-10">
+                        <textarea cols="3" rows="9" disabled class="wysihtml5 wysihtml5-min form-control" placeholder="Enter text ...">
+                    @Model.Request.CreatedByNotes
+                    </textarea>
+                    </div>
+                </div>
+                @{
+                    if (Model.Attachments.Count() > 0)
+                    {
+                        <div class="form-group">
+                            <br />
+                            <br />
+                            <label class="col-lg-3 control-label">Request Attachments:</label>
+                            <div class="col-lg-9">
+                                @foreach (var item in Model.Attachments)
+                                {
+
+                                    string url = Url.Action("FileDownload", "Request", new { @path = ViewBag.Location + item.Path, @name = item.Name });
+                                    <a href="@url">@item.Name</a>
+                                    @*<a href="/Request/FileDownload?path=@ViewBag.Location@item.Path&name=@item.Name">@item.Name</a>*@
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                
+
+
+
+            </div>
+        </div>
+        <div class="panel panel-flat" id="commentarea">
+            <div class="panel-heading">
+                <h5 class="panel-title">Your Comment</h5>
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Comment:</label>
+                    <div class="col-lg-10">
+                        <textarea id="comment" cols="3" rows="5" class="form-control" placeholder="Enter text ..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <input type="file" multiple id="fileUpload" />
+        </div>
+        <div class="text-right" style="padding-top:15px">
+            <button id="AssignBtn" type="submit" class="btn btn-info" style="display:none">Assign <i class="icon-person position-right"></i></button>
+            <button id="submitComment" type="submit" class="btn btn-primary" style="display:none">Submit Comment <i class="icon-arrow-right14 position-right"></i></button>
+        </div>
+    </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var AssignPerson = "@Model.TechnicalApprovalRequest.Assignee";
+            var ActiveUser = readCookie('UserNameCookie');
+            AccessControl(AssignPerson, ActiveUser);
+        })
+        $("#AssignBtn").click(function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AssignRequest", "Request", new { @ID = Model.Request.ID })',
+                 dataType: 'json',
+                 success: function (result) {
+                     if (result=="Success") {
+                         $("#AssignBtn").hide();
+                         $("#submitComment").show();
+                         document.getElementById("Success-Div-Text").innerHTML = "You have assigned the ticket successfully";
+                         $('#Success-Div').show();
+                         $("html, body").animate({ scrollTop: 0 }, "slow");
+                     }
+                     else {
+                         document.getElementById("Alert-Div-Text").innerHTML = result;
+                         $('#Alert-Div').show();
+                         $("html, body").animate({ scrollTop: 0 }, "slow");
+                     }
+                     
+                    //document.getElementById("Alert-Div-Text").innerHTML = result
+                    //$('#Alert-Div').show();
+
+                    
+                }
+            });
+        })
+        $("#submitComment").click(function () {
+
+            var Comment = $("#comment").val();
+           
+            
+                var iD =@Model.Request.ID;
+                var data = {
+                    RequestComment: Comment,
+                    ID: iD,
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SubmitComment", "Request")',
+                    data: data, dataType: 'json',
+                    success: function (result) {
+                        if (result == "success") {
+
+                            var formData = new FormData();
+                            var totalFiles = document.getElementById('fileUpload').files.length;
+                            for (var i = 0; i < totalFiles; i++) {
+                                var file = document.getElementById('fileUpload').files[i];
+                                formData.append('fileUpload', file, file.name);
+                            }
+                            $.ajax({
+                                type: "POST", url: '/Request/AddAttachJson?RequestID='+@Model.Request.ID,
+                                data: formData, dataType: 'json', contentType: false, processData: false,
+                                complete() {
+
+                                    $("#submitComment").hide();
+                                    document.getElementById("Success-Div-Text").innerHTML = "Your comment submitted successfully"
+                                    $('#Success-Div').show();
+                                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                                }
+                            });
+
+                        }
+                        else {
+                            document.getElementById("Alert-Div-Text").innerHTML = "Sorry.. Somthing went wrong ,please try again"
+                            $('#Alert-Div').show();
+                            $("html, body").animate({ scrollTop: 0 }, "slow");
+                        }
+
+                    }
+                });
+            });
+        function AccessControl(As,Ac) {
+            var status =@Model.TechnicalApprovalStatus;
+            var StatusPending=1
+            var stausAssigned = 2;
+            var StatusDone = 3;
+            if (status == StatusPending) {
+                $("#AssignBtn").show();
+            }
+            if (status == stausAssigned && As == Ac) {      
+                
+               $("#submitComment").show();
+            }
+
+        }
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+    </script>

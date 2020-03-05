@@ -1,0 +1,260 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true"   CodeBehind="Site2.master.cs" Inherits="CardCycle.Master_Pages.Site2" %>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Card Cycle Manager</title>
+    <link href="../assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../assets/libs/fontello/css/fontello.css" rel="stylesheet" />
+    <link href="../assets/libs/animate-css/animate.min.css" rel="stylesheet" />
+    <link href="../assets/libs/nifty-modal/css/component.css" rel="stylesheet" />
+    <link href="../assets/libs/magnific-popup/magnific-popup.css" rel="stylesheet" />
+    <link href="../assets/libs/ios7-switch/ios7-switch.css" rel="stylesheet" />
+    <link href="../assets/libs/pace/pace.css" rel="stylesheet" />
+    <link href="../assets/libs/sortable/sortable-theme-bootstrap.css" rel="stylesheet" />
+    <link href="../assets/libs/jquery-icheck/skins/all.css" rel="stylesheet" />
+    <link href="../assets/libs/prettify/github.css" rel="stylesheet" />
+    <link href="../assets/libs/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/jquery-ui.css" rel="stylesheet" />
+    <style>
+        p, span, td {
+            font-size: 12px;
+        }
+    </style>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+    <body class="fixed-left">
+
+
+
+	<div  id="wrapper">
+        		
+<!-- Top Bar Start -->
+<div class="topbar">
+    <div class="topbar-left">
+        <div class="logo">
+            <h1><a href="#"><img src="../image/MiniPHlogo.png"style="height:41px;width:131px;" alt="Logo"></a></h1>
+        </div>
+        <button class="button-menu-mobile open-left">
+        <i class="fa fa-bars"></i>
+        </button>
+    </div>
+    <!-- Button mobile view to collapse sidebar menu -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-collapse2">
+                <ul class="nav navbar-nav hidden-xs">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i></a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right top-navbar">
+
+                    <li class="dropdown iconify hide-phone"><a href="#" onclick="javascript:toggle_fullscreen()"><i class="icon-resize-full-2"></i></a></li>
+                    <li class="right-opener">
+                        <a href="javascript:;" class="open-right"><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+<!-- Top Bar End -->
+        		    <!-- Left Sidebar Start -->
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+               
+                <div class="clearfix"></div>
+                <!--- Profile -->
+                <div class="profile-info">
+                    <div class="col-xs-4">
+                      <a href="#" class="rounded-image profile-image"><img src="../image/user.png" style="height:32px;width:32px"></a>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="profile-text"><span runat="server" id="spnName">
+                            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></span></div>
+                        <div class="profile-buttons">
+                          <a href="#"><i class="fa fa-envelope-o pulse"></i></a>
+                            <!--#connect-->
+                            <a href="#"><i class="fa fa-comments"></i></a>
+                         <%-- <a href="#" class="open-right"><i class="fa fa-comments"></i></a>--%>
+                          <a href="javascript:;" runat="server" CausesValidation="False" onserverclick="Log_out" title="Sign Out"><i class="fa fa-power-off text-red-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!--- Divider -->
+                <div class="clearfix"></div>
+                <hr class="divider" />
+                <div class="clearfix"></div>
+                <!--- Divider -->
+                <div id="sidebar-menu">
+                    <!-- Search form -->
+                <form  method="POST" action="SearchForm.aspx"  class="navbar-form">
+                    <div class="form-group">
+                        <input type="text" id="txt_search" name="txt_search" placeholder="Search" class="form-control">
+                        <button type="submit"  class="btn search-button"   ><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+                    <ul><li runat="server"  id="spn_dash"><a href="#" runat="server"  onserverclick="Choose_Load" CausesValidation="False" class='active'><i class='icon-home-3'></i>
+                        <span runat="server" id="spn_das">Dashboard</span></a></li>
+                        <li runat="server" id="spn_All"><a href="~/Allrequest.aspx" runat="server" ><i class='icon-address-book'></i>
+                        <span >All  <span class="label label-danger absolute" runat="server" id="Spn_num2">4</span></span></a></li>
+
+                        <li runat="server" id="spn_Excep"><a href="~/Exceptions.aspx" runat="server"><i class='icon-aperture'></i>
+                        <span>Exceptions <span class="label label-danger absolute" runat="server" id="spn_exc">4</span></span></a></li>
+
+
+
+                        <li runat="server" id="spn_new"><a href="~/RequestNew.aspx" runat="server"><i class='icon-pin'></i>
+                        <span>New <span class="label label-danger absolute" runat="server" id="spn_num1">4</span></span></a></li>
+
+
+
+                        <li runat="server" id="spn_Issue"><a href="~/NewRequests.aspx" runat="server"><i class='icon-pencil-neg'></i>
+                        <span >Issuing <span class="label label-danger absolute" runat="server" id="spn_num3">4</span></span></a></li>
+
+
+
+                        <li runat="server" id="spn_PTech"><a href="~/P_Technical.aspx" runat="server"><i class='icon-print'></i>
+                        <span >Pending Technical <span class="label label-danger absolute" runat="server" id="spn_num11">4</span></span></a></li>
+                         <li runat="server" id="Li1"><a href="~/PConfirm.aspx" runat="server"><i class='glyphicon glyphicon-check'></i>
+                        <span >Pending Confirmation <span class="label label-danger absolute" runat="server" id="Span1">4</span> </span></a></li>
+                        <li runat="server" id="Con"><a href="~/Confirmed.aspx" runat="server"><i class='glyphicon glyphicon-check'></i>
+                        <span >Confirmed By Me <span class="label label-danger absolute" runat="server" id="Span8">4</span> </span></a></li>
+       
+                        <li runat="server" id="spn_qc"><a href="~/QCRequetes.aspx" runat="server"><i class='icon-book'></i>
+                        <span >Quality Control <span class="label label-danger absolute" runat="server" id="Span3">4</span></span></a></li>
+
+                                         <li runat="server" id="spn_print"><a href="~/PendingFrom.aspx" runat="server"><i class='icon-print'></i>
+                        <span >Printing <span class="label label-danger absolute" runat="server" id="Span2">4</span></span></a></li>
+
+                        <li runat="server" id="spn_pend"><a href="~/ClosingReqestes.aspx" runat="server"><i class='icon-clock'></i>
+                        <span >Pending Approval <span class="label label-danger absolute" runat="server" id="Span4">4</span></span></a></li>
+                         <li runat="server" id="spn_close"><a href="~/CloseRequest.aspx" runat="server"><i class='icon-lock'></i>
+                        <span >Closed <span class="label label-danger absolute" runat="server" id="Span5">4</span></span></a></li>
+                         <li runat="server" id="Li3"><a href="~/RejectedReq.aspx" runat="server"><i class='glyphicon glyphicon-warning-sign'></i>
+                        <span >Rejected <span class="label label-danger absolute" runat="server" id="Span6">4</span></span></a></li>
+
+                         <li runat="server" id="Li5"><a href="~/RejectedSeen.aspx" runat="server"><i class='glyphicon glyphicon-warning-sign'></i>
+                        <span >Rejected Seen <span class="label label-danger absolute" runat="server" id="Span7">4</span></span></a></li>
+
+                        <li runat="server" id="spn_AccountComplain"><a href="~/AccountComplainRequest.aspx" runat="server"><i class='glyphicon glyphicon-warning-sign'></i>
+                        <span >Account Complain <span class="label label-danger absolute" runat="server" id="spn_AccComp">4</span></span></a></li>
+                        <li runat="server" id="spn_IssuanceComplain"><a href="~/IssuanceComplainRequest.aspx" runat="server"><i class='glyphicon glyphicon-warning-sign'></i>
+                        <span >Issuance Complain <span class="label label-danger absolute" runat="server" id="spn_IssComp">4</span></span></a></li>
+
+
+
+                        <li runat="server" id="ClientsLi"><a href="~/AllClients.aspx" runat="server"><i class='icon-home-circled'></i>
+                            <span>Clients</span></a></li>
+                        <li runat="server" id="AddClientLi"><a href="~/AddClient.aspx" runat="server"><i class='icon-child'></i>
+                            <span>Add Client</span></a></li>
+                        <li runat="server" id="Li2"><a href="~/LogTime.aspx" runat="server"><i class='icon-clock'></i>
+                            <span>Log Time </span></a></li>
+                         <li runat="server" id="Li4"><a href="~/AMAccount.aspx" runat="server"><i class='icon-user'></i>
+                        <span >My Account</span></a></li>
+                         <li runat="server" id="Li_account"><a href="~/AccountManger.aspx" runat="server"><i class='icon-users'></i>
+                        <span >Accounts </span></a></li>
+                          <li runat="server" id="Lireport"><a href="~/DailyReport.aspx" runat="server"><i class='fa fa-folder-open'></i>
+                        <span >Reportes </span></a></li>
+                        <li runat="server" id="Li6"><a href="~/Reportes.aspx" runat="server"><i class='fa fa-folder-open'></i>
+                        <span >DailyReport </span></a></li>
+
+                        </ul>
+                </div>
+            <div class="clearfix"></div>
+            <div class="portlets">
+
+            </div>
+            <div class="clearfix"></div><br><br><br>
+        </div>
+            <div class="left-footer">
+
+            </div>
+        </div>
+        <div class="content-page">
+        <!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+            <div class="content">
+     <form id="formX" runat="server">
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+    </form>
+           <footer>
+                Developed By Tarek Mohamed &copy; 2014
+               <br />
+               IT Department
+               <br />
+               Prime Health
+                <div class="footer-links pull-right">
+                	<%--<a href="#"></a><a href="#"></a><a href="#">Terms of Service</a><a href="#">Legal</a><a href="#">Help</a><a href="#">Contact Us</a>--%>
+                </div>
+            </footer>
+            </div>
+        </div>
+    </div>
+        	<div id="contextMenu" class="dropdown clearfix">
+		    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
+		        <li><a tabindex="-1" href="javascript:;" data-priority="high"><i class="fa fa-circle-o text-red-1"></i> High Priority</a></li>
+		        <li><a tabindex="-1" href="javascript:;" data-priority="medium"><i class="fa fa-circle-o text-orange-3"></i> Medium Priority</a></li>
+		        <li><a tabindex="-1" href="javascript:;" data-priority="low"><i class="fa fa-circle-o text-yellow-1"></i> Low Priority</a></li>
+		        <li><a tabindex="-1" href="javascript:;" data-priority="none"><i class="fa fa-circle-o text-lightblue-1"></i> None</a></li>
+		    </ul>
+		</div>
+	<!-- End of page -->
+        <!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+
+
+
+<!-- Jquery ------------------------------------------------------------------------------------------>
+        <asp:PlaceHolder runat="server">
+            	<!-- End of eoverlay modal -->
+	<script>
+	    var resizefunc = [];
+	</script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	 <script src="<%:ResolveUrl("../assets/libs/jquery/jquery-1.11.1.min.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/bootstrap/js/bootstrap.min.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/jqueryui/jquery-ui-1.10.4.custom.min.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/jquery-detectmobile/detect.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/jquery-animate-numbers/jquery.animateNumbers.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/ios7-switch/ios7.switch.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/fastclick/fastclick.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/jquery-blockui/jquery.blockUI.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/bootstrap-bootbox/bootbox.min.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/jquery-slimscroll/jquery.slimscroll.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/jquery-sparkline/jquery-sparkline.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/nifty-modal/js/classie.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/nifty-modal/js/modalEffects.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/sortable/sortable.min.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/bootstrap-fileinput/bootstrap.file-input.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/bootstrap-select/bootstrap-select.min.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/bootstrap-select2/select2.min.js") %>" ></script>
+	 <script src="<%:ResolveUrl("../assets/libs/magnific-popup/jquery.magnific-popup.min.js") %>" ></script> 
+	 <script src="<%:ResolveUrl("../assets/libs/pace/pace.min.js") %>" ></script>
+	 <%--<script src="<%:ResolveUrl("../assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.js") %>" ></script>--%>
+	 <script src="<%:ResolveUrl("../assets/libs/jquery-icheck/icheck.min.js") %>" ></script>
+            <script src="../js/jquery-ui.js"></script>
+
+
+	<!-- Demo Specific JS Libraries -->
+	<script src="<%:ResolveUrl("../assets/libs/prettify/prettify.js") %>" ></script>
+
+	<script src="<%:ResolveUrl("../assets/js/init.js") %>" ></script>
+                <asp:ContentPlaceHolder ID="Scripts" runat="server"></asp:ContentPlaceHolder>
+
+        </asp:PlaceHolder>
+</body>
+</html>

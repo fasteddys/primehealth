@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PhNetwork" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=PhNetwork;Integrated Security=True" SettingsObjectName="CallCenterExcel.Properties.Settings" SettingsPropertyName="PhNetworkConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DoctorTB" Member="DoctorTBs">
+    <Type Name="DoctorTB">
+      <Column Name="DoctorName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DoctorAddressCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DoctorAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Doc_cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubLocationName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DoctorInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DoctorPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DoctorPhone2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DoctorPhone3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DoctorPhone4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DoctorNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DocLong" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DocLat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AccName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="QNB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Meduim" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Large" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HospitalTB" Member="HospitalTBs">
+    <Type Name="HospitalTB">
+      <Column Name="HospName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddressNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HospAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubLocationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HospPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HospPhone2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HospPhone3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HospPhone4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HospNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HospLong" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HospLat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="QNB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Meduim" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Large" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HospitalNetwork" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="AddByEmp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddedTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LaboratoryTB" Member="LaboratoryTBs">
+    <Type Name="LaboratoryTB">
+      <Column Name="LabName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LabAddressCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LabAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LabSublocationName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LabPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Labphone2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Labphone3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Labphone4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LabNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LabLong" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LabLat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OpticalTB" Member="OpticalTBs">
+    <Type Name="OpticalTB">
+      <Column Name="OpticalName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OpticalAddressCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OpticalAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OpticalSublocationName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OpticalPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Opticalphone2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Opticalphone3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Opticalphone4" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OpticalNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OpticalLong" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OpticalLat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PharmacyTB" Member="PharmacyTBs">
+    <Type Name="PharmacyTB">
+      <Column Name="PharmName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PharmAddressCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PharmAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LocID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PharmSublocationName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PharmPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PharmPhone1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PharmPhone2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PharmPhone3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PharmNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PharmLong" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PharmLat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

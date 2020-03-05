@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8D8E5437-66B7-4F56-B7AF-FDDDA8A5466D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CypressPendingRequestsReminder</RootNamespace>
+    <AssemblyName>CypressPendingRequestsReminder</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices.Auth, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\Mailing.cs" />
+    <Compile Include="BLL\RequestBLL.cs" />
+    <Compile Include="DTOs\MailingDTO.cs" />
+    <Compile Include="DTOs\RequestDTO.cs" />
+    <Compile Include="Entities\ApprovalFlow.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ApprovalFlowDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ApprovalFlowRequestDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ApprovalFlowUserDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Configuration.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HRMSEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HRMSEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\HRMSEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\LeaveType.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Manager.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Request.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ServiceLogTypeDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ServicesDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ServicesLog.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SubDepartment.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\User.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service1.Designer.cs">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticData\StaticEnums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Entities\HRMSEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HRMSEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entities\HRMSEntities.edmx.diagram">
+      <DependentUpon>HRMSEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\HRMSEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HRMSEntities.edmx</DependentUpon>
+      <LastGenOutput>HRMSEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\HRMSEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HRMSEntities.edmx</DependentUpon>
+      <LastGenOutput>HRMSEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,1605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApprovalFlowDetails">
+          <Key>
+            <PropertyRef Name="ApprovalFlowDetailsID" />
+          </Key>
+          <Property Name="ApprovalFlowDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsDirectManager" Type="bit" Nullable="false" />
+          <Property Name="IsTeamManager" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="ApprovalFlowFK" Type="int" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="ApprovalFlowPersonFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ApprovalFlowRequestDetails">
+          <Key>
+            <PropertyRef Name="ApprovalRequestFlowDetailsID" />
+          </Key>
+          <Property Name="ApprovalRequestFlowDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionDate" Type="datetime" />
+          <Property Name="IsDirectManager" Type="bit" Nullable="false" />
+          <Property Name="IsTeamManager" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="RequestedByUserFK" Type="int" />
+          <Property Name="SubDepartmentFK" Type="int" />
+          <Property Name="ApprovalPersonFK" Type="int" />
+          <Property Name="RequestFK" Type="int" Nullable="false" />
+          <Property Name="RequestActionFK" Type="int" />
+          <Property Name="ApprovalFlowDetailsFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ApprovalFlows">
+          <Key>
+            <PropertyRef Name="ApprovalFlowID" />
+          </Key>
+          <Property Name="ApprovalFlowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApprovalFlowName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ApprovalFlowUserDetails">
+          <Key>
+            <PropertyRef Name="ApprovalFlowUserDetailsID" />
+          </Key>
+          <Property Name="ApprovalFlowUserDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserFK" Type="int" />
+          <Property Name="ApprovalFlowDetailsFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Configurations">
+          <Key>
+            <PropertyRef Name="ConfigurationID" />
+          </Key>
+          <Property Name="ConfigurationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigurationKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConfigurationValue" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeaveTypes">
+          <Key>
+            <PropertyRef Name="LeaveTypeID" />
+          </Key>
+          <Property Name="LeaveTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveTypeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConsiderAsFK" Type="int" />
+          <Property Name="EntitlementSourceFK" Type="int" />
+          <Property Name="DurationUnitFK" Type="int" />
+          <Property Name="ParentLeaveTypeFK" Type="int" />
+          <Property Name="TakeMaxAmountFromParent" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DeductionFromParentLeaveDurationPercentage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EntitlementTypeFK" Type="int" />
+          <Property Name="OneDayMinDurationFK" Type="int" />
+          <Property Name="AllowNegativeEntitlement" Type="bit" />
+          <Property Name="MaxAllowedNegativeEntitlement" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HasAttachments" Type="bit" />
+          <Property Name="IsAttachmentsRequired" Type="bit" />
+          <Property Name="AllowSameDayPartialEntitlement" Type="bit" />
+          <Property Name="IncludePublicHolidayInRequestLength" Type="bit" />
+          <Property Name="IsSuspended" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Managers">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManagerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ManagerUserFK" Type="int" Nullable="false" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="int" />
+          <Property Name="UserFK" Type="int" />
+          <Property Name="RequesStatusFK" Type="int" />
+          <Property Name="DurationFrom" Type="datetime" Nullable="false" />
+          <Property Name="DurationTo" Type="datetime" Nullable="false" />
+          <Property Name="BackToWork" Type="datetime" Nullable="false" />
+          <Property Name="RequestDuration" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Level" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="LeaveDurationUnitFK" Type="int" />
+          <Property Name="PartialDurationUnitFK" Type="int" />
+          <Property Name="Substitute" Type="int" />
+          <Property Name="Reason" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="OnBehalfOfRequesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="ServiceLogTypeDIM">
+          <Key>
+            <PropertyRef Name="ServiceLogTypeID" />
+          </Key>
+          <Property Name="ServiceLogTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceLogTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRMS.dbo.ServicesDIMs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ServicesDIMs">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+            <PropertyRef Name="ServiceName" />
+          </Key>
+          <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServicesLog">
+          <Key>
+            <PropertyRef Name="ServicesLogID" />
+          </Key>
+          <Property Name="ServicesLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServicesFK" Type="int" Nullable="false" />
+          <Property Name="ServiceLogTypeFK" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" />
+          <Property Name="RequestFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SubDepartments">
+          <Key>
+            <PropertyRef Name="SubDepartmentID" />
+          </Key>
+          <Property Name="SubDepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubDepartmentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentFK" Type="int" Nullable="false" />
+          <Property Name="TeamManagerFK" Type="int" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="HireDate" Type="datetime" />
+          <Property Name="IsOnline" Type="bit" />
+          <Property Name="LDAPUserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubDepartmentFK" Type="int" />
+          <Property Name="DepartmentFK" Type="int" />
+          <Property Name="AccessControlUserFK" Type="int" />
+          <Property Name="DirectManagerFK" Type="int" />
+          <Property Name="PositionFK" Type="int" />
+          <Property Name="ApprovalFlowFK" Type="int" />
+          <Property Name="ContractTypeFK" Type="int" />
+          <Property Name="LevelFK" Type="int" />
+          <Property Name="ProfilePictureURL" Type="nvarchar(max)" />
+          <Property Name="ProbationDate" Type="datetime" />
+          <Property Name="TerminationDate" Type="datetime" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="SeniorityBeforeHireYears" Type="int" />
+          <Property Name="GenderFK" Type="int" />
+          <Property Name="SeniorityBeforeHireMonth" Type="int" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomNote" Type="nvarchar(max)" />
+          <Property Name="ArName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsHR" Type="bit" />
+          <Property Name="WorkingWeekFK" Type="int" />
+          <Property Name="PrivatePhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="NationalID" Type="nvarchar" MaxLength="20" />
+          <Property Name="HomeAddress" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="MedicalID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsFirstLogin" Type="bit" />
+          <Property Name="HasCompletedUserProfileData" Type="bit" />
+          <Property Name="UserPersonalEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="CompanyFK" Type="int" />
+          <Property Name="ExtNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsOutDomainUser" Type="bit" />
+          <Property Name="OutDomainPassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK">
+          <End Role="ApprovalFlows" Type="Self.ApprovalFlows" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalFlows">
+              <PropertyRef Name="ApprovalFlowID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowDetails">
+              <PropertyRef Name="ApprovalFlowFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowDetails">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowDetails">
+              <PropertyRef Name="ApprovalFlowPersonFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK">
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetails" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalFlowDetails">
+              <PropertyRef Name="ApprovalFlowDetailsID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="ApprovalFlowDetailsFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="RequestFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK">
+          <End Role="SubDepartments" Type="Self.SubDepartments" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDepartments">
+              <PropertyRef Name="SubDepartmentID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="SubDepartmentFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="ApprovalPersonFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="RequestedByUserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK">
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetails" Multiplicity="0..1" />
+          <End Role="ApprovalFlowUserDetails" Type="Self.ApprovalFlowUserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalFlowDetails">
+              <PropertyRef Name="ApprovalFlowDetailsID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowUserDetails">
+              <PropertyRef Name="ApprovalFlowDetailsFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ApprovalFlowUserDetails" Type="Self.ApprovalFlowUserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowUserDetails">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Managers_dbo_Users_ManagerUserFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Managers" Type="Self.Managers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Managers">
+              <PropertyRef Name="ManagerUserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Requests_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK">
+          <End Role="Managers" Type="Self.Managers" Multiplicity="0..1" />
+          <End Role="SubDepartments" Type="Self.SubDepartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="SubDepartments">
+              <PropertyRef Name="TeamManagerFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK">
+          <End Role="ApprovalFlows" Type="Self.ApprovalFlows" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalFlows">
+              <PropertyRef Name="ApprovalFlowID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ApprovalFlowFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Managers_DirectManagerFK">
+          <End Role="Managers" Type="Self.Managers" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="DirectManagerFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK">
+          <End Role="SubDepartments" Type="Self.SubDepartments" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDepartments">
+              <PropertyRef Name="SubDepartmentID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="SubDepartmentFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypes_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveTypes" Multiplicity="0..1" />
+          <End Role="LeaveTypes1" Type="Self.LeaveTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypes1">
+              <PropertyRef Name="ParentLeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="Substitute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicesLog_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+          <End Role="ServicesLog" Type="Self.ServicesLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="ServicesLog">
+              <PropertyRef Name="RequestFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicesLog_ServiceLogTypeDIM">
+          <End Role="ServiceLogTypeDIM" Type="Self.ServiceLogTypeDIM" Multiplicity="1" />
+          <End Role="ServicesLog" Type="Self.ServicesLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceLogTypeDIM">
+              <PropertyRef Name="ServiceLogTypeID" />
+            </Principal>
+            <Dependent Role="ServicesLog">
+              <PropertyRef Name="ServiceLogTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users1" Type="Self.Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Users1">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRMSModelStoreContainer">
+          <EntitySet Name="ApprovalFlowDetails" EntityType="Self.ApprovalFlowDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalFlowRequestDetails" EntityType="Self.ApprovalFlowRequestDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalFlows" EntityType="Self.ApprovalFlows" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalFlowUserDetails" EntityType="Self.ApprovalFlowUserDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configurations" EntityType="Self.Configurations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveTypes" EntityType="Self.LeaveTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Managers" EntityType="Self.Managers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceLogTypeDIM" EntityType="Self.ServiceLogTypeDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicesLog" EntityType="Self.ServicesLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubDepartments" EntityType="Self.SubDepartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicesDIMs" EntityType="Self.ServicesDIMs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ServicesDIMs].[ServiceID] AS [ServiceID], 
+    [ServicesDIMs].[ServiceName] AS [ServiceName]
+    FROM [dbo].[ServicesDIMs] AS [ServicesDIMs]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK" Association="Self.FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK">
+            <End Role="ApprovalFlows" EntitySet="ApprovalFlows" />
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK" Association="Self.FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK">
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK">
+            <End Role="SubDepartments" EntitySet="SubDepartments" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" Association="Self.FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK">
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+            <End Role="ApprovalFlowUserDetails" EntitySet="ApprovalFlowUserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK" Association="Self.FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApprovalFlowUserDetails" EntitySet="ApprovalFlowUserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Managers_dbo_Users_ManagerUserFK" Association="Self.FK_dbo_Managers_dbo_Users_ManagerUserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Managers" EntitySet="Managers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Requests_dbo_Users_UserFK" Association="Self.FK_dbo_Requests_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK" Association="Self.FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="SubDepartments" EntitySet="SubDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK" Association="Self.FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK">
+            <End Role="ApprovalFlows" EntitySet="ApprovalFlows" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Managers_DirectManagerFK" Association="Self.FK_dbo_Users_dbo_Managers_DirectManagerFK">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK" Association="Self.FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK">
+            <End Role="SubDepartments" EntitySet="SubDepartments" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypes_LeaveTypes" Association="Self.FK_LeaveTypes_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypes1" EntitySet="LeaveTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Users" Association="Self.FK_Requests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicesLog_Requests" Association="Self.FK_ServicesLog_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="ServicesLog" EntitySet="ServicesLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicesLog_ServiceLogTypeDIM" Association="Self.FK_ServicesLog_ServiceLogTypeDIM">
+            <End Role="ServiceLogTypeDIM" EntitySet="ServiceLogTypeDIM" />
+            <End Role="ServicesLog" EntitySet="ServicesLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Users1" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApprovalFlowDetail">
+          <Key>
+            <PropertyRef Name="ApprovalFlowDetailsID" />
+          </Key>
+          <Property Name="ApprovalFlowDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsDirectManager" Type="Boolean" Nullable="false" />
+          <Property Name="IsTeamManager" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="ApprovalFlowFK" Type="Int32" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="ApprovalFlowPersonFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApprovalFlow" Relationship="Self.FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK" FromRole="ApprovalFlowDetails" ToRole="ApprovalFlows" />
+          <NavigationProperty Name="LeaveType" Relationship="Self.FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK" FromRole="ApprovalFlowDetails" ToRole="LeaveTypes" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK" FromRole="ApprovalFlowDetails" ToRole="Users" />
+          <NavigationProperty Name="ApprovalFlowRequestDetails" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" FromRole="ApprovalFlowDetails" ToRole="ApprovalFlowRequestDetails" />
+          <NavigationProperty Name="ApprovalFlowUserDetails" Relationship="Self.FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" FromRole="ApprovalFlowDetails" ToRole="ApprovalFlowUserDetails" />
+        </EntityType>
+        <EntityType Name="ApprovalFlowRequestDetail">
+          <Key>
+            <PropertyRef Name="ApprovalRequestFlowDetailsID" />
+          </Key>
+          <Property Name="ApprovalRequestFlowDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDirectManager" Type="Boolean" Nullable="false" />
+          <Property Name="IsTeamManager" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="RequestedByUserFK" Type="Int32" />
+          <Property Name="SubDepartmentFK" Type="Int32" />
+          <Property Name="ApprovalPersonFK" Type="Int32" />
+          <Property Name="RequestFK" Type="Int32" Nullable="false" />
+          <Property Name="RequestActionFK" Type="Int32" />
+          <Property Name="ApprovalFlowDetailsFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApprovalFlowDetail" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" FromRole="ApprovalFlowRequestDetails" ToRole="ApprovalFlowDetails" />
+          <NavigationProperty Name="LeaveType" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK" FromRole="ApprovalFlowRequestDetails" ToRole="LeaveTypes" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK" FromRole="ApprovalFlowRequestDetails" ToRole="Requests" />
+          <NavigationProperty Name="SubDepartment" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK" FromRole="ApprovalFlowRequestDetails" ToRole="SubDepartments" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK" FromRole="ApprovalFlowRequestDetails" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK" FromRole="ApprovalFlowRequestDetails" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ApprovalFlow">
+          <Key>
+            <PropertyRef Name="ApprovalFlowID" />
+          </Key>
+          <Property Name="ApprovalFlowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApprovalFlowName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApprovalFlowDetails" Relationship="Self.FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK" FromRole="ApprovalFlows" ToRole="ApprovalFlowDetails" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK" FromRole="ApprovalFlows" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ApprovalFlowUserDetail">
+          <Key>
+            <PropertyRef Name="ApprovalFlowUserDetailsID" />
+          </Key>
+          <Property Name="ApprovalFlowUserDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserFK" Type="Int32" />
+          <Property Name="ApprovalFlowDetailsFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApprovalFlowDetail" Relationship="Self.FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" FromRole="ApprovalFlowUserDetails" ToRole="ApprovalFlowDetails" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK" FromRole="ApprovalFlowUserDetails" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ConfigurationID" />
+          </Key>
+          <Property Name="ConfigurationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigurationKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfigurationValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LeaveType">
+          <Key>
+            <PropertyRef Name="LeaveTypeID" />
+          </Key>
+          <Property Name="LeaveTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConsiderAsFK" Type="Int32" />
+          <Property Name="EntitlementSourceFK" Type="Int32" />
+          <Property Name="DurationUnitFK" Type="Int32" />
+          <Property Name="ParentLeaveTypeFK" Type="Int32" />
+          <Property Name="TakeMaxAmountFromParent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DeductionFromParentLeaveDurationPercentage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EntitlementTypeFK" Type="Int32" />
+          <Property Name="OneDayMinDurationFK" Type="Int32" />
+          <Property Name="AllowNegativeEntitlement" Type="Boolean" />
+          <Property Name="MaxAllowedNegativeEntitlement" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HasAttachments" Type="Boolean" />
+          <Property Name="IsAttachmentsRequired" Type="Boolean" />
+          <Property Name="AllowSameDayPartialEntitlement" Type="Boolean" />
+          <Property Name="IncludePublicHolidayInRequestLength" Type="Boolean" />
+          <Property Name="IsSuspended" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApprovalFlowDetails" Relationship="Self.FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveTypes" ToRole="ApprovalFlowDetails" />
+          <NavigationProperty Name="ApprovalFlowRequestDetails" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveTypes" ToRole="ApprovalFlowRequestDetails" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" FromRole="LeaveTypes" ToRole="Requests" />
+          <NavigationProperty Name="LeaveTypes1" Relationship="Self.FK_LeaveTypes_LeaveTypes" FromRole="LeaveTypes" ToRole="LeaveTypes1" />
+          <NavigationProperty Name="LeaveType1" Relationship="Self.FK_LeaveTypes_LeaveTypes" FromRole="LeaveTypes1" ToRole="LeaveTypes" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManagerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerUserFK" Type="Int32" Nullable="false" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_Managers_dbo_Users_ManagerUserFK" FromRole="Managers" ToRole="Users" />
+          <NavigationProperty Name="SubDepartments" Relationship="Self.FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK" FromRole="Managers" ToRole="SubDepartments" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_Managers_DirectManagerFK" FromRole="Managers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="LeaveTypeFK" Type="Int32" />
+          <Property Name="UserFK" Type="Int32" />
+          <Property Name="RequesStatusFK" Type="Int32" />
+          <Property Name="DurationFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DurationTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BackToWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RequestDuration" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <Property Name="LeaveDurationUnitFK" Type="Int32" />
+          <Property Name="PartialDurationUnitFK" Type="Int32" />
+          <Property Name="Substitute" Type="Int32" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OnBehalfOfRequesterID" Type="Int32" />
+          <NavigationProperty Name="ApprovalFlowRequestDetails" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK" FromRole="Requests" ToRole="ApprovalFlowRequestDetails" />
+          <NavigationProperty Name="LeaveType" Relationship="Self.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" FromRole="Requests" ToRole="LeaveTypes" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_Requests_dbo_Users_UserFK" FromRole="Requests" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Requests_Users" FromRole="Requests" ToRole="Users" />
+          <NavigationProperty Name="ServicesLogs" Relationship="Self.FK_ServicesLog_Requests" FromRole="Requests" ToRole="ServicesLog" />
+        </EntityType>
+        <EntityType Name="ServiceLogTypeDIM">
+          <Key>
+            <PropertyRef Name="ServiceLogTypeID" />
+          </Key>
+          <Property Name="ServiceLogTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceLogTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ServicesLogs" Relationship="Self.FK_ServicesLog_ServiceLogTypeDIM" FromRole="ServiceLogTypeDIM" ToRole="ServicesLog" />
+        </EntityType>
+        <EntityType Name="ServicesLog">
+          <Key>
+            <PropertyRef Name="ServicesLogID" />
+          </Key>
+          <Property Name="ServicesLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServicesFK" Type="Int32" Nullable="false" />
+          <Property Name="ServiceLogTypeFK" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RequestFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_ServicesLog_Requests" FromRole="ServicesLog" ToRole="Requests" />
+          <NavigationProperty Name="ServiceLogTypeDIM" Relationship="Self.FK_ServicesLog_ServiceLogTypeDIM" FromRole="ServicesLog" ToRole="ServiceLogTypeDIM" />
+        </EntityType>
+        <EntityType Name="SubDepartment">
+          <Key>
+            <PropertyRef Name="SubDepartmentID" />
+          </Key>
+          <Property Name="SubDepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubDepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentFK" Type="Int32" Nullable="false" />
+          <Property Name="TeamManagerFK" Type="Int32" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApprovalFlowRequestDetails" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK" FromRole="SubDepartments" ToRole="ApprovalFlowRequestDetails" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK" FromRole="SubDepartments" ToRole="Managers" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK" FromRole="SubDepartments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="3" />
+          <Property Name="IsOnline" Type="Boolean" />
+          <Property Name="LDAPUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubDepartmentFK" Type="Int32" />
+          <Property Name="DepartmentFK" Type="Int32" />
+          <Property Name="AccessControlUserFK" Type="Int32" />
+          <Property Name="DirectManagerFK" Type="Int32" />
+          <Property Name="PositionFK" Type="Int32" />
+          <Property Name="ApprovalFlowFK" Type="Int32" />
+          <Property Name="ContractTypeFK" Type="Int32" />
+          <Property Name="LevelFK" Type="Int32" />
+          <Property Name="ProfilePictureURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProbationDate" Type="DateTime" Precision="3" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="3" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="SeniorityBeforeHireYears" Type="Int32" />
+          <Property Name="GenderFK" Type="Int32" />
+          <Property Name="SeniorityBeforeHireMonth" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="IsHR" Type="Boolean" />
+          <Property Name="WorkingWeekFK" Type="Int32" />
+          <Property Name="PrivatePhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NationalID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MedicalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsFirstLogin" Type="Boolean" />
+          <Property Name="HasCompletedUserProfileData" Type="Boolean" />
+          <Property Name="UserPersonalEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyFK" Type="Int32" />
+          <Property Name="ExtNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsOutDomainUser" Type="Boolean" />
+          <Property Name="OutDomainPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApprovalFlowDetails" Relationship="Self.FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK" FromRole="Users" ToRole="ApprovalFlowDetails" />
+          <NavigationProperty Name="ApprovalFlowRequestDetails" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK" FromRole="Users" ToRole="ApprovalFlowRequestDetails" />
+          <NavigationProperty Name="ApprovalFlowRequestDetails1" Relationship="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK" FromRole="Users" ToRole="ApprovalFlowRequestDetails" />
+          <NavigationProperty Name="ApprovalFlow" Relationship="Self.FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK" FromRole="Users" ToRole="ApprovalFlows" />
+          <NavigationProperty Name="ApprovalFlowUserDetails" Relationship="Self.FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK" FromRole="Users" ToRole="ApprovalFlowUserDetails" />
+          <NavigationProperty Name="Managers" Relationship="Self.FK_dbo_Managers_dbo_Users_ManagerUserFK" FromRole="Users" ToRole="Managers" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_dbo_Users_dbo_Managers_DirectManagerFK" FromRole="Users" ToRole="Managers" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_dbo_Requests_dbo_Users_UserFK" FromRole="Users" ToRole="Requests" />
+          <NavigationProperty Name="Requests1" Relationship="Self.FK_Requests_Users" FromRole="Users" ToRole="Requests" />
+          <NavigationProperty Name="SubDepartment" Relationship="Self.FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK" FromRole="Users" ToRole="SubDepartments" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_Users_Users" FromRole="Users" ToRole="Users1" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Users_Users" FromRole="Users1" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ServicesDIM">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+            <PropertyRef Name="ServiceName" />
+          </Key>
+          <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK">
+          <End Role="ApprovalFlows" Type="Self.ApprovalFlow" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalFlows">
+              <PropertyRef Name="ApprovalFlowID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowDetails">
+              <PropertyRef Name="ApprovalFlowFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveType" Multiplicity="0..1" />
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowDetails">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowDetails">
+              <PropertyRef Name="ApprovalFlowPersonFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK">
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetail" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalFlowDetails">
+              <PropertyRef Name="ApprovalFlowDetailsID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="ApprovalFlowDetailsFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK">
+          <End Role="ApprovalFlowDetails" Type="Self.ApprovalFlowDetail" Multiplicity="0..1" />
+          <End Role="ApprovalFlowUserDetails" Type="Self.ApprovalFlowUserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalFlowDetails">
+              <PropertyRef Name="ApprovalFlowDetailsID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowUserDetails">
+              <PropertyRef Name="ApprovalFlowDetailsFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveType" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK">
+          <End Role="Requests" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="RequestFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK">
+          <End Role="SubDepartments" Type="Self.SubDepartment" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDepartments">
+              <PropertyRef Name="SubDepartmentID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="SubDepartmentFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="ApprovalPersonFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ApprovalFlowRequestDetails" Type="Self.ApprovalFlowRequestDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowRequestDetails">
+              <PropertyRef Name="RequestedByUserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK">
+          <End Role="ApprovalFlows" Type="Self.ApprovalFlow" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalFlows">
+              <PropertyRef Name="ApprovalFlowID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ApprovalFlowFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ApprovalFlowUserDetails" Type="Self.ApprovalFlowUserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ApprovalFlowUserDetails">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK">
+          <End Role="LeaveTypes" Type="Self.LeaveType" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="LeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveTypes_LeaveTypes">
+          <End Role="LeaveTypes" Type="Self.LeaveType" Multiplicity="0..1" />
+          <End Role="LeaveTypes1" Type="Self.LeaveType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveTypes">
+              <PropertyRef Name="LeaveTypeID" />
+            </Principal>
+            <Dependent Role="LeaveTypes1">
+              <PropertyRef Name="ParentLeaveTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Managers_dbo_Users_ManagerUserFK">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Managers" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Managers">
+              <PropertyRef Name="ManagerUserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK">
+          <End Role="Managers" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="SubDepartments" Type="Self.SubDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="SubDepartments">
+              <PropertyRef Name="TeamManagerFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Managers_DirectManagerFK">
+          <End Role="Managers" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="DirectManagerFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Requests_dbo_Users_UserFK">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="UserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="Substitute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicesLog_Requests">
+          <End Role="Requests" Type="Self.Request" Multiplicity="0..1" />
+          <End Role="ServicesLog" Type="Self.ServicesLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="ServicesLog">
+              <PropertyRef Name="RequestFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicesLog_ServiceLogTypeDIM">
+          <End Role="ServiceLogTypeDIM" Type="Self.ServiceLogTypeDIM" Multiplicity="1" />
+          <End Role="ServicesLog" Type="Self.ServicesLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceLogTypeDIM">
+              <PropertyRef Name="ServiceLogTypeID" />
+            </Principal>
+            <Dependent Role="ServicesLog">
+              <PropertyRef Name="ServiceLogTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK">
+          <End Role="SubDepartments" Type="Self.SubDepartment" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDepartments">
+              <PropertyRef Name="SubDepartmentID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="SubDepartmentFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Users1" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Users1">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApprovalFlowDetails" EntityType="Self.ApprovalFlowDetail" />
+          <EntitySet Name="ApprovalFlowRequestDetails" EntityType="Self.ApprovalFlowRequestDetail" />
+          <EntitySet Name="ApprovalFlows" EntityType="Self.ApprovalFlow" />
+          <EntitySet Name="ApprovalFlowUserDetails" EntityType="Self.ApprovalFlowUserDetail" />
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="LeaveTypes" EntityType="Self.LeaveType" />
+          <EntitySet Name="Managers" EntityType="Self.Manager" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="ServiceLogTypeDIMs" EntityType="Self.ServiceLogTypeDIM" />
+          <EntitySet Name="ServicesLogs" EntityType="Self.ServicesLog" />
+          <EntitySet Name="SubDepartments" EntityType="Self.SubDepartment" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="ServicesDIMs" EntityType="Self.ServicesDIM" />
+          <AssociationSet Name="FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK" Association="Self.FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK">
+            <End Role="ApprovalFlows" EntitySet="ApprovalFlows" />
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK" Association="Self.FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK">
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" Association="Self.FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK">
+            <End Role="ApprovalFlowDetails" EntitySet="ApprovalFlowDetails" />
+            <End Role="ApprovalFlowUserDetails" EntitySet="ApprovalFlowUserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK">
+            <End Role="SubDepartments" EntitySet="SubDepartments" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK" Association="Self.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApprovalFlowRequestDetails" EntitySet="ApprovalFlowRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK" Association="Self.FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK">
+            <End Role="ApprovalFlows" EntitySet="ApprovalFlows" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK" Association="Self.FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ApprovalFlowUserDetails" EntitySet="ApprovalFlowUserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" Association="Self.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveTypes_LeaveTypes" Association="Self.FK_LeaveTypes_LeaveTypes">
+            <End Role="LeaveTypes" EntitySet="LeaveTypes" />
+            <End Role="LeaveTypes1" EntitySet="LeaveTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Managers_dbo_Users_ManagerUserFK" Association="Self.FK_dbo_Managers_dbo_Users_ManagerUserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Managers" EntitySet="Managers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK" Association="Self.FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="SubDepartments" EntitySet="SubDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Managers_DirectManagerFK" Association="Self.FK_dbo_Users_dbo_Managers_DirectManagerFK">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Requests_dbo_Users_UserFK" Association="Self.FK_dbo_Requests_dbo_Users_UserFK">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Users" Association="Self.FK_Requests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicesLog_Requests" Association="Self.FK_ServicesLog_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="ServicesLog" EntitySet="ServicesLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicesLog_ServiceLogTypeDIM" Association="Self.FK_ServicesLog_ServiceLogTypeDIM">
+            <End Role="ServiceLogTypeDIM" EntitySet="ServiceLogTypeDIMs" />
+            <End Role="ServicesLog" EntitySet="ServicesLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK" Association="Self.FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK">
+            <End Role="SubDepartments" EntitySet="SubDepartments" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Users1" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRMSModelStoreContainer" CdmEntityContainer="HRMSEntities">
+          <EntitySetMapping Name="ApprovalFlowDetails">
+            <EntityTypeMapping TypeName="HRMSModel.ApprovalFlowDetail">
+              <MappingFragment StoreEntitySet="ApprovalFlowDetails">
+                <ScalarProperty Name="ApprovalFlowDetailsID" ColumnName="ApprovalFlowDetailsID" />
+                <ScalarProperty Name="IsDirectManager" ColumnName="IsDirectManager" />
+                <ScalarProperty Name="IsTeamManager" ColumnName="IsTeamManager" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ApprovalFlowFK" ColumnName="ApprovalFlowFK" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="ApprovalFlowPersonFK" ColumnName="ApprovalFlowPersonFK" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalFlowRequestDetails">
+            <EntityTypeMapping TypeName="HRMSModel.ApprovalFlowRequestDetail">
+              <MappingFragment StoreEntitySet="ApprovalFlowRequestDetails">
+                <ScalarProperty Name="ApprovalRequestFlowDetailsID" ColumnName="ApprovalRequestFlowDetailsID" />
+                <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+                <ScalarProperty Name="IsDirectManager" ColumnName="IsDirectManager" />
+                <ScalarProperty Name="IsTeamManager" ColumnName="IsTeamManager" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="RequestedByUserFK" ColumnName="RequestedByUserFK" />
+                <ScalarProperty Name="SubDepartmentFK" ColumnName="SubDepartmentFK" />
+                <ScalarProperty Name="ApprovalPersonFK" ColumnName="ApprovalPersonFK" />
+                <ScalarProperty Name="RequestFK" ColumnName="RequestFK" />
+                <ScalarProperty Name="RequestActionFK" ColumnName="RequestActionFK" />
+                <ScalarProperty Name="ApprovalFlowDetailsFK" ColumnName="ApprovalFlowDetailsFK" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalFlows">
+            <EntityTypeMapping TypeName="HRMSModel.ApprovalFlow">
+              <MappingFragment StoreEntitySet="ApprovalFlows">
+                <ScalarProperty Name="ApprovalFlowID" ColumnName="ApprovalFlowID" />
+                <ScalarProperty Name="ApprovalFlowName" ColumnName="ApprovalFlowName" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalFlowUserDetails">
+            <EntityTypeMapping TypeName="HRMSModel.ApprovalFlowUserDetail">
+              <MappingFragment StoreEntitySet="ApprovalFlowUserDetails">
+                <ScalarProperty Name="ApprovalFlowUserDetailsID" ColumnName="ApprovalFlowUserDetailsID" />
+                <ScalarProperty Name="UserFK" ColumnName="UserFK" />
+                <ScalarProperty Name="ApprovalFlowDetailsFK" ColumnName="ApprovalFlowDetailsFK" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="HRMSModel.Configuration">
+              <MappingFragment StoreEntitySet="Configurations">
+                <ScalarProperty Name="ConfigurationID" ColumnName="ConfigurationID" />
+                <ScalarProperty Name="ConfigurationKey" ColumnName="ConfigurationKey" />
+                <ScalarProperty Name="ConfigurationValue" ColumnName="ConfigurationValue" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypes">
+            <EntityTypeMapping TypeName="HRMSModel.LeaveType">
+              <MappingFragment StoreEntitySet="LeaveTypes">
+                <ScalarProperty Name="LeaveTypeID" ColumnName="LeaveTypeID" />
+                <ScalarProperty Name="LeaveTypeName" ColumnName="LeaveTypeName" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="ConsiderAsFK" ColumnName="ConsiderAsFK" />
+                <ScalarProperty Name="EntitlementSourceFK" ColumnName="EntitlementSourceFK" />
+                <ScalarProperty Name="DurationUnitFK" ColumnName="DurationUnitFK" />
+                <ScalarProperty Name="ParentLeaveTypeFK" ColumnName="ParentLeaveTypeFK" />
+                <ScalarProperty Name="TakeMaxAmountFromParent" ColumnName="TakeMaxAmountFromParent" />
+                <ScalarProperty Name="DeductionFromParentLeaveDurationPercentage" ColumnName="DeductionFromParentLeaveDurationPercentage" />
+                <ScalarProperty Name="EntitlementTypeFK" ColumnName="EntitlementTypeFK" />
+                <ScalarProperty Name="OneDayMinDurationFK" ColumnName="OneDayMinDurationFK" />
+                <ScalarProperty Name="AllowNegativeEntitlement" ColumnName="AllowNegativeEntitlement" />
+                <ScalarProperty Name="MaxAllowedNegativeEntitlement" ColumnName="MaxAllowedNegativeEntitlement" />
+                <ScalarProperty Name="HasAttachments" ColumnName="HasAttachments" />
+                <ScalarProperty Name="IsAttachmentsRequired" ColumnName="IsAttachmentsRequired" />
+                <ScalarProperty Name="AllowSameDayPartialEntitlement" ColumnName="AllowSameDayPartialEntitlement" />
+                <ScalarProperty Name="IncludePublicHolidayInRequestLength" ColumnName="IncludePublicHolidayInRequestLength" />
+                <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="HRMSModel.Manager">
+              <MappingFragment StoreEntitySet="Managers">
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="ManagerUserFK" ColumnName="ManagerUserFK" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="HRMSModel.Request">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="LeaveTypeFK" ColumnName="LeaveTypeFK" />
+                <ScalarProperty Name="UserFK" ColumnName="UserFK" />
+                <ScalarProperty Name="RequesStatusFK" ColumnName="RequesStatusFK" />
+                <ScalarProperty Name="DurationFrom" ColumnName="DurationFrom" />
+                <ScalarProperty Name="DurationTo" ColumnName="DurationTo" />
+                <ScalarProperty Name="BackToWork" ColumnName="BackToWork" />
+                <ScalarProperty Name="RequestDuration" ColumnName="RequestDuration" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="LeaveDurationUnitFK" ColumnName="LeaveDurationUnitFK" />
+                <ScalarProperty Name="PartialDurationUnitFK" ColumnName="PartialDurationUnitFK" />
+                <ScalarProperty Name="Substitute" ColumnName="Substitute" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="OnBehalfOfRequesterID" ColumnName="OnBehalfOfRequesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceLogTypeDIMs">
+            <EntityTypeMapping TypeName="HRMSModel.ServiceLogTypeDIM">
+              <MappingFragment StoreEntitySet="ServiceLogTypeDIM">
+                <ScalarProperty Name="ServiceLogTypeID" ColumnName="ServiceLogTypeID" />
+                <ScalarProperty Name="ServiceLogTypeName" ColumnName="ServiceLogTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicesLogs">
+            <EntityTypeMapping TypeName="HRMSModel.ServicesLog">
+              <MappingFragment StoreEntitySet="ServicesLog">
+                <ScalarProperty Name="ServicesLogID" ColumnName="ServicesLogID" />
+                <ScalarProperty Name="ServicesFK" ColumnName="ServicesFK" />
+                <ScalarProperty Name="ServiceLogTypeFK" ColumnName="ServiceLogTypeFK" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="RequestFK" ColumnName="RequestFK" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubDepartments">
+            <EntityTypeMapping TypeName="HRMSModel.SubDepartment">
+              <MappingFragment StoreEntitySet="SubDepartments">
+                <ScalarProperty Name="SubDepartmentID" ColumnName="SubDepartmentID" />
+                <ScalarProperty Name="SubDepartmentName" ColumnName="SubDepartmentName" />
+                <ScalarProperty Name="DepartmentFK" ColumnName="DepartmentFK" />
+                <ScalarProperty Name="TeamManagerFK" ColumnName="TeamManagerFK" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HRMSModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="LDAPUserName" ColumnName="LDAPUserName" />
+                <ScalarProperty Name="SubDepartmentFK" ColumnName="SubDepartmentFK" />
+                <ScalarProperty Name="DepartmentFK" ColumnName="DepartmentFK" />
+                <ScalarProperty Name="AccessControlUserFK" ColumnName="AccessControlUserFK" />
+                <ScalarProperty Name="DirectManagerFK" ColumnName="DirectManagerFK" />
+                <ScalarProperty Name="PositionFK" ColumnName="PositionFK" />
+                <ScalarProperty Name="ApprovalFlowFK" ColumnName="ApprovalFlowFK" />
+                <ScalarProperty Name="ContractTypeFK" ColumnName="ContractTypeFK" />
+                <ScalarProperty Name="LevelFK" ColumnName="LevelFK" />
+                <ScalarProperty Name="ProfilePictureURL" ColumnName="ProfilePictureURL" />
+                <ScalarProperty Name="ProbationDate" ColumnName="ProbationDate" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="SeniorityBeforeHireYears" ColumnName="SeniorityBeforeHireYears" />
+                <ScalarProperty Name="GenderFK" ColumnName="GenderFK" />
+                <ScalarProperty Name="SeniorityBeforeHireMonth" ColumnName="SeniorityBeforeHireMonth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CustomNote" ColumnName="CustomNote" />
+                <ScalarProperty Name="ArName" ColumnName="ArName" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsHR" ColumnName="IsHR" />
+                <ScalarProperty Name="WorkingWeekFK" ColumnName="WorkingWeekFK" />
+                <ScalarProperty Name="PrivatePhoneNumber" ColumnName="PrivatePhoneNumber" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="IsFirstLogin" ColumnName="IsFirstLogin" />
+                <ScalarProperty Name="HasCompletedUserProfileData" ColumnName="HasCompletedUserProfileData" />
+                <ScalarProperty Name="UserPersonalEmail" ColumnName="UserPersonalEmail" />
+                <ScalarProperty Name="CompanyFK" ColumnName="CompanyFK" />
+                <ScalarProperty Name="ExtNumber" ColumnName="ExtNumber" />
+                <ScalarProperty Name="IsOutDomainUser" ColumnName="IsOutDomainUser" />
+                <ScalarProperty Name="OutDomainPassword" ColumnName="OutDomainPassword" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicesDIMs">
+            <EntityTypeMapping TypeName="HRMSModel.ServicesDIM">
+              <MappingFragment StoreEntitySet="ServicesDIMs">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

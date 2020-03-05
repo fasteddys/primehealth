@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterSystemReports.Client", "CallCenterSystemReports\CallCenterSystemReports.Client.csproj", "{56F73E12-254F-4795-9F88-4B7B7EC10242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterSystemReports.BLL", "CallCenterSystemReports.BLL\CallCenterSystemReports.BLL.csproj", "{BA4B40A9-8DED-4857-8A8C-1068D4533677}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterSystemReports.DAL", "CallCenterSystemReports.DAL\CallCenterSystemReports.DAL.csproj", "{D9D2D9F2-CF51-4258-A9F8-0CF0EEABE60A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterSystemReports.DTOs", "CallCenterSystemReports.DTOs\CallCenterSystemReports.DTOs.csproj", "{F40F0CE2-7392-40F0-AEBE-468FFA13B902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterSystemReports.GlobalResourses", "CallCenterSystemReports.GlobalResourses\CallCenterSystemReports.GlobalResourses.csproj", "{C168DB2F-9A40-458C-88C0-AEF7A9A18AB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterSystemReports.Entities", "CallCenterSystemReports.Entities\CallCenterSystemReports.Entities.csproj", "{1BE9A3DA-3684-41FC-8B11-A37F79B0B161}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterSystemReports.Utilities", "CallCenterSystemReports.Utilities\CallCenterSystemReports.Utilities.csproj", "{651C03F8-142D-4876-8530-EB88017C8D8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56F73E12-254F-4795-9F88-4B7B7EC10242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F73E12-254F-4795-9F88-4B7B7EC10242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F73E12-254F-4795-9F88-4B7B7EC10242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F73E12-254F-4795-9F88-4B7B7EC10242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA4B40A9-8DED-4857-8A8C-1068D4533677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4B40A9-8DED-4857-8A8C-1068D4533677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4B40A9-8DED-4857-8A8C-1068D4533677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4B40A9-8DED-4857-8A8C-1068D4533677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9D2D9F2-CF51-4258-A9F8-0CF0EEABE60A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D2D9F2-CF51-4258-A9F8-0CF0EEABE60A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D2D9F2-CF51-4258-A9F8-0CF0EEABE60A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D2D9F2-CF51-4258-A9F8-0CF0EEABE60A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F40F0CE2-7392-40F0-AEBE-468FFA13B902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F40F0CE2-7392-40F0-AEBE-468FFA13B902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F40F0CE2-7392-40F0-AEBE-468FFA13B902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F40F0CE2-7392-40F0-AEBE-468FFA13B902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C168DB2F-9A40-458C-88C0-AEF7A9A18AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C168DB2F-9A40-458C-88C0-AEF7A9A18AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C168DB2F-9A40-458C-88C0-AEF7A9A18AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C168DB2F-9A40-458C-88C0-AEF7A9A18AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BE9A3DA-3684-41FC-8B11-A37F79B0B161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BE9A3DA-3684-41FC-8B11-A37F79B0B161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BE9A3DA-3684-41FC-8B11-A37F79B0B161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BE9A3DA-3684-41FC-8B11-A37F79B0B161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{651C03F8-142D-4876-8530-EB88017C8D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{651C03F8-142D-4876-8530-EB88017C8D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{651C03F8-142D-4876-8530-EB88017C8D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{651C03F8-142D-4876-8530-EB88017C8D8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CallCenterSystemReports.BLL\\CallCenterSystemReports.BLL.csproj
+		SccProjectName1 = CallCenterSystemReports.BLL
+		SccLocalPath1 = CallCenterSystemReports.BLL
+		SccProjectUniqueName2 = CallCenterSystemReports.DAL\\CallCenterSystemReports.DAL.csproj
+		SccProjectName2 = CallCenterSystemReports.DAL
+		SccLocalPath2 = CallCenterSystemReports.DAL
+		SccProjectUniqueName3 = CallCenterSystemReports.DTOs\\CallCenterSystemReports.DTOs.csproj
+		SccProjectName3 = CallCenterSystemReports.DTOs
+		SccLocalPath3 = CallCenterSystemReports.DTOs
+		SccProjectUniqueName4 = CallCenterSystemReports.GlobalResourses\\CallCenterSystemReports.GlobalResourses.csproj
+		SccProjectName4 = CallCenterSystemReports.GlobalResourses
+		SccLocalPath4 = CallCenterSystemReports.GlobalResourses
+		SccProjectUniqueName5 = CallCenterSystemReports.Entities\\CallCenterSystemReports.Entities.csproj
+		SccProjectName5 = CallCenterSystemReports.Entities
+		SccLocalPath5 = CallCenterSystemReports.Entities
+		SccProjectUniqueName6 = CallCenterSystemReports.Utilities\\CallCenterSystemReports.Utilities.csproj
+		SccProjectName6 = CallCenterSystemReports.Utilities
+		SccLocalPath6 = CallCenterSystemReports.Utilities
+		SccProjectUniqueName7 = CallCenterSystemReports\\CallCenterSystemReports.Client.csproj
+		SccProjectName7 = CallCenterSystemReports
+		SccLocalPath7 = CallCenterSystemReports
+	EndGlobalSection
+EndGlobal

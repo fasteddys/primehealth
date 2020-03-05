@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6148AB72-C146-49DA-978F-5DBF9C96BA96}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CardCycle</RootNamespace>
+    <AssemblyName>CardCycle</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Exchange.WebServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices.Auth, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.IO.Compression.FileSystem">
+      <HintPath>..\..\..\..\Courses &amp; projects\Projects\New Projects\Finished\Call Center Notes\Source\CallCenterNotesApp\CallCenterNotesApp\bin\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.8.2\lib\net40\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.24\lib\net40\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1\lib\net40\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib\net40\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccountComplainRequest.aspx" />
+    <Content Include="AccountManger.aspx" />
+    <Content Include="AddClient.aspx" />
+    <Content Include="adobeair\index.html" />
+    <Content Include="AllClients.aspx" />
+    <Content Include="Allrequest.aspx" />
+    <Content Include="AMAccount.aspx" />
+    <Content Include="applewebkit\index.html" />
+    <Content Include="assets\css\jquery-ui.css" />
+    <Content Include="assets\css\style-responsive.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\img\apple-touch-icon-114x114.png" />
+    <Content Include="assets\img\apple-touch-icon-120x120.png" />
+    <Content Include="assets\img\apple-touch-icon-144x144.png" />
+    <Content Include="assets\img\apple-touch-icon-152x152.png" />
+    <Content Include="assets\img\apple-touch-icon-57x57.png" />
+    <Content Include="assets\img\apple-touch-icon-72x72.png" />
+    <Content Include="assets\img\apple-touch-icon-76x76.png" />
+    <Content Include="assets\img\apple-touch-icon.png" />
+    <Content Include="assets\img\avatar\1.html" />
+    <Content Include="assets\img\avatar\2.html" />
+    <Content Include="assets\img\avatar\3.html" />
+    <Content Include="assets\img\avatar\4.html" />
+    <Content Include="assets\img\avatar\5.html" />
+    <Content Include="assets\img\favicon.ico" />
+    <Content Include="assets\img\gmap\m1.png" />
+    <Content Include="assets\img\gmap\m2.png" />
+    <Content Include="assets\img\gmap\m3.png" />
+    <Content Include="assets\img\inv-logo.png" />
+    <Content Include="assets\img\login-logo.png" />
+    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\inlineall\logo.html" />
+    <Content Include="assets\js\apps\calculator.js" />
+    <Content Include="assets\js\apps\notes.js" />
+    <Content Include="assets\js\apps\stock-chart.js" />
+    <Content Include="assets\js\apps\todo.js" />
+    <Content Include="assets\js\init.js" />
+    <Content Include="assets\js\pages\advanced-forms.js" />
+    <Content Include="assets\js\pages\calendar.js" />
+    <Content Include="assets\js\pages\datatables.js" />
+    <Content Include="assets\js\pages\form-validation.js" />
+    <Content Include="assets\js\pages\form-wizard.js" />
+    <Content Include="assets\js\pages\forms.js" />
+    <Content Include="assets\js\pages\google-maps.js" />
+    <Content Include="assets\js\pages\index.js" />
+    <Content Include="assets\js\pages\lockscreen.js" />
+    <Content Include="assets\js\pages\morris-charts.js" />
+    <Content Include="assets\js\pages\nested-list.js" />
+    <Content Include="assets\js\pages\new-message.js" />
+    <Content Include="assets\js\pages\notifications.js" />
+    <Content Include="assets\js\pages\other-charts.js" />
+    <Content Include="assets\js\pages\rickshaw-charts.js" />
+    <Content Include="assets\js\pages\sparkline-charts.js" />
+    <Content Include="assets\js\pages\tabs-accordions.js" />
+    <Content Include="assets\js\pages\vector-maps.js" />
+    <Content Include="assets\libs\animate-css\animate.min.css" />
+    <Content Include="assets\libs\bootstrap-bootbox\bootbox.min.js" />
+    <Content Include="assets\libs\bootstrap-calendar\css\bic_calendar.css" />
+    <Content Include="assets\libs\bootstrap-calendar\js\bic_calendar.min.js" />
+    <Content Include="assets\libs\bootstrap-datepicker\css\datepicker.css" />
+    <Content Include="assets\libs\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="assets\libs\bootstrap-fileinput\bootstrap.file-input.js" />
+    <Content Include="assets\libs\bootstrap-inputmask\inputmask.js" />
+    <Content Include="assets\libs\bootstrap-select2\select2-spinner.gif" />
+    <Content Include="assets\libs\bootstrap-select2\select2.css" />
+    <Content Include="assets\libs\bootstrap-select2\select2.min.js" />
+    <Content Include="assets\libs\bootstrap-select2\select2.png" />
+    <Content Include="assets\libs\bootstrap-select\bootstrap-select.min.css" />
+    <Content Include="assets\libs\bootstrap-select\bootstrap-select.min.js" />
+    <Content Include="assets\libs\bootstrap-typeahead\bootstrap3-typeahead.min.js" />
+    <Content Include="assets\libs\bootstrap-validator\css\bootstrapValidator.min.css" />
+    <Content Include="assets\libs\bootstrap-validator\js\bootstrapValidator.min.js" />
+    <Content Include="assets\libs\bootstrap-xeditable\css\bootstrap-editable.css" />
+    <Content Include="assets\libs\bootstrap-xeditable\demo\demo-mock.js" />
+    <Content Include="assets\libs\bootstrap-xeditable\demo\jquery.mockjax.js" />
+    <Content Include="assets\libs\bootstrap-xeditable\img\clear.png" />
+    <Content Include="assets\libs\bootstrap-xeditable\img\loading.gif" />
+    <Content Include="assets\libs\bootstrap-xeditable\js\bootstrap-editable.min.js" />
+    <Content Include="assets\libs\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\libs\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\libs\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\libs\ckeditor\adapters\jquery.js" />
+    <Content Include="assets\libs\ckeditor\ckeditor.js" />
+    <Content Include="assets\libs\d3\d3.v3.js" />
+    <Content Include="assets\libs\dropzone\css\dropzone.css" />
+    <Content Include="assets\libs\dropzone\dropzone.min.js" />
+    <Content Include="assets\libs\dropzone\images\spritemap%402x.png" />
+    <Content Include="assets\libs\dropzone\images\spritemap.png" />
+    <Content Include="assets\libs\fastclick\fastclick.js" />
+    <Content Include="assets\libs\font-awesome\css\font-awesome.min.css" />
+    <Content Include="assets\libs\font-awesome\fonts\fontawesome-webfont78ce.svg" />
+    <Content Include="assets\libs\fontello\css\fontello.css" />
+    <Content Include="assets\libs\fontello\font\fontellob406.svg" />
+    <Content Include="assets\libs\fullcalendar\fullcalendar.css" />
+    <Content Include="assets\libs\fullcalendar\fullcalendar.min.js" />
+    <Content Include="assets\libs\ios7-switch\ios7-switch.css" />
+    <Content Include="assets\libs\ios7-switch\ios7.switch.js" />
+    <Content Include="assets\libs\jquery-animate-numbers\jquery.animateNumbers.js" />
+    <Content Include="assets\libs\jquery-blockui\jquery.blockUI.js" />
+    <Content Include="assets\libs\jquery-clndr\moment-2.5.1.js" />
+    <Content Include="assets\libs\jquery-clock\clock.css" />
+    <Content Include="assets\libs\jquery-clock\clock.js" />
+    <Content Include="assets\libs\jquery-datatables\css\dataTables.bootstrap.css" />
+    <Content Include="assets\libs\jquery-datatables\extensions\TableTools\css\dataTables.tableTools.css" />
+    <Content Include="assets\libs\jquery-datatables\extensions\TableTools\images\background.png" />
+    <Content Include="assets\libs\jquery-datatables\extensions\TableTools\images\collection.png" />
+    <Content Include="assets\libs\jquery-datatables\extensions\TableTools\images\collection_hover.png" />
+    <Content Include="assets\libs\jquery-datatables\extensions\TableTools\js\dataTables.tableTools.min.js" />
+    <Content Include="assets\libs\jquery-datatables\images\sort_asc.png" />
+    <Content Include="assets\libs\jquery-datatables\images\sort_asc_disabled.png" />
+    <Content Include="assets\libs\jquery-datatables\images\sort_both.png" />
+    <Content Include="assets\libs\jquery-datatables\images\sort_desc.png" />
+    <Content Include="assets\libs\jquery-datatables\images\sort_desc_disabled.png" />
+    <Content Include="assets\libs\jquery-datatables\js\dataTables.bootstrap.js" />
+    <Content Include="assets\libs\jquery-datatables\js\jquery.dataTables.min.js" />
+    <Content Include="assets\libs\jquery-detectmobile\detect.js" />
+    <Content Include="assets\libs\jquery-easypiechart\jquery.easy-pie-chart.css" />
+    <Content Include="assets\libs\jquery-easypiechart\jquery.easypiechart.min.js" />
+    <Content Include="assets\libs\jquery-gmap3\gmap3.min.js" />
+    <Content Include="assets\libs\jquery-icheck\icheck.min.js" />
+    <Content Include="assets\libs\jquery-icheck\skins\all.css" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\aero%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\aero.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\blue%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\blue.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\flat%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\flat.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\green%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\green.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\grey%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\grey.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\orange%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\orange.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\pink%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\pink.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\purple%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\purple.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\red%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\red.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\yellow%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\yellow.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\flat\_all.css" />
+    <Content Include="assets\libs\jquery-icheck\skins\futurico\futurico%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\futurico\futurico.css" />
+    <Content Include="assets\libs\jquery-icheck\skins\futurico\futurico.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\line\line%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\line\line.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\line\_all.css" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\aero%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\aero.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\blue%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\blue.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\green%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\green.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\grey%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\grey.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\minimal%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\minimal.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\orange%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\orange.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\pink%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\pink.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\purple%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\purple.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\red%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\red.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\yellow%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\yellow.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\minimal\_all.css" />
+    <Content Include="assets\libs\jquery-icheck\skins\polaris\polaris%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\polaris\polaris.css" />
+    <Content Include="assets\libs\jquery-icheck\skins\polaris\polaris.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\aero%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\aero.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\blue%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\blue.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\green%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\green.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\grey%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\grey.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\orange%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\orange.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\pink%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\pink.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\purple%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\purple.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\red%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\red.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\square%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\square.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\yellow%402x.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\yellow.png" />
+    <Content Include="assets\libs\jquery-icheck\skins\square\_all.css" />
+    <Content Include="assets\libs\jquery-jvectormap\css\jquery-jvectormap-1.2.2.css" />
+    <Content Include="assets\libs\jquery-jvectormap\js\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="assets\libs\jquery-jvectormap\js\jquery-jvectormap-europe-mill-en.js" />
+    <Content Include="assets\libs\jquery-jvectormap\js\jquery-jvectormap-uk-mill-en.js" />
+    <Content Include="assets\libs\jquery-jvectormap\js\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="assets\libs\jquery-jvectormap\js\jquery-jvectormap-us-il-chicago-mill-en.js" />
+    <Content Include="assets\libs\jquery-jvectormap\js\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="assets\libs\jquery-knob\jquery.knob.js" />
+    <Content Include="assets\libs\jquery-knob\jquery.knob.min.js" />
+    <Content Include="assets\libs\jquery-nestable\jquery.nestable.css" />
+    <Content Include="assets\libs\jquery-nestable\jquery.nestable.js" />
+    <Content Include="assets\libs\jquery-notifyjs\notify.min.js" />
+    <Content Include="assets\libs\jquery-notifyjs\styles\metro\notify-metro.css" />
+    <Content Include="assets\libs\jquery-notifyjs\styles\metro\notify-metro.js" />
+    <Content Include="assets\libs\jquery-slimscroll\jquery.slimscroll.js" />
+    <Content Include="assets\libs\jquery-sparkline\jquery-sparkline.js" />
+    <Content Include="assets\libs\jquery-ui-touch\jquery.ui.touch-punch.min.js" />
+    <Content Include="assets\libs\jquery-weather\artill_clean_icons-webfont.svg" />
+    <Content Include="assets\libs\jquery-weather\jquery.simpleWeather-2.6.min.js" />
+    <Content Include="assets\libs\jquery-weather\simpleweather.css" />
+    <Content Include="assets\libs\jquery-wizard\jquery.easyWizard.js" />
+    <Content Include="assets\libs\jqueryui\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="assets\libs\jqueryui\ui-lightness\jquery-ui-1.10.4.custom.min.css" />
+    <Content Include="assets\libs\jquery\jquery-1.11.1.min.js" />
+    <Content Include="assets\libs\magnific-popup\jquery.magnific-popup.min.js" />
+    <Content Include="assets\libs\magnific-popup\magnific-popup.css" />
+    <Content Include="assets\libs\morrischart\morris.css" />
+    <Content Include="assets\libs\morrischart\morris.min.js" />
+    <Content Include="assets\libs\nifty-modal\css\component.css" />
+    <Content Include="assets\libs\nifty-modal\js\classie.js" />
+    <Content Include="assets\libs\nifty-modal\js\modalEffects.js" />
+    <Content Include="assets\libs\pace\pace.css" />
+    <Content Include="assets\libs\pace\pace.min.js" />
+    <Content Include="assets\libs\prettify\github.css" />
+    <Content Include="assets\libs\prettify\prettify.js" />
+    <Content Include="assets\libs\raphael\raphael-min.js" />
+    <Content Include="assets\libs\rickshaw\rickshaw.min.css" />
+    <Content Include="assets\libs\rickshaw\rickshaw.min.js" />
+    <Content Include="assets\libs\sortable\sortable-theme-bootstrap.css" />
+    <Content Include="assets\libs\sortable\sortable.min.js" />
+    <Content Include="assets\libs\summernote\summernote.css" />
+    <Content Include="assets\libs\summernote\summernote.js" />
+    <Content Include="chrome\index.html" />
+    <Content Include="CloseRequest.aspx" />
+    <Content Include="ClosingReqestes.aspx" />
+    <Content Include="Confirmed.aspx" />
+    <Content Include="css\jquery.dataTables.css" />
+    <Content Include="css\style.css" />
+    <Content Include="DailyReport.aspx" />
+    <Content Include="dropzone\lib\dropzone.html" />
+    <Content Include="Exceptions.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\stylesheet.css" />
+    <Content Include="Global.asax" />
+    <Content Include="images\big\img001.jpg" />
+    <Content Include="images\big\img002.jpg" />
+    <Content Include="images\big\img003.jpg" />
+    <Content Include="images\big\img004.jpg" />
+    <Content Include="images\big\img005.jpg" />
+    <Content Include="images\big\img006.jpg" />
+    <Content Include="images\big\img007.jpg" />
+    <Content Include="images\big\img008.jpg" />
+    <Content Include="images\big\img009.jpg" />
+    <Content Include="images\big\img010.jpg" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\googlepluse.png" />
+    <Content Include="images\rss.png" />
+    <Content Include="images\small\img001_small.jpg" />
+    <Content Include="images\small\img002_small.jpg" />
+    <Content Include="images\small\img003_small.jpg" />
+    <Content Include="images\small\img004_small.jpg" />
+    <Content Include="images\small\img005_small.jpg" />
+    <Content Include="images\small\img006_small.jpg" />
+    <Content Include="images\small\img007_small.jpg" />
+    <Content Include="images\small\img008_small.jpg" />
+    <Content Include="images\small\img009_small.jpg" />
+    <Content Include="images\small\img010_small.jpg" />
+    <Content Include="images\stock\1epgUO0.jpg" />
+    <Content Include="images\twitter.png" />
+    <Content Include="images\users\chat\1.jpg" />
+    <Content Include="images\users\chat\19.jpg" />
+    <Content Include="images\users\chat\2.jpg" />
+    <Content Include="images\users\chat\3.jpg" />
+    <Content Include="images\users\chat\4.jpg" />
+    <Content Include="images\users\chat\5.jpg" />
+    <Content Include="images\users\chat\6.jpg" />
+    <Content Include="images\users\default-user.png" />
+    <Content Include="images\users\user-100.jpg" />
+    <Content Include="images\users\user-256.jpg" />
+    <Content Include="images\users\user-35.jpg" />
+    <Content Include="images\weather\weather-bg.jpg" />
+    <Content Include="image\index.html" />
+    <Content Include="image\logo-color.png" />
+    <Content Include="image\MiniPHlogo.png" />
+    <Content Include="image\PHlogo.png" />
+    <Content Include="image\user.png" />
+    <Content Include="image\user2.png" />
+    <Content Include="IssuanceComplainRequest.aspx" />
+    <Content Include="ITCotrolPanel.aspx" />
+    <Content Include="js\countdown.js" />
+    <Content Include="js\init.js" />
+    <Content Include="js\jquery-ui.js" />
+    <Content Include="js\jquery.dataTables.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="Login.aspx" />
+    <Content Include="LogTime.aspx" />
+    <Content Include="ManageClient.aspx" />
+    <Content Include="ManageCycle.aspx" />
+    <Content Include="NewRequests.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="PConfirm.aspx" />
+    <Content Include="PendingFrom.aspx" />
+    <Content Include="plugins\index.html" />
+    <Content Include="plugins\templates\templates\default.html" />
+    <Content Include="P_Technical.aspx" />
+    <Content Include="QCRequetes.aspx" />
+    <Content Include="RejectedReq.aspx" />
+    <Content Include="RejectedSeen.aspx" />
+    <Content Include="Reportes.aspx" />
+    <Content Include="ReportLostCard.aspx" />
+    <Content Include="RequestNew.aspx" />
+    <Content Include="SearchDetails.aspx" />
+    <Content Include="SearchForm.aspx" />
+    <Content Include="Stop.aspx" />
+    <Content Include="Symple\TextFile1.txt" />
+    <Content Include="TimeDetails.aspx" />
+    <Content Include="trident\index.html" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="AcManagerPanel.aspx" />
+    <Content Include="WebForm1.aspx" />
+    <Content Include="WebForm2.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\libs\bootstrap\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="assets\libs\font-awesome\fonts\fontawesome-webfont78ce.eot" />
+    <Content Include="assets\libs\font-awesome\fonts\fontawesome-webfont78ce.ttf" />
+    <Content Include="assets\libs\font-awesome\fonts\fontawesome-webfont78ce.woff" />
+    <Content Include="assets\libs\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="assets\libs\fontello\font\fontellob406.eot" />
+    <Content Include="assets\libs\fontello\font\fontellob406.ttf" />
+    <Content Include="assets\libs\fontello\font\fontellob406.woff" />
+    <Content Include="assets\libs\jquery-weather\artill_clean_icons-webfont.eot" />
+    <Content Include="assets\libs\jquery-weather\artill_clean_icons-webfont.ttf" />
+    <Content Include="assets\libs\jquery-weather\artill_clean_icons-webfont.woff" />
+    <Content Include="assets\libs\jquery-weather\artill_clean_icons-webfontd41d.eot" />
+    <Content Include="Master Pages\Site2.Master" />
+    <Content Include="fonts\BEBAS___-webfont.eot" />
+    <Content Include="fonts\BEBAS___-webfont.woff" />
+    <Content Include="images\Thumbs.db" />
+    <Content Include="DAL\DataContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\mohamed.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountComplainRequest.aspx.cs">
+      <DependentUpon>AccountComplainRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountComplainRequest.aspx.designer.cs">
+      <DependentUpon>AccountComplainRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AccountManger.aspx.cs">
+      <DependentUpon>AccountManger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountManger.aspx.designer.cs">
+      <DependentUpon>AccountManger.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddClient.aspx.cs">
+      <DependentUpon>AddClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddClient.aspx.designer.cs">
+      <DependentUpon>AddClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllClients.aspx.cs">
+      <DependentUpon>AllClients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllClients.aspx.designer.cs">
+      <DependentUpon>AllClients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Allrequest.aspx.cs">
+      <DependentUpon>Allrequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Allrequest.aspx.designer.cs">
+      <DependentUpon>Allrequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AMAccount.aspx.cs">
+      <DependentUpon>AMAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AMAccount.aspx.designer.cs">
+      <DependentUpon>AMAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Account.cs" />
+    <Compile Include="BLL\Client.cs" />
+    <Compile Include="BLL\Message.cs" />
+    <Compile Include="BLL\Request.cs" />
+    <Compile Include="CloseRequest.aspx.cs">
+      <DependentUpon>CloseRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CloseRequest.aspx.designer.cs">
+      <DependentUpon>CloseRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClosingReqestes.aspx.cs">
+      <DependentUpon>ClosingReqestes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClosingReqestes.aspx.designer.cs">
+      <DependentUpon>ClosingReqestes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Confirmed.aspx.cs">
+      <DependentUpon>Confirmed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Confirmed.aspx.designer.cs">
+      <DependentUpon>Confirmed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DailyReport.aspx.cs">
+      <DependentUpon>DailyReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DailyReport.aspx.designer.cs">
+      <DependentUpon>DailyReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\DataContext.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions.aspx.cs">
+      <DependentUpon>Exceptions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Exceptions.aspx.designer.cs">
+      <DependentUpon>Exceptions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="exel\ExcelUtlity.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IssuanceComplainRequest.aspx.cs">
+      <DependentUpon>IssuanceComplainRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IssuanceComplainRequest.aspx.designer.cs">
+      <DependentUpon>IssuanceComplainRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ITCotrolPanel.aspx.cs">
+      <DependentUpon>ITCotrolPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ITCotrolPanel.aspx.designer.cs">
+      <DependentUpon>ITCotrolPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogTime.aspx.cs">
+      <DependentUpon>LogTime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogTime.aspx.designer.cs">
+      <DependentUpon>LogTime.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageClient.aspx.cs">
+      <DependentUpon>ManageClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageClient.aspx.designer.cs">
+      <DependentUpon>ManageClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageCycle.aspx.cs">
+      <DependentUpon>ManageCycle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageCycle.aspx.designer.cs">
+      <DependentUpon>ManageCycle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master Pages\Site2.Master.cs">
+      <DependentUpon>Site2.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master Pages\Site2.Master.designer.cs">
+      <DependentUpon>Site2.Master</DependentUpon>
+    </Compile>
+    <Compile Include="NewRequests.aspx.cs">
+      <DependentUpon>NewRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewRequests.aspx.designer.cs">
+      <DependentUpon>NewRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PConfirm.aspx.cs">
+      <DependentUpon>PConfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PConfirm.aspx.designer.cs">
+      <DependentUpon>PConfirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PendingFrom.aspx.cs">
+      <DependentUpon>PendingFrom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PendingFrom.aspx.designer.cs">
+      <DependentUpon>PendingFrom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="P_Technical.aspx.cs">
+      <DependentUpon>P_Technical.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_Technical.aspx.designer.cs">
+      <DependentUpon>P_Technical.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QCRequetes.aspx.cs">
+      <DependentUpon>QCRequetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QCRequetes.aspx.designer.cs">
+      <DependentUpon>QCRequetes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RejectedReq.aspx.cs">
+      <DependentUpon>RejectedReq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RejectedReq.aspx.designer.cs">
+      <DependentUpon>RejectedReq.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RejectedSeen.aspx.cs">
+      <DependentUpon>RejectedSeen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RejectedSeen.aspx.designer.cs">
+      <DependentUpon>RejectedSeen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes.aspx.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes.aspx.designer.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportLostCard.aspx.cs">
+      <DependentUpon>ReportLostCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportLostCard.aspx.designer.cs">
+      <DependentUpon>ReportLostCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RequestNew.aspx.cs">
+      <DependentUpon>RequestNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestNew.aspx.designer.cs">
+      <DependentUpon>RequestNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchDetails.aspx.cs">
+      <DependentUpon>SearchDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchDetails.aspx.designer.cs">
+      <DependentUpon>SearchDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchForm.aspx.cs">
+      <DependentUpon>SearchForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchForm.aspx.designer.cs">
+      <DependentUpon>SearchForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stop.aspx.cs">
+      <DependentUpon>Stop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stop.aspx.designer.cs">
+      <DependentUpon>Stop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeDetails.aspx.cs">
+      <DependentUpon>TimeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeDetails.aspx.designer.cs">
+      <DependentUpon>TimeDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AcManagerPanel.aspx.cs">
+      <DependentUpon>AcManagerPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AcManagerPanel.aspx.designer.cs">
+      <DependentUpon>AcManagerPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Attached\" />
+    <Folder Include="Issuance\" />
+    <Folder Include="trim\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DAL\DataContext.dbml.layout">
+      <DependentUpon>DataContext.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12591</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12591/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

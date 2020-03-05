@@ -1,0 +1,1046 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhNetworkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CallCenterAppUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsOnline" Type="bit" Nullable="false" />
+          <Property Name="MACAddress" Type="nvarchar(max)" />
+          <Property Name="IsFirstLogin" Type="bit" />
+          <Property Name="PcName" Type="nvarchar" MaxLength="70" />
+          <Property Name="DoctorCategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="EmailApprovalLogsDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestID" Type="int" />
+          <Property Name="LogTime" Type="datetime" />
+          <Property Name="OldValue" Type="nvarchar(max)" />
+          <Property Name="NewValue" Type="nvarchar(max)" />
+          <Property Name="LogTypeID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="300" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EmailApprovalLogTypeDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="EmailApprovalRequests">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="300" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Medical_ID" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedByNotes" Type="nvarchar(max)" />
+          <Property Name="RequstStatusID" Type="int" />
+          <Property Name="TransferedToDoctorsTime" Type="datetime" />
+          <Property Name="DoctorAssignee" Type="nvarchar" MaxLength="100" />
+          <Property Name="DoctorAssignTime" Type="datetime" />
+          <Property Name="DoctorNotes" Type="nvarchar(max)" />
+          <Property Name="DoctorAction" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorActionTime" Type="datetime" />
+          <Property Name="TransferedToAuditComment" Type="nvarchar(max)" />
+          <Property Name="TechnicalApproveByDoctorNote" Type="nvarchar(max)" />
+          <Property Name="TechnicalApproveByDoctorStartTime" Type="datetime" />
+          <Property Name="TechnicalApproveByDoctorEndTime" Type="datetime" />
+          <Property Name="TransferedToAuditTime" Type="datetime" />
+          <Property Name="AuditAssignee" Type="nvarchar" MaxLength="100" />
+          <Property Name="AuditAssigneeTime" Type="datetime" />
+          <Property Name="AuditNotes" Type="nvarchar(max)" />
+          <Property Name="AuditAction" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuditActionTime" Type="datetime" />
+          <Property Name="TechnicalApproveByAuditNote" Type="nvarchar(max)" />
+          <Property Name="TechnicalApproveByAuditStartTime" Type="datetime" />
+          <Property Name="TechnicalApproveByAuditEndTime" Type="datetime" />
+          <Property Name="MailSubject" Type="nvarchar" MaxLength="300" />
+          <Property Name="IsAutoGenereated" Type="bit" />
+          <Property Name="ClosedTime" Type="datetime" />
+          <Property Name="IsFirstNotifySent" Type="bit" />
+          <Property Name="IsSecondNotifySent" Type="bit" />
+          <Property Name="IsThirdNotifySent" Type="bit" />
+          <Property Name="ColorID" Type="int" />
+          <Property Name="TicketTypeID" Type="int" />
+          <Property Name="IsInquiryTicket" Type="bit" />
+          <Property Name="AutoGeneratedEmailID" Type="nvarchar(max)" />
+          <Property Name="OperatorAssignee" Type="nvarchar" MaxLength="100" />
+          <Property Name="OperatorAssignTime" Type="datetime" />
+          <Property Name="OperatorAction" Type="nvarchar" MaxLength="50" />
+          <Property Name="OperatorNotes" Type="nvarchar(max)" />
+          <Property Name="OperatorActionTime" Type="datetime" />
+          <Property Name="PriorityID" Type="int" />
+          <Property Name="ApprovalCategoryID" Type="int" />
+          <Property Name="IsAutoGeneratedNotify" Type="bit" />
+          <Property Name="IsFaxMail" Type="bit" />
+          <Property Name="MailSource" Type="nvarchar" MaxLength="300" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="80" />
+          <Property Name="UserNameOpenTechnicalApprove" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsReadyToBeFollowedUp" Type="bit" />
+          <Property Name="IsReadyToBeCompleted" Type="bit" />
+          <Property Name="IsCompleted" Type="bit" />
+          <Property Name="InsertionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsCategoryDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsConfigurations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigurationKey" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ConfigurationValue" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsFailedTransactions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogDetails" Type="nvarchar(max)" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="200" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="200" />
+          <Property Name="MethodName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LogDate" Type="datetime" />
+          <Property Name="ErrorSource" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsPriorityDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Priority" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsTechnicalDestinationDim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmailRequestAttachmentsDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Path" Type="nvarchar(max)" />
+          <Property Name="IsDoctorAttachment" Type="bit" />
+          <Property Name="IsAuditAttachment" Type="bit" />
+          <Property Name="IsTicketAttachment" Type="bit" />
+          <Property Name="IsOtherAttachment" Type="bit" />
+          <Property Name="IsTransferToAuditAttach" Type="bit" />
+          <Property Name="IsFaxAttachment" Type="bit" />
+          <Property Name="IsReopeningAttachment" Type="bit" />
+          <Property Name="TicketNumber" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsDoctorTechnicalApproveAttachment" Type="bit" />
+          <Property Name="IsAuditTechnicalApproveAttachment" Type="bit" />
+          <Property Name="IsProviderTechnicalApproveAttachment" Type="bit" />
+          <Property Name="IsAccountManagerTechnicalApproveAttachment" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmailRequestMailingDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="IsTO" Type="bit" />
+          <Property Name="IsCC" Type="bit" />
+          <Property Name="IsBCC" Type="bit" />
+          <Property Name="TicketNumber" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeletionTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EmailRequestRequest_TechnicalDestination">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestID" Type="int" />
+          <Property Name="TechnicalDestinationID" Type="int" />
+          <Property Name="Assignee" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignTime" Type="datetime" />
+          <Property Name="ActionTime" Type="datetime" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="StartTechnicalApprovalTime" Type="datetime" />
+          <Property Name="EndTechnicalApprovalTime" Type="datetime" />
+          <Property Name="CallCenterNote" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EmailRequestStatusDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CallCenterAppUser_EmailApprovalsCategoryDIM">
+          <End Role="EmailApprovalsCategoryDIM" Type="Self.EmailApprovalsCategoryDIM" Multiplicity="0..1" />
+          <End Role="CallCenterAppUser" Type="Self.CallCenterAppUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalsCategoryDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CallCenterAppUser">
+              <PropertyRef Name="DoctorCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_EmailApprovalsCategoryDIM">
+          <End Role="EmailApprovalsCategoryDIM" Type="Self.EmailApprovalsCategoryDIM" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalsCategoryDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="ApprovalCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_EmailApprovalsPriorityDIM">
+          <End Role="EmailApprovalsPriorityDIM" Type="Self.EmailApprovalsPriorityDIM" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalsPriorityDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="PriorityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_EmailRequestStatusDIM">
+          <End Role="EmailRequestStatusDIM" Type="Self.EmailRequestStatusDIM" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRequestStatusDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="RequstStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRequestAttachmentsDetails_EmailApprovalRequests">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="0..1" />
+          <End Role="EmailRequestAttachmentsDetails" Type="Self.EmailRequestAttachmentsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestAttachmentsDetails">
+              <PropertyRef Name="TicketNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRequestMailingDetails_EmailApprovalRequests">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="0..1" />
+          <End Role="EmailRequestMailingDetails" Type="Self.EmailRequestMailingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestMailingDetails">
+              <PropertyRef Name="TicketNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_CallCenterAppUser1">
+          <End Role="CallCenterAppUser" Type="Self.CallCenterAppUser" Multiplicity="0..1" />
+          <End Role="EmailApprovalLogsDetails" Type="Self.EmailApprovalLogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CallCenterAppUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="EmailApprovalLogsDetails">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_EmailApprovalRequests">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="0..1" />
+          <End Role="EmailApprovalLogsDetails" Type="Self.EmailApprovalLogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalLogsDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_LogTypeDIM">
+          <End Role="EmailApprovalLogTypeDIM" Type="Self.EmailApprovalLogTypeDIM" Multiplicity="1" />
+          <End Role="EmailApprovalLogsDetails" Type="Self.EmailApprovalLogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalLogTypeDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalLogsDetails">
+              <PropertyRef Name="LogTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_TechnicalDestination_EmailApprovalRequests">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="0..1" />
+          <End Role="EmailRequestRequest_TechnicalDestination" Type="Self.EmailRequestRequest_TechnicalDestination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestRequest_TechnicalDestination">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim">
+          <End Role="EmailApprovalsTechnicalDestinationDim" Type="Self.EmailApprovalsTechnicalDestinationDim" Multiplicity="0..1" />
+          <End Role="EmailRequestRequest_TechnicalDestination" Type="Self.EmailRequestRequest_TechnicalDestination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalsTechnicalDestinationDim">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestRequest_TechnicalDestination">
+              <PropertyRef Name="TechnicalDestinationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhNetworkModelStoreContainer">
+          <EntitySet Name="CallCenterAppUser" EntityType="Self.CallCenterAppUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalLogsDetails" EntityType="Self.EmailApprovalLogsDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalLogTypeDIM" EntityType="Self.EmailApprovalLogTypeDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalRequests" EntityType="Self.EmailApprovalRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalsCategoryDIM" EntityType="Self.EmailApprovalsCategoryDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalsConfigurations" EntityType="Self.EmailApprovalsConfigurations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalsFailedTransactions" EntityType="Self.EmailApprovalsFailedTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalsPriorityDIM" EntityType="Self.EmailApprovalsPriorityDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalsTechnicalDestinationDim" EntityType="Self.EmailApprovalsTechnicalDestinationDim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailRequestAttachmentsDetails" EntityType="Self.EmailRequestAttachmentsDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailRequestMailingDetails" EntityType="Self.EmailRequestMailingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailRequestRequest_TechnicalDestination" EntityType="Self.EmailRequestRequest_TechnicalDestination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailRequestStatusDIM" EntityType="Self.EmailRequestStatusDIM" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CallCenterAppUser_EmailApprovalsCategoryDIM" Association="Self.FK_CallCenterAppUser_EmailApprovalsCategoryDIM">
+            <End Role="EmailApprovalsCategoryDIM" EntitySet="EmailApprovalsCategoryDIM" />
+            <End Role="CallCenterAppUser" EntitySet="CallCenterAppUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_EmailApprovalsCategoryDIM" Association="Self.FK_EmailApprovalRequests_EmailApprovalsCategoryDIM">
+            <End Role="EmailApprovalsCategoryDIM" EntitySet="EmailApprovalsCategoryDIM" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_EmailApprovalsPriorityDIM" Association="Self.FK_EmailApprovalRequests_EmailApprovalsPriorityDIM">
+            <End Role="EmailApprovalsPriorityDIM" EntitySet="EmailApprovalsPriorityDIM" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_EmailRequestStatusDIM" Association="Self.FK_EmailApprovalRequests_EmailRequestStatusDIM">
+            <End Role="EmailRequestStatusDIM" EntitySet="EmailRequestStatusDIM" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRequestAttachmentsDetails_EmailApprovalRequests" Association="Self.FK_EmailRequestAttachmentsDetails_EmailApprovalRequests">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailRequestAttachmentsDetails" EntitySet="EmailRequestAttachmentsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRequestMailingDetails_EmailApprovalRequests" Association="Self.FK_EmailRequestMailingDetails_EmailApprovalRequests">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailRequestMailingDetails" EntitySet="EmailRequestMailingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_CallCenterAppUser1" Association="Self.FK_Logs_CallCenterAppUser1">
+            <End Role="CallCenterAppUser" EntitySet="CallCenterAppUser" />
+            <End Role="EmailApprovalLogsDetails" EntitySet="EmailApprovalLogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_EmailApprovalRequests" Association="Self.FK_Logs_EmailApprovalRequests">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailApprovalLogsDetails" EntitySet="EmailApprovalLogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_LogTypeDIM" Association="Self.FK_Logs_LogTypeDIM">
+            <End Role="EmailApprovalLogTypeDIM" EntitySet="EmailApprovalLogTypeDIM" />
+            <End Role="EmailApprovalLogsDetails" EntitySet="EmailApprovalLogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_TechnicalDestination_EmailApprovalRequests" Association="Self.FK_Request_TechnicalDestination_EmailApprovalRequests">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailRequestRequest_TechnicalDestination" EntitySet="EmailRequestRequest_TechnicalDestination" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim" Association="Self.FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim">
+            <End Role="EmailApprovalsTechnicalDestinationDim" EntitySet="EmailApprovalsTechnicalDestinationDim" />
+            <End Role="EmailRequestRequest_TechnicalDestination" EntitySet="EmailRequestRequest_TechnicalDestination" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhNetworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CallCenterAppUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="MACAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsFirstLogin" Type="Boolean" />
+          <Property Name="PcName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorCategoryID" Type="Int32" />
+          <NavigationProperty Name="EmailApprovalsCategoryDIM" Relationship="Self.FK_CallCenterAppUser_EmailApprovalsCategoryDIM" FromRole="CallCenterAppUser" ToRole="EmailApprovalsCategoryDIM" />
+          <NavigationProperty Name="EmailApprovalLogsDetails" Relationship="Self.FK_Logs_CallCenterAppUser1" FromRole="CallCenterAppUser" ToRole="EmailApprovalLogsDetails" />
+          <Property Name="IsOnline" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailApprovalLogsDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestID" Type="Int32" />
+          <Property Name="LogTime" Type="DateTime" Precision="3" />
+          <Property Name="OldValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogTypeID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CallCenterAppUser" Relationship="Self.FK_Logs_CallCenterAppUser1" FromRole="EmailApprovalLogsDetails" ToRole="CallCenterAppUser" />
+          <NavigationProperty Name="EmailApprovalRequest" Relationship="Self.FK_Logs_EmailApprovalRequests" FromRole="EmailApprovalLogsDetails" ToRole="EmailApprovalRequests" />
+          <NavigationProperty Name="EmailApprovalLogTypeDIM" Relationship="Self.FK_Logs_LogTypeDIM" FromRole="EmailApprovalLogsDetails" ToRole="EmailApprovalLogTypeDIM" />
+        </EntityType>
+        <EntityType Name="EmailApprovalLogTypeDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmailApprovalLogsDetails" Relationship="Self.FK_Logs_LogTypeDIM" FromRole="EmailApprovalLogTypeDIM" ToRole="EmailApprovalLogsDetails" />
+        </EntityType>
+        <EntityType Name="EmailApprovalRequest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProviderName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PatientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Medical_ID" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedByNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequstStatusID" Type="Int32" />
+          <Property Name="TransferedToDoctorsTime" Type="DateTime" Precision="3" />
+          <Property Name="DoctorAssignee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorAssignTime" Type="DateTime" Precision="3" />
+          <Property Name="DoctorNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorAction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorActionTime" Type="DateTime" Precision="3" />
+          <Property Name="TransferedToAuditComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TechnicalApproveByDoctorNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TechnicalApproveByDoctorStartTime" Type="DateTime" Precision="3" />
+          <Property Name="TechnicalApproveByDoctorEndTime" Type="DateTime" Precision="3" />
+          <Property Name="TransferedToAuditTime" Type="DateTime" Precision="3" />
+          <Property Name="AuditAssignee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AuditAssigneeTime" Type="DateTime" Precision="3" />
+          <Property Name="AuditNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuditAction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuditActionTime" Type="DateTime" Precision="3" />
+          <Property Name="TechnicalApproveByAuditNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TechnicalApproveByAuditStartTime" Type="DateTime" Precision="3" />
+          <Property Name="TechnicalApproveByAuditEndTime" Type="DateTime" Precision="3" />
+          <Property Name="MailSubject" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="IsAutoGenereated" Type="Boolean" />
+          <Property Name="ClosedTime" Type="DateTime" Precision="3" />
+          <Property Name="IsFirstNotifySent" Type="Boolean" />
+          <Property Name="IsSecondNotifySent" Type="Boolean" />
+          <Property Name="IsThirdNotifySent" Type="Boolean" />
+          <Property Name="ColorID" Type="Int32" />
+          <Property Name="TicketTypeID" Type="Int32" />
+          <Property Name="IsInquiryTicket" Type="Boolean" />
+          <Property Name="AutoGeneratedEmailID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OperatorAssignee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OperatorAssignTime" Type="DateTime" Precision="3" />
+          <Property Name="OperatorAction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OperatorNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OperatorActionTime" Type="DateTime" Precision="3" />
+          <Property Name="PriorityID" Type="Int32" />
+          <Property Name="ApprovalCategoryID" Type="Int32" />
+          <Property Name="IsAutoGeneratedNotify" Type="Boolean" />
+          <Property Name="IsFaxMail" Type="Boolean" />
+          <Property Name="MailSource" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmailApprovalLogsDetails" Relationship="Self.FK_Logs_EmailApprovalRequests" FromRole="EmailApprovalRequests" ToRole="EmailApprovalLogsDetails" />
+          <NavigationProperty Name="EmailApprovalsCategoryDIM" Relationship="Self.FK_EmailApprovalRequests_EmailApprovalsCategoryDIM" FromRole="EmailApprovalRequests" ToRole="EmailApprovalsCategoryDIM" />
+          <NavigationProperty Name="EmailApprovalsPriorityDIM" Relationship="Self.FK_EmailApprovalRequests_EmailApprovalsPriorityDIM" FromRole="EmailApprovalRequests" ToRole="EmailApprovalsPriorityDIM" />
+          <NavigationProperty Name="EmailRequestStatusDIM" Relationship="Self.FK_EmailApprovalRequests_EmailRequestStatusDIM" FromRole="EmailApprovalRequests" ToRole="EmailRequestStatusDIM" />
+          <NavigationProperty Name="EmailRequestAttachmentsDetails" Relationship="Self.FK_EmailRequestAttachmentsDetails_EmailApprovalRequests" FromRole="EmailApprovalRequests" ToRole="EmailRequestAttachmentsDetails" />
+          <NavigationProperty Name="EmailRequestMailingDetails" Relationship="Self.FK_EmailRequestMailingDetails_EmailApprovalRequests" FromRole="EmailApprovalRequests" ToRole="EmailRequestMailingDetails" />
+          <NavigationProperty Name="EmailRequestRequest_TechnicalDestination" Relationship="PhNetworkModel.FK_Request_TechnicalDestination_EmailApprovalRequests1" FromRole="EmailApprovalRequest" ToRole="EmailRequestRequest_TechnicalDestination" />
+          <Property Name="UserNameOpenTechnicalApprove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsReadyToBeFollowedUp" Type="Boolean" />
+          <Property Name="IsReadyToBeCompleted" Type="Boolean" />
+          <Property Name="IsCompleted" Type="Boolean" />
+          <Property Name="InsertionDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsCategoryDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CallCenterAppUsers" Relationship="Self.FK_CallCenterAppUser_EmailApprovalsCategoryDIM" FromRole="EmailApprovalsCategoryDIM" ToRole="CallCenterAppUser" />
+          <NavigationProperty Name="EmailApprovalRequests" Relationship="Self.FK_EmailApprovalRequests_EmailApprovalsCategoryDIM" FromRole="EmailApprovalsCategoryDIM" ToRole="EmailApprovalRequests" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsConfiguration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigurationKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConfigurationValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsFailedTransaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ClassName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MethodName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LogDate" Type="DateTime" Precision="3" />
+          <Property Name="ErrorSource" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EmailApprovalsPriorityDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Priority" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmailApprovalRequests" Relationship="Self.FK_EmailApprovalRequests_EmailApprovalsPriorityDIM" FromRole="EmailApprovalsPriorityDIM" ToRole="EmailApprovalRequests" />
+        </EntityType>
+        <EntityType Name="EmailRequestAttachmentsDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDoctorAttachment" Type="Boolean" />
+          <Property Name="IsAuditAttachment" Type="Boolean" />
+          <Property Name="IsTicketAttachment" Type="Boolean" />
+          <Property Name="IsOtherAttachment" Type="Boolean" />
+          <Property Name="IsTransferToAuditAttach" Type="Boolean" />
+          <Property Name="IsFaxAttachment" Type="Boolean" />
+          <Property Name="IsReopeningAttachment" Type="Boolean" />
+          <Property Name="TicketNumber" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="EmailApprovalRequest" Relationship="Self.FK_EmailRequestAttachmentsDetails_EmailApprovalRequests" FromRole="EmailRequestAttachmentsDetails" ToRole="EmailApprovalRequests" />
+          <Property Name="IsDoctorTechnicalApproveAttachment" Type="Boolean" />
+          <Property Name="IsAuditTechnicalApproveAttachment" Type="Boolean" />
+          <Property Name="IsProviderTechnicalApproveAttachment" Type="Boolean" />
+          <Property Name="IsAccountManagerTechnicalApproveAttachment" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="EmailRequestMailingDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsTO" Type="Boolean" />
+          <Property Name="IsCC" Type="Boolean" />
+          <Property Name="IsBCC" Type="Boolean" />
+          <Property Name="TicketNumber" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EmailApprovalRequest" Relationship="Self.FK_EmailRequestMailingDetails_EmailApprovalRequests" FromRole="EmailRequestMailingDetails" ToRole="EmailApprovalRequests" />
+        </EntityType>
+        <EntityType Name="EmailRequestStatusDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmailApprovalRequests" Relationship="Self.FK_EmailApprovalRequests_EmailRequestStatusDIM" FromRole="EmailRequestStatusDIM" ToRole="EmailApprovalRequests" />
+        </EntityType>
+        <Association Name="FK_CallCenterAppUser_EmailApprovalsCategoryDIM">
+          <End Role="EmailApprovalsCategoryDIM" Type="Self.EmailApprovalsCategoryDIM" Multiplicity="0..1" />
+          <End Role="CallCenterAppUser" Type="Self.CallCenterAppUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalsCategoryDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CallCenterAppUser">
+              <PropertyRef Name="DoctorCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_CallCenterAppUser1">
+          <End Role="CallCenterAppUser" Type="Self.CallCenterAppUser" Multiplicity="0..1" />
+          <End Role="EmailApprovalLogsDetails" Type="Self.EmailApprovalLogsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CallCenterAppUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="EmailApprovalLogsDetails">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_EmailApprovalRequests">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="0..1" />
+          <End Role="EmailApprovalLogsDetails" Type="Self.EmailApprovalLogsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalLogsDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_LogTypeDIM">
+          <End Role="EmailApprovalLogTypeDIM" Type="Self.EmailApprovalLogTypeDIM" Multiplicity="1" />
+          <End Role="EmailApprovalLogsDetails" Type="Self.EmailApprovalLogsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalLogTypeDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalLogsDetails">
+              <PropertyRef Name="LogTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_EmailApprovalsCategoryDIM">
+          <End Role="EmailApprovalsCategoryDIM" Type="Self.EmailApprovalsCategoryDIM" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalsCategoryDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="ApprovalCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_EmailApprovalsPriorityDIM">
+          <End Role="EmailApprovalsPriorityDIM" Type="Self.EmailApprovalsPriorityDIM" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalsPriorityDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="PriorityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_EmailRequestStatusDIM">
+          <End Role="EmailRequestStatusDIM" Type="Self.EmailRequestStatusDIM" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRequestStatusDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="RequstStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRequestAttachmentsDetails_EmailApprovalRequests">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="0..1" />
+          <End Role="EmailRequestAttachmentsDetails" Type="Self.EmailRequestAttachmentsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestAttachmentsDetails">
+              <PropertyRef Name="TicketNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRequestMailingDetails_EmailApprovalRequests">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="0..1" />
+          <End Role="EmailRequestMailingDetails" Type="Self.EmailRequestMailingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestMailingDetails">
+              <PropertyRef Name="TicketNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhNetworkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CallCenterAppUsers" EntityType="Self.CallCenterAppUser" />
+          <EntitySet Name="EmailApprovalLogsDetails" EntityType="Self.EmailApprovalLogsDetail" />
+          <EntitySet Name="EmailApprovalLogTypeDIMs" EntityType="Self.EmailApprovalLogTypeDIM" />
+          <EntitySet Name="EmailApprovalRequests" EntityType="Self.EmailApprovalRequest" />
+          <EntitySet Name="EmailApprovalsCategoryDIMs" EntityType="Self.EmailApprovalsCategoryDIM" />
+          <EntitySet Name="EmailApprovalsConfigurations" EntityType="Self.EmailApprovalsConfiguration" />
+          <EntitySet Name="EmailApprovalsFailedTransactions" EntityType="Self.EmailApprovalsFailedTransaction" />
+          <EntitySet Name="EmailApprovalsPriorityDIMs" EntityType="Self.EmailApprovalsPriorityDIM" />
+          <EntitySet Name="EmailRequestAttachmentsDetails" EntityType="Self.EmailRequestAttachmentsDetail" />
+          <EntitySet Name="EmailRequestMailingDetails" EntityType="Self.EmailRequestMailingDetail" />
+          <EntitySet Name="EmailRequestStatusDIMs" EntityType="Self.EmailRequestStatusDIM" />
+          <AssociationSet Name="FK_CallCenterAppUser_EmailApprovalsCategoryDIM" Association="Self.FK_CallCenterAppUser_EmailApprovalsCategoryDIM">
+            <End Role="EmailApprovalsCategoryDIM" EntitySet="EmailApprovalsCategoryDIMs" />
+            <End Role="CallCenterAppUser" EntitySet="CallCenterAppUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_CallCenterAppUser1" Association="Self.FK_Logs_CallCenterAppUser1">
+            <End Role="CallCenterAppUser" EntitySet="CallCenterAppUsers" />
+            <End Role="EmailApprovalLogsDetails" EntitySet="EmailApprovalLogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_EmailApprovalRequests" Association="Self.FK_Logs_EmailApprovalRequests">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailApprovalLogsDetails" EntitySet="EmailApprovalLogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_LogTypeDIM" Association="Self.FK_Logs_LogTypeDIM">
+            <End Role="EmailApprovalLogTypeDIM" EntitySet="EmailApprovalLogTypeDIMs" />
+            <End Role="EmailApprovalLogsDetails" EntitySet="EmailApprovalLogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_EmailApprovalsCategoryDIM" Association="Self.FK_EmailApprovalRequests_EmailApprovalsCategoryDIM">
+            <End Role="EmailApprovalsCategoryDIM" EntitySet="EmailApprovalsCategoryDIMs" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_EmailApprovalsPriorityDIM" Association="Self.FK_EmailApprovalRequests_EmailApprovalsPriorityDIM">
+            <End Role="EmailApprovalsPriorityDIM" EntitySet="EmailApprovalsPriorityDIMs" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_EmailRequestStatusDIM" Association="Self.FK_EmailApprovalRequests_EmailRequestStatusDIM">
+            <End Role="EmailRequestStatusDIM" EntitySet="EmailRequestStatusDIMs" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRequestAttachmentsDetails_EmailApprovalRequests" Association="Self.FK_EmailRequestAttachmentsDetails_EmailApprovalRequests">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailRequestAttachmentsDetails" EntitySet="EmailRequestAttachmentsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRequestMailingDetails_EmailApprovalRequests" Association="Self.FK_EmailRequestMailingDetails_EmailApprovalRequests">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailRequestMailingDetails" EntitySet="EmailRequestMailingDetails" />
+          </AssociationSet>
+          <EntitySet Name="EmailApprovalsTechnicalDestinationDims" EntityType="PhNetworkModel.EmailApprovalsTechnicalDestinationDim" />
+          <EntitySet Name="EmailRequestRequest_TechnicalDestination" EntityType="PhNetworkModel.EmailRequestRequest_TechnicalDestination" />
+          <AssociationSet Name="FK_Request_TechnicalDestination_EmailApprovalRequests1" Association="PhNetworkModel.FK_Request_TechnicalDestination_EmailApprovalRequests1">
+            <End Role="EmailApprovalRequest" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailRequestRequest_TechnicalDestination" EntitySet="EmailRequestRequest_TechnicalDestination" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim" Association="PhNetworkModel.FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim">
+            <End Role="EmailApprovalsTechnicalDestinationDim" EntitySet="EmailApprovalsTechnicalDestinationDims" />
+            <End Role="EmailRequestRequest_TechnicalDestination" EntitySet="EmailRequestRequest_TechnicalDestination" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EmailApprovalsTechnicalDestinationDim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="EmailRequestRequest_TechnicalDestination" Relationship="PhNetworkModel.FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim" FromRole="EmailApprovalsTechnicalDestinationDim" ToRole="EmailRequestRequest_TechnicalDestination" />
+        </EntityType>
+        <EntityType Name="EmailRequestRequest_TechnicalDestination">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestID" Type="Int32" />
+          <Property Name="TechnicalDestinationID" Type="Int32" />
+          <Property Name="Assignee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssignTime" Type="DateTime" Precision="3" />
+          <Property Name="ActionTime" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTechnicalApprovalTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTechnicalApprovalTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EmailApprovalRequest" Relationship="PhNetworkModel.FK_Request_TechnicalDestination_EmailApprovalRequests1" FromRole="EmailRequestRequest_TechnicalDestination" ToRole="EmailApprovalRequest" />
+          <NavigationProperty Name="EmailApprovalsTechnicalDestinationDim" Relationship="PhNetworkModel.FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim" FromRole="EmailRequestRequest_TechnicalDestination" ToRole="EmailApprovalsTechnicalDestinationDim" />
+          <Property Name="CallCenterNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Request_TechnicalDestination_EmailApprovalRequests1">
+          <End Type="PhNetworkModel.EmailApprovalRequest" Role="EmailApprovalRequest" Multiplicity="0..1" />
+          <End Type="PhNetworkModel.EmailRequestRequest_TechnicalDestination" Role="EmailRequestRequest_TechnicalDestination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequest">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestRequest_TechnicalDestination">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_TechnicalDestination_EmailApprovalsTechnicalDestinationDim">
+          <End Type="PhNetworkModel.EmailApprovalsTechnicalDestinationDim" Role="EmailApprovalsTechnicalDestinationDim" Multiplicity="0..1" />
+          <End Type="PhNetworkModel.EmailRequestRequest_TechnicalDestination" Role="EmailRequestRequest_TechnicalDestination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalsTechnicalDestinationDim">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestRequest_TechnicalDestination">
+              <PropertyRef Name="TechnicalDestinationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhNetworkModelStoreContainer" CdmEntityContainer="PhNetworkEntities">
+          <EntitySetMapping Name="CallCenterAppUsers">
+            <EntityTypeMapping TypeName="PhNetworkModel.CallCenterAppUser">
+              <MappingFragment StoreEntitySet="CallCenterAppUser">
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AdditionDate" ColumnName="AdditionDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MACAddress" ColumnName="MACAddress" />
+                <ScalarProperty Name="IsFirstLogin" ColumnName="IsFirstLogin" />
+                <ScalarProperty Name="PcName" ColumnName="PcName" />
+                <ScalarProperty Name="DoctorCategoryID" ColumnName="DoctorCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalLogsDetails">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalLogsDetail">
+              <MappingFragment StoreEntitySet="EmailApprovalLogsDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="LogTypeID" ColumnName="LogTypeID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalLogTypeDIMs">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalLogTypeDIM">
+              <MappingFragment StoreEntitySet="EmailApprovalLogTypeDIM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalRequests">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalRequest">
+              <MappingFragment StoreEntitySet="EmailApprovalRequests">
+                <ScalarProperty Name="InsertionDate" ColumnName="InsertionDate" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="IsReadyToBeCompleted" ColumnName="IsReadyToBeCompleted" />
+                <ScalarProperty Name="IsReadyToBeFollowedUp" ColumnName="IsReadyToBeFollowedUp" />
+                <ScalarProperty Name="UserNameOpenTechnicalApprove" ColumnName="UserNameOpenTechnicalApprove" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Medical_ID" ColumnName="Medical_ID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedByNotes" ColumnName="CreatedByNotes" />
+                <ScalarProperty Name="RequstStatusID" ColumnName="RequstStatusID" />
+                <ScalarProperty Name="TransferedToDoctorsTime" ColumnName="TransferedToDoctorsTime" />
+                <ScalarProperty Name="DoctorAssignee" ColumnName="DoctorAssignee" />
+                <ScalarProperty Name="DoctorAssignTime" ColumnName="DoctorAssignTime" />
+                <ScalarProperty Name="DoctorNotes" ColumnName="DoctorNotes" />
+                <ScalarProperty Name="DoctorAction" ColumnName="DoctorAction" />
+                <ScalarProperty Name="DoctorActionTime" ColumnName="DoctorActionTime" />
+                <ScalarProperty Name="TransferedToAuditComment" ColumnName="TransferedToAuditComment" />
+                <ScalarProperty Name="TechnicalApproveByDoctorNote" ColumnName="TechnicalApproveByDoctorNote" />
+                <ScalarProperty Name="TechnicalApproveByDoctorStartTime" ColumnName="TechnicalApproveByDoctorStartTime" />
+                <ScalarProperty Name="TechnicalApproveByDoctorEndTime" ColumnName="TechnicalApproveByDoctorEndTime" />
+                <ScalarProperty Name="TransferedToAuditTime" ColumnName="TransferedToAuditTime" />
+                <ScalarProperty Name="AuditAssignee" ColumnName="AuditAssignee" />
+                <ScalarProperty Name="AuditAssigneeTime" ColumnName="AuditAssigneeTime" />
+                <ScalarProperty Name="AuditNotes" ColumnName="AuditNotes" />
+                <ScalarProperty Name="AuditAction" ColumnName="AuditAction" />
+                <ScalarProperty Name="AuditActionTime" ColumnName="AuditActionTime" />
+                <ScalarProperty Name="TechnicalApproveByAuditNote" ColumnName="TechnicalApproveByAuditNote" />
+                <ScalarProperty Name="TechnicalApproveByAuditStartTime" ColumnName="TechnicalApproveByAuditStartTime" />
+                <ScalarProperty Name="TechnicalApproveByAuditEndTime" ColumnName="TechnicalApproveByAuditEndTime" />
+                <ScalarProperty Name="MailSubject" ColumnName="MailSubject" />
+                <ScalarProperty Name="IsAutoGenereated" ColumnName="IsAutoGenereated" />
+                <ScalarProperty Name="ClosedTime" ColumnName="ClosedTime" />
+                <ScalarProperty Name="IsFirstNotifySent" ColumnName="IsFirstNotifySent" />
+                <ScalarProperty Name="IsSecondNotifySent" ColumnName="IsSecondNotifySent" />
+                <ScalarProperty Name="IsThirdNotifySent" ColumnName="IsThirdNotifySent" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="TicketTypeID" ColumnName="TicketTypeID" />
+                <ScalarProperty Name="IsInquiryTicket" ColumnName="IsInquiryTicket" />
+                <ScalarProperty Name="AutoGeneratedEmailID" ColumnName="AutoGeneratedEmailID" />
+                <ScalarProperty Name="OperatorAssignee" ColumnName="OperatorAssignee" />
+                <ScalarProperty Name="OperatorAssignTime" ColumnName="OperatorAssignTime" />
+                <ScalarProperty Name="OperatorAction" ColumnName="OperatorAction" />
+                <ScalarProperty Name="OperatorNotes" ColumnName="OperatorNotes" />
+                <ScalarProperty Name="OperatorActionTime" ColumnName="OperatorActionTime" />
+                <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
+                <ScalarProperty Name="ApprovalCategoryID" ColumnName="ApprovalCategoryID" />
+                <ScalarProperty Name="IsAutoGeneratedNotify" ColumnName="IsAutoGeneratedNotify" />
+                <ScalarProperty Name="IsFaxMail" ColumnName="IsFaxMail" />
+                <ScalarProperty Name="MailSource" ColumnName="MailSource" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalsCategoryDIMs">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalsCategoryDIM">
+              <MappingFragment StoreEntitySet="EmailApprovalsCategoryDIM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalsConfigurations">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalsConfiguration">
+              <MappingFragment StoreEntitySet="EmailApprovalsConfigurations">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ConfigurationKey" ColumnName="ConfigurationKey" />
+                <ScalarProperty Name="ConfigurationValue" ColumnName="ConfigurationValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalsFailedTransactions">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalsFailedTransaction">
+              <MappingFragment StoreEntitySet="EmailApprovalsFailedTransactions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LogDetails" ColumnName="LogDetails" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="ErrorSource" ColumnName="ErrorSource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalsPriorityDIMs">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalsPriorityDIM">
+              <MappingFragment StoreEntitySet="EmailApprovalsPriorityDIM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRequestAttachmentsDetails">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailRequestAttachmentsDetail">
+              <MappingFragment StoreEntitySet="EmailRequestAttachmentsDetails">
+                <ScalarProperty Name="IsAccountManagerTechnicalApproveAttachment" ColumnName="IsAccountManagerTechnicalApproveAttachment" />
+                <ScalarProperty Name="IsProviderTechnicalApproveAttachment" ColumnName="IsProviderTechnicalApproveAttachment" />
+                <ScalarProperty Name="IsAuditTechnicalApproveAttachment" ColumnName="IsAuditTechnicalApproveAttachment" />
+                <ScalarProperty Name="IsDoctorTechnicalApproveAttachment" ColumnName="IsDoctorTechnicalApproveAttachment" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="IsDoctorAttachment" ColumnName="IsDoctorAttachment" />
+                <ScalarProperty Name="IsAuditAttachment" ColumnName="IsAuditAttachment" />
+                <ScalarProperty Name="IsTicketAttachment" ColumnName="IsTicketAttachment" />
+                <ScalarProperty Name="IsOtherAttachment" ColumnName="IsOtherAttachment" />
+                <ScalarProperty Name="IsTransferToAuditAttach" ColumnName="IsTransferToAuditAttach" />
+                <ScalarProperty Name="IsFaxAttachment" ColumnName="IsFaxAttachment" />
+                <ScalarProperty Name="IsReopeningAttachment" ColumnName="IsReopeningAttachment" />
+                <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRequestMailingDetails">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailRequestMailingDetail">
+              <MappingFragment StoreEntitySet="EmailRequestMailingDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsTO" ColumnName="IsTO" />
+                <ScalarProperty Name="IsCC" ColumnName="IsCC" />
+                <ScalarProperty Name="IsBCC" ColumnName="IsBCC" />
+                <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRequestStatusDIMs">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailRequestStatusDIM">
+              <MappingFragment StoreEntitySet="EmailRequestStatusDIM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalsTechnicalDestinationDims">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalsTechnicalDestinationDim">
+              <MappingFragment StoreEntitySet="EmailApprovalsTechnicalDestinationDim">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRequestRequest_TechnicalDestination">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailRequestRequest_TechnicalDestination">
+              <MappingFragment StoreEntitySet="EmailRequestRequest_TechnicalDestination">
+                <ScalarProperty Name="CallCenterNote" ColumnName="CallCenterNote" />
+                <ScalarProperty Name="EndTechnicalApprovalTime" ColumnName="EndTechnicalApprovalTime" />
+                <ScalarProperty Name="StartTechnicalApprovalTime" ColumnName="StartTechnicalApprovalTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ActionTime" ColumnName="ActionTime" />
+                <ScalarProperty Name="AssignTime" ColumnName="AssignTime" />
+                <ScalarProperty Name="Assignee" ColumnName="Assignee" />
+                <ScalarProperty Name="TechnicalDestinationID" ColumnName="TechnicalDestinationID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

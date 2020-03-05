@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="cardDB" Class="DataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=cardDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="cardDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.accountTB" Member="accountTBs">
+    <Type Name="accountTB">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="isOnline" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.messagesTB" Member="messagesTBs">
+    <Type Name="messagesTB">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mSubject" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mBody" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mTo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mfrom" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClientTB" Member="ClientTBs">
+    <Type Name="ClientTB">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ClientName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ClientNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ClientStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Active" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.requestTB" Member="requestTBs">
+    <Type Name="requestTB">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IssCardsNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rdate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardsNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="apvIssuance" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="apvPrint" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="apvQControl" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rSubject" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="States" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="color" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rBody" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rAttach" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="isApproved" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rFrom" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rPending" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rClose" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ToIssunge" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ToPrint" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ToQC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rBody2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Assigned" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AssignPerson" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AssignPrint" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AssignQC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AssignUnderWriting" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LogAM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LogUW" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LogIssuance" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LogPrint" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LogQC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="confrimAM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ConfrimUW" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ApvUnderWriting" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rBody3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rImgSympl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="aproveBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="asignTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EndAsigntime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AsignPrintTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EndPrintTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AsignQTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EndAsingQTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AsignDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EndAsignDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="APDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EPDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AQCDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EQCDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="closeNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ClientName" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="AComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="QComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Exceptions" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AccExcepApp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ISSExcepApp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AccExcepAppDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ISSExcepAppDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AccExcepAppUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ISSExcepAppUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rAccAttach" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ComplainComm" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CompAction" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ComplainState" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NumOfBooklets" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

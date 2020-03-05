@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bbd7b831ddc04df0acd5ab7c423a593c" Name="Diagram1">
+        <EntityTypeShape EntityType="HRMSModel.ApprovalFlowDetail" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ApprovalFlowRequestDetail" Width="1.5" PointX="12.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ApprovalFlow" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ApprovalFlowUserDetail" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Configuration" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveType" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Manager" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Request" Width="1.5" PointX="8.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ServiceLogTypeDIM" Width="1.5" PointX="8.25" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ServicesLog" Width="1.5" PointX="10.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.SubDepartment" Width="1.5" PointX="10.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.User" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ServicesDIM" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypes_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Managers_dbo_Users_ManagerUserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_Managers_DirectManagerFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Requests_dbo_Users_UserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Requests_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_ServicesLog_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_ServicesLog_ServiceLogTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Users_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

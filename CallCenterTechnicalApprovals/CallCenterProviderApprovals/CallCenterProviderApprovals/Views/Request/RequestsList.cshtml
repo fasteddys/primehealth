@@ -1,0 +1,79 @@
+﻿@model List<EmailApprovalRequest>
+@{
+    ViewBag.Title = "Requests List";
+}
+
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+<script src="~/global_assets/js/plugins/ui/ripple.min.js"></script>
+@{
+    string BreadCrumb="";
+    if (ViewBag.StatusID == 1)
+    {
+        BreadCrumb = "Pending Assign";
+    }
+    if (ViewBag.StatusID == 2)
+    {
+        BreadCrumb = "Assigned";
+    }
+    if (ViewBag.StatusID == 3)
+    {
+        BreadCrumb = "Finished Requests";
+    }
+}
+<div class="page-header page-header-default">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Requests List</span> - @BreadCrumb</h4>
+        </div>
+
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="icon-home2 position-left"></i>Home</a></li>
+            <li><a href="#">Requests List</a></li>
+            <li class="active">@BreadCrumb</li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="content">
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">Requests List</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                </ul>
+            </div>
+        </div>
+        <table class="table datatable-basic table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Request Subject</th>
+                    <th>Medical ID</th>
+                    <th>Requested By</th>
+                    <th class="text-center">View Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.MailSubject</td>
+                        <td>@item.Medical_ID</td>
+                        <td>@item.DoctorAssignee</td>
+                        <td class="text-center">
+                            <a href="~/request/managerequest?id=@item.ID"><i class="icon-stack"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

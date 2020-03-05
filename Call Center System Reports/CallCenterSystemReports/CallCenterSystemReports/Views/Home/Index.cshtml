@@ -1,0 +1,388 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+<link href="~/css/jquery-ui.css" rel="stylesheet" />
+<link href="~/css/lib/chartist/chartist.min.css" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="~/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="~/css/helper.css" rel="stylesheet">
+<link href="~/css/style.css" rel="stylesheet">
+
+<div id="FirstDashboard"></div>
+<!-- Start Page Content -->
+        <ul class="nav nav-tabs customtab" role="tablist" style="margin-top:-30px">
+            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home2" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Activity Monitor</span></a> </li>
+            <li class="nav-item"> <a class="nav-link"  href="~/SecondDashboard/index"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Performance Indicator</span></a> </li>
+            @*<li class="nav-item"> <a class="nav-link" href="#messages2" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Messages</span></a> </li>*@
+        </ul>
+<br />
+
+<div class="row" style="margin:-35px">
+    <div class="col-lg-4">
+        <div class="card" style="max-height:80%">
+            <div class="card-title">
+                <h4>Medical Department Alerts Distripution</h4>
+            </div>
+            <div class="card-content" style="margin-top:-20px">
+                <div id="doughnut" style="height: 210px;margin-right:-25px"></div>
+            </div>
+        </div>
+    </div>
+    <!-- column -->
+    <div class="col-lg-4">
+        <div class="card" style="max-height:80%">
+            <div class="card-title">
+                <h4>Operation Department Alerts Distripution</h4>
+            </div>
+            <div class="card-content">
+                <div id="basic-Pie" style="height: 320px;margin-right:-25px;margin-top:-100px"></div>
+            </div>
+        </div>
+    </div>
+    <!-- column -->
+    <div class="col-lg-4">
+        <div class="card" style="max-height:80%">
+            <div class="card-body">
+                <div class="card-title">Requests rate over day<input id="RateDatePicker" type="text" class="pull-right col-sm-5" placeholder="Select Date" /></div>
+                <!--    morris-area-chart-->
+                <div id="UpdatedRate">
+
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+    
+</div>
+    <!-- column -->
+<div class="row" style="margin-top:-50px;margin-left:-35px;margin-right:-35px;margin-bottom:-200px">
+    <div class="col-lg-12">
+        <div class="card" style="max-height:85%">
+            <div class="card-title" style="margin:0px">
+                <h4>Average request elapsed time</h4>
+            </div>
+            <div class="flot-container">
+                <div id="chartContainer" style="height: 250px; width: 100%;"></div>
+                @*<div id="flotBar" style="height:150px"></div>*@
+
+            </div>
+        </div>
+        <!-- /# card -->
+    </div>
+</div>
+<!-- /# nonvisibale div -->
+<!-- /# row -->
+
+<div class="container-fluid" style="display:none">
+    <!-- Start Page Content -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="b-line" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="b-area" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="rainfall" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="nb-chart" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="bs-chart" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="basic-Pie" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="np-Pie" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="doughnut" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="radar" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Echart</h4>
+                </div>
+                <div class="card-content">
+                    <div id="gauge" style="height: 370px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End PAge Content -->
+</div>
+
+
+<!-- End PAge Content -->
+<script src="~/js/lib/jquery/jquery.min.js"></script>
+<script src="~/js/jquery-ui.js.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+<script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/js/jquery.slimscroll.js"></script>
+<!--Menu sidebar -->
+<script src="~/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+
+<script src="~/js/lib/echart/echarts.js"></script>
+<script src="~/js/lib/echart/echarts-init.js"></script>
+
+<script src="~/js/lib/chartist/chartist.min.js"></script>
+<script src="~/js/lib/chartist/chartist-plugin-tooltip.min.js"></script>
+<script src="~/js/lib/chartist/chartist-init.js"></script>
+
+
+<script src="~/js/lib/flot-chart/excanvas.min.js"></script>
+<script src="~/js/lib/flot-chart/jquery.flot.js"></script>
+<script src="~/js/lib/flot-chart/jquery.flot.pie.js"></script>
+<script src="~/js/lib/flot-chart/jquery.flot.time.js"></script>
+<script src="~/js/lib/flot-chart/jquery.flot.stack.js"></script>
+<script src="~/js/lib/flot-chart/jquery.flot.resize.js"></script>
+<script src="~/js/lib/flot-chart/jquery.flot.crosshair.js"></script>
+<script src="~/js/lib/flot-chart/curvedLines.js"></script>
+<script src="~/js/lib/flot-chart/flot-tooltip/jquery.flot.tooltip.min.js"></script>
+<script src="~/js/lib/flot-chart/flot-chart-init.js"></script>
+
+<script src="~/js/canvasjs.min.js"></script>
+<!--Custom JavaScript -->
+<script src="~/js/custom.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('#UpdatedRate').load('@Url.Action("_RequestsRateOverDay", "Home")');
+        $("#RateDatePicker").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+
+
+
+            $("#RateDatePicker").change(function () {
+
+                var x = $("#RateDatePicker").val();
+                $("#UpdatedRate").empty();
+                 $('#UpdatedRate').load('@Url.Action("_RequestsRateOverDay", "Home")');
+            });
+
+
+            var Genral = new Array();
+            var special = new Array();
+            var Inquiries = new Array();
+
+
+        $.ajax({
+         //   url: "/CallCenterReportingSystem/SecondDashboard/GetTicketsAverageTimeBySatsus",
+            url: "/SecondDashboard/GetTicketsAverageTimeBySatsus",
+            type: "Get",
+            async: false,
+            contentType: "application/json;charset=utf-8",
+            success: function (backdata) {
+
+                for (var i = 0; i < backdata.length; i++) {
+                    var temp = {
+                        y: backdata[i].AverageTime,
+                        label: backdata[i].AverageTicketTimeSatsus
+                    };
+
+                    if (backdata[i].TicketTypeID==1) {
+                        Genral.push(temp);
+                    }
+                    else if (backdata[i].TicketTypeID == 2) {
+                        special.push(temp);
+
+                    }
+                    else if (backdata[i].TicketTypeID == 3) {
+
+                        Inquiries.push(temp);
+                    }
+                }
+
+                var total = Inquiries[2];
+                var temp1 = {
+                    y: null,
+                    label: 'PendiningDoctorAssign'
+                };
+                var temp2 = {
+                    y: null,
+                    label: 'PendiningDoctorAction'
+                };
+                var temp3 = {
+                    y: null,
+                    label: 'PendiningAuditAssign'
+                }; var temp4 = {
+                    y: null,
+                    label: 'PendiningAuditAction'
+                };
+                Inquiries.pop();
+                Inquiries.push(temp1);
+                Inquiries.push(temp2);
+                Inquiries.push(temp3);
+                Inquiries.push(temp4);
+                Inquiries.push(total);
+            }
+        });
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title: {
+
+            },
+            axisY: {
+                title: "Average Time in Minutes"
+            },
+            legend: {
+                cursor: "pointer",
+                itemclick: toggleDataSeries
+            },
+            toolTip: {
+                shared: true,
+                content: toolTipFormatter
+            },
+
+
+            data: [{
+                type: "column",
+                showInLegend: true,
+                name: "Genaral",
+                color: "#4AA9E9",
+                //legendMarkerColor: "transparent",
+                dataPoints: Genral
+            },
+                {
+                    type: "column",
+                    showInLegend: true,
+                    name: "Special",
+                    color: "#6B5CA9",
+                    //legendMarkerColor: "transparent",
+                    dataPoints: special
+                },
+                {
+                    type: "column",
+                    showInLegend: true,
+                    name: "Inquiries",
+                    color: "#28D6C3",
+                    //legendMarkerColor: "transparent",
+                    dataPoints: Inquiries
+                },
+
+            ]
+        });
+        chart.render();
+
+        function toolTipFormatter(e) {
+            var str = "";
+            var total = 0;
+            var FinalTotal=0
+            var str3;
+            var str2;
+            for (var i = 0; i < e.entries.length; i++) {
+                var str1 = "<span style= \"color:" + e.entries[i].dataSeries.color + "\">" + e.entries[i].dataSeries.name + "</span>: <strong>" + e.entries[i].dataPoint.y + "</strong> <br/>";
+                total = e.entries[i].dataPoint.y + total;
+                str = str.concat(str1);
+            }
+
+            FinalTotal = total / e.entries.length;
+            str2 = "<strong>" + e.entries[0].dataPoint.label + "</strong> <br/>";
+            str3 = "<span style = \"color:Tomato\">Total Avg Time: </span><strong>" + FinalTotal + "</strong><br/>";
+            return (str2.concat(str)).concat(str3);
+        }
+
+        function toggleDataSeries(e) {
+            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                e.dataSeries.visible = false;
+            }
+            else {
+                e.dataSeries.visible = true;
+            }
+            chart.render();
+        }
+
+        
+        
+        var URL1 = "@Url.Action("index", "SecondDashboard")";
+        setTimeout(function () { window.location = URL1; }, 60000);
+
+
+    });
+</script>

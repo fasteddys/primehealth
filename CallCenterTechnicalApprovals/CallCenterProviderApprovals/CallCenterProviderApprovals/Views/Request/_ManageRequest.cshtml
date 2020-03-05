@@ -1,0 +1,123 @@
+﻿
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Request Details</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Subject:</label>
+            <div class="col-lg-9">
+                <div class="form-control-static">@Model.Request.MailSubject</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Medical ID:</label>
+            <div class="col-lg-9">
+                <div class="form-control-static">@Model.Request.Medical_ID</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Creation time:</label>
+            <div class="col-lg-9">
+                <div class="form-control-static">@Model.Request.CreationDate</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Member name:</label>
+            <div class="col-lg-9">
+                <div class="form-control-static">@Model.Request.PatientName</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Client Name:</label>
+            <div class="col-lg-9">
+                <div class="form-control-static">@Model.Request.CompanyName</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Provider Name:</label>
+            <div class="col-lg-9">
+                <div class="form-control-static">@Model.Request.ProviderName</div>
+            </div>
+        </div>
+        @{
+            if (Model.Request.DoctorAssignee != null)
+            {
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Doctor Assigne:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.Request.DoctorAssignee</div>
+                    </div>
+                </div>
+            }
+            if (Model.Request.AuditAssignee != null)
+            {
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Doctor Assigne:</label>
+                    <div class="col-lg-9">
+                        <div class="form-control-static">@Model.Request.AuditAssignee</div>
+                    </div>
+                </div>
+            }
+        }
+
+
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Request body:</label>
+            <div class="col-lg-10">
+                <textarea cols="3" rows="9" disabled class="wysihtml5 wysihtml5-min form-control" placeholder="Enter text ...">
+                    @Model.Request.CreatedByNotes
+                    </textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <br />
+            <br />
+            <label class="col-lg-3 control-label">Request Attachments:</label>
+            <div class="col-lg-9">
+                @foreach (var item in Model.Attachments)
+                {
+                    <a href=  "/Request/FileDownload?path=@item.Path&name=@item.Name">@item.Name</a>
+                }
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<div class="panel panel-flat" id="commentarea">
+    <div class="panel-heading">
+        <h5 class="panel-title">Your Comment</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Comment:</label>
+            <div class="col-lg-10">
+                <textarea id="comment" cols="3" rows="5" class="form-control" placeholder="Enter text ...">
+                    
+                    </textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-right" style="padding-top:15px">
+    <button id="AssignRequest" type="button" class="btn btn-info">Assign <i class="icon-person position-right"></i></button>
+    <button id="submitComment" type="button" class="btn btn-primary">Submit Comment <i class="icon-arrow-right14 position-right"></i></button>
+</div>
+@*<input id="RequestIDHidden" value="@Model.Request.ID" type="hidden" />*@
+
+

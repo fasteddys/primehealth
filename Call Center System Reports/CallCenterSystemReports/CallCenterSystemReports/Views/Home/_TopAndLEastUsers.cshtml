@@ -1,0 +1,199 @@
+﻿
+<div class="row" style="margin-top:-130px;margin-left:-35px">
+
+    <div class="col-lg-2">
+        <div class="card" style="padding:-50px">
+            <div class="card-title" style="margin:0px">
+                <h5>Top 5 Operators</h5>
+            </div>
+            <div class="card-body browser" style="padding:-20px" id="Top5Operators">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="card" style="padding:-50px">
+            <div class="card-title" style="margin:0px">
+                <h5>Top 5 Doctors</h5>
+            </div>
+            <div class="card-body browser" style="padding:-20px" id="Top5Doctors">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="card" style="padding:-50px">
+            <div class="card-title" style="margin:0px">
+                <h5>Top 5 Audit Doctors</h5>
+            </div>
+            <div class="card-body browser" style="padding:-20px" id="Top5AuditDoctors">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="card" style="padding:-50px">
+            <div class="card-title" style="margin:0px">
+                <h5>Least 5 Operators</h5>
+            </div>
+            <div class="card-body browser" style="padding:-20px" id="Least5Operators">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="card" style="padding:-50px">
+            <div class="card-title" style="margin:0px">
+                <h5>Least 5 Doctors</h5>
+            </div>
+            <div class="card-body browser" style="padding:-20px" id="Least5Doctors">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="card" style="padding:-50px">
+            <div class="card-title" style="margin:0px;">
+                <h6>Least 5 Audit Doctors</h6>
+            </div>
+
+            <div class="card-body browser" style="padding:-20px" id="Least5AuditDoctors">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        var TotalTOperatorsTickets =@ViewBag.TotaloperatorsTickets;
+        var TotalTDoctorsTickets=@ViewBag.TotalDoctorsTickets;
+        var TotalTAudotDoctorsTickets=@ViewBag.TotalAuditDoctorsTickets;
+
+        $.ajax({
+            //url: "/CallCenterReportingSystem/Home/GetTopFiveOperators",
+            url: "/Home/GetTopFiveOperators",
+
+            type: "Get",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+
+
+                for (var i = 0; i < data.length; i++) {
+                    var Number = (data[i].TicketsCount / TotalTOperatorsTickets) * 100;
+                    var TopOpertorPercent = (Number).toFixed();
+                    $("#Top5Operators").append("<p class='f-s-600' style='margin:0px'>" + data[i].UserName + " <span class='pull-right' style='margin-left: 0px;'> " + TopOpertorPercent + "%</span ></p> <div class='progress' style='margin-bottom:28px'><div role='progressbar' style='width: "+TopOpertorPercent+"%; height:8px;' class='progress-bar bg-danger wow animated progress-animated'> <span class='sr-only'>60% Complete</span> </div></div>");
+
+                }
+            },
+            complete: function () {
+                $.ajax({
+                    //url: "/CallCenterReportingSystem/Home/GetTopFiveDoctors",
+                    url: "/Home/GetTopFiveDoctors",
+                    type: "Get",
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+
+
+                        for (var i = 0; i < data.length; i++) {
+                            var Number = (data[i].TicketsCount / TotalTDoctorsTickets) * 100;
+                            var TopOpertorPercent = (Number).toFixed();
+                            $("#Top5Doctors").append("<p class='f-s-600' style='margin:0px'>" + data[i].UserName + " <span class='pull-right'> " + TopOpertorPercent + "%</span ></p> <div class='progress' style='margin-bottom:28px'><div role='progressbar' style='width: " + TopOpertorPercent + "%; height:8px;' class='progress-bar bg-danger wow animated progress-animated'> <span class='sr-only'>60% Complete</span> </div></div>");
+
+                        }
+
+                    },
+                    complete: function () {
+                        $.ajax({
+                           // url: "/CallCenterReportingSystem/Home/GetTopFiveAuditDoctors",
+                            url: "/Home/GetTopFiveAuditDoctors",
+                            type: "Get",
+                            contentType: "application/json;charset=utf-8",
+                            success: function (data) {
+
+
+                                for (var i = 0; i < data.length; i++) {
+                                    var Number = (data[i].TicketsCount / TotalTAudotDoctorsTickets) * 100;
+                                    var TopOpertorPercent = (Number).toFixed();
+                                    $("#Top5AuditDoctors").append("<p class='f-s-600' style='margin:0px'>" + data[i].UserName + " <span class='pull-right'> " + TopOpertorPercent + "%</span ></p> <div class='progress' style='margin-bottom:28px'><div role='progressbar' style='width: " + TopOpertorPercent + "%; height:8px;' class='progress-bar bg-danger wow animated progress-animated'> <span class='sr-only'>60% Complete</span> </div></div>");
+
+                                }
+
+                            },
+
+                            complete: function () {
+
+                                $.ajax({
+                                //    url: "/CallCenterReportingSystem/Home/GetLeastFiveOperators",
+                                    url: "/Home/GetLeastFiveOperators",
+                                    type: "Get",
+                                    contentType: "application/json;charset=utf-8",
+                                    success: function (data) {
+
+
+                                        for (var i = 0; i < data.length; i++) {
+                                            var Number = (data[i].TicketsCount / TotalTOperatorsTickets) * 100;
+                                            var TopOpertorPercent = (Number).toFixed();
+                                            $("#Least5Operators").append("<p class='f-s-600' style='margin:0px'>" + data[i].UserName + " <span class='pull-right'> " + TopOpertorPercent + "%</span ></p> <div class='progress' style='margin-bottom:28px'><div role='progressbar' style='width: " + TopOpertorPercent + "%; height:8px;' class='progress-bar bg-danger wow animated progress-animated'> <span class='sr-only'>60% Complete</span> </div></div>");
+
+                                        }
+
+                                    },
+
+                                    complete: function () {
+                                        $.ajax({
+                                          //  url: "/CallCenterReportingSystem/Home/GetLeastFiveDoctors",
+                                            url: "/Home/GetLeastFiveDoctors",
+                                            type: "Get",
+                                            contentType: "application/json;charset=utf-8",
+                                            success: function (data) {
+
+
+                                                for (var i = 0; i < data.length; i++) {
+                                                    var Number = (data[i].TicketsCount / TotalTDoctorsTickets) * 100;
+                                                    var TopOpertorPercent = (Number).toFixed();
+                                                    $("#Least5Doctors").append("<p class='f-s-600' style='margin:0px'>" + data[i].UserName + " <span class='pull-right'> " + TopOpertorPercent + "%</span ></p> <div class='progress' style='margin-bottom:28px'><div role='progressbar' style='width: " + TopOpertorPercent + "%; height:8px;' class='progress-bar bg-danger wow animated progress-animated'> <span class='sr-only'>60% Complete</span> </div></div>");
+
+                                                }
+
+                                            },
+
+                                            complete: function () {
+                                                $.ajax({
+                                                    //url: "/CallCenterReportingSystem/Home/GetLeastFiveAuditDoctors",
+                                                    url: "/Home/GetLeastFiveAuditDoctors",
+
+                                                    type: "Get",
+                                                    contentType: "application/json;charset=utf-8",
+                                                    success: function (data) {
+
+
+                                                        for (var i = 0; i < data.length; i++) {
+                                                            var Number = (data[i].TicketsCount / TotalTAudotDoctorsTickets) * 100;
+                                                            var TopOpertorPercent = (Number).toFixed();
+                                                            $("#Least5AuditDoctors").append("<p class='f-s-600' style='margin:0px'>" + data[i].UserName + " <span class='pull-right'> " + TopOpertorPercent + "%</span ></p> <div class='progress' style='margin-bottom:28px'><div role='progressbar' style='width: " + TopOpertorPercent + "%; height:8px;' class='progress-bar bg-danger wow animated progress-animated'> <span class='sr-only'>60% Complete</span> </div></div>");
+
+                                                        }
+
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+
+                        });
+                    }
+                });
+
+            }
+        });
+
+    });
+</script>

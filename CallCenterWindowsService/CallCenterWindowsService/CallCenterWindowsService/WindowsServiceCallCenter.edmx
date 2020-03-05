@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhNetworkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ColorAlert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ColorHex" Type="nvarchar" MaxLength="50" />
+          <Property Name="BeginTime" Type="int" />
+          <Property Name="EndTime" Type="int" />
+          <Property Name="TicketType" Type="int" />
+          <Property Name="IsMailMustSent" Type="int" />
+          <Property Name="TimeLevel" Type="int" />
+        </EntityType>
+        <EntityType Name="EmailApprovalRequests">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="300" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Medical_ID" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedByNotes" Type="nvarchar(max)" />
+          <Property Name="RequstStatusID" Type="int" />
+          <Property Name="TransferedToDoctorsTime" Type="datetime" />
+          <Property Name="DoctorAssignee" Type="nvarchar" MaxLength="100" />
+          <Property Name="DoctorAssignTime" Type="datetime" />
+          <Property Name="DoctorNotes" Type="nvarchar(max)" />
+          <Property Name="DoctorAction" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorActionTime" Type="datetime" />
+          <Property Name="TransferedToAuditComment" Type="nvarchar(max)" />
+          <Property Name="TechnicalApproveByDoctorNote" Type="nvarchar(max)" />
+          <Property Name="TechnicalApproveByDoctorStartTime" Type="datetime" />
+          <Property Name="TechnicalApproveByDoctorEndTime" Type="datetime" />
+          <Property Name="TransferedToAuditTime" Type="datetime" />
+          <Property Name="AuditAssignee" Type="nvarchar" MaxLength="100" />
+          <Property Name="AuditAssigneeTime" Type="datetime" />
+          <Property Name="AuditNotes" Type="nvarchar(max)" />
+          <Property Name="AuditAction" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuditActionTime" Type="datetime" />
+          <Property Name="TechnicalApproveByAuditNote" Type="nvarchar(max)" />
+          <Property Name="TechnicalApproveByAuditStartTime" Type="datetime" />
+          <Property Name="TechnicalApproveByAuditEndTime" Type="datetime" />
+          <Property Name="MailSubject" Type="nvarchar" MaxLength="300" />
+          <Property Name="IsAutoGenereated" Type="bit" />
+          <Property Name="ClosedTime" Type="datetime" />
+          <Property Name="MailingDetailsID" Type="int" />
+          <Property Name="IsFirstNotifySent" Type="bit" />
+          <Property Name="IsSecondNotifySent" Type="bit" />
+          <Property Name="IsThirdNotifySent" Type="bit" />
+          <Property Name="ColorID" Type="int" />
+          <Property Name="TicketTypeID" Type="int" />
+          <Property Name="IsInquiryTicket" Type="bit" />
+          <Property Name="AttachmentDetailsID" Type="int" />
+        </EntityType>
+        <EntityType Name="EmailRequestMailingDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="IsTO" Type="bit" />
+          <Property Name="IsCC" Type="bit" />
+          <Property Name="IsBCC" Type="bit" />
+          <Property Name="TicketNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="EmailRequestStatusDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TicketType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ColorAlert_TicketType">
+          <End Role="TicketType" Type="Self.TicketType" Multiplicity="0..1" />
+          <End Role="ColorAlert" Type="Self.ColorAlert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ColorAlert">
+              <PropertyRef Name="TicketType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_ColorAlert">
+          <End Role="ColorAlert" Type="Self.ColorAlert" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorAlert">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_EmailRequestStatusDIM">
+          <End Role="EmailRequestStatusDIM" Type="Self.EmailRequestStatusDIM" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRequestStatusDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="RequstStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_TicketType">
+          <End Role="TicketType" Type="Self.TicketType" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="TicketTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRequestMailingDetails_EmailRequestMailingDetails">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequests" Multiplicity="0..1" />
+          <End Role="EmailRequestMailingDetails" Type="Self.EmailRequestMailingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestMailingDetails">
+              <PropertyRef Name="TicketNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhNetworkModelStoreContainer">
+          <EntitySet Name="ColorAlert" EntityType="Self.ColorAlert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailApprovalRequests" EntityType="Self.EmailApprovalRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailRequestMailingDetails" EntityType="Self.EmailRequestMailingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailRequestStatusDIM" EntityType="Self.EmailRequestStatusDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketType" EntityType="Self.TicketType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ColorAlert_TicketType" Association="Self.FK_ColorAlert_TicketType">
+            <End Role="TicketType" EntitySet="TicketType" />
+            <End Role="ColorAlert" EntitySet="ColorAlert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_ColorAlert" Association="Self.FK_EmailApprovalRequests_ColorAlert">
+            <End Role="ColorAlert" EntitySet="ColorAlert" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_EmailRequestStatusDIM" Association="Self.FK_EmailApprovalRequests_EmailRequestStatusDIM">
+            <End Role="EmailRequestStatusDIM" EntitySet="EmailRequestStatusDIM" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_TicketType" Association="Self.FK_EmailApprovalRequests_TicketType">
+            <End Role="TicketType" EntitySet="TicketType" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRequestMailingDetails_EmailRequestMailingDetails" Association="Self.FK_EmailRequestMailingDetails_EmailRequestMailingDetails">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailRequestMailingDetails" EntitySet="EmailRequestMailingDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhNetworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ColorAlert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColorHex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BeginTime" Type="Int32" />
+          <Property Name="EndTime" Type="Int32" />
+          <Property Name="TicketType" Type="Int32" />
+          <Property Name="IsMailMustSent" Type="Int32" />
+          <Property Name="TimeLevel" Type="Int32" />
+          <NavigationProperty Name="TicketType1" Relationship="Self.FK_ColorAlert_TicketType" FromRole="ColorAlert" ToRole="TicketType" />
+          <NavigationProperty Name="EmailApprovalRequests" Relationship="Self.FK_EmailApprovalRequests_ColorAlert" FromRole="ColorAlert" ToRole="EmailApprovalRequests" />
+        </EntityType>
+        <EntityType Name="EmailApprovalRequest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Medical_ID" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedByNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequstStatusID" Type="Int32" />
+          <Property Name="TransferedToDoctorsTime" Type="DateTime" Precision="3" />
+          <Property Name="DoctorAssignee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorAssignTime" Type="DateTime" Precision="3" />
+          <Property Name="DoctorNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorAction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorActionTime" Type="DateTime" Precision="3" />
+          <Property Name="TechnicalApproveByDoctorNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TechnicalApproveByDoctorStartTime" Type="DateTime" Precision="3" />
+          <Property Name="TechnicalApproveByDoctorEndTime" Type="DateTime" Precision="3" />
+          <Property Name="TransferedToAuditTime" Type="DateTime" Precision="3" />
+          <Property Name="AuditAssignee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AuditAssigneeTime" Type="DateTime" Precision="3" />
+          <Property Name="AuditNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuditAction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuditActionTime" Type="DateTime" Precision="3" />
+          <Property Name="TechnicalApproveByAuditNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TechnicalApproveByAuditStartTime" Type="DateTime" Precision="3" />
+          <Property Name="TechnicalApproveByAuditEndTime" Type="DateTime" Precision="3" />
+          <Property Name="MailSubject" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="IsAutoGenereated" Type="Boolean" />
+          <Property Name="ClosedTime" Type="DateTime" Precision="3" />
+          <Property Name="MailingDetailsID" Type="Int32" />
+          <Property Name="IsFirstNotifySent" Type="Boolean" />
+          <Property Name="IsSecondNotifySent" Type="Boolean" />
+          <Property Name="IsThirdNotifySent" Type="Boolean" />
+          <Property Name="ColorID" Type="Int32" />
+          <Property Name="TicketTypeID" Type="Int32" />
+          <Property Name="IsInquiryTicket" Type="Boolean" />
+          <NavigationProperty Name="ColorAlert" Relationship="Self.FK_EmailApprovalRequests_ColorAlert" FromRole="EmailApprovalRequests" ToRole="ColorAlert" />
+          <NavigationProperty Name="EmailRequestStatusDIM" Relationship="Self.FK_EmailApprovalRequests_EmailRequestStatusDIM" FromRole="EmailApprovalRequests" ToRole="EmailRequestStatusDIM" />
+          <NavigationProperty Name="TicketType" Relationship="Self.FK_EmailApprovalRequests_TicketType" FromRole="EmailApprovalRequests" ToRole="TicketType" />
+          <NavigationProperty Name="EmailRequestMailingDetails" Relationship="Self.FK_EmailRequestMailingDetails_EmailRequestMailingDetails" FromRole="EmailApprovalRequests" ToRole="EmailRequestMailingDetails" />
+          <Property Name="ProviderName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TransferedToAuditComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentDetailsID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EmailRequestMailingDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsTO" Type="Boolean" />
+          <Property Name="IsCC" Type="Boolean" />
+          <Property Name="IsBCC" Type="Boolean" />
+          <Property Name="TicketNumber" Type="Int32" />
+          <NavigationProperty Name="EmailApprovalRequest" Relationship="Self.FK_EmailRequestMailingDetails_EmailRequestMailingDetails" FromRole="EmailRequestMailingDetails" ToRole="EmailApprovalRequests" />
+        </EntityType>
+        <EntityType Name="EmailRequestStatusDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmailApprovalRequests" Relationship="Self.FK_EmailApprovalRequests_EmailRequestStatusDIM" FromRole="EmailRequestStatusDIM" ToRole="EmailApprovalRequests" />
+        </EntityType>
+        <EntityType Name="TicketType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ColorAlerts" Relationship="Self.FK_ColorAlert_TicketType" FromRole="TicketType" ToRole="ColorAlert" />
+          <NavigationProperty Name="EmailApprovalRequests" Relationship="Self.FK_EmailApprovalRequests_TicketType" FromRole="TicketType" ToRole="EmailApprovalRequests" />
+        </EntityType>
+        <Association Name="FK_ColorAlert_TicketType">
+          <End Role="TicketType" Type="Self.TicketType" Multiplicity="0..1" />
+          <End Role="ColorAlert" Type="Self.ColorAlert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ColorAlert">
+              <PropertyRef Name="TicketType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_ColorAlert">
+          <End Role="ColorAlert" Type="Self.ColorAlert" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorAlert">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_EmailRequestStatusDIM">
+          <End Role="EmailRequestStatusDIM" Type="Self.EmailRequestStatusDIM" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRequestStatusDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="RequstStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailApprovalRequests_TicketType">
+          <End Role="TicketType" Type="Self.TicketType" Multiplicity="0..1" />
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailApprovalRequests">
+              <PropertyRef Name="TicketTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRequestMailingDetails_EmailRequestMailingDetails">
+          <End Role="EmailApprovalRequests" Type="Self.EmailApprovalRequest" Multiplicity="0..1" />
+          <End Role="EmailRequestMailingDetails" Type="Self.EmailRequestMailingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailApprovalRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailRequestMailingDetails">
+              <PropertyRef Name="TicketNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhNetworkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ColorAlerts" EntityType="Self.ColorAlert" />
+          <EntitySet Name="EmailApprovalRequests" EntityType="Self.EmailApprovalRequest" />
+          <EntitySet Name="EmailRequestMailingDetails" EntityType="Self.EmailRequestMailingDetail" />
+          <EntitySet Name="EmailRequestStatusDIMs" EntityType="Self.EmailRequestStatusDIM" />
+          <EntitySet Name="TicketTypes" EntityType="Self.TicketType" />
+          <AssociationSet Name="FK_ColorAlert_TicketType" Association="Self.FK_ColorAlert_TicketType">
+            <End Role="TicketType" EntitySet="TicketTypes" />
+            <End Role="ColorAlert" EntitySet="ColorAlerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_ColorAlert" Association="Self.FK_EmailApprovalRequests_ColorAlert">
+            <End Role="ColorAlert" EntitySet="ColorAlerts" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_EmailRequestStatusDIM" Association="Self.FK_EmailApprovalRequests_EmailRequestStatusDIM">
+            <End Role="EmailRequestStatusDIM" EntitySet="EmailRequestStatusDIMs" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailApprovalRequests_TicketType" Association="Self.FK_EmailApprovalRequests_TicketType">
+            <End Role="TicketType" EntitySet="TicketTypes" />
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRequestMailingDetails_EmailRequestMailingDetails" Association="Self.FK_EmailRequestMailingDetails_EmailRequestMailingDetails">
+            <End Role="EmailApprovalRequests" EntitySet="EmailApprovalRequests" />
+            <End Role="EmailRequestMailingDetails" EntitySet="EmailRequestMailingDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhNetworkModelStoreContainer" CdmEntityContainer="PhNetworkEntities">
+          <EntitySetMapping Name="ColorAlerts">
+            <EntityTypeMapping TypeName="PhNetworkModel.ColorAlert">
+              <MappingFragment StoreEntitySet="ColorAlert">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ColorHex" ColumnName="ColorHex" />
+                <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+                <ScalarProperty Name="IsMailMustSent" ColumnName="IsMailMustSent" />
+                <ScalarProperty Name="TimeLevel" ColumnName="TimeLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailApprovalRequests">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailApprovalRequest">
+              <MappingFragment StoreEntitySet="EmailApprovalRequests">
+                <ScalarProperty Name="AttachmentDetailsID" ColumnName="AttachmentDetailsID" />
+                <ScalarProperty Name="TransferedToAuditComment" ColumnName="TransferedToAuditComment" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Medical_ID" ColumnName="Medical_ID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedByNotes" ColumnName="CreatedByNotes" />
+                <ScalarProperty Name="RequstStatusID" ColumnName="RequstStatusID" />
+                <ScalarProperty Name="TransferedToDoctorsTime" ColumnName="TransferedToDoctorsTime" />
+                <ScalarProperty Name="DoctorAssignee" ColumnName="DoctorAssignee" />
+                <ScalarProperty Name="DoctorAssignTime" ColumnName="DoctorAssignTime" />
+                <ScalarProperty Name="DoctorNotes" ColumnName="DoctorNotes" />
+                <ScalarProperty Name="DoctorAction" ColumnName="DoctorAction" />
+                <ScalarProperty Name="DoctorActionTime" ColumnName="DoctorActionTime" />
+                <ScalarProperty Name="TechnicalApproveByDoctorNote" ColumnName="TechnicalApproveByDoctorNote" />
+                <ScalarProperty Name="TechnicalApproveByDoctorStartTime" ColumnName="TechnicalApproveByDoctorStartTime" />
+                <ScalarProperty Name="TechnicalApproveByDoctorEndTime" ColumnName="TechnicalApproveByDoctorEndTime" />
+                <ScalarProperty Name="TransferedToAuditTime" ColumnName="TransferedToAuditTime" />
+                <ScalarProperty Name="AuditAssignee" ColumnName="AuditAssignee" />
+                <ScalarProperty Name="AuditAssigneeTime" ColumnName="AuditAssigneeTime" />
+                <ScalarProperty Name="AuditNotes" ColumnName="AuditNotes" />
+                <ScalarProperty Name="AuditAction" ColumnName="AuditAction" />
+                <ScalarProperty Name="AuditActionTime" ColumnName="AuditActionTime" />
+                <ScalarProperty Name="TechnicalApproveByAuditNote" ColumnName="TechnicalApproveByAuditNote" />
+                <ScalarProperty Name="TechnicalApproveByAuditStartTime" ColumnName="TechnicalApproveByAuditStartTime" />
+                <ScalarProperty Name="TechnicalApproveByAuditEndTime" ColumnName="TechnicalApproveByAuditEndTime" />
+                <ScalarProperty Name="MailSubject" ColumnName="MailSubject" />
+                <ScalarProperty Name="IsAutoGenereated" ColumnName="IsAutoGenereated" />
+                <ScalarProperty Name="ClosedTime" ColumnName="ClosedTime" />
+                <ScalarProperty Name="MailingDetailsID" ColumnName="MailingDetailsID" />
+                <ScalarProperty Name="IsFirstNotifySent" ColumnName="IsFirstNotifySent" />
+                <ScalarProperty Name="IsSecondNotifySent" ColumnName="IsSecondNotifySent" />
+                <ScalarProperty Name="IsThirdNotifySent" ColumnName="IsThirdNotifySent" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="TicketTypeID" ColumnName="TicketTypeID" />
+                <ScalarProperty Name="IsInquiryTicket" ColumnName="IsInquiryTicket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRequestMailingDetails">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailRequestMailingDetail">
+              <MappingFragment StoreEntitySet="EmailRequestMailingDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsTO" ColumnName="IsTO" />
+                <ScalarProperty Name="IsCC" ColumnName="IsCC" />
+                <ScalarProperty Name="IsBCC" ColumnName="IsBCC" />
+                <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRequestStatusDIMs">
+            <EntityTypeMapping TypeName="PhNetworkModel.EmailRequestStatusDIM">
+              <MappingFragment StoreEntitySet="EmailRequestStatusDIM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketTypes">
+            <EntityTypeMapping TypeName="PhNetworkModel.TicketType">
+              <MappingFragment StoreEntitySet="TicketType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

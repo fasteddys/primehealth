@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a85b094abee472e81b65876a7527f24" Name="Diagram1" ZoomLevel="41">
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeAccuralPeriodDIM" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeAccuralRule" Width="1.5" PointX="11" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveType" Width="1.5" PointX="3.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.UserEntitlementChange" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.UserEntitlement" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.User" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeAccuralRules_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypes_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Users_UserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlements_dbo_Users_UserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Users_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedContractType" Width="1.5" PointX="6" PointY="10.75" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedDep" Width="1.5" PointX="6" PointY="15.875" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedEmployee" Width="1.5" PointX="9" PointY="13.75" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedGender" Width="1.5" PointX="6" PointY="19.375" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedSubDep" Width="1.5" PointX="6" PointY="22.875" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeRestrictedDeps_LeaveTypes" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeCarryOverRule" Width="1.5" PointX="6" PointY="26.625" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeCarryOverRules_LeaveTypes" />
+        <EntityTypeShape EntityType="HRMSModel.Request" Width="1.5" PointX="12" PointY="13.5" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Requests_dbo_Users_UserFK" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK" />
+        <AssociationConnector Association="HRMSModel.FK_Requests_Users" />
+        <EntityTypeShape EntityType="HRMSModel.RequestHandler" Width="1.5" PointX="14.25" PointY="8.375" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHandler_LeaveTypes" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHandler_Requests" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHandler_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
