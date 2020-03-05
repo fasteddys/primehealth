@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Hr_System.Models.SubDep>
+
+@{
+    ViewBag.Title = "getAllDepartments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@try { 
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Sub-Departments <small> Managment </small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">All Users</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <div class="row">
+
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-55">
+                    <div class="thumbnail">
+                        <div class="image view view-first">
+                            <img style="width: 100%; display: block;" id="pic" src="/images/dep.png" alt="">
+                            @*<img style="width: 100%; display: block;" src="images/bootstrap-colorpicker/department.jpg" alt="image">*@
+                            <div class="mask">
+                                <div id="test">
+                                    <p>@Html.DisplayFor(cat => item.SubDepartmentName)</p>
+                                </div>
+
+                                <div class="tools tools-bottom">
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                    <a href="#"><i class="fa fa-pencil"></i></a>
+                                    <a id="getusers" href="#"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="caption">
+                            <a >@Html.ActionLink(item.SubDepartmentName, "getAllPoints", new { SubDep = item.SubDepartmentName }, new { style = "color:black" })</a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/jquery-1.11.3.min.js"></script>
+<script src="~/js/MyJs/GetAllDeps.js"></script>
+
+@*<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "@Url.Action("getAllUserBySubDep", "AdminPanel")",
+            type: "GET",
+            data: "",
+            dataType: "json",
+            success: function (data) {
+                loadData(data);
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+    });
+
+    function loadData(data) {
+
+        $.each(data, function (i, val) {
+            // Append database data here
+            var users = $(".caption");
+            var tt = $('<div> </div>')
+
+            users.append($('<a class="close-link" href="#">' + val.SubDepartmentName + "," + '</a>'));
+
+        });
+
+    };
+
+
+</script>*@
+}
+catch(ArgumentNullException)
+{
+    
+}

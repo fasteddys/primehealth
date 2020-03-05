@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "GetEventsOFEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>ALL Events </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <form id="EventReport" style="display:none" method="post" action="/Event/GetEventsOFEmployee">
+        <div class="col-md-2 col-sm-2 col-xs-12">
+            <select tabindex="-1" class="select2_group form-control" style="display:normal;" name="EmpName" id="EmpName">
+                <optgroup label="Employee Name">
+                    @foreach (var item in ViewBag.employees)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </optgroup>
+            </select>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+            <input type="date" id="datepicker" name="From" placeholder="From" class="form-control col-md-7 col-xs-12" required/>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+            <input type="date" id="datepicker1" name="To" placeholder="To" class="form-control col-md-7 col-xs-12" required/>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+            <input type="submit" id="Submit" value="Submit" class="btn btn-round btn-dark" />
+        </div>
+    </form>
+    <br /><br /><br />
+    <div class="x_content">
+        <h4 align="center" style="font-weight:bold" >Pending ( @ViewBag.PendingCount )</h4>
+        <table class="table table-striped responsive-utilities jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Event Name </th>
+                    <th class="column-title">Description </th>
+                    <th class="column-title">Created By  </th>
+                    <th class="column-title">Created At</th>
+                    <th class="column-title">Event Day</th>
+                    <th class="column-title">From </th>
+                    <th class="column-title">To </th>
+                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in ViewBag.Pending)
+                {
+                    <tr class="even pointer">
+                        <td>@item.EventName</td>
+                        <td>@item.EventDescription</td>
+                        <td>@item.CreatedBy</td>
+                        <td>@item.CreatedAt</td>
+                        <td>@String.Format("{0:d}", item.EventDay)</td>
+                        <td>@item.EventFrom</td>
+                        <td>@item.EventTo</td>
+                        <td>@Html.ActionLink("Open", "EventDetails", new { ID = item.EventID })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="x_content">
+        <h4 align="center" style="font-weight:bold" >Accepted ( @ViewBag.AcceptedCount )</h4>
+        <table class="table table-striped responsive-utilities jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Event Name </th>
+                    <th class="column-title">Description </th>
+                    <th class="column-title">Created By  </th>
+                    <th class="column-title">Created At</th>
+                    <th class="column-title">Event Day</th>
+                    <th class="column-title">From </th>
+                    <th class="column-title">To </th>
+                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in ViewBag.Accepted)
+                {
+                    <tr class="even pointer">
+                        <td>@item.EventName</td>
+                        <td>@item.EventDescription</td>
+                        <td>@item.CreatedBy</td>
+                        <td>@item.CreatedAt</td>
+                        <td>@String.Format("{0:d}", item.EventDay)</td>
+                        <td>@item.EventFrom</td>
+                        <td>@item.EventTo</td>
+                        <td>@Html.ActionLink("Open", "EventDetails", new { ID = item.EventID })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="x_content">
+        <h4 align="center" style="font-weight:bold" >Rejected ( @ViewBag.RejectedCount )</h4>
+        <table class="table table-striped responsive-utilities jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Event Name </th>
+                    <th class="column-title">Description </th>
+                    <th class="column-title">Created By  </th>
+                    <th class="column-title">Created At</th>
+                    <th class="column-title">Event Day</th>
+                    <th class="column-title">From </th>
+                    <th class="column-title">To </th>
+                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in ViewBag.Rejected)
+                {
+                    <tr class="even pointer">
+                        <td>@item.EventName</td>
+                        <td>@item.EventDescription</td>
+                        <td>@item.CreatedBy</td>
+                        <td>@item.CreatedAt</td>
+                        <td>@String.Format("{0:d}", item.EventDay)</td>
+                        <td>@item.EventFrom</td>
+                        <td>@item.EventTo</td>
+                        <td>@Html.ActionLink("Open", "EventDetails", new { ID = item.EventID })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#datepicker1").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+        $.getJSON("/Vacation/GetTypeOfUser", {}, function (data) {
+            UserType = String(data);
+            debugger;
+            if (UserType == "Manager" || UserType == "Deputy Manager") {
+                $("#EventReport").show();
+            }
+        });
+    });
+</script>

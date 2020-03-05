@@ -1,0 +1,310 @@
+﻿
+@{
+    ViewBag.Title = "AssignShifts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Shifts</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li><span>User</span></li>
+                <li><span>Shifts</span></li>
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    <h2 class="card-title">Shift Configurations</h2>
+                </header>
+                <div class="card-body">
+                    <div class="tabs">
+                        <ul class="nav nav-tabs tabs-primary">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#DownloadTemplate" data-toggle="tab">Download Template</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#UploadShifts" data-toggle="tab">Upload Shifts</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#SwapShifts" data-toggle="tab">Swap Shifts</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div id="DownloadTemplate" class="tab-pane active">
+                                <div class="form-group row">
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-10 control-label ">From<span style="color:red">*</span></label>
+                                        <input type="text" data-plugin-datepicker="" class="form-control" id="ShiftFrom">
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-10 control-label ">To<span style="color:red">*</span></label>
+                                        <input type="text" data-plugin-datepicker="" class="form-control" id="ShiftTo">
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-10 control-label "></label>
+                                        <div class="form-group row" >
+                                            <a class="nav-link" href="#" onclick="CheckEmptyDates()" id="Export">
+                                                <i class="fa fa-file-excel fa-2x" aria-hidden="true"></i>
+                                                <span>Export Excel</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="UploadShifts" class="tab-pane">
+                                <div class="col-lg-5">
+                                    <input type="file" id="myfile" class="form-control Cimgupload" />
+                                    <br>
+                                    <button type="button" class="btn btn-primary" onclick="UploadFile();">Upload</button>
+                                </div>
+                            </div>
+
+                            <div id="SwapShifts" class="tab-pane">
+                                <div class="form-group row">
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-10 control-label ">Date<span style="color:red">*</span></label>
+                                        <input type="text" data-plugin-datepicker="" class="form-control" id="ShiftDate">
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-10 control-label ">Users<span style="color:red">*</span></label>
+                                        <select data-plugin-selectTwo class="form-control populate" id="Users">
+                                            <option disabled selected></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-10 control-label ">Current Shift</label>
+                                        <input type="text" data-plugin-datepicker="" class="form-control" id="ShiftInfo" disabled>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-10 control-label ">Shifts<span style="color:red">*</span></label>
+                                        <select data-plugin-selectTwo class="form-control populate" id="Shifts">
+                                            <option disabled selected></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-10 control-label "></label>
+                                        <a class="nav-link" id="Save" href="#" onclick="SwapShiftValidation()">
+                                            <i class="fas fa-save fa-2x" aria-hidden="true"></i>
+                                            <span>Save</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+
+    <!-- end: page -->
+</section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="AddSubDepartmentModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add SubDepartment</h5>
+                </div>*@
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="usr">SubDepartment Name:</label>
+                    <input type="text" class="form-control" id="AddSubDepartment">
+                </div>
+
+                <div class="col-lg-6">
+                    <select data-plugin-selectTwo class="form-control populate selectpicker" id="SelectDepartment">
+                        <option selected disabled>Search Department</option>
+                    </select>
+                    </br>
+                    <select data-plugin-selectTwo class="form-control populate" id="SelectTeamManager">
+                        <option selected disabled>Search Team Manager</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="SaveSubDepartmentBTN()">Save SubDepartment</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="AddDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+                </div>*@
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="usr">Department Name:</label>
+                    <input type="text" class="form-control" id="AddDepartment">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="SaveDepartmentBTN()">Save Department</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end: page -->
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="~/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/CustomJavaScript/User/AssignShifts.js"></script>
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script src="~/js/examples/examples.datatables.default.js"></script>
+<script src="~/js/examples/examples.datatables.row.with.details.js"></script>
+<script src="~/js/examples/examples.datatables.tabletools.js"></script>
+
+<script>
+    $("#ShiftFrom").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+    $("#ShiftTo").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+    $("#ShiftDate").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+</script>
+
+<style>
+
+    /*.ActionsIcon {
+                margin-left: 10px
+            }*/
+    .AciveRow {
+        background-color: #0088cc;
+        color: white;
+    }
+    /*.AciveRow :hover {
+                background-color: #0088cc;
+                color: white;
+            }*/
+
+    .ruleFieldset {
+        padding: 0 15px 10px !important;
+        margin-bottom: 45px !important;
+    }
+
+    .Borderstyle {
+        border: 1px solid #ccc !important;
+        padding: 3px 5px 15px 15px !important;
+    }
+
+    fieldset legend {
+        display: block !important;
+        font-weight: normal !important;
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0px;
+        font-family: 'Noto Sans', verdana, arial, sans-serif;
+        width: auto !important;
+    }
+
+    .Floatleft {
+        float: left !important
+    }
+</style>
+
+
+
+
+

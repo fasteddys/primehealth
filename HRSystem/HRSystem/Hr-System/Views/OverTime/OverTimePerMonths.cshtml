@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "OverTimePerMonths";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-4">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>OverTimes <small></small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">Jan</p>
+                    <p class="day">1</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("Jan", "ManagerOverTime", new { sdate = "2015-12-20", edate = "2016-01-19" })
+                   @*<a class="title" href="javascript:gotomanagerapproval('2016-12-20' ,'2016-12-20');">Jan</a>*@
+                    <p>From 21-12 To 20-1</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">Feb</p>
+                    <p class="day">2</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("Feb", "ManagerOverTime", new { sdate = "2016-01-20", edate = "2016-02-19" })
+                    <p>From 21-1 To 20-2</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">March</p>
+                    <p class="day">3</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("March", "ManagerOverTime", new { sdate = "2016-02-20", edate = "2016-03-19" })
+                    <p>From 21-2 To 20-3</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">April</p>
+                    <p class="day">4</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("April", "ManagerOverTime", new { sdate = "2016-03-20", edate = "2016-04-19" })
+                    <p>From 21-3 To 20-4</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">May</p>
+                    <p class="day">5</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("May", "ManagerOverTime", new { sdate = "2016-04-20", edate = "2016-05-19" })
+                    <p>From 21-4 To 20-5</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">June</p>
+                    <p class="day">6</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("June", "ManagerOverTime", new { sdate = "2016-05-20", edate = "2016-06-19" })
+                    <p>From 21-5 To 20-6</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">July</p>
+                    <p class="day">7</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("July", "ManagerOverTime", new { sdate = "2016-06-20", edate = "2016-07-19" })
+                    <p>From 21-6 To 20-7</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">Aug</p>
+                    <p class="day">8</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("August", "ManagerOverTime", new { sdate = "2016-07-20", edate = "2016-08-19" })
+                    <p>From 21-7 To 20-8</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">Sep</p>
+                    <p class="day">9</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("September", "ManagerOverTime", new { sdate = "2016-08-20", edate = "2016-09-19" })
+                    <p>From 21-8 To 20-9</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">Oct</p>
+                    <p class="day">10</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("October", "ManagerOverTime", new { sdate = "2016-09-20", edate = "2016-10-19" })
+                     <p>From 21-9 To 20-10</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">Nov</p>
+                    <p class="day">11</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("November", "ManagerOverTime", new { sdate = "2016-10-20", edate = "2016-11-19" })
+                    <p>From 21-10 To 20-11</p>
+                </div>
+            </article>
+            <article class="media event">
+                <a class="pull-left date">
+                    <p class="month">Dec</p>
+                    <p class="day">12</p>
+                </a>
+                <div class="media-body">
+                    @Html.ActionLink("December", "ManagerOverTime", new { sdate = "2016-11-20", edate = "2016-12-19" })
+                    <p>From 21-11 To 20-12</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+<script src="~/js/jquery-1.11.3.min.js"></script>
+<script>
+    function gotomanagerapproval(data1 , data2) {
+        //localStorage.setItem("start", data1);
+        //localStorage.setItem("end", data2);
+        
+        window.location = '@Url.Action("ManagerOverTime", "OverTime")';
+  }
+
+</script>

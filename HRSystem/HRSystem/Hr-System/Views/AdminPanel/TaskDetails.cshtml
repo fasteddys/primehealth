@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "TaskDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("TaskDetails", "AdminPanel", FormMethod.Post))
+    {
+<div class="x_panel">
+    <div class="x_title">
+        <h2><i class="fa fa-bars"></i> Task Details <small>Project Steps</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">Settings 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Settings 2</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content" style="display: block;">
+
+        <div class="col-xs-3">
+            <!-- required for floating -->
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tabs-left">
+                <li class="active">
+                    <a href="#ProjectName" data-toggle="tab">ProjectName</a>
+                </li>
+                <li>
+                    <a href="#TaskName" data-toggle="tab">TaskName</a>
+                </li>
+                <li>
+                    <a href="#TaskDescription" data-toggle="tab">TaskDescription</a>
+                </li>
+                <li>
+                    <a href="#TaskFrom-To" data-toggle="tab">TaskDuration</a>
+                </li>
+                <li>
+                    <a href="#TaskAssignee" data-toggle="tab">TaskAssignee</a>
+                </li>
+                <li>
+                    <a href="#TaskBackup" data-toggle="tab">TaskBackup</a>
+                </li>
+                <li>
+                    <a href="#Notifications" data-toggle="tab">Notifications</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-xs-9">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="ProjectName">
+                    <p class="lead">ProjectName</p>
+                    <p>@ViewBag.ProjectName</p>
+                </div>
+                <div class="tab-pane active" id="TaskName">
+                    <p class="lead">TaskName</p>
+                    <p>@ViewBag.TaskName</p>
+                </div>
+                <div class="tab-pane active" id="TaskDescription">
+                    <p class="lead">TaskDescription</p>
+                    <p>@ViewBag.TaskDescription</p>
+                </div>
+                <div class="tab-pane active" id="TaskFrom-To">
+                    <p class="lead">TaskDuration</p>
+                    <p> @ViewBag.TaskFrom to @ViewBag.TaskTo</p>
+                </div>
+                <div class="tab-pane active" id="TaskAssignee">
+                    <p class="lead">TaskAssignee</p>
+                    <p>@ViewBag.TaskAssignee</p>
+                </div>
+                <div class="tab-pane active" id="TaskBackup">
+                    <p class="lead">TaskBackup</p>
+                    <p>@ViewBag.TaskBackup</p>
+                </div>
+                <div class="tab-pane active" id="Notifications">
+                    <p class="lead">Notifications</p>
+                    @foreach (var item in ViewBag.ProjectNotifications)
+                    {
+                        <p>@item</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+<button id="submit" type="submit" class="btn btn-success">Finish Task</button>
+}
+<script>
+    $(document).ready(function () {
+        if ("@(Session["UserName"])" != "@ViewBag.TaskAssignee" || "@(Session["UserName"])" != "@ViewBag.TaskBackup") {
+         //   $("#submit").hide();
+        }
+
+
+    else {
+
+            }
+    });
+</script>

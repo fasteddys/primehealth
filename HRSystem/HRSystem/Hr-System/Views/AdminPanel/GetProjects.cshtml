@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Hr_System.Models.Project>
+@{
+    ViewBag.Title = "GetProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Projects <small> Managment </small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">In Progress ...</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <div class="row">
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="pricing">
+                    <div class="title">
+                        <h2>@Html.DisplayFor(cat => item.ProjectName)</h2>
+                        <h4>@Html.DisplayFor(cat => item.ProjStatus)</h4>
+                    </div>
+                  
+                    <div class="x_content">
+                        <div class="">
+                            <div class="pricing_features">
+                                <ul class="list-unstyled text-left">
+                                    <li><i class="fa fa-male"></i> <strong>ProjectManager :</strong> @Html.DisplayFor(cat => item.ProjManager)</li>
+                                    <li><i class="fa fa-key"></i> <strong>Project Description :</strong>@Html.DisplayFor(cat => item.ProjDescription)</li>
+                                    <li><i class="fa fa-tachometer"></i> <strong>ProjectDuration :</strong> @Html.DisplayFor(cat => item.ProjectDuration)</li>
+                                    <li><i class="fa fa-fire"></i> <strong>Started In :</strong>@Html.DisplayFor(cat => item.StartFrom)</li>
+                                    <li><i class="fa fa-thumbs-up"></i> <strong>Should Ended In :</strong>@Html.DisplayFor(cat => item.EndIn) </li>
+                                    <li><i class="fa fa-check text-success"></i> <strong>Project Status :</strong> @Html.DisplayFor(cat => item.ProjStatus)</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pricing_footer">
+                            <a href="@Url.Action("ProjectDetails", "AdminPanel", new { projectname = item.ProjectName })" class="btn btn-success btn-block" role="button"> View Details  <i class="fa fa-toggle-right"></i></a>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+}
+            
+
+
+        </div>
+    </div>
+</div>

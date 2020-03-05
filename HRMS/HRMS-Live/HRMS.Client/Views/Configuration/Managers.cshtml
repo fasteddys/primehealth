@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "Managers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Configuration</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("index","Configuration")">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Managers</span></li>
+
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    <h2 class="card-title">Managers</h2>
+
+                </header>
+
+                <div class="card-body">
+                    <div class="form-group row ">
+                        <a class="nav-link" href="#" onclick="SaveListBTN()">
+                            <i class="fas fa-save fa-2x" aria-hidden="true" id="AddUsersToPosition"></i>
+                            <span>Save</span>
+                        </a>
+                        <a class="nav-link" href="@Url.Action("","Configuration")">
+                            <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                            <span>Cancel</span>
+                        </a>
+                    </div>
+
+
+                    
+                        @*<div class="form-group row pull-right">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-save fa-2x" aria-hidden="true"></i>
+                        <span>Save</span>
+                    </a>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                        <span>Cancel</span>
+                    </a>
+                </div>*@
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div id="Managers" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <br />
+                                            <div class="form-group row">
+                                                <div class="col-lg-12">
+                                                    <select data-plugin-selectTwo class="form-control populate" id="SelectManagerDropDownList">
+                                                        <option disabled selected>Add Manager</option>
+                                                        @*<option value="This absence type has own entitlement">This absence type has own entitlement</option>
+                                <option value="This is subtype and use entitlement from other type">This is subtype and use entitlement from other type</option>*@
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <table class="table table-responsive-md table-hover mb-0" id="AppendManagersTable">
+                                                <thead>
+                                                    <tr>
+                                                        <td><b>Manager</b></td>
+                                                        <td><b>Subordinates</b></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="AppendManagersBody">
+                                                    @*<tr>
+                                <td style="width: 60%" id="ManagerName"></td>
+                                <td style="width: 20%; text-align: right; color: #aaa;" id="Subordinates"></td>
+                                <td style="width: 20%; text-align: right; color: #aaa;">
+                                    <a href="#"><i class="fas fa-trash fa-2x" aria-hidden="true" onclick="DeleteManagersTableRow(this)"></i></a>
+                                </td>
+                            </tr>*@
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <h2 id="ManagerNameForUsers"></h2>
+                                            <h5>Manager for teams</h5>
+                                            <table class="table table-responsive-md table-hover mb-0">
+                                                <tbody id="AppendSubOrdinatesTable">
+                                                    @*<tr> <td style="width: 80%">Adel Amgad</td> <td style="width: 20%; text-align: right; color: #aaa;"><a href="#"><i class="fas fa-trash fa-2x" aria-hidden="true"></i></a></td> </tr>*@
+                                                </tbody>
+                                            </table>
+                                            <br />
+                                            <div class="form-group row">
+                                                <div class="col-lg-6">
+                                                    <select data-plugin-selectTwo class="form-control populate" id="AddsubordinateDropDpwnList">
+                                                        <option disabled selected>Add subordinate team</option>
+                                                        @*<option value="This absence type has own entitlement">This absence type has own entitlement</option>
+                                <option value="This is subtype and use entitlement from other type">This is subtype and use entitlement from other type</option>*@
+                                                    </select>
+                                                </div>
+                                                @*<div class="col-lg-6">
+                            <a class="nav-link " href="#">
+                                <i class="fas fa-home fa-2x" aria-hidden="true"></i>
+                                <span>Whole organization</span>
+                            </a>
+                        </div>*@
+                                            </div>
+                                            <h5>Direct Manager / Team Leader</h5>
+                                            <table class="table table-responsive-md table-hover mb-0">
+                                                <tbody id="UsersUnderManaerTable">
+                                                    @*<tr> <td style="width: 80%">Mohamed  Abdelaleem</td> <td style="width: 20%; text-align: right; color: #aaa;"><a href="#"><i class="fas fa-trash fa-2x" aria-hidden="true"></i></a></td> </tr>
+                            <tr> <td style="width: 80%">Adel Amgad</td> <td style="width: 20%; text-align: right; color: #aaa;"><a href="#"><i class="fas fa-trash fa-2x" aria-hidden="true"></i></a></td> </tr>*@
+
+                                                </tbody>
+                                            </table>
+                                            <br />
+                                            <div class="form-group row">
+                                                <div class="col-lg-12">
+                                                    <select data-plugin-selectTwo class="form-control populate" id="AppendUsersDropDownList">
+                                                        <option disabled selected>Add subordinate</option>
+                                                        @*<option value="This absence type has own entitlement">This absence type has own entitlement</option>
+                                <option value="This is subtype and use entitlement from other type">This is subtype and use entitlement from other type</option>*@
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    
+            </section>
+        </div>
+    </div>
+    <!-- end: page -->
+</section>
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/CustomJavaScript/Manager/AddManager.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+
+
+<style>
+    .ruleFieldset {
+        padding: 0 15px 10px !important;
+        margin-bottom: 45px !important;
+    }
+
+    .Borderstyle {
+        border: 1px solid #ccc !important;
+        padding: 3px 5px 15px 15px !important;
+    }
+
+    fieldset legend {
+        display: block !important;
+        font-weight: normal !important;
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0px;
+        font-family: 'Noto Sans', verdana, arial, sans-serif;
+        width: auto !important;
+    }
+
+    .Floatleft {
+        float: left !important
+    }
+</style>

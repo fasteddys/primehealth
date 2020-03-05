@@ -1,0 +1,264 @@
+﻿@model Hr_System.Models.Request
+
+@{
+    ViewBag.Title = "addExcuseRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+        }
+
+            .alert.success {
+                background-color: #4CAF50;
+            }
+
+            .alert.info {
+                background-color: #2196F3;
+            }
+
+            .alert.warning {
+                background-color: #ff9800;
+            }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+
+}
+
+@*@using (Html.BeginForm("addExcuseRequest","User",FormMethod.Post))
+{*@ 
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        @*NEW*@
+        @*<div class="alert info" style="display:none" id="excusedivalret">
+
+            Note that your execuse credit is below Zero and it will be reduced from the upcoming month!
+        </div>*@
+        @*END*@
+        <div class="alert info" style="display:none" id="divalret">
+            <span id="divinfo" class="closebtn">&times;</span>
+
+        </div>
+        <div class="x_title">
+            <h2> Excuses <small>New Excuse</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#">Settings 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Settings 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                      Excuse Date <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="datepicker" class="form-control col-md-7 col-xs-12" type="text" name="ExcuseDay">
+                        <p id="dateoutput"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                        Excustion Type<span class="required">*</span>
+                    </label>
+
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <select tabindex="-1" class="select2_group form-control" style="display: normal;" name="ReqSubType" id="ReqSubType">
+                            <optgroup label="سبب الاذن ">
+                                <option value="تأخير">تأخير</option>
+                                <option value="خروج شخصي">خروج شخصي</option>
+                                <option value="عمل خارج الشركه">عمل خارج الشركه</option>
+                            </optgroup>
+                        </select>                  
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                        Excuse Duration<span class="required">*</span>
+                    </label>
+
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <select tabindex="-1" class="select2_group form-control" style="display: normal;" name="ExcuseDuration" id="ExcuseDuration">
+                            <optgroup label="مدة الأذن">
+                                @*<option value="نصف ساعة">نصف ساعة</option>
+                                <option value="ساعة">ساعة</option>
+                                <option value="ساعة ونصف">ساعة ونصف</option>*@
+                                <option value="ساعتين">ساعتين</option> 
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                        Excuse From <span class="required">*</span>
+                    </label>
+
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        @Html.TextBoxFor(p => p.ExcuseDurationFrom, new { @class = "form-control col-md-7 col-xs-12" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                        Excuse To<span class="required">*</span>
+                    </label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+                        @Html.TextBoxFor(p => p.ExcuseDurationTo, new { @class = "form-control col-md-7 col-xs-12" })
+
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                        Cause of Excuse <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.TextAreaFor(p => p.CauseOfReq, new { @class = "form-control col-md-7 col-xs-12" })
+                    </div>
+                </div>*@
+                
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        <button class="btn btn-round btn-success" type="submit" id="sendExcuse" value="save"> Add Excuse </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+ 
+@*}*@
+
+@*<link href="../assets/styles.min.css" rel="stylesheet">
+<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>*@
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">*@
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+<link href="~/css2/TimePicker/jquery.ptTimeSelect.css" rel="stylesheet" />
+<script src="~/css2/TimePicker/jquery.ptTimeSelect.js"></script>
+@*<script src="~/js/jquery.min.js"></script>*@
+@section Scripts{ 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //new
+            @*if ("@ViewBag.Remainexcuehours" <= 0)
+            {
+                $("#excusedivalret").show();
+            }*@
+            //end
+
+        $("#datepicker").datepicker({
+            dateFormat: "dd-mm-yy",
+            onSelect: function (dateText, inst) {
+                var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+                var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                date.setDate(date.getDate() + 7);
+                var dateText2 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                $("#dateoutput").html("Chosen date is <b>" + dateText1);
+            }
+        });
+        $("#ExcuseDurationFrom ").ptTimeSelect({
+            containerClass: undefined,
+            containerWidth: undefined,
+            hoursLabel:     'Hour',
+            minutesLabel:   'Minutes',
+            setButtonLabel: 'Set',
+            popupImage:     undefined,
+            onFocusDisplay: true,
+            zIndex:         10,
+            onBeforeShow:   undefined,
+            onClose:        undefined
+        });
+        $("#ExcuseDurationTo ").ptTimeSelect({
+            containerClass: undefined,
+            containerWidth: undefined,
+            hoursLabel: 'Hour',
+            minutesLabel: 'Minutes',
+            setButtonLabel: 'Set',
+            popupImage: undefined,
+            onFocusDisplay: true,
+            zIndex: 10,
+            onBeforeShow: undefined,
+            onClose: undefined
+        });
+    });
+    $("#sendExcuse").click(function (e) {
+        e.preventDefault();
+        if ($("#datepicker").val() == "" || $("#ReqSubType").val() == "" || $("#ExcuseDuration").val() == "" || $("#ExcuseDurationFrom ").val() == "" || $("#ExcuseDurationTo").val() == "") {
+            alert("All Fields Are Required")
+        }
+
+        else {
+            var dataa = {
+                ReqType: "Excuse",
+                ExcuseDay: $("#datepicker").val(),
+                ReqSubType: $("#ReqSubType").val(),
+                ExcuseDuration: $("#ExcuseDuration").val(),
+                ExcuseDurationFrom: $("#ExcuseDurationFrom").val(),
+                ExcuseDurationTo: $("#ExcuseDurationTo").val()
+
+            };
+            var x = JSON.stringify(dataa);
+            $.ajax({
+                url: '@Url.Action("CreateExcuseRequest", "User")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data) {
+                    $("#divalret").html(data);
+                    $("#divalret").show();
+                    $("#datepicker").val("");
+                    $("#ExcuseDurationFrom").val("");
+                    $("#ExcuseDurationTo").val("");
+                    $("#dateoutput").html("");
+                }
+            });
+        }
+    });
+    </script>
+}

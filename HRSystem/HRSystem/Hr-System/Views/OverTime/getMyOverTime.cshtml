@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "getMyOverTime";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("getMyOverTime", "OverTime", FormMethod.Post))
+{
+    <button type="submit">Get My Excel</button>
+}

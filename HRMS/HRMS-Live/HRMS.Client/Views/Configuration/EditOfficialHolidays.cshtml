@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "EditOfficialHolidays";
+}
+<!---------------------------------------------------------------------->
+<!--styles-->
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<link href="~/CustomCSS/Configraution/holidays.css" rel="stylesheet" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<!---------------------------------------------------------------------->
+<!--Start Html-->
+<section role="main" class="content-body">
+    <header class="page-header">
+        <h2>Configuration</h2>
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Holidays</span></li>
+                <li><span>Edit</span></li>
+
+            </ol>
+        </div>
+    </header>
+    <section class="card">
+        <header class="card-header">
+            <div class="card-actions">
+                <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+            </div>
+            <h2 class="card-title">Edit Official Holidays </h2>
+        </header>
+        <div class="card-body">
+            <div class="tab-content">
+                <div id="RejectionReasonRequests" class="tab-pane active">
+                    <div class="Search">
+                        <div class="Cancel">
+                            <a class="nav-link" href="#" onclick="GoBack()">
+                                <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                                <span>Cancel</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!--Start Form-->
+                    <div class="FormAddNewOfficialHolidays">
+                        <div class="form-group row">
+                            <label for="OfficialHolidaysId" class="col-sm-3 col-form-label">Official ID</label>
+                            <div class="col-sm-9">
+                                <input disabled id="OfficialHolidaysId" type="text" class="form-control populate" placeholder="Official Holidays Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="OfficialHolidaysAddedBy" class="col-sm-3 col-form-label"> Added By</label>
+                            <div class="col-sm-9">
+                                <input disabled id="OfficialHolidaysAddedBy" type="text" class="form-control populate" placeholder="Official Holidays Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="OfficialHolidaysStart" class="col-sm-3 col-form-label">Official  Date </label>
+                            <div class="col-sm-9">
+                                <input id="OfficialHolidaysStart" type="text" data-plugin-datepicker="" class="form-control" placeholder="From">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="OfficialHolidaysName" class="col-sm-3 col-form-label"> Holidays name</label>
+                            <div class="col-sm-9">
+                                <input id="OfficialHolidaysName" type="text" class="form-control populate" placeholder="Official Holidays Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="OfficialHolidaysType" class="col-sm-3 col-form-label">Official</label>
+                            <div class="radioOfficial col-sm-9">
+                                <input type="radio" id="OfficialHolidaysTypeYes" name="OfficialType" value="1" checked /><label for="OfficialHolidaysTypeYes" class="control-label">Yes</label>
+                                <input type="radio" id="OfficialHolidaysTypeNo" name="OfficialType" value="0" /><label for="OfficialHolidaysTypeNo" class="control-label ">No</label>
+                            </div>
+                        </div>
+                        <div class="btnSaveDiv form-group row">
+                            <label for="OfficialHolidaysName" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <button id="btnForSaveOfficialHolidays" class="btn btn-primary form-control">Save</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--End Form-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Card-->
+    <!--End Header-->
+    <!-- start: page -->
+    <!-- end: page -->
+</section>
+
+<!--End Html-->
+<!---------------------------------------------------------------------->
+<!--Start Script-->
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="~/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/js/theme.js"></script>
+<script src="~/CustomJavaScript/Configurations/holidays.js"></script>
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script src="~/js/examples/examples.datatables.default.js"></script>
+<script src="~/js/examples/examples.datatables.row.with.details.js"></script>
+<script src="~/js/examples/examples.datatables.tabletools.js"></script>
+
+<script>
+    $("#OfficialHolidaysStart").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+</script>
+<!------------------------------------------------------------------------------>

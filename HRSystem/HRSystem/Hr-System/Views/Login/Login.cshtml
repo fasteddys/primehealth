@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>Leaves System - Login Page</title>
+    <meta name="description" content="">
+    <meta name="author" content="Padmanaban, Mine Web Design">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/css_Login/STYLE_2.css" rel="stylesheet" type="text/css" />
+    <link href="~/css_Login/NORMALIZATION.css" rel="stylesheet" />
+    <link href="~/css_Login/STYLATION.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="row">
+        <div class="container">
+            <h2 class="title">Leaves System - IT Department</h2>
+            <div class="form-signin">
+                <h4 class="section-heading"><span>SIGN IN</span></h4>
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+
+                <div class="row">
+                    <div class="column">
+                        <label>USERNAME </label>
+                        <input class="full-width" type="text" id="ename" name="EmpName" placeholder="Username">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <label>PASSWORD </label>
+                        <input class="full-width" type="password" id="pss" name="Password" placeholder="Password...">
+                    </div>
+                </div>
+                <br />
+                <input class="button-submit" id="log" type="submit" value="Login">
+                          @Html.AntiForgeryToken() // this is for prevent CSRF/ attack
+                            @Html.ValidationSummary(true)
+    <div class="row">
+        <a href="#" class="forgot">Developed By IT Development Team</a>
+    </div>
+}
+              
+            </div>
+        </div>
+    </div>
+    <!-- Copyrights by Mine Web Design-->
+</body>
+</html>

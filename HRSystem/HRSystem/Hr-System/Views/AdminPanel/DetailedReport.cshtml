@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "DetailedReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+<style>
+    table {
+        width: 40em;
+        margin: 2em auto;
+    }
+
+    thead {
+        background: #000;
+        color: #fff;
+    }
+
+    td {
+        width: 10em;
+        padding: 0.3em;
+    }
+
+    tbody {
+        background: #ccc;
+    }
+
+    div.pager {
+        text-align: center;
+        margin: 1em 0;
+    }
+
+        div.pager span {
+            display: inline-block;
+            width: 1.8em;
+            height: 1.8em;
+            line-height: 1.8;
+            text-align: center;
+            cursor: pointer;
+            background: #000;
+            color: #fff;
+            margin-right: 0.5em;
+        }
+
+            div.pager span.active {
+                background: #c00;
+            }
+</style>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>ALL Requests </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-12">
+        <select tabindex="-1" class="select2_group form-control" style="display:normal;" name="SubDepartment" id="SubDepartment">
+                <option value="All" disabled selected>Sub Department</option>
+                <option value="All">All</option>
+            @foreach (var item in ViewBag.subdep)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-12">
+        <select tabindex="-1" class="select2_group form-control" style="display:normal;" name="EmpName" id="EmpName">
+            <option value="All" disabled selected>Employee Name</option>
+            <option value="All">All</option>
+            @foreach (var item in ViewBag.employees)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-12">
+        <select tabindex="-1" class="select2_group form-control" style="display:normal;" name="RequestType" id="RequestType">
+            <option value="All" disabled selected>Request Type</option>
+            <option value="All">All</option>
+            <option value="إجازة">إجازة</option>
+            <option value="Excuse">Excuse</option>
+        </select>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-12">
+        <select tabindex="-1" class="select2_group form-control" style="display:normal;" name="LeaveType" id="LeaveType">
+            <option value="All" disabled selected>Leave Type</option>
+            <option value="اعتيادية">اعتيادية</option>
+            <option value="عارضه">عارضه</option>
+            <option value="عارضه - أخري">عارضه - أخري</option>
+            <option value="مرضية">مرضية</option>
+            <option value="مرضية">مرضية - بالخصم</option>
+            <option value="بالخصم">بالخصم</option>
+            <option value="أخري">أخري</option>
+        </select>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-12">
+        <input type="text" id="datepicker" name="DateFrom" placeholder="From"  class="form-control col-md-7 col-xs-12" />
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-12">
+        <input type="text" id="datepicker1" name="DateTo" placeholder="To" class="form-control col-md-7 col-xs-12" />
+    </div>
+    <div class="x_content">
+        <table class="table table-striped responsive-utilities jambo_table bulk_action" id="rateb">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Request Type</th>
+                    <th class="column-title">Leave Type</th>
+                    <th class="column-title">Request By</th>
+                    <th class="column-title">Request Status </th>
+                    <th class="column-title">Team Leader</th>
+                    <th class="column-title">Supervisor</th>
+                    <th class="column-title">Vacation Start-Day</th>
+                    <th class="column-title">Duration</th>
+                    <th class="column-title">Back-To-Work Day </th>
+                    <th class="column-title">Requested at</th>
+                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                </tr>
+            </thead>
+            <tr class="even pointer" id="Requests">
+
+            </tr>
+
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#datepicker1").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#SubDepartment,#EmpName,#RequestType,#LeaveType,#datepicker,#datepicker1").change(function () {
+            debugger;
+            var SubDep = $("#SubDepartment").val();
+            var EmpName = $("#EmpName").val();
+            var RequestType = $("#RequestType").val();
+            var LeaveType = $("#LeaveType").val();
+            var From = $("#datepicker").val();
+            var To = $("#datepicker1").val();
+            $.getJSON("/AdminPanel/ReportResult", { SubDep: SubDep, EmpName: EmpName, RequestType: RequestType, LeaveType: LeaveType, From: From, To: To }, function (data) {
+                $("#Requests").empty();
+                $.each(data, function (i, val) {
+                    debugger;
+                    var MyDate_String_Value = val.MovieReleaseDate;
+                    var value = new Date(parseInt(MyDate_String_Value.replace(/(^.*\()|([+-].*$)/g,'')));
+                    var MovieDate = value.getMonth() +
+                                             1 +
+                                           "/" +
+                               value.getDate() +
+                                           "/" +
+                           value.getFullYear();
+                    var url = "window.location.href='" + "/Movies/MovieDetails?MovieID=" + val.MovieID + "'";
+                    $("#Requests").append("<tr><td style='vertical-align:middle' align='center' class='AllMovies' > " + val.MovieName + " </td><td style='vertical-align:middle' align='center' class='AllMovies' >" + val.MovieDescription + "</td><td style='vertical-align:middle' align='center' class='AllMovies' >" + MovieDate + " </td><td style='vertical-align:middle' align='center' class='AllMovies' > <img src='" + val.MoviePoster + "' width='64' height='41' /> </td><td style='vertical-align:middle' align='center'><button class='btn btn-default btn-group-sm'  id='" + val.MovieID + "'><i class='fa fa-pencil'></i></button></td></tr>");
+                    $("#" + val.MovieID).attr("onclick", url);
+                });
+            });
+        });
+    });
+</script>

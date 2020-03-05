@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HRReportDataSet" targetNamespace="http://tempuri.org/HRReportDataSet.xsd" xmlns:mstns="http://tempuri.org/HRReportDataSet.xsd" xmlns="http://tempuri.org/HRReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HRReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HRReportDataSet" msprop:Generator_UserDSName="HRReportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Requests" msprop:Generator_TableClassName="RequestsDataTable" msprop:Generator_TableVarName="tableRequests" msprop:Generator_TablePropName="Requests" msprop:Generator_RowDeletingName="RequestsRowDeleting" msprop:Generator_RowChangingName="RequestsRowChanging" msprop:Generator_RowEvHandlerName="RequestsRowChangeEventHandler" msprop:Generator_RowDeletedName="RequestsRowDeleted" msprop:Generator_UserTableName="Requests" msprop:Generator_RowChangedName="RequestsRowChanged" msprop:Generator_RowEvArgName="RequestsRowChangeEvent" msprop:Generator_RowClassName="RequestsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RequestStatus" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnRequestStatus" msprop:Generator_ColumnPropNameInRow="RequestStatus" msprop:Generator_ColumnPropNameInTable="RequestStatusColumn" msprop:Generator_UserColumnName="RequestStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="User" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnUser" msprop:Generator_ColumnPropNameInRow="User" msprop:Generator_ColumnPropNameInTable="UserColumn" msprop:Generator_UserColumnName="User" type="xs:string" minOccurs="0" />
+              <xs:element name="RequestID" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnRequestID" msprop:Generator_ColumnPropNameInRow="RequestID" msprop:Generator_ColumnPropNameInTable="RequestIDColumn" msprop:Generator_UserColumnName="RequestID" type="xs:string" minOccurs="0" />
+              <xs:element name="LeaveType" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnLeaveType" msprop:Generator_ColumnPropNameInRow="LeaveType" msprop:Generator_ColumnPropNameInTable="LeaveTypeColumn" msprop:Generator_UserColumnName="LeaveType" type="xs:string" minOccurs="0" />
+              <xs:element name="RequestDuration" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnRequestDuration" msprop:Generator_ColumnPropNameInRow="RequestDuration" msprop:Generator_ColumnPropNameInTable="RequestDurationColumn" msprop:Generator_UserColumnName="RequestDuration" type="xs:string" minOccurs="0" />
+              <xs:element name="CreationDate" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnCreationDate" msprop:Generator_ColumnPropNameInRow="CreationDate" msprop:Generator_ColumnPropNameInTable="CreationDateColumn" msprop:Generator_UserColumnName="CreationDate" type="xs:string" minOccurs="0" />
+              <xs:element name="DurationFrom" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDurationFrom" msprop:Generator_ColumnPropNameInRow="DurationFrom" msprop:Generator_ColumnPropNameInTable="DurationFromColumn" msprop:Generator_UserColumnName="DurationFrom" type="xs:string" minOccurs="0" />
+              <xs:element name="DurationTo" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDurationTo" msprop:Generator_ColumnPropNameInRow="DurationTo" msprop:Generator_ColumnPropNameInTable="DurationToColumn" msprop:Generator_UserColumnName="DurationTo" type="xs:string" minOccurs="0" />
+              <xs:element name="BackToWork" msprop:Generator_ColumnVarNameInTable="columnBackToWork" msprop:Generator_ColumnPropNameInRow="BackToWork" msprop:Generator_ColumnPropNameInTable="BackToWorkColumn" msprop:Generator_UserColumnName="BackToWork" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

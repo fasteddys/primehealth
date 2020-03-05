@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE54F77A-E3F1-4710-8592-6B5A88534888}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HRMS.DTOs</RootNamespace>
+    <AssemblyName>HRMS.DTOs</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseDTO.cs" />
+    <Compile Include="Business\AdjustEntitlementDTO.cs" />
+    <Compile Include="Business\AppovalFlowAddUserValidationDTO.cs" />
+    <Compile Include="Business\AttachmentDTO.cs" />
+    <Compile Include="Business\ApprovedBySystemDTO.cs" />
+    <Compile Include="Business\RequestCancelDTO.cs" />
+    <Compile Include="Business\DeletedReasonInputDTO.cs" />
+    <Compile Include="Business\DeletedReasonOutputDTO.cs" />
+    <Compile Include="Business\EntitlementChangedByDTO.cs" />
+    <Compile Include="Business\MonthlyEffectiveAccuredLeaveTypesDTO.cs" />
+    <Compile Include="Business\PendingRequestInputDTO.cs" />
+    <Compile Include="Business\PendingRequestOutputDTO.cs" />
+    <Compile Include="Business\RequestDeletionDTO.cs" />
+    <Compile Include="Business\RequestHandlerDTO.cs" />
+    <Compile Include="Business\OfficialHolidaysInputDTO.cs" />
+    <Compile Include="Business\OfficialHolidaysOutputDTO.cs" />
+    <Compile Include="Business\RejectionReasonInputDTO.cs" />
+    <Compile Include="Business\RejectionReasonOutputDTO.cs" />
+    <Compile Include="Business\RequestHandlerHours.cs" />
+    <Compile Include="Business\CompanyDTO.cs" />
+    <Compile Include="Business\UserDepartmentDTO.cs" />
+    <Compile Include="Business\UserEntitlementChangesFilterDTO.cs" />
+    <Compile Include="Business\RequestAttachmentSavingDTO.cs" />
+    <Compile Include="Business\LeaveTypeAdditionContainerDTO.cs" />
+    <Compile Include="Business\ApprovalFlowEmployeeCountDTO.cs" />
+    <Compile Include="Business\ApprovalFlowStepDTO.cs" />
+    <Compile Include="Business\ApprovalFlowDTO.cs" />
+    <Compile Include="Business\ApprovalFlowContanerDTO.cs" />
+    <Compile Include="Business\UserDataDropDownDTO.cs" />
+    <Compile Include="Business\AccessControlUserDTO.cs" />
+    <Compile Include="Business\ManagerPendingRequests.cs" />
+    <Compile Include="Business\LeavesTypeFieldsDTO.cs" />
+    <Compile Include="Business\LeaveTypeMonthlyAaccuralDaysDTO.cs" />
+    <Compile Include="Business\LeaveTypeRestrictionDTO.cs" />
+    <Compile Include="Business\RestrictedEntity.cs" />
+    <Compile Include="Business\LeaveTypeRequestDurationLimitDTO.cs" />
+    <Compile Include="Business\LeaveTypeFieldDTO.cs" />
+    <Compile Include="Business\LeaveTypeFieldsVisibility.cs" />
+    <Compile Include="Business\GenderDTO.cs" />
+    <Compile Include="Business\ContractTypeDTO.cs" />
+    <Compile Include="Business\LeaveTypeDropDownsDTO.cs" />
+    <Compile Include="Business\LeaveTypeAccuralPeriodsDTO.cs" />
+    <Compile Include="Business\LeaveTypeDTO.cs" />
+    <Compile Include="Business\LeaveTypeEntitlementSourceDTO.cs" />
+    <Compile Include="Business\LeaveTypeEntitlementTypeDTO.cs" />
+    <Compile Include="Business\LeaveTypeFirstAccuralMethodsDTO.cs" />
+    <Compile Include="Business\LeaveTypeGainingEligibilityMethodDTO.cs" />
+    <Compile Include="Business\LeaveTypeMinOneDayDurationDTO.cs" />
+    <Compile Include="Business\LeaveTypePartialDurationUnitDTO.cs" />
+    <Compile Include="Business\LeaveTypeProrateCalculationModeDTO.cs" />
+    <Compile Include="Business\LeaveTypeProrateMethodDTO.cs" />
+    <Compile Include="Business\UserEntitlementChangesSearchResultDTO.cs" />
+    <Compile Include="Business\UserEntitlementsDTO.cs" />
+    <Compile Include="Business\UserEntitlementSearchResultDTO.cs" />
+    <Compile Include="Business\UserInformationOutputDTO.cs" />
+    <Compile Include="Business\UserOrganizationCardDTO.cs" />
+    <Compile Include="Business\UsersInformationInputDTO.cs" />
+    <Compile Include="Business\UsersInformationOutputDTO.cs" />
+    <Compile Include="Business\WorkingWeekCountDTO.cs" />
+    <Compile Include="Business\WorkingWeekDetailsContanerDTO.cs" />
+    <Compile Include="Business\UserWorkingWeekDTO.cs" />
+    <Compile Include="Business\WorkingWeekDetailsDTO.cs" />
+    <Compile Include="Business\WorkingWeekDTO.cs" />
+    <Compile Include="Business\HRViewRequestsFilterDTO.cs" />
+    <Compile Include="Business\DeparmentCountDTO.cs" />
+    <Compile Include="Business\DepartmentIDListDTO.cs" />
+    <Compile Include="Business\ServicesDTO.cs" />
+    <Compile Include="Business\AccessAdministrationDTO.cs" />
+    <Compile Include="Business\RequestDetailsDTO.cs" />
+    <Compile Include="Business\LoginUserDTO.cs" />
+    <Compile Include="Business\RequestEntitlmentDTO.cs" />
+    <Compile Include="Business\LeaveTypeConsiderationAsDTO.cs" />
+    <Compile Include="Business\LeaveDurationUnitDTO.cs" />
+    <Compile Include="Business\LeaveRequestDTO.cs" />
+    <Compile Include="Business\ManagerActionDTO.cs" />
+    <Compile Include="Business\RequestDetailsView.cs" />
+    <Compile Include="Business\SubDepartmentDTO.cs" />
+    <Compile Include="Business\DepartmentDTO.cs" />
+    <Compile Include="Business\RequestStatusDTO.cs" />
+    <Compile Include="Business\UserCardDTO.cs" />
+    <Compile Include="Business\UsersDepartmentDTO.cs" />
+    <Compile Include="Business\ViewRequestsFilterDTO.cs" />
+    <Compile Include="Business\ViewRequestDTO.cs" />
+    <Compile Include="Business\ProfilePictureDTO.cs" />
+    <Compile Include="Business\NewRequestDTO.cs" />
+    <Compile Include="Business\RequestDTO.cs" />
+    <Compile Include="Business\TimeAttendanceParametersDTO.cs" />
+    <Compile Include="Business\ManagerToSubordinatesDTO.cs" />
+    <Compile Include="Business\UserEntitlementChanges.cs" />
+    <Compile Include="Business\LeaveTypeEntitlement.cs" />
+    <Compile Include="Business\UserprofileDTO.cs" />
+    <Compile Include="Business\NormalUsersDTO.cs" />
+    <Compile Include="Business\UserDTO.cs" />
+    <Compile Include="Business\UserSubDepartmentsDTO.cs" />
+    <Compile Include="Business\WorkFlowname.cs" />
+    <Compile Include="Business\ManagerSubDepartmentsDTO.cs" />
+    <Compile Include="Business\ManagerUsersDTO.cs" />
+    <Compile Include="Business\ListIDDTO.cs" />
+    <Compile Include="Business\SubDepartmentCountDTO.cs" />
+    <Compile Include="Business\SubDepartmentIDListDTO.cs" />
+    <Compile Include="Business\UserPostionDTO.cs" />
+    <Compile Include="Business\ManagerDTO.cs" />
+    <Compile Include="Business\PostionDTO.cs" />
+    <Compile Include="Business\DailyAttendanceDTO.cs" />
+    <Compile Include="Business\LoginDTO.cs" />
+    <Compile Include="Business\UserSubDepartmentDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

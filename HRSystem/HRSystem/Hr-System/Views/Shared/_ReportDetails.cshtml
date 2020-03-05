@@ -1,0 +1,116 @@
+﻿@model Hr_System.Models.DailyReport
+@{
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Report Details</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="row" hidden="hidden">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("ID")
+                </div>
+                <div class="col-sm-10">
+                    @Html.HiddenFor(model => model.ID, new { @id = "ReqID" })
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Name")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.UserName)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Department")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.Department)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Day")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.Day)
+                </div>
+            </div>
+        </div>
+       <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Report Status")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.RequestStatus)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Daily Achievement")
+                </div>
+                <div class="col-md-7 col-sm-10 col-xs-12">
+                    <textarea class="form-control col-md-7 col-xs-12" rows="10" cols="50">@Html.DisplayFor(model => model.DailyWork)</textarea>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnApproveByTeamLeader" name="BtnApproveByTeamLeader" value="Approve By Team Leader" class="btn btn-round btn-success" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnRejectByTeamLeader" name="BtnRejectByTeamLeader" value="Reject By Team Leader" class="btn btn-round btn-danger" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnApproveBySupervisor" name="BtnApproveBySupervisor" value="Approve By Supervisor" class="btn btn-round btn-success" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnRejectBySupervisor" name="BtnRejectBySupervisor" value="Reject By Supervisor" class="btn btn-round btn-danger" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnApproveByManager" name="BtnApproveByManager" value="Reviewed" class="btn btn-round btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

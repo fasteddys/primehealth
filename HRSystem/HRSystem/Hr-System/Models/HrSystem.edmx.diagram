@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="476a4f22e3e049ed9427d4485e8f22f8" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="HRSystemModel.DailyReport" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.DepartmentTB" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.GreenPointsReport" Width="1.5" PointX="5.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.Notification" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.OffHoliday" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.OverTime" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.ProjectMember" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.Project" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.ProjectsResource" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.ProjectsTask" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.RedPointsReport" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.RequestHandler" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.SubDep" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.sysdiagram" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="HRSystemModel.FK_SubDep_DepartmentTB" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRSystemModel.EmpEvent" Width="1.5" PointX="11" PointY="13.25" />
+        <EntityTypeShape EntityType="HRSystemModel.Event" Width="1.5" PointX="13.375" PointY="12" />
+        <AssociationConnector Association="HRSystemModel.FK_EmpEvents_Events" />
+        <EntityTypeShape EntityType="HRSystemModel.DailyPointsReport" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="HRSystemModel.Request" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HRSystemModel.BioStar5" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HRSystemModel.accountTB" Width="2.125" PointX="7.375" PointY="15.125" />
+        <AssociationConnector Association="HRSystemModel.FK_EmpEvents_accountTB" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

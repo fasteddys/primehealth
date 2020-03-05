@@ -1,0 +1,49 @@
+﻿@model Hr_System.Models.SubDep
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+}
+
+
+<strong>Create New Sub-Department</strong>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ChosenDepartment">
+                Department Name <span class="required">*</span>
+            </label>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                @Html.DropDownList("DepartmentID", null, new { @id = "ChosenDepartment", @name = "DepartmentID" })
+                @Html.ValidationMessageFor(model => model.DepartmentID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="SubDepartmentName">
+                Sub-Department Name <span class="required">*</span>
+            </label>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <input type="text" id="SubDepartmentName" name="SubDepartmentName" class="form-control col-md-7 col-xs-12" />
+                @Html.ValidationMessageFor(model => model.SubDepartmentName)
+            </div>
+        </div>
+        <div class="ln_solid">
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <br />
+                    <button class="btn btn-round btn-success" type="submit" value="Create New Sub-Department "> Create New Sub-Department</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

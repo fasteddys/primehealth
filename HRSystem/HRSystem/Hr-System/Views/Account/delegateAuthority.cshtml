@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Hr_System.Models.accountTB>
+@{
+    ViewBag.Title = "DelegateAuthority";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnsubmit").click(function ()
+            {
+                if ($("#TransferablePerson").val() == "----")
+                {
+                    alert("Please Choose a Person to delegate");
+                }
+                else
+                {
+                    var data = {
+                        theAuthorityTransfer: $("#TransferablePerson").val()
+                    };
+                    var x = JSON.stringify(data);
+                    $.ajax({
+                        url: '@Url.Action("DelegateMyAuth", "Account")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data) {
+                            alert(data);
+                        }
+                    });
+                    location.reload();
+                }
+            })
+            $("#btnCancel").click(function () {
+                $.ajax({
+                    url: '@Url.Action("DeleteMyAuth", "Account")',
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+                location.reload();
+            })
+        })
+    </script>
+}
+
+<div class="form-horizontal">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="alert info" style="display:none" id="divalret">
+                <span id="divinfo" class="closebtn">&times;</span>
+
+            </div>
+            <div class="x_title">
+                <br />
+                <h2>Activate Delegation Module</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu"></ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ReqSubType">
+                           Delegate To<span class="required"></span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            
+                            <select tabindex="-1" class="select2_group form-control" style="display: normal;" name="TransferablePerson" id="TransferablePerson">
+                                <optgroup label="Choose One">
+                                    <option value="----">----</option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value="@item.EmpName" >@item.EmpName</option>
+                                    }
+                                </optgroup>
+                            </select>
+                        </div>
+                     </div>
+                    <div class="ln_solid">
+                        <div class="form-group">
+                            <br />
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button class="btn btn-round btn-success" type="submit" id="btnsubmit">Delegate To Selected User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="form-horizontal">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="alert info" style="display:none" id="divalret">
+                <span id="divinfo" class="closebtn">&times;</span>
+
+            </div>
+            <div class="x_title">
+                <br />
+                <h2>Deactivate Delegation Module</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <div class="form-horizontal">
+                        <div class="form-group">
+                            <br />
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button class="btn btn-round btn-success" type="submit" id="btnCancel">Cancel My Delegation</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

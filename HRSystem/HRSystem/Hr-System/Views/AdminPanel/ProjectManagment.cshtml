@@ -1,0 +1,250 @@
+﻿@model Hr_System.Models.ProjectMember
+@{
+    ViewBag.Title = "ProjectManagment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ProjectManagment</h2>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Plannig <small>Add Project Plan</small></h2>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <form class="form-horizontal form-label-left">
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                    Project Plan <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <textarea class="form-control col-md-7 col-xs-12" cols="20" id="ProjPlan" name="ProjPlan" rows="2" style="margin: 0px; width: 690px; height: 341px;"></textarea>
+                   @*// @Html.TextArea("ProjPlan", new { @class = "form-control col-md-7 col-xs-12" })*@
+                </div>
+            </div>
+        </form>
+        <div id="wizard" class="form_wizard wizard_horizontal">
+
+            <div class="actionBar"><button class="btn btn-default" type="submit" id="AddPlan" value="save"> Add Project Plain </button>
+</div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Tasks <small>Add New Task</small></h2>
+        <ul class="nav navbar-right panel_toolbox"></ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <form class="form-horizontal form-label-left">
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                    Task Name <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="TaskName" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                    Task Description <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <textarea class="form-control col-md-7 col-xs-12" cols="20" id="TaskDescription" name="TaskDescription" rows="2" style="margin: 0px; width: 749px; height: 237px;"></textarea>
+                </div>
+            </div>
+            <div class="form-group" id="tt">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                    start Date <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="StartFrom" class="form-control col-md-7 col-xs-12" type="text" name="StartFrom">
+                    <p id="dateoutput2"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                    Delivered Date <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="EndIn" class="form-control col-md-7 col-xs-12" type="text" name="EndIn">
+                    <p id="dateoutput1"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                    Assign To <span class="required">*</span>
+                </label>
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    @Html.DropDownList("TaskAssignee", ViewBag.ProjectMembers as SelectList, "--Select--", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                    Backup  <span class="required">*</span>
+                </label>
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    @Html.DropDownList("TaskBackup", ViewBag.ProjectMembers as SelectList, "--Select--", new { @class = "form-control" })
+                </div>
+            </div>
+        </form>
+        <div id="wizard" class="form_wizard wizard_horizontal">
+
+            <div class="actionBar">
+                <button class="btn btn-default" type="submit" id="AddTask" value="save"> Add New Task </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Add Resources <small> Documents</small></h2>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <form class="form-horizontal form-label-left">
+            <div class="form-group">
+                <input type='file' id="files" multiple="multiple" />
+               
+            </div>
+        </form>
+        <div id="wizard" class="form_wizard wizard_horizontal">
+
+            <div class="actionBar">
+               
+                <input class="btn btn-default" type="submit" name="Submit" id="upload" value="Upload" />
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <link rel="stylesheet" href="/resources/demos/style.css">
+ <script src="js/bootstrap.min.js"></script>
+  <script src="js/chartjs/chart.min.js"></script>
+<!-- bootstrap progress js -->
+<script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+<script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+<!-- icheck -->
+<script src="js/icheck/icheck.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- form wizard -->
+<script type="text/javascript" src="js/wizard/jquery.smartWizard.js"></script>
+<script type="text/javascript">
+    $body = $("body");
+    $(document).on({
+        ajaxStart: function () { $body.addClass("loading"); },
+        ajaxStop: function () { $body.removeClass("loading"); }
+    });
+    $(document).ready(function () {
+
+
+        $("#EndIn").datepicker({
+            dateFormat: "dd-mm-yy",
+            onSelect: function (dateText, inst) {
+                var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+                var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                date.setDate(date.getDate() + 7);
+                var dateText2 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                $("#dateoutput1").html("Chosen date is <b>" + dateText1);
+            }
+        });
+        $("#StartFrom").datepicker({
+            dateFormat: "dd-mm-yy",
+            onSelect: function (dateText, inst) {
+                var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+                var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                date.setDate(date.getDate() + 7);
+                var dateText2 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                $("#dateoutput2").html("Chosen date is <b>" + dateText1);
+            }
+        });
+        $("#AddPlan").click(function () {
+
+            var data = {
+                ID:'@ViewBag.ID',
+                Plan: $("#ProjPlan").val(),
+
+            };
+
+            $.ajax({
+                url: "@Url.Action("ProjectManagment", "AdminPanel")",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.toString() == "Successfully Saved!") {
+                        $("#ProjPlan").val('');
+
+                        alert("Plan has been Add sucessfully");
+                    }
+                    else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    alert(data);
+                }
+            });
+        })
+        $("#AddTask").click(function () {
+
+            var data = {
+
+                TaskName: $("#TaskName").val(),
+                TaskDescription: $("#TaskDescription").val(),
+                TaskFrom: $("#StartFrom").val(),
+                TaskTo: $("#EndIn").val(),
+                TaskAssignee: $("#TaskAssignee").val(),
+                TaskBackup: $("#TaskBackup").val(),
+                ProjectName: '@ViewBag.ProjectName',
+                TaskCreator: "@(Session["UserName"])",
+                Notification: "@(Session["UserName"])" + "has assigned you a new task with title" + $("#TaskName").val(),
+            };
+
+            $.ajax({
+                url: "@Url.Action("AddProjectTask", "AdminPanel")",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.toString() == "Success") {
+                        $("#TaskName").val('');
+                        $("#TaskDescription").val('');
+                        $("#TaskBackup").val('');
+                        $("#TaskAssignee").val('');
+
+                        alert("Task has been Add sucessfully");
+                    }
+                    else {
+                        alert("error");
+                    }
+                },
+                Error: function () {
+                    alert(data);
+                }
+            });
+        })
+
+
+
+    });
+</script>

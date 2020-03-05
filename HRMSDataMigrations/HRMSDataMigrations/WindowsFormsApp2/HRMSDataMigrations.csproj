@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{42D627EF-ADF5-4261-BDEF-53F3EE79ED7E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp2</RootNamespace>
+    <AssemblyName>WindowsFormsApp2</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\mohamed.abdelalem\Desktop\WebSite2\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>5BEBA4BD7880C42FD567098A7A5557FAD1CB550F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>HRMSDataMigrations_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\StaticEnums.cs" />
+    <Compile Include="InsertData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertData.Designer.cs">
+      <DependentUpon>InsertData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AccessControlUser.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ApprovalFlow.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ApprovalFlowDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ApprovalFlowRequestDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ApprovalFlowUserDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Company.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Configuration.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ContractTypeDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Department.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Device.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DeviceOwner.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DeviceTypeDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EntitlementChangedByDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FailedTransaction.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GenderTypeDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\HRMSEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\HRMSEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\HRMSEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveType.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeAccuralPeriodDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeAccuralRule.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeCarryOverRule.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeConsiderationAsDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeDurationUnitDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeEntitlementSourceDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeEntitlementTypeDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeField.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeFieldsDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeFieldsVisibilityDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeFirstAccuralMethodDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeGainingEligibilityMethodDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeMinOneDayDurationDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeMonthlyAaccuralDaysDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypePartialDuration.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypePartialDurationUnitDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeProrateCalculationModeDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeProrateMethodDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeRestrictedContractType.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeRestrictedDep.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeRestrictedEmployee.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeRestrictedGender.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeRestrictedSubDep.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeRestriction.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LeaveTypeRestrictionTypeDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Level.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LogsDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LogTypeDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Manager.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OfficialHoliday.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Position.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Request.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RequestActionDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RequestAttachment.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RequestDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RequestDetailsTypesDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RequestHandler.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RequestHistory.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RequestStatu.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ServicesDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SubDepartment.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TimeAttendance.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserEntitlement.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserEntitlementChange.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WeekDaysDIM.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WorkingWeek.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WorkingWeekDetail.cs">
+      <DependentUpon>HRMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="InsertData.resx">
+      <DependentUpon>InsertData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="HRMSDataMigrations_TemporaryKey.pfx" />
+    <EntityDeploy Include="Model\HRMSEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HRMSEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\HRMSEntities.edmx.diagram">
+      <DependentUpon>HRMSEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\HRMSEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HRMSEntities.edmx</DependentUpon>
+      <LastGenOutput>HRMSEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\HRMSEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HRMSEntities.edmx</DependentUpon>
+      <LastGenOutput>HRMSEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,162 @@
+﻿@model Hr_System.Models.Request
+
+@{
+    ViewBag.Title = "requestDetailsForTeamLeader";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="RequestDetails" >
+
+    @Html.Partial("_RequestDetails")
+    <br />
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-3">
+                <input type="button" style="display:none" id="btndelete" name="btndelete" value="Delete Excuse" class="btn btn-round btn-success" />
+            </div>
+
+        </div>
+    </div>
+    <br />
+
+</div>
+@*<button class="btn btn-round btn-primary" type="submit" id="BTPrint" value="save" onclick="@Url.Action("Report", new { type = "PDF ", ID = @ViewBag.ID})"> Print </button>*@
+@if (ViewBag.status == "Approved")
+{
+    <div><a href="@Url.Action("Report", new { type = "PDF ", ID = @ViewBag.ID})" target="_blank">View Excuse</a></div>
+
+}
+else
+{
+    
+}
+
+<link href="../assets/styles.min.css" rel="stylesheet">
+<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var data = {
+                ID: '@ViewBag.ID',
+            };
+            $.ajax({
+                url: "@Url.Action("getRequestStatus", "Managment")",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.toString() == "PendingTeamLeaderApproval" || data.toString() == "PendingSeniorApproval") {
+                        $("#Teamleader").val('');
+                    }
+                    else if (data.toString() == "PendingSupervisorApproval" || data.toString() == "PendingSupervisorBackupApproval") {
+
+                        $("#Teamleader").val('Approved By @ViewBag.TeamLeader');
+                    }
+                    else if (data.toString() == "PendingManagerApproval") {
+
+                        $("#Teamleader").val('Approved By @ViewBag.Supervisor');
+                    }
+                    else if (data.toString() == "PendingDuputyManagerApproval") {
+
+                        $("#Teamleader").val(' Pending @ViewBag.DuputyManager');
+                    }
+                    else if (data.toString() == "RejectedByTeamLeader") {
+                        $("#Teamleader").val('REJECTED BY @ViewBag.TeamLeader');
+                    }
+                    else if (data.toString() == "RejectedBySupervisor") {
+
+                        $("#Teamleader").val('REJECTED BY @ViewBag.Supervisor');
+                    }
+                    else if (data.toString() == "Rejected") {
+
+                        $("#Manager").val('REJECTED BY @ViewBag.Manager');
+
+                    }
+                    else if (data.toString() == "Approved") {
+
+                        $("#Teamleader").val(' @ViewBag.Manager');
+                    }
+                    else {
+                        alert("Some Thing Went Wrong Please Contact Your System Developer ");
+                    }
+                },
+                error: function () {
+                    alert("Error! Please try again");
+                }
+            });
+
+
+            if ('@Session["UserType"]' == "Normal") {
+                if (('@ViewBag.UserName') == ('@Session["UserName"]')) {
+                    if ('@Session["MyTeamLeader"]' == "") {
+                        if ('@Session["MySupervisor"]' == "") {
+                            if (('@ViewBag.status') == "PendingManagerApproval" || ('@ViewBag.status') == "PendingDuputyManagerApproval") {
+                                $("#btndelete").show();
+                            }
+                        }
+                        else {
+                            if (('@ViewBag.status') == "PendingSupervisorApproval" || ('@ViewBag.status') == "PendingSupervisorBackupApproval") {
+                                $("#btndelete").show();
+                            }
+                        }
+                    }
+                    else {
+                        if (('@ViewBag.status') == "PendingTeamLeaderApproval" || ('@ViewBag.status') == "PendingSeniorApproval") {
+                            $("#btndelete").show();
+                        }
+                    }
+                }
+            }
+
+            if ('@Session["UserType"]' == "TeamLeader") {
+                if (('@ViewBag.UserName') == ('@Session["UserName"]')) {
+                    if (('@ViewBag.status') == "PendingSupervisorApproval" || ('@ViewBag.status') == "PendingSupervisorBackupApproval") {
+                        $("#btndelete").show();
+                    }
+                }
+            }
+
+            if ('@Session["UserType"]' == "Supervisor" || '@Session["UserType"]' == "Deputy Manager") {
+                if (('@ViewBag.UserName') == ('@Session["UserName"]')) {
+                    if (('@ViewBag.status') == "PendingManagerApproval" || ('@ViewBag.status') == "PendingDuputyManagerApproval") {
+                        $("#btndelete").show();
+                    }
+                }
+            }
+
+            $("#btndelete").click(function () {
+                Request = {
+                    ID: '@ViewBag.ID',
+                }
+                var x = JSON.stringify(Request);
+                    $.ajax({
+
+                        url: '@Url.Action("DeleteExcuse", "User")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data, status) {
+                            alert(data);
+                        }
+
+                    });
+                    window.location = '@Url.Action("getAllMyPendingExcusesRequests", "User")'
+                
+            })
+
+        })
+
+        $("#BTPrint").live("click", function () {
+            var divContents = $("#RequestDetails").html();
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write(divContents);
+            printWindow.document.close();
+            printWindow.print();
+
+        });
+    </script>
+}

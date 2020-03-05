@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HRMS.BLL</RootNamespace>
+    <AssemblyName>HRMS.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbObjects\StoredFunctions.cs" />
+    <Compile Include="Logic\Helpers\DirectoryIdentity.cs" />
+    <Compile Include="Logic\Helpers\Logger.cs" />
+    <Compile Include="Logic\Shared Logic\SharedUserEntitlementBLL.cs" />
+    <Compile Include="Logic\Shared Logic\UserDetailsProfileBLL.cs" />
+    <Compile Include="Logic\Shared Logic\UserLoginBLL.cs" />
+    <Compile Include="Logic\Shared Logic\UserTimeAttendanceBLL.cs" />
+    <Compile Include="Logic\Shared Logic\SharedUserProfileBLL.cs" />
+    <Compile Include="Logic\Shared Logic\UserPositionBLL.cs" />
+    <Compile Include="Logic\Tables\RequestHistoryBLL.cs" />
+    <Compile Include="Logic\Tables\CompanyBLL.cs" />
+    <Compile Include="Logic\Tables\CompanyOfficialHolidayBLL.cs" />
+    <Compile Include="Logic\Tables\MonthlyEffectiveAccuredLeaveTypesBLL.cs" />
+    <Compile Include="Logic\Tables\RequestHoursHandlerBLL.cs" />
+    <Compile Include="Logic\Tables\EntitlementChangedByDIMBLL.cs" />
+    <Compile Include="Logic\Tables\OneDayMinDurationBLL.cs" />
+    <Compile Include="Logic\Tables\RequestBLL.cs" />
+    <Compile Include="Logic\Tables\RequestHandlerBLL.cs" />
+    <Compile Include="Logic\Tables\RequestAttachmentBLL.cs" />
+    <Compile Include="Logic\Tables\OfficialHolidayBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypePartialDurationBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeMonthlyAaccuralDaysDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeRestrictionBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeRestrictionTypeBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeRestrictedGenderBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeRestrictedSubDepBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeRestrictedDepBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeRestrictedEmployeeBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeRestrictedContractTypeBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeCarryOverRuleBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeAccuralRuleBLL.cs" />
+    <Compile Include="Logic\Tables\GenderTypeBLL.cs" />
+    <Compile Include="Logic\Tables\ContractTypeBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeAccuralPeriodDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeEntitlementSourceDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeEntitlementTypeDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeFieldsBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeFieldsDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeFieldsVisibilityDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeFirstAccuralMethodDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeGainingEligibilityMethodDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeMinOneDayDurationDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypePartialDurationUnitDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeProrateCalculationModeDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeProrateMethodDIMBLL.cs" />
+    <Compile Include="Logic\Tables\WorkingWeekDetailsBLL.cs" />
+    <Compile Include="Logic\Tables\WorkingWeekBLL.cs" />
+    <Compile Include="Logic\Tables\ConfigurationBLL.cs" />
+    <Compile Include="Logic\Tables\RequesStatusBLL.cs" />
+    <Compile Include="Logic\Tables\AccessControlUserBLL.cs" />
+    <Compile Include="Logic\Tables\ApprovalFlowBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeConsiderationAsDIMBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeDurationUnitDIMBLL.cs" />
+    <Compile Include="Logic\Tables\ServiceBLL.cs" />
+    <Compile Include="Logic\Tables\UserEntitlementBLL.cs" />
+    <Compile Include="Logic\Tables\UserEntitlementChangesBLL.cs" />
+    <Compile Include="Logic\Tables\LeaveTypeBLL.cs" />
+    <Compile Include="Logic\Tables\ApprovalFlowDetailsUserBLL.cs" />
+    <Compile Include="Logic\Tables\SubDepartmentBLL.cs" />
+    <Compile Include="Logic\Tables\DepartmentBLL.cs" />
+    <Compile Include="Logic\Tables\RequestDetailsBLL.cs" />
+    <Compile Include="Logic\Tables\RequestApprovalFlowDetailBLL.cs" />
+    <Compile Include="Logic\Tables\ApprovalFlowDetailsBLL.cs" />
+    <Compile Include="Logic\Tables\ManagerBLL.cs" />
+    <Compile Include="Logic\Tables\DeviceBLL.cs" />
+    <Compile Include="Logic\Tables\PostionBLL.cs" />
+    <Compile Include="Logic\Tables\TimeAttendanceBLL.cs" />
+    <Compile Include="Logic\Tables\UserBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticData\StaticEnums.cs" />
+    <Compile Include="StaticData\StaticLists.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HRMS.DAL\HRMS.DAL.csproj">
+      <Project>{3ea492ca-6dcb-477e-94a0-51ef10192535}</Project>
+      <Name>HRMS.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRMS.DTOs\HRMS.DTOs.csproj">
+      <Project>{ae54f77a-e3f1-4710-8592-6b5a88534888}</Project>
+      <Name>HRMS.DTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRMS.Entities\HRMS.Entities.csproj">
+      <Project>{82416b4f-c731-401d-9d4f-30f939114d1b}</Project>
+      <Name>HRMS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRMS.GlobalResources\HRMS.GlobalResources.csproj">
+      <Project>{76675779-7e34-4a1a-abe2-182ff242175d}</Project>
+      <Name>HRMS.GlobalResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRMS.Utilities\HRMS.Utilities.csproj">
+      <Project>{ae8a1b7b-3ef8-44b5-a346-238611d53407}</Project>
+      <Name>HRMS.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logic\Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

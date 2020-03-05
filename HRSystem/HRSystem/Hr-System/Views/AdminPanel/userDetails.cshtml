@@ -1,0 +1,458 @@
+﻿@model Hr_System.Models.accountTB
+@{
+    ViewBag.Title = "userDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.Name <small>Profile</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a href="#"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu"></ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 invoice-header">
+            <h1>
+                @ViewBag.Name
+                @*<small class="pull-right"> Date: @DateTimeOffset.Now</small>*@
+            </h1>
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+
+            <address>
+                <strong>User Details</strong>
+                <br>HireDate : @ViewBag.HireDate
+                <p id="managerDep">
+                    Department: @ViewBag.Department
+                    <br>Management : @ViewBag.Management
+            </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+
+            <address>
+                <strong>Leaving Details</strong>
+                <br>Remainig Excuse hours: @ViewBag.RemainingExcuseHours
+                <br>Transferred Leaves (Leaves Balance): @ViewBag.OldVacation
+                <br>Remaining Annual Vacations (Annual + Casual) : @ViewBag.RemainigAnnaulVacations
+                <br>Remaining Casual Vacations (Casual Only) : @ViewBag.RemainigVacations
+
+            </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+            @*<b>Points #007612</b>
+                <br>
+                <br>
+                <b>Order ID:</b> 4F3S8J
+                <br>
+                <b>Payment Due:</b> 2/22/2014
+                <br>
+                <b>Account:</b> 968-34567*@
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <div class="x_content" id="managerDashboard">
+
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Dashboard</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+
+                <a href="/User/GetUsersProject" class="btn btn-app">
+
+                    <span class="badge bg-green">@ViewBag.ProjectsNo</span>
+                    <i class="fa fa-users"></i>Projects
+                </a>
+                @*<a href="/OverTime/getMyOverTime"  class="btn btn-app">
+                        <span class="badge bg-orange">New</span>
+                        <i class="fa fa-inbox"></i> OverTime
+                    </a>*@
+                @*<a href="/Vacation/GetMyApprovedManagerVacationForReview" class="btn btn-app">
+                        <span class="badge bg-blue">New</span>
+                        <i class="fa fa-sign-out"></i> Leaves
+                    </a>*@
+                @*<a class="btn btn-app">
+                        <span class="badge bg-orange">coming soon</span>
+                        <i class="fa fa-envelope"></i> Messages
+                    </a>*@
+
+            </div>
+        </div>
+
+        <div class="x_content">
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Skills</h2>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <ul class="list-unstyled user_data">
+                        <li>
+                            <p>Green Points (@ViewBag.Green)</p>
+                            <div class="progress progress_sm">
+
+                                <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="@ViewBag.Green" aria-valuenow="49" style="width: 30%;"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Red Points (@ViewBag.Red)</p>
+                            <div class="progress progress_sm">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" data-transitiongoal="@ViewBag.Red" aria-valuenow="69" style="width: 30%;"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="EditPoints">
+                                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                            Green Points<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="GreenPoints" name="GreenPoints" required="required" value="@ViewBag.Green" class="form-control col-md-7 col-xs-12" data-parsley-id="1786"><ul class="parsley-errors-list" id="parsley-id-1786"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                            Red Points <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="RedPoints" name="RedPoints" required="required" value="@ViewBag.Red" class="form-control col-md-7 col-xs-12" data-parsley-id="1786"><ul class="parsley-errors-list" id="parsley-id-1786"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                            Add Comment to user <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <textarea class="form-control col-md-7 col-xs-12" cols="20" id="PointsComment" name="PointsComment" rows="2" style="margin: 0px; width: 500px; height: 151px;"></textarea>
+
+                                        </div>
+                                        <br />
+                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                            <button class="btn btn-success" type="submit" id="editpoint" value="save"> Add Points </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>User Report over this Year <small>Sessions</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <canvas id="canvas_bar" height="202" width="405" style="width: 405px; height: 50px;"></canvas>
+            </div>
+        </div>
+
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Points Report <small>Reports</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="/AdminPanel/PointsHistory?User=@ViewBag.Name">View All Points History</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            @*<div class="x_content">
+                    <canvas id="canvas_bar_daily" height="202" width="405" style="width: 405px; height: 50px;"></canvas>
+                </div>*@
+            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                <div class="x_content">
+                    <ul class="list-unstyled timeline">
+                        @foreach (var item in ViewBag.Pointsdata)
+                                {
+                            <li>
+                                <div class="block">
+                                    <div class="tags">
+                                        <a href="" class="tag">
+                                            <span>@item.RatingDate</span>
+                                        </a>
+                                    </div>
+                                    <div class="block_content">
+                                        <h2 class="title">
+                                            <a>@item.Creator add to @item.UserName "@item.RedPoints RedPoints And @item.GreenPoints GreenPoints" </a>
+                                        </h2>
+                                        <div class="byline">
+                                            <span>@item.RatingDate</span> by <a>@item.Creator</a>
+                                        </div>
+                                        <p class="excerpt">
+                                            Comment :@item.Comment
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                                }
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="js/chartjs/chart.min.js"></script>
+<!-- bootstrap progress js -->
+<script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+<script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+<!-- icheck -->
+<script src="js/icheck/icheck.min.js"></script>
+<script src="js/custom.js"></script>
+<script>
+    //var UserType = "";
+    //$.getJSON("/AdminPanel/GetTypeOfUser", {}, function (data) {
+    //    UserType = String(data);
+    //    if (UserType == "Manager")
+    //    {
+    //        $("#managerDep").hide();
+    //        $("#managerDashboard").hide();
+
+    //    }
+    //})
+    var randomScalingFactor = function () {
+        return Math.round(Math.random() * 100)
+    };
+
+    var barChartData = {
+        labels: ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [
+            {
+
+
+                fillColor: "#26B99A",
+                strokeColor: "#26B99A",
+                highlightFill: "#36CAAB",
+                highlightStroke: "#36CAAB",
+                data: ['@ViewBag.Gjan', '@ViewBag.Gfeb', '@ViewBag.Gmarch', '@ViewBag.Gapril', '@ViewBag.Gmay', '@ViewBag.GJune', '@ViewBag.GJuly', '@ViewBag.GAug', '@ViewBag.GSep', '@ViewBag.GOct', '@ViewBag.GNov', '@ViewBag.GDec']
+            },
+            {
+                fillColor: "#9e2e39",
+                strokeColor: "#ce1d2f",
+                highlightFill: "#a70e1e",
+                highlightStroke: "#ee0f25",
+
+                data: ['@ViewBag.Rjan', '@ViewBag.Rfeb', '@ViewBag.Rmarch', '@ViewBag.Rapril', '@ViewBag.Rmay', '@ViewBag.RJune', '@ViewBag.RJuly', '@ViewBag.RAug', '@ViewBag.RSep', '@ViewBag.ROct', '@ViewBag.RNov', '@ViewBag.RDec']
+            }
+        ],
+    }
+                var barChartDataDaily;
+                var Labels = [];
+                var Greens = [];
+                var Reds = [];
+
+                $(document).ready(function () {
+                    if ('@Session["UserType"]' == "Normal" || '@Session["UserType"]' == "TeamLeader") {
+                        $("#EditPoints").hide();
+                    }
+
+            new Chart($("#canvas_bar").get(0).getContext("2d")).Bar(barChartData, {
+            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+            responsive: true,
+            barDatasetSpacing: 6,
+            barValueSpacing: 5
+        });
+
+
+        $.ajax({
+            url: "@Url.Action("GetDailyPointsGraph", "AdminPanel")",
+            data: { username: '@ViewBag.Name' },
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+            loadData(data);
+        },
+                    error: function () {
+            alert("Failed! Please try again.");
+        }
+                });
+
+                });
+
+                function loadData(data) {
+                    $.each(data, function (i, val) {
+                        Labels.push(val.RatingDate)
+                        Greens.push(val.GreenPoints)
+                        Reds.push(val.RedPoints)
+                    });
+                    barChartDataDaily = {
+
+                        labels: (Labels),
+                        datasets: [
+                            {
+                                fillColor: "#26B99A",
+                                strokeColor: "#26B99A",
+                                highlightFill: "#36CAAB",
+                                highlightStroke: "#36CAAB",
+                                data: (Greens)
+                            },
+                            {
+                                fillColor: "#9e2e39",
+                                strokeColor: "#ce1d2f",
+                                highlightFill: "#a70e1e",
+                                highlightStroke: "#ee0f25",
+
+                                data: (Reds)
+                            }
+                        ],
+                    }
+                    new Chart($("#canvas_bar_daily").get(0).getContext("2d")).Bar(barChartDataDaily, {
+                        tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                        responsive: true,
+                        barDatasetSpacing: 6,
+                        barValueSpacing: 5
+                    });
+                    alert(labels);
+                };
+            $("#editpoint").click(function () {
+              var data = {
+                  ID: '@ViewBag.ID',
+                  RedPoints: $("#RedPoints").val(),
+                  GreenPoints: $("#GreenPoints").val(),
+                  Comment: $("#PointsComment").val(),
+                  UserName: '@ViewBag.Name',
+                  Creator: '@(Session["UserName"])'
+              };
+                if ($("#RedPoints").val() > 100 || $("#RedPoints").val() < 0) {
+                    alert("Red Points are not vaild");
+                }
+                else if ($("#GreenPoints").val() > 100 || $("#GreenPoints").val() < 0) {
+                    alert("Green Points are not vaild");
+                }
+                else if ($("#GreenPoints").val() == 0 && $("#RedPoints").val()==0)
+                {
+                    alert("Both Points can not be 0");
+                }
+                else if ($("#PointsComment").val() == "" || $("#PointsComment").val() == " " || $("#PointsComment").val() == null) {
+                    alert("Please Enter a vaild comment");
+                }
+                else
+                {
+                $.ajax({
+                    url: "@Url.Action("AddDailyPointsReport", "AdminPanel")",
+                    type: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.toString() == "Point Edited Sucssefully") {
+                        alert("Points has been edited sucessfully");
+                        window.location.href = '@Url.Action("userDetails", "AdminPanel")';
+                    }
+                    else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    //alert(data);
+                }
+            });
+                }
+    })
+    @*$("#editpoint").click(function () {
+
+        var data = {
+            RedPoints: $("#RedPoints").val(),
+            GreenPoints: $("#GreenPoints").val(),
+            Comment: $("#PointsComment").val(),
+            UserName: '@ViewBag.Name',
+            Creator: '@(Session["UserName"])'
+        };
+            $.ajax({
+                url: "@Url.Action("AddDailyPointsReport", "AdminPanel")",
+                type: "POST",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                if (data.toString() == "Point Edited Sucssefully") {
+                    //alert("Points has been edited sucessfully");
+                    window.location.href = '@Url.Action("userDetails", "AdminPanel")';
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                //alert(data);
+            }
+        });
+
+    })*@
+                $(document).ready(function () {
+                });
+</script>

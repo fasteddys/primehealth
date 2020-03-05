@@ -1,0 +1,266 @@
+﻿
+@{
+    ViewBag.Title = "Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Configuration</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <div class="col-md-3 ConfgIcon">
+        <div id="hr1" class="card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Leave Types</h2>
+            </header>
+            <a href="@Url.Action("LeaveType","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="far fa-sun fa-7x ConfgIconAnimate"></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon">
+        <div class="card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Employees</h2>
+            </header>
+            <a href="@Url.Action("employees","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="far fa-user fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon">
+        <div class="card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Positions</h2>
+            </header>
+            <a href="@Url.Action("Positions","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-sitemap fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon">
+        <div class="card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Company Hierarchy</h2>
+            </header>
+            <a href="@Url.Action("CompanyHierarchy","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-users fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon">
+        <div class="card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Managers</h2>
+            </header>
+            <a href="@Url.Action("Managers","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-user-tie fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 ConfgIcon">
+        <div id="hr2" class="card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Approval Flow</h2>
+            </header>
+            <a href="@Url.Action("ApprovalFlow","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-exchange-alt fa-7x ConfgIconAnimate"></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon">
+        <div id="hr3" class="card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Import</h2>
+            </header>
+            <a href="@Url.Action("Import","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-arrow-down  fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon">
+        <div id="hr4" class="hr card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Link To AC</h2>
+            </header>
+            <a href="@Url.Action("LinkToAC","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-link  fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon ">
+        <div class="card card-primary ConfgIcon-disabled">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Permissions</h2>
+            </header>
+            <a href="@Url.Action("Permistions","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-shield-alt  fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 ConfgIcon">
+        <div class="card card-primary">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Holidays</h2>
+            </header>
+            <a href="@Url.Action("Holidays","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-tree   fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon">
+        <div class="card card-primary ConfgIcon-disabled ">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Working Week</h2>
+            </header>
+            <a href="@Url.Action("WorkingWeekData","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-user-clock fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3 ConfgIcon">
+        <div class="card card-primary ">
+            <header class="card-header ConfgIconHeader text-center ">
+                <h2 class="card-title ConfgIconHeader">Working Shift</h2>
+            </header>
+            <a href="@Url.Action("WorkingShiftData","Configuration")" class="">
+                <div class="card-body text-center">
+                    <span><i class="fa fa-user-clock fa-7x ConfgIconAnimate "></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <!-- end: page -->
+</section>
+<script>
+    $(document).ready(function () {
+        $("#LoadingDiv").delay(50).hide(0);
+    });
+</script>
+
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+
+<style>
+    .ConfgIconHeader {
+        background-color: white !important;
+        color: #0088cc !important;
+        border-color: white !important
+    }
+
+    .fa {
+        color: #0088cc !important;
+    }
+
+    .ConfgIcon {
+        margin-bottom: 15px;
+        float: left !important;
+    }
+
+    .ConfgIconAnimate:hover {
+        /*z-index: -1;*/
+        transform: scale(1.2);
+        /*font-size: 9em;*/
+        transition: .2s ease-out;
+        /*overflow:hidden;*/
+    }
+
+    .ConfgIcon-disabled {
+        cursor: not-allowed !important;
+        pointer-events: none;
+        /* for "disabled" effect */
+        opacity: 0.5;
+        background: #CCC;
+    }
+
+        .ConfgIcon-disabled:hover {
+            cursor: not-allowed !important;
+        }
+</style>

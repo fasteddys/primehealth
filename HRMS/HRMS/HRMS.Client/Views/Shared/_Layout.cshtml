@@ -1,0 +1,863 @@
+﻿
+@{ 
+    ViewBag.PageTittle = "";
+}
+<!doctype html>
+<html class="fixed sidebar-left-xs">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title>@ViewBag.Title - cypress</title>
+
+
+    @{
+        var UserID = -1;
+        var ProfilePictureURL = "";
+        var UserName = "";
+        var ApiURL = "";
+        var PictureLocation = "";
+        var HasCompletedUserProfileData = "";
+        var IsHr = false;
+        var IsAdmin = false;
+        var IsManager = false;
+        var IsHrToString = "";
+        using (BaseController baseController = new BaseController())
+        {
+            UserID = baseController.UserID;
+            ProfilePictureURL = baseController.ProfilePictureURL;
+            UserName = baseController.UserName;
+            ApiURL = baseController.ApiURL;
+            PictureLocation = baseController.PictureLocation;
+            HasCompletedUserProfileData = baseController.HasCompletedUserProfileData.ToString();
+            IsHr = baseController.IsHr;
+            IsAdmin = baseController.IsAdmin;
+            IsManager = baseController.IsManager;
+            IsHrToString = baseController.IsHr.ToString();
+        }
+    }
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    @*<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">*@
+
+    <!-- Vendor CSS -->
+    <link rel="icon" type="~/image/png" sizes="16x16" href="~/img/cypress-log-left.png">
+
+    <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/vendor/animate/animate.css">
+
+    <link rel="stylesheet" href="~/vendor/font-awesome/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="~/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="~/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+
+    <!-- Specific Page ~/vendor CSS -->
+    <link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+    <link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+    <link rel="stylesheet" href="~/vendor/morris/morris.css" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/css/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="~/css/skins/default.css" />
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/css/custom.css">
+    <link href="~/CustomCSS/Shared/Layout.css" rel="stylesheet" />
+    <script src="~/vendor/jquery/jquery.js"></script>
+    <script src="~/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="~/vendor/popper/umd/popper.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="~/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/vendor/common/common.js"></script>
+    <script src="~/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="~/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+    <script src="~/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+
+    <script src="~/vendor/modernizr/modernizr.js"></script>
+
+
+    <!-- Specific Page vendor -->
+    <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+    <script src="~/vendor/jquery-appear/jquery-appear.js"></script>
+    <script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <script src="~/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="~/vendor/flot/jquery.flot.js"></script>
+    <script src="~/vendor/flot.tooltip/flot.tooltip.js"></script>
+    <script src="~/vendor/flot/jquery.flot.pie.js"></script>
+    <script src="~/vendor/flot/jquery.flot.categories.js"></script>
+    <script src="~/vendor/flot/jquery.flot.resize.js"></script>
+    <script src="~/vendor/jquery-sparkline/jquery-sparkline.js"></script>
+    <script src="~/vendor/raphael/raphael.js"></script>
+    <script src="~/vendor/morris/morris.js"></script>
+    <script src="~/vendor/gauge/gauge.js"></script>
+    <script src="~/vendor/snap.svg/snap.svg.js"></script>
+    <script src="~/vendor/liquid-meter/liquid.meter.js"></script>
+    <script src="~/vendor/jqvmap/jquery.vmap.js"></script>
+    <script src="~/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>
+    <script src="~/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
+    <script src="~/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
+    <script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+    @*<script src="~/CustomJavaScript/Login/Login.js"></script>*@
+    <script src="~/CustomJavaScript/Layout/Layout.js"></script>
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/js/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="~/js/custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="~/js/theme.init.js"></script>
+    <script src="~/js/examples/examples.advanced.form.js"></script>
+    <script src="~/js/examples/examples.modals.js"></script>
+    <!-- Examples -->
+    <script src="~/js/examples/examples.dashboard.js"></script>
+    <!-- Head Libs -->
+    <script src="~/vendor/modernizr/modernizr.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/CustomJavaScript/Shared/Layout.js"></script>
+
+    <style>
+    </style>
+    
+</head>
+<body>
+    @*style="border:1px solid green"*@ 
+        <div id="LoadingDiv" class="btnloaderbg">
+            <div class="Rotator">
+                <img  src="~/img/cypress-log-left.png" id="image" width="100" height="100">
+                <img  src="~/img/cypress-logo-right.png" id="image" width="300" height="120" style="margin-top:10px">
+            </div>
+  
+        </div>
+
+    <div id="ShowALertDanger" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Danger">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-times-circle fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="title text-10">Oops...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertDangerText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertDangerButton" onclick="HideALer(4)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertSuccess" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Sucess">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-check-circle  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="title text-10">Success...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertSuccessText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertSuccessButton" onclick="HideALer(2)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertWarning" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Warning">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-exclamation-triangle  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="title text-10">Warning...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertWarningText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertWarningButton" onclick="HideALer(3)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertInfo" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-exclamation   fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="title text-10">Info...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertInfoText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle " id="AlertInfoButton" onclick="HideALer(1)">Ok</button>
+                    </span>ShowAlertDismiss
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+    <section class="body">
+
+        <!-- start: header -->
+        <header class="header">
+            <div class="logo-container">
+                <a href="/Dashboard/Index" class="logo">
+                    <img src="~/img/cypress-logo.png" width="140" height="35" alt="Cypress" />
+                </a>
+                <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+                    <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+                </div>
+            </div>
+            <!-- start: search & user box -->
+            <div class="header-right">
+
+                @*<form action="pages-search-results.html" class="search nav-form">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
+                            <span class="input-group-append">
+                                <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+
+                    <span class="separator"></span>*@
+
+                <ul class="notifications">
+                    @if (IsHr || IsAdmin)
+                    {
+                        <li id="showNotifactionEmployeeName">
+                                <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+                                    <i class="fas fa-address-card"></i>
+                                    <span class="badge InsuranceEmployeeNumbers">3</span>
+                                </a>
+
+                                <div class="dropdown-menu notification-menu notificationInssuranceBar">
+                                    <div class="notification-title">
+                                        <span class="float-right badge badge-default InsuranceEmployeeNumbers">3</span>
+                                        Insurance Notification
+                                    </div>
+
+                                    <div class="content">
+                                        <ul id="InsuranceEmployeeData">
+                                            @*<li>
+                <p class="clearfix mb-1">
+                    <span class="message float-left">Generating Sales Report</span>
+                    <span class="message float-right text-dark">60%</span>
+                </p>
+                <div class="progress progress-xs light">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                </div>
+            </li>
+
+            <li>
+                <p class="clearfix mb-1">
+                    <span class="message float-left">Importing Contacts</span>
+                    <span class="message float-right text-dark">98%</span>
+                </p>
+                <div class="progress progress-xs light">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100" style="width: 98%;"></div>
+                </div>
+            </li>
+
+        <li>
+            <p class="clearfix mb-1">
+                <span class="message float-left">Uploading something big</span>
+                <span class="message float-right text-dark">33%</span>
+            </p>
+            <div class="progress progress-xs light mb-1">
+                <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%;"></div>
+            </div>
+        </li>*@
+                                        </ul>
+                    </div>
+                </div>
+            </li>
+                    }
+                    @*notifiaction employees not acctive*@ 
+                    @if (IsHr||IsAdmin)
+                    {
+                        <li>
+                            <a id="showNotifactionEmployeeUnActive" href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+                                <i class="fas fa-user-check"></i>
+                                <span class="badge numberOfNotifactions">0</span>
+                            </a>
+                            <div class="dropdown-menu notification-menu notificationBar">
+                                <div class="notification-title">
+                                    <span class="float-right badge badge-default numberOfNotifactions">0</span>
+                                    Messages
+                                </div>
+                                <div class="content">
+                                    <ul class="employeeNotificationToActive">
+                                        @*<li>
+                                                <a href="#" class="clearfix">
+                                                    <figure class="image">
+                                                        <img src="~/img/!sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
+                                                    </figure>
+                                                    <div class="profile-info">
+                                                        <span class="title">Hey, how are you?</span>
+                                                        <span class="message">Joseph Doe Junior</span>
+
+                                                    </div>
+                                                </a>
+
+                                            </li>*@
+
+                                    </ul>
+
+                                    @*<hr />
+
+                                    <div class="text-right">
+                                        <a href="#" class="view-more">View All</a>
+                                    </div>*@
+                                </div>
+                            </div>
+                        </li>
+                    }
+                    @*comming Soon*@
+                    <li>
+                        <a href="#" class="dropdown-toggle notification-icon " data-toggle="dropdown">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge ">0</span>
+                        </a>
+
+                        <div class="dropdown-menu notification-menu">
+                            <div class="notification-title">
+                                <span class="float-right badge badge-default">0</span>
+                                Notifications
+                            </div>
+
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="clearfix">
+                                            <div class="image">
+                                                <i class="fas fa-thumbs-up bg-danger text-light"></i>
+                                            </div>
+                                            <span class="title">Coming Soon</span>
+                                            <span class="message">Just now</span>
+                                        </a>
+                                    </li>
+                                    @*<li>
+                            <a href="#" class="clearfix">
+                                <div class="image">
+                                    <i class="fas fa-lock bg-warning text-light"></i>
+                                </div>
+                                <span class="title">User Locked</span>
+                                <span class="message">15 minutes ago</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="clearfix">
+                                <div class="image">
+                                    <i class="fas fa-signal bg-success text-light"></i>
+                                </div>
+                                <span class="title">Connection Restaured</span>
+                                <span class="message">10/10/2017</span>
+                            </a>
+                        </li>*@
+                                </ul>
+
+                                <hr />
+                                @*<div class="employeeNotificationToActive">
+                    </div>*@
+                                <div class="text-right">
+                                    <a href="#" class="view-more">View All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <span class="separator"></span>
+
+                <div id="userbox" class="userbox">
+                    <a href="#" data-toggle="dropdown">
+                        <figure class="profile-picture">
+                            
+                            <img src="" alt="Joseph Doe" class="rounded-circle layoutImage"  data-lock-picture="~/img/!logged-user.jpg" />
+
+                        </figure>
+                        <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                            @{ string partOfDay;
+                                string FAClass;
+                                var hours = DateTime.Now.Hour;
+                                if (hours > 16)
+                                {
+                                    partOfDay = "Evening, ";
+                                    FAClass = "fa fa-moon";
+                                }
+                                else if (hours > 11)
+                                {
+                                    partOfDay = "Afternoon, ";
+                                    FAClass = "fa fa-sun";
+                                }
+                                else
+                                {
+                                    partOfDay = "Morning, ";
+                                    FAClass = "fa fa-sun";
+                                }
+                                <span class="role" style="color:#0088cc"><b>@partOfDay</b> <span class="@FAClass" style="color:#0088cc !important"></span></span>
+                                <span class="name">@UserName</span>
+                            }
+
+                        </div>
+
+                        <i class="fa custom-caret"></i>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <ul class="list-unstyled mb-2">
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="@Url.Action("UserProfile", "User", new {LID = UserID, UID = UserID})"><i class="fas fa-user"></i> My Profile</a>
+                            </li>
+                            @*<li>
+                                    <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fas fa-lock"></i> Lock Screen</a>
+                                </li>*@
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0);" onclick="Logout();"><i class="fas fa-power-off"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end: search & user box -->
+        
+                                    </header>
+        <!-- end: header -->
+
+        <div class="inner-wrapper">
+            <!-- start: sidebar -->
+            <aside id="sidebar-left" class="sidebar-left">
+
+                <div class="sidebar-header">
+                    <div class="sidebar-title">
+                        Navigation
+                    </div>
+                    <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+                        <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+                    </div>
+                </div>
+
+                <div class="nano">
+                    <div class="nano-content">
+                        <nav id="menu" class="nav-main" role="navigation">
+
+                            <ul class="nav nav nav-main">
+                                <li>
+                                    <a class="nav-link" href="@Url.Action("index", "Dashboard")">
+                                        <i class="fas fa-home" aria-hidden="true"></i>
+                                        <span>Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link  " href="@Url.Action("UserProfile", "User", new {LID = UserID, UID = UserID})">
+                                        <i class="fas fa-user" aria-hidden="true"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="@Url.Action("MyDepartment", "User")">
+                                        <i class="fas fa-people-carry" aria-hidden="true"></i>
+                                        <span>My Department</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="@Url.Action("MyOrganization", "User")">
+                                        <i class="fas fa-globe" aria-hidden="true"></i>
+                                        <span>My Organization</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="@Url.Action("AddNewRequest","Request")">
+                                        <i class="fas fa-edit" aria-hidden="true"></i>
+                                        <span>Apply</span>
+                                    </a>
+                                </li>
+                                @*<li>
+            <a class="nav-link" href="@Url.Action("AddRequestOnBehalfOf","Request")">
+                <i class="fas fa-edit" aria-hidden="true"></i>
+                <span>On Behalf Of</span>
+            </a>
+        </li>*@
+                                <li>
+                                    <a class="nav-link" href="@Url.Action("ViewAllRequest","Request")">
+                                        <i class="fas fa-clipboard-list " aria-hidden="true"></i>
+                                        <span>Requests</span>
+                                    </a>
+
+                                </li>
+
+
+
+                                @{
+
+                                    if (IsManager)
+                                    {
+                                        <li id="ApprovalTab">
+                                            <a class="nav-link" href="@Url.Action("ViewAllApproval","Request")">
+                                                <i class="fas fa-clipboard-check " aria-hidden="true"></i>
+                                                <span>Approvals</span> &nbsp&nbsp&nbsp
+                                                <span id="PendingRequestQuantity" class="float-right badge badge-danger fa-1x">0</span>
+                                            </a>
+                                        </li>
+                                        <li id="SubordinateTab">
+                                            <a class="nav-link" href="@Url.Action("MySubordinates","User")">
+                                                <i class="fas fa-users" aria-hidden="true"></i>
+                                                <span>Subordinates</span> &nbsp&nbsp&nbsp
+                                            </a>
+                                        </li>
+                                        <li id="ShiftTab">
+                                            <a class="nav-link" href="@Url.Action("AssignShifts","User")">
+                                                <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+                                                <span>Shift Configurations</span> &nbsp&nbsp&nbsp
+                                            </a>
+                                        </li>
+
+                                    }
+
+                                    if (IsHr)
+                                    {
+
+                                        <li class="nav-parent">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+                                                <span>Reports</span>
+                                            </a>
+                                            <ul class="nav nav-children">
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewHRReport", "Request")">
+                                                        <span>HR</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewAllEntitlement", "Entitlement")">
+                                                        <span>Entitlement</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewAllEntitlementChanges", "Entitlement")">
+                                                        <span>Entitlement Changes</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewRejectionReason", "Request")">
+                                                        <span>Rejection Reason</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewDeletedRequest", "Request")">
+                                                        <span>Deletion Reason</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewPartialDeletedRequest", "Request")">
+                                                        <span>Partial Deletion Reason</span>
+                                                    </a>
+                                                </li>
+
+
+                                            </ul>
+                                        </li>
+
+                                    }
+
+                                    /*if (!IsHr && !IsAdmin)
+                                    {
+                                        <li style="display: none">
+                                            <a class="nav-link" href="@Url.Action("index","Configuration")">
+                                                <i class="fas fa-cogs" aria-hidden="true"></i>
+                                                <span>Configurations</span>
+                                            </a>
+                                        </li>
+                                    }*/
+
+                                    if (IsHr || IsAdmin)
+                                    {
+                                        <li>
+                                            <a class="nav-link" href="@Url.Action("index","Configuration")">
+                                                <i class="fas fa-cogs" aria-hidden="true"></i>
+                                                <span>Configurations</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    if (IsAdmin)
+                                    {
+                                        <li class="nav-parent">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+                                                <span>Reports</span>
+                                            </a>
+                                            <ul class="nav nav-children">
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewHRReport", "Request")">
+                                                        <span>HR</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewAllEntitlement", "Entitlement")">
+                                                        <span>Entitlement</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewAllEntitlementChanges", "Entitlement")">
+                                                        <span>Entitlement Changes</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewRejectionReason", "Request")">
+                                                        <span>Rejection Reason</span>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewPendingRequest", "Request")">
+                                                        <span>Pending Requests</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewDeletedRequest", "Request")">
+                                                        <span>Deletion Reason</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewPartialDeletedRequest", "Request")">
+                                                        <span>Partial Deletion Reason</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" href="@Url.Action("ViewUserInfo", "User")">
+                                                        <span>Users Information</span>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+
+                                }
+
+
+
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <script>
+                        // Maintain Scroll Position
+                        if (typeof localStorage !== 'undefined') {
+                            if (localStorage.getItem('sidebar-left-position') !== null) {
+                                var initialPosition = localStorage.getItem('sidebar-left-position'),
+                                    sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+                                sidebarLeft.scrollTop = initialPosition;
+                            }
+                        }
+                    </script>
+
+
+                </div>
+
+            </aside>
+            <!-- end: sidebar -->
+
+
+            @RenderBody()
+
+
+        </div>
+        <div class="row">
+            <div style="padding-top:100px !important" class="">
+                <p class="text-center text-muted mt-3 mb-3  FooterStyle">&copy; MedGulf Egypt @DateTime.Now.Year - Developed by Software Development Team.</p>
+            </div>
+        </div>
+        @*<aside id="sidebar-right" class="sidebar-right">
+                <div class="nano">
+                    <div class="nano-content">
+                        <a href="#" class="mobile-close d-md-none">
+                            Collapse <i class="fas fa-chevron-right"></i>
+                        </a>
+
+                        <div class="sidebar-right-wrapper">
+
+                            <div class="sidebar-widget widget-calendar">
+                                <h6>Upcoming Tasks</h6>
+                                <div data-plugin-datepicker data-plugin-skin="dark"></div>
+
+                                <ul>
+                                    <li>
+                                        <time datetime="2017-04-19T00:00+00:00">04/19/2017</time>
+                                        <span>Company Meeting</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="sidebar-widget widget-friends">
+                                <h6>Friends</h6>
+                                <ul>
+                                    <li class="status-online">
+                                        <figure class="profile-picture">
+                                            <img src="img/!sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
+                                        </figure>
+                                        <div class="profile-info">
+                                            <span class="name">Joseph Doe Junior</span>
+                                            <span class="title">Hey, how are you?</span>
+                                        </div>
+                                    </li>
+                                    <li class="status-online">
+                                        <figure class="profile-picture">
+                                            <img src="img/!sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
+                                        </figure>
+                                        <div class="profile-info">
+                                            <span class="name">Joseph Doe Junior</span>
+                                            <span class="title">Hey, how are you?</span>
+                                        </div>
+                                    </li>
+                                    <li class="status-offline">
+                                        <figure class="profile-picture">
+                                            <img src="img/!sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
+                                        </figure>
+                                        <div class="profile-info">
+                                            <span class="name">Joseph Doe Junior</span>
+                                            <span class="title">Hey, how are you?</span>
+                                        </div>
+                                    </li>
+                                    <li class="status-offline">
+                                        <figure class="profile-picture">
+                                            <img src="img/!sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
+                                        </figure>
+                                        <div class="profile-info">
+                                            <span class="name">Joseph Doe Junior</span>
+                                            <span class="title">Hey, how are you?</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </aside>*@
+
+    </section>
+
+
+    <!-- Vendor -->
+    <input type="hidden" id="GlobalUserID" value="@UserID">
+    <input type="hidden" id="GlobalUserName" value="@UserName">
+    <input type="hidden" id="GlobalUserProfilePicture" value="@ProfilePictureURL">
+    <input type="hidden" id="GlobalApiURL" value="@ApiURL">
+    <input type="hidden" id="GlobalPictureLocation" value="@PictureLocation">
+    <input type="hidden" id="GlobalHasCompletedUserProfileData" value="@HasCompletedUserProfileData">
+    <input type="hidden" id="GlobalIsHR" value="@IsHrToString">
+    <input type="hidden" id="GlobalIsAdmin" value="@IsAdmin">
+
+
+    <!--Restrict Modal-->
+
+    <div class="modal fade" id="CompleteUserDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Complete / Update User Data</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label">Personal Email <span style="color:red">*</span></b>
+                            <input type="email"  class="form-control" id="PersonalEmail">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label">Home Address<span style="color:red">*</span></b>
+                            <input type="text" class="form-control" id="HomeAddress">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label">Current Address</b>
+                            <input type="text" class="form-control" id="CurrentAddress">
+                        </div>
+                    </div>
+                    @*<div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label">Seniority Before Hire (Years)<span style="color:red">*</span></b>
+                            <input type="number" min="0" class="form-control" id="SeniorityYears">
+                        </div>
+                    </div>*@
+                    @*<div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label">Seniority Before Hire (Months)<span style="color:red">*</span></b>
+                            <input type="number" min="0" class="form-control" id="SeniorityMonths">
+                        </div>
+                    </div>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="SubmitUserModalData()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   <style>
+       .employeeNotificationToActive a
+       {
+           cursor:pointer !important;
+           color:red;
+       }
+       .notificationBar {
+           height:300px;
+          overflow:scroll;
+         
+       }
+       .notificationInssuranceBar {
+           height: 300px;
+           width: 250px !important;
+           overflow: scroll;
+       }
+       .employeeNotificationToActive li
+       {
+           cursor:pointer !important;
+       }
+       .borderRed {
+           border: 1px solid red;
+       }
+   </style>

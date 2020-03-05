@@ -1,0 +1,245 @@
+﻿
+@{
+    ViewBag.Title = "ViewUserInfo";
+}
+<!---------------------------------------------------------------------->
+<!--styles-->
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<link href="~/CustomCSS/Request/RejectionReasons.css" rel="stylesheet" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<!---------------------------------------------------------------------->
+<!--Start Html-->
+<section role="main" class="content-body">
+    <!--Start Header-->
+    <header class="page-header">
+        <h2>Users Information</h2>
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li><span>Users</span></li>
+                <li><span>Users Information</span></li>
+            </ol>
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+        </div>
+    </header>
+    <!--Start Card-->
+    <section class="card">
+        <header class="card-header">
+            <div class="card-actions">
+                <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+            </div>
+            <h2 class="card-title">Users Information</h2>
+        </header>
+        <div class="card-body">
+            <div class="tab-content">
+                <div id="RejectionReasonRequests" class="tab-pane active">
+                    <div class="Search">
+                        <div class="Cancel">
+                            <a class="nav-link" href="#" onclick="GoBack()">
+                                <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                                <span>Cancel</span>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            <label class="col-lg-10 control-label ">Select</label>
+                            <select id="InformationUsersSelectBy" data-plugin-selectTwo class="form-control populate">
+                                <option value=0 selected>All Users</option>
+                                <option value=1 >All Active Users</option>
+                                <option value=2 >All Deactive Users</option>
+                                <option value=3 >Custom</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4  divUsersName">
+                            <label class="col-lg-10 control-label ">Users<span style="color:red">*</span></label>
+                            <select id="UsersListName" multiple data-plugin-selectTwo class="form-control populate">
+
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <ul class="navbar-nav1">
+                                <li class="" data-toggle="modal" data-target="#UserInformationPropertsDataModal" id="FindUsersInformation">
+                                    <a href="#" ><span class=" fa fa-search fa-2x" ></span></a>
+                                    <label class="col-lg-10 control-label ">Find</label>
+                                </li>
+                                <li class=" " id="ExtractUsersInformation">
+                                    <a href="#"><span class=" fa fa-file-excel fa-2x"></span></a>
+                                    <label class="col-lg-10 control-label ">Export Excel</label>
+                                </li>
+                            </ul>
+                            <div class="ClearBoth">
+                            </div>
+                        </div>
+                    </div>
+                    <!--Start Table-->
+                    <div class="row">
+                        <table class="table table-responsive-md table-hover mb-0" id="usersInformationTable">
+                            <thead >
+                                <tr id="headUserInformation">
+                                    @*<th>
+                                        UserID<!--1-->
+                                    </th>
+                                    <th>
+                                        UserName  <!--2-->
+                                    </th>
+    
+                                    <th>
+                                        PhoneNumber  <!--3-->
+                                    </th>*@
+                              
+                                   
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!--End table-->
+                </div>
+            </div>
+        </div>
+        <!--Deleted Reason Modal-->
+        <div class="modal fade" id="UserInformationPropertsDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title alert alert-primary"  id="exampleModalLabel" >Users Information Data </h3>
+                    </div>
+                    <div class="modal-body">
+                         <!-- Default unchecked -->
+                        <div class="row">
+                            <p class="col-md-7 alert alert-danger text-4 ">Minimum selected 4 and Maximum is</p>
+                            <input class="col-md-2 numberOfColumn form-control alert alert-danger" type="text" disabled value="10" />
+                            <p class="col-md-3 alert alert-danger text-4 text-center">To Display</p>
+
+                        </div>
+                        <div id="PropertyUsersToDisplay" class="custom-control custom-checkbox col-md-6">
+                            @*<input type="checkbox" class="checkboxColumn" id="aaa" value="aa" />*@
+                            <label></label>
+                            @*<input type="checkbox" class="custom-control-input" id="defaultUnchecked" >
+                            <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
+                            <br />*@
+                        </div>
+                        <button class="btn btn-primary userInformationSearchBtn" id="displayUserInformationData">Display</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Card-->
+    <!--End Header-->
+</section>
+
+
+<!--End Html-->
+<!---------------------------------------------------------------------->
+<!--Start Script-->
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="~/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/js/theme.js"></script>
+<script src="~/CustomJavaScript/Employees/ViewUsersInfomations.js"></script>
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script src="~/js/examples/examples.datatables.default.js"></script>
+<script src="~/js/examples/examples.datatables.row.with.details.js"></script>
+<script src="~/js/examples/examples.datatables.tabletools.js"></script>
+
+<script>
+    $("#RejectionReasonFrom").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+
+    $("#RejectionReasonTo").datepicker({
+
+        dateFormat: 'dd/mm/yy',
+
+    });
+
+</script>
+<style>
+    #UserInformationPropertsDataModal h3 {
+        /*border:1px solid red;*/
+        font-style:italic;
+        margin:0 auto;
+    }
+    .userInformationSearchBtn
+    {
+        width:60%;
+        display:block;
+        margin:0 auto;
+    }
+    #PropertyUsersToDisplay {
+        /*border: 1px solid red;*/
+        margin: 0 auto;
+        overflow-y: scroll;
+        height: 200px;
+        margin-bottom:10px;
+    }
+    .numberOfColumn {
+        text-align: center;
+        width: 60px;
+        height: 50px;
+        font-weight:bold;
+        font-size:xx-large;
+
+    }
+    .checkboxColumn {
+
+    }
+</style>
+<!------------------------------------------------------------------------------>
+

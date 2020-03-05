@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section role="main" class="content-body">
+    <header class="page-header">
+        <h2>Services Management</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Import</span></li>
+            </ol>
+
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                     
+                    </div>
+                    <h2 class="card-title"><b>Services Control :</b></h2>
+                </header>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-responsive-md table-hover   mb-0" id="ServiceTable">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th><b>Service name</b></th>
+                                        <th><b>Status</b></th>
+                                        <th><b>Start/Stop</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="Table">
+                                    <tr>
+                                      
+                                    </tr>                       
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- start: page -->
+    <!-- end: page -->
+</section>
+<script src="~/CustomJavaScript/ControlService/ControlService.js"></script>

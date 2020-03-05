@@ -1,0 +1,385 @@
+﻿@{
+    ViewBag.Title = "ExecuseView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Hr_System.Models.accountTB>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<style>
+    table {
+        margin-bottom: 1em;
+    }
+
+        table td {
+            padding: 3px;
+        }
+
+    .table1 {
+        border: 1px solid red;
+    }
+
+    .table2, .table2 td {
+        border: 1px solid silver;
+        border-collapse: collapse;
+    }
+
+        .table2 td:first-child {
+            background-color: lightblue;
+        }
+
+    .CSSTableGenerator {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        box-shadow: 10px 10px 5px #888888;
+        border: 1px solid #000000;
+        -moz-border-radius-bottomleft: 0px;
+        -webkit-border-bottom-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        -moz-border-radius-bottomright: 0px;
+        -webkit-border-bottom-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        -moz-border-radius-topright: 0px;
+        -webkit-border-top-right-radius: 0px;
+        border-top-right-radius: 0px;
+        -moz-border-radius-topleft: 0px;
+        -webkit-border-top-left-radius: 0px;
+        border-top-left-radius: 0px;
+    }
+
+        .CSSTableGenerator table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .CSSTableGenerator tr:last-child td:last-child {
+            -moz-border-radius-bottomright: 0px;
+            -webkit-border-bottom-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .CSSTableGenerator table tr:first-child td:first-child {
+            -moz-border-radius-topleft: 0px;
+            -webkit-border-top-left-radius: 0px;
+            border-top-left-radius: 0px;
+        }
+
+        .CSSTableGenerator table tr:first-child td:last-child {
+            -moz-border-radius-topright: 0px;
+            -webkit-border-top-right-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+
+        .CSSTableGenerator tr:last-child td:first-child {
+            -moz-border-radius-bottomleft: 0px;
+            -webkit-border-bottom-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        .CSSTableGenerator tr:hover td {
+        }
+
+        .CSSTableGenerator tr:nth-child(odd) {
+            background-color: #ffaa56;
+        }
+
+        .CSSTableGenerator tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .CSSTableGenerator td {
+            vertical-align: middle;
+            border: 1px solid #000000;
+            border-width: 0px 1px 1px 0px;
+            text-align: left;
+            padding: 7px;
+            font-size: 10px;
+            font-family: Arial;
+            font-weight: normal;
+            color: #000000;
+        }
+
+        .CSSTableGenerator tr:last-child td {
+            border-width: 0px 1px 0px 0px;
+        }
+
+        .CSSTableGenerator tr td:last-child {
+            border-width: 0px 0px 1px 0px;
+        }
+
+        .CSSTableGenerator tr:last-child td:last-child {
+            border-width: 0px 0px 0px 0px;
+        }
+
+        .CSSTableGenerator tr:first-child td {
+            background: -o-linear-gradient(bottom, #ff7f00 5%, #bf5f00 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00));
+            background: -moz-linear-gradient(center top, #ff7f00 5%, #bf5f00 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");
+            background: -o-linear-gradient(top, #ff7f00, bf5f00);
+            background-color: #ff7f00;
+            border: 0px solid #000000;
+            text-align: center;
+            border-width: 0px 0px 1px 1px;
+            font-size: 14px;
+            font-family: Arial;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .CSSTableGenerator tr:first-child:hover td {
+            background: -o-linear-gradient(bottom, #ff7f00 5%, #bf5f00 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00));
+            background: -moz-linear-gradient(center top, #ff7f00 5%, #bf5f00 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");
+            background: -o-linear-gradient(top, #ff7f00, bf5f00);
+            background-color: #ff7f00;
+        }
+
+        .CSSTableGenerator tr:first-child td:first-child {
+            border-width: 0px 0px 1px 0px;
+        }
+
+        .CSSTableGenerator tr:first-child td:last-child {
+            border-width: 0px 0px 1px 1px;
+        }
+</style>
+
+<link href="~/css/examples.css" rel="stylesheet" />
+
+<h2>ExecuseView</h2>
+<div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-6" for="first-name">
+        Employee Name <span class="required">*</span>
+    </label>
+    <br />
+    <br />
+    <div style="width:1000px;">
+        @*<select id="EmpName" tabindex="-1" class="select2_group form-control" style="display: normal;" name="ReqSubType" id="ReqSubType">
+                <optgroup label="اختار موظف ">
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item.EmpName">@item.EmpName</option>
+
+                    }
+                </optgroup>
+            </select>*@
+
+        @{
+            int counter = 0;
+            foreach (var item in Model)
+            {
+                <div style="float:left; width:200px;">
+                    <input type="checkbox" class="publish" value="@item.EmpName">
+                    <span>@item.EmpName</span>
+
+                </div>
+
+
+
+                counter++;
+            }
+        }
+
+    </div>
+
+</div>
+<br />
+<p>
+    <div style="clear:both;">
+
+    </div>
+</p>
+<div class="form-group">
+
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        From <span class="required">*</span>
+    </label>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <input id="datepicker" class="form-control col-md-7 col-xs-12" type="text" name="FromDate">
+        <p id="dateoutput"></p>
+    </div>
+
+</div>
+<br />
+<p>
+    <div style="clear:both;">
+
+    </div>
+</p>
+
+
+
+<div class="form-group">
+
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        To <span class="required">*</span>
+    </label>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <input id="datepicker1" class="form-control col-md-7 col-xs-12" type="text" name="ToDate">
+        <p id="dateoutput1"></p>
+    </div>
+</div>
+<br />
+<div class="ln_solid"></div>
+<div class="form-group">
+    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+        <button class="btn btn-round btn-success" onclick="send_data()"> View Report </button>
+    </div>
+</div>
+<div class="x_content" id="tb_report" style="display:none;">
+    <table summary="execuse report" id="table_to_excel" style=" color:black; font-size:20px;" class="table table-striped responsive-utilities jambo_table bulk_action">
+        <caption>execuse report</caption>
+        <thead>
+            <tr class="headings">
+                <th class="column-title">Name</th>
+                <th class="column-title">half hour</th>
+                <th class="column-title">hour</th>
+                <th class="column-title">half and hour</th>
+                <th class="column-title">two hour</th>
+               
+
+            </tr>
+        </thead>
+        <tbody id="tb_report_body" style="display:none;"></tbody>
+    </table>
+</div>
+<div class="form-group">
+    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+        <button id="pdf" class="btn btn-round btn-success" style="display:none;" onclick="tableToExcel('table_to_excel', 'execuse reprot')"> Excel Report </button>
+    </div>
+</div>
+
+<div id="pdf_div">
+
+</div>
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+<link href="~/css2/TimePicker/jquery.ptTimeSelect.css" rel="stylesheet" />
+<script src="~/css2/TimePicker/jquery.ptTimeSelect.js"></script>
+<script src="~/js/jspdf.debug.js"></script>
+<script src="~/js/html2pdf.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //new
+        @*if ("@ViewBag.Remainexcuehours" <= 0)
+        {
+            $("#excusedivalret").show();
+        }*@
+        //end
+
+        $("#datepicker").datepicker({
+            dateFormat: "dd-mm-yy",
+            onSelect: function (dateText, inst) {
+                var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+                var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                date.setDate(date.getDate() + 7);
+                var dateText2 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                $("#dateoutput").html("Chosen date is <b>" + dateText1);
+            }
+        });
+        $("#datepicker1").datepicker({
+            dateFormat: "dd-mm-yy",
+            onSelect: function (dateText, inst) {
+                var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+                var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                date.setDate(date.getDate() + 7);
+                var dateText2 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                $("#dateoutput1").html("Chosen date is <b>" + dateText1);
+            }
+        });
+    });
+
+
+    function send_data() {
+
+        $('input.publish').each(function () {
+            if ($(this).is(':checked') == 1) {
+
+                if ($("#datepicker").val() == "" || $("#datepicker1").val() == "" || $("#EmpName").val() == "") {
+                    alert("please insert all data");
+                }
+                else {
+                    var dataa = {
+
+                        fromDate: $("#datepicker").val(),
+                        ToDate: $("#datepicker1").val(),
+                        EmpName: $(this).val()
+
+
+                    };
+                    var x = JSON.stringify(dataa);
+                    $.ajax({
+                        url: '@Url.Action("ExcuseReportData", "AdminPanel")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data) {
+
+                            //+"' + $(this).val() + '" +
+                            $('#tb_report_body').append('<tr><td>' + dataa.EmpName + '</td><td>' + data[0] + '</td><td>' + data[1] + '</td><td>' + data[2] + '</td><td>' + data[3] + '</td></tr>');
+
+
+
+
+
+                        }
+                    });
+                }
+
+            }
+        });
+        $(".right_col").css("height", 2000);
+        $("#tb_report").show(2000);
+        $("#tb_report_body").show("fast");
+        $("#pdf").show(4000);
+        $('input.publish').each(function () {
+
+            $(this).prop('checked', false);
+
+        });
+
+    }
+
+    function demoFromHTML() {
+        var pdf = new jsPDF('p', 'pt', 'letter');
+        pdf.setFont("arial", "bold");
+
+        html2canvas($("#tb_report")[0], {
+            onrendered: function (canvas) {
+                document.body.appendChild(canvas);
+                var ctx = canvas.getContext('2d');
+
+                var imgData = canvas.toDataURL("image/png", 1.0);
+                var width = 600;
+                var height = 200;
+                pdf.text("Vacation Report", 250, 30);
+                pdf.addImage(imgData, 'PNG', 10, 70, (width), (height));
+                $("pdf_div").css("display", "none");
+                pdf.save('Vacation_report.pdf');
+
+
+            }
+
+        });
+
+    }
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+          , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+          , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+          , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>

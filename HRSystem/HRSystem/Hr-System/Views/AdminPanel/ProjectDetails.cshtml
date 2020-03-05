@@ -1,0 +1,253 @@
+﻿@model Hr_System.Models.Project
+@{
+    ViewBag.Title = "ProjectDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+     <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>@ViewBag.ProjectName <small>@ViewBag.ProjectStatus</small></h2>
+                <div class="filter">
+                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                        <span>@ViewBag.ProjectStart - @ViewBag.ProjectEnd</span> <b class="caret"></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                
+                <div class="col-md-9 col-sm-9 col-xs-12" style="height:450px">
+                    <div class="demo-container">
+                        <h3> Project Description</h3>
+                        <textarea readonly="" class="form-control col-md-7 col-xs-12" placeholder="@ViewBag.ProjectDescription" cols="20" id="ProjDescription" name="ProjDescription" rows="2" style="margin: 0px; width: 720px; height: 183px;"></textarea>                 
+                           <h3>&nbsp;</h3>
+                        <h3> Project Plan</h3>
+                        <textarea readonly="" class="form-control col-md-7 col-xs-12" placeholder="@ViewBag.ProjectPlan" cols="20" id="ProjPlan" name="ProjPlan" rows="2" style="margin: 0px; width: 720px; height: 182px;"></textarea>                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div>
+                        <div class="x_title">
+                            <h2>Project Members </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a href="#"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="#">Settings 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <ul class="list-unstyled top_profiles scroll-view" tabindex="5001" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+                            @foreach (var member in ((List<string>)ViewBag.ProjectMembers))
+                            {
+
+                                if (member == @ViewBag.ProjectManager)
+                                {
+                                    <li class="media event">
+                                        <a class="pull-left border-green profile_thumb">
+                                            <i class="fa fa-user green"></i>
+                                        </a>
+                                        <div class="media-body">
+                                            <a class="title" href="#">@member</a>
+                                            <p><strong>Dep : </strong>@ViewBag.projectDep</p>
+                                            <p>
+                                                ProjectManager
+                                            </p>
+                                        </div>
+                                    </li>
+                                }
+                                else if (member == @ViewBag.ProjectBackup)
+                                {
+                                    <li class="media event">
+                                        <a class="pull-left border-green profile_thumb">
+                                            <i class="fa fa-user blue"></i>
+                                        </a>
+                                        <div class="media-body">
+                                            <a class="title" href="#">@member</a>
+                                            <p><strong>Dep : </strong>@ViewBag.projectDep</p>
+                                            <p>
+                                                ProjectBackup
+                                            </p>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="media event">
+                                        <a class="pull-left border-green profile_thumb">
+                                            <i class="fa fa-user aero"></i>
+                                        </a>
+                                        <div class="media-body">
+                                            <a class="title" href="#">@member</a>
+                                            <p><strong>Dep : </strong>@ViewBag.projectDep</p>
+                                            <p>
+                                                Member
+                                            </p>
+                                        </div>
+                                    </li>
+                                }
+
+                            }
+
+
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Main Tasks <small>Project Steps</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div id="ff" class="x_content">
+                       @foreach (var member in ViewBag.ProjectTasks)
+                            {
+                <article class="media event">
+                    <a id="member" href="/AdminPanel/TaskDetails?ID=@member.ID"><i class="fa fa-spinner"></i> @member.TaskName</a>
+                    <div class="media-body">
+                       
+                        <p id="details">@member.TaskDescription</p>
+                    </div>
+                </article>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Recent Actiivities <small>Notifications</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              @foreach (var member in ((List<string>)ViewBag.ProjectRecentActivity))
+       {  
+                <article class="media event">
+                    @*<a class="pull-left date">*@
+                    <a id="member" href="#/spinner"><i class="fa fa-comments-o"></i> @member</a>
+                 </article>
+       }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Project Recources <small>Notifications</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @*@foreach (var member in @ViewBag.ProjectRecentActivity)
+                {*@
+                        <article class="media event">
+                        @*<a class="pull-left date">*@
+                        <a id="member" href="#/spinner"><i class="fa fa-paperclip"></i> Coming Soon ...</a>
+                    </article>
+                @*}*@
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+       @*$.ajax({
+        url: "@Url.Action("getAllUserbyManager", "AdminPanel")",
+        type: "Post",
+        data: {Manager : "Development"},
+        dataType: "json",
+        success: function (data) {
+        loadData(data);
+        },
+        error: function () {
+        alert("Error");
+        }
+        });
+        function loadData(data) {
+
+            $.each(data as string[], function (i, val) {
+
+                var main = $('<article class="media event"><article>');
+                var thumbnail = $('<div class="media-body"><div>');
+                var image = $('<a href="#/spinner">' + val + '<a>');
+                var dd = $('<i class="fa fa-spinner"></i>');
+                thumbnail.appendTo(main);
+                image.appendTo(main);
+                dd.appendTo(thumbnail);
+                main.appendTo("#ff");
+
+            });
+        };*@
+    });
+
+
+
+
+
+
+
+
+</script>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+

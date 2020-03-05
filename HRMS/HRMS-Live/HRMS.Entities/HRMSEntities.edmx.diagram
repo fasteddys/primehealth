@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="49c0aec80a3942949c923fa32609186c" Name="Diagram1" ZoomLevel="22">
+        <EntityTypeShape EntityType="HRMSModel.AccessControlUser" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ApprovalFlowDetail" Width="1.5" PointX="16.5" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ApprovalFlowRequestDetail" Width="1.5" PointX="8.25" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ApprovalFlow" Width="1.5" PointX="12" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ApprovalFlowUserDetail" Width="1.5" PointX="24.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Company" Width="1.5" PointX="12" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.CompanyOfficialHoliday" Width="1.5" PointX="14.25" PointY="50.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Configuration" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ContractTypeDIM" Width="1.5" PointX="12" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Department" Width="1.5" PointX="0.75" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.DeviceOwner" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Device" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.DeviceTypeDIM" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.EntitlementChangedByDIM" Width="1.5" PointX="22.5" PointY="51.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.FailedTransaction" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.GenderTypeDIM" Width="1.5" PointX="12" PointY="44.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeAccuralPeriodDIM" Width="1.5" PointX="14.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeAccuralRule" Width="1.5" PointX="16.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeCarryOverRule" Width="1.5" PointX="16.5" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeConsiderationAsDIM" Width="1.5" PointX="12" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeDurationUnitDIM" Width="1.5" PointX="12" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeEntitlementSourceDIM" Width="1.5" PointX="12" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeEntitlementTypeDIM" Width="1.5" PointX="12" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeField" Width="1.5" PointX="19.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeFieldsDIM" Width="1.5" PointX="17.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeFieldsVisibilityDIM" Width="1.5" PointX="17.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeFirstAccuralMethodDIM" Width="1.5" PointX="14.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeGainingEligibilityMethodDIM" Width="1.5" PointX="14.25" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeMinOneDayDurationDIM" Width="1.5" PointX="12" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeMonthlyAaccuralDaysDIM" Width="1.5" PointX="7.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypePartialDuration" Width="1.5" PointX="20.25" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypePartialDurationUnitDIM" Width="1.5" PointX="20.25" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeProrateCalculationModeDIM" Width="1.5" PointX="14.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeProrateMethodDIM" Width="1.5" PointX="14.25" PointY="57.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedContractType" Width="1.5" PointX="19.5" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedDep" Width="1.5" PointX="3" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedEmployee" Width="1.5" PointX="19.5" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedGender" Width="1.5" PointX="16.5" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictedSubDep" Width="1.5" PointX="11.25" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestriction" Width="1.5" PointX="19.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveTypeRestrictionTypeDIM" Width="1.5" PointX="17.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LeaveType" Width="1.5" PointX="14.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Level" Width="1.5" PointX="12" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LogsDetail" Width="1.5" PointX="19.5" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.LogTypeDIM" Width="1.5" PointX="17.25" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Manager" Width="1.5" PointX="16.5" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.MonthlyEffectiveAccuredLeaveType" Width="1.5" PointX="16.5" PointY="57.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.OfficialHoliday" Width="1.5" PointX="16.5" PointY="52.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Position" Width="1.5" PointX="12" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.RequestActionDIM" Width="1.5" PointX="6" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.RequestAttachment" Width="1.5" PointX="18.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.RequestDetail" Width="1.5" PointX="16.5" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.RequestDetailsTypesDIM" Width="1.5" PointX="14.25" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.RequestHandler" Width="1.5" PointX="19.5" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.RequestHistory" Width="1.5" PointX="22.5" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.RequestHoursHandler" Width="1.5" PointX="27.75" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.Request" Width="1.5" PointX="22.5" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.RequestStatu" Width="1.5" PointX="20.25" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ServiceLogTypeDIM" Width="1.5" PointX="22.5" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ServicesLog" Width="1.5" PointX="24.75" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.SubDepartment" Width="1.5" PointX="6" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.sysdiagram" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.TimeAttendance" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.UserEntitlementChange" Width="1.5" PointX="24.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.UserEntitlement" Width="1.5" PointX="22.5" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.User" Width="1.5" PointX="14.25" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.WeekDaysDIM" Width="1.5" PointX="12" PointY="62.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.WorkingModeDIM" Width="1.5" PointX="12" PointY="55" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.WorkingShift" Width="1.5" PointX="16.5" PointY="87" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.WorkingShiftUserDaily" Width="1.5" PointX="18.75" PointY="60" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.WorkingWeek" Width="1.5" PointX="12" PointY="58.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.WorkingWeekDetail" Width="1.5" PointX="14.25" PointY="61.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMSModel.ServicesDIM" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowDetails_dbo_ApprovalFlows_ApprovalFlowFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowDetails_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowDetails_dbo_Users_ApprovalFlowPersonFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowUserDetails_dbo_ApprovalFlowDetails_ApprovalFlowDetailsFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_RequestActionDIMs_RequestActionFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_Requests_RequestFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_SubDepartments_SubDepartmentFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_ApprovalPersonFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowRequestDetails_dbo_Users_RequestedByUserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_ApprovalFlows_ApprovalFlowFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_ApprovalFlowUserDetails_dbo_Users_UserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_CompanyOfficialHolidays_CompanyOfficialHolidays" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Users_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedContractTypes_dbo_ContractTypeDIMs_ContractTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_ContractTypeDIMs_ContractTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_SubDepartments_dbo_Departments_DepartmentFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_Departments_DepartmentFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeRestrictedDeps_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Devices_dbo_DeviceOwners_DeviceOwnerFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Devices_dbo_DeviceTypeDIMs_DeviceTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_EntitlementChangedByDIMs_EntitlementChangedByDIMFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedGenders_dbo_GenderTypeDIMs_GenderFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Users_GenderTypeDIMs" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeAccuralRules_LeaveTypeAccuralPeriodDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeAccuralRules_LeaveTypeFirstAccuralMethodDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeAccuralRules_LeaveTypeGainingEligibilityMethodDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeAccuralRules_LeaveTypeProrateCalculationModeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeAccuralRules_LeaveTypeProrateMethodDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeAccuralRules_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeCarryOverRules_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypes_LeaveTypeConsiderationAsDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_LeaveDurationUnitDIMs_LeaveDurationUnitDIMFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlements_dbo_LeaveDurationUnitDIMs_LeaveDurationUnitDIMFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeMinOneDayDurationDIM_LeaveTypeDurationUnitDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeRestrictions_LeaveTypeDurationUnitDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypes_LeaveTypeDurationUnitDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHandler_LeaveTypeDurationUnitDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypes_LeaveTypeEntitlementSourceDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypes_LeaveTypeEntitlementTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeFields_LeaveTypeFieldsDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeFields_LeaveTypeFieldsVisibilityDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeFields_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypePartialDurationUnitDIM_LeaveTypeMinOneDayDurationDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypes_LeaveTypeMinOneDayDurationDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypePartialDuration_LeaveTypePartialDuration" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHistories_LeaveTypePartialDuration" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Requests_LeaveTypePartialDurationUnitDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedContractTypes_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeRestrictedDeps_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedEmployees_dbo_Users_EmployeeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedGenders_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedSubDeps_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_LeaveTypeRestrictedSubDeps_dbo_SubDepartments_SubDepartmentFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeRestrictions_LeaveTypeRestrictionDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypeRestrictions_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK__MonthlyEf__Leave__004002F9" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Requests_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlements_dbo_LeaveTypes_LeaveTypeFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LeaveTypes_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHandler_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHistories_LeaveTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_Levels_Level_LevelID" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LogsDetails_LogTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LogsDetails_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_LogsDetails_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Managers_dbo_Users_ManagerUserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_SubDepartments_dbo_Managers_TeamManagerFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_Managers_DirectManagerFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_OfficialHolidays_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_Postions_PositionFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_RequestAttachments_dbo_RequestDetails_RequestDetailsFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_RequestDetails_dbo_Requests_RequestFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestDetails_RequestDetailsTypesDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestDetails_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestDetailsTypesDIM_RequestDetailsTypesDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHandler_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHandler_RequestStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHandler_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHoursHandler_RequestHandler" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHistories_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHistories_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_RequestHoursHandler_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Requests_dbo_RequestStatus_RequesStatusFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Requests_dbo_Users_UserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Requests_RequestFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Requests_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_ServicesLog_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_ServicesLog_ServiceLogTypeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_Users_dbo_SubDepartments_SubDepartmentFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_UserEntitlements_UserEntitlementFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Users_UserChangeEntitlementFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlementChanges_dbo_Users_UserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_dbo_UserEntitlements_dbo_Users_UserFK" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Users_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Users_WorkingModeDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_Users_WorkingWeek" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_WorkingShift_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_WorkingShiftUserDaily_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_WorkingShiftUserDaily_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_WorkingWeekDetails_WeekDaysDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_WorkingShiftUserDaily_WorkingShift" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_WorkingWeekDetails_WorkingWeek" ManuallyRouted="false" />
+        <AssociationConnector Association="HRMSModel.FK_WorkingShift_Departments" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

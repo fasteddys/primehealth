@@ -1,0 +1,115 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.DAL", "HRMS.DAL\HRMS.DAL.csproj", "{3EA492CA-6DCB-477E-94A0-51EF10192535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.API", "HRMS.API\HRMS.API.csproj", "{13CB6A10-735C-4952-9DAB-78F0B28F6CD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Client", "HRMS.Client\HRMS.Client.csproj", "{E1171B43-7DF3-4E50-97BE-26A2D974B389}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Utilities", "HRMS.Utilities\HRMS.Utilities.csproj", "{AE8A1B7B-3EF8-44B5-A346-238611D53407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.GlobalResources", "HRMS.GlobalResources\HRMS.GlobalResources.csproj", "{76675779-7E34-4A1A-ABE2-182FF242175D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.DTOs", "HRMS.DTOs\HRMS.DTOs.csproj", "{AE54F77A-E3F1-4710-8592-6B5A88534888}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.ApprovalFlows", "HRMS.WorkFlows\HRMS.ApprovalFlows.csproj", "{6542DD6F-59AF-49A2-89EE-598FB43F3C56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Reports", "HRMS.Reports\HRMS.Reports.csproj", "{EB2F6B4C-7B54-49BA-B8D0-D35F7631DBDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.BLL", "HRMS.BLL\HRMS.BLL.csproj", "{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Entities", "HRMS.Entities\HRMS.Entities.csproj", "{82416B4F-C731-401D-9D4F-30F939114D1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13CB6A10-735C-4952-9DAB-78F0B28F6CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13CB6A10-735C-4952-9DAB-78F0B28F6CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13CB6A10-735C-4952-9DAB-78F0B28F6CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13CB6A10-735C-4952-9DAB-78F0B28F6CD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1171B43-7DF3-4E50-97BE-26A2D974B389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1171B43-7DF3-4E50-97BE-26A2D974B389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1171B43-7DF3-4E50-97BE-26A2D974B389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1171B43-7DF3-4E50-97BE-26A2D974B389}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76675779-7E34-4A1A-ABE2-182FF242175D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76675779-7E34-4A1A-ABE2-182FF242175D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76675779-7E34-4A1A-ABE2-182FF242175D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76675779-7E34-4A1A-ABE2-182FF242175D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6542DD6F-59AF-49A2-89EE-598FB43F3C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6542DD6F-59AF-49A2-89EE-598FB43F3C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6542DD6F-59AF-49A2-89EE-598FB43F3C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6542DD6F-59AF-49A2-89EE-598FB43F3C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2F6B4C-7B54-49BA-B8D0-D35F7631DBDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2F6B4C-7B54-49BA-B8D0-D35F7631DBDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2F6B4C-7B54-49BA-B8D0-D35F7631DBDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2F6B4C-7B54-49BA-B8D0-D35F7631DBDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82416B4F-C731-401D-9D4F-30F939114D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82416B4F-C731-401D-9D4F-30F939114D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82416B4F-C731-401D-9D4F-30F939114D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82416B4F-C731-401D-9D4F-30F939114D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {221DDF7C-65F8-4C02-B1A5-E36B518ECB95}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 11
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = HRMS.DAL\\HRMS.DAL.csproj
+		SccProjectName1 = HRMS.DAL
+		SccLocalPath1 = HRMS.DAL
+		SccProjectUniqueName2 = HRMS.API\\HRMS.API.csproj
+		SccProjectName2 = HRMS.API
+		SccLocalPath2 = HRMS.API
+		SccProjectUniqueName3 = HRMS.Client\\HRMS.Client.csproj
+		SccProjectName3 = HRMS.Client
+		SccLocalPath3 = HRMS.Client
+		SccProjectUniqueName4 = HRMS.Utilities\\HRMS.Utilities.csproj
+		SccProjectName4 = HRMS.Utilities
+		SccLocalPath4 = HRMS.Utilities
+		SccProjectUniqueName5 = HRMS.GlobalResources\\HRMS.GlobalResources.csproj
+		SccProjectName5 = HRMS.GlobalResources
+		SccLocalPath5 = HRMS.GlobalResources
+		SccProjectUniqueName6 = HRMS.DTOs\\HRMS.DTOs.csproj
+		SccProjectName6 = HRMS.DTOs
+		SccLocalPath6 = HRMS.DTOs
+		SccProjectUniqueName7 = HRMS.Reports\\HRMS.Reports.csproj
+		SccProjectName7 = HRMS.Reports
+		SccLocalPath7 = HRMS.Reports
+		SccProjectUniqueName8 = HRMS.BLL\\HRMS.BLL.csproj
+		SccProjectName8 = HRMS.BLL
+		SccLocalPath8 = HRMS.BLL
+		SccProjectUniqueName9 = HRMS.WorkFlows\\HRMS.ApprovalFlows.csproj
+		SccProjectName9 = HRMS.WorkFlows
+		SccLocalPath9 = HRMS.WorkFlows
+		SccProjectUniqueName10 = HRMS.Entities\\HRMS.Entities.csproj
+		SccProjectName10 = HRMS.Entities
+		SccLocalPath10 = HRMS.Entities
+	EndGlobalSection
+EndGlobal

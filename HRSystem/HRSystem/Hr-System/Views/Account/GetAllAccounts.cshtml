@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Hr_System.Models.accountTB>
+@{
+    ViewBag.Title = "Accounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="x_panel">
+    @using (Html.BeginForm("Reset", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    { 
+    <div class="x_title">
+        <h2>All Accounts </h2>
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+            <input type="submit" class="btn btn-round btn-success" id="Reset" value="Reset" name="Reset" /> 
+         
+        </div>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    }
+
+    @using (Html.BeginForm("AddRedPoints", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="x_title">
+            <h2>All Accounts </h2>
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                
+                <input type="submit" class="btn btn-round btn-success" id="AddRedPoints" value="Add red points" name="AddRedPoints" />
+            </div>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    }
+    <div class="x_content">
+        <table class="table table-striped responsive-utilities jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Employee Code</th>
+                    <th class="column-title">Employee Account </th>
+                    <th class="column-title">Arabic Name</th>
+                    <th class="column-title">Hire Date</th>
+                    <th class="column-title">Employee Type</th>
+                    <th class="column-title">Department</th>
+                    <th class="column-title">Sub-Department</th>
+                    <th class="column-title">Annual Vacations</th>
+                    <th class="column-title">Casual Vacations</th>
+                    <th class="column-title">Remaining Excuses</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="even pointer">
+                        <td>@Html.DisplayFor(cat => item.EmpCode)</td>
+                        <td>@Html.DisplayFor(cat => item.EmpName)</td>
+                        <td>@Html.DisplayFor(cat => item.ArabicName)</td>
+                        <td>@Html.DisplayFor(cat => item.HireDate)</td>
+                        <td>@Html.DisplayFor(cat => item.EmpType)</td>
+                        <td>@Html.DisplayFor(cat => item.DepartmentName)</td>
+                        <td>@Html.DisplayFor(cat => item.SubDepartmentName)</td>
+                        <td>@Html.DisplayFor(cat => item.AnnualVac)</td>
+                        <td>@Html.DisplayFor(cat => item.CasualVac)</td>
+                        <td>@Html.DisplayFor(cat => item.NumberOfRemainingPermissions)</td>
+                    </tr>
+                }
+               
+            </tbody>
+        </table>
+    </div>
+</div>

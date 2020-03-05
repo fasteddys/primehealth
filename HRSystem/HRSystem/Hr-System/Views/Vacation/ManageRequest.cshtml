@@ -1,0 +1,707 @@
+﻿@{
+    ViewBag.Title = "ManageRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        $("#divprint").hide();
+        $("#BtnApproveByTeamLeader").hide();
+        $("#BtnRejectByTeamLeader").hide();
+        $("#BtnApproveByManager").hide();
+        $("#BtnRejectByManager").hide();
+        $("#userInformation").hide();
+        $("#btnrevoke").hide();
+        $("#btnapproverevoke").hide();
+        $("#btnrejcetrevoke").hide();
+        $("#BtnApproveBySupervisor").hide();
+        $("#BtnRejectBySupervisor").hide();
+        $("#btndelete").hide();
+        $("#halfdayorfull").hide();
+        if ($("#HalfDayVacationType").val() != "") {
+            $("#halfdayorfull").show()
+        }
+
+        var UserType = "";
+        $.getJSON("/Vacation/GetTypeOfUser", {}, function (data) {
+            UserType = String(data);
+            if (UserType == "Manager" || UserType == "Supervisor" || UserType == "Deputy Manager" || UserType == "TeamLeader")
+            {
+                $("#userInformation").show();
+
+            }
+            if ($("#reqstatus").val() == "PendingTeamLeaderApproval" || $("#reqstatus").val() == "PendingSeniorApproval") {
+
+                if (UserType == "TeamLeader") {
+                    $("#BtnApproveByTeamLeader").show();
+                    $("#BtnRejectByTeamLeader").show();
+                }
+
+                if (UserType == "Supervisor" || UserType == "Deputy Manager")
+                {
+                    $("#BtnApproveBySupervisor").show();
+                    $("#BtnRejectBySupervisor").show();
+                }
+                if (UserType == "Manager") {
+                    $("#BtnApproveByManager").show();
+                    $("#BtnRejectByManager").show();
+
+                }
+            }
+            if ($("#reqstatus").val() == "PendingDuputyManagerApproval")
+            {
+                if (UserType == "Deputy Manager" || UserType == "Manager")
+                {
+                    $("#BtnApproveByManager").show();
+                    $("#BtnRejectByManager").show();
+                }
+            }
+            if ($("#reqstatus").val() == "PendingDuputyManagerApprovalOnRevoke") {
+                if (UserType == "Deputy Manager" || UserType == "Manager") {
+                    $("#btnapproverevoke").show();
+                    $("#btnrejcetrevoke").show();
+                }
+            }
+            if ($("#reqstatus").val() == "PendingManagerApprovalOnRevoke")
+            {
+                if (UserType == "Manager")
+                {
+                    $("#btnapproverevoke").show();
+                    $("#btnrejcetrevoke").show();
+                }
+            }
+            if ($("#reqstatus").val() == "PendingSupervisorApproval" || $("#reqstatus").val() == "PendingSupervisorBackupApproval") {
+
+                if (UserType == "Supervisor" || UserType == "Deputy Manager")
+                {
+                    $("#BtnApproveBySupervisor").show();
+                    $("#BtnRejectBySupervisor").show();
+                }
+                if (UserType == "Manager")
+                {
+
+                    $("#BtnApproveByManager").show();
+                    $("#BtnRejectByManager").show();
+
+                }
+
+            }
+            if ($("#reqstatus").val() == "RevokedByUser")
+            {
+
+                if (UserType == "Supervisor" || UserType == "Manager" || UserType == "Deputy Manager") {
+                    $("#btnapproverevoke").show();
+                    $("#btnrejcetrevoke").show();
+                }
+            }
+
+            else if ($("#reqstatus").val() == "RevokedByTeamLeader") {
+
+                if (UserType == "Supervisor" || UserType == "Deputy Manager" || UserType == "Manager") {
+                    $("#btnapproverevoke").show();
+                    $("#btnrejcetrevoke").show();
+                }
+            }
+            else if ($("#reqstatus").val() == "RevokedBySupervisor") {
+
+                if (UserType == "Manager" || UserType == "Deputy Manager") {
+                    $("#btnapproverevoke").show();
+                    $("#btnrejcetrevoke").show();
+                }
+            }
+
+            else if ($("#reqstatus").val() == "RevokeRejectedBySupervisor") {
+
+                if (UserType == "Manager") {
+                    $("#btnapproverevoke").show();
+                    $("#btnrejcetrevoke").show();
+                }
+            }
+
+            if ($("#reqstatus").val() == "PendingManagerApproval" ) {
+                if (UserType == "Manager" || UserType == "Deputy Manager")
+                {
+                    $("#BtnApproveByManager").show();
+                    $("#BtnRejectByManager").show();
+                }
+
+            }
+            if ($("#reqstatus").val() == "RejectedByTeamLeader") {
+
+                if (UserType == "Manager")
+                {
+                    $("#BtnApproveByManager").show();
+                    $("#BtnRejectByManager").show();
+                }
+
+
+            }
+            if ($("#reqstatus").val() == "RejectedBySupervisor")
+            {
+                if (UserType == "Manager") {
+                    $("#BtnApproveByManager").show();
+                    $("#BtnRejectByManager").show();
+                }
+
+
+            }
+
+            if ($("#reqstatus").val() == "RejectedByManager") {
+
+                $("#BtnApproveByTeamLeader").hide();
+                $("#BtnRejectByTeamLeader").hide();
+                $("#BtnApproveByManager").hide();
+                $("#BtnRejectByManager").hide();
+
+
+            }
+
+            if ($("#reqstatus").val() == "ApprovedByManager") {
+
+                $("#BtnApproveByTeamLeader").hide();
+                $("#BtnRejectByTeamLeader").hide();
+                $("#BtnApproveByManager").hide();
+                $("#BtnRejectByManager").hide();
+                $("#divprint").show();
+
+
+            }
+
+            if ($("#reqstatus").val() == "ManagerRequest") {
+
+                if (UserType == "Manager") {
+                    if (('@ViewBag.UserName') == ('@Session["UserName"]')) {
+                        $("#divprint").show();
+
+                    }
+
+                }
+            }
+
+            if ($("#reqstatus").val() == "ApprovedByManager") {
+                if (('@ViewBag.UserName') == ('@Session["UserName"]'))
+                {
+                    $("#divprint").show();
+                    if (('@ViewBag.RequestType') == "اعتيادية" || ('@ViewBag.RequestType') == "عارضه" || ('@ViewBag.RequestType') == "مرضية" ||
+                        ('@ViewBag.RequestType') == "بالخصم" || ('@ViewBag.RequestType') == "عارضه - أخري") {
+                        $("#btnrevoke").show();
+                    }
+                }
+            }
+            if (('@ViewBag.UserName') == ('@Session["UserName"]'))
+            {
+                if (('@ViewBag.RequestType') == "مرضية") {
+                    $("#divprint").show();
+                }
+            }
+            //here we display delete vacation BTN for normal user as long as it's still pending
+            if ('@Session["UserType"]' == "Normal")
+            {
+                debugger;
+                if (('@ViewBag.UserName') == ('@Session["UserName"]'))
+                {
+                    if ('@Session["MyTeamLeader"]' == "")
+                    {
+                        if ('@Session["MySupervisor"]' == "")
+                        {
+                            if ($("#reqstatus").val() == "PendingManagerApproval" || $("#reqstatus").val() == "PendingDuputyManagerApproval" || $("#reqstatus").val() == "PendingSupervisorApproval")
+                            {
+                                $("#btndelete").show();
+                            }
+                        }
+                        else
+                        {
+                            if ($("#reqstatus").val() == "PendingSupervisorApproval" || $("#reqstatus").val() == "PendingSupervisorBackupApproval")
+                            {
+                                $("#btndelete").show();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if ($("#reqstatus").val() == "PendingTeamLeaderApproval" || $("#reqstatus").val() == "PendingSeniorApproval") {
+                            $("#btndelete").show();
+                        }
+                    }
+                }
+            }
+            //here we display delete vacation BTN for team leader user as long as it's still pending
+            if ('@Session["UserType"]' == "TeamLeader")
+            {
+                if (('@ViewBag.UserName') == ('@Session["UserName"]'))
+                {
+                    if ($("#reqstatus").val() == "PendingSupervisorApproval" || $("#reqstatus").val() == "PendingSupervisorBackupApproval")
+                    {
+                        $("#btndelete").show();
+                    }
+                }
+            }
+
+            if ('@Session["UserType"]' == "Supervisor" || '@Session["UserType"]' == "Deputy Manager")
+            {
+                if (('@ViewBag.UserName') == ('@Session["UserName"]'))
+                {
+                    if ($("#reqstatus").val() == "PendingManagerApproval" || $("#reqstatus").val() == "PendingDuputyManagerApproval")
+                    {
+                        $("#btndelete").show();
+                    }
+                }
+            }
+
+                if ('@Session["UserType"]' == "Manager")
+            {
+                if (('@ViewBag.UserName') == ('@Session["UserName"]'))
+                {
+                    if ($("#reqstatus").val() == "ManagerRequest")
+                    {
+                        $("#btndelete").show();
+                    }
+                }
+            }
+
+        });
+        var Request;
+        $("#BtnApproveByTeamLeader").click(function () {
+            $("#BtnApproveByTeamLeader").hide();
+            Request = {
+                ID: $("#ReqID").val(),
+            }
+
+            var x = JSON.stringify(Request);
+            $.ajax({
+                url: '@Url.Action("ApproveByTeamLeader", "Vacation")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+                    alert(data);
+                }
+            });
+            window.location = '@Url.Action("GetPendingMyApprovalVacations", "Vacation")';
+
+
+        })
+
+        $("#BtnRejectByTeamLeader").click(function () {
+
+            Request = {
+                ID: $("#ReqID").val(),
+
+
+            }
+
+            var x = JSON.stringify(Request);
+            $.ajax({
+                url: '@Url.Action("RejectedByTeamLeader", "Vacation")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+                    alert(data);
+                }
+            });
+            window.location = '@Url.Action("GetPendingMyApprovalVacations", "Vacation")';
+
+        })
+        $("#BtnApproveBySupervisor").click(function () {
+            $("#BtnApproveBySupervisor").hide();
+            Request = {
+                ID: $("#ReqID").val(),
+            }
+
+            var x = JSON.stringify(Request);
+            $.ajax({
+                url: '@Url.Action("ApproveBySupervisor", "Vacation")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+                    alert(data);
+                }
+            });
+            window.location = '@Url.Action("GetPendingMyApprovalAsAsupervisorVacations", "Vacation")';
+
+
+        })
+
+        $("#BtnRejectBySupervisor").click(function () {
+
+            Request = {
+                ID: $("#ReqID").val(),
+
+
+            }
+
+            var x = JSON.stringify(Request);
+            $.ajax({
+                url: '@Url.Action("RejectedBySupervisor", "Vacation")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+                    alert(data);
+                }
+            });
+            window.location = '@Url.Action("GetPendingMyApprovalAsAsupervisorVacations", "Vacation")';
+
+        })
+        $("#BtnApproveByManager").click(function () {
+            $("#BtnApproveByManager").hide();
+            Request = {
+                ID: $("#ReqID").val(),
+            }
+
+            var x = JSON.stringify(Request);
+            $.ajax({
+                url: '@Url.Action("ApproveByManager", "Vacation")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+                    alert(data);
+                }
+            });
+            if ('@Session["UserType"]' == "Deputy Manager") {
+                window.location = '@Url.Action("GetPendingMyApprovalAsAsupervisorVacations", "Vacation")';
+            }
+            else {
+                window.location = '@Url.Action("GetPendingMyApprovalAsManagerVacations", "Vacation")';
+            }
+
+        })
+        $("#BtnRejectByManager").click(function () {
+            Request = {
+                ID: $("#ReqID").val(),
+
+            }
+
+            var x = JSON.stringify(Request);
+            $.ajax({
+                url: '@Url.Action("RejectedByManager", "Vacation")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+                    alert(data);
+                }
+            });
+             if ('@Session["UserType"]' == "Deputy Manager") {
+                window.location = '@Url.Action("GetPendingMyApprovalAsAsupervisorVacations", "Vacation")';
+            }
+            else {
+                window.location = '@Url.Action("GetPendingMyApprovalAsManagerVacations", "Vacation")';
+            }
+        })
+
+        $("#btnrevoke").click(function () {
+
+            Request = {
+                ID: $("#ReqID").val(),
+            }
+
+            if ('@Session["UserType"]' == "Normal") {
+
+                var x = JSON.stringify(Request);
+                $.ajax({
+                    url: '@Url.Action("RevokeByNormalUser", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+                    }
+
+                });
+                window.location = '@Url.Action("GetMyApprovedTeamLeaderVacation", "Vacation")';
+
+            }
+
+            else if ('@Session["UserType"]' == "TeamLeader") {
+                var x = JSON.stringify(Request);
+                $.ajax({
+
+                    url: '@Url.Action("RevokeByTeamLeader", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+
+                    }
+
+                });
+
+                window.location = '@Url.Action("GetPendingSupervisorApproval", "Vacation")'
+            }
+            else if ('@Session["UserType"]' == "Supervisor" || '@Session["UserType"]' == "Deputy Manager") {
+                var x = JSON.stringify(Request);
+                $.ajax({
+
+                    url: '@Url.Action("RevokeBySupervisor", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+                    }
+
+                });
+                window.location = '@Url.Action("GetPendingManagerApproval", "Vacation")'
+            }
+        })
+        $("#btndelete").click(function () {
+
+            Request = {
+                ID: $("#ReqID").val(),
+            }
+
+            if ('@Session["UserType"]' == "Normal") {
+
+                var x = JSON.stringify(Request);
+                $.ajax({
+                    url: '@Url.Action("DeleteVacation", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+                window.location = '@Url.Action("GetMyPendingTeamLeaderVacation", "Vacation")';
+
+            }
+
+            else if ('@Session["UserType"]' == "TeamLeader") {
+                var x = JSON.stringify(Request);
+                $.ajax({
+
+                    url: '@Url.Action("DeleteVacation", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+
+                    }
+
+                });
+
+                window.location = '@Url.Action("GetPendingSupervisorApproval", "Vacation")'
+            }
+            else if ('@Session["UserType"]' == "Supervisor" || '@Session["UserType"]' == "Deputy Manager") {
+                var x = JSON.stringify(Request);
+                $.ajax({
+
+                    url: '@Url.Action("DeleteVacation", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+                    }
+
+                });
+                window.location = '@Url.Action("GetPendingManagerApproval", "Vacation")'
+            }
+            else if ('@Session["UserType"]' == "Manager")
+            {
+                var x = JSON.stringify(Request);
+                $.ajax({
+
+                    url: '@Url.Action("DeleteVacation", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+                    }
+
+                });
+                window.location = '@Url.Action("GetMyVacation", "Vacation")'
+            }
+        })
+        $("#btnapproverevoke").click(function () {
+            $("#btnapproverevoke").hide();
+            Request = {
+                ID: $("#ReqID").val(),
+            }
+
+            if ('@Session["UserType"]' == "Supervisor" || '@Session["UserType"]' == "Deputy Manager") {
+                var x = JSON.stringify(Request);
+                $.ajax({
+                    url: '@Url.Action("ApproveOnRevokeBySupervisor", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+                window.location = '@Url.Action("GetPendingMyApprovalAsAsupervisorVacations", "Vacation")';
+            }
+
+            else if ('@Session["UserType"]' == "Manager") {
+                var x = JSON.stringify(Request);
+                $.ajax({
+                    url: '@Url.Action("ApproveOnRevokeByManager", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status)
+                    {
+                        alert(data);
+                    }
+                });
+                window.location = '@Url.Action("GetPendingMyApprovalAsManagerVacations", "Vacation")';
+            }
+        })
+        $("#btnrejcetrevoke").click(function () {
+
+            Request = {
+                ID: $("#ReqID").val(),
+            }
+
+
+            if ('@Session["UserType"]' == "Supervisor" || '@Session["UserType"]' == "Deputy Manager") {
+                var x = JSON.stringify(Request);
+
+                $.ajax({
+                    url: '@Url.Action("RejectedRevokeBySupervisor", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+                window.location = '@Url.Action("GetPendingMyApprovalAsAsupervisorVacations", "Vacation")';
+            }
+
+            else if ('@Session["UserType"]' == "Manager") {
+                var x = JSON.stringify(Request);
+                $.ajax({
+                    url: '@Url.Action("RejectedRevokeByManager", "Vacation")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+                        alert(data);
+                    }
+
+                });
+                window.location = '@Url.Action("GetPendingMyApprovalAsManagerVacations", "Vacation")'
+            }
+        })
+
+
+    })
+    </script>
+}
+<h2>Manage Request</h2>
+
+@{
+    Html.RenderPartial("_RequestHandler");
+}
+<div id="divprint" class="row" style="display:none">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <a style="font-size:larger;font-family:'Century Gothic';font-weight:bold" href="@Url.Action("Report", new { type = "PDF ", ID = @ViewBag.ID})" target="_blank">View/Print Leave</a>
+    </div>
+</div>
+<br />
+<div class="x_panel" id="userInformation" style="display:none">
+    <div class="x_title">
+        <h2>User Details <small>Informations</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <ul class="list-unstyled timeline">
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>UserName</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+
+                        <p class="excerpt">
+                            @ViewBag.UserName
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>Managment</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+
+                        <p class="excerpt">
+                            @ViewBag.Managment
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>Department</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+
+                        <p class="excerpt">
+                            @ViewBag.Department
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>Annual</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+
+                        <p class="excerpt">
+                            @ViewBag.RemainingAnnual Annual Vacations Remaining
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>Casual</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+
+                        <p class="excerpt">
+                            @ViewBag.RemainingCasual Casual Vacations Remaining
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<link href="../assets/styles.min.css" rel="stylesheet">
+<link href="~/css/jq/sheet.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>

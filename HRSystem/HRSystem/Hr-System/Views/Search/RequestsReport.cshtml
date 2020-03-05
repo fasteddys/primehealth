@@ -1,0 +1,348 @@
+﻿@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    table {
+        width: 40em;
+        margin: 2em auto;
+    }
+
+    thead {
+        background: #000;
+        color: #fff;
+    }
+
+    td {
+        width: 10em;
+        padding: 0.3em;
+    }
+
+    tbody {
+        background: #ccc;
+    }
+
+    div.pager {
+        text-align: center;
+        margin: 1em 0;
+    }
+
+        div.pager span {
+            display: inline-block;
+            width: 1.8em;
+            height: 1.8em;
+            line-height: 1.8;
+            text-align: center;
+            cursor: pointer;
+            background: #000;
+            color: #fff;
+            margin-right: 0.5em;
+        }
+
+            div.pager span.active {
+                background: #c00;
+            }
+</style>
+
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+
+
+
+<input type="hidden" class="EmptyDeptId" />
+<input type="hidden" class="SubSelectId" />
+<input type="hidden" class="UsersSelectId" />
+<input type="hidden" class="RequestSelectId" />
+
+
+@*Departments Select*@
+<div class="row">
+    <div class="col-md-4">
+        <div class="label-body">Select Departments</div>
+        <select class="Deparments" style="width:250px" multiple>
+            <option>Departments</option>
+        </select>
+    </div>
+    @*Sub-Departments Select*@
+    <div class="col-md-4">
+        <div class="label-body">Select Sub-Departments</div>
+        <select class="SubDeparment" style="width:250px" multiple="multiple">
+            <option> Sub-Departments</option>
+        </select>
+    </div>
+    @*Users Select*@
+    <div class="col-md-4">
+        <div class="label-body">Select Users</div>
+        <select class="Users" style="width:250px" multiple="multiple">
+            <option> Users</option>
+        </select>
+    </div>
+</div>
+<br />
+<div class="row">
+    @*RequestType Select*@
+    <div class="col-md-4">
+        <div class="label-body">Select Request Type</div>
+        <select class="ReqType" style="width:200px" multiple="multiple">
+            <option value="إجازة">Vacation</option>
+            <option value="Excuse">Excuse</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <div class="label-body">Date From</div>
+        <input type="text"  id="Fromdatepicker">
+    </div>
+    <div class="col-md-4">
+        <div class="label-body">Date To</div>        
+       <input type="text" id="EndFdatepicker">
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <button type="button" class="btn btn-success pull-right" id="btnSearch" style="float:left" onclick="Search()">Search </button>
+        </div>
+        @*<div class="col-md-6">
+            <input type="button" onclick="tableToExcel(document.getElementById('rateb'), 'Report')" value="Export to Excel" class="btn btn-warning pull-right">
+            </div>*@
+        </div>
+<div id="DataTable"></div>
+@*<div class="x_panel">
+        <div class="x_title">
+            <h2>ALL Requests</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped responsive-utilities jambo_table bulk_action" id="rateb">
+                <thead>
+                    <tr class="headings">
+                        <th class="column-title">ID</th>
+                        <th class="column-title">Employee Name</th>
+                        <th class="column-title">Arabic Name</th>
+                        <th class="column-title">Department </th>
+                        <th class="column-title">Sub-Department</th>
+                        <th class="column-title">Employee Type</th>
+                        <th class="column-title">Request Type</th>
+                        <th class="column-title">Vacation Type</th>
+                        <th class="column-title no-link last"><span class="nobr">Action</span>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>*@
+
+
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<script src="~/Scripts/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".Deparments").select2({
+            theme: "classic",
+            ajax: {
+                url: "/Search/GetDepartmentList",
+                dataType: "json",
+                data: function (params) {
+                    return {
+                        searchTerm: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return {
+                        results: data
+                    };
+                }
+            }
+        });
+
+        $(".Deparments").on("change", function () {
+            debugger;
+            var DEID = $(this).val();
+            $(".EmptyDeptId").val(DEID);
+            var textBoxVal = $(".EmptyDeptId").val();
+            $.ajax({
+                url: "/Search/GetSubDeparmentsList?DeparmentIDs=" + textBoxVal,
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    $(".SubDeparment").empty();
+                    $(".Users").empty();
+                    $.each(data, function (index, row) {
+                        $(".SubDeparment").append("<option value='" + row.ID + "'>" + row.SubDepartmentName + "</option>")
+                    });
+                }
+            })
+        });
+        $(".SubDeparment").select2({
+            theme: "classic",
+        });
+
+        $(".SubDeparment").on("change", function () {
+            var DEID = $(this).val();
+            $(".SubSelectId").val(DEID);
+            var textBoxVal = $(".SubSelectId").val();
+            $.ajax({
+                url: "/Search/GetUsersList?SubDeptIDs=" + textBoxVal,
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    $(".Users").empty();
+                    $.each(data, function (index, row) {
+                        $(".Users").append("<option value='" + row.ID + "'>" + row.EmpName + "</option>")
+                    });
+                }
+            });
+        });
+
+        $(".Users").select2({
+            theme: "classic",
+        });
+
+        $(".Users").change(function () {
+            var DEID = $(this).val();
+            $(".UsersSelectId").val(DEID);
+            var textBoxVal = $(".UsersSelectId").val();
+        })
+
+        $(".ReqType").select2({
+            theme: "classic",
+        });
+        $("#rateb").each(function () {
+            var currentPage = 0;
+            var numPerPage = 50;
+            var $table = $(this);
+            $table.bind('repaginate', function () {
+                $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+            });
+            $table.trigger('repaginate');
+            var numRows = $table.find('tbody tr').length;
+            var numPages = Math.ceil(numRows / numPerPage);
+            var $pager = $('<div class="pager"></div>');
+            for (var page = 0; page < numPages; page++) {
+                $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                    newPage: page
+                }, function (event) {
+                    currentPage = event.data['newPage'];
+                    $table.trigger('repaginate');
+                    $(this).addClass('active').siblings().removeClass('active');
+                }).appendTo($pager).addClass('clickable');
+            }
+            $pager.insertBefore($table).find('span.page-number:first').addClass('active');
+        });
+
+    });
+
+
+    //// DatePicker
+    $(function () {
+        $("#Fromdatepicker").datepicker({
+
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+    $(function () {
+        $("#EndFdatepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+
+    //// Append Datatable
+    function Search() {
+        debugger;
+        var DepartmentsIds = $(".EmptyDeptId").val();
+        var SubDepartmentsIds = $(".SubSelectId").val();
+        var UsersIds = $(".UsersSelectId").val();
+        var RequestTypeNames = $(".ReqType").val();
+        var StartDate = $("#Fromdatepicker").val();
+        var EndDate = $("#EndFdatepicker").val();
+
+        if (DepartmentsIds == "") {
+            alert("Please Select Department");
+        }
+        else {
+            $.ajax({
+                url: "/Search/SubmitSearch?Departments=" + DepartmentsIds + "&SubDepartments=" + SubDepartmentsIds + "&User=" + UsersIds + "&RequestsType=" + RequestTypeNames
+                + "&ReportStartingDate=" + StartDate + "&ReportEndingDate=" + EndDate
+                ,
+                dataType: "html",
+                type: 'Get',
+                success: function (data) {
+                    var table = $("#DataTable");
+                    table.empty();
+                    table.append(data);
+
+
+                    $("#rateb").each(function () {
+                        var currentPage = 0;
+                        var numPerPage = 10;
+                        var $table = $(this);
+                        $table.bind('repaginate', function () {
+                            $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+                        });
+                        $table.trigger('repaginate');
+                        var numRows = $table.find('tbody tr').length;
+                        var numPages = Math.ceil(numRows / numPerPage);
+                        var $pager = $('<div class="pager"></div>');
+                        for (var page = 0; page < numPages; page++) {
+                            $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                                newPage: page
+                            }, function (event) {
+                                currentPage = event.data['newPage'];
+                                $table.trigger('repaginate');
+                                $(this).addClass('active').siblings().removeClass('active');
+                            }).appendTo($pager).addClass('clickable');
+                        }
+                        $pager.insertBefore($table).find('span.page-number:first').addClass('active');
+                    });
+
+
+
+
+
+                },
+                error: function (data) {
+                    //alert(data);
+
+                }
+
+            });
+
+
+
+
+
+
+        }
+    }
+
+    //Export To Excell
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+
+</script>
+

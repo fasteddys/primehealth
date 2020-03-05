@@ -1,0 +1,74 @@
+﻿
+<div class="onerow">
+    <div class="col6 last">
+        <fieldset id="alternativeFlowsContainer" class="formGroup">
+            <fieldset class="ruleFieldset">
+                <legend class="alternativeLegend">
+                    <span class="title">Steps in case of...</span>
+                    <span class="caseConfigContainer"></span>
+                </legend>
+                <div class="onerow flowDetails_autoAcceptation" style="display: block;">
+                    <div class="col12">
+                        <span class=" fa fa-check-circle fa-2x"></span> Automatic immediate approval.
+                        <br><br>
+                        Add approvers to steps to make flow non-automatic.
+                    </div>
+                </div>
+                <fieldset class="formGroup">
+                    <div class="onerow" id="ApprovalField">
+                        <div class="col12">
+                            <div class="flowPresentationContainer">
+                                <div class="FlowPresentation hiddenStatusColumn">
+                                    <div class="FlowPresentation_Step">
+                                        <div class="FlowPresentation_State"></div>
+                                        <div class="FlowPresentation_Indicator"></div>
+                                        <div class="FlowPresentation_Desc">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <select multiple data-plugin-selectTwo class="form-control populate" id="SelectApprovalUser">
+                                                        <option value="CT">Direct Manager</option>
+                                                        <option value="DE">Team Leader</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2 pull-right">
+                                                    <a class="nav-link" href="#">
+                                                        <i class="fas fa-trash" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="FlowPresentation_NextArrow"></div>
+                                        <div class="FlowPresentation_Number">1</div>
+                                        <div class="FlowPresentation_Clear">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="formGroup">
+                    @*<div class="onerow">
+                            <div class="col12 last">
+                                <div class="checkboxContainer">
+                                    <input type="checkbox" class="checkbox substitutesAsApproversField " id="substitutesAsApproversField_1" name="substitutesAsApprovers" value="true">
+                                    <label for="substitutesAsApproversField_1">
+                                        <span></span>
+                                        Add substitute worker to the flow
+                                    </label>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<div class="onerow">
+                            <div class="col12 last">
+                                <label for="s2id_autogen75">Send notification after final approval to:</label>
+                                <select multiple data-plugin-selectTwo class="form-control populate">
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                </select>
+                            </div>
+                        </div>*@
+    </div>
+    </fieldset>
+    </fieldset>
+</div>

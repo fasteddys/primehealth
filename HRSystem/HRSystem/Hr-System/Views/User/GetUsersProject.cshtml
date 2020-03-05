@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "GetUsersProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2><i class="fa fa-align-left"></i> My Projects <small>Projects</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <!-- start accordion -->
+        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel">
+                <a class="panel-heading collapsed" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <h4 class="panel-title"> All Project </h4>
+                </a>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                    <div>
+                        @foreach (var All in ViewBag.AllProjects)
+                        {
+                            <div class="col-md-55">
+                                <div class="thumbnail">
+                                    <div class="image view view-first">
+                                        <img style="width: 100%; display: block;" id="pic" src="/images/member.png" alt="">
+                                        @*<img style="width: 100%; display: block;" src="images/bootstrap-colorpicker/department.jpg" alt="image">*@
+                                        <div class="mask">
+                                            <div id="test">
+                                                <p>@All.ProjectName</p>
+                                            </div>
+
+                                            @*<div class="tools tools-bottom">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a id="getusers" href="/AdminPanel/ProjectDetails?ID=@Main.ID"><i class="fa fa-times"></i></a>
+                                        </div>*@
+                                        </div>
+                                    </div>
+                                    <div class="caption">
+                                        <a href="/AdminPanel/ProjectDetails?projectname=@All.ProjectName">@All.ProjectName</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+                <div class="panel">
+                    <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h4 class="panel-title">Main Projects</h4>
+                    </a>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+                        @foreach (var Main in ViewBag.MainProjects)
+                        {
+                            <div class="col-md-55">
+                                <div class="thumbnail">
+                                    <div class="image view view-first">
+                                        <img style="width: 100%; display: block;" id="pic" src="/images/projmanager.jpg" alt="">
+                                        @*<img style="width: 100%; display: block;" src="images/bootstrap-colorpicker/department.jpg" alt="image">*@
+                                        <div class="mask">
+                                            <div id="test">
+                                                <p>@Main.ProjectName</p>
+                                            </div>
+
+                                            <div class="tools tools-bottom">
+                                                @*<a href="#"><i class="fa fa-link"></i></a>*@
+                                                <a href="/AdminPanel/ProjectManagment?ID=@Main.Id"> edit <i class="fa fa-pencil"></i></a>
+                                                @*<a id="getusers" href="#"><i class="fa fa-times"></i></a>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="caption">
+                                        <a href="/AdminPanel/ProjectDetails?projectname=@Main.ProjectName"> @Main.ProjectName</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="panel">
+                    <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapsethree" aria-expanded="false" aria-controls="collapseTwo">
+                        <h4 class="panel-title">Backup Projects</h4>
+                    </a>
+                    <div id="collapsethree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+                        @foreach (var Bkup in ViewBag.BackupProjects)
+                        {
+                            <div class="col-md-55">
+                                <div class="thumbnail">
+                                    <div class="image view view-first">
+                                        <img style="width: 100%; display: block;" id="pic" src="/images/Backup.png" alt="">
+                                        @*<img style="width: 100%; display: block;" src="images/bootstrap-colorpicker/department.jpg" alt="image">*@
+                                        <div class="mask">
+                                            <div id="test">
+                                                <p>@Bkup.ProjectName</p>
+                                            </div>
+
+                                            <div class="tools tools-bottom">
+                                                @*<a href="#"><i class="fa fa-link"></i></a>*@
+                                                <a href="/AdminPanel/ProjectManagment?ID=@Bkup.Id"> edit <i class="fa fa-pencil"></i></a>
+                                                @*<a id="getusers" href="#"><i class="fa fa-times"></i></a>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="caption">
+                                        <a href="/AdminPanel/ProjectDetails?projectname=@Bkup.ProjectName"> @Bkup.ProjectName</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            
+       
+
+    </div>
+
+</div>

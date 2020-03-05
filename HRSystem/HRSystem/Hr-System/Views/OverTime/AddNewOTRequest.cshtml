@@ -1,0 +1,509 @@
+﻿@{
+    ViewBag.Title = "AddNewOTRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Over Time Pannel <small>Managment</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                           Over Start From <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="overtimestartdate" class="form-control col-md-7 col-xs-12" type="text">
+                            <p id="dateoutput1"></p>
+   
+                        </div>
+
+                    </div>
+                
+                    <br />
+                    <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Start Time <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <field name="time"
+                       type="list"
+                       required="true"
+                       label="Time"
+                       description="Time"
+                       class="input-medium validate-time">
+                    <select id="overtimefromselect">
+                        <optgroup id="overtimefrom" label="OverTime Start in ">
+
+                            <option value="0" selected disabled>Please Select Start Time</option>
+                            <option value="00:00:00">12:00 AM</option>
+                            <option value="00:15:00">12:15 AM</option>
+                            <option value="00:30:00">12:30 AM</option>
+                            <option value="00:45:00">12:45 AM</option>
+                            <option value="01:00:00">01:00 AM</option>
+                            <option value="01:15:00">01:15 AM</option>
+                            <option value="01:30:00">01:30 AM</option>
+                            <option value="01:45:00">01:45 AM</option>
+                            <option value="02:00:00">02:00 AM</option>
+                            <option value="02:15:00">02:15 AM</option>
+                            <option value="02:30:00">02:30 AM</option>
+                            <option value="02:45:00">02:45 AM</option>
+                            <option value="03:00:00">03:00 AM</option>
+                            <option value="03:15:00">03:15 AM</option>
+                            <option value="03:30:00">03:30 AM</option>
+                            <option value="03:45:00">03:45 AM</option>
+                            <option value="04:00:00">04:00 AM</option>
+                            <option value="04:15:00">04:15 AM</option>
+                            <option value="04:30:00">04:30 AM</option>
+                            <option value="04:45:00">04:45 AM</option>
+                            <option value="05:00:00">05:00 AM</option>
+                            <option value="05:15:00">05:15 AM</option>
+                            <option value="05:30:00">05:30 AM</option>
+                            <option value="05:45:00">05:45 AM</option>
+                            <option value="06:00:00">06:00 AM</option>
+                            <option value="06:15:00">06:15 AM</option>
+                            <option value="06:30:00">06:30 AM</option>
+                            <option value="06:45:00">06:45 AM</option>
+                            <option value="07:00:00">07:00 AM</option>
+                            <option value="07:15:00">07:15 AM</option>
+                            <option value="07:30:00">07:30 AM</option>
+                            <option value="07:45:00">07:45 AM</option>
+                            <option value="08:00:00">08:00 AM</option>
+                            <option value="08:15:00">08:15 AM</option>
+                            <option value="08:30:00">08:30 AM</option>
+                            <option value="08:45:00">08:45 AM</option>
+                            <option value="09:00:00">09:00 AM</option>
+                            <option value="09:15:00">09:15 AM</option>
+                            <option value="09:30:00">09:30 AM</option>
+                            <option value="09:94:00">09:45 AM</option>
+                            <option value="10:00:00">10:00 AM</option>
+                            <option value="10:15:00">10:15 AM</option>
+                            <option value="10:30:00">10:30 AM</option>
+                            <option value="10:45:00">10:45 AM</option>
+                            <option value="11:00:00">11:00 AM</option>
+                            <option value="11:15:00">11:15 AM</option>
+                            <option value="11:30:00">11:30 AM</option>
+                            <option value="11:45:00">11:45 AM</option>
+                            <option value="12:00:00">12:00 PM</option>
+                            <option value="12:15:00">12:15 PM</option>
+                            <option value="12:30:00">12:30 PM</option>
+                            <option value="12:45:00">12:45 PM</option>
+                            <option value="13:00:00">01:00 PM</option>
+                            <option value="13:15:00">01:15 PM</option>
+                            <option value="13:30:00">01:30 PM</option>
+                            <option value="13:45:00">01:45 PM</option>
+                            <option value="14:00:00">02:00 PM</option>
+                            <option value="14:15:00">02:15 PM</option>
+                            <option value="14:30:00">02:30 PM</option>
+                            <option value="15:00:00">03:00 PM</option>
+                            <option value="15:15:00">03:15 PM</option>
+                            <option value="15:30:00">03:30 PM</option>
+                            <option value="15:45:00">03:45 PM</option>
+                            <option value="16:00:00">04:00 PM</option>
+                            <option value="16:15:00">04:15 PM</option>
+                            <option value="16:30:00">04:30 PM</option>
+                            <option value="16:45:00">04:45 PM</option>
+                            <option value="17:00:00">05:00 PM</option>
+                            <option value="17:15:00">05:15 PM</option>
+                            <option value="17:30:00">05:30 PM</option>
+                            <option value="17:45:00">05:45 PM</option>
+                            <option value="18:00:00">06:00 PM</option>
+                            <option value="18:15:00">06:15 PM</option>
+                            <option value="18:30:00">06:30 PM</option>
+                            <option value="18:45:00">06:45 PM</option>
+                            <option value="19:00:00">07:00 PM</option>
+                            <option value="19:15:00">07:15 PM</option>
+                            <option value="19:30:00">07:30 PM</option>
+                            <option value="19:45:00">07:45 PM</option>
+                            <option value="20:00:00">08:00 PM</option>
+                            <option value="20:15:00">08:15 PM</option>
+                            <option value="20:30:00">08:30 PM</option>
+                            <option value="20:45:00">08:45 PM</option>
+                            <option value="21:00:00">09:00 PM</option>
+                            <option value="21:15:00">09:15 PM</option>
+                            <option value="21:30:00">09:30 PM</option>
+                            <option value="21:45:00">09:45 PM</option>
+                            <option value="22:00:00">10:00 PM</option>
+                            <option value="22:15:00">10:15 PM</option>
+                            <option value="22:30:00">10:30 PM</option>
+                            <option value="22:45:00">10:45 PM</option>
+                            <option value="23:00:00">11:00 PM</option>
+                            <option value="23:15:00">11:15 PM</option>
+                            <option value="23:30:00">11:30 PM</option>
+                            <option value="23:45:00">11:45 PM</option>
+                        </optgroup>
+                    </select>
+                </field>
+            </div>
+        </div>
+        <br />
+                    <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Over End In<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="overtimeenddate" class="form-control col-md-7 col-xs-12" type="text">
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                            End Time <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <field name="time"
+                                   type="list"
+                                   required="true"
+                                   label="Time"
+                                   description="Time"
+                                   class="input-medium validate-time">
+                                <select id="overtimetoselect">
+                                    <optgroup id="overtimefrom" label="OverTime Start in ">
+
+                                        <option value="0" selected disabled>Please Select End Time</option>
+                                        <option value="00:00:00">12:00 AM</option>
+                                        <option value="00:15:00">12:15 AM</option>
+                                        <option value="00:30:00">12:30 AM</option>
+                                        <option value="00:45:00">12:45 AM</option>
+                                        <option value="01:00:00">01:00 AM</option>
+                                        <option value="01:15:00">01:15 AM</option>
+                                        <option value="01:30:00">01:30 AM</option>
+                                        <option value="01:45:00">01:45 AM</option>
+                                        <option value="02:00:00">02:00 AM</option>
+                                        <option value="02:15:00">02:15 AM</option>
+                                        <option value="02:30:00">02:30 AM</option>
+                                        <option value="02:45:00">02:45 AM</option>
+                                        <option value="03:00:00">03:00 AM</option>
+                                        <option value="03:15:00">03:15 AM</option>
+                                        <option value="03:30:00">03:30 AM</option>
+                                        <option value="03:45:00">03:45 AM</option>
+                                        <option value="04:00:00">04:00 AM</option>
+                                        <option value="04:15:00">04:15 AM</option>
+                                        <option value="04:30:00">04:30 AM</option>
+                                        <option value="04:45:00">04:45 AM</option>
+                                        <option value="05:00:00">05:00 AM</option>
+                                        <option value="05:15:00">05:15 AM</option>
+                                        <option value="05:30:00">05:30 AM</option>
+                                        <option value="05:45:00">05:45 AM</option>
+                                        <option value="06:00:00">06:00 AM</option>
+                                        <option value="06:15:00">06:15 AM</option>
+                                        <option value="06:30:00">06:30 AM</option>
+                                        <option value="06:45:00">06:45 AM</option>
+                                        <option value="07:00:00">07:00 AM</option>
+                                        <option value="07:15:00">07:15 AM</option>
+                                        <option value="07:30:00">07:30 AM</option>
+                                        <option value="07:45:00">07:45 AM</option>
+                                        <option value="08:00:00">08:00 AM</option>
+                                        <option value="08:15:00">08:15 AM</option>
+                                        <option value="08:30:00">08:30 AM</option>
+                                        <option value="08:45:00">08:45 AM</option>
+                                        <option value="09:00:00">09:00 AM</option>
+                                        <option value="09:15:00">09:15 AM</option>
+                                        <option value="09:30:00">09:30 AM</option>
+                                        <option value="09:94:00">09:45 AM</option>
+                                        <option value="10:00:00">10:00 AM</option>
+                                        <option value="10:15:00">10:15 AM</option>
+                                        <option value="10:30:00">10:30 AM</option>
+                                        <option value="10:45:00">10:45 AM</option>
+                                        <option value="11:00:00">11:00 AM</option>
+                                        <option value="11:15:00">11:15 AM</option>
+                                        <option value="11:30:00">11:30 AM</option>
+                                        <option value="11:45:00">11:45 AM</option>
+                                        <option value="12:00:00">12:00 PM</option>
+                                        <option value="12:15:00">12:15 PM</option>
+                                        <option value="12:30:00">12:30 PM</option>
+                                        <option value="12:45:00">12:45 PM</option>
+                                        <option value="13:00:00">01:00 PM</option>
+                                        <option value="13:15:00">01:15 PM</option>
+                                        <option value="13:30:00">01:30 PM</option>
+                                        <option value="13:45:00">01:45 PM</option>
+                                        <option value="14:00:00">02:00 PM</option>
+                                        <option value="14:15:00">02:15 PM</option>
+                                        <option value="14:30:00">02:30 PM</option>
+                                        <option value="15:00:00">03:00 PM</option>
+                                        <option value="15:15:00">03:15 PM</option>
+                                        <option value="15:30:00">03:30 PM</option>
+                                        <option value="15:45:00">03:45 PM</option>
+                                        <option value="16:00:00">04:00 PM</option>
+                                        <option value="16:15:00">04:15 PM</option>
+                                        <option value="16:30:00">04:30 PM</option>
+                                        <option value="16:45:00">04:45 PM</option>
+                                        <option value="17:00:00">05:00 PM</option>
+                                        <option value="17:15:00">05:15 PM</option>
+                                        <option value="17:30:00">05:30 PM</option>
+                                        <option value="17:45:00">05:45 PM</option>
+                                        <option value="18:00:00">06:00 PM</option>
+                                        <option value="18:15:00">06:15 PM</option>
+                                        <option value="18:30:00">06:30 PM</option>
+                                        <option value="18:45:00">06:45 PM</option>
+                                        <option value="19:00:00">07:00 PM</option>
+                                        <option value="19:15:00">07:15 PM</option>
+                                        <option value="19:30:00">07:30 PM</option>
+                                        <option value="19:45:00">07:45 PM</option>
+                                        <option value="20:00:00">08:00 PM</option>
+                                        <option value="20:15:00">08:15 PM</option>
+                                        <option value="20:30:00">08:30 PM</option>
+                                        <option value="20:45:00">08:45 PM</option>
+                                        <option value="21:00:00">09:00 PM</option>
+                                        <option value="21:15:00">09:15 PM</option>
+                                        <option value="21:30:00">09:30 PM</option>
+                                        <option value="21:45:00">09:45 PM</option>
+                                        <option value="22:00:00">10:00 PM</option>
+                                        <option value="22:15:00">10:15 PM</option>
+                                        <option value="22:30:00">10:30 PM</option>
+                                        <option value="22:45:00">10:45 PM</option>
+                                        <option value="23:00:00">11:00 PM</option>
+                                        <option value="23:15:00">11:15 PM</option>
+                                        <option value="23:30:00">11:30 PM</option>
+                                        <option value="23:45:00">11:45 PM</option>
+                                    </optgroup>
+                                </select>
+                            </field>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                            Cause Of OverTime<span class="required">*</span>
+                        </label>
+                 
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea class="form-control col-md-7 col-xs-12" cols="20" id="overtimecause" name="ProjDescription" rows="2" style="margin: 0px; width: 749px; height: 151px;"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                            <button type="submit" id="sendrequest" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="js/bootstrap.min.js"></script>
+<script src="js/chartjs/chart.min.js"></script>
+<script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+<script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="js/icheck/icheck.min.js"></script>
+<script src="js/custom.js"></script>*@
+<script type="text/javascript">
+    var StartOverDate ;
+    var EndOverTimeDate
+    var startTime;
+    var endTime;
+    var weekday1;
+    var weekday2;
+    //var today = new Date();
+    //var todaydate = new Date(parseInt(today.substr(6)));
+    //var newtodaydate = (todaydate.toString('dd-MM-yyyy'));
+    $("#overtimefromselect").change(function () {
+        if (StartOverDate == '') {
+            alert("Please Select OverTime Start Date");
+        }
+        else
+        {
+            var validday;
+            var startdaytime = "08:30:00";
+            var EndDayTime = "16:30:00";
+            startTime = $("#overtimefromselect").val();
+            StartOverDate = $("#overtimestartdate").val();
+            $.ajax({
+                url: "@Url.Action("getAllHolidays", "OverTime")",
+                type: "Get",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (i, val) {
+                    var sqlDateStr = (val.OfficialDate);
+                    var date = new Date(parseInt(sqlDateStr.substr(6)));
+                    var newdate = (date.toString('dd-MM-yyyy'));
+       
+                    if ((StartOverDate) == (newdate))
+                    {
+                        validday = "Yes";
+                        return false;
+
+                    }
+                    else
+                    {
+                        validday = "No";
+                    }
+               
+                })
+           
+                if (validday == "Yes") {
+                
+                }
+                else if (validday == "No" && ((startdaytime <= startTime) && (startTime <= EndDayTime)) && (weekday1 != "Friday" && weekday1 != "Saturday") && (weekday1 != "Friday" || weekday1 != "Saturday")) //(startdaytime <= startTime) &&
+                {
+                    alert(" This is an working Time");
+                    $("#overtimefromselect").val(0);
+                }
+                else {
+                 
+                }
+            },
+            Error : function(error){
+                alert ("error"+error);
+            }
+        
+        });
+        }
+    });
+ 
+    $("#overtimetoselect").change(function () {
+   
+        if ((EndOverTimeDate == '') || (startTime == '')) {
+            alert("Please Select Required Data");
+        }
+        else
+        {
+            var validday;
+            var startdaytime = "08:30:00";
+            var EndDayTime = "16:30:00";
+            endTime = $("#overtimetoselect").val();
+            $.ajax({
+                url: "@Url.Action("getAllHolidays", "OverTime")",
+                type: "Get",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (i, val) {
+                    var sqlDateStr = (val.OfficialDate);
+                    var date = new Date(parseInt(sqlDateStr.substr(6)));
+                    var newdate = (date.toString('dd-MM-yyyy'));
+       
+                    if ((EndOverTimeDate) == (newdate))
+                    {
+                      validday = "Yes";
+                       return false;
+
+                    }
+                    else
+                    {
+                        validday = "No";
+                    }
+               
+                })
+           
+                if (validday == "Yes") {
+                
+                }
+                else if (validday == "No" && ((startdaytime <= endTime) && (endTime <= EndDayTime)) &&  (weekday2 != "Friday" && weekday2 != "Saturday") )//(startdaytime <= startTime) &&
+                {
+                    alert(" This is an working Time");
+                    $("#overtimetoselect").val(0);
+                }
+                else {
+                 
+                }
+            },
+            Error : function(error){
+                alert ("error"+error);
+            }
+        
+        });
+    }
+    });
+      $("#overtimeenddate").datepicker({
+        dateFormat: "dd-mm-yy",
+        onSelect: function (dateText, inst) {
+            var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+            var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+            date.setDate(date.getDate() + 7);
+            var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+             weekday2 = weekdays[date.getDay()];
+          
+        }
+    });
+    $("#overtimestartdate").datepicker({
+        dateFormat: "dd-mm-yy",
+        onSelect: function (dateText, inst) {
+            var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+            var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+            date.setDate(date.getDate() + 7);
+            var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+             weekday1 = weekdays[date.getDay()];
+
+        }
+    });
+
+    $("#sendrequest").click(function () {
+        
+         StartOverDate = $("#overtimestartdate").val();
+         EndOverTimeDate = $("#overtimeenddate").val();
+         startTime = $("#overtimefromselect").val();
+         endTime = $("#overtimetoselect").val();
+        var causeofOver = $("#overtimecause").val();
+            var data = {
+            StartDate: StartOverDate,
+            EndDate: EndOverTimeDate,
+            overEnd: endTime,
+            overStart: startTime,
+            overStatus:"pending TeamLeader Approval",
+            causeofover: causeofOver,
+            hoursno: 0
+            };
+
+            if ((startTime > endTime) && ((StartOverDate) == (EndOverTimeDate)))  {
+            alert('End time should be after start time');
+            }
+            else if ((StartOverDate) > (EndOverTimeDate)) {
+            alert('End date should be after start date');
+            }
+            else if (StartOverDate == '' || EndOverTimeDate == '' || startTime === 0 || endTime === 0 || causeofOver == '') {
+            alert("Please insert all data !");
+        }
+        else {
+            $.ajax
+       ({
+       url: "@Url.Action("AddNewOTRequest", "OverTime")",
+              data: data,
+       type: "Post",
+       dataType: "json",
+       success: function (data) {
+
+           if (data.toString() == "Successfully Saved!") {
+
+               alert("Request has been sent sucessfully");
+           }
+           else {
+               alert("error has been occured please try again");
+           }
+           },
+           error: function (data) {
+           alert("NetWork Connection Error");
+       }
+       });
+
+      }
+
+    });
+
+</script>

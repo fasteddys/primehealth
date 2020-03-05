@@ -1,0 +1,225 @@
+﻿@model Hr_System.Models.Request
+
+@{
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Request Details</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="row" hidden="hidden">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("ID")
+                </div>
+                <div class="col-sm-10">
+                    @Html.HiddenFor(model => model.ID, new { @id = "ReqID" })
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row" hidden="hidden">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("HalfDayVacationType")
+                </div>
+                <div class="col-sm-10">
+                    @Html.HiddenFor(model => model.HalfDayVacationType, new { @id = "HalfDayVacationType" })
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("User Name")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.UserName)
+                </div>
+                        </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Vacation Type")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.ReqSubType)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Employee Type")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.EmpType)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Request Created at")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.ReqDate)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Request Status")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.ReqStatus)
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.ReqStatus, new { @id = "reqstatus" })
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Number Of Requested Days")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.ReqDuration)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Starting From")
+                </div>
+                <div class="col-sm-10">
+                    @String.Format("{0:d}", Model.DurationFrom)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Ends At")
+                </div>
+                <div class="col-sm-10">
+                    @String.Format("{0:d}", Model.DurationTo) 
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Back To Work At")
+                </div>
+                <div class="col-sm-10">
+                    @String.Format("{0:d}", Model.BacktoWorkDate)
+                    
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row" style="display:none" id="halfdayorfull">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Day Type")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.HalfDayVacationType)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnApproveByTeamLeader" name="BtnApproveByTeamLeader" value="Approve By Team Leader" class="btn btn-round btn-success" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnRejectByTeamLeader" name="BtnRejectByTeamLeader" value="Reject By Team Leader" class="btn btn-round btn-danger" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnApproveBySupervisor" name="BtnApproveBySupervisor" value="Approve By Supervisor" class="btn btn-round btn-success" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnRejectBySupervisor" name="BtnRejectBySupervisor" value="Reject By Supervisor" class="btn btn-round btn-danger" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="btnrevoke" name="btnrevoke" value="Revoke" class="btn btn-round btn-success" />
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="btndelete" name="btndelete" value="Delete Vacation" class="btn btn-round btn-success" />
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="btnapproverevoke" name="btnapproverevoke" value="Approve Revoke" class="btn btn-round btn-success" />
+                </div>
+            <div class="col-sm-3">
+                <input type="button" style="display:none" id="btnrejcetrevoke" name="btnrejcetrevoke" value="Reject Revoke" class="btn btn-round btn-danger" />
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnApproveByManager" name="BtnApproveByManager" value="Approve By Manager" class="btn btn-round btn-success" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="button" style="display:none" id="BtnRejectByManager" name="BtnRejectByManager" value="Reject By Manager" class="btn btn-round btn-danger" />
+                </div>
+            </div>
+        </div>
+        <br /> 
+        @*<div class="row">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="button" id="BtnPrint" name="BtnPrint" value="Print Leave" class="btn btn-round btn-success" />
+                </div>
+            </div>
+        </div>*@
+        <br />
+    </div>
+</div>

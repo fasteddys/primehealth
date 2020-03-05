@@ -1,0 +1,1242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accountTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="EmpCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="ArabicName" Type="nvarchar" MaxLength="100" />
+          <Property Name="HireDate" Type="date" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubDepartmentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CasualVac" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="AnnualVac" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="OldLeavesCount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NumberOfRemainingPermissions" Type="int" />
+          <Property Name="EmpType" Type="nvarchar" MaxLength="100" />
+          <Property Name="Signature" Type="nvarchar(max)" />
+          <Property Name="GreenPoints" Type="int" />
+          <Property Name="RedPoints" Type="int" />
+          <Property Name="Exception" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastCasualVacation" Type="date" />
+          <Property Name="MaximumNumberofCasualExceed" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="ManagerRole" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupervisorRole" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeamLeaderRole" Type="nvarchar" MaxLength="50" />
+          <Property Name="DelegatedAuthorities" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DelegateTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DelegateTime" Type="datetime" />
+          <Property Name="DelegationTimeTo" Type="datetime" />
+          <Property Name="NumberOfExcuseHours" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="BioStar5">
+          <Key>
+            <PropertyRef Name="pr_key" />
+          </Key>
+          <Property Name="pr_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestDate" Type="varchar(max)" Nullable="false" />
+          <Property Name="ID" Type="varchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="varchar(max)" Nullable="false" />
+          <Property Name="First" Type="varchar(max)" Nullable="false" />
+          <Property Name="Last" Type="varchar(max)" Nullable="false" />
+          <Property Name="Result" Type="varchar(max)" Nullable="false" />
+          <Property Name="Final" Type="numeric" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="DailyPointsReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GreenPoints" Type="int" />
+          <Property Name="RedPoints" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="EvaluationDate" Type="datetime" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="250" />
+          <Property Name="RatingDate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DailyReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RequestStatus" Type="nvarchar" MaxLength="100" />
+          <Property Name="MyTeamLeader" Type="nvarchar" MaxLength="100" />
+          <Property Name="MySupervisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyManager" Type="nvarchar" MaxLength="100" />
+          <Property Name="MyManagerBackup" Type="nvarchar" MaxLength="50" />
+          <Property Name="DailyWork" Type="nvarchar(max)" />
+          <Property Name="TeamLeaderApproved" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupervisorApproved" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyManagerBackupApproval" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManagerApproved" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeamLeaderApprovalTime" Type="datetime" />
+          <Property Name="SuppervisorApprovedOn" Type="datetime" />
+          <Property Name="MyManagerBackupApprovedOn" Type="datetime" />
+          <Property Name="ManagerApprovalTime" Type="datetime" />
+          <Property Name="EmpType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Day" Type="date" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="Managment" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DepartmentTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeptManager" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeptBackupManager" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeptBackupBackupManager" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="EmpEvents">
+          <Key>
+            <PropertyRef Name="EmpEventID" />
+          </Key>
+          <Property Name="EmpEventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="EmpID" Type="int" Nullable="false" />
+          <Property Name="Response" Type="varchar" MaxLength="10" />
+          <Property Name="ResponseTime" Type="datetime" />
+          <Property Name="RejectComment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="varchar" MaxLength="100" />
+          <Property Name="EventDescription" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="EventFrom" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventDay" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GreenPointsReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Jan" Type="int" />
+          <Property Name="Feb" Type="int" />
+          <Property Name="March" Type="int" />
+          <Property Name="April" Type="int" />
+          <Property Name="May" Type="int" />
+          <Property Name="June" Type="int" />
+          <Property Name="July" Type="int" />
+          <Property Name="Aug" Type="int" />
+          <Property Name="Sep" Type="int" />
+          <Property Name="Oct" Type="int" />
+          <Property Name="Nov" Type="int" />
+          <Property Name="Dec" Type="int" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="NotificationDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="NotifyTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubDepartment" Type="nvarchar" MaxLength="150" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OffHolidays">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfficialDate" Type="date" />
+        </EntityType>
+        <EntityType Name="OverTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OverTimeDate" Type="date" />
+          <Property Name="OverStart" Type="nvarchar" MaxLength="50" />
+          <Property Name="OverEnd" Type="nvarchar" MaxLength="50" />
+          <Property Name="CauseOfOverTime" Type="nvarchar(max)" />
+          <Property Name="OverStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="MyTeamLeader" Type="nvarchar" MaxLength="50" />
+          <Property Name="MySupervisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyManager" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoOfHours" Type="int" />
+          <Property Name="ArabicName" Type="nvarchar(max)" />
+          <Property Name="RejectionTeamLeadercomment" Type="nvarchar(max)" />
+          <Property Name="RejectionManagerComment" Type="nvarchar(max)" />
+          <Property Name="RejectionSupervisorCommeent" Type="nvarchar(max)" />
+          <Property Name="StartOverDate" Type="date" />
+          <Property Name="EndOverDate" Type="date" />
+        </EntityType>
+        <EntityType Name="ProjectMembers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjMembs" Type="nvarchar(max)" />
+          <Property Name="ProjNotifications" Type="nvarchar(max)" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjDep" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjectDuration" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartFrom" Type="nvarchar" MaxLength="50" />
+          <Property Name="EndIn" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjManager" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjPlan" Type="nvarchar(max)" />
+          <Property Name="PojDepManager" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjDepTeamLeader" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjDepSupervisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="BackupProject" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProjectsResources">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjectResourceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResourcePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProjectsTasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaskName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaskDescription" Type="nvarchar(max)" />
+          <Property Name="TaskFrom" Type="date" />
+          <Property Name="TaskTo" Type="date" />
+          <Property Name="TaskAssignee" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaskBackup" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaskCreator" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaskCreationDate" Type="datetime" />
+          <Property Name="Notification" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RedPointsReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Jan" Type="int" />
+          <Property Name="Feb" Type="int" />
+          <Property Name="March" Type="int" />
+          <Property Name="April" Type="int" />
+          <Property Name="May" Type="int" />
+          <Property Name="June" Type="int" />
+          <Property Name="July" Type="int" />
+          <Property Name="Aug" Type="int" />
+          <Property Name="Sep" Type="int" />
+          <Property Name="Oct" Type="int" />
+          <Property Name="Nov" Type="int" />
+          <Property Name="Dec" Type="int" />
+        </EntityType>
+        <EntityType Name="RequestHandler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestType" Type="nvarchar" MaxLength="100" />
+          <Property Name="RequestSubType" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Offday" Type="datetime" />
+          <Property Name="ReqStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReqDuration" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HalfDayOrFullDay" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubDepartment" Type="nvarchar" MaxLength="50" />
+          <Property Name="OriginalRequestID" Type="int" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReqType" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReqSubType" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmpType" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReqDate" Type="datetime" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ManagmentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReqDuration" Type="decimal" Precision="10" Scale="8" />
+          <Property Name="DurationFrom" Type="datetime" />
+          <Property Name="DurationTo" Type="datetime" />
+          <Property Name="BacktoWorkDate" Type="date" />
+          <Property Name="TeamLeaderApprove" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeamLeadApproveDate" Type="datetime" />
+          <Property Name="MySupervisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupervisorApprovedOn" Type="datetime" />
+          <Property Name="ManagerApprove" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManagerApproveDate" Type="datetime" />
+          <Property Name="MyTeamLeader" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyManager" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReqStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExcuseDay" Type="nvarchar" MaxLength="50" />
+          <Property Name="ArabicName" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="HalfDayVacationType" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyBackupManager" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovedByTeamLeader" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovedBySupervisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyBackupManagerApprovedOn" Type="datetime" />
+          <Property Name="TemporaryStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActionTaken" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyBackupManagerApproval" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupervisorApprove" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyBackupSupervisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyBackupTeamLeader" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExcuseDurationFrom" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExcuseDurationTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExcuseDuration" Type="nvarchar" MaxLength="50" />
+          <Property Name="HRApprove" Type="nvarchar" MaxLength="50" />
+          <Property Name="HRApproveDate" Type="datetime" />
+          <Property Name="CauseOfReq" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="DelegateTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExcuseSpecificDuration" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="SubDep">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="SubDepartmentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepManager" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepBackupSupervisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepTeamLeader" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepBackupTeamLeader" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepSenior" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_EmpEvents_accountTB">
+          <End Role="accountTB" Type="Self.accountTB" Multiplicity="1" />
+          <End Role="EmpEvents" Type="Self.EmpEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmpEvents">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpEvents_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="EmpEvents" Type="Self.EmpEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EmpEvents">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubDep_DepartmentTB">
+          <End Role="DepartmentTB" Type="Self.DepartmentTB" Multiplicity="0..1" />
+          <End Role="SubDep" Type="Self.SubDep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubDep">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRSystemModelStoreContainer">
+          <EntitySet Name="accountTB" EntityType="Self.accountTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BioStar5" EntityType="Self.BioStar5" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyPointsReport" EntityType="Self.DailyPointsReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyReport" EntityType="Self.DailyReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentTB" EntityType="Self.DepartmentTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpEvents" EntityType="Self.EmpEvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GreenPointsReport" EntityType="Self.GreenPointsReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OffHolidays" EntityType="Self.OffHolidays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OverTime" EntityType="Self.OverTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectMembers" EntityType="Self.ProjectMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectsResources" EntityType="Self.ProjectsResources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectsTasks" EntityType="Self.ProjectsTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RedPointsReport" EntityType="Self.RedPointsReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestHandler" EntityType="Self.RequestHandler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubDep" EntityType="Self.SubDep" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EmpEvents_accountTB" Association="Self.FK_EmpEvents_accountTB">
+            <End Role="accountTB" EntitySet="accountTB" />
+            <End Role="EmpEvents" EntitySet="EmpEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpEvents_Events" Association="Self.FK_EmpEvents_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EmpEvents" EntitySet="EmpEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubDep_DepartmentTB" Association="Self.FK_SubDep_DepartmentTB">
+            <End Role="DepartmentTB" EntitySet="DepartmentTB" />
+            <End Role="SubDep" EntitySet="SubDep" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DailyReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RequestStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MyTeamLeader" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MySupervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyManager" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MyManagerBackup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DailyWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TeamLeaderApproved" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorApproved" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyManagerBackupApproval" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerApproved" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeamLeaderApprovalTime" Type="DateTime" Precision="3" />
+          <Property Name="SuppervisorApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="MyManagerBackupApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="ManagerApprovalTime" Type="DateTime" Precision="3" />
+          <Property Name="EmpType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Day" Type="DateTime" Precision="0" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Managment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DepartmentTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeptName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeptManager" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeptBackupManager" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeptBackupBackupManager" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubDeps" Relationship="Self.FK_SubDep_DepartmentTB" FromRole="DepartmentTB" ToRole="SubDep" />
+        </EntityType>
+        <EntityType Name="GreenPointsReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Jan" Type="Int32" />
+          <Property Name="Feb" Type="Int32" />
+          <Property Name="March" Type="Int32" />
+          <Property Name="April" Type="Int32" />
+          <Property Name="May" Type="Int32" />
+          <Property Name="June" Type="Int32" />
+          <Property Name="July" Type="Int32" />
+          <Property Name="Aug" Type="Int32" />
+          <Property Name="Sep" Type="Int32" />
+          <Property Name="Oct" Type="Int32" />
+          <Property Name="Nov" Type="Int32" />
+          <Property Name="Dec" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NotifyTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubDepartment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OffHoliday">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficialDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="OverTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OverTimeDate" Type="DateTime" Precision="0" />
+          <Property Name="OverStart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OverEnd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CauseOfOverTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OverStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="MyTeamLeader" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MySupervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyManager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoOfHours" Type="Int32" />
+          <Property Name="ArabicName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RejectionTeamLeadercomment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RejectionManagerComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RejectionSupervisorCommeent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartOverDate" Type="DateTime" Precision="0" />
+          <Property Name="EndOverDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ProjectMember">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjMembs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjNotifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjDep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EndIn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjManager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjPlan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PojDepManager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjDepTeamLeader" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjDepSupervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="BackupProject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjectsResource">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectResourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResourcePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjectsTask">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaskDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaskFrom" Type="DateTime" Precision="0" />
+          <Property Name="TaskTo" Type="DateTime" Precision="0" />
+          <Property Name="TaskAssignee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaskBackup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaskCreator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaskCreationDate" Type="DateTime" Precision="3" />
+          <Property Name="Notification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RedPointsReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Jan" Type="Int32" />
+          <Property Name="Feb" Type="Int32" />
+          <Property Name="March" Type="Int32" />
+          <Property Name="April" Type="Int32" />
+          <Property Name="May" Type="Int32" />
+          <Property Name="June" Type="Int32" />
+          <Property Name="July" Type="Int32" />
+          <Property Name="Aug" Type="Int32" />
+          <Property Name="Sep" Type="Int32" />
+          <Property Name="Oct" Type="Int32" />
+          <Property Name="Nov" Type="Int32" />
+          <Property Name="Dec" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RequestHandler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RequestSubType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Offday" Type="DateTime" Precision="3" />
+          <Property Name="ReqStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReqDuration" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HalfDayOrFullDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalRequestID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SubDep">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="SubDepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepTeamLeader" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepManager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepBackupSupervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepBackupTeamLeader" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepSenior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DepartmentTB" Relationship="Self.FK_SubDep_DepartmentTB" FromRole="SubDep" ToRole="DepartmentTB" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_SubDep_DepartmentTB">
+          <End Role="DepartmentTB" Type="Self.DepartmentTB" Multiplicity="0..1" />
+          <End Role="SubDep" Type="Self.SubDep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubDep">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DailyReports" EntityType="Self.DailyReport" />
+          <EntitySet Name="DepartmentTBs" EntityType="Self.DepartmentTB" />
+          <EntitySet Name="GreenPointsReports" EntityType="Self.GreenPointsReport" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
+          <EntitySet Name="OffHolidays" EntityType="Self.OffHoliday" />
+          <EntitySet Name="OverTimes" EntityType="Self.OverTime" />
+          <EntitySet Name="ProjectMembers" EntityType="Self.ProjectMember" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="ProjectsResources" EntityType="Self.ProjectsResource" />
+          <EntitySet Name="ProjectsTasks" EntityType="Self.ProjectsTask" />
+          <EntitySet Name="RedPointsReports" EntityType="Self.RedPointsReport" />
+          <EntitySet Name="RequestHandlers" EntityType="Self.RequestHandler" />
+          <EntitySet Name="SubDeps" EntityType="Self.SubDep" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_SubDep_DepartmentTB" Association="Self.FK_SubDep_DepartmentTB">
+            <End Role="DepartmentTB" EntitySet="DepartmentTBs" />
+            <End Role="SubDep" EntitySet="SubDeps" />
+          </AssociationSet>
+          <EntitySet Name="EmpEvents" EntityType="HRSystemModel.EmpEvent" />
+          <EntitySet Name="Events" EntityType="HRSystemModel.Event" />
+          <AssociationSet Name="FK_EmpEvents_Events" Association="HRSystemModel.FK_EmpEvents_Events">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="EmpEvent" EntitySet="EmpEvents" />
+          </AssociationSet>
+          <EntitySet Name="DailyPointsReports" EntityType="HRSystemModel.DailyPointsReport" />
+          <EntitySet Name="Requests" EntityType="HRSystemModel.Request" />
+          <EntitySet Name="BioStar5" EntityType="HRSystemModel.BioStar5" />
+          <EntitySet Name="accountTBs" EntityType="HRSystemModel.accountTB" />
+          <AssociationSet Name="FK_EmpEvents_accountTB" Association="HRSystemModel.FK_EmpEvents_accountTB">
+            <End Role="accountTB" EntitySet="accountTBs" />
+            <End Role="EmpEvent" EntitySet="EmpEvents" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="EmpEvent">
+          <Key>
+            <PropertyRef Name="EmpEventID" />
+          </Key>
+          <Property Name="EmpEventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="Response" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseTime" Type="DateTime" Precision="3" />
+          <Property Name="RejectComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Event" Relationship="HRSystemModel.FK_EmpEvents_Events" FromRole="EmpEvent" ToRole="Event" />
+          <NavigationProperty Name="accountTB" Relationship="HRSystemModel.FK_EmpEvents_accountTB" FromRole="EmpEvent" ToRole="accountTB" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EventDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="EventFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventDay" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EmpEvents" Relationship="HRSystemModel.FK_EmpEvents_Events" FromRole="Event" ToRole="EmpEvent" />
+        </EntityType>
+        <Association Name="FK_EmpEvents_Events">
+          <End Type="HRSystemModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="HRSystemModel.EmpEvent" Role="EmpEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EmpEvent">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DailyPointsReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GreenPoints" Type="Int32" />
+          <Property Name="RedPoints" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EvaluationDate" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Creator" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RatingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReqType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReqSubType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmpType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReqDate" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ManagmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReqDuration" Type="Decimal" Precision="10" Scale="8" />
+          <Property Name="DurationFrom" Type="DateTime" Precision="3" />
+          <Property Name="DurationTo" Type="DateTime" Precision="3" />
+          <Property Name="BacktoWorkDate" Type="DateTime" Precision="0" />
+          <Property Name="TeamLeaderApprove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeamLeadApproveDate" Type="DateTime" Precision="3" />
+          <Property Name="MySupervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="ManagerApprove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerApproveDate" Type="DateTime" Precision="3" />
+          <Property Name="MyTeamLeader" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyManager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReqStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExcuseDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArabicName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HalfDayVacationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyBackupManager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedByTeamLeader" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedBySupervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyBackupManagerApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="TemporaryStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionTaken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyBackupManagerApproval" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorApprove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyBackupSupervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyBackupTeamLeader" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExcuseDurationFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExcuseDurationTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExcuseDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HRApprove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HRApproveDate" Type="DateTime" Precision="3" />
+          <Property Name="CauseOfReq" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DelegateTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExcuseSpecificDuration" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="BioStar5">
+          <Key>
+            <PropertyRef Name="pr_key" />
+          </Key>
+          <Property Name="pr_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestDate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="First" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Last" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Result" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Final" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="accountTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="EmpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArabicName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubDepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CasualVac" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="AnnualVac" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="OldLeavesCount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NumberOfRemainingPermissions" Type="Int32" />
+          <Property Name="EmpType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GreenPoints" Type="Int32" />
+          <Property Name="RedPoints" Type="Int32" />
+          <Property Name="Exception" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastCasualVacation" Type="DateTime" Precision="0" />
+          <Property Name="MaximumNumberofCasualExceed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeamLeaderRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DelegatedAuthorities" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DelegateTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DelegateTime" Type="DateTime" Precision="3" />
+          <Property Name="DelegationTimeTo" Type="DateTime" Precision="3" />
+          <Property Name="NumberOfExcuseHours" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="EmpEvents" Relationship="HRSystemModel.FK_EmpEvents_accountTB" FromRole="accountTB" ToRole="EmpEvent" />
+        </EntityType>
+        <Association Name="FK_EmpEvents_accountTB">
+          <End Type="HRSystemModel.accountTB" Role="accountTB" Multiplicity="1" />
+          <End Type="HRSystemModel.EmpEvent" Role="EmpEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmpEvent">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRSystemModelStoreContainer" CdmEntityContainer="HRSystemEntities">
+          <EntitySetMapping Name="DailyReports">
+            <EntityTypeMapping TypeName="HRSystemModel.DailyReport">
+              <MappingFragment StoreEntitySet="DailyReport">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="MyTeamLeader" ColumnName="MyTeamLeader" />
+                <ScalarProperty Name="MySupervisor" ColumnName="MySupervisor" />
+                <ScalarProperty Name="MyManager" ColumnName="MyManager" />
+                <ScalarProperty Name="MyManagerBackup" ColumnName="MyManagerBackup" />
+                <ScalarProperty Name="DailyWork" ColumnName="DailyWork" />
+                <ScalarProperty Name="TeamLeaderApproved" ColumnName="TeamLeaderApproved" />
+                <ScalarProperty Name="SupervisorApproved" ColumnName="SupervisorApproved" />
+                <ScalarProperty Name="MyManagerBackupApproval" ColumnName="MyManagerBackupApproval" />
+                <ScalarProperty Name="ManagerApproved" ColumnName="ManagerApproved" />
+                <ScalarProperty Name="TeamLeaderApprovalTime" ColumnName="TeamLeaderApprovalTime" />
+                <ScalarProperty Name="SuppervisorApprovedOn" ColumnName="SuppervisorApprovedOn" />
+                <ScalarProperty Name="MyManagerBackupApprovedOn" ColumnName="MyManagerBackupApprovedOn" />
+                <ScalarProperty Name="ManagerApprovalTime" ColumnName="ManagerApprovalTime" />
+                <ScalarProperty Name="EmpType" ColumnName="EmpType" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Managment" ColumnName="Managment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentTBs">
+            <EntityTypeMapping TypeName="HRSystemModel.DepartmentTB">
+              <MappingFragment StoreEntitySet="DepartmentTB">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="DeptManager" ColumnName="DeptManager" />
+                <ScalarProperty Name="DeptBackupManager" ColumnName="DeptBackupManager" />
+                <ScalarProperty Name="DeptBackupBackupManager" ColumnName="DeptBackupBackupManager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GreenPointsReports">
+            <EntityTypeMapping TypeName="HRSystemModel.GreenPointsReport">
+              <MappingFragment StoreEntitySet="GreenPointsReport">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Jan" ColumnName="Jan" />
+                <ScalarProperty Name="Feb" ColumnName="Feb" />
+                <ScalarProperty Name="March" ColumnName="March" />
+                <ScalarProperty Name="April" ColumnName="April" />
+                <ScalarProperty Name="May" ColumnName="May" />
+                <ScalarProperty Name="June" ColumnName="June" />
+                <ScalarProperty Name="July" ColumnName="July" />
+                <ScalarProperty Name="Aug" ColumnName="Aug" />
+                <ScalarProperty Name="Sep" ColumnName="Sep" />
+                <ScalarProperty Name="Oct" ColumnName="Oct" />
+                <ScalarProperty Name="Nov" ColumnName="Nov" />
+                <ScalarProperty Name="Dec" ColumnName="Dec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="HRSystemModel.Notification">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FromName" ColumnName="FromName" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="NotificationDate" ColumnName="NotificationDate" />
+                <ScalarProperty Name="NotifyTo" ColumnName="NotifyTo" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="SubDepartment" ColumnName="SubDepartment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OffHolidays">
+            <EntityTypeMapping TypeName="HRSystemModel.OffHoliday">
+              <MappingFragment StoreEntitySet="OffHolidays">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OfficialDate" ColumnName="OfficialDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OverTimes">
+            <EntityTypeMapping TypeName="HRSystemModel.OverTime">
+              <MappingFragment StoreEntitySet="OverTime">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="OverTimeDate" ColumnName="OverTimeDate" />
+                <ScalarProperty Name="OverStart" ColumnName="OverStart" />
+                <ScalarProperty Name="OverEnd" ColumnName="OverEnd" />
+                <ScalarProperty Name="CauseOfOverTime" ColumnName="CauseOfOverTime" />
+                <ScalarProperty Name="OverStatus" ColumnName="OverStatus" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="MyTeamLeader" ColumnName="MyTeamLeader" />
+                <ScalarProperty Name="MySupervisor" ColumnName="MySupervisor" />
+                <ScalarProperty Name="MyManager" ColumnName="MyManager" />
+                <ScalarProperty Name="NoOfHours" ColumnName="NoOfHours" />
+                <ScalarProperty Name="ArabicName" ColumnName="ArabicName" />
+                <ScalarProperty Name="RejectionTeamLeadercomment" ColumnName="RejectionTeamLeadercomment" />
+                <ScalarProperty Name="RejectionManagerComment" ColumnName="RejectionManagerComment" />
+                <ScalarProperty Name="RejectionSupervisorCommeent" ColumnName="RejectionSupervisorCommeent" />
+                <ScalarProperty Name="StartOverDate" ColumnName="StartOverDate" />
+                <ScalarProperty Name="EndOverDate" ColumnName="EndOverDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectMembers">
+            <EntityTypeMapping TypeName="HRSystemModel.ProjectMember">
+              <MappingFragment StoreEntitySet="ProjectMembers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjMembs" ColumnName="ProjMembs" />
+                <ScalarProperty Name="ProjNotifications" ColumnName="ProjNotifications" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="HRSystemModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjDescription" ColumnName="ProjDescription" />
+                <ScalarProperty Name="ProjDep" ColumnName="ProjDep" />
+                <ScalarProperty Name="ProjectDuration" ColumnName="ProjectDuration" />
+                <ScalarProperty Name="StartFrom" ColumnName="StartFrom" />
+                <ScalarProperty Name="EndIn" ColumnName="EndIn" />
+                <ScalarProperty Name="ProjManager" ColumnName="ProjManager" />
+                <ScalarProperty Name="ProjStatus" ColumnName="ProjStatus" />
+                <ScalarProperty Name="ProjPlan" ColumnName="ProjPlan" />
+                <ScalarProperty Name="PojDepManager" ColumnName="PojDepManager" />
+                <ScalarProperty Name="ProjDepTeamLeader" ColumnName="ProjDepTeamLeader" />
+                <ScalarProperty Name="ProjDepSupervisor" ColumnName="ProjDepSupervisor" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="BackupProject" ColumnName="BackupProject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectsResources">
+            <EntityTypeMapping TypeName="HRSystemModel.ProjectsResource">
+              <MappingFragment StoreEntitySet="ProjectsResources">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectResourceName" ColumnName="ProjectResourceName" />
+                <ScalarProperty Name="ResourcePath" ColumnName="ResourcePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectsTasks">
+            <EntityTypeMapping TypeName="HRSystemModel.ProjectsTask">
+              <MappingFragment StoreEntitySet="ProjectsTasks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="TaskFrom" ColumnName="TaskFrom" />
+                <ScalarProperty Name="TaskTo" ColumnName="TaskTo" />
+                <ScalarProperty Name="TaskAssignee" ColumnName="TaskAssignee" />
+                <ScalarProperty Name="TaskBackup" ColumnName="TaskBackup" />
+                <ScalarProperty Name="TaskCreator" ColumnName="TaskCreator" />
+                <ScalarProperty Name="TaskCreationDate" ColumnName="TaskCreationDate" />
+                <ScalarProperty Name="Notification" ColumnName="Notification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RedPointsReports">
+            <EntityTypeMapping TypeName="HRSystemModel.RedPointsReport">
+              <MappingFragment StoreEntitySet="RedPointsReport">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Jan" ColumnName="Jan" />
+                <ScalarProperty Name="Feb" ColumnName="Feb" />
+                <ScalarProperty Name="March" ColumnName="March" />
+                <ScalarProperty Name="April" ColumnName="April" />
+                <ScalarProperty Name="May" ColumnName="May" />
+                <ScalarProperty Name="June" ColumnName="June" />
+                <ScalarProperty Name="July" ColumnName="July" />
+                <ScalarProperty Name="Aug" ColumnName="Aug" />
+                <ScalarProperty Name="Sep" ColumnName="Sep" />
+                <ScalarProperty Name="Oct" ColumnName="Oct" />
+                <ScalarProperty Name="Nov" ColumnName="Nov" />
+                <ScalarProperty Name="Dec" ColumnName="Dec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestHandlers">
+            <EntityTypeMapping TypeName="HRSystemModel.RequestHandler">
+              <MappingFragment StoreEntitySet="RequestHandler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="RequestSubType" ColumnName="RequestSubType" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Offday" ColumnName="Offday" />
+                <ScalarProperty Name="ReqStatus" ColumnName="ReqStatus" />
+                <ScalarProperty Name="ReqDuration" ColumnName="ReqDuration" />
+                <ScalarProperty Name="HalfDayOrFullDay" ColumnName="HalfDayOrFullDay" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="SubDepartment" ColumnName="SubDepartment" />
+                <ScalarProperty Name="OriginalRequestID" ColumnName="OriginalRequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubDeps">
+            <EntityTypeMapping TypeName="HRSystemModel.SubDep">
+              <MappingFragment StoreEntitySet="SubDep">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="SubDepartmentName" ColumnName="SubDepartmentName" />
+                <ScalarProperty Name="DepTeamLeader" ColumnName="DepTeamLeader" />
+                <ScalarProperty Name="DepName" ColumnName="DepName" />
+                <ScalarProperty Name="DepManager" ColumnName="DepManager" />
+                <ScalarProperty Name="DepBackupSupervisor" ColumnName="DepBackupSupervisor" />
+                <ScalarProperty Name="DepBackupTeamLeader" ColumnName="DepBackupTeamLeader" />
+                <ScalarProperty Name="DepSenior" ColumnName="DepSenior" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HRSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpEvents">
+            <EntityTypeMapping TypeName="HRSystemModel.EmpEvent">
+              <MappingFragment StoreEntitySet="EmpEvents">
+                <ScalarProperty Name="RejectComment" ColumnName="RejectComment" />
+                <ScalarProperty Name="ResponseTime" ColumnName="ResponseTime" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EmpEventID" ColumnName="EmpEventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="HRSystemModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventDay" ColumnName="EventDay" />
+                <ScalarProperty Name="EventTo" ColumnName="EventTo" />
+                <ScalarProperty Name="EventFrom" ColumnName="EventFrom" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyPointsReports">
+            <EntityTypeMapping TypeName="HRSystemModel.DailyPointsReport">
+              <MappingFragment StoreEntitySet="DailyPointsReport">
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EvaluationDate" ColumnName="EvaluationDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="RedPoints" ColumnName="RedPoints" />
+                <ScalarProperty Name="GreenPoints" ColumnName="GreenPoints" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="HRSystemModel.Request">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="ExcuseSpecificDuration" ColumnName="ExcuseSpecificDuration" />
+                <ScalarProperty Name="DelegateTo" ColumnName="DelegateTo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CauseOfReq" ColumnName="CauseOfReq" />
+                <ScalarProperty Name="HRApproveDate" ColumnName="HRApproveDate" />
+                <ScalarProperty Name="HRApprove" ColumnName="HRApprove" />
+                <ScalarProperty Name="ExcuseDuration" ColumnName="ExcuseDuration" />
+                <ScalarProperty Name="ExcuseDurationTo" ColumnName="ExcuseDurationTo" />
+                <ScalarProperty Name="ExcuseDurationFrom" ColumnName="ExcuseDurationFrom" />
+                <ScalarProperty Name="MyBackupTeamLeader" ColumnName="MyBackupTeamLeader" />
+                <ScalarProperty Name="MyBackupSupervisor" ColumnName="MyBackupSupervisor" />
+                <ScalarProperty Name="SupervisorApprove" ColumnName="SupervisorApprove" />
+                <ScalarProperty Name="MyBackupManagerApproval" ColumnName="MyBackupManagerApproval" />
+                <ScalarProperty Name="ActionTaken" ColumnName="ActionTaken" />
+                <ScalarProperty Name="TemporaryStatus" ColumnName="TemporaryStatus" />
+                <ScalarProperty Name="MyBackupManagerApprovedOn" ColumnName="MyBackupManagerApprovedOn" />
+                <ScalarProperty Name="ApprovedBySupervisor" ColumnName="ApprovedBySupervisor" />
+                <ScalarProperty Name="ApprovedByTeamLeader" ColumnName="ApprovedByTeamLeader" />
+                <ScalarProperty Name="MyBackupManager" ColumnName="MyBackupManager" />
+                <ScalarProperty Name="HalfDayVacationType" ColumnName="HalfDayVacationType" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="ArabicName" ColumnName="ArabicName" />
+                <ScalarProperty Name="ExcuseDay" ColumnName="ExcuseDay" />
+                <ScalarProperty Name="ReqStatus" ColumnName="ReqStatus" />
+                <ScalarProperty Name="MyManager" ColumnName="MyManager" />
+                <ScalarProperty Name="MyTeamLeader" ColumnName="MyTeamLeader" />
+                <ScalarProperty Name="ManagerApproveDate" ColumnName="ManagerApproveDate" />
+                <ScalarProperty Name="ManagerApprove" ColumnName="ManagerApprove" />
+                <ScalarProperty Name="SupervisorApprovedOn" ColumnName="SupervisorApprovedOn" />
+                <ScalarProperty Name="MySupervisor" ColumnName="MySupervisor" />
+                <ScalarProperty Name="TeamLeadApproveDate" ColumnName="TeamLeadApproveDate" />
+                <ScalarProperty Name="TeamLeaderApprove" ColumnName="TeamLeaderApprove" />
+                <ScalarProperty Name="BacktoWorkDate" ColumnName="BacktoWorkDate" />
+                <ScalarProperty Name="DurationTo" ColumnName="DurationTo" />
+                <ScalarProperty Name="DurationFrom" ColumnName="DurationFrom" />
+                <ScalarProperty Name="ReqDuration" ColumnName="ReqDuration" />
+                <ScalarProperty Name="ManagmentName" ColumnName="ManagmentName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ReqDate" ColumnName="ReqDate" />
+                <ScalarProperty Name="EmpType" ColumnName="EmpType" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ReqSubType" ColumnName="ReqSubType" />
+                <ScalarProperty Name="ReqType" ColumnName="ReqType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BioStar5">
+            <EntityTypeMapping TypeName="HRSystemModel.BioStar5">
+              <MappingFragment StoreEntitySet="BioStar5">
+                <ScalarProperty Name="Final" ColumnName="Final" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="First" ColumnName="First" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="pr_key" ColumnName="pr_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accountTBs">
+            <EntityTypeMapping TypeName="HRSystemModel.accountTB">
+              <MappingFragment StoreEntitySet="accountTB">
+                <ScalarProperty Name="NumberOfExcuseHours" ColumnName="NumberOfExcuseHours" />
+                <ScalarProperty Name="DelegationTimeTo" ColumnName="DelegationTimeTo" />
+                <ScalarProperty Name="DelegateTime" ColumnName="DelegateTime" />
+                <ScalarProperty Name="DelegateTo" ColumnName="DelegateTo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DelegatedAuthorities" ColumnName="DelegatedAuthorities" />
+                <ScalarProperty Name="TeamLeaderRole" ColumnName="TeamLeaderRole" />
+                <ScalarProperty Name="SupervisorRole" ColumnName="SupervisorRole" />
+                <ScalarProperty Name="ManagerRole" ColumnName="ManagerRole" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MaximumNumberofCasualExceed" ColumnName="MaximumNumberofCasualExceed" />
+                <ScalarProperty Name="LastCasualVacation" ColumnName="LastCasualVacation" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="RedPoints" ColumnName="RedPoints" />
+                <ScalarProperty Name="GreenPoints" ColumnName="GreenPoints" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="EmpType" ColumnName="EmpType" />
+                <ScalarProperty Name="NumberOfRemainingPermissions" ColumnName="NumberOfRemainingPermissions" />
+                <ScalarProperty Name="OldLeavesCount" ColumnName="OldLeavesCount" />
+                <ScalarProperty Name="AnnualVac" ColumnName="AnnualVac" />
+                <ScalarProperty Name="CasualVac" ColumnName="CasualVac" />
+                <ScalarProperty Name="SubDepartmentName" ColumnName="SubDepartmentName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="ArabicName" ColumnName="ArabicName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,301 @@
+﻿@model Hr_System.Models.Request
+
+@{
+    ViewBag.Title = "requestDetailsForTeamLeader";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="RequestDetails">
+        @Html.Partial("_RequestDetails")
+         </div>
+
+<button class="btn btn-round btn-success" type="submit" id="Approve" value="save"> Approve </button>
+<button class="btn btn-round btn-danger" type="submit" id="Reject" value="save"> Reject </button>
+@*<button class="btn btn-round btn-primary" type="submit" id="btnPrint" value="save"> Print </button>*@
+<div>
+    <br />
+    <br />
+    <br />
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>User Details <small>Informations</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+          
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <ul class="list-unstyled timeline">
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>UserName</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                      
+                        <p class="excerpt">
+                         @ViewBag.UserName                       
+                         </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span >Managment</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                     
+                        <p class="excerpt">
+                            @ViewBag.Managment                        
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>Department</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                     
+                        <p class="excerpt">
+                          @ViewBag.Department                        
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span >RemainingExcuses</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+
+                        <p class="excerpt">
+                           @*@ViewBag.RemainingExcuses Excuses Remainig*@
+                            @ViewBag.RemainingExcusHouer hours remaining
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+
+
+<link href="../assets/styles.min.css" rel="stylesheet">
+<link href="~/css/jq/sheet.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            debugger;
+            var data = {
+                ID: '@ViewBag.ID',
+            };
+            var reqstatus = "";
+            $.ajax({
+                url: "@Url.Action("getRequestStatus", "Managment")",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    reqstatus = data.toString();
+                    if (data.toString() == "PendingTeamLeaderApproval") {
+                        $("#Teamleader").val('');
+                    }
+                    else if (data.toString() == "PendingSupervisorApproval") {
+
+                        $("#Teamleader").val('');
+                    }
+                    else if (data.toString() == "PendingManagerApproval") {
+
+                        $("#Teamleader").val(' @ViewBag.TeamLeader');
+                    }
+                    else if (data.toString() == "PendingDuputyManagerApproval") {
+
+                        $("#Teamleader").val(' Pending @ViewBag.DuputyManager');
+                    }
+                    else if (data.toString() == "RejectedByTeamLeader") {
+                        $("#Teamleader").val('REJECTED BY @ViewBag.TeamLeader');
+                    }
+                    else if (data.toString() == "RejectedBySupervisor") {
+
+                        $("#Teamleader").val('REJECTED BY @ViewBag.Supervisor');
+                    }
+                    else if (data.toString() == "Rejected") {
+
+                        $("#Manager").val('REJECTED BY @ViewBag.Manager');
+
+                    }
+                    else if (data.toString() == "Approved") {
+
+                        $("#Teamleader").val(' @ViewBag.Manager');
+                    }
+                    else {
+                        alert("SomeThing Went Wrong Please Contact Your System Developer ");
+                    }
+                },
+                error: function () {
+                    alert("Error! Please try again");
+                }
+            });
+        })
+        $("#btnPrint").click(function () {
+            var divContents = $("#RequestDetails").html();
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write(divContents);
+            printWindow.document.close();
+            printWindow.print();
+
+        });
+
+        $("#Approve").click(function () {
+            $("#Approve").hide();
+            var data;
+            if ($("#reqstatus").val() == "PendingDuputyManagerApproval") {
+                if ("@(Session["UserType"])" == "Deputy Manager" || "@(Session["UserType"])" == "Manager") {
+                    data = {
+                        ReqStatus: "Approved",
+                        ManagerApprove: "Approved",
+                        status: "Approved"
+
+                    };
+                }
+            }
+
+            else if ("@(Session["UserType"])" == "TeamLeader") {
+                data = {
+                    TeamLeaderApprove: "Approved",
+                    ReqStatus: "PendingSupervisorApproval",
+
+                };
+
+            }
+            else if ("@(Session["UserType"])" == "Supervisor" || "@(Session["UserType"])" == "Deputy Manager")
+            {
+                if ('@ViewBag.DuputyManager' == "") {
+                    data = {
+                        SupervisorApprove: "Approved",
+                        ReqStatus: "Approved",
+                        ManagerApprove: "Approved",
+                        status: "Approved"
+                       
+
+                    };
+                }
+                else {
+                    data = {
+                        ReqStatus: "PendingDuputyManagerApproval",
+
+                    };
+                }
+
+
+            }
+            else {
+                data = {
+                    ReqStatus: "Approved",
+                    ManagerApprove: "Approved",
+                    status: "Approved"
+
+                };
+            }
+            $.ajax({
+                url: "@Url.Action("requestDetails", "Managment")",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.toString() == "Successfully Saved!") {
+                        alert("Request has been Approved sucessfully");
+                        window.location.href = '@Url.Action("getAllExcusesRequestsForManagment", "Managment")';
+                    }
+                    else {
+                        alert("Error");
+                    }
+                },
+                error: function () {
+                    alert("Error! Please try again");
+                }
+            });
+        })
+
+        $("#Reject").click(function () {
+            var data;
+            if ($("#reqstatus").val() == "PendingDuputyManagerApproval") {
+                if ("@(Session["UserType"])" == "Deputy Manager" || "@(Session["UserType"])" == "Manager") {
+                    data = {
+                        ReqStatus: "Rejected",
+                        ManagerApprove: "RejectedByManager",
+
+                    };
+                }
+            }
+            else if ("@(Session["UserType"])" == "TeamLeader") {
+                data = {
+                    TeamLeaderApprove: "Rejected",
+                    ReqStatus: "RejectedByTeamLeader",
+
+                };
+
+            }
+            else if ("@(Session["UserType"])" == "Supervisor" || "@(Session["UserType"])" == "Deputy Manager") {
+                data = {
+                    SupervisorApprove: "Rejected",
+                    ReqStatus: "RejectedBySupervisor",
+
+                };
+
+            }
+            else {
+                data = {
+                    ReqStatus: "Rejected",
+                    ManagerApprove: "RejectedByManager",
+
+                };
+            }
+            $.ajax({
+                url: "@Url.Action("requestDetails", "Managment")",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.toString() == "Successfully Saved!") {
+
+                        alert("Request has been Rejected");
+                        window.location.href = '@Url.Action("getAllExcusesRequestsForManagment", "Managment")';
+
+                    }
+                    else {
+                        alert("Error");
+                    }
+                },
+                error: function () {
+                    alert("Error! Please try again");
+                }
+            });
+
+        })
+    </script>
+}

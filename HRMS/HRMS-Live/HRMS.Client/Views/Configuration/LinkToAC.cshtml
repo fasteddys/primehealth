@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "Link To AC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Configuration</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("index","Configuration")">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Link users to AC</span></li>
+
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    <h2 class="card-title">Users form Active Directory</h2>
+                </header>
+                <div class="card-body">
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <br />
+                            <br />
+                            <table class="table table-responsive-md table-hover mb-0" id="datatable-default">
+                                <thead>
+                                    <tr>
+                                        <th><b>User Name</b></th>
+                                        <th><b>ID</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="AppendUsersToTable">
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+
+                        @*Partial View For User Data*@
+                        <div class="col-md-6">
+                            <div id="UserDataDiv">
+                                <div>
+                                    <br />
+                                    <h2>User Data :</h2>
+                                    <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                                        <tbody>
+                                            <tr> <td style="width: 30%">User Name</td> <td style="width: 70%; text-align: right; color: #aaa;" id="RenderdUsername">N/A</td> </tr>
+                                            <tr> <td style="width: 30%">Email</td> <td style="width: 70%; text-align: right; color: #aaa;" id="RenderdEmail">N/A</td></tr>
+                                            <tr> <td style="width: 30%">ID</td> <td style="width: 70%; text-align: right; color: #aaa;" id="RenderdID">N/A</td> </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <h2>Link to Acess Control</h2>
+                            <div class="form-group row">
+                                <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Search users</label>
+                                <div class="col-lg-6">
+                                    <select data-plugin-selectTwo class="form-control populate" id="AccessContolListSelect">
+                                        <option selected disabled>Search users</option>
+                                       
+                                    </select>
+                                </div>
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-search " aria-hidden="true"></i>
+                                    <span>Search</span>
+                                </a>
+                            </div>
+                            <br />
+                            <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                                <tbody>
+                                    <tr> <td style="width: 20%">Name</td> <td id="ACUserName" style="width: 80%; text-align: right; color: #aaa;">N/A</td> </tr>
+                                    <tr> <td style="width: 20%">ID</td> <td id="ACUserID" style="width: 80%; text-align: right; color: #aaa;">N/A</td> </tr>
+                                </tbody>
+                            </table>
+
+                            <a class="nav-link pull-right" href="#" id="SubmitLinkUser">
+                                <i class="fas fa-link fa-2x" aria-hidden="true"></i>
+                                <span>Link user</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- end: page -->
+</section>
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="~/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/CustomJavaScript/User/LinkUserData.js"></script>
+
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script src="~/js/examples/examples.datatables.default.js"></script>
+<script src="~/js/examples/examples.datatables.row.with.details.js"></script>
+<script src="~/js/examples/examples.datatables.tabletools.js"></script>
+
+
+<style>
+    /*.ActionsIcon {
+        margin-left: 10px
+    }*/
+
+    .AciveRow {
+        background-color: #0088cc;
+        color: white;
+    }
+    /*.AciveRow :hover {
+        background-color: #0088cc;
+        color: white;
+    }*/
+
+    .ruleFieldset {
+        padding: 0 15px 10px !important;
+        margin-bottom: 45px !important;
+    }
+
+    .Borderstyle {
+        border: 1px solid #ccc !important;
+        padding: 3px 5px 15px 15px !important;
+    }
+
+    fieldset legend {
+        display: block !important;
+        font-weight: normal !important;
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0px;
+        font-family: 'Noto Sans', verdana, arial, sans-serif;
+        width: auto !important;
+    }
+
+    .Floatleft {
+        float: left !important
+    }
+</style>
+
+

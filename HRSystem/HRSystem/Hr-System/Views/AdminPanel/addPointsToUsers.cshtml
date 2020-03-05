@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<Hr_System.Models.accountTB>
+@{
+    ViewBag.Title = "addPointsToUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>addPointsToUsers</h2>
+
+<table class="data table table-striped no-margin">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Department</th>
+            <th >Green Points</th>
+            <th>Red Points</th>
+            <th>User Details</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        @foreach (var item in Model)
+        {
+
+             <tr>
+            <td>@Html.DisplayFor(cat => item.ID)</td>
+            <td>@Html.DisplayFor(cat => item.EmpName)</td>
+            <td>@Html.DisplayFor(cat => item.SubDepartmentName)</td>
+      
+            <td class="vertical-align-mid">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" data-transitiongoal="@Html.DisplayFor(cat => item.GreenPoints)" aria-valuenow="10" style="width: 35%;"></div>
+                </div>
+            </td>
+            <td class="vertical-align-mid">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger" data-transitiongoal="@Html.DisplayFor(cat => item.RedPoints)" aria-valuenow="100" style="width: 35%;"></div>
+                </div>
+            </td>
+                 
+                 <td>@Html.ActionLink("Details", "userDetails", new { ID = item.ID })</td>
+                 
+        </tr>
+            
+        }
+
+    </tbody>
+</table>

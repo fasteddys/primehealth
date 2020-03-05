@@ -1,0 +1,126 @@
+﻿@model Hr_System.Models.DailyReport
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+}
+<div class="form-horizontal">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <br />
+                <h2>Create New End Of Day Report</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu"></ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="RequestDate">
+                            Date
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" value="@ViewBag.Date" disabled="disabled" id="UserName" name="UserName" class="form-control col-md-7 col-xs-12" />
+                            @Html.ValidationMessageFor(model => model.Day)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DailyWork">
+                            Daily Achievement
+                        </label>
+                        <div class="col-md-7 col-sm-10 col-xs-12">
+                            <textarea id="DailyWork" name="DailyWork" class="form-control col-md-7 col-xs-12" rows="10" cols="50"></textarea>
+                            @Html.ValidationMessageFor(model => model.DailyWork)
+                        </div>
+                    </div>
+                    <div class="ln_solid">
+                        <div class="form-group">
+                            <br />
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button class="btn btn-round btn-success" type="submit" id="btnsubmit" value="Submit Report "> Submit Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var request;
+        $("#btnsubmit").click(function () {
+
+            if ($("#DailyWork").val() == "") {
+                alert("Please Enter Your Daily Achievement First ");
+            }
+            else {
+                request = {
+                    DailyWork: $("#DailyWork").val(),
+                }
+
+                var x = JSON.stringify(request);
+
+                if ('@Session["UserType"]' == "Normal") {
+                    $.ajax({
+                        url: '@Url.Action("AddRequestByNormalUser", "DailyReport")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data, status) {
+                            alert(data)
+                        }
+                    });
+
+                    window.location = '@Url.Action("PendingTeamLeaderApproval", "DailyReport")';
+                }
+
+                else if ('@Session["UserType"]' == "TeamLeader") {
+                    $.ajax({
+                        url: '@Url.Action("AddRequestByTeamLeader", "DailyReport")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data, status) {
+                            alert(data)
+                        }
+                    });
+                    window.location = '@Url.Action("PendingManagerApprovalByTeamLeader", "DailyReport")';
+
+                }
+                else if ('@Session["UserType"]' == "Supervisor" || '@Session["UserType"]' == "Deputy Manager")
+                {
+                    $.ajax({
+                        url: '@Url.Action("AddRequestBySupervisorOrDuputyManager", "DailyReport")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data, status) {
+                            alert(data)
+                        }
+                    });
+                    window.location = '@Url.Action("PendingManagerApprovalBySupervisor", "DailyReport")';
+
+                }
+
+            }
+        })
+    });
+</script>

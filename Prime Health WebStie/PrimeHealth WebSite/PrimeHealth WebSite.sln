@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS", "W:\Developers Backup\17-WebSite\WebSite Source\Website\WS\WS\WS.csproj", "{B88B08CA-0184-437B-97E9-E41E0A8BE277}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B88B08CA-0184-437B-97E9-E41E0A8BE277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88B08CA-0184-437B-97E9-E41E0A8BE277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88B08CA-0184-437B-97E9-E41E0A8BE277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88B08CA-0184-437B-97E9-E41E0A8BE277}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE9D001F-D54B-4D7C-882F-484D6A78B885}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = W:\\Developers\u0020Backup\\17-WebSite\\WebSite\u0020Source\\Website\\WS\\WS\\WS.csproj
+		SccProjectName1 = ../WS
+		SccLocalPath1 = W:\\Developers\u0020Backup\\17-WebSite\\WebSite\u0020Source\\Website\\WS\\WS
+	EndGlobalSection
+EndGlobal

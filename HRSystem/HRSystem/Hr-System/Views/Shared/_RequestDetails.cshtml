@@ -1,0 +1,275 @@
+﻿
+@model Hr_System.Models.Request
+<style type="text/css">
+    .auto-style1 {
+        width: 99%;
+    }
+
+    .auto-style2 {
+        height: 65px;
+        text-align: right;
+    }
+
+    .auto-style3 {
+        height: 65px;
+        text-align: right;
+        width: 87px;
+    }
+
+    .auto-style4 {
+        width: 87px;
+        text-align: center;
+    }
+
+    .auto-style7 {
+        text-align: center;
+    }
+
+    .auto-style8 {
+        height: 65px;
+        text-align: right;
+        width: 176px;
+    }
+
+    .auto-style9 {
+        width: 176px;
+    }
+
+    .auto-style10 {
+        text-align: center;
+        width: 176px;
+    }
+
+    .auto-style11 {
+        width: 181px;
+        height: 32px;
+    }
+
+    .auto-style12 {
+        width: 87px;
+        text-align: center;
+        height: 32px;
+    }
+
+    .auto-style13 {
+        text-align: center;
+        width: 176px;
+        height: 32px;
+    }
+
+    .auto-style14 {
+        text-align: center;
+        height: 32px;
+    }
+
+    .auto-style16 {
+        width: 175px;
+        text-align: center;
+    }
+
+    .auto-style19 {
+        width: 140px;
+        text-align: center;
+    }
+
+    .auto-style20 {
+        height: 65px;
+        text-align: right;
+        width: 140px;
+    }
+
+    .auto-style21 {
+        text-align: center;
+        width: 140px;
+        height: 32px;
+    }
+
+    .auto-style22 {
+        height: 65px;
+        text-align: right;
+        width: 175px;
+    }
+
+    .auto-style23 {
+        text-align: center;
+        width: 175px;
+        height: 32px;
+    }
+
+    .auto-style24 {
+        height: 65px;
+        text-align: left;
+        width: 250px;
+    }
+
+
+    .auto-style25 {
+        text-align: center;
+        width: 181px;
+    }
+    .newStyle1 {
+        border-style: solid;
+        border-width: inherit;
+    }
+
+    .newStyle2 {
+    }
+    .myInput {
+        border-style: none;
+    }
+    .newStyle3 {
+        background-color: #FFFFFF;
+        border: thin inset #000000;
+    }
+</style>
+<div class="x_panel" >
+    <div class="newStyle3">
+
+        <ul class="nav navbar-right panel_toolbox" dir="rtl">
+            <li>
+                <h1>اداره الموارد البشريه</h1>
+            </li>
+
+        </ul>
+        <ul class="auto-style24" dir="ltr">
+            <li>
+                @*<img alt="" src="../images/bootstrap-colorpicker/logo.png" style="height: 80px; width: 100px" />*@
+                <h3 style="width: 200px"> Prime Health </h3>
+            </li>
+        </ul>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="newStyle3">
+        <body style="font-weight: 700">
+            <table align="center">
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style19">&nbsp;</td>
+                    <td class="auto-style16">
+                        &nbsp;
+                    </td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style9">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style19">&nbsp;</td>
+                    <td class="auto-style16" >
+                        @Html.TextBoxFor(cat => cat.ReqSubType,new { @readonly = "readonly",  @dir = "rtl" })
+
+                    </td>
+                    <td class="auto-style4">&nbsp; : اذن</td>
+                    <td class="auto-style9">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                @Html.HiddenFor(model => model.ReqStatus, new { @id = "reqstatus" })
+                <tr>
+                    <td class="auto-style11"></td>
+                    <td class="auto-style21">&nbsp;</td>
+                    <td class="auto-style23">&nbsp;</td>
+                    <td class="auto-style12">&nbsp;&nbsp;&nbsp; &nbsp;</td>
+                    <td class="auto-style13">
+                        @Html.TextBoxFor(cat => cat.ExcuseDay,new { @readonly = "readonly", @dir = "rtl" })
+                    </td>
+                    <td class="auto-style14">: التاريخ</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">
+                        @Html.TextBoxFor(cat => cat.DepartmentName,new { @readonly = "readonly", @dir = "rtl" })
+                    </td>
+                    <td class="auto-style19">:القسم</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style10">
+                        @Html.TextBoxFor(cat => cat.ManagmentName,new { @readonly = "readonly", @dir = "rtl" })
+                    </td>
+                    <td class="auto-style7">:اداره</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style19">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style10">
+                        @Html.TextBoxFor(cat => cat.ArabicName, new { @readonly = "readonly", @dir = "rtl" })
+                    </td>
+                    <td class="auto-style7">:الأسم</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">
+                        @Html.TextBoxFor(cat => cat.ExcuseDurationTo,
+                                                        new { @readonly = "readonly", @dir = "rtl" })
+                    </td>
+                    <td class="auto-style19">&nbsp;:&nbsp;&nbsp; الي الساعه</td>
+                    <td class="auto-style16">
+                        @Html.TextBoxFor(cat => cat.ExcuseDurationFrom, new { @readonly = "readonly", @dir = "rtl" })
+                    </td>
+                    <td class="auto-style4">&nbsp; :&nbsp;&nbsp; من الساعه</td>
+                    <td class="auto-style10">
+                        @Html.TextBoxFor(cat => cat.ExcuseDuration,
+                                                                 new { @readonly = "readonly", @dir = "rtl" })
+                    </td>
+                    <td class="auto-style7">:مده الأذن</td>
+                </tr>
+                @*<tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style19">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style10">
+                        @Html.TextAreaFor(cat => cat.CauseOfReq, new { @readonly = "readonly", @dir = "rtl" })
+                    </td>
+                    <td class="auto-style7">:سبب الاستذان</td>
+                </tr>*@
+                <tr>
+                    <td class="auto-style25">يعتمد</td>
+                    <td class="auto-style19">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style10">&nbsp;</td>
+                    <td class="auto-style7">:الرئيس المباشر</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style19">&nbsp;</td>
+                    <td class="auto-style16">
+                        &nbsp;
+                    </td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style9">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">
+                        <input readonly type="text" id="Manager" value="" />
+                    </td>
+                    <td class="auto-style19">&nbsp;</td>
+                    <td class="auto-style16">&nbsp;</td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style9">&nbsp;</td>
+                    <td style="text-align: center">
+                        <input readonly type="text" id="Teamleader" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style19">&nbsp;</td>
+                    <td class="auto-style16">
+                        &nbsp;
+                    </td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style9">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </body>
+    </div>
+
+</div>
+
+
+
+   
+

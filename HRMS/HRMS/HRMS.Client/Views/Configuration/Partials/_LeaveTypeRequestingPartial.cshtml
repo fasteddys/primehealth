@@ -1,0 +1,49 @@
+﻿<div id="Requesting" class="tab-pane">
+    <div class="form-group row">
+        <div class="col-lg-6">
+            <label class="col-lg-10 control-label pt-2">Min Leave duration within one day</label>
+            <select data-plugin-selectTwo class="form-control populate" id="MinLeaveDurationWithinOneDayDD">
+                @*<option value="Whole day">Whole day</option>
+                    <option value="1/2 day">1/2 day</option>
+                    <option value="1/4 day">1/4 day</option>*@
+            </select>
+        </div>
+    </div>
+    <br />
+
+
+    <div class="form-group row">
+            <div class="col-lg-5">
+                <div class="checkbox-custom checkbox-default">
+                    <input type="checkbox" id="EnablePartailUnitCheckbox" />
+                    <label for="checkboxExample1">
+                        Duration Partail Unit
+                    </label>
+                </div>
+            </div>
+    </div>
+    <div class="form-group row" id="LeavePartailUnit">
+        <div class="col-lg-6">
+
+            <select id="LeavePartailUnitDD" multiple data-plugin-selectTwo class="form-control populate" style="visibility:hidden"></select>
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-5">
+            <div class="checkbox-custom checkbox-default">
+                <input type="checkbox" id="AllowNegativeEntitlementcheckbox">
+                <label for="checkboxExample1">
+                    Allow negative entitlement / taking in advance
+                </label>
+            </div>
+        </div>
+        <div class="col-lg-1">
+            <input type="number" class="form-control" id="MaxmimAllowNegativeEntitlement">
+        </div>
+        <span>(Maximum below the zero) Days </span>
+
+    </div>
+
+</div>

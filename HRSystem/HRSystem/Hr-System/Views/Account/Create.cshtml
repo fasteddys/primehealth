@@ -1,0 +1,512 @@
+﻿@model Hr_System.Models.accountTB
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON("/Account/getSubDepByDepName", { name: $("#ChosenDepartment").find(":selected").text() }, function (data) {
+                $.each(data, function (i, val) {
+                    $("#SelectSubDep").append("<option value=" + val.SubDepartmentName + ">" + val.SubDepartmentName + "</option>");
+                })
+            })
+            $("#DivNote").hide();
+            $("#btnmore").hide();
+            $("#multisubdepdiv").hide();
+
+        $("#HireDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#SelectSubDep").append("<option value=" + null + ">None</option>");
+        $("#ChosenDepartment").change(function () {
+            $("#SelectSubDep").empty();
+            $.getJSON("/Account/getSubDepByDepName", { name: $("#ChosenDepartment").find(":selected").text() }, function (data) {
+                $("#SelectSubDep").append("<option value=" + null + ">None</option>");
+                $.each(data, function (i, val) {
+                    $("#SelectSubDep").append("<option value=" + val.SubDepartmentName + ">" + val.SubDepartmentName + "</option>");
+                })
+            })
+
+        });
+
+        $("#EmpType").change(function () {
+
+            if ($("#EmpType").find(":selected").text() == "TeamLeader" || $("#EmpType").find(":selected").text() == "Supervisor" || $("#EmpType").find(":selected").text() == "Deputy Manager")
+            {
+                $("#btnmore").show();
+
+            }
+
+        });
+
+        $("#btnmore").click(function () {
+
+            var multipleselect = false;
+            $("#DivNote").show();
+            $("#multisubdepdiv").show();
+            $.getJSON("/Account/getSubDepByDepName", { name: $("#ChosenDepartment").find(":selected").text() }, function (data) {
+                $("#selectmultisubs").empty();
+                $.each(data, function (i, val) {
+
+                    $("#selectmultisubs").append("<input type='checkbox' name='"+val.SubDepartmentName+"'  />" + val.SubDepartmentName + "<br>");
+                })
+
+
+            })
+
+
+        })
+
+
+        $("#btnsubmit").click(function () {
+            var accounttb;
+            debugger;
+            if ($("#EmpCode").val() == "" || $("#EmpName").val() == "" || $("#Password").val() == "" || $("#HireDate").val() == "" || $("#EmpName").val() == "" || $("#Email").val() == "")
+            {
+                alert("All Fields Are Required");
+            }
+            else
+            {
+                if ($("#EmpType").find(":selected").text() == "TeamLeader") {
+                    var selected = [];
+                    $('#selectmultisubs input:checked').each(function () {
+                        selected.push($(this).attr('name'));
+                    });
+
+                    if (selected.length!=0) {
+                        accounttb = {
+                            EmpCode: $("#EmpCode").val(),
+                            EmpName: $("#EmpName").val(),
+                            Password: $("#Password").val(),
+                            Exception: $("#Exception").find(":selected").text(),
+                            ArabicName: $("#ArabicName").val(),
+                            HireDate: $("#HireDate").val(),
+                            DepartmentName: $("#ChosenDepartment").find(":selected").text(),
+                            SubDepartmentName: $("#SelectSubDep").find(":selected").text(),
+                            CasualVac: $("#CasualVac").val(),
+                            AnnualVac: $("#AnnualVac").val(),
+                            EmpType: $("#EmpType").find(":selected").text(),
+                            SubDepartments: selected,
+                            EmpName: $("#EmpName").val(),
+                            Email: $("#Email").val(),
+
+
+                        }
+                        var x = JSON.stringify(accounttb);
+                        $.ajax({
+                            url: '@Url.Action("CreateMultiTeamLeader", "Account")',
+                            data: x,
+                            contentType: 'application/json; charset=utf-8',
+                            type: 'POST',
+                            success: function (data, status) {
+                                alert('TeamLeader Added successfully!');
+                            }
+                        });
+                        window.location = '@Url.Action("GetAllAccounts", "Account")';
+                    }
+
+                    else if (selected == 0)
+                    {
+                        accounttb = {
+                            EmpCode: $("#EmpCode").val(),
+                            EmpName: $("#EmpName").val(),
+                            Password: $("#Password").val(),
+                            ArabicName: $("#ArabicName").val(),
+                            Exception: $("#Exception").find(":selected").text(),
+                            HireDate: $("#HireDate").val(),
+                            DepartmentName: $("#ChosenDepartment").find(":selected").text(),
+                            SubDepartmentName: $("#SelectSubDep").find(":selected").text(),
+                            CasualVac: $("#CasualVac").val(),
+                            AnnualVac: $("#AnnualVac").val(),
+                            EmpType: $("#EmpType").find(":selected").text(),
+                            EmpName: $("#EmpName").val(),
+                            SubDepName: $("#SelectSubDep").find(":selected").text(),
+                            Email: $("#Email").val(),
+
+                        }
+                        var x = JSON.stringify(accounttb);
+                        $.ajax({
+                            url: '@Url.Action("CreateTeamLeader", "Account")',
+                            data: x,
+                            contentType: 'application/json; charset=utf-8',
+                            type: 'POST',
+                            success: function (data, status) {
+                                alert('TeamLeader Added successfully!');
+                            }
+                        });
+                        window.location = '@Url.Action("GetAllAccounts", "Account")';
+                    }
+
+                }
+
+                else if ($("#EmpType").find(":selected").text() == "Manager")
+                {
+                    accounttb = {
+                        EmpCode: $("#EmpCode").val(),
+                        EmpName: $("#EmpName").val(),
+                        Password: $("#Password").val(),
+                        ArabicName: $("#ArabicName").val(),
+                        Exception: $("#Exception").find(":selected").text(),
+                        HireDate: $("#HireDate").val(),
+                        DepartmentName: $("#ChosenDepartment").find(":selected").text(),
+                        SubDepartmentName: $("#SelectSubDep").find(":selected").text(),
+                        CasualVac: $("#CasualVac").val(),
+                        AnnualVac: $("#AnnualVac").val(),
+                        EmpType: $("#EmpType").find(":selected").text(),
+                        EmpName: $("#EmpName").val(),
+                        DepName: $("#ChosenDepartment").find(":selected").text(),
+                        Email: $("#Email").val(),
+
+
+                    }
+                    var x = JSON.stringify(accounttb);
+                    $.ajax({
+                        url: '@Url.Action("CreateManager", "Account")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data, status) {
+                            alert('Manager Created successfully!');
+                        }
+                    });
+                    window.location = '@Url.Action("GetAllAccounts", "Account")';
+                }
+
+                else if ($("#EmpType").find(":selected").text() == "Supervisor")
+                {
+                    var selected = [];
+                    $('#selectmultisubs input:checked').each(function () {
+                        selected.push($(this).attr('name'));
+                    });
+
+                    if (selected.length != 0) {
+                        accounttb = {
+                            EmpCode: $("#EmpCode").val(),
+                            EmpName: $("#EmpName").val(),
+                            Password: $("#Password").val(),
+                            Exception: $("#Exception").find(":selected").text(),
+                            ArabicName: $("#ArabicName").val(),
+                            HireDate: $("#HireDate").val(),
+                            DepartmentName: $("#ChosenDepartment").find(":selected").text(),
+                            SubDepartmentName: $("#SelectSubDep").find(":selected").text(),
+                            CasualVac: $("#CasualVac").val(),
+                            AnnualVac: $("#AnnualVac").val(),
+                            EmpType: $("#EmpType").find(":selected").text(),
+                            SubDepartments: selected,
+                            EmpName: $("#EmpName").val(),
+                            Email: $("#Email").val(),
+
+                        }
+                        var x = JSON.stringify(accounttb);
+                        $.ajax({
+                            url: '@Url.Action("CreateMultiSupervisor", "Account")',
+                            data: x,
+                            contentType: 'application/json; charset=utf-8',
+                            type: 'POST',
+                            success: function (data, status) {
+                                alert('Multi-Supervisor Created successfully!');
+                            }
+                        });
+                        window.location = '@Url.Action("GetAllAccounts", "Account")';
+                    }
+
+                    else if (selected == 0) {
+                        accounttb = {
+                            EmpCode: $("#EmpCode").val(),
+                            EmpName: $("#EmpName").val(),
+                            Password: $("#Password").val(),
+                            ArabicName: $("#ArabicName").val(),
+                            Exception: $("#Exception").find(":selected").text(),
+                            HireDate: $("#HireDate").val(),
+                            DepartmentName: $("#ChosenDepartment").find(":selected").text(),
+                            SubDepartmentName: $("#SelectSubDep").find(":selected").text(),
+                            CasualVac: $("#CasualVac").val(),
+                            AnnualVac: $("#AnnualVac").val(),
+                            EmpType: $("#EmpType").find(":selected").text(),
+                            EmpName: $("#EmpName").val(),
+                            SubDepName: $("#SelectSubDep").find(":selected").text(),
+                            Email: $("#Email").val(),
+
+                        }
+                        var x = JSON.stringify(accounttb);
+                        $.ajax({
+                            url: '@Url.Action("CreateSupervisor", "Account")',
+                            data: x,
+                            contentType: 'application/json; charset=utf-8',
+                            type: 'POST',
+                            success: function (data, status) {
+                                alert('Supervisor Added successfully!');
+                            }
+                        });
+                        window.location = '@Url.Action("GetAllAccounts", "Account")';
+                    }
+            
+                }
+
+                else if ($("#EmpType").find(":selected").text() == "Deputy Manager") {
+                    accounttb = {
+                        EmpCode: $("#EmpCode").val(),
+                        EmpName: $("#EmpName").val(),
+                        Password: $("#Password").val(),
+                        ArabicName: $("#ArabicName").val(),
+                        Exception: $("#Exception").find(":selected").text(),
+                        HireDate: $("#HireDate").val(),
+                        DepartmentName: $("#ChosenDepartment").find(":selected").text(),
+                        SubDepartmentName: $("#SelectSubDep").find(":selected").text(),
+                        CasualVac: $("#CasualVac").val(),
+                        AnnualVac: $("#AnnualVac").val(),
+                        EmpType: $("#EmpType").find(":selected").text(),
+                        EmpName: $("#EmpName").val(),
+                        DepName: $("#ChosenDepartment").find(":selected").text(),
+                        Email: $("#Email").val(),
+
+                    }
+                    var x = JSON.stringify(accounttb);
+                    if ($("#SelectSubDep").find(":selected").text() == "None")
+                    {
+                        $.ajax({
+                            url: '@Url.Action("CreateDeputyManagerWithoutSub", "Account")',
+                            data: x,
+                            contentType: 'application/json; charset=utf-8',
+                            type: 'POST',
+                            success: function (data, status) {
+                                alert('Deputy Manager without Sub-Department Created successfully!');
+                            }
+                        });
+                    }
+                    else {
+                        $.ajax({
+                            url: '@Url.Action("CreateDeputyManager", "Account")',
+                            data: x,
+                            contentType: 'application/json; charset=utf-8',
+                            type: 'POST',
+                            success: function (data, status) {
+                                alert('Deputy Manager with Sub-Department Created successfully!');
+                            }
+                        });
+
+                    }
+       
+                    window.location = '@Url.Action("GetAllAccounts", "Account")';
+                }
+                else  {
+                    accounttb = {
+                        EmpCode: $("#EmpCode").val(),
+                        EmpName: $("#EmpName").val(),
+                        Password: $("#Password").val(),
+                        ArabicName: $("#ArabicName").val(),
+                        HireDate: $("#HireDate").val(),
+                        Exception: $("#Exception").find(":selected").text(),
+                        DepartmentName: $("#ChosenDepartment").find(":selected").text(),
+                        SubDepartmentName: $("#SelectSubDep").find(":selected").text(),
+                        CasualVac: $("#CasualVac").val(),
+                        AnnualVac: $("#AnnualVac").val(),
+                        EmpType: $("#EmpType").find(":selected").text(),
+                        Email: $("#Email").val(),
+                        EmpName: $("#EmpName").val(),
+
+
+                    }
+                    var x = JSON.stringify(accounttb);
+                    $.ajax({
+                        url: '@Url.Action("CreateNormalUser", "Account")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data, status) {
+                            alert('User Created successfully!');
+                        }
+                    });
+                    window.location = '@Url.Action("GetAllAccounts", "Account")';
+                }
+
+            }
+        });
+           
+               $("#HireDate").bind("change paste keyup", function () {
+                $.getJSON("/Account/CalculateAnnualVacation", { EmpHireDate: $("#HireDate").val(), Exceptional: $("#Exception").val() }, function (data) {
+                    $("#Annual").empty();
+                    $("#Annual").append("<input type='text' class='form-control col-md-7 col-xs-12' disabled='disabled' id='AnnualVac' value=" + data + " />")
+                })
+                $.getJSON("/Account/CalculateCasualVacation/", { EmpHireDate: $("#HireDate").val() }, function (data) {
+                    $("#Casual").empty();
+                    $("#Casual").append("<input type='text' class='form-control col-md-7 col-xs-12' disabled='disabled' id='CasualVac' value=" + data + " />")
+
+                })
+            })
+    });
+    </script>
+}
+
+<h2>Create New User Account</h2>
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <br />
+            <h2>Add New Account</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu"></ul>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="EmpCode">
+                        Employee Code <span class="required">*</span>
+                    </label>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        @Html.TextBoxFor(model => model.EmpCode, new { @id = "EmpCode", @class = "form-control col-md-7 col-xs-12" })
+                        @Html.ValidationMessageFor(model => model.ID)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="EmpName">
+                        User Account<span class="required">*</span>
+                    </label>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" id="EmpName" name="EmpName" class="form-control col-md-7 col-xs-12" />
+                        @Html.ValidationMessageFor(model => model.EmpName)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Password">
+                        User Password <span class="required">*</span>
+                    </label>
+
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="password" id="Password" name="Password" class="form-control col-md-7 col-xs-12" />
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ArabicName">
+                        Arabic Name <span class="required">*</span>
+                    </label>
+
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" id="ArabicName" name="ArabicName" class="form-control col-md-7 col-xs-12" />
+                        @Html.ValidationMessageFor(model => model.ArabicName)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Exception">
+                        Exception<span class="required">*</span>
+                    </label>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+
+                        <select tabindex="-1" class="select2_group form-control" style="display: normal;" name="Exception" id="Exception">
+                            <optgroup label="Employee is Exceptional ?">
+                                <option value="false">false</option>
+                                <option value="true">true</option>
+                            </optgroup>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="HireDate">
+                        Hire Date <span class="required">*</span>
+                    </label>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" id="HireDate" name="HireDate" class="form-control col-md-7 col-xs-12" />
+                        @Html.ValidationMessageFor(model => model.HireDate)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ChosenDepartment">
+                        Department Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.DropDownList("DepartmentName", null, new { @id = "ChosenDepartment" })
+                        @Html.ValidationMessageFor(model => model.DepartmentName)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="EmpType">
+                        Employee Type <span class="required">*</span>
+                    </label>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <select tabindex="-1" class="select2_group form-control" style="display: normal;" name="EmpType" id="EmpType">
+                            <optgroup label="Employee Type">
+                                <option value="Normal">Normal</option>
+                                <option value="TeamLeader">TeamLeader</option>
+                                <option value="Supervisor">Supervisor</option>
+                                <option value="Deputy Manager">Deputy Manager</option>
+                                <option value="Manager">Manager</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="multisubdepdiv">
+                    <div class="col-md-10" id="selectmultisubs">
+
+                    </div>
+                </div>
+                <strong class="alert-success" id="DivNote">"Please Choose Main Sub-Department" </strong>
+
+                <div class="form-group" id="subdepdiv">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="SelectSubDep">Sub-Department</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <select id="SelectSubDep" name="SubDepartmentName" class="select2_group"></select>
+                        <input type="button" name="btnmore" id="btnmore" value="More SubDepartments" class="btn btn-round btn-success" />
+                        @Html.ValidationMessageFor(model => model.SubDepartmentName)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="CasualVac">
+                        Casual Leaves
+                    </label>
+                    <div>
+                        <div class="col-md-3 col-sm-3 col-xs-12" id="Casual">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AnnualVac">
+                        Annual Leaves
+                    </label>
+                    <div>
+                        <div class="col-md-3 col-sm-3 col-xs-12" id="Annual">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Email">
+                        Email <span class="required">*</span>
+                    </label>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" id="Email" name="Email" class="form-control col-md-7 col-xs-12" />
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="ln_solid">
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <br />
+                            <button class="btn btn-round btn-success" type="submit" id="btnsubmit" value="Create New User "> Create New User </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

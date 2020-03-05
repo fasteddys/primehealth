@@ -1,0 +1,507 @@
+﻿@{
+    ViewBag.Title = "Edit Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<link href="~/CustomCSS/User/EditEmployees.css" rel="stylesheet" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+
+@*<input type="hidden" name="name" id="UserID" value="@ViewBag.UserID" />*@
+
+<section role="main" class="content-body">
+    <header class="page-header">
+        <h2>Configuration</h2>
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("index","Configuration")">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Employees</span></li>
+                <li><span>Add Employees</span></li>
+
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+    <!-- start: page -->
+
+            <section class="card  ">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    <h2 class="card-title">Edit Employee</h2>
+                </header>              
+                <div class="card-body  ">
+                    <div class="form-group row pull-right">
+                        <a class="nav-link" id="Save" href="#" onclick="SubmitUpdatedUserData()">
+                            <i class="fas fa-save fa-2x" aria-hidden="true"></i>
+                            <span>Save</span>
+                        </a>
+                        <a class="nav-link" id="Deactivate" style="color:black" href="#" onclick="ShowDeactivateTerminationDateModal()">
+                            <i class="fas fa-user-times fa-2x" aria-hidden="true"></i>
+                            <span>Deactivate</span>
+                        </a>
+                        <a class="nav-link" id="Reactivate" style="color:green" href="#" onclick="ShowReactivateConfirmationModel()">
+                            <i class="fas fa-user-check fa-2x" aria-hidden="true"></i>
+                            <span id="BContent">Reactivate</span>
+                        </a>
+                        <a class="nav-link" id="Delete" style="color:red" href="#" onclick="ShowDeleteTerminationDateModal()">
+                            <i class="fas fa-user-slash fa-2x" aria-hidden="true"></i>
+                            <span>Delete</span>
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Employees","Configuration")">
+                            <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                            <span>Cancel</span>
+                        </a>
+                    </div>
+                    <h3 id="DeActivateMessage" style="color:red"></h3>
+                             <div class="tabs  ">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#Main" data-toggle="tab">Main</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#Additional" data-toggle="tab">Additional</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content ">
+                                    <div id="Main" class="  tab-pane active">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        @*<label id="DeActivateMessage" class="control-label" style="color:red"></label>*@
+                                                        <label class="col-lg-10 control-label">Cypress ID</label>
+                                                        <input type="text" class="form-control" id="CypressID" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label">Employee Name</label>
+                                                        <input type="text" class="form-control" id="EmployeeName" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label">Employee Arabic Name<span style="color:red">*</span></label>
+                                                        <input type="text" class="form-control" id="EmployeeArabicName" required>
+                                                    </div>
+                                                </div>
+                                                @*<div class="form-group row">
+            <div class="col-lg-6">
+                <label class="col-lg-10 control-label">Last name</label>
+                <input type="text" class="form-control" id="LastName">
+            </div>
+        </div>*@
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label">Email</label>
+                                                        <input type="text" class="form-control" id="Email" disabled>
+                                                    </div>
+                                                </div>
+                                                @*<div class="form-group row">
+            <div class="col-lg-6">
+                <label class="col-lg-10 control-label">Hire Date</label>
+                <input type="text" data-plugin-datepicker="" class="form-control" id="HireDate">
+            </div>
+        </div>*@
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label ">Direct Manager</label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="DirectManager">
+                                                            <option disabled selected></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label ">Team Manager</label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="TeamManager" disabled>
+                                                            <option disabled selected></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12 dropdown">
+                                                        <label class="col-lg-10 control-label ">Approval Flow<span style="color:red">*</span></label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="ApprovalFlow">
+                                                            <option disabled selected></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                @*<div class="form-group row">
+            <div class="col-lg-6">
+                <label class="col-lg-10 control-label ">Working week</label>
+                <select data-plugin-selectTwo class="form-control populate" id="Workingweek">
+                    <option value="1">Full-time - 40h</option>
+                    <option value="2">Part-time - 20h</option>
+                </select>
+            </div>
+        </div>*@
+                                                @*<div class="form-group row">
+            <div class="col-lg-6">
+                <label class="col-lg-10 control-label ">Holidays calendar</label>
+                <select data-plugin-selectTwo class="form-control populate" id="Holidayscalendar">
+                    <option value="100">Default</option>
+                </select>
+            </div>
+        </div>*@
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label ">Company<span style="color:red">*</span></label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="Company">
+                                                            <option disabled selected></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label ">Contract type<span style="color:red">*</span></label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="ContractType">
+                                                            <option disabled selected></option>
+                                                            @*<option value="1">Full Time</option>
+                    <option value="2">Part Time</option>*@
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label ">Working Mode<span style="color:red">*</span></label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="WorkingMode">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" id="WWeek" style="display:none">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label ">Working Week</label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="WorkingWeek">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label ">Department<span style="color:red">*</span></label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="Department">
+                                                            <option disabled selected></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="col-lg-10 control-label ">Subdepartment</label>
+                                                        <select data-plugin-selectTwo class="form-control populate" id="SubDepartment">
+                                                            <option disabled selected></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                @*<div class="form-group row">
+            <div class="col-lg-6">
+                <div class="checkbox-custom checkbox-default">
+                    <input type="checkbox" id="Administrator">
+                    <label for="checkboxExample1">Administrator</label>
+                </div>
+            </div>
+        </div>*@
+                                            </div>
+                                            <div class=" col-md-6 ">
+                                                <div id="ProfilePicture" class="tab-pane">
+                                                    <section class="card changePic">
+                                                        <div class="card-body">
+                                                            <div class=" thumb-info thumbnail  mb-3 UploadProfilePicture text-center ">
+                                                                <img src="/img/user_profile.png" id="PProfilePic" class=" thumb-info thumbnail rounded img-fluid profileImge" alt="John Doe">
+                                                                <input type="file" id="imgupload" class="Cimgupload btn " accept="image/jpeg,image/jpg" onchange="PreviewImage(event)" />
+                                                                <button id="chagePhotoBtn" class="btn btn-primary" disabled>Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="Additional" class="tab-pane">
+                                        <br />
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label ">Gender<span style="color:red">*</span></label>
+                                                <select data-plugin-selectTwo class="form-control populate" id="Gender" title="">
+                                                    <option disabled selected></option>
+                                                    @*<option value="1">Male</option>
+                                        <option value="2">Female</option>*@
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label ">Position<span style="color:red">*</span></label>
+                                                <select data-plugin-selectTwo class="form-control populate" id="Position">
+                                                    <option disabled selected></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">
+                                                    Birth date<span style="color:red">*</span>
+                                                </label>
+                                                <input type="text" data-plugin-datepicker='{"minDate": 0}' class="form-control" id="BirthDate">
+                                            </div>
+                                        </div>
+                                        <legend>Experience</legend>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">
+                                                    Hire date<span style="color:red">*</span>
+                                                </label>
+                                                <input type="text" data-plugin-datepicker='{"minDate": 0}' class="form-control" id="HireDate">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">
+                                                    Probation end
+                                                </label>
+                                                <input type="text" data-plugin-datepicker='{"minDate": 0}' class="form-control" id="ProbationEnd">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">
+                                                    Termination date
+                                                </label>
+                                                <input type="text" data-plugin-datepicker='{"minDate": 0}' class="form-control" id="TerminationDate">
+                                            </div>
+                                        </div>
+                                        <label class="col-lg-10 control-label ">Seniority before hire</label>
+                                        <div class="form-group row">
+                                            <div class="col-lg-3">
+                                                <label class="col-lg-10 control-label ">Years<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control" id="SenioritybeforeYears">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="col-lg-10 control-label ">Months<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control" id="SenioritybeforeMonths">
+                                            </div>
+                                        </div>
+                                        <legend>Additional Data</legend>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">Employee Number</label>
+                                                <input type="text" class="form-control" id="EmployeeNumber" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">National ID<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control" id="NationalID">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">Medical ID</label>
+                                                <input type="text" class="form-control" id="MedicalID">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">Business phone</label>
+                                                <input type="text" class="form-control" id="BusinessPhone">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">Current Address</label>
+                                                <input type="text" class="form-control" id="CurrentAddress">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">Home Address</label>
+                                                <input type="text" class="form-control" id="HomeAddress">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label class="col-lg-10 control-label">Custome Note</label>
+                                                <input type="text" class="form-control" id="CustomeNote">
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                            </div>
+                </div>
+            </section>
+    <div class="modal fade" id="UserDeactivateTerminationDate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deactivate User</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label">Termination Date<span style="color:red">*</span></b>
+                            <input type="text" data-plugin-datepicker='{"minDate": 0}' class="form-control" id="DeactivateTerminationDate">
+                        </div>
+                    </div>
+                    @*<div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label">Termination Date<span style="color:red">*</span></b>
+                            <input type="text" class="form-control hasDatepicker" id="">
+                        </div>
+                    </div>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="ShowDeactivateConfirmationModel()">Confirm</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="UserDeleteTerminationDate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label">Termination Date<span style="color:red">*</span></b>
+                            <input type="text" data-plugin-datepicker='{"minDate": 0}' class="form-control" id="DeleteTerminationDate">
+                        </div>
+                    </div>
+                    @*<div class="form-group row">
+                            <div class="col-lg-12">
+                                <b class="col-lg-10 control-label">Termination Date<span style="color:red">*</span></b>
+                                <input type="text" class="form-control hasDatepicker" id="">
+                            </div>
+                        </div>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="ShowDeleteConfirmationModel()">Confirm</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="modal fade" id="Confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="control-label" id="ConfirmationText"></b>
+                        </div>
+                    </div>
+                    @*<div class="form-group row">
+                            <div class="col-lg-12">
+                                <b class="col-lg-10 control-label">Termination Date<span style="color:red">*</span></b>
+                                <input type="text" class="form-control hasDatepicker" id="">
+                            </div>
+                        </div>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="Cofirmed" class=" btn btn-primary" data-dismiss="modal" onclick="">Submit</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- end: page -->
+</section>
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+@*<script src="~/CustomJavaScript/User/AddUser.js"></script>*@
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script src="~/CustomJavaScript/Employees/EditEmployees.js"></script>
+
+
+
+<script>
+    $("#BirthDate").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+
+    $("#HireDate").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+
+    $("#ProbationEnd").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+
+    $("#TerminationDate").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+    $("#DeactivateTerminationDate").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+    $("#DeleteTerminationDate").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+</script>
+

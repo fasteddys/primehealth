@@ -1,0 +1,36 @@
+﻿.caption {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0,0.1);
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    display: none;
+    text-align: center;
+    color: #fff !important;
+    z-index: 2;
+}
+
+.UserCard {
+    margin-bottom: 15px !important;
+    float: left !important;
+}
+
+.UserCard-body {
+    padding: 0px 0px 0px 0px !important;
+}
+
+.UserImageThumbnail {
+    height: 268.25px;
+    width: 222.25px;
+    transition: .2s ease-out;
+}
+
+.UserImageThumbnail:hover {
+        transform: scale(1.2);
+        transition: .2s ease-out;
+}
+.ThumbnailImgContainer {
+    overflow: hidden
+}

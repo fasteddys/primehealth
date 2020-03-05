@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Egypt_scannModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BATCHER">
+          <Key>
+            <PropertyRef Name="CTR" />
+          </Key>
+          <Property Name="CTR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BATCH_NO" Type="nvarchar" MaxLength="15" />
+          <Property Name="PRO_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="TOT_AMOUNT" Type="money" />
+          <Property Name="REC_DATE" Type="datetime" />
+          <Property Name="SCAN_DATE" Type="datetime" />
+          <Property Name="PUB_D" Type="datetime" />
+          <Property Name="PUBLISHED" Type="nvarchar" MaxLength="3" />
+          <Property Name="TOT_CLAIM" Type="int" />
+          <Property Name="TOT_DOC" Type="int" />
+          <Property Name="DIR_SIZE" Type="int" />
+          <Property Name="HOLDER_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="POLICY_NO" Type="nvarchar" MaxLength="25" />
+          <Property Name="PRO_PIN" Type="nvarchar" MaxLength="15" />
+          <Property Name="USER_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ALLOCATED_DATE" Type="datetime" />
+          <Property Name="CLOSED_DATE" Type="datetime" />
+          <Property Name="DE_STAPLE" Type="nvarchar" MaxLength="8" />
+          <Property Name="DVD_NO" Type="int" />
+          <Property Name="FINAL_AUDIT" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DOC_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="AUDIT_DATE" Type="datetime" />
+          <Property Name="BAT_ORIGIN" Type="tinyint" />
+          <Property Name="BIL_YY" Type="int" />
+          <Property Name="BIL_MM" Type="tinyint" />
+          <Property Name="PUBLISHED1" Type="nvarchar" MaxLength="3" />
+          <Property Name="finished" Type="nvarchar" MaxLength="50" />
+          <Property Name="pfinished" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CLAIM_NO">
+          <Key>
+            <PropertyRef Name="CTR" />
+          </Key>
+          <Property Name="CTR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BATCH_NO" Type="nvarchar" MaxLength="15" />
+          <Property Name="CLAIM_NO" Type="int" />
+          <Property Name="CLAIM_PAGE" Type="smallint" />
+          <Property Name="SCAN_LOC" Type="nvarchar" MaxLength="50" />
+          <Property Name="STAT" Type="nvarchar" MaxLength="1" />
+          <Property Name="USER_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="DIAGNO" Type="nvarchar" MaxLength="15" />
+          <Property Name="CLM_NOTE" Type="ntext" />
+          <Property Name="PROC_DATE" Type="datetime" />
+          <Property Name="DOC_NOTES" Type="ntext" />
+          <Property Name="RUH_DVD" Type="int" />
+          <Property Name="REJ_CODE" Type="nvarchar" MaxLength="1" />
+          <Property Name="REJ_PRO" Type="nvarchar" MaxLength="1" />
+          <Property Name="REJ_MACID" Type="nvarchar" MaxLength="5" />
+          <Property Name="DVD_DATE" Type="datetime" />
+          <Property Name="Opened" Type="nvarchar" MaxLength="5" />
+          <Property Name="Judge" Type="nvarchar" MaxLength="10" />
+          <Property Name="Flag" Type="char" MaxLength="10" />
+          <Property Name="PJudge" Type="nvarchar" MaxLength="50" />
+          <Property Name="PComment" Type="nvarchar" MaxLength="150" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="150" />
+          <Property Name="ASSIGNEE" Type="nvarchar" MaxLength="150" />
+          <Property Name="PAssignee" Type="nvarchar" MaxLength="150" />
+          <Property Name="PAssigne_date" Type="datetime" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="Doc_id" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pcomment2" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pcomment3" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pcomment4" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pro_pin" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pcategory" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pcategory2" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pcategory3" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pcategory4" Type="nvarchar" MaxLength="150" />
+          <Property Name="Psub" Type="nvarchar" MaxLength="150" />
+          <Property Name="Psub2" Type="nvarchar" MaxLength="150" />
+          <Property Name="Psub3" Type="nvarchar" MaxLength="150" />
+          <Property Name="Psub4" Type="nvarchar" MaxLength="150" />
+          <Property Name="PNotes" Type="nvarchar" MaxLength="150" />
+          <Property Name="PNotes2" Type="nvarchar" MaxLength="150" />
+          <Property Name="PNotes3" Type="nvarchar" MaxLength="150" />
+          <Property Name="PNotes4" Type="nvarchar" MaxLength="150" />
+          <Property Name="Pro" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityContainer Name="Egypt_scannModelStoreContainer">
+          <EntitySet Name="BATCHER" EntityType="Self.BATCHER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLAIM_NO" EntityType="Self.CLAIM_NO" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Egypt_scannModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BATCHER">
+          <Key>
+            <PropertyRef Name="CTR" />
+          </Key>
+          <Property Name="CTR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BATCH_NO" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PRO_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TOT_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="REC_DATE" Type="DateTime" Precision="3" />
+          <Property Name="SCAN_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PUB_D" Type="DateTime" Precision="3" />
+          <Property Name="PUBLISHED" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="TOT_CLAIM" Type="Int32" />
+          <Property Name="TOT_DOC" Type="Int32" />
+          <Property Name="DIR_SIZE" Type="Int32" />
+          <Property Name="HOLDER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="POLICY_NO" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PRO_PIN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ALLOCATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CLOSED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="DE_STAPLE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="DVD_NO" Type="Int32" />
+          <Property Name="FINAL_AUDIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DOC_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AUDIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="BAT_ORIGIN" Type="Byte" />
+          <Property Name="BIL_YY" Type="Int32" />
+          <Property Name="BIL_MM" Type="Byte" />
+          <Property Name="PUBLISHED1" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="finished" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pfinished" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CLAIM_NO">
+          <Key>
+            <PropertyRef Name="CTR" />
+          </Key>
+          <Property Name="CTR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BATCH_NO" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CLAIM_NO1" Type="Int32" />
+          <Property Name="CLAIM_PAGE" Type="Int16" />
+          <Property Name="SCAN_LOC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STAT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DIAGNO" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CLM_NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_DATE" Type="DateTime" Precision="3" />
+          <Property Name="DOC_NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RUH_DVD" Type="Int32" />
+          <Property Name="REJ_CODE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="REJ_PRO" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="REJ_MACID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="DVD_DATE" Type="DateTime" Precision="3" />
+          <Property Name="Opened" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Judge" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PJudge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ASSIGNEE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PAssignee" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PAssigne_date" Type="DateTime" Precision="3" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="Doc_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pcomment2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pcomment3" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pcomment4" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pro_pin" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pcategory" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pcategory2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pcategory3" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pcategory4" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Psub" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Psub2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Psub3" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Psub4" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PNotes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PNotes2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PNotes3" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PNotes4" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Pro" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="Egypt_scannEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BATCHERs" EntityType="Self.BATCHER" />
+          <EntitySet Name="CLAIM_NO" EntityType="Self.CLAIM_NO" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Egypt_scannModelStoreContainer" CdmEntityContainer="Egypt_scannEntities">
+          <EntitySetMapping Name="BATCHERs">
+            <EntityTypeMapping TypeName="Egypt_scannModel.BATCHER">
+              <MappingFragment StoreEntitySet="BATCHER">
+                <ScalarProperty Name="CTR" ColumnName="CTR" />
+                <ScalarProperty Name="BATCH_NO" ColumnName="BATCH_NO" />
+                <ScalarProperty Name="PRO_NAME" ColumnName="PRO_NAME" />
+                <ScalarProperty Name="TOT_AMOUNT" ColumnName="TOT_AMOUNT" />
+                <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
+                <ScalarProperty Name="SCAN_DATE" ColumnName="SCAN_DATE" />
+                <ScalarProperty Name="PUB_D" ColumnName="PUB_D" />
+                <ScalarProperty Name="PUBLISHED" ColumnName="PUBLISHED" />
+                <ScalarProperty Name="TOT_CLAIM" ColumnName="TOT_CLAIM" />
+                <ScalarProperty Name="TOT_DOC" ColumnName="TOT_DOC" />
+                <ScalarProperty Name="DIR_SIZE" ColumnName="DIR_SIZE" />
+                <ScalarProperty Name="HOLDER_NAME" ColumnName="HOLDER_NAME" />
+                <ScalarProperty Name="POLICY_NO" ColumnName="POLICY_NO" />
+                <ScalarProperty Name="PRO_PIN" ColumnName="PRO_PIN" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ALLOCATED_DATE" ColumnName="ALLOCATED_DATE" />
+                <ScalarProperty Name="CLOSED_DATE" ColumnName="CLOSED_DATE" />
+                <ScalarProperty Name="DE_STAPLE" ColumnName="DE_STAPLE" />
+                <ScalarProperty Name="DVD_NO" ColumnName="DVD_NO" />
+                <ScalarProperty Name="FINAL_AUDIT" ColumnName="FINAL_AUDIT" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+                <ScalarProperty Name="AUDIT_DATE" ColumnName="AUDIT_DATE" />
+                <ScalarProperty Name="BAT_ORIGIN" ColumnName="BAT_ORIGIN" />
+                <ScalarProperty Name="BIL_YY" ColumnName="BIL_YY" />
+                <ScalarProperty Name="BIL_MM" ColumnName="BIL_MM" />
+                <ScalarProperty Name="PUBLISHED1" ColumnName="PUBLISHED1" />
+                <ScalarProperty Name="finished" ColumnName="finished" />
+                <ScalarProperty Name="pfinished" ColumnName="pfinished" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLAIM_NO">
+            <EntityTypeMapping TypeName="Egypt_scannModel.CLAIM_NO">
+              <MappingFragment StoreEntitySet="CLAIM_NO">
+                <ScalarProperty Name="CTR" ColumnName="CTR" />
+                <ScalarProperty Name="BATCH_NO" ColumnName="BATCH_NO" />
+                <ScalarProperty Name="CLAIM_NO1" ColumnName="CLAIM_NO" />
+                <ScalarProperty Name="CLAIM_PAGE" ColumnName="CLAIM_PAGE" />
+                <ScalarProperty Name="SCAN_LOC" ColumnName="SCAN_LOC" />
+                <ScalarProperty Name="STAT" ColumnName="STAT" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="DIAGNO" ColumnName="DIAGNO" />
+                <ScalarProperty Name="CLM_NOTE" ColumnName="CLM_NOTE" />
+                <ScalarProperty Name="PROC_DATE" ColumnName="PROC_DATE" />
+                <ScalarProperty Name="DOC_NOTES" ColumnName="DOC_NOTES" />
+                <ScalarProperty Name="RUH_DVD" ColumnName="RUH_DVD" />
+                <ScalarProperty Name="REJ_CODE" ColumnName="REJ_CODE" />
+                <ScalarProperty Name="REJ_PRO" ColumnName="REJ_PRO" />
+                <ScalarProperty Name="REJ_MACID" ColumnName="REJ_MACID" />
+                <ScalarProperty Name="DVD_DATE" ColumnName="DVD_DATE" />
+                <ScalarProperty Name="Opened" ColumnName="Opened" />
+                <ScalarProperty Name="Judge" ColumnName="Judge" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="PJudge" ColumnName="PJudge" />
+                <ScalarProperty Name="PComment" ColumnName="PComment" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ASSIGNEE" ColumnName="ASSIGNEE" />
+                <ScalarProperty Name="PAssignee" ColumnName="PAssignee" />
+                <ScalarProperty Name="PAssigne_date" ColumnName="PAssigne_date" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Doc_id" ColumnName="Doc_id" />
+                <ScalarProperty Name="Pcomment2" ColumnName="Pcomment2" />
+                <ScalarProperty Name="Pcomment3" ColumnName="Pcomment3" />
+                <ScalarProperty Name="Pcomment4" ColumnName="Pcomment4" />
+                <ScalarProperty Name="Pro_pin" ColumnName="Pro_pin" />
+                <ScalarProperty Name="Pcategory" ColumnName="Pcategory" />
+                <ScalarProperty Name="Pcategory2" ColumnName="Pcategory2" />
+                <ScalarProperty Name="Pcategory3" ColumnName="Pcategory3" />
+                <ScalarProperty Name="Pcategory4" ColumnName="Pcategory4" />
+                <ScalarProperty Name="Psub" ColumnName="Psub" />
+                <ScalarProperty Name="Psub2" ColumnName="Psub2" />
+                <ScalarProperty Name="Psub3" ColumnName="Psub3" />
+                <ScalarProperty Name="Psub4" ColumnName="Psub4" />
+                <ScalarProperty Name="PNotes" ColumnName="PNotes" />
+                <ScalarProperty Name="PNotes2" ColumnName="PNotes2" />
+                <ScalarProperty Name="PNotes3" ColumnName="PNotes3" />
+                <ScalarProperty Name="PNotes4" ColumnName="PNotes4" />
+                <ScalarProperty Name="Pro" ColumnName="Pro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

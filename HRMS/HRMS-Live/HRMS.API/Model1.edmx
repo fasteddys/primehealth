@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="VacationRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RequestID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="HRMSModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HRMSEntities1" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="VacationRequest" ReturnType="Collection(HRMSModel.VacationRequest_Result)">
+            <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="VacationRequest_Result">
+          <Property Type="DateTime" Name="DurationFrom" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DurationTo" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="BackToWork" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="RequestDuration" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="StatusArName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserArName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartmentArName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="AccessControlUserFK" Nullable="true" />
+          <Property Type="String" Name="LeaveTypeArName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UnitArName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="PrintDate" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRMSModelStoreContainer" CdmEntityContainer="HRMSEntities1" >
+          <FunctionImportMapping FunctionImportName="VacationRequest" FunctionName="HRMSModel.Store.VacationRequest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HRMSModel.VacationRequest_Result">
+                <ScalarProperty Name="DurationFrom" ColumnName="DurationFrom" />
+                <ScalarProperty Name="DurationTo" ColumnName="DurationTo" />
+                <ScalarProperty Name="BackToWork" ColumnName="BackToWork" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="RequestDuration" ColumnName="RequestDuration" />
+                <ScalarProperty Name="StatusArName" ColumnName="StatusArName" />
+                <ScalarProperty Name="UserArName" ColumnName="UserArName" />
+                <ScalarProperty Name="DepartmentArName" ColumnName="DepartmentArName" />
+                <ScalarProperty Name="AccessControlUserFK" ColumnName="AccessControlUserFK" />
+                <ScalarProperty Name="LeaveTypeArName" ColumnName="LeaveTypeArName" />
+                <ScalarProperty Name="UnitArName" ColumnName="UnitArName" />
+                <ScalarProperty Name="PrintDate" ColumnName="PrintDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

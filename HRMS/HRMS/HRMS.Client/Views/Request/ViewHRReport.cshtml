@@ -1,0 +1,355 @@
+﻿
+
+@{
+    ViewBag.Title = "ViewHRReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>HR Report</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    @*<a href="@Url.Action("index","Request")">
+                            <i class="fas fa-cogs"></i>
+                        </a>*@
+                </li>
+                <li><span>Request</span></li>
+                <li><span>All Requests</span></li>
+
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    <h2 class="card-title">ALL Requests</h2>
+
+                </header>
+
+                <div class="card-body">
+                    @*<div class="form-group row ">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-save fa-2x" aria-hidden="true" onclick="SaveListBTN()" id="AddUsersToPosition"></i>
+                                <span>Save</span>
+                            </a>
+                            <a class="nav-link" href="@Url.Action("Managers","Configuration")">
+                                <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                                <span>Cancel</span>
+                            </a>
+                        </div>*@
+
+
+                    <div class="card-body">
+                        @*<div class="form-group row pull-right">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-save fa-2x" aria-hidden="true"></i>
+                                    <span>Save</span>
+                                </a>
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                                    <span>Cancel</span>
+                                </a>
+                            </div>*@
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="tabs">
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="#Requests" data-toggle="tab">Requests</a>
+                                        </li>
+                                        @*<li class="nav-item">
+                                                <a class="nav-link" href="#Approvals" data-toggle="tab">Approvals</a>
+                                        </li>*@
+                                         <li class="nav-item">
+                                                <a class="nav-link" href="#SearchForRequest" data-toggle="tab">Search For Request</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="Requests" class="tab-pane active">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                             
+                                                    @*<table class="table table-responsive-md table-hover mb-0">*@
+
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-lg-10 control-label ">From<span style="color:red">*</span></label>
+                                                            <input type="text" data-plugin-datepicker="" class="form-control" id="RequestDateFrom">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label class="col-lg-10 control-label ">To<span style="color:red">*</span></label>
+                                                            <input type="text" data-plugin-datepicker="" class="form-control" id="RequestDateTo">
+                                                        </div>
+
+                                                        <div class="col-lg-3">
+                                                            <label class="col-lg-11 control-label ">Absence Type</label>
+                                                            <select data-plugin-selectTwo class="form-control populate" id="RequestLeaveType">
+                                                                <option value="0">All Leaves</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label class="col-lg-10 control-label "></label>
+
+                                                            <div class="form-control populate hidden">
+                                                                @*<option value="0">ALL Status</option>*@
+
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="col-lg-3">
+                                                            <label class="col-lg-11 control-label ">Department</label>
+                                                            <select id="SelectDepartment" multiple data-plugin-selectTwo class="form-control populate"></select>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label class="col-lg-11 control-label ">SubDepartment</label>
+                                                            <select id="SelectSubDepartment" multiple data-plugin-selectTwo class="form-control populate"></select>
+                                                        </div>
+                                                        <wdiv class="col-lg-3">
+                                                            <label class="col-lg-11 control-label ">User</label>
+                                                            <select id="SelectUsers" multiple data-plugin-selectTwo class="form-control populate"></select>
+                                                        </wdiv>
+
+
+
+
+
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-9 right-wrapper"></div>
+                                                        <div class="col-lg-3 right-wrapper">
+                                                            <label class="col-lg-5 control-label ">Find</label>
+                                                            <a href="#" class="col-lg-5" id="FindLeaves"><span onclick="FindRequest()" class="fa fa-search fa-2x"></span></a>
+
+                                                        </div>
+
+                                                        <div class="col-lg-9 right-wrapper"></div>
+                                                        <div class="col-lg-3 right-wrapper">
+                                                            <label class="col-lg-7 control-label ">Export Report As Excel</label>
+                                                            <a href="#" class="col-lg-5"><span onclick="ExtractExcel()" class="fa fa-file-excel fa-2x"></span></a>
+
+                                                        </div>
+
+                                                        <div class="col-lg-9 right-wrapper"></div>
+                                                            <div class="col-lg-3 right-wrapper">
+                                                                <label class="col-lg-7 control-label ">Export Report As PDF</label>
+                                                                <a href="#" class="col-lg-5"><span onclick="ExtractPDF()" class="fa fa-file-pdf fa-2x"></span></a>
+
+                                                            </div>
+
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <table class="table table-responsive-md table-hover mb-0" id="TableData">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><b>ID</b></th>
+                                                                    <th><b>User Name</b></th>
+                                                                    <th><b>AC ID</b></th>
+                                                                    <th><b>Leave Type</b></th>
+                                                                    <th><b>Requested Date</b></th>
+                                                                    <th><b>Start Date</b></th>
+                                                                    <th><b>End Date</b></th>
+                                                                    <th><b>Back To Work</b></th>
+                                                                    <th><b>Duration</b></th>
+                                                                    <th><b>Unit</b></th>
+                                                                    <th><b>Partial Unit</b></th>
+                                                                    <th><b>Punch In</b></th>
+                                                                    <th><b>Punch Out</b></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="ApprovalsTable"></tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="SearchForRequest" class="tab-pane">
+
+                                            <div class="form-group row">
+                                                <div class="col-lg-10 row">
+                                                    <label class="col-lg-2  control-label ">Request ID</label>
+                                                    <input type="text" class=" col-lg-6 form-control mr-2" id="RequestNumber" onkeypress="validate(event)">
+                                                    <a class="col-lg-2 btn btn-danger" href="#" id="btnSearchForRequest">Search</a>
+                                                </div>
+                                            </div>
+                                           
+
+                                    </div>
+                                   </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- end: page -->
+            </section>
+        </div>
+        <input type="hidden" name="ExeclDownLoad" />
+    </div>
+
+    <!-- end: page -->
+    <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+    <script src="~/vendor/select2/js/select2.js"></script>
+    <script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+    <script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    <script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+    <script src="~/vendor/fuelux/js/spinner.js"></script>
+    <script src="~/vendor/dropzone/dropzone.js"></script>
+    <script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+    <script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+    <script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+    <script src="~/vendor/codemirror/lib/codemirror.js"></script>
+    <script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+    <script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+    <script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+    <script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="~/vendor/codemirror/mode/css/css.js"></script>
+    <script src="~/vendor/summernote/summernote-bs4.js"></script>
+    <script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+    <script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+    <script src="~/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+    <script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+    <script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+    <script src="~/CustomJavaScript/Request/ViewHRReport.js"></script>
+    <script src="~/js/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="~/js/custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="~/js/theme.init.js"></script>
+
+    <!-- Examples -->
+    <script src="~/js/examples/examples.advanced.form.js"></script>
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script src="~/js/examples/examples.datatables.default.js"></script>
+    <script src="~/js/examples/examples.datatables.row.with.details.js"></script>
+    <script src="~/js/examples/examples.datatables.tabletools.js"></script>
+
+
+    <style>
+        /*.ActionsIcon {
+                margin-left: 10px
+            }*/
+
+        .AciveRow {
+            background-color: #0088cc;
+            color: white;
+        }
+        /*.AciveRow :hover {
+                background-color: #0088cc;
+                color: white;
+            }*/
+
+        .ruleFieldset {
+            padding: 0 15px 10px !important;
+            margin-bottom: 45px !important;
+        }
+
+        .Borderstyle {
+            border: 1px solid #ccc !important;
+            padding: 3px 5px 15px 15px !important;
+        }
+
+        fieldset legend {
+            display: block !important;
+            font-weight: normal !important;
+            font-size: 14px !important;
+            margin-bottom: 15px !important;
+            padding: 0;
+            margin-top: 0;
+            margin-bottom: 0px;
+            font-family: 'Noto Sans', verdana, arial, sans-serif;
+            width: auto !important;
+        }
+
+        .Floatleft {
+            float: left !important
+        }
+    </style>
+    <script>
+        $("#RequestDateFrom").datepicker({
+
+    dateFormat: 'dd/mm/yy',
+    //minDate: 0,
+    //beforeShowDay: function (date) {
+    //    var show = true;
+    //    if (date.getDay() == 5 || date.getDay() == 6) show = false
+    //    return [show];
+    //},
+    // onSelect: function (date) {
+    //$("#EndDate").datepicker("option", "minDate",
+    //    $("#StartDate").datepicker("getDate"));
+    // }
+        });
+
+        $("#RequestDateTo").datepicker({
+
+            dateFormat: 'dd/mm/yy',
+            //minDate: 0,
+            //beforeShowDay: function (date) {
+            //    var show = true;
+            //    if (date.getDay() == 5 || date.getDay() == 6) show = false
+            //    return [show];
+            //},
+            // onSelect: function (date) {
+            //$("#EndDate").datepicker("option", "minDate",
+            //    $("#StartDate").datepicker("getDate"));
+            // }
+        });
+
+    </script>
+
+
+

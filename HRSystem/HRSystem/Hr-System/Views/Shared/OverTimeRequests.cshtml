@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Hr_System.Models.OverTime>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>ALL Requests </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped responsive-utilities jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Requests Type </th>
+                    <th class="column-title">Creator  </th>
+                    <th class="column-title">OverTimeStatus  </th>
+                    @*<th class="column-title">OverTime Day </th>*@
+                    <th class="column-title">Time from  </th>
+                    <th class="column-title">Time to </th>
+                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="even pointer">
+                        <td>OverTime</td>
+                        <td>@Html.DisplayFor(cat => item.Creator)</td>
+                        <td>@Html.DisplayFor(cat => item.OverStatus)</td>
+                        @*<td>@Html.DisplayFor(cat => item.StartOverDate)</td>*@
+                        <td>@Html.DisplayFor(cat => item.StartOverDate) at  @Html.DisplayFor(cat => item.OverStart)</td>
+                        <td>@Html.DisplayFor(cat => item.EndOverDate) at @Html.DisplayFor(cat => item.OverEnd)</td>
+                        <td>
+                            <div><a href="@Url.Action("OverTimeDetails", new { id = item.id })">Open</a></div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

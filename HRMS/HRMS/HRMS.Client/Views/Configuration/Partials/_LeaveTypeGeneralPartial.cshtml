@@ -1,0 +1,57 @@
+﻿<div id="General" class="tab-pane active">
+    <br />
+    <div class="form-group row">
+        <div class="col-lg-6">
+            <select id="EntitlementTypeDD" data-plugin-selectTwo class="form-control populate">
+                @*<option value="OwnEntitlement">This Leave type has own entitlement</option>
+                    <option value="SubTypeEntitlement">This is subtype and use entitlement from other type</option>*@
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-6">
+            <label class="col-lg-4 control-label pt-2">Consider as</label>
+            <select id="LeaveTypeConsiderationsDD" data-plugin-selectTwo class="form-control populate"></select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-6">
+            <label class="col-lg-4 control-label pt-2">Duration Unit</label>
+            <select id="LeaveDurationUnitDD" data-plugin-selectTwo class="form-control populate"></select>
+
+
+        </div>
+    </div>
+   
+    <div class="form-group row" id="TakeEntitlementFromTxt">
+        <div class="col-lg-6">
+            <label class="col-lg-5 control-label pt-2">Take entitlement from</label>
+            <select id="TakeEntitlementFromDD" data-plugin-selectTwo class="form-control populate"></select>
+        </div>
+    </div>
+    <div class="form-group row" id="TakeEntitlementMax">
+        <label class="col-lg-3 control-label pt-2" for="inputDefault">Take max amount</label>
+        <div class="col-lg-1">
+            <input type="text" class="form-control" id="LeaveTypeMaxAmount">
+        </div>
+        <span id="ParentLeaveTypeEntitlement">... </span><span>&nbsp;</span>
+        <span class="UnitText">Days</span>
+
+
+    </div>
+    <div class="form-group row" id="TakeEntitlementMax">
+        <label class="col-lg-3 control-label pt-2" for="inputDefault">Percentage of Deduction From Parent Leave</label>
+        <div class="col-lg-1">
+            <input type="text" class="form-control" id="LeaveTypeMaxAmount">
+        </div>
+        <<span>&nbsp;</span>
+        <span class="UnitText">%</span>
+
+
+    </div>
+
+
+
+
+</div>
+

@@ -1,0 +1,531 @@
+﻿
+@{
+    ViewBag.Title = "View Request Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<section role="main" class="content-body">
+    <header class="page-header">
+        <style>
+            .DataLi {
+                padding-bottom: 15px !important;
+            }
+
+            .TrStyle {
+                border: none !important;
+            }
+        </style>
+        <h2>Request Details</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("index","home")">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Request</span></li>
+                <li><span>All Request</span></li>
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        @*<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>*@
+                    </div>
+                    <h2 class="card-title">Leave Details</h2>
+                </header>
+                <div class="card-body">
+                    <div class="form-group row ">
+                        <a class="nav-link" href="#" onclick="GoBack()">
+                            <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                            <span>Cancel</span>
+                        </a>
+                        <div class="form-group row pull-left" id="ShowDeletionModel" style="visibility:hidden">
+                            <a class="nav-link deletedBut" data-toggle="modal" data-target="#DeletionModal" href="#">
+                                <i class="fas fa-step-backward fa-2x" aria-hidden="true"></i>
+                                <span>Revoke</span>
+                            </a>
+                        </div>
+                        <div class="form-group row pull-left" id="Cancelbtn" style="visibility:hidden">
+                            <a class="nav-link deletedBut" data-toggle="modal" data-target="#CancelModal" href="#">
+                                <i class="fas fa-trash fa-2x" aria-hidden="true"></i>
+                                <span>Delete</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <h1 id="RequestID" class="text-center" style="font-size: 45px; color:goldenrod;"></h1>
+                    <br />
+
+                    <table class=" table table-responsive-md table-striped table-hover mb-0">
+
+                        <tbody>
+                            <tr class="TrStyle">
+                                <td><b>UserName</b></td>
+                                <td id="UserName">-</td>
+                                <td><b>Department</b></td>
+                                <td id="DepartmentName">-</td>
+
+                            </tr>
+                            <tr class="TrStyle">
+                                <td><b>SubDepartment</b></td>
+                                <td id="SubDepartmentName">-</td>
+                                <td><b>Position</b></td>
+                                <td id="PositionName">-</td>
+                            </tr>
+                            <tr class="TrStyle">
+                                <td><b>Leave Type</b></td>
+                                <td id="LeaveTypeName">-</td>
+                                <td><b>Duration</b></td>
+                                <td id="RequestDuration">-</td>
+                            </tr>
+                            <tr class="TrStyle">
+                                <td><b>From</b></td>
+                                <td id="DurationFrom">-</td>
+                                <td><b>To</b></td>
+                                <td id="DurationTo">-</td>
+                            </tr>
+                            <tr class="TrStyle">
+                                <td><b>Back to work date</b></td>
+                                <td id="BackToWork">-</td>
+                                <td><b>Creation Date</b></td>
+                                <td id="CreationDate">-</td>
+                            </tr>
+                            <tr class="TrStyle">
+                                <td><b>Status</b></td>
+                                <td id="Status">-</td>
+                                <td><b>Reason</b></td>
+                                <td id="Reason">-</td>
+                            </tr>
+                            <tr class="TrStyle">
+                                <td><b>Comment</b></td>
+                                <td id="Comment">-</td>
+                                <td><b>Substitute</b></td>
+                                <td id="Substitute">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @*<input type="button" class="fa fa-print" value="Print"  id="PrintBtn" />*@
+                    @*<div class="row">
+                            <div class="col-md-6" style="font-size:large">
+                                <ul class="simple-todo-list mt-3">
+                                    <li class="DataLi">Department: <span class="text-color-primary" id="PDepartment">IT Department</span></li>
+                                    <li class="DataLi">Sup department: <span class="text-color-primary" id="PSubDepartment">Software Development</span></li>
+                                    <li class="DataLi">Email: <span class="text-color-primary" id="PEmail">Ahmed.Rateb@Medgulf.com.eg</span></li>
+                                    <li class="DataLi">Email: <span class="text-color-primary" id="PEmail">Ahmed.Rateb@Medgulf.com.eg</span></li>
+                                    <li class="DataLi">Email: <span class="text-color-primary" id="PEmail">Ahmed.Rateb@Medgulf.com.eg</span></li>
+                                </ul>
+                            </div>
+
+
+                            <div class="col-md-6" style="font-size:large">
+                                <ul class="simple-todo-list mt-3">
+                                    <li class="DataLi">Department: <span class="text-color-primary" id="PDepartment">IT Department</span></li>
+                                    <li class="DataLi">Sup department: <span class="text-color-primary" id="PSubDepartment">Software Development</span></li>
+                                    <li class="DataLi">Email: <span class="text-color-primary" id="PEmail">Ahmed.Rateb@Medgulf.com.eg</span></li>
+                                    <li class="DataLi">Email: <span class="text-color-primary" id="PEmail">Ahmed.Rateb@Medgulf.com.eg</span></li>
+                                    <li class="DataLi">Email: <span class="text-color-primary" id="PEmail">Ahmed.Rateb@Medgulf.com.eg</span></li>
+                                </ul>
+                            </div>
+                        </div>*@
+
+
+                    @*<div>
+
+                            <h3 class="label">User Name :  <span class="label-default" id="UserName">UserName</span></h3>
+
+                            <h3 class="label">Department Name :  <span class="label-default" id="DepartmentName">DepartmentName</span></h3>
+
+                            <h3 class="label">SubDepartment Name : <span class="label-default" id="SubDepartmentName">SubDepartmentName</span></h3>
+
+                            <h3 class="label">PositionName : <span class="label-default" id="PositionName">PositionName</span></h3>
+
+                            <h3 class="label">LeaveTypeName : <span class="label-default" id="LeaveTypeName">LeaveTypeName</span></h3>
+
+                            <h3 class="label">DurationFrom : <span class="label-default" id="DurationFrom">DurationFrom</span></h3>
+
+                            <h3 class="label">DurationTo : <span class="label-default" id="DurationTo">DurationTo</span></h3>
+
+                            <h3 class="label">BackToWork : <span class="label-default" id="BackToWork">BackToWork</span></h3>
+
+                            <h3 class="label">RequestDuration : <span class="label-default" id="RequestDuration">RequestDuration</span></h3>
+                        </div>*@
+                    @*<div class="form-group row pull-left" id="ApprovalRejectionBtns" style="visibility:hidden;">
+                            <a class="nav-link" onclick="ApproveBTN()" href="#">
+                                <i class="fas fa-check fa-2x" aria-hidden="true"></i>
+                                <span>Approve</span>
+                            </a>
+                            <a class="nav-link" onclick="RejectBTN()" href="#">
+                                <i class="fas fa-times fa-2x" aria-hidden="true"></i>
+                                <span>Reject</span>
+                            </a>
+                        </div>*@
+                    <div class="form-group mb-4 mt-4 ">
+                        @*<span class="col-md-1"></span>*@  <span id="RequestAttachment"> Attachment: </span>
+                    </div>
+                    <table class=" table  table-responsive-md table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Action</th>
+                                <th>Action By</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody id="RequestDetails"></tbody>
+                    </table>
+
+
+
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="DeletionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div id="RequestHandlerTable">
+                            <table class="table table-responsive-md table-striped table-hover mb-0">
+
+                                <thead>
+                                    <tr class="TrStyle">
+                                        <td><b>Date</b></td>
+                                        <td><b>Duration</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="RequestHandlerTableBody"></tbody>
+                            </table>
+                            <div class="form-group row ">
+                                <br />
+                                <br />
+                                <label class="col-lg-4 control-label">Revoke Reason</label>
+                                <input class="input-group-text col-lg-7" id="DaysDeletionReason" />
+                            </div>
+                            <div class="center">
+                                <br />
+                                <button type="button" data-target="#ModelDeleteDays" id="ShowDeleteDaysAlert" disabled data-toggle="modal" class="btn btn-secondary center" data-dismiss="modal">Save</button>
+
+                            </div>
+                        </div>
+
+                        <div id="RequestHandlerHoursTable">
+                            <table class=" table table-responsive-md table-striped table-hover mb-0">
+
+                                <thead>
+                                    <tr class="TrStyle">
+                                        <td><b>Date</b></td>
+                                        <td><b>Duration</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="RequestHandlerHoursTableBody"></tbody>
+                            </table>
+                            <div class="form-group row center">
+                                <br />
+                                <br />
+                                <label class="col-lg-4 control-label">Deletion Reason</label>
+                                <input class="input-group-text col-lg-7" id="HoursDeletionReason" />
+
+                            </div>
+                            <div class="center">
+                                <br />
+                                <button type="button" data-target="#ModelDeleteHours" id="ShowDeleteHoursAlert" disabled data-toggle="modal" class="btn btn-secondary center" data-dismiss="modal">Save</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                </div>
+                <div class="modal-content">
+                    <div>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <b class="col-lg-6 control-label">
+                                <span>
+                                    Deletion Reason
+                                </span>
+                            </b>
+                            <input type="text" class="form-control hasDatepicker" placeholder="Deletion Reason" id="CancelReason" />
+                        </div>
+                        <div class="center">
+                            <button class="btn btn-danger" id="CancelRequestbtn" disabled>Delete</button>
+
+                        </div>
+                      
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="ModelDeleteHours" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="control-label" id="ConfirmationText"></b>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label"><span style="color:red">Please Note that This process cannot be rolled back !</span></b>
+                            @*<input type="text" class="form-control hasDatepicker" id="">*@
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="DeleteHandlerHoursbtn" class=" btn btn-primary" data-dismiss="modal" onclick="">Submit</button>
+                    <button type="button" class="btn btn-primary CancelRequestForDeleted" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="ModelDeleteDays" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="control-label" id="ConfirmationText"></b>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <b class="col-lg-10 control-label"><span style="color:red">Please Note that This process cannot be rolled back !</span></b>
+                            @*<input type="text" class="form-control hasDatepicker" id="">*@
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="DeleteHandlerbtn" class=" btn btn-primary" data-dismiss="modal" onclick="">Submit</button>
+                    <button type="button" class="btn btn-primary CancelRequestForDeleted" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Restrict Modal-->
+    @*<div id="modalLG" class="modal-block modal-block-lg mfp-hide">
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Restricted to...</h2>
+                </header>
+                <div class="card-body">
+                    <div class="modal-wrapper">
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">Particular employee</label>
+                            <div class="col-lg-9">
+                                <select multiple data-plugin-selectTwo class="form-control populate">
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WV">West Virginia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">In one of team</label>
+                            <div class="col-lg-9">
+                                <select multiple data-plugin-selectTwo class="form-control populate">
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">Contract type</label>
+                            <div class="col-lg-9">
+                                <select multiple data-plugin-selectTwo class="form-control populate">
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="ME">Maine</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">Gender</label>
+                            <div class="col-lg-9">
+                                <select multiple data-plugin-selectTwo class="form-control populate">
+                                    <option value="CT">Any</option>
+                                    <option value="DE">Male</option>
+                                    <option value="FL">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary modal-confirm">Ok</button>
+                            <button class="btn btn-danger modal-dismiss">Delete</button>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </div>*@
+
+    <!-- end: page -->
+</section>
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/CustomJavaScript/Request/ViewRequestsDetails.js"></script>
+
+<style>
+    .ruleFieldset {
+        padding: 0 15px 10px !important;
+        margin-bottom: 45px !important;
+    }
+
+    .Borderstyle {
+        border: 1px solid #ccc !important;
+        padding: 3px 5px 15px 15px !important;
+    }
+
+    fieldset legend {
+        display: block !important;
+        font-weight: normal !important;
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0px;
+        font-family: 'Noto Sans', verdana, arial, sans-serif;
+        width: auto !important;
+    }
+
+    .Floatleft {
+        float: left !important
+    }
+
+    .label {
+        font-weight: bold;
+        display: inline-block;
+        margin-left: 140px;
+    }
+    .deletedBut
+    {
+        transition:.5s all ease-in-out;
+    }
+    .deletedBut:hover{
+        color:red;
+    }
+   
+</style>

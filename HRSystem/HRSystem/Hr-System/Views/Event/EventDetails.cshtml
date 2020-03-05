@@ -1,0 +1,303 @@
+﻿@model Hr_System.Models.Event
+@{
+    ViewBag.Title = "EventDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@{
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+    <script>
+        $(document).ready(function () {
+            debugger;
+            $.getJSON("/Vacation/GetTypeOfUser", {}, function (data) {
+                UserType = String(data);
+                debugger;
+                if (UserType == "Manager" || UserType == "Deputy Manager" || UserType == "Supervisor")
+                {
+                    $("#EmployeesInEventRow").show();
+
+                }
+            })
+            if ("@ViewBag.UserInEvent" == "True" && "@ViewBag.Response" == "Pending") {
+                $("#Buttons").show();
+            }
+            else if ("@ViewBag.Response" == "Accept") {
+                $("#div_Accepted").show();
+            }
+            else if ("@ViewBag.Response" == "Reject") {
+                $("#div_Rejected").show();
+
+            }
+            else {
+                $("#Buttons").hide();
+            }
+
+            $(".EmployeeName").click(function () {
+                var ButtonID = $(this).attr('id');
+                if (ButtonID == "Accept") {
+                    $(".ModalAccept").show();
+                    $(".ModalPending").hide();
+                    $(".ModalReject").hide();
+                }
+                else if (ButtonID == "Reject") {
+                    $("#Rejection").html('Reject Comment : ' + $(this).attr('name'))
+                    $(".ModalReject").show();
+                    $(".ModalAccept").hide();
+                    $(".ModalPending").hide();
+
+                }
+                else {
+                    $(".ModalPending").show();
+                    $(".ModalReject").hide();
+                    $(".ModalAccept").hide();
+                }
+            });
+            $("#RejectButton").click(function () {
+                $(".ModalComment").show();
+                $(".ModalPending").hide();
+                $(".ModalReject").hide();
+                $(".ModalAccept").hide();
+            });
+            $("#SubmitReject").click(function () {
+                debugger;
+                var RejectComment = $("#RejectComment").val();
+                var EmpEventID = $("#EmpEventID").val();
+                var data = {
+                    RejectComment: RejectComment,
+                    EmpEventID:EmpEventID
+                }
+                if (RejectComment=="") {
+                    $("#div_ErrorRejectComment").show();
+                }
+                else {
+                    var x = JSON.stringify(data)
+                    $.ajax({
+                        url: '@Url.Action("ManageEvent", "Event")',
+                        data: x ,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function () {
+
+                        }
+                    });
+                    alert("Response Submitted Successfully");
+                    window.location = '@Url.Action("EventDetails", "Event", new { ID= Model.EventID })'
+                }
+            });
+            $("#Acceptt").on("click", function () {
+                debugger;
+                var info = {
+                    EmpEventID: $("#EmpEventID").val(),
+                }
+                var x = JSON.stringify(info);
+                    $.ajax({
+                        url: '@Url.Action("ManageEvent", "Event")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function () {
+                            //alert("Response Submitted Successfully");
+                        }
+                    });
+                    alert("Response Submitted Successfully");
+                    window.location = '@Url.Action("EventDetails", "Event", new { ID= Model.EventID })'
+            });
+        });
+
+    </script>
+
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Event Details</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="alert alert-danger alert-dismissable" id="div_Rejected" style="display:none">
+            Rejected
+        </div>
+        <div class="alert alert-success alert-dismissable" id="div_Accepted" style="display:none">
+            Accepted
+        </div>
+        <div class="row" hidden="hidden">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Event ID")
+                </div>
+                <div class="col-sm-10">
+                    @Html.HiddenFor(model => model.EventID, new { @id = "EventID" })
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Event Name")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.EventName)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Description")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.EventDescription)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Created By")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedBy)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Event Created at")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedAt)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Event Day")
+                </div>
+                <div class="col-sm-10">
+                    @String.Format("{0:d}", Model.EventDay)
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Event From")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.EventFrom)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Event To")
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.EventTo)
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Event Day")
+                </div>
+                <div class="col-sm-10">
+                    @String.Format("{0:d}", Model.EventDay)
+                </div>
+            </div>
+        </div>
+        <br />  
+        <div class="row" id="EmployeesInEventRow" style="display:none">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label("Employees In Event")
+                </div>
+                @foreach (var item in ViewBag.UsersInEvent)
+                {
+                    <div class="col-sm-4" style="width:auto">
+                        <input type="button"  name="@item.RejectComment" id="@item.Response"  value="@item.accountTB.EmpName ( @item.Response)" class="btn btn-round btn-sm btn-default EmployeeName" data-toggle="modal" data-target="#EventModal" />
+                    </div>
+                    <div class="modal fade" id="EventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title ModalAccept" style="display:none">Accept</h4>
+                                    <h4 class="modal-title ModalReject" style="display:none">Reject</h4>
+                                    <h4 class="modal-title ModalPending" style="display:none">Pending</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <label style="display:none" class="ModalAccept">Accept Time is : @item.ResponseTime</label>
+                                    <label style="display:none" class="ModalReject">Reject Time is : @item.ResponseTime</label><br />
+                                    <label style="display:none" id="Rejection" class="ModalReject"></label><br />
+                                    <label style="display:none" class="ModalPending">Event Still Pendng</label>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+        <br />  
+        <div class="row">
+            <div class="form-group" style="display:none" id="Buttons">
+                <div class="col-sm-3">
+                    <input type="button"  id="Acceptt" name="Acceptt" value="Accept" class="btn btn-round btn-success" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="button"  id="RejectButton" name="Reject" value="Reject" class="btn btn-round btn-danger" data-toggle="modal" data-target="#RejectModal" />
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="RejectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="alert alert-danger alert-dismissable" id="div_ErrorRejectComment" style="display:none">
+                            Please Insert Rejection Comment
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title ModalComment" style="display:none">Please Enter Rejection Comments</h4>
+
+                    </div>
+                    <div class="modal-body">
+                        <textarea id="RejectComment" class="form-control input-lg m-b-10 ModalComment" style="display:none"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="EmpEventID" value="@Model.EventID" />
+                        <button type="button" id="SubmitReject" class="btn btn-danger ModalComment" style="display:none;">Submit Rejection</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+</div>

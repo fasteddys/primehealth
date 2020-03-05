@@ -1,0 +1,300 @@
+﻿@{
+    ViewBag.Title = "AddEvent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+    <link href="~/css2/TimePicker/jquery.ptTimeSelect.css" rel="stylesheet" />
+    <script src="~/css2/TimePicker/jquery.ptTimeSelect.js"></script>
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+        }
+
+            .alert.success {
+                background-color: #4CAF50;
+            }
+
+            .alert.info {
+                background-color: #2196F3;
+            }
+
+            .alert.warning {
+                background-color: #ff9800;
+            }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $("#EventFrom").ptTimeSelect({
+                containerClass: undefined,
+                containerWidth: undefined,
+                hoursLabel: 'Hour',
+                minutesLabel: 'Minutes',
+                setButtonLabel: 'Set',
+                popupImage: undefined,
+                onFocusDisplay: true,
+                zIndex: 10,
+                onBeforeShow: undefined,
+                onClose: undefined
+            });
+
+            $("#EventTo").ptTimeSelect({
+                containerClass: undefined,
+                containerWidth: undefined,
+                hoursLabel: 'Hour',
+                minutesLabel: 'Minutes',
+                setButtonLabel: 'Set',
+                popupImage: undefined,
+                onFocusDisplay: true,
+                zIndex: 10,
+                onBeforeShow: undefined,
+                onClose: undefined
+            });
+
+            $("#EventDay").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy'
+            });
+            $.getJSON("/Vacation/GetTypeOfUser", {}, function (data) {
+                debugger;
+                UserType = String(data);
+                if (UserType == "Manager" || UserType == "Deputy Manager") {
+                    $("#ListForManager").show();
+                    $("#ListForSupervisors").hide();
+                }
+                else {
+                    $("#ListForSupervisors").show();
+                    $("#ListForManager").hide();
+                }
+
+            });
+            debugger;
+            $("#btnsubmit").click(function () {
+                var Event;
+                var selected = [];
+                $('#Employees input:checked').each(function () {
+                    selected.push($(this).attr('name'));
+
+                });
+                if ($("#EventName").val() == "" || $("#EventDay").val() == "" || $("#EventFrom").val() == "" || $("#EventTo").val() == ""|| selected==[]) {
+                    alert("All Fields are Required");
+                }
+                else {
+                    Event = {
+                        EventName: $("#EventName").val(),
+                        Description: $("#Description").val(),
+                        EventDay: $("#EventDay").val(),
+                        EventFrom: $("#EventFrom").val(),
+                        EventTo: $("#EventTo").val(),
+                        Employees: selected
+
+                    }
+                    debugger;
+                    var x = JSON.stringify(Event);
+                    $.ajax({
+                        url: '@Url.Action("createEvent", "Event")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function () {
+                        }
+                    });
+                    alert("Event Created Successfully");
+                    window.location = '@Url.Action("AddEvent", "Event")'
+                }
+            })
+        });
+    </script>
+}
+
+
+
+<div class="form-horizontal">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="alert info" style="display:none" id="divalret">
+                <span id="divinfo" class="closebtn">&times;</span>
+
+            </div>
+            <div class="x_title">
+                <br />
+                <h2>Create New Event</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu"></ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="EventName">
+                            Event Name<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" id="EventName" name="EventName" class="form-control col-md-7 col-xs-12" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Description">
+                            Description
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <textarea class="form-control col-md-7 col-xs-12" id="Description" name="Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="EventName">
+                            Event Day<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" id="EventDay" name="EventDay" class="form-control col-md-7 col-xs-12" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="EventName">
+                            Event From<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" id="EventFrom" name="EventFrom" class="form-control col-md-7 col-xs-12" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="EventName">
+                            Event To<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" id="EventTo" name="EventTo" class="form-control col-md-7 col-xs-12" required />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group" id="Employees">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DepartmentName">
+                            Employees Involved<span class="required">*</span>
+                        </label>
+                        <div class="col-sm-6" id="ListForSupervisors" style="display:none">
+                            @foreach (var item in ViewBag.EmployeesForSupervisor)
+                            {
+                            /**/
+                            <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }
+
+                        </div>
+                        <div class="col-sm-6" id="ListForManager" style="display:none">
+                            Archiving - Receiving<br />
+                            @foreach (var item in ViewBag.Receiving)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                            Archiving - Ticketing <br />
+                            @foreach (var item in ViewBag.Ticketing)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                              IT - Operations <br />
+                            @foreach (var item in ViewBag.Operations)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                              IT - Developers <br />
+                            @foreach (var item in ViewBag.Developers)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                              Issuance  <br />
+                            @foreach (var item in ViewBag.Issuance)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                              Quality Control  <br />
+                            @foreach (var item in ViewBag.Quality)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                             TPA <br />
+                            @foreach (var item in ViewBag.TPA)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                             TPA Quality <br />
+                            @foreach (var item in ViewBag.TPAQuality)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                             TPA Preparation <br />
+                            @foreach (var item in ViewBag.TPAPreparation)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }<br /><br />
+                             Supervisors <br />
+                            @foreach (var item in ViewBag.Supervisors)
+                            {
+                                /**/
+                                <label> <input type="checkbox" class="checkbox-inline" value="@item.ID" name="@item.ID"> @item.EmpName </label> @:&nbsp;&nbsp;
+                            }
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="ln_solid">
+                        <div class="form-group">
+                            <br />
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button class="btn btn-round btn-success" type="submit" id="btnsubmit" value="Submit Event"> Submit Event</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

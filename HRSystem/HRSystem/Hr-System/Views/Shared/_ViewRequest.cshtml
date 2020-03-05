@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Hr_System.Models.Request>
+           <style>
+               table {
+    width: 40em;
+    margin: 2em auto;
+}
+
+thead {
+    background: #000;
+    color: #fff;
+}
+
+td {
+    width: 10em;
+    padding: 0.3em;
+}
+
+tbody {
+    background: #ccc;
+}
+
+div.pager {
+    text-align: center;
+    margin: 1em 0;
+}
+
+div.pager span {
+    display: inline-block;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8;
+    text-align: center;
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    margin-right: 0.5em;
+}
+
+div.pager span.active {
+    background: #c00;
+}
+
+           </style>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>ALL Requests</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped responsive-utilities jambo_table bulk_action" id="rateb">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Request Type</th>
+                    <th class="column-title">Leave Type</th>
+                    <th class="column-title">Request By</th>
+                    <th class="column-title">Request Status </th>
+                    <th class="column-title">Team Leader</th>
+                    <th class="column-title">Supervisor</th>
+                    <th class="column-title">Vacation Start-Day</th>
+                    <th class="column-title">Duration</th>
+                    <th class="column-title">Back-To-Work Day </th>
+                    <th class="column-title">Requested at</th>
+                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                </tr>
+            </thead>
+            <tbody>
+              
+                
+                @foreach (var item in Model)
+                {
+                    <tr class="even pointer">
+                        <td>@Html.DisplayFor(cat => item.ReqType)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqSubType)</td>
+                        <td>@Html.DisplayFor(cat => item.UserName)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqStatus)</td>
+                        @if (item.MyBackupTeamLeader != null && (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Deputy Manager"))
+                        {
+                            <td>@Html.DisplayFor(cat => item.MyBackupTeamLeader)</td>
+                        }
+                        else if (item.MyBackupTeamLeader == null)
+                        {
+                            <td>@Html.DisplayFor(cat => item.MyTeamLeader)</td>
+                        }
+                        else
+                        {
+                            <td>@Html.DisplayFor(cat => item.MyTeamLeader)</td>
+                        }
+                        <td class="SupervisorbackupV" style="display:none">@Html.DisplayFor(cat => item.MyBackupSupervisor)</td>
+                        @if (item.MyBackupSupervisor != null && (Session["UserType"].ToString() == "Manager") || Session["UserType"].ToString() == "Deputy Manager")
+                        {
+                            <td>@Html.DisplayFor(cat => item.MyBackupSupervisor)</td>
+                        }
+                        else if (item.MyBackupSupervisor == null)
+                        {
+                            <td class="OriginSuper">@Html.DisplayFor(cat => item.MySupervisor)</td>
+                        }
+                        else
+                        {
+                            <td class="OriginSuper">@Html.DisplayFor(cat => item.MySupervisor)</td>
+                        }
+                        <td>@String.Format("{0:d}", item.DurationFrom)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqDuration)</td>
+                        <td>@String.Format("{0:d}", item.BacktoWorkDate)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqDate)</td>
+                        <td>@Html.ActionLink("Open", "ManageRequest", new { id = item.ID })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+<script type="text/javascript">
+    debugger;
+    if('@Session["UserType"]' == "Supervisor" && "@ViewBag.VAutRole" =="yes")
+    {
+        $(".OriginSuper").hide();
+        $(".SupervisorbackupV").show();
+
+    }
+    </script>

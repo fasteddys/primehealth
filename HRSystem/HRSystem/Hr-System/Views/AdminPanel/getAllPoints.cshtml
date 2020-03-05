@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Hr_System.Models.accountTB>
+@{
+    ViewBag.Title = "getAllPoints";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+            <div class="well profile_view">
+                <div class="col-sm-12">
+                    <h4>@Html.DisplayFor(cat => item.SubDepartmentName)</h4>
+                    <div class="left col-xs-7">
+                        <h2>@Html.DisplayFor(cat => item.EmpName)</h2>
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-calculator"></i> HireDate : @String.Format("{0:d}", item.HireDate) </li>
+
+                        </ul>
+                    </div>
+                    <div class="right col-xs-5 text-center">
+                        <img style="width: 100%; display: block;" id="pic" src="/images/image.png" alt="">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 emphasis">
+                        <p class="ratings">
+                            Green Points :
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" data-transitiongoal="@Html.DisplayFor(cat => item.GreenPoints)" aria-valuenow="10" style="width: 20%;"></div>
+                            </div>
+                        </p>
+                        <p class="ratings">
+                            Red Points :
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger" data-transitiongoal="@Html.DisplayFor(cat => item.RedPoints)" aria-valuenow="10" style="width: 20%;"></div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-12 bottom text-center">
+
+                    <div class="col-xs-12 col-sm-6 emphasis">
+                        <button type="button" class="btn btn-success btn-xs">
+                            <i class="fa fa-user">
+                            </i> <i class="fa fa-comments-o"></i>
+                        </button>
+                        <div class="btn btn-danger btn-xs">
+                            <a>@Html.ActionLink("View Profile", "userDetails", new { ID = item.ID }, new { style = "color:black" })</a>
+
+                        </div>
+                        <div class="btn btn-danger btn-xs">
+                            <a>@Html.ActionLink("Vacations History", "GetMyApprovedManagerVacationForReview", new { ID = item.ID }, new { style = "color:black" })</a>
+
+                        </div>
+                        <div class="btn btn-danger btn-xs">
+                            <a>@Html.ActionLink("Excuses History", "GetMyApprovedManagerExcuseForReview", new { ID = item.ID }, new { style = "color:black" })</a>
+
+                        </div>
+                        <div class="btn btn-danger btn-xs">
+                            <a>@Html.ActionLink("Reports History", "GetAllViewReportByTeamLeader", new { EmpName = item.EmpName }, new { style = "color:black" })</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }

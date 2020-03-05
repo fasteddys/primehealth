@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewBag.Title = "Add Leave Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Configuration</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("index","Configuration")">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Leave Types</span></li>
+                <li><span>Add Leave Type</span></li>
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    <h2 class="card-title">Leave Details</h2>
+                </header>
+                <div class="card-body">
+                    <div class="form-group row pull-right">
+                        <a class="nav-link" href="#" onclick="Save()">
+                            <i class="fas fa-save fa-2x" aria-hidden="true"></i>
+                            <span>Save</span>
+                        </a>
+                        <a class="nav-link" href="#" onclick="GoBack()">
+                            <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                            <span>Cancel</span>
+                        </a>
+                    </div>
+
+                    <form class="form-horizontal form-bordered" method="get">
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label text-lg-right pt-2">Leave Name</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="LeaveName">
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="tabs">
+                                <ul class="nav nav-tabs">
+                                    <li id="GeneralLi" class="nav-item active">
+                                        <a class="nav-link" href="#General" data-toggle="tab">General</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="AccuralTab" href="#Accural" data-toggle="tab">Accural</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="RequestingTab" href="#Requesting" data-toggle="tab">Requesting</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="CarryOverTab" href="#Carry-over" data-toggle="tab">Carry-over</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="FieldsVisibilityTab" href="#Fields-visibility" data-toggle="tab">Fields & visibility</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="AttachmentsTab" href="#Attachments" data-toggle="tab">Attachments</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="RestrictionsTab" href="#Restrictions" data-toggle="tab">Restrictions</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    @Html.Partial("Partials/_LeaveTypeGeneralPartial")
+                                    @Html.Partial("Partials/_LeaveTypeAccuralPartial")
+                                    @Html.Partial("Partials/_LeaveTypeRequestingPartial")
+                                    @Html.Partial("Partials/_LeaveTypeCarryoverPartial")
+                                    @Html.Partial("Partials/_LeaveTypeFieldsVisibilityPartial")
+                                    @Html.Partial("Partials/_LeaveTypeAttachmentsPartial")
+                                    @Html.Partial("Partials/_LeaveTypeRestrictionsPartial")
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!--Restrict Modal-->
+
+    <div id="modalLG" class="modal-block modal-block-lg mfp-hide">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Restricted to...</h2>
+            </header>
+            <div class="card-body">
+                <div class="modal-wrapper">
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Particular employee</label>
+                        <div class="col-lg-9">
+                            <select id="RestrictedEmployeeDD" multiple data-plugin-selectTwo class="form-control populate"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">In one of SubDepartment</label>
+                        <div class="col-lg-9">
+                            <select multiple data-plugin-selectTwo class="form-control populate" id="SubDepartmentDD">
+                                @*<option value="CT">IT Operations</option>
+                                    <option value="DE">IT Developers</option>*@
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Contract type</label>
+                        <div class="col-lg-9">
+                            <select multiple data-plugin-selectTwo class="form-control populate" id="ContractTypeDD">
+                                @*<option value="1">Full Time</option>
+                                    <option value="2">Part Time</option>*@
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Gender</label>
+                        <div class="col-lg-9">
+                            <select multiple data-plugin-selectTwo class="form-control populate" id="GenderTypeDD">
+                                @*<option value="1">Male</option>
+                                    <option value="2">Female</option>*@
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">Department</label>
+                        <div class="col-lg-9">
+                            <select multiple data-plugin-selectTwo class="form-control populate" id="DepartmentDD"></select>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-primary modal-confirm">OK</button>
+                        @*<button class="btn btn-danger modal-dismiss">Delete</button>*@
+                        <button class="btn btn-danger " id="SuspendForAll">Suspend For All</button>
+
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+
+    <!-- end: page -->
+</section>
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+<script>
+    $("#EffectiveDate").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+</script>
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/CustomJavaScript/LeaveType/AddLeaveTypeJS.js"></script>
+
+<style>
+    .ruleFieldset {
+        padding: 0 15px 10px !important;
+        margin-bottom: 45px !important;
+    }
+
+    .Borderstyle {
+        border: 1px solid #ccc !important;
+        padding: 3px 5px 15px 15px !important;
+    }
+
+    fieldset legend {
+        display: block !important;
+        font-weight: normal !important;
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0px;
+        font-family: 'Noto Sans', verdana, arial, sans-serif;
+        width: auto !important;
+    }
+
+    .Floatleft {
+        float: left !important
+    }
+</style>

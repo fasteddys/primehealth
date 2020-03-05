@@ -1,0 +1,380 @@
+﻿
+
+@{
+    ViewBag.Title = "OverTimeDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style type="text/css">
+    .web_dialog_overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: #000000;
+        opacity: .15;
+        filter: alpha(opacity=15);
+        -moz-opacity: .15;
+        z-index: 101;
+        display: none;
+    }
+
+    .web_dialog {
+        display: none;
+        position: absolute;
+        width: 400px;
+        height: 450px;
+        top: 20%;
+        left: 50%;
+        margin-left: -190px;
+        margin-top: -100px;
+        background-color: #ffffff;
+        border: 2px solid #336699;
+        padding: 0px;
+        z-index: 102;
+        font-family: Verdana;
+        font-size: 10pt;
+    }
+
+    .web_dialog_title {
+        border-bottom: solid 2px #336699;
+        background-color: #336699;
+        padding: 4px;
+        color: White;
+        font-weight: bold;
+    }
+
+        .web_dialog_title a {
+            color: White;
+            text-decoration: none;
+        }
+
+    .align_right {
+        text-align: right;
+    }
+</style>
+
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="x_panel">
+        @*<div class="x_title">
+            <h2>OverTime Details <small></small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                
+                    </ul>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>*@
+        <div class="x_content">
+            @*<ul class="list-unstyled timeline">
+                <li>
+                    <div class="block">
+                        <div class="tags">
+                            <a href=""  class="tag">
+
+                                <span>OverTime Date</span>
+                            </a>
+                        </div>
+                        <div class="block_content">
+                           
+                            <p class="excerpt">
+                                 @ViewBag.date                          
+                              </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="block">
+                        <div class="tags">
+                            <a href="" class="tag">
+                                <span>From</span>
+                            </a>
+                        </div>
+                        <div class="block_content">
+                        
+                            <p class="excerpt">
+@ViewBag.from                       
+                                 </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="block">
+                        <div class="tags">
+                            <a href="" class="tag">
+                                <span>To</span>
+                            </a>
+                        </div>
+                        <div class="block_content">
+                      
+                            <p class="excerpt">
+                                @ViewBag.to                             </p>
+
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="block">
+                        <div class="tags">
+                            <a href="" class="tag">
+                                <span>Cause of OverTime</span>
+                            </a>
+                        </div>
+                        <div class="block_content">
+
+                            <p class="excerpt">
+                                @ViewBag.cause
+                            </p>
+
+                        </div>
+                    </div>
+                </li>
+            </ul>*@
+            <div class="col-xs-6">
+            <p> Over Time Details</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th style="width:50%">Creator:</th>
+                                <td>@ViewBag.creator</td>
+                            </tr>
+                            <tr>
+                                <th>Cause Of OverTime</th>
+                                <td>@ViewBag.cause</td>
+                            </tr>
+                            <tr>
+                                <th>Action Started In</th>
+                                <td>@ViewBag.startdate at @ViewBag.from</td>
+                            </tr>
+                            <tr>
+                                <th>Action Ended In</th>
+                                <td>@ViewBag.enddate at @ViewBag.to</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                <button type="submit" id="reject" class="btn btn-primary">Reject</button>
+                <button type="submit" id="approve" class="btn btn-success">Approve</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="overlay" class="web_dialog_overlay"></div>
+
+<div id="dialog" class="web_dialog">
+
+    <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr>
+            <td class="web_dialog_title">Rejection Comment</td>
+            <td class="web_dialog_title align_right">
+                <a href="#" id="btnClose">Close</a>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 15px;">
+                <b>Please Add Your Rejection Comment</b>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 15px;">
+                <div id="Comment">
+                    <textarea id="commentarea" style="margin: 0px; height: 281px; width: 369px;"></textarea>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input id="btnSubmit" type="button" value="Submit" />
+            </td>
+        </tr>
+    </table>
+</div>
+    
+<script src="~/js/jquery-1.11.3.min.js"></script>
+<script>
+
+    var data;
+    $(document).ready(function () {
+        if ("@(Session["UserType"])" == "Normal") {
+            $("#reject").hide();
+            $("#approve").hide();
+        }
+        var datauser = {
+            id: @ViewBag.id,
+
+        };
+        $.ajax
+    ({
+        url: "@Url.Action("getOverTimeStatus", "OverTime")",
+        data: datauser,
+        type: "Post",
+        dataType: "json",
+        success: function (data) {
+            if("@(Session["UserType"])" == "TeamLeader"){
+                if (data.OverStatus =="PendingTeamLeaderApproval" )
+                {
+                    $("#reject").show();
+                    $("#approve").show();
+                }
+                else{
+                    $("#reject").hide();
+                    $("#approve").hide();
+                }
+            }
+
+        },
+        error: function () {
+            alert("Failed! Please try again");
+        }
+    });
+
+    });
+
+
+    $("#reject").click(function () {
+        ShowDialog(false);
+
+    });
+    $("#approve").click(function () {
+        if ("@(Session["UserType"])" == "TeamLeader") {
+            data = {
+                status: "PendingManagerApproval"
+            };
+        }
+        else if("@(Session["UserType"])" == "Manager")
+        {
+            data = {
+                status: "ApprovedByManager"
+            };
+        }
+        else {
+
+        }
+
+        $.ajax
+         ({
+             url: "@Url.Action("OverTimeDetails", "OverTime")",
+             data: data,
+             type: "Post",
+             dataType: "json",
+             success: function (data) {
+                 if (data == "Done") {
+                     alert("Request has been Approved successfully");
+                     if("@(Session["UserType"])" == "Manager"){
+
+                     }
+                     else{
+                         window.location.href = "/OverTime/GetAllOverTimeRequestsForTeamLeader";
+                     }
+                     
+                 }
+                 else {
+                     alert ("Error Occured Please Try Again ")
+                 }
+             },
+             error: function () {
+                 alert("Failed! Please try again!");
+             }
+         });
+
+    });
+    $("#btnClose").click(function (e) {
+        HideDialog();
+        e.preventDefault();
+    });
+
+    function ShowDialog(modal) {
+        $("#overlay").show();
+        $("#dialog").fadeIn(300);
+
+        if (modal) {
+            $("#overlay").unbind("click");
+        }
+        else {
+            $("#overlay").click(function (e) {
+
+            });
+        }
+    }
+
+    function HideDialog() {
+        $("#overlay").hide();
+        $("#dialog").fadeOut(300);
+    }
+
+    $("#btnSubmit").click(function () {
+
+
+        if (($("#commentarea").val()) == '') {
+            alert("please insert required data !");
+        }
+        else
+        {
+            if ("@(Session["UserType"])" == "TeamLeader") {
+                data = {
+                    status: "RejectedByTeamLeader",
+                    comments: $("#commentarea").val()
+                };
+            }
+            else {
+                data = {
+                    status: "RejectedByManager",
+                    comments: $("#commentarea").val()
+                };
+            }
+            $.ajax
+            ({
+                url: "@Url.Action("OverTimeDetails", "OverTime")",
+                data: data,
+                type: "Post",
+                dataType: "json",
+                success: function (data) {
+                    if (data == "Done") {
+                        alert("Request has been rejected successfully");
+
+                    }
+                    else {
+                        alert ("Error Occured Please Try Again ")
+                    }
+                },
+                error: function () {
+                    alert("Failed! Please try again");
+                }
+            });
+            HideDialog();
+            e.preventDefault();
+        }
+
+    });
+</script>

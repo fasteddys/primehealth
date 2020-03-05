@@ -1,0 +1,25 @@
+﻿.UploadProfilePicture {
+    margin: 0 auto;
+    width: 80%;
+}
+
+    .UploadProfilePicture img {
+        border-radius: 50% !important;
+        width: 90%;
+        margin: 0% 5%;
+        height: 350px;
+    }
+
+#imgupload {
+    width: 80%;
+}
+
+#chagePhotoBtn,
+#imgupload,
+.UploadProfilePicture {
+    cursor: pointer;
+}
+
+.boredrRed {
+    border: 1px solid red;
+}

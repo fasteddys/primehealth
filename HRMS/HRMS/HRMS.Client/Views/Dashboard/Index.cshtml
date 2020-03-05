@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var UserID = -1;
+    using (BaseController baseController = new BaseController())
+    {
+        UserID = baseController.UserID;
+    }
+}
+
+<link href="~/CustomCSS/Dashboard/Index.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+
+
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Dashboard</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Dashboard</span></li>
+
+            </ol>
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <div class="row row-modified">
+
+        <h2 class="card-title DashboardSeactionHeader">My Leaves requests</h2>
+        <h2 class="card-title DashboardSeactionHeader">My Data</h2>
+        <div class="col-md-3 ConfgIcon">
+            <div class="card card-primary">
+                <header class="card-header ConfgIconHeader text-center ">
+                    <h2 class="card-title ConfgIconHeader">Leave Request</h2>
+                </header>
+                <a href="@Url.Action("AddNewRequest","Request")" class="">
+                    <div class="card-body text-center">
+                        <span><i class="far fa-edit fa-7x ConfgIconAnimate"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3 ConfgIcon">
+            <div class="card card-primary">
+                <header class="card-header ConfgIconHeader text-center ">
+                    <h2 class="card-title ConfgIconHeader">My Requests</h2>
+                </header>
+                <a href="@Url.Action("ViewAllRequest", "Request")" class="">
+                    <div class="card-body text-center">
+                        <span><i class="fa fa-clipboard-list fa-7x ConfgIconAnimate "></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3 ConfgIcon">
+            <div class="card card-primary">
+                <header class="card-header ConfgIconHeader text-center ">
+                    <h2 class="card-title ConfgIconHeader">Profile</h2>
+                </header>
+                <a href="@Url.Action("UserProfile", "User", new {LID = UserID, UID = UserID})" class="">
+                    <div class="card-body text-center">
+                        <span><i class="far fa-user fa-7x ConfgIconAnimate"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3 ConfgIcon">
+            <div class="card card-primary">
+                <header class="card-header ConfgIconHeader text-center ">
+                    <h2 class="card-title ConfgIconHeader">My Department</h2>
+                </header>
+                <a href="@Url.Action("MyDepartment","User")" class="">
+                    <div class="card-body text-center">
+                        <span><i class="fa fa-users fa-7x ConfgIconAnimate "></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- end: page -->
+</section>
+
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+
+<!--<script src="~/CustomJavaScript/Dashboard/Index.js"></script>-->
+<style>
+</style>

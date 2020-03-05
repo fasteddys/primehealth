@@ -1,0 +1,439 @@
+﻿@model Hr_System.Models.Project
+@{
+    ViewBag.Title = "AddProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .web_dialog_overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: #000000;
+        opacity: .15;
+        filter: alpha(opacity=15);
+        -moz-opacity: .15;
+        z-index: 101;
+        display: none;
+    }
+
+    .web_dialog {
+        display: none;
+        position: absolute;
+        width: 400px;
+        height: 700px;
+        top:20%;
+        left: 50%;
+        margin-left: -190px;
+        margin-top: -100px;
+        background-color: #ffffff;
+        border: 2px solid #336699;
+        padding: 0px;
+        z-index: 102;
+        font-family: Verdana;
+        font-size: 10pt;
+    }
+
+    .web_dialog_title {
+        border-bottom: solid 2px #336699;
+        background-color: #336699;
+        padding: 4px;
+        color: White;
+        font-weight: bold;
+    }
+
+        .web_dialog_title a {
+            color: White;
+            text-decoration: none;
+        }
+
+    .align_right {
+        text-align: right;
+    }
+</style>
+@*@using (Html.BeginForm("AddProject", "AdminPanel", FormMethod.Post))
+{*@
+    
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2> Projects <small>Add New Project</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                            Project Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="ProjectName" name="ProjectName" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="1786"><ul class="parsley-errors-list" id="parsley-id-1786"></ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                            Select Dep <span class="required">*</span>
+                        </label>
+
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            @Html.DropDownList("ProjDep", ViewBag.Dep as SelectList, "--Select--", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                            Project Manager <span class="required">*</span>
+                        </label>
+
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            @Html.DropDownList("ProjManager", new SelectList(Enumerable.Empty<SelectListItem>()),"--Select--", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                            Project Backup <span class="required">*</span>
+                        </label>
+
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            @Html.DropDownList("BackupProject", new SelectList(Enumerable.Empty<SelectListItem>()),  new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                            Project Members <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+
+                            <p id="notes" class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                In order to add members to this project ,then please select project members
+
+                            </p>
+                            <button id="btnShowSimple" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Select Users </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                            Project Description <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea class="form-control col-md-7 col-xs-12" cols="20" id="ProjDescription" name="ProjDescription" rows="2" style="margin: 0px; width: 749px; height: 151px;"></textarea>                         @*   @Html.TextArea("ProjDescription", new { @class = "form-control col-md-7 col-xs-12" })*@
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Project Duration</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="ProjectDuration" class="form-control col-md-7 col-xs-12" type="text" name="ProjectDuration" data-parsley-id="1803"><ul class="parsley-errors-list" id="parsley-id-1803"></ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="tt">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                            start Date <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="StartFrom" class="form-control col-md-7 col-xs-12" type="text" name="StartFrom">
+                            <p id="dateoutput2"></p>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                            Delivered Date <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="EndIn" class="form-control col-md-7 col-xs-12" type="text" name="EndIn">
+                            <p id="dateoutput1"></p>
+                        </div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                            <button id="submit" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                
+                </form>
+            </div>
+        </div>
+</div>
+
+
+
+<br /><br />
+
+
+
+<div id="overlay" class="web_dialog_overlay"></div>
+
+<div id="dialog" class="web_dialog">
+    
+    <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr>
+            <td class="web_dialog_title">Project Members</td>
+            <td class="web_dialog_title align_right">
+                <a href="#" id="btnClose">Close</a>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 15px;">
+                <b>Choose your Project Team  </b>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-left: 15px;">
+                <div id="Team">
+                 
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input id="btnSubmit" type="button" value="Submit" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+<script src="js/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="js/chartjs/chart.min.js"></script>
+<!-- bootstrap progress js -->
+<script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+<script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+<!-- icheck -->
+<script src="js/icheck/icheck.min.js"></script>
+<script src="js/custom.js"></script>
+
+    @section Scripts{
+    <script language="javascript" type="text/javascript">
+  
+    
+ 
+        $(document).ready(function () {
+         
+            $("#EndIn").datepicker({
+                dateFormat: "dd-mm-yy",
+                onSelect: function (dateText, inst) {
+                    var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+                    var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                    date.setDate(date.getDate() + 7);
+                    var dateText2 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                    $("#dateoutput1").html("Chosen date is <b>" + dateText1);
+                }
+            });
+            $("#StartFrom").datepicker({
+                dateFormat: "dd-mm-yy",
+                onSelect: function (dateText, inst) {
+                    var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+                    var dateText1 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                    date.setDate(date.getDate() + 7);
+                    var dateText2 = $.datepicker.formatDate("D, d M yy", date, inst.settings);
+                    $("#dateoutput2").html("Chosen date is <b>" + dateText1);
+                }
+            });
+
+
+
+            $("#ProjDep").change(function () {
+
+                var Dep = $("#ProjDep").val();
+
+                var url = '@Url.Action("getAllUserBySubDep", "AdminPanel")';
+                $.post(url, { SubDep: Dep },
+                    function (data) {
+                        var SubDropdown = $("#ProjManager"); 
+                        var SubDropdown2 = $("#BackupProject");
+                        SubDropdown.empty();
+                        SubDropdown2.empty();
+                        for (var i = 0; i < data.length; i++) {
+                            SubDropdown.append('<option value?' + i + '?="">' + data[i].EmpName + '</option>');
+                            SubDropdown2.append('<option value?' + i + '?="">' + data[i].EmpName + '</option>');
+
+                        }
+
+                    });
+            });
+
+
+            $("#btnShowSimple").click(function (e) {
+                ShowDialog(false);
+                e.preventDefault();
+                var Dep = $("#ProjDep").val();
+                 var url = '@Url.Action("getAllUserBySubDep", "AdminPanel")';
+                $.post(url, { SubDep: Dep },
+                    function (data) {
+                        $("#Team").empty();
+                    $.each(data, function (i, val) {
+                        $("#Team").append("<input type='checkbox' class='iCheck-helper' name='" + val.EmpName + "'  />" + val.EmpName + "<br>").hasClass("fa fa-check-square-o");
+                    })
+                   
+                       })
+                       })
+
+           $("#btnClose").click(function (e) {
+                HideDialog();
+                e.preventDefault();
+            });
+
+            $("#btnSubmit").click(function (e) {
+           
+                var Members = [];
+                var newHTML = [];
+                $('#Team input:checked').each(function () {
+                    Members.push($(this).attr('name'));
+                });
+                for (var i = 0; i < Members.length; i++) {
+                    newHTML.push('<span>' + Members[i] + '</span>' + "<br>");
+                }
+                $("#notes").html(newHTML.join(""));
+                 HideDialog();
+                e.preventDefault();
+            });
+
+        });
+
+        function ShowDialog(modal) {
+            $("#overlay").show();
+            $("#dialog").fadeIn(300);
+
+            if (modal) {
+                $("#overlay").unbind("click");
+            }
+            else {
+                $("#overlay").click(function (e) {
+                //    HideDialog();
+                });
+            }
+        }
+
+        function HideDialog() {
+            $("#overlay").hide();
+            $("#dialog").fadeOut(300);
+        }
+
+        $("#submit").click(function () {
+       
+            if ($("#ProjectName").val() == '' || $("#ProjDep").val() == '' || $("#ProjDescription").val() == '' || $("#StartFrom").val() == '' || $("#ProjectDuration").val() == '') {
+                alert("Required Fields are empty");
+            }
+            else {
+                var data = {
+                    ProjectName: $("#ProjectName").val(),
+                    ProjDep: $("#ProjDep").val(),
+                    ProjManager: $("#ProjManager").val(),
+                    ProjDescription: $("#ProjDescription").val(),
+                    StartFrom: $("#StartFrom").val(),
+                    EndIn: $("#EndIn").val(),
+                    Duration: $("#ProjectDuration").val(),
+                    BackupProject: $("#BackupProject").val(),
+             
+                };
+                $.ajax 
+                ({
+                    url: "@Url.Action("AddProject", "AdminPanel")",
+                    type: "POST",
+                data: data,
+                dataType: JSON,
+                success: function (data) {
+                    if (data.toString() == "Successfully Saved!")
+                    {
+                        $("#ProjectName").val('');
+                        $("#ProjDep").val('');
+                        $("#ProjectDescription").val('');
+                        $("#ExcuseDurationTo").val('');
+                        $("#StartFrom").val('');
+                        $("#EndIn").val('');
+                        alert("Project Add sucessfully");
+                    }
+                    else
+                    {
+                        alert("error" );
+                    }
+                },
+                Error: function () {
+                    alert("Project Add Successfully ");
+                }
+            });
+            }
+           
+        })
+        $("#submit").click(function () {
+       
+                var proMembers = [];
+                $('#Team input:checked').each(function () {
+                    proMembers.push($(this).attr('name'));
+           
+                });
+     
+        
+                $.ajax 
+                ({    
+                    url: "@Url.Action("AddProjectMembers", "AdminPanel")",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                    ProjectName: $("#ProjectName").val(),
+                    proMembers: proMembers,
+                }),
+                dataType: JSON,
+                success: function (data) {
+               
+                    //alert("Project Add sucessfully");
+                   
+                },
+                Error: function () {
+                    alert("Error");
+                }
+            });
+        
+           
+       
+           
+        })
+</script>
+
+    }
+

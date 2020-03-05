@@ -1,0 +1,348 @@
+﻿
+@{
+    ViewBag.Title = "Edit Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css" />
+<section role="main" class="content-body">
+    <header class="page-header">
+        
+        <h2>Configuration</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("index","Configuration")">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Employees</span></li>
+
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+                <h2 class="card-title">System Users</h2>
+            </header>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-check  alert-primary  mb-2">
+                            <input class="form-check-input emoloyeeType" type="radio" name="IsActive" id="exampleRadios4" value="3" checked>
+                            <label class="form-check-label" for="exampleRadios4">
+                                <span>All Users</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check alert-success  mb-2">
+                            <input class="form-check-input emoloyeeType" type="radio" name="IsActive" id="exampleRadios2" value="1">
+                            <label class="form-check-label" for="exampleRadios2">
+                                <span>Active</span>
+                            </label>
+                        </div>
+                    </div>
+                   <div class="col-md-8">
+                   </div> 
+                    <div class="col-md-2">
+                        <div class="form-check alert-warning  mb-2">
+                            <input class="form-check-input emoloyeeType" type="radio" name="IsActive" id="exampleRadios1" value="0">
+                            <label class="form-check-label" for="exampleRadios1">
+                                <span>Recently Added</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check   alert-danger">
+                            <input class="form-check-input emoloyeeType" type="radio" name="IsActive" id="exampleRadios3" value="2">
+                            <label class="form-check-label" for="exampleRadios3">
+                                <span>Deactivated</span>
+                            </label>
+                        </div>
+                    </div> 
+                </div>
+                <!-- start: page -->
+                <div class="row">
+                    <div class="card-body col-md-6 ">
+                        <div>
+                            <br />
+                            <br />
+                            <table class="table table-responsive-md table-hover mb-0" id="datatableEmployeesList">
+                                <thead>
+                                    <tr>
+                                        <th><b>Cypress ID</b></th>
+                                        <th><b>Employee Name</b></th>
+                                        <th><b>Actions</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="EmployeesTable">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="UserDetailsDiv">
+                        
+                        <div class="col-lg-12">
+                            <h3 id="UserName" class="EmployeeInfo"></h3>
+                            <div class="tabs">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#OverView" data-toggle="tab">OverView</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#Additional" data-toggle="tab">Additional</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#EntitlementChange" data-toggle="tab">Entitlement Change</a>
+                                    </li>
+
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="OverView" class="tab-pane active">
+                                        <br />
+                                        <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                                            <tbody>
+                                                <tr> <td style="width: 25%;">Cypress ID</td> <td id="CypressID" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td style="width: 25%;">Email</td> <td id="Email" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td>Approval flow</td> <td id="ApprovalFlow" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td>Company</td> <td id="Company" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td>Department</td> <td id="Department" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td>SubDepartment</td> <td id="SubDepartment" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td>Position</td> <td id="Position" class="EmployeeInfo"> None </td></tr>
+                                                <tr> <td>Contract type</td> <td id="ContractType" class="EmployeeInfo"> None </td> </tr>
+                                                @*<tr> <td>User role</td> <td> Regular employee </td> </tr>*@
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Additional" class="tab-pane">
+                                        <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                                            <tbody>
+                                                <tr> <td style="width: 25%;">Gender</td> <td id="Gender" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td>Direct manager</td> <td id="DirectManger" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td>Team manager</td> <td id="TeamManager" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td>Birth date</td> <td id="BirthDate" class="EmployeeInfo"> None </td> </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5>Experience</h5>
+                                        <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                                            <tbody>
+                                                <tr> <td style="width: 25%;">Hire date</td> <td id="HirDate" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td id="ProbationEndCellLabel" style="width: 25%;">Probation end</td> <td id="ProbationEnd" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td id="TerminationDateCellLabel" style="width: 25%;">Termination date</td> <td id="TerminationDate" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td style="width: 25%;">Seniority before hire years</td> <td id="SeniorityBeforeHireYears" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td style="width: 25%;">Seniority before hire months</td> <td id="SeniorityBeforeHireMonths" class="EmployeeInfo"> None </td> </tr>
+                                            </tbody>
+                                        </table>
+                                        @*<h5>Family</h5>
+                    <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                        <tbody>
+                            <tr> <td style="width: 25%;">Marital status</td> <td> - </td> </tr>
+                            <tr> <td style="width: 25%;">Number of children</td> <td> - </td> </tr>
+                            <tr> <td style="width: 25%;">The youngest child birth date</td> <td> - </td> </tr>
+                        </tbody>
+                    </table>*@
+                                        <h5>Contact</h5>
+                                        <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                                            <tbody>
+                                                <tr> <td style="width: 25%;">Business phone</td> <td id="BusinessPhone" class="EmployeeInfo"> None </td> </tr>
+                                                @*<tr> <td style="width: 25%;">Home phone</td> <td>  </td> </tr>
+                            <tr> <td style="width: 25%;">Personal email</td> <td>  </td> </tr>*@
+                                            </tbody>
+                                        </table>
+                                        @*<h5>Address</h5>
+                    <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                        <tbody>
+                            <tr> <td style="width: 25%;">Street</td> <td>  </td> </tr>
+                            <tr> <td style="width: 25%;">Building / flat number</td> <td>  </td> </tr>
+                            <tr> <td style="width: 25%;">City</td> <td>  </td> </tr>
+                            <tr> <td style="width: 25%;">Province / State</td> <td>  </td> </tr>
+                            <tr> <td style="width: 25%;">Postal code</td> <td>  </td> </tr>
+                            <tr> <td style="width: 25%;">Country</td> <td>  </td> </tr>
+                        </tbody>
+                    </table>*@
+                                        <h5>Custom fields</h5>
+                                        <table class="table table-responsive-md table-hover mb-0" id="LeavesListTable">
+                                            <tbody>
+                                                <tr> <td style="width: 25%;">Employee number</td> <td id="EmployeeNumber" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td style="width: 25%;">NationalID</td> <td id="NationalID" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td style="width: 25%;">MedicalID</td> <td id="MedicalID" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td style="width: 25%;">Current Address</td> <td id="CurrentAddress" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td style="width: 25%;">Home Address</td> <td id="HomeAddress" class="EmployeeInfo"> None </td> </tr>
+                                                <tr> <td style="width: 25%;">Custom note</td> <td id="CustomNote" class="EmployeeInfo"> None </td> </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div  id="EntitlementChange" class="tab-pane">
+                                        <table class="table table-responsive-md table-hover mb-0" id="EntitlementChangeTable" >
+                                            <thead>
+                                                <tr>
+                                                    <td>
+                                                        <b>
+                                                            Leave Type Name
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        <b>
+                                                            Entitlement Before & After
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        <b>
+                                                            Entitlement Changed By
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        <b>
+                                                            Request ID
+                                                        </b>
+                                                    </td>
+
+                                                    <td>
+                                                        <b>
+                                                            Comment
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        <b>
+                                                            Action Date
+                                                        </b>
+                                                    </td>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody >
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+</section>
+        <!-- end: page -->
+        <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+        <script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+        <script src="~/vendor/select2/js/select2.js"></script>
+        <script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+        <script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+        <script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+        <script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+        <script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+        <script src="~/vendor/fuelux/js/spinner.js"></script>
+        <script src="~/vendor/dropzone/dropzone.js"></script>
+        <script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+        <script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+        <script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+        <script src="~/vendor/codemirror/lib/codemirror.js"></script>
+        <script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+        <script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+        <script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+        <script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+        <script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="~/vendor/codemirror/mode/css/css.js"></script>
+        <script src="~/vendor/summernote/summernote-bs4.js"></script>
+        <script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+        <script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+        <script src="~/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+        <script src="~/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+        <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+        <script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+        <script src="~/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+        <script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+        <script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+        <script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+        <script src="~/CustomJavaScript/Employees/Employees.js"></script>
+        <script src="~/js/theme.js"></script>
+
+        <!-- Theme Custom -->
+        <script src="~/js/custom.js"></script>
+
+        <!-- Theme Initialization Files -->
+        <script src="~/js/theme.init.js"></script>
+
+        <!-- Examples -->
+        <script src="~/js/examples/examples.advanced.form.js"></script>
+        <script src="~/js/examples/examples.modals.js"></script>
+        <script src="~/js/examples/examples.datatables.default.js"></script>
+        <script src="~/js/examples/examples.datatables.row.with.details.js"></script>
+        <script src="~/js/examples/examples.datatables.tabletools.js"></script>
+
+
+        <style>
+                    /*.ActionsIcon {
+                margin-left: 10px
+            }*/
+
+                    .AciveRow {
+                        background-color: #0088cc;
+                        color: white;
+                    }
+                    /*.AciveRow :hover {
+                background-color: #0088cc;
+                color: white;
+            }*/
+
+                    .ruleFieldset {
+                        padding: 0 15px 10px !important;
+                        margin-bottom: 45px !important;
+                    }
+
+                    .Borderstyle {
+                        border: 1px solid #ccc !important;
+                        padding: 3px 5px 15px 15px !important;
+                    }
+
+                    fieldset legend {
+                        display: block !important;
+                        font-weight: normal !important;
+                        font-size: 14px !important;
+                        margin-bottom: 15px !important;
+                        padding: 0;
+                        margin-top: 0;
+                        margin-bottom: 0px;
+                        font-family: 'Noto Sans', verdana, arial, sans-serif;
+                        width: auto !important;
+                    }
+
+                    .Floatleft {
+                        float: left !important
+                    }
+
+        </style>
+
+
+

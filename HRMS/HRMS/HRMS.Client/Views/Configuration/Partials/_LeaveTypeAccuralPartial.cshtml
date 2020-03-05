@@ -1,0 +1,151 @@
+﻿<div id="Accural" class="tab-pane">
+    <div class="form-group row">
+        <div class="col-lg-6">
+            <label class="col-lg-3 control-label pt-2">Entitlement</label>
+            <select id="EntitlementAccuralDD" data-plugin-selectTwo class="form-control populate">
+                @*<option value="Accured">Accured</option>
+                <option value="Unlimited">Unlimited</option>*@
+            </select>
+        </div>
+    </div>
+
+    <div id="IsAccured">
+        <br />
+        <h4>Accural rule</h4>
+
+        <fieldset id="ruleFieldSet_3" data-ruleno="3" class="ruleFieldset Borderstyle">
+            <legend>Rule Definition</legend>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-8 control-label ">Employee gains eligibility</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <select data-plugin-selectTwo class="populate"  id="EmployeeGainsEligibility">
+                        @*<option value="FromTheFirstDayAtWork">From the first day at work</option>
+                        <option value="WORKED_AFTER_HIRE">After hire</option>*@
+                    </select>
+                </div>
+                <div id="MonthNumber" class="col-md-8">
+                    <div class="col-md-3" >
+                        <select data-plugin-selectTwo class="populate" id="MonthsToGainsEligibilityDD">
+                            <option selected disabled></option>
+                            @*<option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>*@
+                        </select>
+
+                    </div>
+                    <div class="col-md-2">
+                        Months
+                    </div>
+                </div>
+            </div>
+            <br />
+            <label class="col-lg-12 control-label">Accural Periods </label>
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    <select data-plugin-selectTwo class="form-control populate " id="AccuralPeriodsDD">
+                        @*<option value="FirstDayOfYear">First day of the Year (Carry-over)</option>
+                        <option value="RepeatEveryMonth">Repeat every Month at </option>*@
+                    </select>
+                </div>
+                <div class="col-lg-4" id="EveryMonthAccuralDayDD">
+                    <select data-plugin-selectTwo class="form-control populate" id="MonthlyAaccuralDaysDD" >
+                        @*<option value="1">First Day Of Month</option>
+                        <option value="15">15th Day Of Month</option>
+                        <option value="20">20th Day Of Month</option>
+                        <option value="21">21th Day Of Month</option>*@
+
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label class="col-lg-8 control-label ">Employee earns </label>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-3 ">
+                            <input type="number" class="form-control" id="EmployeeEarnsNumberOfUnits">
+                        </div>
+                        <span class="col-lg-4 control-label "><span class="UnitText"></span> , and if seniority before hire is more than</span>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <input type="number" class="form-control" id="seniorityYears">
+                </div>
+                <div class="col-lg-1 ">
+                    <span>Years</span>
+                </div>
+                <div class="col-lg-1">
+                    <input type="number" class="form-control" id="AmountOverSeniorityEmployeeEarns">
+                </div>
+
+            </div>
+
+            <label class="col-lg-12 control-label">First Accural For new employees </label>
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    <select id="FirstAccuralForNewEmployeesDD" data-plugin-selectTwo class="form-control populate ">
+                        @*<option value="FULL">Full amount</option>
+                        <option value="PRORATE">Prorate amount</option>*@
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group row" id="BasedonDD">
+                <label class="col-lg-12 control-label ">Prorate calculation mode</label>
+
+                <div class="col-lg-4" >
+
+                    <select data-plugin-selectTwo class="form-control populate" id="LeaveTypeMinOneDayDurationDD">
+                        @*<option value="DAYS">Based on days</option>
+                        <option value="MONTHS">Based on full months</option>*@
+                    </select>
+                </div>
+                <div class="col-lg-4">
+
+                    <select data-plugin-selectTwo class="form-control populate " id="ProrateMethodDD">
+                        @*<option value="NO">Do not round result</option>
+                        <option value="TO_ONE">Round to whole</option>
+                        <option value="TO_ONE_ALWAYS_UP">Round to whole (always up)</option>*@
+                    </select>
+                </div>
+            </div>
+
+            <br />
+        </fieldset>
+    </div>
+    <h5>Restricted to</h5>
+    <h5><b>Everybody</b></h5>
+    <h5><a class="mb-1 mt-1 mr-1 modal-sizes" href="#modalLG">Change</a></h5>
+    <br />
+    <div class="form-group row">
+        <label class="col-lg-3 control-label">Effective date</label>
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-calendar-alt"></i>
+                    </span>
+                </span>
+                <input type="datetime" data-plugin-datepicker="" class="form-control" id="EffectiveDate">
+            </div>
+        </div>
+    </div>
+
+</div>
+

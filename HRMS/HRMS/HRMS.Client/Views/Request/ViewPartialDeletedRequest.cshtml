@@ -1,0 +1,261 @@
+﻿
+@{
+    ViewBag.Title = "ViewPartialDeletedRequest";
+}
+<!---------------------------------------------------------------------->
+<!--styles-->
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/datatables/media/css/dataTables.bootstrap4.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<link href="~/CustomCSS/Request/RejectionReasons.css" rel="stylesheet" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<!---------------------------------------------------------------------->
+<!--Start Html-->
+<section role="main" class="content-body">
+    <!--Start Header-->
+    <header class="page-header">
+        <h2>Partial Deletion Reason</h2>
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li><span>Request</span></li>
+                <li><span>Partial Deletion Reason</span></li>
+            </ol>
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+        </div>
+    </header>
+    <!--Start Card-->
+    <section class="card">
+        <header class="card-header">
+            <div class="card-actions">
+                <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+            </div>
+            <h2 class="card-title">Partial Deletion Reason</h2>
+        </header>
+        <div class="card-body">
+            <div class="tab-content">
+                <div id="DeletedReasonRequests" class="tab-pane active">
+                    <div class="Search">
+                        <div class="Cancel">
+                            <a class="nav-link" href="#" onclick="GoBack()">
+                                <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                                <span>Cancel</span>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <!--First record from to absenceType-->
+                        <div class="col-lg-3">
+                            <label class="col-lg-10 control-label ">From<span style="color:red">*</span></label>
+                            <input id="DeletedReasonFrom" type="text" data-plugin-datepicker="" class="form-control">
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="col-lg-10 control-label ">To<span style="color:red">*</span></label>
+                            <input id="DeletedReasonTo" type="text" data-plugin-datepicker="" class="form-control">
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="col-lg-10 control-label ">Absence Type</label>
+                            <select id="DeletedReasonLeaveType" data-plugin-selectTwo class="form-control populate">
+                                <option disabled selected></option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
+
+                        </div>
+                        <!--Second record from to absenceType-->
+                        <div class="col-lg-3">
+                            <label class="col-lg-11 control-label ">Department</label>
+                            <select id="SelectDepartment" required multiple data-plugin-selectTwo class="form-control populate"></select>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="col-lg-11 control-label ">SubDepartment</label>
+                            <select id="SelectSubDepartment" multiple data-plugin-selectTwo class="form-control populate"></select>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="col-lg-10 control-label ">Users</label>
+                            <select id="DeletedReasonUsers" data-plugin-selectTwo class="form-control populate"></select>
+                        </div>
+                        <div class="col-lg-3">
+                            <ul class="navbar-nav1">
+                                <li class="" id="FindDeletedReason">
+                                    <a href="#"><span class=" fa fa-search fa-2x"></span></a>
+                                    <label class="col-lg-10 control-label ">Find</label>
+                                </li>
+                                <li class=" " id="ExtractDeletedReason">
+                                    <a href="#"><span class=" fa fa-file-excel fa-2x"></span></a>
+                                    <label class="col-lg-10 control-label ">Export Excel</label>
+                                </li>
+                            </ul>
+                            <div class="ClearBoth">
+                            </div>
+                        </div>
+                    </div>
+                    <!--Start Table-->
+                    <div class="row">
+                        <table class="table table-responsive-md table-hover mb-0 " id="DeletedReasonTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Request Id <!--1-->
+                                    </th>
+                                    <th>
+                                        User Name  <!--2-->
+                                    </th>
+                                    <th>
+                                        AC ID  <!--2-->
+                                    </th>
+                                    <th>
+                                        Creation Date  <!--3-->
+                                    </th>
+                                    <th>
+                                        Leave Type  <!--8-->
+                                    </th>
+                                    <th>
+                                        Request Start Date  <!--4-->
+                                    </th>
+                                    <th>
+                                        Request End Date  <!--5-->
+                                    </th>
+                                    <th>
+                                        Request Duration  <!--6-->
+                                    </th>
+                                    <th>
+                                        Request Duration Unit <!--7-->
+                                    </th>
+
+                                    <th>
+                                        Deleted By  <!--9-->
+                                    </th>
+                                    <th>
+                                        Deleted Reason  <!--10-->
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!--End table-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Card-->
+    <!--End Header-->
+    <!--Deleted Reason Modal-->
+    <div class="modal fade" id="RequestsDeletedReasonsDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Requests Deleted Details </h5>
+                </div>
+                <div class="modal-body">
+                    <!--Start Table-->
+                    <div class="row">
+                        <table class="table table-responsive-md  table-hover mb-0" id="DeletedReasonDetailsTable">
+                            <thead>
+                                <tr>
+                                    @*<th>
+                                            Request  ID
+                                        </th>*@
+                                    <th>
+                                        start  Date <!--3-->
+                                    </th>
+                                    <th>
+                                        Action Date  <!--5-->
+                                    </th>
+                                    <th>
+                                        Deleted Reason  <!--10-->
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!--End table-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--End Html-->
+<!---------------------------------------------------------------------->
+<!--Start Script-->
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="~/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+<script src="~/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/js/theme.js"></script>
+<script src="~/CustomJavaScript/Request/ViewPartialDeletedReason.js"></script>
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script src="~/js/examples/examples.datatables.default.js"></script>
+<script src="~/js/examples/examples.datatables.row.with.details.js"></script>
+<script src="~/js/examples/examples.datatables.tabletools.js"></script>
+
+<script>
+    $("#DeletedReasonFrom").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+
+    $("#DeletedReasonTo").datepicker({
+
+        dateFormat: 'dd/mm/yy',
+
+    });
+
+</script>
+<!------------------------------------------------------------------------------>
+

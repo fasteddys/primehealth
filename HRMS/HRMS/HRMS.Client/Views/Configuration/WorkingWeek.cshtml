@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Working Week";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Configuration</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Working Week</span></li>
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    </div>
+                    <h2 class="card-title">Working Week</h2>
+                </header>
+                <div class="card-body">
+                    <div class="form-group row pull-right">
+                        <a class="nav-link" href="#" onclick="Save()">
+                            <i class="fas fa-save fa-2x" aria-hidden="true"></i>
+                            <span>Save</span>
+                        </a>
+                        <a class="nav-link" href="#" onclick="GoBack()">
+                            <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                            <span>Cancel</span>
+                        </a>
+                        <a class="nav-link" href="#" onclick="NewWorkingWeekData()">
+                            <i class="fas fa-database fa-2x" aria-hidden="true"></i>
+                            <span>Working Week Data</span>
+                        </a>
+                    </div>
+                    <form class="form-horizontal form-bordered" method="get">
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label text-lg-right pt-2">Working Week Name</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="WorkingWeekName">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-body col-md-12">
+                        <table class="table table-responsive-md  mb-0">
+                            <thead>
+                                <tr>
+                                    <th><b>Day</b></th>
+                                    <th><b>FROM</b></th>
+                                    <th><b>TO</b></th>
+                                    <th><b>Total hours</b></th>
+                                    <th><b>Grace In</b></th>
+                                    <th><b>Grace Out</b></th>
+                                    <th><b>Active/Not active</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id="Days">
+                                <tr id="Day2">
+                                    <td width="10%">Sunday</td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control From"></td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control To"></td>
+                                    <td width="10%"><input type="text" class="form-control Totalhours" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceIn" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceOut" /></td>
+                                    <td width="10%"><input type="checkbox" class="IsActive"></td>
+                                </tr>
+                                <tr id="Day3">
+                                    <td width="10%">Monday</td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control From"></td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control To"></td>
+                                    <td width="10%"><input type="text" class="form-control Totalhours" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceIn" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceOut" /></td>
+                                    <td width="10%"><input type="checkbox" class="IsActive"></td>
+                                </tr>
+                                <tr id="Day4">
+                                    <td width="10%">Tuesday</td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control From"></td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control To"></td>
+                                    <td width="10%"><input type="text" class="form-control Totalhours" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceIn" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceOut" /></td>
+                                    <td width="10%"><input type="checkbox" class="IsActive"></td>
+                                </tr>
+                                <tr id="Day5">
+                                    <td width="10%">Wednesday</td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control From"></td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control To"></td>
+                                    <td width="10%"><input type="text" class="form-control Totalhours" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceIn" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceOut" /></td>
+                                    <td width="10%"><input type="checkbox" class="IsActive"></td>
+                                </tr>
+                                <tr id="Day6">
+                                    <td width="10%">Thursday</td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control From"></td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control To"></td>
+                                    <td width="10%"><input type="text" class="form-control Totalhours" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceIn" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceOut" /></td>
+                                    <td width="10%"><input type="checkbox" class="IsActive"></td>
+                                </tr>
+                                <tr id="Day7">
+                                    <td width="10%">Friday</td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control From"></td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control To"></td>
+                                    <td width="10%"><input type="text" class="form-control Totalhours" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceIn" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceOut" /></td>
+                                    <td width="10%"><input type="checkbox" class="IsActive"></td>
+                                </tr>
+                                <tr id="Day1">
+                                    <td width="10%">Saturday</td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control From"></td>
+                                    <td width="20%"><input type="text" data-plugin-timepicker="" class="form-control To"></td>
+                                    <td width="10%"><input type="text" class="form-control Totalhours" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceIn" /></td>
+                                    <td width="10%"><input type="text" class="form-control GraceOut" /></td>
+                                    <td width="10%"><input type="checkbox" class="IsActive"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- end: page -->
+</section>
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/CustomJavaScript/Configurations/WorkingWeeks.js"></script>
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+
+<script>
+    function NewWorkingWeekData() {
+        window.location.href = '/Configuration/WorkingWeekData';
+    }
+</script>

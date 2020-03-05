@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<h2>All Requests</h2>
+
+<br />
+
+@model IEnumerable<Hr_System.Models.Request>
+<style>
+    table {
+        width: 40em;
+        margin: 2em auto;
+    }
+
+    thead {
+        background: #000;
+        color: #fff;
+    }
+
+    td {
+        width: 10em;
+        padding: 0.3em;
+    }
+
+    tbody {
+        background: #ccc;
+    }
+
+    div.pager {
+        text-align: center;
+        margin: 1em 0;
+    }
+
+        div.pager span {
+            display: inline-block;
+            width: 1.8em;
+            height: 1.8em;
+            line-height: 1.8;
+            text-align: center;
+            cursor: pointer;
+            background: #000;
+            color: #fff;
+            margin-right: 0.5em;
+        }
+
+            div.pager span.active {
+                background: #c00;
+            }
+</style>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>User's Approved Vacation Over Year (@DateTime.Now.Year) </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped responsive-utilities jambo_table bulk_action" id="rateb">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Request Type</th>
+                    <th class="column-title">Leave Type</th>
+                    <th class="column-title">Request By</th>
+                    <th class="column-title">Request Status </th>
+                    <th class="column-title">Team Leader</th>
+                    <th class="column-title">Supervisor</th>
+                    <th class="column-title">Vacation Start-Day</th>
+                    <th class="column-title">Duration</th>
+                    <th class="column-title">Back-To-Work Day </th>
+                    <th class="column-title">Requested at</th>
+                    <th class="column-title no-link last"><span class="nobr">Action</span>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="even pointer">
+                        <td>@Html.DisplayFor(cat => item.ReqType)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqSubType)</td>
+                        <td>@Html.DisplayFor(cat => item.UserName)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqStatus)</td>
+                        <td>@Html.DisplayFor(cat => item.MyTeamLeader)</td>
+                        <td>@Html.DisplayFor(cat => item.MySupervisor)</td>
+                        <td>@Html.DisplayFor(cat => item.DurationFrom)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqDuration)</td>
+                        <td>@Html.DisplayFor(cat => item.BacktoWorkDate)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqDate)</td>
+                        <td>@Html.ActionLink("Open", "ManageRequest", "Vacation", new { id = item.ID }, null)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <br />
+    <div class="col-sm-4 invoice-col">
+
+        <address>
+            <strong>Detailed Report Of The Year</strong>
+            <br />
+            <br>User Name : @ViewBag.UserNameForReport
+            <br>User Leaves at Beginning Of @DateTime.Now.Year : @ViewBag.LeaveCountBeginingofYear
+            <br>Transferred Leaves : @ViewBag.UserLeaves
+            <br>Leaves Balance: @ViewBag.TransferredVacations
+            <br>Spent Vacations: @ViewBag.SpentHolidays
+            <br>Remaining Total Vacations : @ViewBag.UserLeaveAccount
+            <br>Remaining Casual Vacations : @ViewBag.UserCasualLeaveAccount
+            <br>Last Casual Vacation: @ViewBag.lastcasualvacation
+
+        </address>
+    </div>
+</div>
+<script src="~/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#rateb").each(function () {
+            var currentPage = 0;
+            var numPerPage = 5;
+            var $table = $(this);
+            $table.bind('repaginate', function () {
+                $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+            });
+            $table.trigger('repaginate');
+            var numRows = $table.find('tbody tr').length;
+            var numPages = Math.ceil(numRows / numPerPage);
+            var $pager = $('<div class="pager"></div>');
+            for (var page = 0; page < numPages; page++) {
+                $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                    newPage: page
+                }, function (event) {
+                    currentPage = event.data['newPage'];
+                    $table.trigger('repaginate');
+                    $(this).addClass('active').siblings().removeClass('active');
+                }).appendTo($pager).addClass('clickable');
+            }
+            $pager.insertBefore($table).find('span.page-number:first').addClass('active');
+        });
+    })
+</script>

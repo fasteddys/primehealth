@@ -1,0 +1,555 @@
+﻿@model Hr_System.Models.Request
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+        }
+
+            .alert.success {
+                background-color: #4CAF50;
+            }
+
+            .alert.info {
+                background-color: #2196F3;
+            }
+
+            .alert.warning {
+                background-color: #ff9800;
+            }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+    
+    <script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+
+
+
+        if ("@Session["UserType"]" == "Normal") {
+            $("#DelegateToMenu").hide();
+        }
+
+        //new
+        if("@ViewBag.CheckIfDelegationListIsNull" == "0")
+        {
+            $("#DelegateToMenu").hide();
+        }
+        //end
+       
+
+        $("#halfday").hide();
+        $("#enddate").hide();
+
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#datepicker1").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+        var UserType = "";
+        $.getJSON("/Vacation/GetTypeOfUser", {}, function (data) {
+
+            UserType = String(data);
+
+        })
+
+        $("#datepicker").change(function () {
+            $("#enddate").show();
+            $("#datepicker1").change(function () {
+
+                if ($("#datepicker").val() == $("#datepicker1").val())
+                {
+                    $("#halfday").show();
+                }
+
+                else
+                {
+                    $("#halfday").hide();
+
+                }
+
+            })
+
+        })
+        $("#ReqSubType").change(function () {
+            if ($("#ReqSubType").val() == "اعتيادية") {
+                $("#DelegateToMenu").show();
+            }
+            else {
+                $("#DelegateToMenu").hide();
+            }
+        });
+        $("#datepicker1").change(function () {
+            $("#enddate").show();
+            $("#datepicker").change(function () {
+
+                if ($("#datepicker1").val() == $("#datepicker").val()) {
+                    $("#halfday").show();
+                }
+
+                else {
+                    $("#halfday").hide();
+
+                }
+
+            })
+
+        })
+
+        $("#btnsubmit").on("click",function () {
+
+            var vacation;
+            //math.abs Returns the absolute value of a number
+            //Math.ceil Rounds a number upward to its nearest integer: 1.4 to 2
+            var StartDay = $("#datepicker").datepicker('getDate');
+            var EndDate = $("#datepicker1").datepicker('getDate');
+            var timeDiff = Math.abs(EndDate.getTime() - StartDay.getTime());
+            
+            var NumberoFDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            if (UserType == "Normal") {
+                debugger;
+                //new
+
+                if((NumberoFDays +1 ) == 1)
+                {
+                    if (document.getElementById('HalfDayVacationType').value == '')
+                    {
+                        alert('select Your vacation type whether a half day or full day !');
+                        return false;
+                    }
+                }
+
+                //end
+                $("#TransferablePerson").hide();
+
+                if ($("#datepicker1").val() == "" || $("#datepicker").val() == "") {
+                    alert("All Fields are Required");
+                }
+                else {
+                    vacation = {
+                        ReqType: $("#ReqType").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        UserName: $("#UserName").val(),
+                        DepartmentName: $("#DepartmentName").val(),
+                        ManagmentName: $("#ManagmentName").val(),
+                        DurationFrom: $("#datepicker").val(),
+                        DurationTo: $("#datepicker1").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        HalfDayVacationType: $("#HalfDayVacationType").val(),
+                    }
+                    var x = JSON.stringify(vacation);
+                    $.ajax({
+                        url: '@Url.Action("CreateNormalUserVacation", "Vacation")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data) {
+                            $("#divalret").show();
+                            $("#divalret").html(data);
+                            $("#datepicker").val("");
+                            $("#datepicker1").val("");
+                            $("#halfday").hide();
+                        }
+                    });
+                }
+            }
+            else if (UserType == "TeamLeader") {
+                //new
+
+                if((NumberoFDays +1 ) == 1)
+                {
+                    if (document.getElementById('HalfDayVacationType').value == '')
+                    {
+                        alert('select Your vacation type whether a half day or full day !');
+                        return false;
+                    }
+                }
+
+                //end
+                if ($("#TransferablePerson").val() == "----" && $("#TransferablePerson").is(":visible")) {
+                    alert("Please Choose a Person to delegate");
+                }
+
+                else if ($("#datepicker1").val() == "" || $("#datepicker").val() == "") {
+                    alert("All Fields are Required");
+                }
+                else {
+                    vacation = {
+                        ReqType: $("#ReqType").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        UserName: $("#UserName").val(),
+                        DepartmentName: $("#DepartmentName").val(),
+                        ManagmentName: $("#ManagmentName").val(),
+                        DurationFrom: $("#datepicker").val(),
+                        DurationTo: $("#datepicker1").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        HalfDayVacationType: $("#HalfDayVacationType").val(),
+                        DelegateTo: $("#TransferablePerson").val(),
+                    }
+                    var x = JSON.stringify(vacation);
+                    $.ajax({
+                        url: '@Url.Action("CreateTeamLeaderVacation", "Vacation")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data) {
+                            $("#divalret").show();
+                            $("#divalret").html(data);
+                            $("#datepicker").val("");
+                            $("#datepicker1").val("");
+                            $("#halfday").hide();
+                        }
+                    });
+                }
+            }
+            else if (UserType == "Supervisor") {
+                //new
+
+                if((NumberoFDays +1 ) == 1)
+                {
+                    if (document.getElementById('HalfDayVacationType').value == '')
+                    {
+                        alert('select Your vacation type whether a half day or full day !');
+                        return false;
+                    }
+                }
+
+                //end
+                if ($("#TransferablePerson").val() == "----" && $("#TransferablePerson").is(":visible")) {
+                    alert("Please Choose a Person to delegate");
+                }
+                else if ($("#datepicker1").val() == "" || $("#datepicker").val() == "") {
+                    alert("All Fields are Required");
+                }
+                else {
+                    vacation = {
+                        ReqType: $("#ReqType").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        UserName: $("#UserName").val(),
+                        DepartmentName: $("#DepartmentName").val(),
+                        ManagmentName: $("#ManagmentName").val(),
+                        DurationFrom: $("#datepicker").val(),
+                        DurationTo: $("#datepicker1").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        HalfDayVacationType: $("#HalfDayVacationType").val(),
+                        DelegateTo: $("#TransferablePerson").val(),
+                    }
+                    var x = JSON.stringify(vacation);
+                    $.ajax({
+                        url: '@Url.Action("CreateSupervisorOrDuputyManagerVacation", "Vacation")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data) {
+                            $("#divalret").show();
+                            $("#divalret").html(data);
+                            $("#datepicker").val("");
+                            $("#datepicker1").val("");
+                            $("#halfday").hide();
+                        }
+                    });
+                }
+            }
+            else if (UserType == "Deputy Manager") {
+                //new
+
+                if((NumberoFDays +1 ) == 1)
+                {
+                    if (document.getElementById('HalfDayVacationType').value == '')
+                    {
+                        alert('select Your vacation type whether a half day or full day !');
+                        return false;
+                    }
+                }
+
+                //end
+                if ($("#TransferablePerson").val() == "----" && $("#TransferablePerson").is(":visible")) {
+                    alert("Please Choose a Person to delegate");
+                }
+                else if ($("#datepicker1").val() == "" || $("#datepicker").val() == "") {
+                    alert("All Fields are Required");
+                }
+                else {
+                    vacation = {
+                        ReqType: $("#ReqType").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        UserName: $("#UserName").val(),
+                        DepartmentName: $("#DepartmentName").val(),
+                        ManagmentName: $("#ManagmentName").val(),
+                        DurationFrom: $("#datepicker").val(),
+                        DurationTo: $("#datepicker1").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        HalfDayVacationType: $("#HalfDayVacationType").val(),
+                        DelegateTo: $("#TransferablePerson").val(),
+                    }
+                    var x = JSON.stringify(vacation);
+                    $.ajax({
+                        url: '@Url.Action("CreateSupervisorOrDuputyManagerVacation", "Vacation")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data) {
+                            $("#divalret").show();
+                            $("#divalret").html(data);
+                            $("#datepicker").val("");
+                            $("#datepicker1").val("");
+                            $("#halfday").hide();
+                        }
+                    });
+                }
+            }
+            else if (UserType == "Manager") {
+                //new
+
+                if((NumberoFDays +1 ) == 1)
+                {
+                    if (document.getElementById('HalfDayVacationType').value == '')
+                    {
+                        alert('select Your vacation type whether a half day or full day !');
+                        return false;
+                    }
+                }
+
+                //end
+                if ($("#TransferablePerson").val() == "----" && $("#TransferablePerson").is(":visible")) {
+                    alert("Please Choose a Person to delegate");
+                }
+                else if ($("#datepicker1").val() == "" || $("#datepicker").val() == "") {
+                    alert("All Fields are Required");
+                }
+                else {
+                    vacation = {
+                        ReqType: $("#ReqType").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        UserName: $("#UserName").val(),
+                        DepartmentName: $("#DepartmentName").val(),
+                        ManagmentName: $("#ManagmentName").val(),
+                        DurationFrom: $("#datepicker").val(),
+                        DurationTo: $("#datepicker1").val(),
+                        ReqSubType: $("#ReqSubType").find(":selected").text(),
+                        HalfDayVacationType: $("#HalfDayVacationType").val(),
+                        DelegateTo: $("#TransferablePerson").val(),
+                    }
+                    var x = JSON.stringify(vacation);
+                    $.ajax({
+                        url: '@Url.Action("CreateManagerVacation", "Vacation")',
+                        data: x,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data) {
+                            $("#divalret").show();
+                            $("#divalret").html(data);
+                            $("#datepicker").val("");
+                            $("#datepicker1").val("");
+                            $("#halfday").hide();
+                        }
+                    });
+                }
+            }
+        })
+    });
+    </script>
+}
+<div class="form-horizontal">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="alert info" style="display:none" id="divalret">
+                <span id="divinfo" class="closebtn">&times;</span>
+
+            </div>
+            <div class="x_title">
+                <br />
+                <h2>Create New Leave Request</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu"></ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ReqType">
+                            Request Type<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" id="ReqType" value="إجازة" name="ReqType" class="form-control col-md-7 col-xs-12" disabled="disabled" />
+                            @Html.ValidationMessageFor(model => model.ReqType)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="UserName">
+                            User Name<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" value="@ViewBag.Name" disabled="disabled" id="UserName" name="UserName" class="form-control col-md-7 col-xs-12" />
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DepartmentName">
+                            Department Name<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" value="@ViewBag.EMPDepartmentName" disabled="disabled" id="DepartmentName" name="DepartmentName" class="form-control col-md-7 col-xs-12" />
+                            @Html.ValidationMessageFor(model => model.DepartmentName)
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ManagmentName">
+                            Sub-Department Name<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" value="@ViewBag.EMPSubDept" disabled="disabled" id="ManagmentName" name="ManagmentName" class="form-control col-md-7 col-xs-12" />
+                            @Html.ValidationMessageFor(model => model.ManagmentName)
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ReqDuration">
+                                Duration<span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <input type="text" id="ReqDuration" name="ReqDuration" class="form-control col-md-7 col-xs-12" />
+                                @Html.ValidationMessageFor(model => model.ReqDuration)
+                            </div>
+                        </div>*@
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ReqSubType">
+                            Leave Type<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <select tabindex="-1" class="select2_group form-control" style="display:normal;" name="ReqSubType" id="ReqSubType">
+                                <optgroup label="نوع الإجازة">
+                                    <option value="اعتيادية">اعتيادية</option>
+                                    <option value="عارضه">عارضه</option>
+                                    <option value="عارضه - أخري">عارضه - أخري</option>
+                                    <option value="مرضية">مرضية</option>
+                                    @*<option class="vacation" style="display:none" value="مرضية">مرضية - بالخصم</option>
+                                    <option class="vacation" style="display:none" value="بالخصم">بالخصم</option>*@
+                                    <option value="أخري">أخري</option>
+                                    <option value="بالخصم">بالخصم</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ReqSubType)
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="datepicker">
+                            Leave Start Date <span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" id="datepicker" name="DurationFrom" class="form-control col-md-7 col-xs-12" />
+                            @Html.ValidationMessageFor(model => model.DurationFrom)
+                        </div>
+                    </div>
+                    <div class="form-group" style="display:none" id="enddate">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="datepicker1">
+                            Leave End Date<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" id="datepicker1" name="DurationTo" class="form-control col-md-7 col-xs-12" />
+                            @Html.ValidationMessageFor(model => model.DurationTo)
+                        </div>
+                    </div>
+                    <div class="form-group" style="display:none" id="halfday">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="HalfDayVacationType">
+                            1/2 Day Or One Day<span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <select tabindex="-1" class="select2_group form-control" style="display: normal;" name="HalfDayVacationType" id="HalfDayVacationType">
+                                @*<optgroup label="Type ?">*@
+                                <option value="">--Choose One--</option>
+                                <option value="1 Day">1 Day</option>
+                                <option value="1/2 Day AM">1/2 Day AM</option>
+                                <option value="1/2 Day PM">1/2 Day PM</option>
+                                @*</optgroup>*@
+                            </select>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.HalfDayVacationType)
+                    </div>
+                    <div class="form-group" id="DelegateToMenu">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ReqSubType">
+                            Delegate To<span class="required"></span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+
+                            <select tabindex="-1" class="select2_group form-control" name="TransferablePerson" id="TransferablePerson">
+                                <optgroup label="Choose One">
+                                    <option value="----">----</option>
+                                    @if (ViewBag.DelegateTo != null)
+                                    {
+                                        foreach (var item in ViewBag.DelegateTo)
+                                        {
+                                        <option value="@item.EmpName">@item.EmpName</option>
+                                        }
+                                    }
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="datepicker2">
+                                Back To Work Date<span class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <input type="text" id="datepicker2" name="BacktoWorkDate" class="form-control col-md-7 col-xs-12" />
+                                @Html.ValidationMessageFor(model => model.BacktoWorkDate)
+                            </div>
+                        </div>*@
+                    <div class="ln_solid">
+                        <div class="form-group">
+                            <br />
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button class="btn btn-round btn-success" type="submit" id="btnsubmit" value="Submit Leave "> Submit Leave</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

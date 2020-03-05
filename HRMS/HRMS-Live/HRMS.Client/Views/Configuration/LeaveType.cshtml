@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Leave Types";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Configuration</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("index","Configuration")">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Leave Types</span></li>
+            </ol>
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        @*<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>*@
+                    </div>
+                    <h2 class="card-title">Leaves</h2>
+
+
+                    @*<span  class="ActionsIcon"><a href="#" class="fa fa-trash"> Delete</a></span>*@
+                </header>
+                <div class="card-body">
+                    <div class="form-group row ">
+                        <a class="nav-link" href="@Url.Action("AddLeaveType","Configuration")">
+                            <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
+                            <span>Add Leave Type</span>
+                        </a>
+                        <a class="nav-link" href="#" onclick="GoBack()">
+                            <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                            <span>Cancel</span>
+                        </a>
+                    </div>
+                    <br />
+                    @*<span class="ActionsIcon"><a href="" class="fa fa-plus"> Add</a></span>
+                        <span class="ActionsIcon"><a href="#" class="fa fa-pencil-alt"> Edit</a></span>*@
+                    <form class="form-horizontal form-bordered" action="#">
+
+                        <table class="table table-responsive-md mb-0" id="LeavesListTable">
+                            <thead>
+                                <tr>
+                                    <th>Leaves</th>
+                                </tr>
+                            </thead>
+                            <tbody id="LeavesType">
+                                @*<tr class="clickable-row">
+                                        <td>annual</td>
+                                    </tr>
+                                    <tr class="clickable-row">
+                                        <td>Sick</td>
+                                    </tr>
+                                    <tr class="clickable-row">
+                                        <td>Casual</td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- end: page -->
+</section>
+<script>
+    $(".clickable-row").click(function () {
+        if ($(this).hasClass("AciveRow"))
+            $(this).removeClass('AciveRow');
+        else
+            $(this).addClass('AciveRow').siblings().removeClass('AciveRow');
+    })
+</script>
+<style>
+    .ActionsIcon {
+        margin-left: 10px
+    }
+
+    .AciveRow {
+        background-color: #0088cc;
+        color: white;
+    }
+</style>
+<script src="~/CustomJavaScript/LeaveType/ViewLeaveTypes.js"></script>

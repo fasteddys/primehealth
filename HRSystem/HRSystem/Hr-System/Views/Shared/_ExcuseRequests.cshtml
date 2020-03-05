@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Hr_System.Models.Request>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>ALL Requests </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped responsive-utilities jambo_table bulk_action">
+
+
+            <thead>
+
+                <tr class="headings">
+
+                    <th class="column-title">Requests Type </th>
+                    <th class="column-title">Request By</th>
+                    <th class="column-title">ReqStatus</th>
+                    <th class="column-title">Team Leader</th>
+                    <th class="column-title">Supervisor</th>
+                    <th class="column-title">Excusion Day </th>
+                    <th class="column-title">Excuse Duration </th>
+                    <th class="column-title no-link last">
+
+                        <span class="nobr">Action</span>
+
+                </tr>
+
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr class="even pointer">
+                        <td>@Html.DisplayFor(cat => item.ReqSubType)</td>
+                        <td>@Html.DisplayFor(cat => item.UserName)</td>
+                        <td>@Html.DisplayFor(cat => item.ReqStatus)</td>
+                        <td style="display:none">@Html.DisplayFor(cat => item.MyTeamLeader)</td>
+                       
+                        
+                        @if (item.MyBackupTeamLeader != null && (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Deputy Manager"))
+                        {
+                            <td>@Html.DisplayFor(cat => item.MyBackupTeamLeader)</td>
+                        }
+                        else if (item.MyBackupTeamLeader == null)
+                        {
+                            <td>@Html.DisplayFor(cat => item.MyTeamLeader)</td>
+                        }
+                        else
+                        {
+                            <td >@Html.DisplayFor(cat => item.MyTeamLeader)</td>
+                        }
+
+                        <td class="SupervisorBackup" style="display:none">@Html.DisplayFor(cat => item.MyBackupSupervisor)</td>
+
+                        @if (item.MyBackupSupervisor != null && (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Deputy Manager"))
+                        {
+                            <td class="Supervisorbac">@Html.DisplayFor(cat => item.MyBackupSupervisor)</td>
+                        }
+                        else if (item.MyBackupSupervisor == null)
+                        {
+                            <td class="OriginalSupervisor">@Html.DisplayFor(cat => item.MySupervisor)</td>
+                        }
+                        else
+                        {
+                            <td class="OriginalSupervisor">@Html.DisplayFor(cat => item.MySupervisor)</td>
+                        }
+                        <td>@Html.DisplayFor(cat => item.ExcuseDay)</td>
+                        <td>@Html.DisplayFor(cat => item.ExcuseDuration)</td>
+                        <td>@Html.ActionLink("Open", "requestDetails", new { ID = item.ID })</td>
+                    </tr>
+
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<link href="~/css/jq/jqu.css" rel="stylesheet" />
+<script src="~/css/jq/JS.js"></script>
+<script src="~/css/jq/JSS.js"></script>
+<script type="text/javascript">
+  
+    if ('@Session["UserType"]' == "Supervisor" && "@ViewBag.AutRole" == "yes") {
+        $(".OriginalSupervisor").hide();
+        $(".SupervisorBackup").show();
+
+    }
+    
+</script>

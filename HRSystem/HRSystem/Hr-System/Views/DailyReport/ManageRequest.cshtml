@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "ManageRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            if ('@Session["RequestStatus"]' == "PendingDuputyManagerReview")
+            {
+                if ('@Session["UserType"]' == "Deputy Manager" || '@Session["UserType"]' == "Manager")
+                {
+                    $("#BtnApproveByManager").show();
+                }
+            }
+        if ('@Session["UserType"]' == "TeamLeader")
+        {
+
+            if ('@ViewBag.RequestOwner'=="Normal")
+            {
+                $("#BtnApproveByTeamLeader").show();
+                $("#BtnRejectByTeamLeader").show();
+            }
+        }
+        else if ('@Session["UserType"]' == "Supervisor" || '@Session["UserType"]' == "Deputy Manager")
+        {
+
+            if ('@ViewBag.RequestOwner' == "Normal" || '@ViewBag.RequestOwner' == "TeamLeader") {
+                $("#BtnApproveBySupervisor").show();
+                $("#BtnRejectBySupervisor").show();
+                }
+         }
+
+        else if ('@Session["UserType"]' == "Manager")
+        {
+            $("#BtnApproveByManager").show();
+        }
+
+        $("#BtnApproveByTeamLeader").click(function () {
+
+            var request = {
+                ID: $("#ReqID").val(),
+            }
+
+            var x = JSON.stringify(request);
+
+            $.ajax({
+
+                url: '@Url.Action("ApproveByTeamLeader","DailyReport")',
+                data: x,
+                contentType: 'application/json',
+                type: 'POST',
+                success: function (data, status) {
+
+                    alert(data);
+                }
+
+            });
+            window.location = '@Url.Action("PendingMyApproval", "DailyReport")';
+
+        })
+            $("#BtnApproveBySupervisor").click(function () {
+
+                var request = {
+                    ID: $("#ReqID").val(),
+                }
+
+                var x = JSON.stringify(request);
+
+                $.ajax({
+
+                    url: '@Url.Action("ApproveBySupervisor", "DailyReport")',
+                    data: x,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    success: function (data, status) {
+
+                        alert(data);
+                    }
+
+                });
+                window.location = '@Url.Action("PendingMyApprovalAsAsupervisor", "DailyReport")';
+
+            })
+        $("#BtnRejectByTeamLeader").click(function () {
+
+            var request = {
+                ID: $("#ReqID").val(),
+            }
+
+            var x = JSON.stringify(request);
+
+            $.ajax({
+
+                url: '@Url.Action("RejectByTeamLeader", "DailyReport")',
+                data: x,
+                contentType: 'application/json',
+                type: 'POST',
+                success: function (data, status) {
+
+                    alert(data);
+                }
+
+            });
+            window.location = '@Url.Action("PendingMyApproval", "DailyReport")';
+
+        })
+            $("#BtnRejectBySupervisor").click(function () {
+
+                var request = {
+                    ID: $("#ReqID").val(),
+                }
+
+                var x = JSON.stringify(request);
+
+                $.ajax({
+
+                    url: '@Url.Action("RejectBySupervisor", "DailyReport")',
+                    data: x,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    success: function (data, status) {
+
+                        alert(data);
+                    }
+
+                });
+                window.location = '@Url.Action("PendingMyApprovalAsAsupervisor", "DailyReport")';
+
+            })
+        $("#BtnApproveByManager").click(function () {
+
+            var request = {
+                ID: $("#ReqID").val(),
+            }
+
+            var x = JSON.stringify(request);
+
+            $.ajax({
+
+                url: '@Url.Action("SeenByManager", "DailyReport")',
+                data: x,
+                contentType: 'application/json',
+                type: 'POST',
+                success: function (data, status) {
+
+                    alert(data);
+                }
+
+            });
+                window.location = '@Url.Action("PendingMyApprovalasManager", "DailyReport")';
+            })
+        })
+    </script>
+
+}
+
+<h2>View Report</h2>
+
+@{
+    <link href="~/css/jq/jqu.css" rel="stylesheet" />
+    <script src="~/css/jq/JS.js"></script>
+    <script src="~/css/jq/JSS.js"></script>
+    Html.RenderPartial("_ReportDetails");
+}

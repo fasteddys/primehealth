@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Hr_System.Models.SubDep>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Sub-Departments</h2>
+
+<div class="x_panel">
+    <div class="x_title">
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped responsive-utilities jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+                    <th class="column-title">Sub-Department Name</th>
+                    <th class="column-title">Sub-Department Supervisor </th>
+                    <th class="column-title">Main Department Name </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="even pointer">
+                        <td>@Html.DisplayFor(cat => item.SubDepartmentName)</td>
+                        <td>@Html.DisplayFor(cat => item.DepTeamLeader)</td>
+                        <td>@Html.DisplayFor(cat => item.DepartmentTB.DeptName)</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

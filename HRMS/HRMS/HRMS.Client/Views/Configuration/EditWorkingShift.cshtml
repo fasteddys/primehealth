@@ -1,0 +1,260 @@
+﻿
+@{
+    ViewBag.Title = "EditWorkingShift";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="~/vendor/jquery-ui/jquery-ui.theme.css" />
+<link rel="stylesheet" href="~/vendor/select2/css/select2.css" />
+<link rel="stylesheet" href="~/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/basic.css" />
+<link rel="stylesheet" href="~/vendor/dropzone/dropzone.css" />
+<link rel="stylesheet" href="~/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" href="~/vendor/summernote/summernote-bs4.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/lib/codemirror.css" />
+<link rel="stylesheet" href="~/vendor/codemirror/theme/monokai.css" />
+<script src="~/vendor/modernizr/modernizr.js"></script>
+<section role="main" class="content-body">
+    <header class="page-header">
+
+        <h2>Configuration</h2>
+
+        <div class="right-wrapper text-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="@Url.Action("index","Configuration")">
+                        <i class="fas fa-cogs"></i>
+                    </a>
+                </li>
+                <li><span>Configuration</span></li>
+                <li><span>Edit Working Shift</span></li>
+
+            </ol>
+
+            <div class="sidebar-right-toggle"><i class=""></i></div>
+            @*<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>*@
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <section>
+        <div class="row">
+            <div class="col">
+                <section class="card">
+                    <header class="card-header">
+                        <div class="card-actions">
+                            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                        </div>
+                        <h2 class="card-title">Edit Working Shift</h2>
+                    </header>
+                    <div class="card-body" id="RequestData">
+                        <div class="form-group row ">
+                            <a class="nav-link" href="#" onclick="EditShift()">
+                                <i class="fas fa-save fa-2x" aria-hidden="true" id="AddUsersToPosition"></i>
+                                <span>Save</span>
+                            </a>
+                            <a class="nav-link" href="#" onclick="GoBack()">
+                                <i class="fas fa-undo-alt fa-2x" aria-hidden="true"></i>
+                                <span>Cancel</span>
+                            </a>
+                        </div>
+                        <br><br>
+
+
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">Shift Name</label>
+
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="Name">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">Start</label>
+                            <div class="col-lg-4">
+
+                                <input type="text" data-plugin-timepicker="" id="Start" class="form-control">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">End</label>
+                            <div class="col-lg-4">
+
+                                <input type="text" data-plugin-timepicker="" id="End" class="form-control">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">Grace In</label>
+                            <div class="col-lg-4">
+
+                                <input type="text" id="GraceIn" class="form-control To">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">Grace Out</label>
+                            <div class="col-lg-4">
+
+                                <input type="text" id="GraceOut" class="form-control To">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label">Department</label>
+                            <div class="col-lg-4">
+                                <select data-plugin-selectTwo class="form-control populate" id="Department">
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="AddPositionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Position</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="usr">Position Name:</label>
+                        <input type="text" class="form-control" id="AddPosition">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="asasas">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="SavePositionBTN()">Save Position</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- end: page -->
+</section>
+<script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="~/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="~/vendor/select2/js/select2.js"></script>
+<script src="~/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="~/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+<script src="~/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script src="~/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
+<script src="~/vendor/fuelux/js/spinner.js"></script>
+<script src="~/vendor/dropzone/dropzone.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="~/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="~/vendor/codemirror/lib/codemirror.js"></script>
+<script src="~/vendor/codemirror/addon/selection/active-line.js"></script>
+<script src="~/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="~/vendor/codemirror/mode/javascript/javascript.js"></script>
+<script src="~/vendor/codemirror/mode/xml/xml.js"></script>
+<script src="~/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="~/vendor/codemirror/mode/css/css.js"></script>
+<script src="~/vendor/summernote/summernote-bs4.js"></script>
+<script src="~/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="~/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="~/CustomJavaScript/Configurations/EditWorkingShift.js"></script>
+<script src="~/CustomJavaScript/HelpersJS/Helpers.js"></script>
+<script src="~/js/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="~/js/custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="~/js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="~/js/examples/examples.advanced.form.js"></script>
+<script src="~/js/examples/examples.modals.js"></script>
+<script>
+    $(".clickable-row").click(function () {
+        if ($(this).hasClass("AciveRow"))
+            $(this).removeClass('AciveRow');
+        else
+            $(this).addClass('AciveRow').siblings().removeClass('AciveRow');
+    })
+
+    $("#StartDate").datepicker({
+
+        dateFormat: 'dd/mm/yy',
+        //minDate: 0,
+        //beforeShowDay: function (date) {
+        //    var show = true;
+        //    if (date.getDay() == 5 || date.getDay() == 6) show = false
+        //    return [show];
+        //},
+       // onSelect: function (date) {
+            //$("#EndDate").datepicker("option", "minDate",
+            //    $("#StartDate").datepicker("getDate"));
+       // }
+    });
+    $("#EndDate").datepicker({
+        dateFormat: 'dd/mm/yy',
+       // minDate: 0,
+        //beforeShowDay: function (date) {
+        //    var show = true;
+        //    if (date.getDay() == 5 || date.getDay() == 6) show = false
+        //    return [show];
+        //}
+    });
+
+
+
+
+</script>
+<style>
+    /*.ActionsIcon {
+        margin-left: 10px
+    }*/
+
+    .AciveRow {
+        background-color: #0088cc;
+        color: white;
+    }
+
+    .ruleFieldset {
+        padding: 0 15px 10px !important;
+        margin-bottom: 45px !important;
+    }
+
+    .Borderstyle {
+        border: 1px solid #ccc !important;
+        padding: 3px 5px 15px 15px !important;
+    }
+
+    fieldset legend {
+        display: block !important;
+        font-weight: normal !important;
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0px;
+        font-family: 'Noto Sans', verdana, arial, sans-serif;
+        width: auto !important;
+    }
+
+    .Floatleft {
+        float: left !important
+    }
+</style>
+

@@ -1,0 +1,74 @@
+﻿body
+{
+    overflow-y:auto;
+}
+.FooterStyle {
+    margin-left:140% !important;
+    bottom: 0;
+    z-index: 1030;
+    width:100%
+}
+
+.btnloaderbg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.9);
+     z-index: 999999;
+    position: fixed;
+}
+
+.Rotator {
+    margin:0 auto;
+    text-align:center;
+    /*display:none;*/
+    margin-top: 280px;
+    /*border:1px solid red;*/
+}
+
+.overlay {
+    opacity: 0.8;
+    background: #000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 19999;
+}
+
+.Alertstyle {
+    opacity: 1.0 !important;
+    color: #fff;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 20000;
+    padding: 30px
+}
+
+.Alertstyle-Danger {
+    background-color: #bA3030;
+}
+
+.Alertstyle-Sucess {
+    background-color: #279c83;
+}
+
+.Alertstyle-Warning {
+    background-color: #FBBC05;
+}
+
+.Alertstyle-info {
+    background-color: #0088CC;
+}
+
+.AlertButtonStyle {
+    margin-top: 95px !important;
+    color: #fff !important;
+    background-color: inherit !important;
+    border-bottom-width: thin !important;
+    border-color: #fff !important;
+    border-radius: unset !important
+}
