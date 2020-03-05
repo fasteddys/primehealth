@@ -1,0 +1,300 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="WebApplication1.MasterPages.Main"  %>
+
+<!DOCTYPE html>
+<html>
+
+<head runat="server">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Claims Manager</title>
+    <link rel="shortcut icon" href="../assets/img/fav_ico1.ico" />
+    <link href="../assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../pages/css/pages-icons.css" rel="stylesheet" type="text/css">
+    <link class="main-stylesheet" href="../pages/css/pages.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 9]>
+        <link href="pages/css/ie9.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <script type="text/javascript">
+        window.onload = function () {
+            // fix for windows 8
+            if (navigator.appVersion.indexOf("Windows NT 6.2") != -1)
+                document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="../pages/css/windows.chrome.fix.css" />'
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="HeaderContent" runat="server" />
+</head>
+<body class="fixed-header sidebar-visible menu-pin">
+
+<nav class="page-sidebar" data-pages="sidebar">
+        <div class="sidebar-header">
+            <img src="../assets/img/logo_white.png" alt="logo" class="brand" data-src="../assets/img/logo_white.png" data-src-retina="../assets/img/logo_white_2x.png" width="78" height="22">
+            <div class="sidebar-header-controls">
+                <button type="button" class="btn btn-link visible-lg-inline" data-toggle-pin="sidebar">
+                    <i class="fa fs-12"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="sidebar-menu">
+
+            <ul class="menu-items">
+                                <!-- ////////////////////////////////////////////////////////// -->
+                <!-- Search form -->
+                
+                            <!-- ////////////////////////////////////////////////////////// -->
+                <li class="m-t-30 ">
+                    <form  method="POST" action="SearchForm.aspx"  class="navbar-form " >
+                    <div class="form-group">
+                        <input type="text" id="txt_search" name="txt_search" placeholder="Search" class="form-control" ; style="background-color:#272b36 ; color:whitesmoke ; border:hidden" >
+                        <button type="submit"  class="btn search-button" style="background:transparent ; color:whitesmoke; border:hidden"  ><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+                    <li runat="server" id="Li1">
+                    <a href="AllRequests.aspx" class="detailed">
+                        <span class="title">Dashboard</span>
+                    </a>
+                    <span runat="server" id="HomeLi" class="icon-thumbnail"><i class="pg-home"></i></span>
+                </li>
+                <li>
+                <%--//////////////////////////////////////////////////////////////////////////////////////////////////--%>
+                    <li runat="server" id="AddRequestArchLi">
+                    <a href="ArchivingPanel.aspx"><span class="title">Arch Request</span></a>
+                    <span runat="server" id="AddReqArchLi" class="icon-thumbnail "><i class="fa fa-plus-circle"></i></span>
+                    </li>
+
+                <li runat="server" id="NewRequestsArchLi">
+                    <a href="NewArchTick.aspx"><span class="title">New Arch</span></a>
+                    <span runat="server" id="NewArchReqLi" class="icon-thumbnail "><span class="label label-danger absolute" runat="server" id="spn_NewArchTick">2</span></span>
+                </li>
+
+                  <li class="" runat="server" id="ReviewRequestsArchLi">
+                    <a href="ReviewArchTick.aspx"><span class="title">Review Tick</span></a>
+                    <span runat="server" id="ReviewArchReqLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_ReviewArchTick">3</span></span>
+                </li>
+
+                <li class="" runat="server" id="PendingRequestsArchLi">
+                    <a href="PendingArchTick.aspx"><span class="title">Pending Archiving</span></a>
+                    <span runat="server" id="PendingArchReqLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_PendingArchTick">4</span></span>
+                </li>
+
+                <li class="" runat="server" id="ClosedRequestsArchLi">
+                    <a href="ClosedArchTick.aspx"><span class="title">Closed Archiving</span></a>
+                    <span runat="server" id="ClosedArchReqLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_ClosedArchTick">5</span></span>
+                </li>
+
+                <%--//////////////////////////////////////////////////////////////////////////////////////////////////--%>
+
+                    <li runat="server" id="AddRequestLi">
+                    <a href="NewRequest.aspx"><span class="title">Open Request</span></a>
+                    <span runat="server" id="AddReqLi" class="icon-thumbnail "><i class="fa fa-plus-circle"></i></span>
+                </li>
+
+                
+
+                <li runat="server" id="NewRequestsLi">
+                    <a href="AllNewRequests.aspx"><span class="title">New</span></a>
+                    <span runat="server" id="NewReqLi" class="icon-thumbnail "><span class="label label-danger absolute" runat="server" id="spn_NewTick">3</span></span>
+                </li>
+
+                
+                <li class="" runat="server" id="SearchingLi">
+                    <a href="Archiving.aspx"><span class="title">Searching</span></a>
+                    <span runat="server" id="ArchivingSPN" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_SearchingTick">3</span></span>
+                </li>
+                  <li class="" runat="server" id="missingLi">
+                    <a href="P_Missing.aspx"><span class="title">P_Missing</span></a>
+                    <span runat="server" id="P_MLI" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_PMissingTick">3</span></span>
+                </li>
+
+                
+
+                <li class="" runat="server" id="SearchLi">
+                    <a href="SearchForm.aspx"><span class="title">Search</span></a>
+                    <span runat="server" id="S_LI" class="icon-thumbnail"><i class="fa fa-warning"></i></span>
+                </li>
+
+                <li class="" runat="server" id="PQualityLi">
+                    <a href="PQualityControl.aspx"><span class="title">P/Q_Control</span></a>
+                    <span runat="server" id="PQCLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_PQControlTick">3</span></span>
+                </li>
+
+                <li class="" runat="server" id="QualityLi">
+                    <a href="QualityControl.aspx"><span class="title">Q_Control</span></a>
+                    <span runat="server" id="QCLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_QControlTick">3</span></span>
+                </li>
+                <li class="" runat="server" id="TBALi">
+                    <a href="PendingConfirmation.aspx"><span class="title">TPA Confirm</span></a>
+                    <span runat="server" id="PendingLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_TBAConfirmTick">3</span></span>
+                </li>
+
+                <li class="" runat="server" id="AcceptLi">
+                    <a href="Accept.aspx"><span class="title">Accept</span></a>
+                    <span runat="server" id="AccLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_AcceptTick">3</span></span>
+                </li>
+
+                <li runat="server" id="Reports" class="">
+                    <a href="javascript:;"><span class="title">Reports</span>
+                        <span id="spanarrows" runat="server" class="arrow"></span></a>
+                    <span id="MainReportLi" runat="server" class="icon-thumbnail"><i class="fa fa-users"></i></span>
+                    <ul class="sub-menu">
+                        <li runat="server" id="DataEntry" class="">
+                            <a href="Reports.aspx">Data Entry</a>
+                            <span runat="server" id="DataEntryLi" class="icon-thumbnail"><i class="fa fa-user"></i></span>
+                        </li>
+                        <li runat="server" id="QualityReport" class="">
+                            <a href="ClientsReports.aspx">Client Reports</a>
+                            <span runat="server" id="QreportLi" class="icon-thumbnail"><i class="fa fa-sliders"></i></span>
+                        </li>
+                        <li runat="server" id="TBADailyReport" class="">
+                            <a href="TPAExportExcelReport.aspx">TPA Daily Report</a>
+                            <span runat="server" id="TBAReportLi" class="icon-thumbnail"><i class="fa fa-sliders"></i></span>
+                        </li>
+                    </ul>
+                </li>
+
+                
+
+                <li class="" runat="server" id="ClosedRequestsLi">
+                    <a href="Closed.aspx"><span class="title">Closed</span></a>
+                    <span runat="server" id="ClosedLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_ClosedlTick">3</span></span>
+                </li>
+
+                <li class="" runat="server" id="QualityClosedRequestsLi">
+                    <a href="QualityClosed.aspx"><span class="title">QC Closed</span></a>
+                    <span runat="server" id="QualityClosedLi" class="icon-thumbnail"><span class="label label-danger absolute" runat="server" id="spn_QualityClosedlTick">3</span></span>
+                </li>
+
+                <li runat="server" id="AddBatchLi" class="">
+                    <a href="AddBatch.aspx">
+                        <span class="title">Add Batch</span>
+                    </a>
+                    <span runat="server" id="AddBaLi" class="icon-thumbnail"><i class="pg-grid"></i></span>
+                </li>
+                <li runat="server" id="AddClaimLi" class="">
+                    <a href="AddClaim.aspx">
+                        <span class="title">Monthly Rep</span>
+                    </a>
+                    <span runat="server" id="ClaimLi" class="icon-thumbnail"><i class="pg-comment"></i></span>
+                </li>
+                <li runat="server" id="BatchMgrLi" class="">
+                    <a href="BatchManager.aspx"><span class="title">Batch Admin</span></a>
+                    <span id="BatchsubmgrLi" runat="server" class="icon-thumbnail"><i class="pg-charts"></i></span>
+                </li>
+                <li runat="server" id="UsersAdminLi" class="">
+                    <a href="javascript:;"><span class="title">Users Admin</span>
+                        <span id="spanarrow" runat="server" class="arrow"></span></a>
+                    <span id="MainAdminLi" runat="server" class="icon-thumbnail"><i class="fa fa-users"></i></span>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="AddAccount.aspx">Add User</a>
+                            <span runat="server" id="AdduserLi" class="icon-thumbnail"><i class="fa fa-user"></i></span>
+                        </li>
+                        <li>
+                            <a href="ManageAccounts.aspx">Manager Users</a>
+                            <span runat="server" id="MngUsersLi" class="icon-thumbnail"><i class="fa fa-sliders"></i></span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="MyAccount.aspx">My Account</a>
+                    <span runat="server" id="MyAccountLi" class="icon-thumbnail"><i class="fa fa-user"></i></span>
+                </li>
+            </ul>
+            <div class="clearfix"><div>/
+        </div>
+    </nav>
+    <div class="page-container">
+
+        <div class="header ">
+
+            <div class=" pull-right">
+
+                <div class="visible-lg visible-md m-t-10">
+                    <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
+                        <span class="semi-bold" runat="server" id="UserNameLbl">7aramy</span>
+                        <span> | </span>
+                        <a href="javascript:;" runat="server" id="LogOUt" onserverclick="LogOUt_ServerClick" causesvalidation="False" title="Sign Out"><i class="fa fa-power-off text-red-1"></i></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="pull-left full-height visible-sm visible-xs">
+
+                <div class="sm-action-bar">
+                    <a href="#" class="btn-link toggle-sidebar" data-toggle="sidebar">
+                        <span class="icon-set menu-hambuger"></span>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="pull-right full-height visible-sm visible-xs">
+
+                <div class="sm-action-bar">
+                    <a href="#" class="btn-link" data-toggle="quickview" data-toggle-element="#quickview">
+                        <span class="icon-set menu-hambuger-plus"></span>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class=" pull-left sm-table">
+                <div class="header-inner">
+                    <div class="brand inline">
+                        <img src="../assets/img/logo.png" alt="logo" data-src="../assets/img/logo.png" data-src-retina="../assets/img/logo_2x.png" width="78" height="22">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <form id="BodyForm" runat="server">
+            <div class="content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            </form>
+
+
+            <div class="container-fluid container-fixed-lg footer">
+                <div class="copyright sm-text-center">
+                    <p class="small no-margin pull-left sm-pull-reset">
+                        <span class="hint-text">Copyright © <%: DateTime.Now.Year %> </span>
+                        <span class="font-montserrat">PrimeHealth</span>.
+                        <span class="hint-text">All rights reserved. </span>
+                        <span class="sm-block"><a href="#" class="m-l-10 m-r-10">Developed By</a> | <a href="#" class="m-l-10">Moustafa Mahmoud</a></span>
+                    </p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="<%: ResolveUrl("../assets/plugins/pace/pace.min.js") %>" type="text/javascript"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/jquery/jquery-1.8.3.min.js") %>" type="text/javascript"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/modernizr.custom.js") %>" type="text/javascript"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/jquery-ui/jquery-ui.min.js") %>" type="text/javascript"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/boostrapv3/js/bootstrap.min.js") %>" type="text/javascript"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/jquery/jquery-easy.js") %>" type="text/javascript"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/jquery-unveil/jquery.unveil.min.js") %>" type="text/javascript"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/jquery-bez/jquery.bez.min.js") %>"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/jquery-ios-list/jquery.ioslist.min.js") %>" type="text/javascript"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/jquery-actual/jquery.actual.min.js") %>"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js") %>"></script>
+    <script type="text/javascript" src="<%: ResolveUrl("../assets/plugins/bootstrap-select2/select2.min.js") %>"></script>
+    <script type="text/javascript" src="<%: ResolveUrl("../assets/plugins/classie/classie.js") %>"></script>
+    <script src="<%: ResolveUrl("../assets/plugins/switchery/js/switchery.min.js") %>" type="text/javascript"></script>
+
+
+    <script src="<%: ResolveUrl("../pages/js/pages.min.js") %>"></script>
+
+
+    <script src="<%: ResolveUrl("../assets/js/scripts.js") %>" type="text/javascript"></script>
+    <asp:ContentPlaceHolder runat="server" ID="ScriptContent" />
+
+</body>
+
+</html>

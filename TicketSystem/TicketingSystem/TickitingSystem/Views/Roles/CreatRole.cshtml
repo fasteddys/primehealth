@@ -1,0 +1,103 @@
+﻿@model TickitingSystem.Models.RoleManagment
+<form >
+   
+    <div class="form-check">
+ Role Name <input id="rolename" type="text" /><br />
+ Description       <textarea id="roleDescription" ></textarea>
+    </div>
+
+    <div class="form-check">
+
+@{
+    int count = 0;
+
+    <div id="allcheck">
+
+        @foreach (var item in Model.permission)
+        {
+
+        @*<input type="checkbox" />  <b>   @item.ID</b><b>   @item.Name  </b><br />*@
+            <div>
+                <input id="check_@count" onclick="check('check_@count')" name="Remember" type="checkbox" checked="true" /><b id="lbl_@count">@item.ID</b><b>   @item.Name  </b><br />
+            </div>
+            count++;
+
+
+        }
+    </div>
+
+}
+
+    </div>
+    <button type="submit" id="create" class="btn btn-primary">Submit</button>
+</form>'
+<script>
+
+
+
+    function check(value)
+    {
+        debugger;
+        if(   document.getElementById(value) .getAttribute("checked")=="true")
+        { 
+
+          var  check= document.getElementById(value)
+          check .setAttribute("checked", "false"); 
+        }
+        {
+            var  check= document.getElementById(value)
+            check .setAttribute("checked", "false");         }
+    
+    
+    }
+
+
+
+
+
+
+
+
+    $("#create").click(function () {
+        debugger;
+        var items= [];
+
+        var count =document.getElementById("allcheck").children.length;
+        for(var i=0 ;i<count ;i++)
+        {   
+            if(   document.getElementById("check_"+i) .getAttribute("checked")=="true")
+               {
+                var item = document.getElementById("lbl_" + i);
+                var it = {
+                    ID: item.innerHTML,
+                    Name: "Doe"
+                }
+                items.push(it);
+              }
+
+        
+        }
+      
+     
+            
+
+        var data_1 = items;
+
+        var data_2 = {
+
+            Name: document.getElementById("rolename").value,
+            Description: document.getElementById("roleDescription").value
+        };
+        //var x = JSON.stringify(data);
+        $.ajax({
+            url: "/Roles/CreatRole",
+            type: "Post",
+            contentType: 'application/json',
+            data: JSON.stringify({ permission: data_1, role: data_2 }),
+
+            success: function (result) {}
+        });
+
+
+    })
+</script>

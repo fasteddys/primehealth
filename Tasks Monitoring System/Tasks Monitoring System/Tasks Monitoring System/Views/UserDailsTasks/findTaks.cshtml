@@ -1,0 +1,100 @@
+﻿@model IEnumerable<TasksMonitoringSystem.UserDailsTask>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="parent">
+    <div class="card-body">
+        <h2 class=" headerPage text-center">Daily Searching Tasks</h2>
+        <div class="tab-content">
+            <div id="RejectionReasonRequests" class="tab-pane active">
+                <div class="form-group row">
+                    <!--First record from to absenceType-->
+                    <div class="col-lg-4">
+                        <label class="col-lg-10 control-label ">From<span class="text-danger">*</span></label>
+                        <input id="DailyTaskFrom" type="text" data-plugin-datepicker="" class="form-control">
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="col-lg-10 control-label ">To<span class="text-danger">*</span></label>
+                        <input id="DailyTaskTo" type="text" data-plugin-datepicker="" class="form-control">
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="col-lg-10 control-label "></label>
+                        @*@Html.ActionLink("Search", "findTaks", "UserDailsTasks", new {  start = "16/7/2019", end = "16/7/2019" }, new { id = "searchTasks", @class = "btn btn-primary form-control" })
+                        <a id="searchTasks" class="btn btn-primary form-control" href="/UserDailsTasks/findTaks?start="+$(#DailyTaskFrom).value+>Search</a>*@
+                        <button id="searchTasks" class="btn btn-primary hvr-grow‍‍‍">Search</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+    </div>
+     <!--Start Table-->
+    @*table-striped table-bordered class="thead-dark"*@
+    <table class="table   table-responsive-md table-hover mb-0 " id="DailyTaskTable">
+        <thead>
+            <tr>
+                <th>
+                    ID <!--1-->
+                </th>
+                <th>
+                    Company <!--2-->
+                </th>
+                <th>
+                    Task Name  <!--3-->
+                </th>
+                <th>
+                    Priority  <!--4-->
+                </th>
+                <th>
+                    Status   <!--5-->
+                </th>
+                <th>
+                    User Name  <!--6-->
+                </th>
+                <th>
+                    Task Data <!--7-->
+                </th>
+                <th>
+                    Assign Time  <!--8-->
+                </th>
+
+                <th>
+                    CompletedOn <!--9-->
+                </th>
+                <th>
+                    Comment  <!--10-->
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@*<link href="~/ElaAdmin-master/css/lib/datepicker/bootstrap-datepicker3.min.css" rel="stylesheet" />
+<script src="~/ElaAdmin-master/js/lib/datepicker/bootstrap-datepicker.min.js"></script>*@
+<script src="~/ClientScripts/DailsTasks.js"></script>
+
+<style>
+    #searchTasks {
+        margin-top:10px;
+        padding:8px ;
+        display:block;
+        width:200px;
+    }
+    .parent
+    {
+        /*border:1px solid red;*/
+    }
+</style>
+<script src="../js/lib/datatables/datatables.min.js"></script>
+<script src="../js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="../js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="../js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="../js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="../js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="../js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="../js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<script src="../js/lib/datatables/datatables-init.js"></script>

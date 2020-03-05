@@ -1,0 +1,97 @@
+﻿@model IEnumerable< DAL.DataBase.Ticket>
+@{
+    ViewBag.Title = "View Tickets";
+
+}
+
+<!-- Bootstrap Core CSS -->
+<link href="~/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="~/css/helper.css" rel="stylesheet">
+<link href="~/css/style.css" rel="stylesheet">
+@*<script src="~/js/lib/jquery/jquery.min.js"></script>*@
+
+<!-- Start Page Content -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Tickets</h4>
+                <div class="table-responsive m-t-40">
+                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Supject</th>
+                                <th>Creation Date </th>
+                                <th>User Name</th>
+                                <th>Status</th>
+                                <th>Assign Person</th>
+                                <th>Ticket ID</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                List<DAL.DataBase.User> h = ViewBag.users;
+                                var user = (from u in h where u.User_ID == item.User_ID select u.User_Name).SingleOrDefault();
+                                var assp = (from u in h where u.User_ID == item.Assign_Person_ID select u.User_Name).SingleOrDefault();
+                                List<DAL.DataBase.Ticket_Types> t = ViewBag.type;
+                                var type = (from y in t where y.Ticket_Type_ID == item.Ticket_type_ID select y.Ticket_type_Name).SingleOrDefault();
+                                List<DAL.DataBase.Status> s = ViewBag.status;
+                                var status = (from z in s where z.Status_ID == item.Status_ID select z.Status_Name).SingleOrDefault();
+
+                            <tr>
+                                <td>@type</td>
+                                <td>@item.Subject</td>
+                                <td>@item.StartDate</td>
+                                <td>@user</td>
+                                <td>@status</td>
+                                <td>@assp</td>
+                                <td>@item.Ticket_ID</td>
+                                <td><a href="/Ticket/ManageTicket?id=@item.ID">Details</a></td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<!-- End PAge Content -->
+<!-- End Wrapper -->
+<!-- All Jquery -->
+
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+<script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/js/jquery.slimscroll.js"></script>
+<!--Menu sidebar -->
+<script src="~/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!--Custom JavaScript -->
+<script src="~/js/custom.min.js"></script>
+
+
+<script src="~/js/lib/datatables/datatables.min.js"></script>
+<script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="~/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="~/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="~/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<script src="~/js/lib/datatables/datatables-init.js"></script>
+
+
+
+

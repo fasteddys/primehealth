@@ -1,0 +1,466 @@
+﻿@model TickitingSystem.Models.ManageTicket
+
+@{
+    List<DAL.DataBase.User> h = ViewBag.users;
+    var user = (from u in h where u.User_ID == Model.ticket.User_ID select u.User_Name).SingleOrDefault();
+    var vieweruserdep = (from dl in h where dl.User_ID == int.Parse(@Request.Cookies["UserIDCookie"].Value) select dl.Dept_ID).SingleOrDefault();
+    var userdep = (from dl in h where dl.User_ID == Model.ticket.User_ID select dl.Dept_ID).SingleOrDefault();
+    var assp = (from u in h where u.User_ID == Model.ticket.Assign_Person_ID select u.User_Name).SingleOrDefault();
+    List<DAL.DataBase.Ticket_Types> t = ViewBag.type;
+    var type = (from y in t where y.Ticket_Type_ID == Model.ticket.Ticket_type_ID select y.Ticket_type_Name).SingleOrDefault();
+    List<DAL.DataBase.Status> s = ViewBag.status;
+    var status = (from z in s where z.Status_ID == Model.ticket.Status_ID select z.Status_Name).SingleOrDefault();
+}<link href="~/css/textareastye.css" rel="stylesheet" />
+
+
+<form class="form-horizontal" role="form">
+    <div class="form-body">
+
+        <h3 class="box-title m-t-15">Subject : @Model.ticket.Subject</h3>
+
+
+        <hr class="m-t-0 m-b-40">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Ticket Type:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static"> @type </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">opened by:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static"> @user </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Creat Date:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static"> @Model.ticket.StartDate </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Close Date:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static"> @Model.ticket.EndDate </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Assign Person: </label>
+                    <div class="col-md-9">
+                        <p class="form-control-static"> @assp </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Status: </label>
+                    <div class="col-md-9">
+                        <p class="form-control-static"> @status </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--/row-->
+        <!--end view-->
+        <div class="row">
+            <div class="panel-group" id="accordion" style="width:100%">
+                @{ int i = 1;}
+                @foreach (var item in Model.ticket_Details)
+                {
+                    List<DAL.DataBase.User> Q = ViewBag.users;
+                    var Quser = (from u in Q where u.User_ID == item.User_ID select u.User_Name).SingleOrDefault();
+                    string path = "collapse" + i;
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="list-style:circle disc upper-roman;">
+                            <div class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#@path">
+
+                                    <h5> @Quser </h5>
+                                    <small>@item.Date</small>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="@path" class="panel-collapse collapse" style="padding-left: 10px;">
+
+                            <div class="panel-body " style="list-style:circle square armenian;">
+                                <div>
+                                    <div class="appandnote">
+                                        @item.Notes
+                                    </div>
+
+                                </div>
+
+
+                                <div>
+                                    @{ var attchment = (from z in Model.attachments
+                                                         where z.Ticket_ID == item.Ticket_ID
+                                                         where z.Ticket_Details_ID == item.TicketDetails_ID
+                                                         select z).ToList();}
+                                    @{ if (attchment.Count == 0)
+                                        {
+                                            <h5>no attachments</h5>
+                                        }
+                                        else
+                                        {
+                                            <h6>Attachments :</h6>
+                                            foreach (var item1 in attchment)
+                                            {
+
+                                                <a href="/Ticket/FileDownload?path=@item1.Path&name=@item1.FileName">@item1.FileName</a> <span>
+                                                    &nbsp;
+                                                    &nbsp;
+                                                </span>
+
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                                            i++;
+                                        }
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                @*<textarea type="text" name="name" rows="8" cols="8000" class="form-control" id="discription"></textarea>*@
+                <textarea class="textarea_editor form-control" required id="discription" rows="15" placeholder="Enter Problem Description ..." style="height:450px ;width:100%"></textarea>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" id="uptext">Upload Attachment</h4>
+                        <input id="File1" type="file" multiple class="test" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<input type="hidden" name="Ticket_ID" value="@Model.ticket.Ticket_ID" id="gettid">
+<div class="form-actions">
+    <button type="submit" class="btn btn-success" id="btn_addticket" style="display:none;" data-toggle="modal" data-target="#exampleModal">
+        <i class="fa fa-reply"></i> Add Reply
+    </button>
+    <button type="submit" class="btn btn-warning" id="assign" style="display:none;"> <i class="fa fa-check"></i> Assign To ME</button>
+    <button type="submit" class="btn btn-info" id="openDQ" style="display:none;"> <i class="fa fa-ticket"></i> Open Ticket DQ</button>
+    <button type="submit" class="btn btn-info" id="openITF" style="display:none;"> <i class="fa fa-ticket"></i> Open TIcket ITF</button>
+    <button type="submit" class="btn btn-dark" id="close" style="display:none;"> <i class="fa fa-lock"></i> Close</button>
+    <button type="submit" class="btn btn-danger" id="reopen" style="display:none;"> <i class="fa fa-unlock"></i> Re Open</button>
+</div>
+<div class="form-group" id="openDQform" style="display:none;">
+    <label class="control-label">Enter DQ Ticket ID</label>
+    <input type="text" id="DQTID" class="form-control" placeholder="Type DQ Ticket ID">
+    <button type="submit" class="btn btn-info" id="ODQ"> <i class="fa fa-ticket"></i> Open Ticket</button>
+</div>
+<div class="form-group" id="openITFform" style="display:none;">
+    <label class="control-label">Enter ITF Ticket ID</label>
+    <input type="text" id="ITFTID" class="form-control" placeholder="Type ITF Ticket ID">
+    <button type="submit" class="btn btn-info" id="OITF"> <i class="fa fa-ticket"></i> Open Ticket</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+
+    <div class="modal-content" id="loader"></div>
+
+
+
+</div>
+<script>
+        $(document).ready(function () {
+
+            if (@vieweruserdep==1) {
+            if ( @Model.ticket.Status_ID == 1) {
+                $("#assign").show();
+
+            }
+             if ( @Model.ticket.Status_ID == 2 || @Model.ticket.Status_ID == 5) {
+
+                if (@Model.ticket.Ticket_type_ID== 1) {
+                    $("#openDQ").show();
+                    $("#btn_addticket").show();
+                    $("#close").show();
+
+                }
+                 if (@Model.ticket.Ticket_type_ID== 2) {
+                    $("#openITF").show();
+                    $("#btn_addticket").show();
+                    $("#close").show();
+
+
+                 }
+
+                }
+                if (@Model.ticket.Status_ID == 5 || @Model.ticket.Status_ID == 3 || @Model.ticket.Status_ID == 4 || @Model.ticket.Status_ID == 7 ) {
+                    $("#btn_addticket").show();
+                    $("#close").show();
+
+                }
+                if (@Model.ticket.Status_ID==6) {
+                    //$("#reopen").show();
+                    $("#File1").hide();
+                    $("#discription").hide();
+                    $("#uptext").hide();
+                    $("#distext").hide();
+
+
+                }
+            }
+            if (@vieweruserdep!=1) {
+                if (@Model.ticket.Status_ID==6) {
+                    $("#reopen").show();
+                    $("#File1").hide();
+                    $("#discription").hide();
+                    $("#uptext").hide();
+                    $("#distext").hide();
+
+                }
+                if (@Model.ticket.Status_ID!=6) {
+                    $("#btn_addticket").show();
+                    $("#close").show();
+
+
+                }
+            }
+    });
+    $("#openDQ").click(function () {
+        $("#openDQform").show();
+    });
+    $("#openITF").click(function () {
+        $("#openITFform").show();
+    });
+
+    $("#btn_addticket").click(function () {
+
+
+      //  document.getElementById("exampleModal").class="modal fade show";
+        document.getElementById("exampleModal").classList.add('show');
+        document.getElementById("exampleModal").style="display: block; padding-right: 17px;background-color:#67757c;opacity:0.5;"
+       // document.getElementById("exampleModal") .setAttribute("aria-labelledby=", "exampleModalLiveLabel");
+      //  #212529
+        //exampleModalLiveLabel
+            //document.getElementById("myDiv").style.display = "block";
+
+        document.getElementById("btn_addticket").disabled = true;
+                var tditails = {
+                    Ticket_ID: @ViewBag.tID,
+                    Notes: $("#discription").val()
+                };
+                var y = JSON.stringify(tditails);
+                $.ajax({
+                    url: "/Ticket/AddTicketDetailsWithIDJson",
+                    type: "Post",
+                    contentType: "application/json;charset=utf-8",
+                    data: y,
+                    complete: function () {
+                        /************/
+                        var formData = new FormData();
+                        var totalFiles = document.getElementById('File1').files.length;
+                        for (var i = 0; i < totalFiles; i++) {
+                            var file = document.getElementsByClassName('test')[0].files[i];
+                            formData.append('File1', file, file.name);
+                        }
+                        $.ajax({
+                            type: "POST", url: '/Ticket/AddAttachJson',
+                            data: formData, dataType: 'json', contentType: false, processData: false,
+                            complete: function (result) {
+
+                                $("#Success_reply").show();
+                                $("html, body").animate({ scrollTop: 0 }, "slow");
+                                document.getElementById("btn_addticket").disabled = false;
+                                 $.ajax({
+                    url: '/Ticket/_ManageTicket?id=' + @Model.ticket.ID
+                }).complete(function (partialView) {
+                    document.getElementById("UpdatedPartial").innerHTML = "";
+                    $('#UpdatedPartial').append(partialView.responseText);
+
+                });
+                                //$("#UpdatedPartial").html(result);
+                            }
+                            //    //success: function(response) { // alert('succes!!'); //},
+                            //    //error: function(error) { // alert("errror"); //}
+                        })
+                    }
+                });
+
+    });
+    //assign ticket
+    $("#assign").click(function () {
+        debugger;
+        var activeUID = '@HttpContext.Current.Request.Cookies["UserIDCookie"].Value';
+        var data = {
+            ID: @Model.ticket.ID,
+            Status_ID:2,
+            Assign_Person_ID: activeUID
+        };
+        var x = JSON.stringify(data);
+        $.ajax({
+            url: "/Ticket/EditTicketStatus",
+            type: "Post",
+            contentType: "application/json;charset=utf-8",
+            data: x,
+            success: function (result) {
+                debugger
+                $("#Success_assign").show();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $.ajax({
+                    url: '/Ticket/_ManageTicket?id=' + @Model.ticket.ID
+                }).complete(function (partialView) {
+                    document.getElementById("UpdatedPartial").innerHTML = "";
+                    $('#UpdatedPartial').append(partialView.responseText);
+
+                });
+
+            }
+        });
+    }); //Close ticket
+    $("#close").click(function () {
+        debugger;
+        var data = {
+            ID: @Model.ticket.ID,
+            Status_ID:6,
+        };
+        var x = JSON.stringify(data);
+        $.ajax({
+            url: "/Ticket/EditTicketStatus",
+            type: "Post",
+            contentType: "application/json;charset=utf-8",
+            data: x,
+            success: function (result) {
+                $("#Success_close").show();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                //$("#UpdatedPartial").html(result);
+                 $.ajax({
+                    url: '/Ticket/_ManageTicket?id=' + @Model.ticket.ID
+                }).complete(function (partialView) {
+                    document.getElementById("UpdatedPartial").innerHTML = "";
+                    $('#UpdatedPartial').append(partialView.responseText);
+
+                });
+            }
+        });
+    });
+     //reopen ticket
+    $("#reopen").click(function () {
+        debugger;
+        var data = {
+            ID: @Model.ticket.ID,
+            Status_ID: 7,
+        };
+        var x = JSON.stringify(data);
+        $.ajax({
+            url: "/Ticket/EditTicketStatus",
+            type: "Post",
+            contentType: "application/json;charset=utf-8",
+            data: x,
+            success: function (result) {
+                $("#Success_reopen").show();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                //$("#UpdatedPartial").html(result);
+                 $.ajax({
+                    url: '/Ticket/_ManageTicket?id=' + @Model.ticket.ID
+                }).complete(function (partialView) {
+                    document.getElementById("UpdatedPartial").innerHTML = "";
+                    $('#UpdatedPartial').append(partialView.responseText);
+
+                });
+            }
+        });
+    });
+     //open DQ ticket
+    $("#ODQ").click(function () {
+        debugger;
+        var data = {
+            ID: @Model.ticket.ID,
+            Ticket_ID: $("#DQTID").val(),
+            Status_ID:3,
+        };
+        var x = JSON.stringify(data);
+        $.ajax({
+            url: "/Ticket/EditTicketStatus",
+            type: "Post",
+            contentType: "application/json;charset=utf-8",
+            data: x,
+            success: function (result) {
+                $("#Success_openDQ").show();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                 $.ajax({
+                    url: '/Ticket/_ManageTicket?id=' + @Model.ticket.ID
+                }).complete(function (partialView) {
+                    document.getElementById("UpdatedPartial").innerHTML = "";
+                    $('#UpdatedPartial').append(partialView.responseText);
+
+                });
+                @*$("#UpdatedPartial").html( @Html.Partial("_ManageTicket", result));*@
+            }
+        });
+    });
+     //OPEN ITF ticket
+    $("#OITF").click(function () {
+        debugger;
+        var data = {
+            ID: @Model.ticket.ID,
+            Ticket_ID: $("#ITFTID").val(),
+            Status_ID:4,
+        };
+        var x = JSON.stringify(data);
+        $.ajax({
+            url: "/Ticket/EditTicketStatus",
+            type: "Post",
+            contentType: "application/json;charset=utf-8",
+            data: x,
+            success: function (result) {
+                $("#Success_openITF").show();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                 $.ajax({
+                    url: '/Ticket/_ManageTicket?id=' + @Model.ticket.ID
+                }).complete(function (partialView) {
+                    document.getElementById("UpdatedPartial").innerHTML = "";
+                    $('#UpdatedPartial').append(partialView.responseText);
+
+                });
+                //$("#UpdatedPartial").html(result);
+            }
+        });
+    });
+
+</script>
+<script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+
+<script src="~/js/custom.min.js"></script>
+
+<script src="~/Scripts/ShowNotes.js"></script>
+<script src="~/js/lib/html5-editor/wysihtml5-0.3.0.js"></script>
+    <script src="~/js/lib/html5-editor/bootstrap-wysihtml5.js"></script>
+    <script src="~/js/lib/html5-editor/wysihtml5-init.js"></script>

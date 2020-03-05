@@ -1,0 +1,12 @@
+{
+  "ios": {
+    "debug": {
+      "developmentTeam": "PrimeHealthforMedicalServices"
+    },
+
+    "release": {
+      "developmentTeam": "PrimeHealthforMedicalServices",
+      "codeSignIdentity": "PrimeHealthforMedicalServices"
+    }
+  }
+}

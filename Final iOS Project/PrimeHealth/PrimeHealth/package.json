@@ -1,0 +1,33 @@
+{
+    "name": "PrimeHealth",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "cordova-android": "5.2.1",
+        "cordova-ios": "^4.5.2",
+        "cordova-plugin-camera": "https://github.com/apache/cordova-plugin-camera",
+        "cordova-plugin-compat": "https://github.com/apache/cordova-plugin-compat",
+        "cordova-plugin-contacts": "https://github.com/apache/cordova-plugin-contacts",
+        "cordova-plugin-dialogs": "https://github.com/apache/cordova-plugin-dialogs",
+        "cordova-plugin-file": "file:../../../Downloads/Compressed/cordova-plugin-file-4.0.0/cordova-plugin-file-4.0.0",
+        "cordova-plugin-geolocation": "https://github.com/apache/cordova-plugin-geolocation",
+        "cordova-plugin-inappbrowser": "https://github.com/apache/cordova-plugin-inappbrowser",
+        "cordova-windows": "4.4.2"
+    },
+    "cordova": {
+        "platforms": [
+            "android",
+            "ios",
+            "windows"
+        ],
+        "plugins": {
+            "cordova-plugin-camera": {},
+            "cordova-plugin-compat": {},
+            "cordova-plugin-contacts": {},
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-inappbrowser": {}
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div>Content goes here.</div>
+    <div class="separator-fields"></div><a class="action-button" id="sendemail">Contact Us</a>
+
+ 
+    <script src="js/framework.js"></script>
+    <script src="cordova.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script>
+ 
+        document.addEventListener('deviceready', function () {
+
+            cordova.plugins.email;
+
+        }, false);
+
+        $("#sendemail").click(function () {
+            cordova.plugins.email.isAvailable(
+
+                function (isAvailable) {
+                    //     alert('Service is not available');
+                    window.plugin.email.open({
+                        to: ['max.mustermann@appplant.de'],
+                        cc: ['erika.mustermann@appplant.de'],
+                        bcc: ['john.doe@appplant.com', 'jane.doe@appplant.com'],
+                        subject: 'Greetings',
+                        body: 'How are you? Nice greetings from Leipzig'
+                    });
+                });
+            //    window.plugin.email.open({
+            //    to: ['max.mustermann@appplant.de'],
+            //    cc: ['erika.mustermann@appplant.de'],
+            //    bcc: ['john.doe@appplant.com', 'jane.doe@appplant.com'],
+            //    subject: 'Greetings',
+            //    body: 'How are you? Nice greetings from Leipzig'
+            //});
+        });
+    </script>
+</body>
+</html>

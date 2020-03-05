@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{41C5725B-B547-4CEF-B425-E78BBA9E92B5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApplication1</RootNamespace>
+    <AssemblyName>WebApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\images\question.png" />
+    <Content Include="assets\font\webhostinghub-glyphs.eot" />
+    <Content Include="assets\font\webhostinghub-glyphs.ttf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\grid.css" />
+    <Content Include="assets\css\ie.css" />
+    <Content Include="assets\css\skin-abyss.css" />
+    <Content Include="assets\css\skin-clean.css" />
+    <Content Include="assets\css\skin-dark.css" />
+    <Content Include="assets\css\skin-lightblue.css" />
+    <Content Include="assets\css\skin-retro.css" />
+    <Content Include="assets\css\styles.css" />
+    <Content Include="assets\css\whhg.css" />
+    <Content Include="assets\images\1455824597_internet_intranet.ico" />
+    <Content Include="assets\images\apple-touch-icon-114x114.png" />
+    <Content Include="assets\images\apple-touch-icon-72x72.png" />
+    <Content Include="assets\images\apple-touch-icon.png" />
+    <Content Include="assets\images\bg.jpg" />
+    <Content Include="assets\images\bg_content_end.png" />
+    <Content Include="assets\images\btn_more.png" />
+    <Content Include="assets\images\checkbox.png" />
+    <Content Include="assets\images\favicon.png" />
+    <Content Include="assets\images\furley_bg.png" />
+    <Content Include="assets\images\sample_signature.png" />
+    <Content Include="assets\images\stats_div.png" />
+    <Content Include="assets\js\main.js" />
+    <Content Include="images\fulls\01.jpg" />
+    <Content Include="images\fulls\02.jpg" />
+    <Content Include="images\fulls\03.jpg" />
+    <Content Include="images\fulls\04.jpg" />
+    <Content Include="images\fulls\05.jpg" />
+    <Content Include="images\fulls\06.jpg" />
+    <Content Include="images\fulls\07.jpg" />
+    <Content Include="images\fulls\08.jpg" />
+    <Content Include="images\thumbs\Separating.jpg" />
+    <Content Include="images\thumbs\AdminPanel.png" />
+    <Content Include="images\thumbs\Archiving.png" />
+    <Content Include="images\thumbs\CallCenterAgent.jpg" />
+    <Content Include="images\thumbs\Card Managment.jpg" />
+    <Content Include="images\thumbs\Complaints.jpg" />
+    <Content Include="images\thumbs\Courier Managment System.jpg" />
+    <Content Include="images\thumbs\google-logo.png" />
+    <Content Include="images\thumbs\HR.JPG" />
+    <Content Include="images\thumbs\IT Request.jpg" />
+    <Content Include="images\thumbs\Medical Network.jpg" />
+    <Content Include="images\thumbs\Oracle.png" />
+    <Content Include="images\thumbs\PATRON-TICKETING.jpg" />
+    <Content Include="images\thumbs\PrimeHealth.jpg" />
+    <Content Include="images\thumbs\sp.jpg" />
+    <Content Include="images\thumbs\TPA.jpg" />
+    <Content Include="images\login-logo-1.png" />
+    <Content Include="PHInternet2.aspx" />
+    <Content Include="PHIntranet.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PHInternet2.aspx.cs">
+      <DependentUpon>PHInternet2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHInternet2.aspx.designer.cs">
+      <DependentUpon>PHInternet2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHIntranet.aspx.cs">
+      <DependentUpon>PHIntranet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHIntranet.aspx.designer.cs">
+      <DependentUpon>PHIntranet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50492</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50492/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

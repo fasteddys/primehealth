@@ -1,0 +1,172 @@
+﻿@model Stock_System2.Models.item_details
+
+@{
+    ViewBag.Title = "Detail_It";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+      rel="stylesheet" type="text/css" />
+<link href="~/Content/Ahmed.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Edit</title>
+</head>
+
+
+    <body>
+        <div class="alert alert-danger alert-dismissable" id="div_Error2" style="display:none; text-align:center">
+
+        </div>
+
+        <div class="alert alert-success alert-dismissable" id="div_Success" style="display:none">
+
+        </div>
+        <table id="tableEdit" class="table table-bordered">
+            <caption>
+                Item Detils
+            </caption>
+            <tr>
+                <td>
+                    Ram
+                </td>
+                <td> 
+                    <input type="text" id="Ram" class="form-control input-lg m-b-10"  name="pas" data-toggle="tooltip" data-placement="bottom" title="Enter Value!">
+            
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    Processor
+                </td>
+                <td>
+                    <input type="text" id="Processor" class="form-control input-lg m-b-10"  name="pas" data-toggle="tooltip" data-placement="bottom" title="Enter Value!">
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Model
+                </td>
+                <td>
+                    <input type="text" id="Model" class="form-control input-lg m-b-10"  name="pas" data-toggle="tooltip" data-placement="bottom" title="Enter Value!">
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    Manufactor
+                </td>
+                <td>
+                    <input type="text" id="Man" class="form-control input-lg m-b-10"  name="pas" data-toggle="tooltip" data-placement="bottom" title="Enter Value!">
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    Status
+                </td>
+                <td>
+                    <input type="text" id="Status" class="form-control input-lg m-b-10" id="ItemWarning" name="pas" data-toggle="tooltip" data-placement="bottom" title="Enter Value!">
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-primary" id="submit2">
+                        <span class="badge"></span>
+                        Add Details Of Item
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default" id="ll" onclick="func2()">
+                        Clear
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+    </body>
+}
+</html>
+<script type="text/javascript">
+
+    $('#submit2').on('click', function () {
+        var regex = /^[0-9]+$/;
+
+               var UserData =
+                   {
+                       Ram: $("#Ram").val(),
+                       Processor: $("#Processor").val(),
+                       Model: $("#Model").val(),
+                       Man: $("#Man").val(),
+                       Status: $("#Status").val()
+                   };
+               var orderx = JSON.stringify(UserData);
+               $.ajax({
+                   url: '@Url.Action("Detail_It","Item")',
+                   type: 'POST',
+                   dataType: "json",
+                   contentType: 'application/json; charset=utf-8',
+                   data: orderx,
+                   success: function (message) {
+                       
+                        if(message == "success2") {
+                           $("#div_Success").show();
+                           //$("#div_Error2").append("a7a");
+                           $("#div_Success").text("Adding Item Details is Done");
+                           $('#div_Error2').hide();
+                           window.location = '@Url.Action("Add_item", "Item")'
+
+                       }
+                       else
+                       {
+                           $("#div_Error2").show();
+                           //$("#div_Error2").append("a7a");
+                           $("#div_Error2").text("Updating Item Data is Faild");
+                           $('#div_Success').hide();
+
+                       }
+
+                   }
+
+               });
+
+
+        });
+    function func2() {
+        $("#Ram").val("");
+        $("#Processor").val("");
+        $("#Model").val("");
+        $("#Man").val("");
+        $("#Status").val("");
+       
+    }
+
+</script>
+

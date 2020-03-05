@@ -1,0 +1,205 @@
+﻿@model Stock_System2.Models.User
+
+@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script src="script.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="~/Content/Ahmed.css" rel="stylesheet" />
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Add User</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div class="alert alert-danger alert-dismissable" id="div_Error" style="display:none">
+
+                </div>
+                <div class="alert alert-success alert-dismissable" id="div_Success" style="display:none">
+                    User Is Added Sucessfully
+                </div>
+                <header class="panel-heading warning" style="background-color:#a71313; color:#eae9e9; text-align:center; font-weight:bold"> Add User Data</header>
+
+                <table class="table table-hover table-inverse table-bordered" align="center" style="text-align:center;">
+                    <tr class="info">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">User Name</label>
+                        </td>
+                        <td>
+                            @*@Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-lg m-b-10", placeholder = "Username" })*@
+                            <input type="text" class="form-control input-lg m-b-10" id="UserName" />
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="warning">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">User Password</label>
+                        </td>
+                        <td>
+                            @*@Html.TextBoxFor(m => m.Password, new { @class = "form-control input-lg m-b-10", placeholder = "Password", @type = "password" })*@
+                            <input type="password" class="form-control input-lg m-b-10" id="Password" />
+                        </td>
+                    </tr>
+
+                    <tr class="info">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">User Type</label>
+                        </td>
+                        <td>
+
+                            <select class="form-control input-lg m-b-10" id="UserType">
+                                <option value="Manager">Manager</option>
+                                <option value="Engineer">Engineer</option>
+                                <option value="TPA">TPA</option>
+                                <option value="Issuance">Issuance</option>
+                                <option value="Archiving">Archiving</option>
+                                <option value="Normal">Normal</option>
+
+                            </select>
+                        </td>
+                    </tr>
+                   
+                    <tr class="warning">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">User Role</label>
+                        </td>
+                        <td>
+
+                            <select class="form-control input-lg m-b-10" id="UserRole">
+                                <option value="Normal">Normal</option>
+                                <option value="TeamLeader">TeamLeader</option>
+                                <option value="Supervisor">Supervisor</option>
+
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="info">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">User Email</label>
+                        </td>
+                        <td>
+                            @*@Html.TextBoxFor(m => m.Password, new { @class = "form-control input-lg m-b-10", placeholder = "Password", @type = "password" })*@
+                            <input type="text" class="form-control input-lg m-b-10" id="Email" />
+                        </td>
+                    </tr>
+                    
+                    <tr class="warning" style="font-weight:bold; width:100%">
+                        <td>
+                            <div class="info" style="font-weight:bold">
+                                <div class="toolbar-btn-action">
+                                    <button type="button" style="width:200px;" class="btn btn-danger active" id="btn_Submit">New User</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info" style="font-weight:bold">
+                                <div class="toolbar-btn-action">
+                                    <button type="button" style="width:200px;" onclick="func()" class="btn btn-danger active" id="Clear">Clear</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#btn_Submit').on('click', function () {
+            
+            var emailID = $("#Email").val();
+            atpos = emailID.indexOf('@@');
+            dotpos = emailID.lastIndexOf(".");
+          
+            if ($("#UserName").val() == "" || $("#Password").val() == "" || $("#UserType").val() == ""|| $("#Email").val==""|| $("#UserRole").val()=="") {
+                $('#div_Error').show();
+                $('#div_Error').text("Please complete Field");
+                $('#div_Success').hide();
+     }
+    else if ($("#Password").val().length < 5) {
+         $('#div_Error').show();
+         $('#div_Error').text("Password is weak");
+         $('#div_Success').hide();
+    }
+    else if (atpos < 1 || (dotpos - atpos < 2)) {
+        $('#div_Error').show();
+        $('#div_Error').text("Email Is Error");
+        $('#div_Success').hide();
+    }
+            else {
+                var UserData =
+                    {
+                        UserName: $("#UserName").val(),
+                        Password: $("#Password").val(),
+                        UserType: $("#UserType").val(),
+                        Email: $("#Email").val(),
+                        UserRole:$("#UserRole").val()
+                    };
+
+                var orderx = JSON.stringify(UserData);
+                $.ajax({
+                    url: '@Url.Action("AddUser","User")',
+                    type: 'POST',
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    data: orderx,
+                    success: function (message) {
+                        if (message == "success") {
+                            $('#div_Success').show();
+                            $("#UserName").val("");
+                            $("#Password").val("");
+                            $("#UserType").val("");
+                            $("#Email").val("");
+                            $('#div_Error').hide();
+                            window.location = '@Url.Action("List_Of_Users", "User")'
+
+                        }
+                        else {
+                            $('#div_Error').show();
+                            $('#div_Success').hide();
+                            @*window.location = '@Url.Action("createRequest2", "Request")'*@
+
+                        }
+                    }
+                });
+
+            }
+           
+
+        });
+       
+
+
+    });
+    function func() {
+        $("#UserName").val("");
+        $("#Password").val("");
+        $("#UserType").val("");
+        $("#Email").val("");
+    }
+</script>

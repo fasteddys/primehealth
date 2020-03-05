@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-primary p-20">
+            <div class="media widget-ten">
+                <div class="media-left meida media-middle">
+                    <span><i class="ti-bag f-s-40"></i></span>
+                </div>
+                <div class="media-body media-text-right">
+                    <h2 id="newpost" class="color-white"></h2>
+                    <p class="m-b-0">New Tickets</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-pink p-20">
+            <div class="media widget-ten">
+                <div class="media-left meida media-middle">
+                    <span><i class="ti-comment f-s-40"></i></span>
+                </div>
+                <div class="media-body media-text-right">
+                    <h2 id="pendingForConfirmation" class="color-white"></h2>
+                    <p class="m-b-0">pending Confirm</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-success p-20">
+            <div class="media widget-ten">
+                <div class="media-left meida media-middle">
+                    <span><i class="ti-vector f-s-40"></i></span>
+                </div>
+                <div class="media-body media-text-right">
+                    <h2 id="PendingforReview" class="color-white"></h2>
+                    <p class="m-b-0"> Pending for Review</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-danger p-20">
+            <div class="media widget-ten">
+                <div class="media-left meida media-middle">
+                    <span><i class="fa fa-lock fa-3x"></i></span>
+                </div>
+                <div class="media-body media-text-right">
+                    <h2 id="closedpost" class="color-white"></h2>
+                    <p class="m-b-0">closed tickets</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-dark p-20">
+            <div class="media widget-ten">
+                <div class="media-left meida media-middle">
+                    <span> <i class="fa fa-wpforms 7x" style="font-size:40px;"></i></span>
+</div>
+                <div class="media-body media-text-right">
+                    <h2 id="PendingforReviewDataquest" class="color-white"></h2>
+                    <p class="m-b-0">Pending Dataquest</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" >
+        <div class="card bg-warning-dark p-20">
+            <div class="media widget-ten">
+                <div class="media-left meida media-middle">
+                    <span> <i class="fa fa-wpforms 5x" style="font-size:40px;"></i></span>
+                </div>
+                <div class="media-body media-text-right" >
+                    <h2 id="PendingforReviewITfusion" class="color-white"></h2>
+                    <p class="m-b-0">Pending ITFusion</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- /# row -->
+
+    <div  class="row ITStatstics">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Assign Persons Activity</h4>
+                </div>
+                <div class="card-body">
+                    <div id="bestemplyee" class="current-progress">
+                        @*<div class="progress-content">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="progress-text">Website</div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="current-progressbar">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-primary w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                    40%
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div id="Main">
+                            @*<a name="poll_bar">Chrome </a> <span name="poll_val">25.6%</span><br />
+            <a name="poll_bar">Firefox</a> <span name="poll_val">23.4% </span><br />
+            <a name="poll_bar">IE     </a> <span name="poll_val">9.8%  </span><br />
+            <a name="poll_bar">Safari </a> <span name="poll_val">3.7%  </span><br />
+            <a name="poll_bar">Opera  </a> <span name="poll_val">1.6%  </span><br />*@
+                        </div> 
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /# column -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Top 5 Users Opened Tickets</h4>
+                </div>
+                <div  class="progress-content">
+                    <div id="ThemostaskEmp">
+
+                        @*<span><i class="fa fa-user fa-3x" style="color:red;"></i></span>*@
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<div    class="row ITStatstics" >
+    <div class="col-md-6">
+        <div id="Main">
+            @*<a name="poll_bar">Chrome </a> <span name="poll_val">25.6%</span><br />
+            <a name="poll_bar">Firefox</a> <span name="poll_val">23.4% </span><br />
+            <a name="poll_bar">IE     </a> <span name="poll_val">9.8%  </span><br />
+            <a name="poll_bar">Safari </a> <span name="poll_val">3.7%  </span><br />
+            <a name="poll_bar">Opera  </a> <span name="poll_val">1.6%  </span><br />*@
+        </div> 
+    </div>
+</div>
+    <script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+<script src="~/Scripts/DashbordJS.js"></script>
+    <script src="~/js/custom.min.js"></script>
+
+    @*<script src="../js/lib/datamap/d3.min.js"></script>
+        <script src="../js/lib/datamap/topojson.js"></script>
+        <script src="../js/lib/datamap/datamaps.world.min.js"></script>
+        <script src="../js/lib/datamap/datamap-init.js"></script>
+
+        <script src="../js/lib/weather/jquery.simpleWeather.min.js"></script>
+        <script src="../js/lib/weather/weather-init.js"></script>
+        <script src="../js/lib/owl-carousel/owl.carousel.min.js"></script>
+        <script src="../js/lib/owl-carousel/owl.carousel-init.js"></script>
+
+
+        <script src="../js/lib/chartist/chartist.min.js"></script>
+        <script src="../js/lib/chartist/chartist-plugin-tooltip.min.js"></script>
+        <script src="../js/lib/chartist/chartist-init.js"></script>*@
+    <!--Custom JavaScript -->
+    

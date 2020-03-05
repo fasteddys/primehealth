@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="~/image/png" sizes="16x16" href="~/images/favicon.png">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
+    <link href="~/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="~/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/css/lib/dropzone/dropzone.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/css/helper.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+
+
+    <script src="~/js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <!-- scripit init-->
+    <!--Custom JavaScript -->
+    <script src="~/js/custom.min.js"></script>
+    @*<script src="~/js/jquery.flot.js"></script>*@
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+        <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="~/Dashboard/index">
+                        <!-- Logo icon -->
+                        <b><img src="~/images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span><img src="~/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                    </a>
+                </div>
+
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                    <!-- User profile and search -->
+                    <ul class="navbar-nav my-lg-0">
+
+                        <!-- Comment -->
+                      
+                            @Html.Action("PushPartial", "Notifications")
+                                  
+                        <!-- End Comment -->
+                        <!-- Messages -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " onclick="getmymessage()" href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <b id="numberofmessages" style="color: red;position: absolute;margin-top: -5px;margin-left: -7px;"></b>
+
+                                  <i class="fa fa-envelope"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">messages</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            
+                                        </div>
+                                    </li>
+                                
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Messages -->
+                        <!-- Profile -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/Blank-person-photo1.png" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="#"><i class="ti-user"></i> @Request.Cookies["UserNameCookie"].Value </a></li>
+                                    @*<li><a href="#"><i class="ti-settings"></i> Change Password</a></li>*@
+                                    <li><a href="/Login/LogOut"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Ticket System</li>
+                        @Html.Action("DashboardTab", "sidebar")
+                        @Html.Action("NewTicketTab", "sidebar")
+
+
+
+
+
+
+                        <li>
+                            <a class="has-arrow  " href="#" aria-expanded="false">
+                                <i class="fa fa-ticket">
+                                </i> <span class="hide-menu" style="position: unset;">IT Fusion</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="/Ticket/ViewAllTickets?id=2">All Tickets</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=2&statusID=6">Closed Tickets</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=2&statusID=2">Pending For Review</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=2&statusID=4">Pending IT Fusion</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=2&statusID=5">pending For Confirmation</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=2&statusID=7">ReOpened Tickets</a></li>
+                                @Html.Action("myassignTicketItFusionTab", "sidebar")
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow  " href="#" aria-expanded="false">
+                                <i class="fa fa-ticket"></i> <span class="hide-menu" style="position: unset;">DATA QUEST</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="/Ticket/ViewAllTickets?id=1">All Tickets</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=1&statusID=6">Closed Tickets</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=1&statusID=2">Pending For Review</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=1&statusID=3">pending DataQuest</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=1&statusID=5">pending For Confirmation</a></li>
+                                <li><a href="/Ticket/ViewTicketsbyStatus?typeID=1&statusID=7">ReOpened Tickets</a></li>
+                                @Html.Action("myassignTicketDataQuestTab", "sidebar")
+
+
+                            </ul>
+                        </li>
+
+                        @*<li class="nav-label">Apps</li>*@
+
+                        <!--USERS-->
+                        @Html.Action("UserTab", "sidebar")
+
+
+
+
+                        <!--Departments-->
+            
+                        @Html.Action("DepartmentTab", "sidebar")
+
+
+                        <!--SubDepartments-->
+                        @Html.Action("SupDepartmentTab", "sidebar")
+
+
+
+
+                        @*<li class="nav-label">Features</li>*@
+
+                        @*<li>
+            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Forms</span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="form-basic.html">Basic Forms</a></li>
+                <li><a href="form-layout.html">Form Layout</a></li>
+                <li><a href="form-validation.html">Form Validation</a></li>
+                <li><a href="form-editor.html">Editor</a></li>
+                <li><a href="form-dropzone.html">Dropzone</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Tables</span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="table-bootstrap.html">Basic Tables</a></li>
+                <li><a href="table-datatable.html">Data Tables</a></li>
+            </ul>
+        </li>
+        <li class="nav-label">Layout</li>
+        <li>
+            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Layout</span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="layout-blank.html">Blank</a></li>
+                <li><a href="layout-boxed.html">Boxed</a></li>
+                <li><a href="layout-fix-header.html">Fix Header</a></li>
+                <li><a href="layout-fix-sidebar.html">Fix Sidebar</a></li>
+            </ul>
+        </li>
+        <li class="nav-label">EXTRA</li>
+        <li>
+            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Pages <span class="label label-rouded label-success pull-right">8</span></span></a>
+            <ul aria-expanded="false" class="collapse">
+
+                <li>
+                    <a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success">6</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="page-login.html">Login</a></li>
+                        <li><a href="page-register.html">Register</a></li>
+                        <li><a href="page-invoice.html">Invoice</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="has-arrow">Error Pages</a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="page-error-400.html">400</a></li>
+                        <li><a href="page-error-403.html">403</a></li>
+                        <li><a href="page-error-404.html">404</a></li>
+                        <li><a href="page-error-500.html">500</a></li>
+                        <li><a href="page-error-503.html">503</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-map-marker"></i><span class="hide-menu">Maps</span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="map-google.html">Google</a></li>
+                <li><a href="map-vector.html">Vector</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-level-down"></i><span class="hide-menu">Multi level dd</span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="#">item 1.1</a></li>
+                <li><a href="#">item 1.2</a></li>
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="#">item 1.3.1</a></li>
+                        <li><a href="#">item 1.3.2</a></li>
+                        <li><a href="#">item 1.3.3</a></li>
+                        <li><a href="#">item 1.3.4</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">item 1.4</a></li>
+            </ul>
+        </li>*@
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+
+            <!-- Container fluid  -->
+            <!-- Start Page Content -->
+            @RenderBody()
+            <!-- End PAge Content -->
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer "> © 2018 All rights reserved MEDGULF Egypt. Built By IT Development Team - Mohamed Minaisy - Mohamed Abd elaleem - Mohamed Alsobky</footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <!--Custom JavaScript -->
+    <!-- Amchart -->
+
+
+</body>
+
+</html>
+<script src="~/Scripts/ManageWebPartsView.js"></script>
+@*<script src="~/js/lib/flot-chart/flot-chart-init.js"></script>*@
+
+@*@Scripts.Render("~/bundles/jquery")*@

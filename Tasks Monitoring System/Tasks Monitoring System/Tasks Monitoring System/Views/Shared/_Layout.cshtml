@@ -1,0 +1,553 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    @{
+        UserDTO USer = Newtonsoft.Json.JsonConvert.DeserializeObject<UserDTO>(Request.Cookies["UserData"].Value);
+        var UserID = USer.UserID;
+        var UserName = USer.UserName;
+        var IsAdmin = USer.IsAdminLevel;
+
+    }
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="~/image/ico" sizes="16x16" href="~/images/favicon1.ico">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
+    <link href="~/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="~/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/css/lib/dropzone/dropzone.css" rel="stylesheet">
+    <link href="~/css/helper.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="~/css/hover-min.css" rel="stylesheet" />
+    <link href="~/css/animate.css" rel="stylesheet" />
+    @*------------------------------------------------------------------*@
+    <!--Start Script-->
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <script src="~/ClientScripts/jqueryCode.js"></script>
+    <script src="~/ClientScripts/jqueryUi.js"></script>
+    <script src="~/ClientScripts/WOW.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <!-- scripit init-->
+    <!--Custom JavaScript -->
+    <script src="~/js/custom.min.js"></script>
+    <script src="~/js/lib/moment/moment.js"></script>
+    <!--End Script-->
+    @*------------------------------------------------------------------*@
+
+</head>
+
+<body class="fix-header fix-sidebar" style="overflow-anchor: none">
+    <!--Start Show  alert div design html-->
+    <div id="ShowALertDanger" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Danger">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-times-circle fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="text-10">Oops...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertDangerText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertDangerButton" onclick="HideALer(4)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertSuccess" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Sucess">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-check-circle  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="text-10">Success...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertSuccessText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertSuccessButton" onclick="HideALer(2)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertWarning" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Warning">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-exclamation-triangle  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="text-10">Warning...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertWarningText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertWarningButton" onclick="HideALer(3)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertInfo" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-exclamation  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="text-10">Info...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertInfoText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle " id="AlertInfoButton" onclick="HideALer(1)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Show  alert div design html-->
+
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/UserDailsTasks/index">
+                        <!-- Logo icon -->
+                        <b><img src="~/images/logo1.jpg" alt="homepage" class="dark-logo" /></b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        @*<span><img src="~/images/logo-text1.png" alt="homepage" class="dark-logo" /></span>*@
+                        <span class="newLogo">Tasks Monitoring</span>
+
+                    </a>
+                </div>
+
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                    <!-- User profile and search -->
+                    <ul class="navbar-nav my-lg-0">
+
+                        <!-- Comment -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" onclick="getmytickets()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <b id="numberofnotifications" style="color: red;position: absolute;margin-top: -5px;margin-left: -7px;"></b>
+                                <i class="fa fa-bell">
+                                </i>
+
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            @*<a href="#">
+                                                    <div class="btn btn-danger btn-circle m-r-10">
+                                                        numberofnotifications
+                                                        <i class="fa fa-link"></i>
+                                                    </div>
+                                                    <div class="mail-contnet">
+                                                        <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                    </div>
+                                                </a>
+                                                <!-- Message -->
+                                                <a href="#">
+                                                    <div class="btn btn-success btn-circle m-r-10"><i class="ti-calendar"></i></div>
+                                                    <div class="mail-contnet">
+                                                        <h5>This is another title</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
+                                                    </div>
+                                                </a>
+                                                <!-- Message -->
+                                                <a href="#">
+                                                    <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
+                                                    <div class="mail-contnet">
+                                                        <h5>This is title</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span>
+                                                    </div>
+                                                </a>
+                                                <!-- Message -->
+                                                <a href="#">
+                                                    <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i></div>
+                                                    <div class="mail-contnet">
+                                                        <h5>This is another title</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                    </div>
+                                                </a>*@
+                                        </div>
+                                    </li>
+                                    @*<li>
+                                            <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                        </li>*@
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Comment -->
+                        <!-- Messages -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " onclick="getmymessage()" href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <b id="numberofmessages" style="color: red;position: absolute;margin-top: -5px;margin-left: -7px;"></b>
+
+                                <i class="fa fa-envelope"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">messages</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Messages -->
+                        <!-- Profile -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/Blank-person-photo1.png" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="#"><i class="ti-user"></i><span class="m-l-4">@UserName</span></a></li>
+                                    @*<li><a href="#"><i class="ti-settings"></i> Change Password</a></li>*@
+                                    <li><a href="/Users/LogOut"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+
+
+                        @*<li class="nav-label">Features</li>*@
+
+                        @*<li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Forms</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="form-basic.html">Basic Forms</a></li>
+                                    <li><a href="form-layout.html">Form Layout</a></li>
+                                    <li><a href="form-validation.html">Form Validation</a></li>
+                                    <li><a href="form-editor.html">Editor</a></li>
+                                    <li><a href="form-dropzone.html">Dropzone</a></li>
+                                </ul>
+                            </li>*@
+
+                        @if (IsAdmin)
+                        {
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Tasks</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="/tasks/index">Show All Tasks</a></li>
+                                    <li><a href="/tasks/create">New Task</a></li>
+
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Users</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="/users/index">Show All Users</a></li>
+                                        <li><a href="/users/create">New Users</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Daily Tasks</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="/UserDailsTasks/index">Show All <span class=" m-l-10 label label-rounded label-success" id="numberOfAllTask"></span></a></li>
+                                        <li><a href="/UserDailsTasks/PendingDailyTasks">Pending<span class=" m-l-10 label label-rounded label-danger" id="numberOfPendingTask"></span></a></li>
+                                        <li><a href="/UserDailsTasks/AssignDailyTasks">Assign<span class=" m-l-10 label label-rounded label-primary" id="numberOfAssignTask"></span></a></li>
+                                        <li><a href="/UserDailsTasks/DoneDailyTasks">Done<span class=" m-l-10 label label-rounded label-info" id="numberOfDoneTask"></span></a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-sticky-note"></i><span class="hide-menu">Report</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="/UserDailsTasks/findTaks">Daily Tasks</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Users Tasks</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="/users/myTasks?userId=@UserID">MY Tasks<span class=" m-l-10 label label-rounded label-primary" id="numberOfMyTask"></span></a></li>
+                                        <li><a href="/UserDailsTasks/index">Daily Tasks <span class=" m-l-10 label label-rounded label-success" id="numberOfAllTask2"></span></a></li>
+
+                                    </ul>
+                            </li>
+                        }
+                        @if (!IsAdmin)
+                        {
+
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Users Tasks</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="/users/myTasks?userId=@UserID">MY Tasks<span class=" m-l-10 label label-rounded label-primary" id="numberOfMyTask"></span></a></li>
+                                    <li><a href="/UserDailsTasks/index">Daily Tasks <span class=" m-l-10 label label-rounded label-success" id="numberOfAllTask3"></span></a></li>
+
+                                </ul>
+                            </li>
+                        }
+
+                        @*<li class="nav-label">Layout</li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Layout</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="layout-blank.html">Blank</a></li>
+                                    <li><a href="layout-boxed.html">Boxed</a></li>
+                                    <li><a href="layout-fix-header.html">Fix Header</a></li>
+                                    <li><a href="layout-fix-sidebar.html">Fix Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-label">EXTRA</li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Pages <span class="label label-rouded label-success pull-right">8</span></span></a>
+                                <ul aria-expanded="false" class="collapse">
+
+                                    <li>
+                                        <a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success">6</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="page-login.html">Login</a></li>
+                                            <li><a href="page-register.html">Register</a></li>
+                                            <li><a href="page-invoice.html">Invoice</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="has-arrow">Error Pages</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="page-error-400.html">400</a></li>
+                                            <li><a href="page-error-403.html">403</a></li>
+                                            <li><a href="page-error-404.html">404</a></li>
+                                            <li><a href="page-error-500.html">500</a></li>
+                                            <li><a href="page-error-503.html">503</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-map-marker"></i><span class="hide-menu">Maps</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="map-google.html">Google</a></li>
+                                    <li><a href="map-vector.html">Vector</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-level-down"></i><span class="hide-menu">Multi level dd</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">item 1.1</a></li>
+                                    <li><a href="#">item 1.2</a></li>
+                                    <li>
+                                        <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="#">item 1.3.1</a></li>
+                                            <li><a href="#">item 1.3.2</a></li>
+                                            <li><a href="#">item 1.3.3</a></li>
+                                            <li><a href="#">item 1.3.4</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">item 1.4</a></li>
+                                </ul>
+                            </li>*@
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+
+            <!-- Container fluid  -->
+            <!-- Start Page Content -->
+            <div class=" row">
+                <div class="divCenter col-md-11">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- End PAge Content -->
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer text-center"> © 2018 All rights reserved MEDGULF Egypt. Built By IT Developers</footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <!--Custom JavaScript -->
+    <!-- Amchart -->
+
+
+</body>
+
+</html>
+@*style*@
+<link href="~/css/textareastye.css" rel="stylesheet" />
+<link href="~/Content/layout.css" rel="stylesheet" />
+@*------------------------------------------------------------------*@
+@*style*@
+<script src="~/js/custom.min.js"></script>
+<script src="~/ClientScripts/jquery.nicescroll.js"></script>
+<script src="~/ClientScripts/layout.js"></script>
+<script src="~/ClientScripts/Helper.js"></script>
+
+@*------------------------------------------------------------------*@
+
+<style>
+    .sidebarnav, .sidebarnav li {
+        cursor: pointer !important;
+    }
+    .divCenter {
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+
+    /*.left-sidebar, .footer,
+    .header, #main-wrapper {
+        border: 1px solid red;
+        margin:10px
+    }
+    .left-sidebar
+    {
+        height:70%;
+    }*/
+
+
+
+    .headerPage {
+        font-size: 60px;
+        font-weight: bold;
+        font-style: italic;
+        margin-bottom: 60px;
+        margin-top: 50px !important;
+        color: #1479cf;
+    }
+
+    .btnCenter {
+        margin: 0 auto;
+        display: block;
+        width: 80%;
+    }
+
+    .form-horizontal {
+        border: 1px solid #ddd;
+        padding-top: 30px;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .numberOfTask {
+        background-color: red;
+        color: white;
+        border: 1px solid #808080;
+        padding: 0px 20px;
+        margin-left: 10px;
+    }
+
+    .newLogo {
+        font-size: x-large;
+        font-weight: bold;
+        font-style: italic;
+        color: #1479cf;
+    }
+    .sweet-prompt {
+        color: white !important;
+    }
+</style>
+
+
+<script>
+
+    $("#DailyTaskFrom").datepicker({
+        dateFormat: 'dd/mm/yy',
+    });
+
+    $("#DailyTaskTo").datepicker({
+
+        dateFormat: 'dd/mm/yy',
+
+    });
+</script>
+<link href="~/icons/font-awesome/fonts/fontawesome.min.css" rel="stylesheet" />
+<link href="~/css/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+<script src="~/js/lib/sweetalert/sweetalert.min.js"></script>
+<script src="~/ClientScripts/UserDailsTasks.js"></script>

@@ -1,0 +1,51 @@
+﻿@model DAL.DataBase.Department
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Department Details</h2>
+
+<div>
+    <hr />
+
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Dept_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dept_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dept_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dept_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Dept_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@*<style>
+    #main {
+        width: 204px;
+        height: 204px;
+    }
+
+    .mysquare {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        display: block;
+        float: left;
+    }
+</style>*@

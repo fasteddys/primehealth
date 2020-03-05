@@ -1,0 +1,706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CF2B9D23-43F3-4A82-8E70-6DED531FD397}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApplication1</RootNamespace>
+    <AssemblyName>WebApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\packages\ClosedXML.0.80.1\lib\net40-client\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\img\Calendar-icon.png" />
+    <Content Include="assets\img\fav_ico.ico" />
+    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\logo_white.png" />
+    <Content Include="assets\js\calendar.js" />
+    <Content Include="assets\js\charts.js" />
+    <Content Include="assets\js\dashboard.js" />
+    <Content Include="assets\js\datatables.js" />
+    <Content Include="assets\js\demo.js" />
+    <Content Include="assets\js\form_elements.js" />
+    <Content Include="assets\js\form_layouts.js" />
+    <Content Include="assets\js\form_wizard.js" />
+    <Content Include="assets\js\google_map.js" />
+    <Content Include="assets\js\icon.js" />
+    <Content Include="assets\js\nestables.js" />
+    <Content Include="assets\js\notifications.js" />
+    <Content Include="assets\js\portlets.js" />
+    <Content Include="assets\js\scripts.js" />
+    <Content Include="assets\js\slider.js" />
+    <Content Include="assets\js\tables.js" />
+    <Content Include="assets\js\tree_view.js" />
+    <Content Include="assets\js\vector_map.js" />
+    <Content Include="assets\plugins\boostrap-form-wizard\js\jquery.bootstrap.wizard.min.js" />
+    <Content Include="assets\plugins\boostrapv3\css\bootstrap.min.css" />
+    <Content Include="assets\plugins\boostrapv3\fonts\glyphicons-halflings-regular.html" />
+    <Content Include="assets\plugins\boostrapv3\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\plugins\boostrapv3\js\bootstrap.min.js" />
+    <Content Include="assets\plugins\bootstrap-datepicker\css\datepicker3.css" />
+    <Content Include="assets\plugins\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="assets\plugins\bootstrap-select2\select2-spinner.gif" />
+    <Content Include="assets\plugins\bootstrap-select2\select2.css" />
+    <Content Include="assets\plugins\bootstrap-select2\select2.min.js" />
+    <Content Include="assets\plugins\bootstrap-select2\select2.png" />
+    <Content Include="assets\plugins\bootstrap-select2\select2x2.png" />
+    <Content Include="assets\plugins\bootstrap-tag\bootstrap-tagsinput.css" />
+    <Content Include="assets\plugins\bootstrap-tag\bootstrap-tagsinput.min.js" />
+    <Content Include="assets\plugins\bootstrap3-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="assets\plugins\bootstrap3-wysihtml5\bootstrap3-wysihtml5.min.css" />
+    <Content Include="assets\plugins\classie\classie.js" />
+    <Content Include="assets\plugins\codrops-stepsform\css\component.css" />
+    <Content Include="assets\plugins\codrops-stepsform\fonts\icomoon\icomoon34f8-2.html" />
+    <Content Include="assets\plugins\codrops-stepsform\fonts\icomoon\icomoon34f8-3.html" />
+    <Content Include="assets\plugins\codrops-stepsform\fonts\icomoon\icomoon34f8-4.html" />
+    <Content Include="assets\plugins\codrops-stepsform\fonts\icomoon\icomoon34f8.html" />
+    <Content Include="assets\plugins\codrops-stepsform\fonts\icomoon\icomoond41d.html" />
+    <Content Include="assets\plugins\codrops-stepsform\js\stepsForm.js" />
+    <Content Include="assets\plugins\datatables-responsive\css\datatables.responsive.css" />
+    <Content Include="assets\plugins\datatables-responsive\img\minus.png" />
+    <Content Include="assets\plugins\datatables-responsive\img\plus.png" />
+    <Content Include="assets\plugins\datatables-responsive\js\datatables.responsive.js" />
+    <Content Include="assets\plugins\datatables-responsive\js\lodash.min.js" />
+    <Content Include="assets\plugins\dropzone\css\dropzone.css" />
+    <Content Include="assets\plugins\dropzone\dropzone.min.js" />
+    <Content Include="assets\plugins\dropzone\images\spritemap%402x.png" />
+    <Content Include="assets\plugins\dropzone\images\spritemap.png" />
+    <Content Include="assets\plugins\font-awesome\css\font-awesome.css" />
+    <Content Include="assets\plugins\font-awesome\css\pages-icons.css" />
+    <Content Include="assets\plugins\font-awesome\css\pages.css" />
+    <Content Include="assets\plugins\font-awesome\css\windows.chrome.fix.css" />
+    <Content Include="assets\plugins\font-awesome\fonts\fontawesome-webfont78ce.html" />
+    <Content Include="assets\plugins\font-awesome\fonts\fontawesome-webfont78ce.svg" />
+    <Content Include="assets\plugins\hammer.min.js" />
+    <Content Include="assets\plugins\imagesloaded\imagesloaded.pkgd.min.js" />
+    <Content Include="assets\plugins\ion-slider\css\ion.rangeSlider.css" />
+    <Content Include="assets\plugins\ion-slider\css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="assets\plugins\ion-slider\img\sprite-skin-flat.png" />
+    <Content Include="assets\plugins\ion-slider\js\ion.rangeSlider.min.js" />
+    <Content Include="assets\plugins\jquery-actual\jquery.actual.min.js" />
+    <Content Include="assets\plugins\jquery-autonumeric\autoNumeric.js" />
+    <Content Include="assets\plugins\jquery-bez\jquery.bez.min.js" />
+    <Content Include="assets\plugins\jquery-datatable\extensions\Bootstrap\jquery-datatable-bootstrap.js" />
+    <Content Include="assets\plugins\jquery-datatable\extensions\FixedColumns\css\dataTables.fixedColumns.min.css" />
+    <Content Include="assets\plugins\jquery-datatable\extensions\TableTools\js\dataTables.tableTools.min.js" />
+    <Content Include="assets\plugins\jquery-datatable\media\css\jquery.dataTables.css" />
+    <Content Include="assets\plugins\jquery-datatable\media\images\sort_asc.png" />
+    <Content Include="assets\plugins\jquery-datatable\media\images\sort_asc_disabled.png" />
+    <Content Include="assets\plugins\jquery-datatable\media\images\sort_both.png" />
+    <Content Include="assets\plugins\jquery-datatable\media\images\sort_desc.png" />
+    <Content Include="assets\plugins\jquery-datatable\media\images\sort_desc_disabled.png" />
+    <Content Include="assets\plugins\jquery-datatable\media\js\jquery.dataTables.min.js" />
+    <Content Include="assets\plugins\jquery-dynatree\jquery.dynatree.min.js" />
+    <Content Include="assets\plugins\jquery-dynatree\skin\icons.gif" />
+    <Content Include="assets\plugins\jquery-dynatree\skin\loading.gif" />
+    <Content Include="assets\plugins\jquery-dynatree\skin\ui.dynatree.css" />
+    <Content Include="assets\plugins\jquery-dynatree\skin\vline.gif" />
+    <Content Include="assets\plugins\jquery-inputmask\jquery.inputmask.min.js" />
+    <Content Include="assets\plugins\jquery-ios-list\jquery.ioslist.min.js" />
+    <Content Include="assets\plugins\jquery-isotope\isotope.pkgd.min.js" />
+    <Content Include="assets\plugins\jquery-isotope\masonry-horizontal.js" />
+    <Content Include="assets\plugins\jquery-metrojs\images\metroIcons.jpg" />
+    <Content Include="assets\plugins\jquery-metrojs\images\metroIcons_light.jpg" />
+    <Content Include="assets\plugins\jquery-metrojs\MetroJs.css" />
+    <Content Include="assets\plugins\jquery-metrojs\MetroJs.min.js" />
+    <Content Include="assets\plugins\jquery-nestable\jquery.nestable.css" />
+    <Content Include="assets\plugins\jquery-nestable\jquery.nestable.js" />
+    <Content Include="assets\plugins\jquery-nouislider\jquery.liblink.js" />
+    <Content Include="assets\plugins\jquery-nouislider\jquery.nouislider.css" />
+    <Content Include="assets\plugins\jquery-nouislider\jquery.nouislider.min.js" />
+    <Content Include="assets\plugins\jquery-scrollbar\jquery.scrollbar.css" />
+    <Content Include="assets\plugins\jquery-scrollbar\jquery.scrollbar.min.js" />
+    <Content Include="assets\plugins\jquery-sparkline\jquery.sparkline.min.js" />
+    <Content Include="assets\plugins\jquery-ui-touch\jquery.ui.touch-punch.min.js" />
+    <Content Include="assets\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="assets\plugins\jquery-unveil\jquery.unveil.min.js" />
+    <Content Include="assets\plugins\jquery-validation\js\jquery.validate.min.js" />
+    <Content Include="assets\plugins\jquery.sieve.min.js" />
+    <Content Include="assets\plugins\jquery\jquery-1.8.3.min.js" />
+    <Content Include="assets\plugins\jquery\jquery-easy.js" />
+    <Content Include="assets\plugins\mapplic\css\images\arrow-down.png" />
+    <Content Include="assets\plugins\mapplic\css\images\arrow-up.png" />
+    <Content Include="assets\plugins\mapplic\css\images\closedhand.html" />
+    <Content Include="assets\plugins\mapplic\css\images\cross.png" />
+    <Content Include="assets\plugins\mapplic\css\images\fullscreen-exit.png" />
+    <Content Include="assets\plugins\mapplic\css\images\fullscreen.png" />
+    <Content Include="assets\plugins\mapplic\css\images\loader.gif" />
+    <Content Include="assets\plugins\mapplic\css\images\openhand.html" />
+    <Content Include="assets\plugins\mapplic\css\images\pin-blue.png" />
+    <Content Include="assets\plugins\mapplic\css\images\pin-green.png" />
+    <Content Include="assets\plugins\mapplic\css\images\pin-orange.png" />
+    <Content Include="assets\plugins\mapplic\css\images\pin-purple.png" />
+    <Content Include="assets\plugins\mapplic\css\images\pin-red.png" />
+    <Content Include="assets\plugins\mapplic\css\images\target.png" />
+    <Content Include="assets\plugins\mapplic\css\images\tooltip-triangle.png" />
+    <Content Include="assets\plugins\mapplic\css\images\viewer.png" />
+    <Content Include="assets\plugins\mapplic\css\mapplic.css" />
+    <Content Include="assets\plugins\mapplic\js\hammer.js" />
+    <Content Include="assets\plugins\mapplic\js\jquery.mousewheel.js" />
+    <Content Include="assets\plugins\mapplic\js\mapplic.js" />
+    <Content Include="assets\plugins\masonry\masonry.pkgd.min.js" />
+    <Content Include="assets\plugins\modernizr.custom.js" />
+    <Content Include="assets\plugins\moment\moment-with-locales.min.js" />
+    <Content Include="assets\plugins\moment\moment.min.js" />
+    <Content Include="assets\plugins\nvd3\lib\d3.v3.js" />
+    <Content Include="assets\plugins\nvd3\nv.d3.min.css" />
+    <Content Include="assets\plugins\nvd3\nv.d3.min.js" />
+    <Content Include="assets\plugins\nvd3\src\interactiveLayer.js" />
+    <Content Include="assets\plugins\nvd3\src\models\axis.js" />
+    <Content Include="assets\plugins\nvd3\src\models\line.js" />
+    <Content Include="assets\plugins\nvd3\src\models\lineWithFocusChart.js" />
+    <Content Include="assets\plugins\nvd3\src\tooltip.js" />
+    <Content Include="assets\plugins\nvd3\src\utils.js" />
+    <Content Include="assets\plugins\pace\pace-theme-flash.css" />
+    <Content Include="assets\plugins\pace\pace.min.js" />
+    <Content Include="assets\plugins\rickshaw\rickshaw.min.css" />
+    <Content Include="assets\plugins\rickshaw\rickshaw.min.js" />
+    <Content Include="assets\plugins\simple-line-icons\fonts\Simple-Line-Icons.html" />
+    <Content Include="assets\plugins\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="assets\plugins\simple-line-icons\simple-line-icons.css" />
+    <Content Include="assets\plugins\skycons\skycons.js" />
+    <Content Include="assets\plugins\summernote\css\summernote.css" />
+    <Content Include="assets\plugins\summernote\js\summernote.min.js" />
+    <Content Include="assets\plugins\switchery\css\switchery.min.css" />
+    <Content Include="assets\plugins\switchery\js\switchery.min.js" />
+    <Content Include="form2.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="LoginAssets\css\animate-custom.css" />
+    <Content Include="LoginAssets\css\bootstrap.css" />
+    <Content Include="LoginAssets\css\login.css" />
+    <Content Include="LoginAssets\fonts\glyphicons-halflings-regular-2.html" />
+    <Content Include="LoginAssets\fonts\glyphicons-halflings-regular-3.html" />
+    <Content Include="LoginAssets\fonts\glyphicons-halflings-regular-4.html" />
+    <Content Include="LoginAssets\fonts\glyphicons-halflings-regular.html" />
+    <Content Include="LoginAssets\fonts\glyphicons-halflings-regulard41d.html" />
+    <Content Include="LoginAssets\img\background-image-1.jpg" />
+    <Content Include="LoginAssets\img\login-bg-1.png" />
+    <Content Include="LoginAssets\img\login-flogo.png" />
+    <Content Include="LoginAssets\img\login-logo.png" />
+    <Content Include="LoginAssets\img\login-logosdsd.png" />
+    <Content Include="LoginAssets\img\login.png" />
+    <Content Include="LoginAssets\jquery\1.9.1\jquery.min.js" />
+    <Content Include="LoginAssets\js\bootstrap.min.js" />
+    <Content Include="LoginAssets\js\custom.js" />
+    <Content Include="LoginAssets\js\custom.modernizr.html" />
+    <Content Include="LoginAssets\js\jquery-1.9.1.min.js" />
+    <Content Include="LoginAssets\js\placeholder-shim.min.js" />
+    <Content Include="pages\css\pages-icons.css" />
+    <Content Include="pages\css\pages.css" />
+    <Content Include="pages\css\themes\calendar.css" />
+    <Content Include="pages\css\themes\simple.css" />
+    <Content Include="pages\css\windows.chrome.fix.css" />
+    <Content Include="pages\fonts\icomoon\icomoon2ec0-2.html" />
+    <Content Include="pages\fonts\icomoon\icomoon2ec0-3.html" />
+    <Content Include="pages\fonts\icomoon\icomoon2ec0-4.html" />
+    <Content Include="pages\fonts\icomoon\icomoon2ec0.html" />
+    <Content Include="pages\fonts\icomoon\icomoond41d.html" />
+    <Content Include="pages\fonts\pages-icon\Pages-icon095c.html" />
+    <Content Include="pages\fonts\pages-icon\Pages-icon095c.svg" />
+    <Content Include="pages\ico\120.png" />
+    <Content Include="pages\ico\152.png" />
+    <Content Include="pages\ico\60.png" />
+    <Content Include="pages\ico\76.png" />
+    <Content Include="pages\img\editor_tray.png" />
+    <Content Include="pages\img\editor_tray_2x.png" />
+    <Content Include="pages\img\icons\noti-cross-2x.png" />
+    <Content Include="pages\img\icons\top_tray.png" />
+    <Content Include="pages\img\icons\top_tray_2x.png" />
+    <Content Include="pages\img\linear_gradient.png" />
+    <Content Include="pages\img\notes_lines.png" />
+    <Content Include="pages\img\progress\progress-bar-complete.svg" />
+    <Content Include="pages\img\progress\progress-bar-danger.svg" />
+    <Content Include="pages\img\progress\progress-bar-info.html" />
+    <Content Include="pages\img\progress\progress-bar-master.svg" />
+    <Content Include="pages\img\progress\progress-bar-primary.svg" />
+    <Content Include="pages\img\progress\progress-bar-success.svg" />
+    <Content Include="pages\img\progress\progress-bar-warning.svg" />
+    <Content Include="pages\img\progress\progress-circle-complete.svg" />
+    <Content Include="pages\img\progress\progress-circle-danger.svg" />
+    <Content Include="pages\img\progress\progress-circle-info.html" />
+    <Content Include="pages\img\progress\progress-circle-lg-master-static.svg" />
+    <Content Include="pages\img\progress\progress-circle-lg-master.svg" />
+    <Content Include="pages\img\progress\progress-circle-lg-white-static.svg" />
+    <Content Include="pages\img\progress\progress-circle-lg-white.svg" />
+    <Content Include="pages\img\progress\progress-circle-master.svg" />
+    <Content Include="pages\img\progress\progress-circle-primary.svg" />
+    <Content Include="pages\img\progress\progress-circle-success.svg" />
+    <Content Include="pages\img\progress\progress-circle-warning.svg" />
+    <Content Include="pages\js\pages.calendar.min.js" />
+    <Content Include="pages\js\pages.email.js" />
+    <Content Include="pages\js\pages.min.js" />
+    <Content Include="pages\js\pages.social.min.js" />
+    <Content Include="packages.config" />
+    <Content Include="Portal\Accept.aspx" />
+    <Content Include="Portal\AddAccount.aspx" />
+    <Content Include="Portal\AddClaim.aspx" />
+    <Content Include="Portal\AllNewRequests.aspx" />
+    <Content Include="Portal\AllRequests.aspx" />
+    <Content Include="Portal\AddBatch.aspx" />
+    <Content Include="Portal\Archiving.aspx" />
+    <Content Include="Portal\ArchivingPanel.aspx" />
+    <Content Include="Portal\BatchManager.aspx" />
+    <Content Include="Portal\ClientsReports.aspx" />
+    <Content Include="Portal\Closed.aspx" />
+    <Content Include="Portal\ClosedArchTick.aspx" />
+    <Content Include="Portal\DetailedReportSearch.aspx" />
+    <Content Include="Portal\DetailsReport.aspx" />
+    <Content Include="Portal\ManageAccounts.aspx" />
+    <Content Include="Portal\ManageArchReq.aspx" />
+    <Content Include="Portal\ManageBatch.aspx" />
+    <Content Include="Portal\ManageRequest.aspx" />
+    <Content Include="Portal\MyAccount.aspx" />
+    <Content Include="Portal\NewArchTick.aspx" />
+    <Content Include="Portal\PendingArchTick.aspx" />
+    <Content Include="Portal\PendingConfirmation.aspx" />
+    <Content Include="Portal\NewRequest.aspx" />
+    <Content Include="Portal\PQualityControl.aspx" />
+    <Content Include="Portal\P_Missing.aspx" />
+    <Content Include="Portal\QualityClosed.aspx" />
+    <Content Include="Portal\QualityControl.aspx" />
+    <Content Include="Portal\Reports.aspx" />
+    <Content Include="Portal\ReviewArchTick.aspx" />
+    <Content Include="Portal\SearchForm.aspx" />
+    <Content Include="Portal\TPAExportExcelReport.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WebForm1.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\Batches.cs" />
+    <Compile Include="BLL\Requests.cs" />
+    <Compile Include="BLL\Accounts.cs" />
+    <Compile Include="DLL\TPASystem.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPASystem.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="form2.aspx.cs">
+      <DependentUpon>form2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="form2.aspx.designer.cs">
+      <DependentUpon>form2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\Accept.aspx.cs">
+      <DependentUpon>Accept.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\Accept.aspx.designer.cs">
+      <DependentUpon>Accept.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\AddAccount.aspx.cs">
+      <DependentUpon>AddAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\AddAccount.aspx.designer.cs">
+      <DependentUpon>AddAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\AddClaim.aspx.cs">
+      <DependentUpon>AddClaim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\AddClaim.aspx.designer.cs">
+      <DependentUpon>AddClaim.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\AllNewRequests.aspx.cs">
+      <DependentUpon>AllNewRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\AllNewRequests.aspx.designer.cs">
+      <DependentUpon>AllNewRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\AddBatch.aspx.cs">
+      <DependentUpon>AddBatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\AddBatch.aspx.designer.cs">
+      <DependentUpon>AddBatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\Archiving.aspx.cs">
+      <DependentUpon>Archiving.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\Archiving.aspx.designer.cs">
+      <DependentUpon>Archiving.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\ArchivingPanel.aspx.cs">
+      <DependentUpon>ArchivingPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\ArchivingPanel.aspx.designer.cs">
+      <DependentUpon>ArchivingPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\BatchManager.aspx.cs">
+      <DependentUpon>BatchManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\BatchManager.aspx.designer.cs">
+      <DependentUpon>BatchManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\ClientsReports.aspx.cs">
+      <DependentUpon>ClientsReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\ClientsReports.aspx.designer.cs">
+      <DependentUpon>ClientsReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\ClosedArchTick.aspx.cs">
+      <DependentUpon>ClosedArchTick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\ClosedArchTick.aspx.designer.cs">
+      <DependentUpon>ClosedArchTick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\DetailedReportSearch.aspx.cs">
+      <DependentUpon>DetailedReportSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\DetailedReportSearch.aspx.designer.cs">
+      <DependentUpon>DetailedReportSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\DetailsReport.aspx.cs">
+      <DependentUpon>DetailsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\DetailsReport.aspx.designer.cs">
+      <DependentUpon>DetailsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\ManageAccounts.aspx.cs">
+      <DependentUpon>ManageAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\ManageAccounts.aspx.designer.cs">
+      <DependentUpon>ManageAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\ManageArchReq.aspx.cs">
+      <DependentUpon>ManageArchReq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\ManageArchReq.aspx.designer.cs">
+      <DependentUpon>ManageArchReq.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\ManageBatch.aspx.cs">
+      <DependentUpon>ManageBatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\ManageBatch.aspx.designer.cs">
+      <DependentUpon>ManageBatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\ManageRequest.aspx.cs">
+      <DependentUpon>ManageRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\ManageRequest.aspx.designer.cs">
+      <DependentUpon>ManageRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\MyAccount.aspx.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\MyAccount.aspx.designer.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\NewArchTick.aspx.cs">
+      <DependentUpon>NewArchTick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\NewArchTick.aspx.designer.cs">
+      <DependentUpon>NewArchTick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\PendingArchTick.aspx.cs">
+      <DependentUpon>PendingArchTick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\PendingArchTick.aspx.designer.cs">
+      <DependentUpon>PendingArchTick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\PQualityControl.aspx.cs">
+      <DependentUpon>PQualityControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\PQualityControl.aspx.designer.cs">
+      <DependentUpon>PQualityControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\P_Missing.aspx.cs">
+      <DependentUpon>P_Missing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\P_Missing.aspx.designer.cs">
+      <DependentUpon>P_Missing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\QualityClosed.aspx.cs">
+      <DependentUpon>QualityClosed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\QualityClosed.aspx.designer.cs">
+      <DependentUpon>QualityClosed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\QualityControl.aspx.cs">
+      <DependentUpon>QualityControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\QualityControl.aspx.designer.cs">
+      <DependentUpon>QualityControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\ReviewArchTick.aspx.cs">
+      <DependentUpon>ReviewArchTick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\ReviewArchTick.aspx.designer.cs">
+      <DependentUpon>ReviewArchTick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\SearchForm.aspx.cs">
+      <DependentUpon>SearchForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\SearchForm.aspx.designer.cs">
+      <DependentUpon>SearchForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\TPAExportExcelReport.aspx.cs">
+      <DependentUpon>TPAExportExcelReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\TPAExportExcelReport.aspx.designer.cs">
+      <DependentUpon>TPAExportExcelReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Portal\AllRequests.aspx.cs">
+      <DependentUpon>AllRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\AllRequests.aspx.designer.cs">
+      <DependentUpon>AllRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\Closed.aspx.cs">
+      <DependentUpon>Closed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\Closed.aspx.designer.cs">
+      <DependentUpon>Closed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\PendingConfirmation.aspx.cs">
+      <DependentUpon>PendingConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\PendingConfirmation.aspx.designer.cs">
+      <DependentUpon>PendingConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\NewRequest.aspx.cs">
+      <DependentUpon>NewRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\NewRequest.aspx.designer.cs">
+      <DependentUpon>NewRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MasterPages\Main.Master" />
+    <Content Include="assets\plugins\boostrapv3\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\plugins\boostrapv3\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\plugins\boostrapv3\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="assets\plugins\font-awesome\fonts\fontawesome-webfont78ce.eot" />
+    <Content Include="assets\plugins\font-awesome\fonts\fontawesome-webfont78ce.woff" />
+    <Content Include="assets\plugins\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="assets\plugins\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="assets\plugins\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="assets\plugins\simple-line-icons\fonts\Simple-Line-Iconsd41d.eot" />
+    <Content Include="pages\fonts\pages-icon\Pages-icon095c.eot" />
+    <Content Include="pages\fonts\pages-icon\Pages-icon095c.woff" />
+    <Content Include="pages\fonts\pages-icon\Pages-icond41d.eot" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="DLL\TPASystem.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>TPASystem.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\Aboda.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ArchivingAttached\" />
+    <Folder Include="Attached\" />
+    <Folder Include="FoundClaims\" />
+    <Folder Include="MissingClaims\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DLL\TPASystem.dbml.layout">
+      <DependentUpon>TPASystem.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>45702</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:45702/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

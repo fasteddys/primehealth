@@ -1,0 +1,301 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Stock_System2.Models.Item>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<script src="script.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+@section HeaderSection
+  {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Users</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+@try{
+if(@Model.Count()>=1)
+{ 
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel">
+
+                    <div class="panel-body">
+                        @*<p class="info" style="font-weight:bold; text-align:center">
+                            @ViewBag.count
+                        </p>*@
+                        <form class="form-horizontal tasi-form" action="/Item/Search" method="post" role="form">
+
+                            <table class="table-hover table-inverse" style="display:none; width:200px;" id="div2">
+                                <tr class="info" >
+                                    <td>
+                                        <label class="col-sm-10 col-sm-10 control-label">Item Type</label>
+                                    </td>
+                                    <td>
+
+                                        <select class="form-control input-lg m-b-10" id="type" name="type">
+                                            <option value="IT">IT</option>
+                                            <option value="TPA">TPA</option>
+                                            <option value="Issuance">Issuance</option>
+                                            <option value="Archiving">Archiving</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                           
+                               
+                            <table class="table table-hover table-inverse " align="center" style="text-align: center; ">
+                                <tr class="info" style="font-weight:bold">
+                                    <td style="font-weight: bold; font-size: larger; margin-top: 15px; padding:20px;">
+                                        Search 
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control input-lg m-b-5" name="search" />
+                                    </td>
+                                    <td>
+                                        @*<button type="button"  class="btn btn-danger" id="search_btn">Search</button>*@
+                                        <input type="submit" id="search_btn" class="btn btn-danger" value="search" style="font-weight: bold; font-size: larger; margin-top: 5px; padding: 8px;">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        <table class="table table-hover table-inverse table-bordered" align="center" style="text-align:center;">
+                            <tr class="warning" style="font-weight:bold; font-size:large; height:50px">
+                                <th style="text-align:center">Item ID</th>
+                                <th style="text-align:center"> Item Name <i class="fa fa-fw fa-sort"></i></th>
+                                <th style="text-align:center">Item Number</th>
+                                <th style="text-align:center">Item Warning Number</th>
+                                <th style=" text-align:center">Action</th>
+                                
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td align="center" style="font-size:large; font-weight:bold; padding:12px"> @item.item_id </td>
+                                    <td align="center" style="font-size:large; font-weight:bold; padding:12px"> @item.item_name  </td>
+                                    <td align="center" style="font-size: large; font-weight: bold; padding: 12px"> @item.item_count </td>
+                                    <td align="center" style="font-size: large; font-weight: bold; padding: 12px"> @item.item_warning_count </td>
+                                    <td align="center" style="font-size:large; font-weight:bold; margin-top:24px">
+                                        <a role="button" id="oo" class="openModal btn btn-danger" style="color:white; font-weight:bold; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" href="/Item/Withdraw_Item?Item_Id=@item.item_id">Withdraw</a>
+                                        @if (Request.Cookies["usertype"].Value == "Engineer" || Request.Cookies["usertype"].Value == "Manager")
+                                        { 
+                                        <a role="button" id="oo" class="openModal btn btn-primary" style="color:white; font-weight:bold; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" data-toggle="modal" data-target="#M2" href="/Item/Details?Item_Id=@item.item_id">Details</a>
+                                        }
+                                        @if (Request.Cookies["userrole"].Value == "Supervisor" || Request.Cookies["usertype"].Value == "Manager")
+                                        { 
+                                        <a role="button" id="oo" class="openModal btn btn-success" style="color:white; font-weight:bold; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" data-toggle="modal" data-target="#M2" href="/Item/Edit?Item_Id=@item.item_id">Edit</a>
+                                        }
+                                    </td>
+                                    
+                                       
+                                  
+                                </tr>
+                            }
+                        </table>
+                        <div class="panel-body" style="align-content:center">
+                            <div>
+
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("Search",
+     new { page, PageSize = Model.PageSize, search = ViewBag.search }))
+                            </div>
+                        </div>
+                    </div>
+                   
+                </section>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="M2" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" style="width:900px; height:500px;margin-left:330px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        This Modal title
+                    </h4>
+                </div>
+                <div class="modal-body" style="color:red;width:6000px;display:none">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Submit changes
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+  }
+        else
+        {
+
+     <form class="form-horizontal tasi-form" action="/Item/Search" method="post" role="form">
+         <table class="table-hover table-inverse" style="display:none; width:200px;" id="div2">
+             <tr class="info">
+                 <td>
+                     <label class="col-sm-10 col-sm-10 control-label">Item Type</label>
+                 </td>
+                 <td>
+
+                     <select class="form-control input-lg m-b-10" id="type" name="type">
+                         <option value="IT">IT</option>
+                         <option value="TPA">TPA</option>
+                         <option value="Issuance">Issuance</option>
+                         <option value="Archiving">Archiving</option>
+
+                     </select>
+                 </td>
+             </tr>
+         </table>
+                        <table class="table table-hover table-inverse " align="center" style="text-align:center; padding:5px;">
+                            <tr class="info">
+                                <td style="font-weight: bold; font-size: larger; margin-top: 15px; padding:20px;">
+                                    Search
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control input-lg m-b-5" name="search"  />
+                                </td>
+                                <td>
+                                    @*<button type="button"  class="btn btn-danger" id="search_btn">Search</button>*@
+                                    <input type="submit" id="search_btn" class="btn btn-danger" value="search" style="font-weight: bold; font-size: larger; margin-top: 5px; padding: 8px;">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+    
+    <section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+               
+                <div class="panel-body">
+
+                   
+                        <table class="table table-hover table-inverse table-bordered" align="center" style="text-align:center;">
+                            <tr class="info" style="font-weight:bold">
+                               
+                                <td >
+                                   Data
+                                </td>
+                            </tr>
+
+                                <tr class="warning" style="font-weight:bold">
+
+                                    <td> No Data Found </td>
+                                   
+                                </tr>
+                            
+
+                        </table>
+
+</div>
+                <p class="info" style="font-weight:bold; text-align:center">
+                    @ViewBag.count
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+        }
+}
+catch(ArgumentNullException){
+<form class="form-horizontal tasi-form" action="/Item/Search" method="post" role="form">
+    <table class="table-hover table-inverse" style="display:none; width:200px;" id="div2">
+        <tr class="info">
+            <td>
+                <label class="col-sm-10 col-sm-10 control-label">Item Type</label>
+            </td>
+            <td>
+
+                <select class="form-control input-lg m-b-10" id="type" name="type">
+                    <option value="IT">IT</option>
+                    <option value="TPA">TPA</option>
+                    <option value="Issuance">Issuance</option>
+                    <option value="Archiving">Archiving</option>
+
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-hover table-inverse " align="center" style="text-align:center;">
+        <tr class="info" style="font-weight:bold">
+            <td style="font-weight: bold; font-size: larger; margin-top: 15px; padding:20px;">
+                Search
+            </td>
+            <td>
+                <input type="text" class="form-control input-lg m-b-10" id="search2" name="search" />
+            </td>
+            <td>
+                @*<button type="button"  class="btn btn-danger" id="search_btn">Search</button>*@
+                <input type="submit" id="search_btn" class="btn btn-danger" name="search2" value="search" style="font-weight: bold; font-size: larger; margin-top: 5px; padding: 8px;">
+            </td>
+        </tr>
+    </table>
+</form>
+}
+
+<script type="text/javascript">
+    if ('@Request.Cookies["usertype"].Value' == 'Manager') {
+        $('#div2').show();
+    }
+    $(function () {
+       
+        $(document).on('click', '#oo', function (e) {
+
+            $("#M2").dialog({ closeOnEscape: false });
+            $('#M2').modal({
+                keyboard: true,
+            })
+
+        })
+
+    });
+   
+    @*if('@Request.Cookies["usertype"].Value'=="Engineer")
+    {
+        $('#detail').show();
+        var elems = document.getElementsByClassName("openModal btn btn-primary");
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].disabled = true;
+        }
+    }
+    else if ('@Request.Cookies["usertype"].Value' == "Manager") {
+        $('#detail').show();
+       
+    }*@
+    
+</script>
+
+
+
+

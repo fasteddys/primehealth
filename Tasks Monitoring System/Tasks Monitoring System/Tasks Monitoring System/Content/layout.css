@@ -1,0 +1,121 @@
+﻿
+/*Start Alert sucess and wrong and danger .......*/
+.overlay {
+    opacity: 0.8;
+    background: #000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 19999;
+}
+
+.Alertstyle {
+    opacity: 1.0 !important;
+    color: #fff;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 20000;
+    padding: 30px
+}
+
+.Alertstyle-Danger {
+    background-color: #bA3030;
+}
+
+.Alertstyle-Sucess {
+    background-color: #279c83;
+}
+
+.Alertstyle-Warning {
+    background-color: #FBBC05;
+}
+
+.Alertstyle-info {
+    background-color: #0088CC;
+}
+
+.AlertButtonStyle {
+    margin-top: 95px !important;
+    color: #fff !important;
+    background-color: inherit !important;
+    border-bottom-width: thin !important;
+    border-color: #fff !important;
+    border-radius: unset !important
+}
+/*************************************************************************/
+/* Cursor */
+.cur-pointer {
+    cursor: pointer;
+}
+
+/* Font Size */
+.text-xs {
+    font-size: 16px;
+    font-size: 1rem;
+}
+
+.text-sm {
+    font-size: 20.8px;
+    font-size: 1.3rem;
+}
+
+.text-md {
+    font-size: 25.6px;
+    font-size: 1.6rem;
+}
+
+.text-lg {
+    font-size: 30.4px;
+    font-size: 1.9rem;
+}
+
+.text-xl {
+    font-size: 35.2px;
+    font-size: 2.2rem;
+}
+
+.text-1 {
+    font-size: .8em !important;
+}
+
+.text-2 {
+    font-size: .9em !important;
+}
+
+.text-3 {
+    font-size: 1em !important;
+}
+
+.text-4 {
+    font-size: 1.1em !important;
+}
+
+.text-5 {
+    font-size: 1.50em !important;
+}
+
+.text-6 {
+    font-size: 1.80em !important;
+}
+
+.text-7 {
+    font-size: 2em !important;
+}
+
+.text-8 {
+    font-size: 2.30em !important;
+}
+
+.text-9 {
+    font-size: 2.50em !important;
+}
+
+.text-10 {
+    font-size: 2.75em !important;
+}
+/*************************************************************************/

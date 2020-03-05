@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Request_id" />
+          </Key>
+          <Property Name="Request_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_request_id" Type="int" Nullable="false" />
+          <Property Name="Date_Time_Request" Type="datetime" Nullable="false" />
+          <Property Name="Number_of_item" Type="int" Nullable="false" />
+          <Property Name="Request_Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edit_Comment" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Category_id" />
+          </Key>
+          <Property Name="Category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Department_name" Type="varchar" MaxLength="50" />
+          <Property Name="Department_email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Internet_Request">
+          <Key>
+            <PropertyRef Name="internet_billing_request_id" />
+          </Key>
+          <Property Name="internet_billing_request_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service_Provider_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="warning_date" Type="date" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="date_request" Type="datetime" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="item_count" Type="int" Nullable="false" />
+          <Property Name="item_warning_count" Type="int" Nullable="false" />
+          <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="Date_Insert" Type="datetime" Nullable="false" />
+          <Property Name="item_status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="item_details">
+          <Key>
+            <PropertyRef Name="item_detail_id" />
+          </Key>
+          <Property Name="item_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ram" Type="varchar" MaxLength="50" />
+          <Property Name="Processor" Type="varchar" MaxLength="50" />
+          <Property Name="Model" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="item_id" Type="int" Nullable="false" />
+          <Property Name="Manufacture" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Printer">
+          <Key>
+            <PropertyRef Name="printer_id" />
+          </Key>
+          <Property Name="printer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="printer_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="model" Type="varchar" MaxLength="50" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="warning_date" Type="date" />
+          <Property Name="insert_date" Type="datetime" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="department" Type="varchar" MaxLength="50" />
+          <Property Name="user_email" Type="varchar" MaxLength="50" />
+          <Property Name="user_role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Activity_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="item_request_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Internet_Request_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Internet_Request" Type="Self.Internet_Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Internet_Request">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_details_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="item_details" Type="Self.item_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="item_details">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Printer_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Printer" Type="Self.Printer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Printer">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StockModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Internet_Request" EntityType="Self.Internet_Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="item_details" EntityType="Self.item_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Printer" EntityType="Self.Printer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Activity_Item" Association="Self.FK_Activity_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Internet_Request_User" Association="Self.FK_Internet_Request_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Internet_Request" EntitySet="Internet_Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Category" Association="Self.FK_Item_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_details_Item" Association="Self.FK_item_details_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="item_details" EntitySet="item_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Printer_User" Association="Self.FK_Printer_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Printer" EntitySet="Printer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_User" Association="Self.FK_Request_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Request_id" />
+          </Key>
+          <Property Name="Request_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_request_id" Type="Int32" Nullable="false" />
+          <Property Name="Date_Time_Request" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Number_of_item" Type="Int32" Nullable="false" />
+          <Property Name="Request_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Edit_Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Activity_Item" FromRole="Activity" ToRole="Item" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Request_User" FromRole="Activity" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Category_id" />
+          </Key>
+          <Property Name="Category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Department_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Department_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Item_Category" FromRole="Category" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Internet_Request">
+          <Key>
+            <PropertyRef Name="internet_billing_request_id" />
+          </Key>
+          <Property Name="internet_billing_request_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service_Provider_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="warning_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date_request" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Internet_Request_User" FromRole="Internet_Request" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_count" Type="Int32" Nullable="false" />
+          <Property Name="item_warning_count" Type="Int32" Nullable="false" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Name="Date_Insert" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="item_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_Item" FromRole="Item" ToRole="Activity" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Item_Category" FromRole="Item" ToRole="Category" />
+          <NavigationProperty Name="item_details" Relationship="Self.FK_item_details_Item" FromRole="Item" ToRole="item_details" />
+        </EntityType>
+        <EntityType Name="item_details">
+          <Key>
+            <PropertyRef Name="item_detail_id" />
+          </Key>
+          <Property Name="item_detail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ram" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Processor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="item_id" Type="Int32" Nullable="false" />
+          <Property Name="Manufacture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_item_details_Item" FromRole="item_details" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Printer">
+          <Key>
+            <PropertyRef Name="printer_id" />
+          </Key>
+          <Property Name="printer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="printer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="warning_date" Type="DateTime" Precision="0" />
+          <Property Name="insert_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Printer_User" FromRole="Printer" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Request_User" FromRole="User" ToRole="Activity" />
+          <NavigationProperty Name="Internet_Request" Relationship="Self.FK_Internet_Request_User" FromRole="User" ToRole="Internet_Request" />
+          <NavigationProperty Name="Printer" Relationship="Self.FK_Printer_User" FromRole="User" ToRole="Printer" />
+        </EntityType>
+        <Association Name="FK_Activity_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="item_request_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Internet_Request_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Internet_Request" Type="Self.Internet_Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Internet_Request">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_details_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="item_details" Type="Self.item_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="item_details">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Printer_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Printer" Type="Self.Printer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Printer">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StockDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activity" EntityType="Self.Activity" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Internet_Request" EntityType="Self.Internet_Request" />
+          <EntitySet Name="Item" EntityType="Self.Item" />
+          <EntitySet Name="item_details" EntityType="Self.item_details" />
+          <EntitySet Name="Printer" EntityType="Self.Printer" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Activity_Item" Association="Self.FK_Activity_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_User" Association="Self.FK_Request_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Category" Association="Self.FK_Item_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Internet_Request_User" Association="Self.FK_Internet_Request_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Internet_Request" EntitySet="Internet_Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_details_Item" Association="Self.FK_item_details_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="item_details" EntitySet="item_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Printer_User" Association="Self.FK_Printer_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Printer" EntitySet="Printer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StockModelStoreContainer" CdmEntityContainer="StockDB">
+          <EntitySetMapping Name="Activity">
+            <EntityTypeMapping TypeName="StockModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="Request_id" ColumnName="Request_id" />
+                <ScalarProperty Name="item_request_id" ColumnName="item_request_id" />
+                <ScalarProperty Name="Date_Time_Request" ColumnName="Date_Time_Request" />
+                <ScalarProperty Name="Number_of_item" ColumnName="Number_of_item" />
+                <ScalarProperty Name="Request_Type" ColumnName="Request_Type" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Edit_Comment" ColumnName="Edit_Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="StockModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Category_id" ColumnName="Category_id" />
+                <ScalarProperty Name="Category_name" ColumnName="Category_name" />
+                <ScalarProperty Name="Department_name" ColumnName="Department_name" />
+                <ScalarProperty Name="Department_email" ColumnName="Department_email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Internet_Request">
+            <EntityTypeMapping TypeName="StockModel.Internet_Request">
+              <MappingFragment StoreEntitySet="Internet_Request">
+                <ScalarProperty Name="internet_billing_request_id" ColumnName="internet_billing_request_id" />
+                <ScalarProperty Name="Service_Provider_Name" ColumnName="Service_Provider_Name" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="warning_date" ColumnName="warning_date" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="date_request" ColumnName="date_request" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="StockModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_count" ColumnName="item_count" />
+                <ScalarProperty Name="item_warning_count" ColumnName="item_warning_count" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="Date_Insert" ColumnName="Date_Insert" />
+                <ScalarProperty Name="item_status" ColumnName="item_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item_details">
+            <EntityTypeMapping TypeName="StockModel.item_details">
+              <MappingFragment StoreEntitySet="item_details">
+                <ScalarProperty Name="item_detail_id" ColumnName="item_detail_id" />
+                <ScalarProperty Name="Ram" ColumnName="Ram" />
+                <ScalarProperty Name="Processor" ColumnName="Processor" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="Manufacture" ColumnName="Manufacture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Printer">
+            <EntityTypeMapping TypeName="StockModel.Printer">
+              <MappingFragment StoreEntitySet="Printer">
+                <ScalarProperty Name="printer_id" ColumnName="printer_id" />
+                <ScalarProperty Name="printer_name" ColumnName="printer_name" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="warning_date" ColumnName="warning_date" />
+                <ScalarProperty Name="insert_date" ColumnName="insert_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="StockModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

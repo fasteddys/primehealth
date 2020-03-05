@@ -1,0 +1,112 @@
+﻿@model Stock_System2.Models.User
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="~/Content/LoginDesign.css" rel="stylesheet" />
+
+    <title>Stock System Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--webfonts-->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+
+</head>
+<body>
+
+    <div class="login">
+        <h1>Warehouse System</h1>
+        <h2 id="demo"></h2>
+        <div class="form">
+            <p class="field">
+                <input type="text" name="login" placeholder="Username" id="UserName" required />
+                <i class="fa fa-user"></i>
+            </p>
+            <p class="field">
+                <input type="password" name="password" placeholder="Password" id="Password" required />
+                <i class="fa fa-lock"></i>
+            </p>
+          
+            <p class="submit"><input type="submit" name="sent" value="Login" id="Login"></p>
+
+        </div>
+       
+        <div id="div_error" style="display:none; color:red;margin-left:15% ; font-weight:bold;"> UserName Or Password Are Not Correct</div>
+        <div id="div_success" style="display: none; color: green; margin-left: 15%; font-weight: bold;"> Login Success</div>
+    </div> <!--/ Login-->
+    <div class="copyright">
+        <p style="font-weight:bold;"> Developed by <a href="https://www.linkedin.com/in/ahmed-ismail-18b7ab130/" target="_blank">Ahmed Ismail</a></p>
+
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#Login').on('click', function () {
+            var UserData =
+                {
+                    UserName: $("#UserName").val(),
+                    Password: $("#Password").val()
+                };
+            var orderx = JSON.stringify(UserData);
+            $.ajax({
+                url: '@Url.Action("Login","User")',
+                type: 'POST',
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                data: orderx,
+                success: function (message) {
+                    if (message == "Login Faild") {
+                        if ($("#UserName").val() == "") {
+                            $("#div_success").hide();
+                            $("#div_error").show();
+                            $("#div_error").text("Please Insert UserName")
+                        }
+                        else if($("#Password").val() == "")
+                        {
+                            $("#div_success").hide();
+                            $("#div_error").show();
+                            $("#div_error").text("Please Insert Password")
+                        }
+                        else {
+                            $("#div_success").hide();
+                            $("#div_error").show();
+                            $("#div_error").text("Login Is Faild , Please check your data")
+                        }               
+                    }
+                    else {
+                        $("#div_success").show();
+                        $("#div_error").hide();
+                       
+                       
+                            window.location = '@Url.Action("Search", "Item")'
+                       
+                              
+                            }
+
+
+
+                }
+            });
+
+
+
+
+        });
+    });
+</script>

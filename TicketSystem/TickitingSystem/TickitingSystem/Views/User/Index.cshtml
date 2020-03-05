@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DAL.DataBase.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Users :</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddUser")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dept_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sub_Dept_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.E_mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dept_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sub_Dept_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.E_mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.User_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.User_ID }) 
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.User_ID })*@
+        </td>
+    </tr>
+}
+
+</table>

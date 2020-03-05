@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="phonegap.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="scripts/jquery.min.js"></script>
+    <script src="js/webfont.js"></script>
+    <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <section class="w-section mobile-wrapper">
+        <div class="page-content" id="main-stack">
+            <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="200" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+                <div class="w-container">
+                    <nav class="w-nav-menu nav-menu" role="navigation">
+                        <div class="nav-menu-header">
+                            <div class="logo">Welcome ,</div>
+                            <div class="slogan" id="medicalid"></div>
+                        </div>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="home" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-keypad-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Details</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="contactus" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-location-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Contact us</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="forgotpw" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-person-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Change Password</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link last" id="login" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-bookmarks-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Logout</div>
+                        </a>
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                    </nav>
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title">Home</div>
+                    <div class="navbar-button left">
+                        <a id="bk"><</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body padding">
+            <div class="w-form" id="MainDetails">
+                <div>
+                    <div class="grey-header">
+                        <h2 class="grey-heading-title">Provider Details</h2>
+                    </div>
+                    <div style="height:350px; width:100%" id="googleMap"></div>
+                    <div class="text-new">
+                        <div class="separator-fields"></div>
+                        <h2 class="title-new" id="Title">Get in contact</h2>
+                        <p class="description-new">
+                            <span style="position:absolute">
+                                <span style="-webkit-user-select:auto;display:block;float:left" id="Address"> </span>
+                                <span style="-webkit-user-select:auto;display:block;float:right;" id="AddressCDdiv"> </span>
+                            </span>
+                            <br />
+                            <span style="-webkit-user-select:auto" id="phone1"> </span>
+                            <br />
+                            <span style="-webkit-user-select:auto" id="phone2"> </span>
+                            <br />
+                            <span style="-webkit-user-select:auto" id="phone3"> </span>
+                            <br />
+                            <span style="-webkit-user-select:auto" id="phone4"> </span>
+                            <br />
+                            <span style="-webkit-user-select:auto" id="category"> </span>
+                            <br>
+                            <span style="-webkit-user-select:auto" id="notes"> </span>
+                            <br>
+                            <!--<div class="container" id="calldiv" style="display:none">
+                                <div class="row">
+                                    <div>
+                                        <select id="PhoneCall" tabindex="-1">
+                                            <option selected disabled value="0">
+                                                Please select number to call
+                                            </option>
+                                            <option value="Phone 1">Phone 1</option>
+                                            <option value="Phone 2">Phone 2</option>
+                                            <option value="Phone 3">Phone 3</option>
+                                        </select>
+                                        <br />
+                                        <img id="callphone2" src="images/PhoneCall.png" style="width:32px;height:32px;" />
+                                    </div>
+                                </div>
+                            </div>-->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content loading-mask" id="new-stack">
+            <div class="loading-icon">
+                <div class="navbar-button-icon icon ion-load-d"></div>
+            </div>
+        </div>
+    </section>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/framework.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="CSS/javascript" src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function ()
+        {
+            var user_name = localStorage.getItem("Name");
+            $("#medicalid").append(user_name);
+            $(".navbar-title").html(localStorage.getItem("PName"));
+            var ProviderType = localStorage.getItem("providertype");
+            var Name = localStorage.getItem("PName");
+            var user_name = localStorage.getItem("Name");
+            $("#medicalid").append(user_name);
+            $(".navbar-title").html(localStorage.getItem("PName"));
+            var ProviderType = localStorage.getItem("providertype");
+            var Name = localStorage.getItem("PName");
+            var AddressCode = localStorage.getItem("AddressCode");
+            var Address = localStorage.getItem("Address");
+            var Tel = localStorage.getItem("Tel");
+            var Phone2 = localStorage.getItem("Phone2");
+            var Phone3 = localStorage.getItem("Phone3");
+            var Phone4 = localStorage.getItem("Phone4");
+            var Lat = localStorage.getItem("Lat");
+            var Lang = localStorage.getItem("Lang");
+            var Notes = localStorage.getItem("Notes");
+            var Category = localStorage.getItem("Category");
+            var ProvNam;
+            var Addr;
+            var AddressCD;
+            var tele1;
+            var tele2;
+            var tele3;
+            var tele3;
+            var tele4;
+            var ProvNot;
+            var Cat;
+            var map;
+            var myCenter = new google.maps.LatLng(Lat, Lang);
+            var mapProp = {
+                center: myCenter,
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                map: map,
+                animation: google.maps.Animation.DROP,
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: Name
+            });
+            infowindow.open(map, marker);
+            if (Name === 'null') {
+                ProvNam = "Not Available";
+            }
+            else {
+                ProvNam = Name;
+            }
+            if (AddressCode === 'null') {
+                AddressCD = "";
+            }
+            else {
+                AddressCD = AddressCode;
+            }
+            if (Address === 'null') {
+                Addr = "Not Available";
+            }
+            else {
+                Addr = Address;
+            }
+            if (Tel === 'null') {
+                tele1 = "Not Available";
+            }
+            else {
+                tele1 = Tel;
+            }
+            if (Phone2 === 'null') {
+                tele2 = "Not Available";
+            }
+            else {
+                tele2 = Phone2;
+            }
+            if (Phone3 === 'null') {
+                tele3 = "Not Available";
+            }
+            else {
+                tele3 = Phone3;
+            }
+            if (Phone4 === 'null') {
+                tele4 = "Not Available";
+            }
+            else {
+                tele4 = Phone4;
+            }
+            if (Notes === 'null') {
+                ProvNot = "Not Available";
+            }
+            else {
+                ProvNot = Notes;
+            }
+            if (Category === 'null') {
+                Cat = "Not Available";
+            }
+            else {
+                Cat = Category;
+            }
+            $("#Title").html(ProvNam);
+            $("#AddressCDdiv").html(AddressCD);
+            $("#Address").html("Address : " + Addr);
+            $("#phone1").html("Phone 1 : " + tele1);
+            $("#phone2").html("Phone 2 : " + tele2);
+            $("#phone3").html("Phone 3 : " + tele3);
+            $("#phone4").html("Phone 4 : " + tele4);
+            $("#category").html("Category : " + Cat);
+            $("#notes").html("Notes : " + ProvNot);
+                $("#Title").html (ProvNam);
+                $("#Address").html("Address : "+Addr);
+                $("#phone1").html("Tel:"+tele1);
+                $("#phone2").html("Tel2: "+tele2);
+                $("#phone3").html("Tel3: "+tele3);
+                $("#category").html("Category: "+Cat);
+                $("#notes").html(" Notes : " + ProvNot);
+        });
+        $("#home").click(function () {
+            window.location.href = ("home.html");
+        });
+        $("#contactus").click(function () {
+            window.location.href = ("contactus.html");
+        });
+        $("#forgotpw").click(function () {
+            window.location.href = ("forgot.html");
+        });
+        $("#login").click(function () {
+            localStorage.setItem("loged", "out");
+            window.location.href = ("login.html");
+        });
+        $("#bk").click(function () {
+            window.location.href = ("providerslist.html");
+        });
+    </script>
+</body>
+</html>         

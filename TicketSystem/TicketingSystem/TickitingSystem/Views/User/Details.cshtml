@@ -1,0 +1,66 @@
+﻿@model DAL.DataBase.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details of @Model.User_Name :</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dept_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dept_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sub_Dept_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sub_Dept_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.E_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.E_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

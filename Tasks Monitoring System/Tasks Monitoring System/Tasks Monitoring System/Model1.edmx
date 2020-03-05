@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TaskMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CompanyDIM">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PriorityTypeDIM">
+          <Key>
+            <PropertyRef Name="PriorityTypeID" />
+          </Key>
+          <Property Name="PriorityTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriorityTypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CompanyFK" Type="int" />
+          <Property Name="PriorityFK" Type="int" />
+          <Property Name="AddedByFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TasksStatusDIM">
+          <Key>
+            <PropertyRef Name="TaskStatusID" />
+          </Key>
+          <Property Name="TaskStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskStatusName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserDailsTasks">
+          <Key>
+            <PropertyRef Name="UserDailyTasksID" />
+          </Key>
+          <Property Name="UserDailyTasksID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskFK" Type="int" />
+          <Property Name="AssignedByFK" Type="int" />
+          <Property Name="DateOfTask" Type="datetime" />
+          <Property Name="StatusFK" Type="int" />
+          <Property Name="CompletedOn" Type="datetime" />
+          <Property Name="ClosingComment" Type="nvarchar(max)" />
+          <Property Name="AssignTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsAdminLevel" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Tasks_CompanyDIM">
+          <End Role="CompanyDIM" Type="Self.CompanyDIM" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyDIM">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="CompanyFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_PriorityTypeDIM">
+          <End Role="PriorityTypeDIM" Type="Self.PriorityTypeDIM" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriorityTypeDIM">
+              <PropertyRef Name="PriorityTypeID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="PriorityFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="AddedByFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDailsTasks_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
+          <End Role="UserDailsTasks" Type="Self.UserDailsTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="UserDailsTasks">
+              <PropertyRef Name="TaskFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDailsTasks_TasksStatusDIM">
+          <End Role="TasksStatusDIM" Type="Self.TasksStatusDIM" Multiplicity="0..1" />
+          <End Role="UserDailsTasks" Type="Self.UserDailsTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TasksStatusDIM">
+              <PropertyRef Name="TaskStatusID" />
+            </Principal>
+            <Dependent Role="UserDailsTasks">
+              <PropertyRef Name="StatusFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDailsTasks_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserDailsTasks" Type="Self.UserDailsTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserDailsTasks">
+              <PropertyRef Name="AssignedByFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaskMSModelStoreContainer">
+          <EntitySet Name="CompanyDIM" EntityType="Self.CompanyDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriorityTypeDIM" EntityType="Self.PriorityTypeDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TasksStatusDIM" EntityType="Self.TasksStatusDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDailsTasks" EntityType="Self.UserDailsTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tasks_CompanyDIM" Association="Self.FK_Tasks_CompanyDIM">
+            <End Role="CompanyDIM" EntitySet="CompanyDIM" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_PriorityTypeDIM" Association="Self.FK_Tasks_PriorityTypeDIM">
+            <End Role="PriorityTypeDIM" EntitySet="PriorityTypeDIM" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Users" Association="Self.FK_Tasks_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDailsTasks_Tasks" Association="Self.FK_UserDailsTasks_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="UserDailsTasks" EntitySet="UserDailsTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDailsTasks_TasksStatusDIM" Association="Self.FK_UserDailsTasks_TasksStatusDIM">
+            <End Role="TasksStatusDIM" EntitySet="TasksStatusDIM" />
+            <End Role="UserDailsTasks" EntitySet="UserDailsTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDailsTasks_Users" Association="Self.FK_UserDailsTasks_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserDailsTasks" EntitySet="UserDailsTasks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TaskMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CompanyDIM">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_CompanyDIM" FromRole="CompanyDIM" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="PriorityTypeDIM">
+          <Key>
+            <PropertyRef Name="PriorityTypeID" />
+          </Key>
+          <Property Name="PriorityTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriorityTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_PriorityTypeDIM" FromRole="PriorityTypeDIM" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyFK" Type="Int32" />
+          <Property Name="PriorityFK" Type="Int32" />
+          <Property Name="AddedByFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CompanyDIM" Relationship="Self.FK_Tasks_CompanyDIM" FromRole="Tasks" ToRole="CompanyDIM" />
+          <NavigationProperty Name="PriorityTypeDIM" Relationship="Self.FK_Tasks_PriorityTypeDIM" FromRole="Tasks" ToRole="PriorityTypeDIM" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Tasks_Users" FromRole="Tasks" ToRole="Users" />
+          <NavigationProperty Name="UserDailsTasks" Relationship="Self.FK_UserDailsTasks_Tasks" FromRole="Tasks" ToRole="UserDailsTasks" />
+        </EntityType>
+        <EntityType Name="TasksStatusDIM">
+          <Key>
+            <PropertyRef Name="TaskStatusID" />
+          </Key>
+          <Property Name="TaskStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskStatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserDailsTasks" Relationship="Self.FK_UserDailsTasks_TasksStatusDIM" FromRole="TasksStatusDIM" ToRole="UserDailsTasks" />
+        </EntityType>
+        <EntityType Name="UserDailsTask">
+          <Key>
+            <PropertyRef Name="UserDailyTasksID" />
+          </Key>
+          <Property Name="UserDailyTasksID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskFK" Type="Int32" />
+          <Property Name="AssignedByFK" Type="Int32" />
+          <Property Name="DateOfTask" Type="DateTime" Precision="3" />
+          <Property Name="StatusFK" Type="Int32" />
+          <Property Name="CompletedOn" Type="DateTime" Precision="3" />
+          <Property Name="ClosingComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_UserDailsTasks_Tasks" FromRole="UserDailsTasks" ToRole="Tasks" />
+          <NavigationProperty Name="TasksStatusDIM" Relationship="Self.FK_UserDailsTasks_TasksStatusDIM" FromRole="UserDailsTasks" ToRole="TasksStatusDIM" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserDailsTasks_Users" FromRole="UserDailsTasks" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdminLevel" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Users" FromRole="Users" ToRole="Tasks" />
+          <NavigationProperty Name="UserDailsTasks" Relationship="Self.FK_UserDailsTasks_Users" FromRole="Users" ToRole="UserDailsTasks" />
+        </EntityType>
+        <Association Name="FK_Tasks_CompanyDIM">
+          <End Role="CompanyDIM" Type="Self.CompanyDIM" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyDIM">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="CompanyFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_PriorityTypeDIM">
+          <End Role="PriorityTypeDIM" Type="Self.PriorityTypeDIM" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriorityTypeDIM">
+              <PropertyRef Name="PriorityTypeID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="PriorityFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="AddedByFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDailsTasks_Tasks">
+          <End Role="Tasks" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="UserDailsTasks" Type="Self.UserDailsTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="UserDailsTasks">
+              <PropertyRef Name="TaskFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDailsTasks_TasksStatusDIM">
+          <End Role="TasksStatusDIM" Type="Self.TasksStatusDIM" Multiplicity="0..1" />
+          <End Role="UserDailsTasks" Type="Self.UserDailsTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TasksStatusDIM">
+              <PropertyRef Name="TaskStatusID" />
+            </Principal>
+            <Dependent Role="UserDailsTasks">
+              <PropertyRef Name="StatusFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDailsTasks_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserDailsTasks" Type="Self.UserDailsTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserDailsTasks">
+              <PropertyRef Name="AssignedByFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaskMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CompanyDIMs" EntityType="Self.CompanyDIM" />
+          <EntitySet Name="PriorityTypeDIMs" EntityType="Self.PriorityTypeDIM" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="TasksStatusDIMs" EntityType="Self.TasksStatusDIM" />
+          <EntitySet Name="UserDailsTasks" EntityType="Self.UserDailsTask" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Tasks_CompanyDIM" Association="Self.FK_Tasks_CompanyDIM">
+            <End Role="CompanyDIM" EntitySet="CompanyDIMs" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_PriorityTypeDIM" Association="Self.FK_Tasks_PriorityTypeDIM">
+            <End Role="PriorityTypeDIM" EntitySet="PriorityTypeDIMs" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Users" Association="Self.FK_Tasks_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDailsTasks_Tasks" Association="Self.FK_UserDailsTasks_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="UserDailsTasks" EntitySet="UserDailsTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDailsTasks_TasksStatusDIM" Association="Self.FK_UserDailsTasks_TasksStatusDIM">
+            <End Role="TasksStatusDIM" EntitySet="TasksStatusDIMs" />
+            <End Role="UserDailsTasks" EntitySet="UserDailsTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDailsTasks_Users" Association="Self.FK_UserDailsTasks_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserDailsTasks" EntitySet="UserDailsTasks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TaskMSModelStoreContainer" CdmEntityContainer="TaskMSEntities">
+          <EntitySetMapping Name="CompanyDIMs">
+            <EntityTypeMapping TypeName="TaskMSModel.CompanyDIM">
+              <MappingFragment StoreEntitySet="CompanyDIM">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriorityTypeDIMs">
+            <EntityTypeMapping TypeName="TaskMSModel.PriorityTypeDIM">
+              <MappingFragment StoreEntitySet="PriorityTypeDIM">
+                <ScalarProperty Name="PriorityTypeID" ColumnName="PriorityTypeID" />
+                <ScalarProperty Name="PriorityTypeName" ColumnName="PriorityTypeName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="TaskMSModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CompanyFK" ColumnName="CompanyFK" />
+                <ScalarProperty Name="PriorityFK" ColumnName="PriorityFK" />
+                <ScalarProperty Name="AddedByFK" ColumnName="AddedByFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TasksStatusDIMs">
+            <EntityTypeMapping TypeName="TaskMSModel.TasksStatusDIM">
+              <MappingFragment StoreEntitySet="TasksStatusDIM">
+                <ScalarProperty Name="TaskStatusID" ColumnName="TaskStatusID" />
+                <ScalarProperty Name="TaskStatusName" ColumnName="TaskStatusName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDailsTasks">
+            <EntityTypeMapping TypeName="TaskMSModel.UserDailsTask">
+              <MappingFragment StoreEntitySet="UserDailsTasks">
+                <ScalarProperty Name="UserDailyTasksID" ColumnName="UserDailyTasksID" />
+                <ScalarProperty Name="TaskFK" ColumnName="TaskFK" />
+                <ScalarProperty Name="AssignedByFK" ColumnName="AssignedByFK" />
+                <ScalarProperty Name="DateOfTask" ColumnName="DateOfTask" />
+                <ScalarProperty Name="StatusFK" ColumnName="StatusFK" />
+                <ScalarProperty Name="CompletedOn" ColumnName="CompletedOn" />
+                <ScalarProperty Name="ClosingComment" ColumnName="ClosingComment" />
+                <ScalarProperty Name="AssignTime" ColumnName="AssignTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TaskMSModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdminLevel" ColumnName="IsAdminLevel" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

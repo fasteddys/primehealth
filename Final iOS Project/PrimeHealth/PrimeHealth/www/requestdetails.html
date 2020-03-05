@@ -1,0 +1,190 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Forgot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">-->
+
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="js/webfont.js"></script>
+    <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section class="w-section mobile-wrapper">
+
+        <div class="page-content" id="main-stack" data-scroll="0">
+            <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+                <div class="w-container">
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title">Request Details</div>
+                    <a class="w-inline-block navbar-button" id="clse" data-load="1">
+                        <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+                <div class="w-container">
+                    <nav class="w-nav-menu nav-menu" role="navigation">
+                        <div class="nav-menu-header">
+                            <div class="logo">Welcome ,</div>
+                            <div class="slogan" id="medicalid"></div>
+                        </div>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="home" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-keypad-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Home</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="contactus" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-location-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Contact us</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="forgotpw" data-load="1">
+
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-person-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Change Password</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link last" id="login" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-bookmarks-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Logout</div>
+                        </a>
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                    </nav>
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title">Request Details</div>
+                    <div class="navbar-button left">
+                        <a id="bk"><</a>
+                    </div>
+                </div>
+            </div>
+            <div class="body padding">
+                <div class="w-form">
+                    <form id="submit-form" name="email-form" data-name="Email Form" data-redirect="login.html" action="#">
+                        <div>
+                            <h2 class="title-new">Request ID</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="reqid"></p>
+                        </div>
+                        <div>
+                            <h2 class="title-new">Request Title</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="reqtitle"></p>
+                        </div>
+                        <div>
+                            <h2 class="title-new">Request Message</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="reqmsg"></p>
+                        </div>
+                        <div>
+                            <h2 class="title-new">Request Status</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="reqstat"></p>
+                        </div>
+                        <div id="callcentercomment">
+                            <h2 class="title-new">CallCenter Comment</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="cccmt"></p>
+                        </div>
+                        <div id="calldoctor">
+                            <h2 class="title-new">CallCenter Agent</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="ccm"></p>
+                        </div>
+
+                        <div id="callreply">
+                            <h2 class="title-new">CallCenter Reply</h2>
+                            <div>
+                                <img id="loadimg" src="images/Loading.gif" style="display:none" />
+                                <br><p id="waitingdiv" style="display:none">WAITING FOR REPLY...</p>
+                            </div>
+                        </div>
+                        <input class="w-button action-button" style="display:none" type="button" value="View CallCenter Reply" id="btnclick">
+                    </form>
+                    <div class="w-form-done">
+                        <p>Thank you! Your submission has been received!</p>
+                    </div>
+                    <div class="w-form-fail">
+                        <p>Oops! Something went wrong while submitting the form</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="page-content loading-mask" id="new-stack">
+             <div class="loading-icon">
+                 <div class="navbar-button-icon icon ion-load-d"></div>
+             </div>
+         </div>-->
+        <!--<div class="shadow-layer"></div>-->
+    </section>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var name = localStorage.getItem("Name");
+            $("#medicalid").append(name);
+            $("#reqtitle").append(localStorage.getItem("ReqTitle"));
+            $("#reqmsg").append(localStorage.getItem("ReqSubject"));
+            $("#cccmt").append(localStorage.getItem("reqCallCenterComment"));
+            $("#ccm").append(localStorage.getItem("reqCallCenterName"));
+            $("#reqid").append(localStorage.getItem("reqid"));
+            $("#reqstat").append(localStorage.getItem("ReqStatus"));
+
+            if (localStorage.getItem("status") == "Pending Requests") {
+                $("#callcentercomment").hide();
+                $("#calldoctor").hide();
+                $("#loadimg").show();
+                $("#waitingdiv").show();
+            }
+            else
+            {
+                $("#callcentercomment").show();
+                $("#calldoctor").show();
+                $("#btnclick").show();
+            }
+            $("#btnclick").click(function () {
+                var ref = cordova.InAppBrowser.open(localStorage.getItem("reqRepliedImageStrg"), '_system', 'location=no');
+            })
+        });
+     $("#home").click(function () {
+         window.location.href = ("home.html");
+     });
+     $("#contactus").click(function () {
+         window.location.href = ("contactus.html");
+     });
+     $("#forgotpw").click(function () {
+         window.location.href = ("forgot.html");
+     });
+     $("#login").click(function () {
+         localStorage.setItem("loged", "out");
+         window.location.href = ("login.html");
+     });
+     $("#bk").click(function () {
+         window.location.href = ("requestlist.html");
+     });
+    </script>
+</body>
+</html>

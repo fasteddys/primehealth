@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewBag.Title = "Add_item";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script src="script.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="~/Content/Ahmed.css" rel="stylesheet" />
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div class="alert alert-danger alert-dismissable" id="div_Error2" style="display:none">
+
+                </div>
+                <div class="alert alert-success alert-dismissable" id="div_Success" style="display:none">
+                    Adding  of Item is done Successfully
+                </div>
+                <header class="panel-heading warning" style="background-color:#a71313; color:#eae9e9; text-align:center; font-weight:bold"> Add Item </header>
+
+                <table class="table table-hover table-inverse table-bordered" align="center" style="text-align:center; font-family:Arial;font-weight:bold;font-size:large">
+                    <tr class="info" style="display:none;" id="div1">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label">Item Type</label>
+                        </td>
+                        <td>
+
+                            <select class="form-control input-lg m-b-10" id="type">
+                                <option value="IT">IT</option>
+                                <option value="TPA">TPA</option>
+                                <option value="Issuance">Issuance</option>
+                                <option value="Archiving">Archiving</option>
+                               
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="warning">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">Item Name</label>
+                        </td>
+                        <td style="color:black;">
+                            <input type="text" class="form-control input-lg m-b-10" id="ItemName" name="pas" data-toggle="tooltip" data-placement="bottom" title="Enter Value!">
+                        </td>
+                    </tr>
+                    
+                    <tr class="info">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">Item Number</label>
+                        </td>
+                        <td style="color:black;">
+                            <input type="text" class="form-control input-lg m-b-10" id="ItemCount" name="pas" data-toggle="tooltip" data-placement="bottom" title="Enter Value!">
+                        </td>
+                    </tr>
+                    <tr class="warning">
+                        <td>
+                            <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">Item Warning Number</label>
+                        </td>
+                        <td style="color:black;">
+                            <input type="text" class="form-control input-lg m-b-10" id="ItemWarning" name="pas" data-toggle="tooltip" data-placement="bottom" title="Enter Value!">
+                        </td>
+                    </tr>
+                    <tr class="info" style="font-weight:bold; width:100%">
+                        <td>
+                            <div class="info" style="font-weight:bold">
+                                <div class="toolbar-btn-action">
+                                    <button type="button" style="width:200px;" class="btn btn-danger active" id="btn_Submit">Add Item</button>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="info" style="font-weight:bold">
+                                <div class="toolbar-btn-action">
+                                    <button type="button" style="width:200px;" onclick="func()" class="btn btn-danger active" id="Clear">Clear</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="warning" id="td_it" style="font-weight:bold; width:100%;display:none">
+                        <td>
+                            <div class="info" style="font-weight:bold">
+                                <div class="toolbar-btn-action">
+                                    <a role="button" style="width:200px;" class="btn btn-danger active" href="/Item/Detail_It">Add Details</a>
+                                </div>
+                            </div>
+                        </td>
+
+                        
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    if ('@Request.Cookies["usertype"].Value' == "Manager")
+    {
+        $('#div1').show()
+    }
+        $('#btn_Submit').on('click', function () {
+
+            var regex = /^[0-9]+$/;
+            if ($("#ItemName").val() == "") {
+                $('#div_Error2').show();
+                $('#div_Error2').text("Please Insert Item Name");
+                $('#div_Success').hide();
+                   }
+            if ($("#ItemCount").val() == "") {
+                $('#div_Error2').show();
+                $('#div_Error2').text("Please Insert Number Item");
+                $('#div_Success').hide();
+            }
+
+            if ($("#ItemWarning").val() == "") {
+                $('#div_Error2').show();
+                $('#div_Error2').text("Please Insert Warning Number Of Item");
+                $('#div_Success').hide();
+            }
+            else if(!$("#ItemCount").val().match(regex))
+            {
+                $('#div_Error2').show();
+                $('#div_Error2').text("Please Insert Number for Item Number");
+                $('#div_Success').hide();
+            }
+            else if (!$("#ItemWarning").val().match(regex)) {
+                $('#div_Error2').show();
+                $('#div_Error2').text("Please Insert Number for Item Number Warning");
+                $('#div_Success').hide();
+            }
+            //else if ($("#ItemCount").val().match(regex) <= $("#ItemWarning").val().match(regex)) {
+            //    $('#div_Error2').show();
+            //    $('#div_Error2').text("Item Number Must be greater than Item Warning Number");
+            //    $('#div_Success').hide();
+            //}
+            else {
+                var UserData =
+                    {
+                        ItemName: $("#ItemName").val(),
+                        ItemCount: $("#ItemCount").val(),
+                        ItemWarning: $("#ItemWarning").val(),
+                        type: $("#type").val()
+
+
+                    };
+
+                var orderx = JSON.stringify(UserData);
+                $.ajax({
+                    url: '@Url.Action("Add_Item","Item")',
+                    type: 'POST',
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    data: orderx,
+                    success: function (message) {
+                        if (message == "success") {
+                            $('#div_Success').show();
+
+                            $('#div_Error2').hide();
+                            if ('@Request.Cookies["usertype"].Value' == "Engineer" || ('@Request.Cookies["usertype"].Value' == "Manager" && $("#type").val()=="IT"))
+                            {
+                                //$("#details").show();
+                                $('#td_it').show();
+                            }
+
+                        }
+                        else {
+                            $('#div_Error2').show();
+                            $('#div_Error2').text("Item Is Not Added");
+                            $('#div_Success').hide();
+
+
+                        }
+                    }
+                });
+
+            }
+
+
+        });
+    function func() {
+        $("#ItemName").val("");
+        $("#ItemCount").val("");
+        $("#ItemWarning").val("");
+      
+    }
+</script>

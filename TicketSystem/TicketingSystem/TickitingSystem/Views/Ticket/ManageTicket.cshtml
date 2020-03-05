@@ -1,0 +1,66 @@
+﻿@model TickitingSystem.Models.ManageTicket
+@{
+    ViewBag.Title = "Manage Ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .accordion-toggle:hover {
+        text-decoration: none;
+    }
+</style>
+
+<div class="card card-outline-info">
+    <div class="card-header">
+        <h4 class="m-b-0 text-white">Ticket</h4>
+    </div>
+
+    @{
+        List<DAL.DataBase.User> h = ViewBag.users;
+        var user = (from u in h where u.User_ID == Model.ticket.User_ID select u.User_Name).SingleOrDefault();
+        var vieweruserdep = (from dl in h where dl.User_ID == int.Parse(@Request.Cookies["UserIDCookie"].Value) select dl.Dept_ID).SingleOrDefault();
+        var userdep = (from dl in h where dl.User_ID == Model.ticket.User_ID select dl.Dept_ID).SingleOrDefault();
+        var assp = (from u in h where u.User_ID == Model.ticket.Assign_Person_ID select u.User_Name).SingleOrDefault();
+        List<DAL.DataBase.Ticket_Types> t = ViewBag.type;
+        var type = (from y in t where y.Ticket_Type_ID == Model.ticket.Ticket_type_ID select y.Ticket_type_Name).SingleOrDefault();
+        List<DAL.DataBase.Status> s = ViewBag.status;
+        var status = (from z in s where z.Status_ID == Model.ticket.Status_ID select z.Status_Name).SingleOrDefault();
+    }
+
+    <div class="card-body">
+        <div class="alert alert-primary " id="Success_reply" style="display:none">
+            Reply Added Successfully
+        </div>
+        <div class="alert alert-warning " id="Success_assign" style="display:none">
+            Ticket Assigned By You Successfully
+        </div>
+        <div class="alert alert-info " id="Success_openDQ" style="display:none">
+            Opened DataQuest Ticket Successfully
+        </div>
+        <div class="alert alert-info " id="Success_openITF" style="display:none">
+            Opened IT Fusion Ticket Successfully
+        </div>
+        <div class="alert alert-dark " id="Success_close" style="display:none">
+            Ticket Closed Successfully
+        </div>
+        <div class="alert alert-danger " id="Success_reopen" style="display:none">
+            Ticket Re-Opened Successfully
+        </div>
+        <div id="UpdatedPartial">
+            @Html.Partial("_ManageTicket",Model)
+        </div>
+    </div>
+</div>
+    <script>
+            //$('.collapse').on('shown.bs.collapse', function () {
+        //    $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+        //}).on('hidden.bs.collapse', function () {
+        //    $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+        //});
+    </script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    @*<script src="~/js/jquery.slimscroll.js"></script>*@
+    <!--Menu sidebar -->
+    <script src="~/js/sidebarmenu.js"></script>
+    @*<script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>*@
+    <!--Custom JavaScript -->

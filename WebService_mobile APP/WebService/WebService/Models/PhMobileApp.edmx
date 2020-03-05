@@ -1,0 +1,1068 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhNetworkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountTB">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="150" />
+          <Property Name="UserPass" Type="nvarchar" MaxLength="150" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsOnline" Type="nvarchar" MaxLength="50" />
+          <Property Name="Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CallCenterAppUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CallCenterEmailApprovals">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserMedicalID" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="CallcenterOpenNote" Type="nvarchar(max)" />
+          <Property Name="CallcenterTicketCreator" Type="nvarchar" MaxLength="50" />
+          <Property Name="CallcenterlTicketCraetionTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="CallcenterAssignDoctor" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorAcceptDate" Type="datetime" />
+          <Property Name="DoctorApprovedName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorApprovedDate" Type="datetime" />
+          <Property Name="DoctorComments" Type="nvarchar(max)" />
+          <Property Name="AuditApprovedTime" Type="datetime" />
+          <Property Name="AuditApprovedName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManagerApprovedName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManagerApprovedTime" Type="datetime" />
+          <Property Name="AssignEmailPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignEmailDate" Type="datetime" />
+          <Property Name="SenderEmailPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="SenderEmailDate" Type="datetime" />
+          <Property Name="ReqStatues" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatorAttachedPath" Type="nvarchar(max)" />
+          <Property Name="DoctorAttachedPath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Categories_id" />
+          </Key>
+          <Property Name="Categories_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Categories_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClaimsApprovals">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="nvarchar(max)" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="medicalid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Reqtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReqTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReqSubject" Type="nvarchar(max)" />
+          <Property Name="imageName" Type="nvarchar(max)" />
+          <Property Name="ReqStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="CallCenterComment" Type="nvarchar(max)" />
+          <Property Name="CallCenterName" Type="nvarchar(max)" />
+          <Property Name="ApproveOrRejectTime" Type="datetime" />
+          <Property Name="RepliedImageStrg" Type="varchar(max)" />
+          <Property Name="imageBasestrg" Type="nvarchar(max)" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="RepliedImageStrPath" Type="nvarchar(max)" />
+          <Property Name="ImgName2" Type="nvarchar(max)" />
+          <Property Name="ImgName3" Type="nvarchar(max)" />
+          <Property Name="ImgName4" Type="nvarchar(max)" />
+          <Property Name="ImgName5" Type="nvarchar(max)" />
+          <Property Name="Platform" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ClientNotes">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="ClientName" Type="nvarchar(max)" />
+          <Property Name="ClientType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Complaints">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rFrom" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="rSubject" Type="nvarchar(max)" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="rBody" Type="nvarchar(max)" />
+          <Property Name="rStatus" Type="nvarchar" MaxLength="100" />
+          <Property Name="rStatusColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="rDate" Type="datetime" />
+          <Property Name="ManagerCommentDate" Type="datetime" />
+          <Property Name="ManagerComment" Type="nvarchar(max)" />
+          <Property Name="ClientName" Type="nvarchar(max)" />
+          <Property Name="ManagerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Seen" Type="nvarchar" MaxLength="50" />
+          <Property Name="Replied" Type="nvarchar" MaxLength="50" />
+          <Property Name="assigneddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DoctorTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="DoctorName" Type="nvarchar(max)" />
+          <Property Name="DoctorAddress" Type="nvarchar(max)" />
+          <Property Name="DoctorAddressCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="Doc_cat" Type="int" />
+          <Property Name="DoctorInfo" Type="nvarchar(max)" />
+          <Property Name="LocID" Type="int" />
+          <Property Name="DoctorPhone2" Type="nvarchar(max)" />
+          <Property Name="SubLocationName" Type="nvarchar(max)" />
+          <Property Name="DoctorPhone" Type="nvarchar(max)" />
+          <Property Name="DoctorPhone3" Type="nvarchar(max)" />
+          <Property Name="DoctorPhone4" Type="nvarchar(max)" />
+          <Property Name="DoctorNotes" Type="nvarchar(max)" />
+          <Property Name="DocLong" Type="nvarchar(max)" />
+          <Property Name="DocLat" Type="nvarchar(max)" />
+          <Property Name="AccName" Type="nvarchar" MaxLength="50" />
+          <Property Name="QNB" Type="int" />
+          <Property Name="Meduim" Type="int" />
+          <Property Name="Large" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="AttachName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MedicalID" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RepliedMessages" Type="nvarchar(max)" />
+          <Property Name="Seen" Type="nvarchar" MaxLength="50" />
+          <Property Name="RepliedTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="RepliedPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="RepliedTime" Type="datetime" />
+          <Property Name="CreationTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HospitalTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="HospName" Type="nvarchar(max)" />
+          <Property Name="AddressNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="HospAddress" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="LocID" Type="int" />
+          <Property Name="SubLocationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="HospPhone" Type="nvarchar(max)" />
+          <Property Name="HospPhone2" Type="nvarchar(max)" />
+          <Property Name="HospPhone3" Type="nvarchar(max)" />
+          <Property Name="HospPhone4" Type="nvarchar" MaxLength="50" />
+          <Property Name="HospNotes" Type="nvarchar(max)" />
+          <Property Name="HospLong" Type="nvarchar(max)" />
+          <Property Name="HospLat" Type="nvarchar(max)" />
+          <Property Name="QNB" Type="int" />
+          <Property Name="Meduim" Type="int" />
+          <Property Name="Large" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="HospitalNetwork" Type="nvarchar" MaxLength="150" />
+          <Property Name="AddByEmp" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LaboratoryTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="LabName" Type="nvarchar(max)" />
+          <Property Name="LabAddressCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="LabAddress" Type="nvarchar(max)" />
+          <Property Name="LocID" Type="int" />
+          <Property Name="LabSublocationName" Type="nvarchar(max)" />
+          <Property Name="LabPhone" Type="nvarchar(max)" />
+          <Property Name="Labphone2" Type="nvarchar(max)" />
+          <Property Name="Labphone3" Type="nvarchar(max)" />
+          <Property Name="Labphone4" Type="nvarchar(max)" />
+          <Property Name="LabNotes" Type="nvarchar(max)" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="LabLong" Type="nvarchar(max)" />
+          <Property Name="LabLat" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocationsTB">
+          <Key>
+            <PropertyRef Name="LocID" />
+          </Key>
+          <Property Name="LocationName" Type="nvarchar(max)" />
+          <Property Name="CityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Loginer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Medical_id" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="gender" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="ClientName" Type="nvarchar(max)" />
+          <Property Name="BranchName" Type="nvarchar(max)" />
+          <Property Name="Activated" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medicalid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QNB-Requst" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="NewsFeed">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Header" Type="nvarchar" MaxLength="150" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="OpticalTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="OpticalName" Type="nvarchar(max)" />
+          <Property Name="OpticalAddressCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="OpticalAddress" Type="nvarchar(max)" />
+          <Property Name="LocID" Type="int" />
+          <Property Name="OpticalSublocationName" Type="nvarchar(max)" />
+          <Property Name="OpticalPhone" Type="nvarchar(max)" />
+          <Property Name="Opticalphone2" Type="nvarchar(max)" />
+          <Property Name="Opticalphone3" Type="nvarchar(max)" />
+          <Property Name="Opticalphone4" Type="nvarchar(max)" />
+          <Property Name="OpticalNotes" Type="nvarchar(max)" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="OpticalLong" Type="nvarchar(max)" />
+          <Property Name="OpticalLat" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PharmacyTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PharmName" Type="nvarchar(max)" />
+          <Property Name="PharmAddressCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PharmAddress" Type="nvarchar(max)" />
+          <Property Name="LocID" Type="int" />
+          <Property Name="PharmSublocationName" Type="nvarchar(max)" />
+          <Property Name="PharmPhone" Type="nvarchar(max)" />
+          <Property Name="PharmPhone1" Type="nvarchar(max)" />
+          <Property Name="PharmPhone2" Type="nvarchar(max)" />
+          <Property Name="PharmPhone3" Type="nvarchar(max)" />
+          <Property Name="PharmNotes" Type="nvarchar(max)" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="PharmLong" Type="nvarchar(max)" />
+          <Property Name="PharmLat" Type="nvarchar(max)" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="picname" Type="nvarchar" MaxLength="50" />
+          <Property Name="path" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProviderAppUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SubLocatiobTB">
+          <Key>
+            <PropertyRef Name="SubLocID" />
+          </Key>
+          <Property Name="SubLocName" Type="nvarchar(max)" />
+          <Property Name="MainLocID" Type="int" />
+          <Property Name="SubLocationCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubLocID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebsiteAccounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="Headof" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="PhNetworkModelStoreContainer">
+          <EntitySet Name="AccountTB" EntityType="Self.AccountTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallCenterAppUser" EntityType="Self.CallCenterAppUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallCenterEmailApprovals" EntityType="Self.CallCenterEmailApprovals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimsApprovals" EntityType="Self.ClaimsApprovals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientNotes" EntityType="Self.ClientNotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoctorTB" EntityType="Self.DoctorTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HospitalTB" EntityType="Self.HospitalTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LaboratoryTB" EntityType="Self.LaboratoryTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationsTB" EntityType="Self.LocationsTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loginer" EntityType="Self.Loginer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicalid" EntityType="Self.Medicalid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsFeed" EntityType="Self.NewsFeed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OpticalTB" EntityType="Self.OpticalTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PharmacyTB" EntityType="Self.PharmacyTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pic" EntityType="Self.pic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProviderAppUser" EntityType="Self.ProviderAppUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubLocatiobTB" EntityType="Self.SubLocatiobTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebsiteAccounts" EntityType="Self.WebsiteAccounts" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhNetworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountTB">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UserPass" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsOnline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Categories_id" />
+          </Key>
+          <Property Name="Categories_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Categories_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Complaint">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="rSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="rBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="rStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="rStatusColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rDate" Type="DateTime" Precision="3" />
+          <Property Name="ManagerCommentDate" Type="DateTime" Precision="3" />
+          <Property Name="ManagerComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Seen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Replied" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="assigneddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DoctorTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="DoctorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorPhone2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorPhone3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocID" Type="Int32" />
+          <Property Name="DocLong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DocLat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QNB" Type="Int32" />
+          <Property Name="Meduim" Type="Int32" />
+          <Property Name="Large" Type="Int32" />
+          <Property Name="Doc_cat" Type="Int32" />
+          <Property Name="DoctorInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="DoctorAddressCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubLocationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorPhone4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HospitalTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="HospName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HospAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HospPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HospPhone2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HospPhone3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HospNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocID" Type="Int32" />
+          <Property Name="HospLong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HospLat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QNB" Type="Int32" />
+          <Property Name="Meduim" Type="Int32" />
+          <Property Name="Large" Type="Int32" />
+          <Property Name="HospitalNetwork" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="AddressNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubLocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HospPhone4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddByEmp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LaboratoryTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="LabName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LabAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LabPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Labphone2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Labphone3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LabNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocID" Type="Int32" />
+          <Property Name="LabLong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LabLat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="LabAddressCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LabSublocationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Labphone4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LocationsTB">
+          <Key>
+            <PropertyRef Name="LocID" />
+          </Key>
+          <Property Name="LocationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Loginer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Medical_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activated" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Medicalid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QNB_Requst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NewsFeed">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Header" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PharmacyTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PharmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmPhone1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmPhone2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocID" Type="Int32" />
+          <Property Name="PharmLong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmLat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="PharmAddressCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PharmSublocationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmPhone3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="picname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SubLocatiobTB">
+          <Key>
+            <PropertyRef Name="SubLocID" />
+          </Key>
+          <Property Name="SubLocName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MainLocID" Type="Int32" />
+          <Property Name="SubLocID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubLocationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WebsiteAccount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Headof" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClaimsApproval">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imageName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="imageBasestrg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReqTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReqSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReqStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CallCenterComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RepliedImageStrg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CallCenterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="medicalid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Reqtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApproveOrRejectTime" Type="DateTime" Precision="3" />
+          <Property Name="RepliedImageStrPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImgName2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImgName3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImgName4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImgName5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Platform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="PhMobAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountTBs" EntityType="Self.AccountTB" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Complaints" EntityType="Self.Complaint" />
+          <EntitySet Name="DoctorTBs" EntityType="Self.DoctorTB" />
+          <EntitySet Name="HospitalTBs" EntityType="Self.HospitalTB" />
+          <EntitySet Name="LaboratoryTBs" EntityType="Self.LaboratoryTB" />
+          <EntitySet Name="LocationsTBs" EntityType="Self.LocationsTB" />
+          <EntitySet Name="Loginers" EntityType="Self.Loginer" />
+          <EntitySet Name="Medicalids" EntityType="Self.Medicalid" />
+          <EntitySet Name="NewsFeeds" EntityType="Self.NewsFeed" />
+          <EntitySet Name="PharmacyTBs" EntityType="Self.PharmacyTB" />
+          <EntitySet Name="pics" EntityType="Self.pic" />
+          <EntitySet Name="SubLocatiobTBs" EntityType="Self.SubLocatiobTB" />
+          <EntitySet Name="WebsiteAccounts" EntityType="Self.WebsiteAccount" />
+          <EntitySet Name="ClaimsApprovals" EntityType="Self.ClaimsApproval" />
+          <EntitySet Name="Feedbacks" EntityType="PhNetworkModel.Feedback" />
+          <EntitySet Name="CallCenterAppUsers" EntityType="PhNetworkModel.CallCenterAppUser" />
+          <EntitySet Name="ClientNotes" EntityType="PhNetworkModel.ClientNote" />
+          <EntitySet Name="ProviderAppUsers" EntityType="PhNetworkModel.ProviderAppUser" />
+          <EntitySet Name="CallCenterEmailApprovals" EntityType="PhNetworkModel.CallCenterEmailApproval" />
+          <EntitySet Name="OpticalTBs" EntityType="PhNetworkModel.OpticalTB" />
+        </EntityContainer>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttachName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MedicalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RepliedMessages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Seen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RepliedTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RepliedPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RepliedTime" Type="DateTime" Precision="3" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CallCenterAppUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ClientNote">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProviderAppUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CallCenterEmailApproval">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserMedicalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CallcenterOpenNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CallcenterTicketCreator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CallcenterlTicketCraetionTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CallcenterAssignDoctor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorAcceptDate" Type="DateTime" Precision="3" />
+          <Property Name="DoctorApprovedName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorApprovedDate" Type="DateTime" Precision="3" />
+          <Property Name="DoctorComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuditApprovedTime" Type="DateTime" Precision="3" />
+          <Property Name="AuditApprovedName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerApprovedName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerApprovedTime" Type="DateTime" Precision="3" />
+          <Property Name="AssignEmailPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssignEmailDate" Type="DateTime" Precision="3" />
+          <Property Name="SenderEmailPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SenderEmailDate" Type="DateTime" Precision="3" />
+          <Property Name="ReqStatues" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatorAttachedPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorAttachedPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OpticalTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="OpticalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpticalAddressCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OpticalAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocID" Type="Int32" />
+          <Property Name="OpticalSublocationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpticalPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Opticalphone2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Opticalphone3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Opticalphone4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpticalNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="OpticalLong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpticalLat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhNetworkModelStoreContainer" CdmEntityContainer="PhMobAppEntities">
+          <EntitySetMapping Name="AccountTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.AccountTB">
+              <MappingFragment StoreEntitySet="AccountTB">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="PhNetworkModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Categories_name" ColumnName="Categories_name" />
+                <ScalarProperty Name="Categories_id" ColumnName="Categories_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Complaints">
+            <EntityTypeMapping TypeName="PhNetworkModel.Complaint">
+              <MappingFragment StoreEntitySet="Complaints">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="rFrom" ColumnName="rFrom" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="rSubject" ColumnName="rSubject" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="rBody" ColumnName="rBody" />
+                <ScalarProperty Name="rStatus" ColumnName="rStatus" />
+                <ScalarProperty Name="rStatusColor" ColumnName="rStatusColor" />
+                <ScalarProperty Name="rDate" ColumnName="rDate" />
+                <ScalarProperty Name="ManagerCommentDate" ColumnName="ManagerCommentDate" />
+                <ScalarProperty Name="ManagerComment" ColumnName="ManagerComment" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="Replied" ColumnName="Replied" />
+                <ScalarProperty Name="assigneddate" ColumnName="assigneddate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoctorTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.DoctorTB">
+              <MappingFragment StoreEntitySet="DoctorTB">
+                <ScalarProperty Name="DoctorPhone4" ColumnName="DoctorPhone4" />
+                <ScalarProperty Name="SubLocationName" ColumnName="SubLocationName" />
+                <ScalarProperty Name="DoctorAddressCode" ColumnName="DoctorAddressCode" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorAddress" ColumnName="DoctorAddress" />
+                <ScalarProperty Name="DoctorPhone" ColumnName="DoctorPhone" />
+                <ScalarProperty Name="DoctorPhone2" ColumnName="DoctorPhone2" />
+                <ScalarProperty Name="DoctorPhone3" ColumnName="DoctorPhone3" />
+                <ScalarProperty Name="DoctorNotes" ColumnName="DoctorNotes" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="DocLong" ColumnName="DocLong" />
+                <ScalarProperty Name="DocLat" ColumnName="DocLat" />
+                <ScalarProperty Name="AccName" ColumnName="AccName" />
+                <ScalarProperty Name="QNB" ColumnName="QNB" />
+                <ScalarProperty Name="Meduim" ColumnName="Meduim" />
+                <ScalarProperty Name="Large" ColumnName="Large" />
+                <ScalarProperty Name="Doc_cat" ColumnName="Doc_cat" />
+                <ScalarProperty Name="DoctorInfo" ColumnName="DoctorInfo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HospitalTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.HospitalTB">
+              <MappingFragment StoreEntitySet="HospitalTB">
+                <ScalarProperty Name="AddedTime" ColumnName="AddedTime" />
+                <ScalarProperty Name="AddByEmp" ColumnName="AddByEmp" />
+                <ScalarProperty Name="HospPhone4" ColumnName="HospPhone4" />
+                <ScalarProperty Name="SubLocationName" ColumnName="SubLocationName" />
+                <ScalarProperty Name="AddressNum" ColumnName="AddressNum" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="HospName" ColumnName="HospName" />
+                <ScalarProperty Name="HospAddress" ColumnName="HospAddress" />
+                <ScalarProperty Name="HospPhone" ColumnName="HospPhone" />
+                <ScalarProperty Name="HospPhone2" ColumnName="HospPhone2" />
+                <ScalarProperty Name="HospPhone3" ColumnName="HospPhone3" />
+                <ScalarProperty Name="HospNotes" ColumnName="HospNotes" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="HospLong" ColumnName="HospLong" />
+                <ScalarProperty Name="HospLat" ColumnName="HospLat" />
+                <ScalarProperty Name="QNB" ColumnName="QNB" />
+                <ScalarProperty Name="Meduim" ColumnName="Meduim" />
+                <ScalarProperty Name="Large" ColumnName="Large" />
+                <ScalarProperty Name="HospitalNetwork" ColumnName="HospitalNetwork" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LaboratoryTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.LaboratoryTB">
+              <MappingFragment StoreEntitySet="LaboratoryTB">
+                <ScalarProperty Name="Labphone4" ColumnName="Labphone4" />
+                <ScalarProperty Name="LabSublocationName" ColumnName="LabSublocationName" />
+                <ScalarProperty Name="LabAddressCode" ColumnName="LabAddressCode" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="LabName" ColumnName="LabName" />
+                <ScalarProperty Name="LabAddress" ColumnName="LabAddress" />
+                <ScalarProperty Name="LabPhone" ColumnName="LabPhone" />
+                <ScalarProperty Name="Labphone2" ColumnName="Labphone2" />
+                <ScalarProperty Name="Labphone3" ColumnName="Labphone3" />
+                <ScalarProperty Name="LabNotes" ColumnName="LabNotes" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="LabLong" ColumnName="LabLong" />
+                <ScalarProperty Name="LabLat" ColumnName="LabLat" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationsTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.LocationsTB">
+              <MappingFragment StoreEntitySet="LocationsTB">
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loginers">
+            <EntityTypeMapping TypeName="PhNetworkModel.Loginer">
+              <MappingFragment StoreEntitySet="Loginer">
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Medical_id" ColumnName="Medical_id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicalids">
+            <EntityTypeMapping TypeName="PhNetworkModel.Medicalid">
+              <MappingFragment StoreEntitySet="Medicalid">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="QNB_Requst" ColumnName="QNB-Requst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsFeeds">
+            <EntityTypeMapping TypeName="PhNetworkModel.NewsFeed">
+              <MappingFragment StoreEntitySet="NewsFeed">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PharmacyTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.PharmacyTB">
+              <MappingFragment StoreEntitySet="PharmacyTB">
+                <ScalarProperty Name="PharmPhone3" ColumnName="PharmPhone3" />
+                <ScalarProperty Name="PharmSublocationName" ColumnName="PharmSublocationName" />
+                <ScalarProperty Name="PharmAddressCode" ColumnName="PharmAddressCode" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="PharmName" ColumnName="PharmName" />
+                <ScalarProperty Name="PharmAddress" ColumnName="PharmAddress" />
+                <ScalarProperty Name="PharmPhone" ColumnName="PharmPhone" />
+                <ScalarProperty Name="PharmPhone1" ColumnName="PharmPhone1" />
+                <ScalarProperty Name="PharmPhone2" ColumnName="PharmPhone2" />
+                <ScalarProperty Name="PharmNotes" ColumnName="PharmNotes" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="PharmLong" ColumnName="PharmLong" />
+                <ScalarProperty Name="PharmLat" ColumnName="PharmLat" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pics">
+            <EntityTypeMapping TypeName="PhNetworkModel.pic">
+              <MappingFragment StoreEntitySet="pic">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="picname" ColumnName="picname" />
+                <ScalarProperty Name="path" ColumnName="path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubLocatiobTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.SubLocatiobTB">
+              <MappingFragment StoreEntitySet="SubLocatiobTB">
+                <ScalarProperty Name="SubLocationCode" ColumnName="SubLocationCode" />
+                <ScalarProperty Name="SubLocName" ColumnName="SubLocName" />
+                <ScalarProperty Name="MainLocID" ColumnName="MainLocID" />
+                <ScalarProperty Name="SubLocID" ColumnName="SubLocID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebsiteAccounts">
+            <EntityTypeMapping TypeName="PhNetworkModel.WebsiteAccount">
+              <MappingFragment StoreEntitySet="WebsiteAccounts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Headof" ColumnName="Headof" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimsApprovals">
+            <EntityTypeMapping TypeName="PhNetworkModel.ClaimsApproval">
+              <MappingFragment StoreEntitySet="ClaimsApprovals">
+                <ScalarProperty Name="Platform" ColumnName="Platform" />
+                <ScalarProperty Name="ImgName5" ColumnName="ImgName5" />
+                <ScalarProperty Name="ImgName4" ColumnName="ImgName4" />
+                <ScalarProperty Name="ImgName3" ColumnName="ImgName3" />
+                <ScalarProperty Name="ImgName2" ColumnName="ImgName2" />
+                <ScalarProperty Name="RepliedImageStrPath" ColumnName="RepliedImageStrPath" />
+                <ScalarProperty Name="ApproveOrRejectTime" ColumnName="ApproveOrRejectTime" />
+                <ScalarProperty Name="Reqtype" ColumnName="Reqtype" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="medicalid" ColumnName="medicalid" />
+                <ScalarProperty Name="CallCenterName" ColumnName="CallCenterName" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="RepliedImageStrg" ColumnName="RepliedImageStrg" />
+                <ScalarProperty Name="CallCenterComment" ColumnName="CallCenterComment" />
+                <ScalarProperty Name="ReqStatus" ColumnName="ReqStatus" />
+                <ScalarProperty Name="ReqSubject" ColumnName="ReqSubject" />
+                <ScalarProperty Name="ReqTitle" ColumnName="ReqTitle" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imageName" ColumnName="imageName" />
+                <ScalarProperty Name="imageBasestrg" ColumnName="imageBasestrg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="PhNetworkModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="RepliedTime" ColumnName="RepliedTime" />
+                <ScalarProperty Name="RepliedPerson" ColumnName="RepliedPerson" />
+                <ScalarProperty Name="RepliedTitle" ColumnName="RepliedTitle" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="RepliedMessages" ColumnName="RepliedMessages" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="AttachName" ColumnName="AttachName" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallCenterAppUsers">
+            <EntityTypeMapping TypeName="PhNetworkModel.CallCenterAppUser">
+              <MappingFragment StoreEntitySet="CallCenterAppUser">
+                <ScalarProperty Name="AdditionDate" ColumnName="AdditionDate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientNotes">
+            <EntityTypeMapping TypeName="PhNetworkModel.ClientNote">
+              <MappingFragment StoreEntitySet="ClientNotes">
+                <ScalarProperty Name="ClientType" ColumnName="ClientType" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProviderAppUsers">
+            <EntityTypeMapping TypeName="PhNetworkModel.ProviderAppUser">
+              <MappingFragment StoreEntitySet="ProviderAppUser">
+                <ScalarProperty Name="AdditionDate" ColumnName="AdditionDate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallCenterEmailApprovals">
+            <EntityTypeMapping TypeName="PhNetworkModel.CallCenterEmailApproval">
+              <MappingFragment StoreEntitySet="CallCenterEmailApprovals">
+                <ScalarProperty Name="DoctorAttachedPath" ColumnName="DoctorAttachedPath" />
+                <ScalarProperty Name="CreatorAttachedPath" ColumnName="CreatorAttachedPath" />
+                <ScalarProperty Name="ReqStatues" ColumnName="ReqStatues" />
+                <ScalarProperty Name="SenderEmailDate" ColumnName="SenderEmailDate" />
+                <ScalarProperty Name="SenderEmailPerson" ColumnName="SenderEmailPerson" />
+                <ScalarProperty Name="AssignEmailDate" ColumnName="AssignEmailDate" />
+                <ScalarProperty Name="AssignEmailPerson" ColumnName="AssignEmailPerson" />
+                <ScalarProperty Name="ManagerApprovedTime" ColumnName="ManagerApprovedTime" />
+                <ScalarProperty Name="ManagerApprovedName" ColumnName="ManagerApprovedName" />
+                <ScalarProperty Name="AuditApprovedName" ColumnName="AuditApprovedName" />
+                <ScalarProperty Name="AuditApprovedTime" ColumnName="AuditApprovedTime" />
+                <ScalarProperty Name="DoctorComments" ColumnName="DoctorComments" />
+                <ScalarProperty Name="DoctorApprovedDate" ColumnName="DoctorApprovedDate" />
+                <ScalarProperty Name="DoctorApprovedName" ColumnName="DoctorApprovedName" />
+                <ScalarProperty Name="DoctorAcceptDate" ColumnName="DoctorAcceptDate" />
+                <ScalarProperty Name="CallcenterAssignDoctor" ColumnName="CallcenterAssignDoctor" />
+                <ScalarProperty Name="CallcenterlTicketCraetionTime" ColumnName="CallcenterlTicketCraetionTime" />
+                <ScalarProperty Name="CallcenterTicketCreator" ColumnName="CallcenterTicketCreator" />
+                <ScalarProperty Name="CallcenterOpenNote" ColumnName="CallcenterOpenNote" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="UserMedicalID" ColumnName="UserMedicalID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OpticalTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.OpticalTB">
+              <MappingFragment StoreEntitySet="OpticalTB">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="OpticalLat" ColumnName="OpticalLat" />
+                <ScalarProperty Name="OpticalLong" ColumnName="OpticalLong" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="OpticalNotes" ColumnName="OpticalNotes" />
+                <ScalarProperty Name="Opticalphone4" ColumnName="Opticalphone4" />
+                <ScalarProperty Name="Opticalphone3" ColumnName="Opticalphone3" />
+                <ScalarProperty Name="Opticalphone2" ColumnName="Opticalphone2" />
+                <ScalarProperty Name="OpticalPhone" ColumnName="OpticalPhone" />
+                <ScalarProperty Name="OpticalSublocationName" ColumnName="OpticalSublocationName" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="OpticalAddress" ColumnName="OpticalAddress" />
+                <ScalarProperty Name="OpticalAddressCode" ColumnName="OpticalAddressCode" />
+                <ScalarProperty Name="OpticalName" ColumnName="OpticalName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

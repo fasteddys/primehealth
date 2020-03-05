@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TasksMonitoringSystem.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class=" headerPage text-center wow fadeInDown" data-wow-duration="1s">Users</h2>
+<p>
+    @Html.ActionLink("Add New User", "Create", false, new { @class = "btn btn-primary hvr-grow" })
+</p>
+<table class="table table-striped table-bordered">
+    <tr class="thead-dark">
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAdminLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAdminLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }, new { @class = "btn btn-info hvr-bounce-in m-r-5" }) 
+           @*// @Html.ActionLink("Details", "Details", new { id=item.UserID }) |*@
+            @if (item.IsActive == true)
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger hvr-pulse" })
+
+            }
+        </td>
+    </tr>
+}
+
+</table>

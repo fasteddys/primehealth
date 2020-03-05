@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10.75" name="TPASystem">
+  <DataContextMoniker Name="/TPASystemDataContext" />
+  <nestedChildShapes>
+    <classShape Id="90e82a2e-715b-4644-b9e7-7918a30c8edc" absoluteBounds="4.875, 0.5, 2, 5.4246240234375">
+      <DataClassMoniker Name="/TPASystemDataContext/ArchPanel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="19ddb42c-9b78-4a29-86f0-404b299bdb5a" absoluteBounds="4.8900000000000006, 0.96, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6e31740c-7444-4cc5-a600-e745f7435971" absoluteBounds="2.75, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/TPASystemDataContext/batchTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea7b79e9-6647-49e4-8db0-533b06693cb0" absoluteBounds="2.765, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e1881e83-c68d-4774-ba98-636d97947ad5" absoluteBounds="2.625, 2.625, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/TPASystemDataContext/ClaimTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb4c5d40-9f50-40e8-8413-32affa033bb5" absoluteBounds="2.64, 3.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fd9c21ff-49dc-42a5-9bd9-5ab1c6205c20" absoluteBounds="7.25, 0.625, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/TPASystemDataContext/Client" />
+      <nestedChildShapes>
+        <elementListCompartment Id="60c8877b-7fa9-41b1-86d8-bd72ff480055" absoluteBounds="7.265, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="524cdf60-85dc-4a18-97a1-4e0c0c49186b" absoluteBounds="7.125, 2.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/TPASystemDataContext/Provider" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7e0d0b7e-5c4a-4012-8394-4c79d097fc8d" absoluteBounds="7.14, 2.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cd3a809b-5fbf-48c1-a838-0645737ddcd0" absoluteBounds="0.5, 0.5, 2, 10.039858398437502">
+      <DataClassMoniker Name="/TPASystemDataContext/requestTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bdd9e768-e0da-4b66-ac75-2518919a3a87" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 9.4798583984375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="36e47980-9aad-4db7-93b1-5418bbd75ea3" absoluteBounds="2.75, 4.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/TPASystemDataContext/userTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="860c6c92-b3a7-4b6f-8c0c-9b6fe18ab137" absoluteBounds="2.7649999999999997, 5.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1e8d7e452e3f48f9b7bf4121e0cc19b0" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="PhNetworkModel.AccountTB" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Category" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Complaint" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.DoctorTB" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.HospitalTB" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.LaboratoryTB" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.LocationsTB" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Loginer" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Medicalid" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.NewsFeed" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.PharmacyTB" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.pic" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.SubLocatiobTB" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.WebsiteAccount" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.ClaimsApproval" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.Feedback" Width="1.5" PointX="5" PointY="10.25" />
+        <EntityTypeShape EntityType="PhNetworkModel.CallCenterAppUser" Width="1.5" PointX="7.375" PointY="10.75" />
+        <EntityTypeShape EntityType="PhNetworkModel.ClientNote" Width="1.5" PointX="9.375" PointY="10.75" />
+        <EntityTypeShape EntityType="PhNetworkModel.ProviderAppUser" Width="1.5" PointX="11.375" PointY="6.75" />
+        <EntityTypeShape EntityType="PhNetworkModel.CallCenterEmailApproval" Width="1.5" PointX="11.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PhNetworkModel.OpticalTB" Width="1.5" PointX="0.75" PointY="12.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AttendanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="punchlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="devdt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="devid" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="devnm" Type="nvarchar" MaxLength="255" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="bsevtc" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="bsevtid" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="bsevtdt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="user_id" Type="nvarchar" MaxLength="255" />
+          <Property Name="bsevtm" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="bsevtli" Type="nvarchar" MaxLength="255" />
+          <Property Name="tk" Type="nvarchar" MaxLength="100" />
+          <Property Name="tki" Type="nvarchar" MaxLength="100" />
+          <Property Name="type" Type="nvarchar" MaxLength="255" />
+          <Property Name="createdAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime2" Precision="7" />
+        </EntityType>
+        <Function Name="GetAttendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumberAttendance" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="AttendanceModelStoreContainer">
+          <EntitySet Name="punchlog" EntityType="Self.punchlog" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AttendanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="punchlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="devdt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="devid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="devnm" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="bsevtc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="bsevtid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="bsevtdt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="user_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="bsevtm" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="bsevtli" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="tk" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="tki" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updatedAt" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityContainer Name="AttendanceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="punchlogs" EntityType="Self.punchlog" />
+          <FunctionImport Name="GetAttendance" ReturnType="Collection(AttendanceModel.GetAttendance_Result)">
+          <Parameter Name="NumberAttendance" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAttendance_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="devid" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="user_name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="user_id" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="type" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="devdt" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AttendanceModelStoreContainer" CdmEntityContainer="AttendanceEntities">
+          <EntitySetMapping Name="punchlogs">
+            <EntityTypeMapping TypeName="AttendanceModel.punchlog">
+              <MappingFragment StoreEntitySet="punchlog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="devdt" ColumnName="devdt" />
+                <ScalarProperty Name="devid" ColumnName="devid" />
+                <ScalarProperty Name="devnm" ColumnName="devnm" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="bsevtc" ColumnName="bsevtc" />
+                <ScalarProperty Name="bsevtid" ColumnName="bsevtid" />
+                <ScalarProperty Name="bsevtdt" ColumnName="bsevtdt" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="bsevtm" ColumnName="bsevtm" />
+                <ScalarProperty Name="bsevtli" ColumnName="bsevtli" />
+                <ScalarProperty Name="tk" ColumnName="tk" />
+                <ScalarProperty Name="tki" ColumnName="tki" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAttendance" FunctionName="AttendanceModel.Store.GetAttendance">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AttendanceModel.GetAttendance_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="devid" ColumnName="devid" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="devdt" ColumnName="devdt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

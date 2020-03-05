@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Forgot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">-->
+
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="js/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ["Montserrat:400,700"]
+            }
+        });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section class="w-section mobile-wrapper">
+
+        <div class="page-content" id="main-stack" data-scroll="0">
+            <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+                <div class="w-container">
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title">Request Details</div>
+                    <a class="w-inline-block navbar-button" id="clse" data-load="1">
+                        <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+                <div class="w-container">
+                    <nav class="w-nav-menu nav-menu" role="navigation">
+                        <div class="nav-menu-header">
+                            <div class="logo">Welcome ,</div>
+                            <div class="slogan" id="medicalid"></div>
+                        </div>
+
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="home" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-keypad-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Home</div>
+
+                        </a>
+
+
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="contactus" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-location-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Contact us</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="forgotpw" data-load="1">
+
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-person-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Change Password</div>
+                        </a>
+
+                        <a class="w-clearfix w-inline-block nav-menu-link last" id="login" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-bookmarks-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Logout</div>
+                        </a>
+
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                    </nav>
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title">RequestDetails</div>
+                    <div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
+                        <div class="navbar-button-icon home-icon">
+                            <div class="bar-home-icon"></div>
+                            <div class="bar-home-icon"></div>
+                            <div class="bar-home-icon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body padding">
+                <div class="w-form">
+                    <form id="submit-form" name="email-form" data-name="Email Form" data-redirect="login.html" action="#">
+                        <div>
+                            <h2 class="title-new">Request Title</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="reqtitle"></p>
+                        </div>
+                        <div>
+                            <h2 class="title-new">Request Message</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="reqmsg"></p>
+                        </div>
+                        <div>
+                            <h2 class="title-new">CallCenter Comment</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="cccmt"></p>
+                        </div>
+                        <div>
+                            <h2 class="title-new">CallCenter Man</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="ccm"></p>
+                        </div>
+                        <!--<div>
+                            <h2 class="title-new">CallCenter Man</h2>
+                            <div class="separator-fields"></div>
+                            <p class="description-new" id="test"></p>
+                        </div>-->
+                        <div id="reqRepliedImageStrg">
+                         <a href="index.html">test</a>
+
+                        </div>
+
+
+                        <button id="SaveFiles" type="button">Save</button>
+                        <br />
+                        <br />
+
+                        <a href="test.html">jhjhjhjjhgjgjgjhgjfjfjhfjhfhfjhfjjh</a>
+                                       </form>
+                    <div class="w-form-done">
+                        <p>Thank you! Your submission has been received!</p>
+                    </div>
+                    <div class="w-form-fail">
+                        <p>Oops! Something went wrong while submitting the form</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="shadow-layer"></div>
+    </section>
+
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script>
+
+        $("#SaveFiles").click(function () {
+           
+            var pathToFile = cordova.file.dataDirectory + "yarb.png";
+
+            var fileTransfer = new FileTransfer();
+            var uri = encodeURI("http://www.techaudible.org/wp-content/uploads/2014/05/Download-Button1.png");
+
+            fileTransfer.download(
+                uri,
+                 pathToFile,
+                function (entry) {
+                    alert("download complete: " + pathToFile);
+                },
+                function (error) {
+                    alert("download error source " + error.source);
+                },
+                false,
+                {
+                    headers: {
+                        "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+                    }
+                }
+            );
+
+        });
+
+
+
+        $("#home").click(function () {
+            window.location.href = ("home.html");
+        });
+        $("#contactus").click(function () {
+            window.location.href = ("contactus.html");
+        });
+        $("#forgotpw").click(function () {
+            window.location.href = ("forgot.html");
+        });
+        $("#login").click(function () {
+            localStorage.setItem("loged", "out");
+            window.location.href = ("login.html");
+        });
+    </script>
+</body>
+</html>

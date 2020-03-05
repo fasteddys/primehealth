@@ -1,0 +1,230 @@
+﻿
+@{
+    ViewBag.Title = "logIn";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logIn</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="~/image/ico" sizes="16x16" href="~/images/favicon1.ico">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
+    <link href="~/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="~/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/css/lib/dropzone/dropzone.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/css/helper.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    @*------------------------------------------------------------------*@
+    <!--Start Script-->
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <script src="~/ClientScripts/jqueryCode.js"></script>
+    <script src="~/ClientScripts/jqueryUi.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <!-- scripit init-->
+    <!--Custom JavaScript -->
+    <script src="~/js/custom.min.js"></script>
+    <script src="~/js/lib/moment/moment.js"></script>
+    <!--End Script-->
+    @*------------------------------------------------------------------*@
+</head>
+
+<body>
+    <!--Start Show  alert div design html-->
+    <div id="ShowALertDanger" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Danger">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-times-circle fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="text-10">Oops...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertDangerText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertDangerButton" onclick="HideALer(4)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertSuccess" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Sucess">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-check-circle  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="text-10">Success...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertSuccessText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertSuccessButton" onclick="HideALer(2)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertWarning" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-Warning">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-exclamation-triangle  fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class=" text-10">Warning...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertWarningText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle ShowAlertDismiss" id="AlertWarningButton" onclick="HideALer(3)">Ok</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ShowALertInfo" style="display:none">
+        <div class="overlay"></div>
+        <div class="Alertstyle Alertstyle-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa fa-exclamation   fa-7x"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <div class=" text-10">Info...</div>
+                        <br />
+                        <br />
+                        <div class="body text-6" id="AlertInfoText"></div>
+
+                    </div>
+                    <span class="col-md-2">
+                        <button class="btn btn-default AlertButtonStyle " id="AlertInfoButton" onclick="HideALer(1)">Ok</button>
+                    </span>ShowAlertDismiss
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Show  alert div design html-->
+    <div class="fix-header fix-sidebar page  wow rotateInDownLeft  " data-wow-duration="2s">
+        <!-- Main wrapper  -->
+        <h1 class="headerPage text-center wow rotateInDownRight  " data-wow-delay=".5s" data-wow-duration="2s" >Tasks Monitoring System</h1>
+        <div id="main-wrapper">
+            <div class="unix-login">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="login-content card">
+                                <div class="login-form">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>User Name<span class="red">*</span></label>
+                                            <input id="userName" type="text" class="form-control" placeholder="User Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password<span class="red">*</span></label>
+                                            <input id="password" type="password" class="form-control" placeholder="Password">
+                                        </div>
+                                        @*<div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> Remember Me
+                                            </label>
+                                            <label class="pull-right">
+                                                <a href="#">Forgotten Password?</a>
+                                            </label>
+
+                                        </div>*@
+                                        <button id="signIn" type="button" class="btn btn-primary btn-flat m-b-30 m-t-30 hvr-grow‍‍‍">Sign in</button>
+                                        @*<div class="register-link m-t-15 text-center">
+                                            <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                                        </div>*@
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
+@*style*@
+<link href="~/icons/font-awesome/fonts/fontawesome.min.css" rel="stylesheet" />
+<link href="~/css/textareastye.css" rel="stylesheet" />
+<link href="~/Content/layout.css" rel="stylesheet" />
+@*------------------------------------------------------------------*@
+@*style*@
+<script src="~/js/custom.min.js"></script>
+<script src="~/ClientScripts/Helper.js"></script>
+<script src="~/ClientScripts/WOW.js"></script>
+<script src="~/ClientScripts/jquery.nicescroll.js"></script>
+<script src="~/ClientScripts/logIn.js"></script>
+
+@*------------------------------------------------------------------*@
+
+<style>
+
+    .headerPage {
+        font-size: 60px;
+        font-weight: bold;
+        font-style: italic;
+        margin-bottom: 60px;
+        margin-top:50px !important;
+    }
+    .login-content {
+        margin-top: 10px !important;
+        border: 1px solid #cdcdcd;
+    }
+    .red
+    {
+        color:red;
+    }
+
+</style>
+
+<script type="text/javascript">
+    
+</script>

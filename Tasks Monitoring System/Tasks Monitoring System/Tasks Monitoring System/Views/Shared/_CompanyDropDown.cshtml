@@ -1,0 +1,37 @@
+﻿
+<div class="form-group row ">
+    @*@Html.LabelFor(model => model.CompanyFK, "CompanyFK", htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <label class="control-label col-md-2 m-t-10  text-primary  h4">Company Name</label>
+    <div class="col-md-10 ">
+        @if (ViewBag.page== 1)//UserDailsTask
+        {
+            @Html.DropDownList("CompanyFK", null, htmlAttributes: new { @class = "form-control ", onchange = "document.location.href = '/" + ViewBag.ControllerName + "/" + ViewBag.Title + "?CID=' + this.options[this.selectedIndex].value;" })
+        }
+        else if(ViewBag.page == 2)//myTasks
+        {
+            var userId  = Newtonsoft.Json.JsonConvert.DeserializeObject<UserDTO>(Request.Cookies["UserData"].Value).UserID;
+            @Html.DropDownList("CompanyFK", null, htmlAttributes: new { @class = "form-control ", onchange = "document.location.href = '/" + ViewBag.ControllerName + "/" + ViewBag.Title + "?userId="+ userId +"&CID=' + this.options[this.selectedIndex].value;" })
+
+        }
+
+        else//Task
+        {
+            @Html.DropDownList("CompanyFK", null, htmlAttributes: new { @class = "form-control ", onchange = "document.location.href = '/" + ViewBag.ControllerName + "/" + ViewBag.Title +"?CID=' + this.options[this.selectedIndex].value;" })
+
+        }
+        @*@Html.ValidationMessageFor(model => model.CompanyFK, "", new { @class = "text-danger" })*@
+    </div>
+</div>
+
+<style>
+  
+    .form-group {
+        padding: 10px;
+    }
+  
+    .form-control
+    {
+        font-size:x-large;
+        height:50px !important;
+    }
+</style>

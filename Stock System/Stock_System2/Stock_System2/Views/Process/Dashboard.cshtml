@@ -1,0 +1,95 @@
+﻿@model Stock_System2.Models.Activity
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+      rel="stylesheet" type="text/css" />
+<link href="~/Content/Ahmed.css" rel="stylesheet" />
+<div class="container">
+<h2 style="margin-left:320px; color:#203269">Information Dashboard</h2>
+<div class="panel-group" style="font-weight:bold">
+    <div class="panel panel-default" id="IT" style="text-align:center; width:980px; font-weight:bold; display:none;">
+        <div class="alert alert-info ">Information Of Process [I.T Department] </div>
+        <div>
+            <a role="button" class="btn btn-danger" id="btn-pending" href="@Url.Action("ShowIT","Process",new {statue="Add"})">Items are added <span class="badge">@ViewBag.ITADD</span></a>
+            <a role="button" class="btn btn-danger" id="btn-confirmed" href="@Url.Action("ShowIT", "Process", new { statue = "Withdraw" })">Items are withdrawn <span class="badge">@ViewBag.ITwith</span></a>
+            <a role="button" class="btn btn-danger" id="btn-completed" href="@Url.Action("ShowIT", "Process", new { statue = "Edit" })">Items are edited<span class="badge">@ViewBag.ITEDIT</span></a>
+        </div>
+    </div>
+    <div class="panel panel-default" id="Issuance" style="text-align:center; width:980px; display:none; font-weight:bold;">
+        <div class="alert alert-danger ">Information Of Process [Issuance Department] </div>
+        <div>
+            <a role="button" class="btn btn-danger" id="btn-pending" href="@Url.Action("ShowIssuance", "Process", new { statue = "Add" })">Items are added <span class="badge">@ViewBag.ISSADD</span></a>
+            <a role="button" class="btn btn-danger" id="btn-confirmed" href="@Url.Action("ShowIssuance", "Process", new { statue = "Withdraw" })">Items are withdrawn<span class="badge">@ViewBag.ISSwith</span></a>
+            <a role="button" class="btn btn-danger" id="btn-completed" href="@Url.Action("ShowIssuance", "Process", new { statue = "Edit" })">Items are edited<span class="badge">@ViewBag.ISSEDIT</span></a>
+        </div>
+    </div>
+    <div class="panel panel-default" id="TPA" style="text-align: center; width: 980px; display: none; font-weight:bold;">
+        <div class="alert alert-success ">Information Of Process [T.P.A Department]  </div>
+        <div>
+            <a role="button" class="btn btn-danger" id="btn-pending" href="@Url.Action("ShowTPA", "Process", new { statue = "Add" })">Items are added<span class="badge">@ViewBag.TPAADD</span></a>
+            <a role="button" class="btn btn-danger" id="btn-confirmed" href="@Url.Action("ShowTPA", "Process", new { statue = "Withdraw" })">Items are withdrawn<span class="badge">@ViewBag.TPAwith</span></a>
+            <a role="button" class="btn btn-danger" id="btn-completed" href="@Url.Action("ShowTPA", "Process", new { statue = "Edit" })">Items are edited<span class="badge">@ViewBag.TPAEDIT</span></a>
+        </div>
+    </div>
+    <div class="panel panel-default" id="Archiving" style="text-align: center; width: 980px; display: none; font-weight:bold;">
+        <div class="alert alert-warning ">Information Of Process [Archiving Department]  </div>
+        <div>
+            <a role="button" class="btn btn-danger" id="btn-pending" href="@Url.Action("ShowArchiving", "Process", new { statue = "Add" })">Items are added<span class="badge">@ViewBag.ARCHADD</span></a>
+            <a role="button" class="btn btn-danger" id="btn-confirmed" href="@Url.Action("ShowArchiving", "Process", new { statue = "Withdraw" })">Items are withdrawn<span class="badge">@ViewBag.ARCHwith</span></a>
+            <a role="button" class="btn btn btn-danger" id="btn-completed" href="@Url.Action("ShowArchiving", "Process", new { statue = "Edit" })">Items are edited<span class="badge">@ViewBag.ARCHEDIT</span></a>
+        </div>
+    </div>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        if ('@Request.Cookies["usertype"].Value' == "Manager")
+        {
+            $('#Issuance').show();
+            $('#Archiving').show();
+            $('#TPA').show();
+            $('#IT').show();
+        }
+        else if ('@Request.Cookies["usertype"].Value' == "Issuance")
+        {
+            $('#Issuance').show();
+        }
+        else if ('@Request.Cookies["usertype"].Value' == "Archiving") {
+            $('#Archiving').show();
+        }
+        else if ('@Request.Cookies["usertype"].Value' == "TPA") {
+            $('#TPA').show();
+        }
+        else
+        {
+            $('#IT').show();
+
+        }
+
+            });
+
+</script>
+

@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickitingSystem", "TickitingSystem\TickitingSystem.csproj", "{AF95DD5A-403C-4EC5-BD3D-B1EBB5FB59B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{704B2035-8EFA-4B6F-8B54-BD65D1B8F176}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF95DD5A-403C-4EC5-BD3D-B1EBB5FB59B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF95DD5A-403C-4EC5-BD3D-B1EBB5FB59B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF95DD5A-403C-4EC5-BD3D-B1EBB5FB59B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF95DD5A-403C-4EC5-BD3D-B1EBB5FB59B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{704B2035-8EFA-4B6F-8B54-BD65D1B8F176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704B2035-8EFA-4B6F-8B54-BD65D1B8F176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704B2035-8EFA-4B6F-8B54-BD65D1B8F176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704B2035-8EFA-4B6F-8B54-BD65D1B8F176}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {502FD358-2ED4-4C3C-A581-98D946D88B3C}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DAL\\DAL.csproj
+		SccProjectName1 = DAL
+		SccLocalPath1 = DAL
+		SccProjectUniqueName2 = TickitingSystem\\TickitingSystem.csproj
+		SccProjectName2 = TickitingSystem
+		SccLocalPath2 = TickitingSystem
+	EndGlobalSection
+EndGlobal

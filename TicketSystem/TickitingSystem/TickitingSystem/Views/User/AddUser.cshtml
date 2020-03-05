@@ -1,0 +1,125 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<script src="../js/lib/jquery/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>*@
+<!-- Bread crumb -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-primary">Add user</h3>
+    </div>
+
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">users</a></li>
+            <li class="breadcrumb-item active">Add user</li>
+        </ol>
+    </div>
+</div>
+<div class="alert alert-success " id="div_Success" style="display:none">
+    User Added Successfully And the USER-ID is @ViewBag.uid
+</div>
+<!-- End Bread crumb -->
+<!-- Container fluid  -->
+<div class="container-fluid">
+    <!-- Start Page Content -->
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-validation">
+                        <form class="form-valide" action="#" method="post">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="username">Username <span class="text-danger"></span></label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter a username.." required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="email">Email <span class="text-danger"></span></label>
+                                <div class="col-lg-6">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your valid email.." required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="password">Password <span class="text-danger"></span></label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Choose a safe one.." required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="Dep">Department <span class="text-danger"></span></label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" id="Dep" name="Dep" required>
+                                        <option value="">select Department</option>
+                                        @foreach (var item in ViewBag.Deps)
+                                        {
+                                            <option value="@item.Dept_Id">@item.Dept_Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="subDep">subDepartment <span class="text-danger"></span></label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" id="subDep" name="subDep" required>
+                                        <option value="">select SubDepartment</option>
+                                        @foreach (var item in ViewBag.Supdep)
+                                        {
+                                            <option value="@item.SubDept_ID">@item.SubDept_Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-8 ml-auto">
+                                    <button type="button" class="btn btn-primary" id="btn-adduser">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End PAge Content -->
+</div>
+<!-- End Container fluid  -->
+<script>
+    $(document).ready(function () {
+        $("#btn-adduser").click(function () {
+            var data = {
+                User_Name: $("#username").val(),
+                E_mail: $("#email").val(),
+                Password: $("#password").val(),
+                Dept_ID: $("#Dep").val(),
+                Sub_Dept_ID: $("#subDep").val(),
+            };
+            var x = JSON.stringify(data);
+            $.ajax({
+                url: "/User/AddUserJson",
+                type: "Post",
+                contentType: "application/json;charset=utf-8",
+                data: x,
+                success: function (id) {
+                    document.getElementById("div_Success").innerHTML = "User Added Successfully And the USER-ID is  " + id;
+                    $("#div_Success").show();
+                }
+            });
+        });
+    });
+</script>
+<script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+<script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<!--Menu sidebar -->
+<script src="~/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+
+<!--Custom JavaScript -->
+<script src="~/js/custom.min.js"></script>

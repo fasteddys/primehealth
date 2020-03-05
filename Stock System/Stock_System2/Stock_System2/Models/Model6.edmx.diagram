@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3b8eb794473a437ba41ceb56bd0f2bb9" Name="Diagram1" ZoomLevel="200">
+        <EntityTypeShape EntityType="StockModel.Activity" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Category" Width="1.5" PointX="1.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Internet_Request" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Item" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.item_details" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Printer" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.User" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="StockModel.FK_Activity_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="StockModel.FK_Request_User" ManuallyRouted="false" />
+        <AssociationConnector Association="StockModel.FK_Item_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="StockModel.FK_Internet_Request_User" ManuallyRouted="false" />
+        <AssociationConnector Association="StockModel.FK_item_details_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="StockModel.FK_Printer_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

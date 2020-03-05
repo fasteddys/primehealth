@@ -1,0 +1,152 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Stock System</title>
+    <link rel="shortcut icon" href="../LoginAssets/img/clipboard.ico" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="description" content="Developed By Ahmed Ismail">
+    <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
+    <!-- bootstrap 3.0.2 -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- font Awesome -->
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="../assets/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/Fonts.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="skin-black">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <a href="#" class="logo">
+            <!-- Add the class icon to your logo image or logo icon to add the margining -->
+            Warehouse System
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="~/User/Logout" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i>
+                            <span id="UserNameLbl2">Logout <i class="caret"></i></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+                            <li class="dropdown-header text-center">Account</li>
+                            <li>
+                                <a href="~/User/ChangePassword"> <i class="fa fa-user fa-fw pull-right"></i> Change Password </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href=@Url.Action("Logout", "User")><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image" style="text-align:center;margin-left:50px;">
+                        <a href=@Url.Action("Logout", "User")><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                    </div>
+                  <br />
+                    <div class="pull-left info">
+                        <p id="UserNameLbl">@Request.Cookies["username"].Value </p>
+                    </div>
+                   
+                </div>
+                <!-- search form -->
+                <form class="sidebar-form" action="/Item/Search" method="post" role="form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" style="color:#ffffff" id="SearchField" name="search" placeholder="Search Item" />
+                        <span class="input-group-btn">
+                            <button type="submit" id="search_btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li id="Dashboard"> <a href='@Url.Action("Dashboard", "Process")'> <i class="fa fa-arrow-circle-left"></i> <span>Dashboard</span> </a> </li>
+                    <li id="Search"> <a href='@Url.Action("Search", "Item")'> <i class="fa fa-arrow-circle-left"></i> <span>Search</span> </a> </li>
+                    <li id="Add_Item"> <a href='@Url.Action("Add_Item", "Item")'> <i class="fa fa-arrow-circle-left"></i> <span>Add Item</span> </a> </li>
+                    <li id="Change_Password"> <a href='@Url.Action("ChangePassword", "User")'> <i class="fa fa-arrow-circle-left"></i> <span>Change Password</span> </a> </li>
+                    <li id="Add_User" style="display:none"> <a href='@Url.Action("AddUser", "User")'> <i class="fa fa-arrow-circle-left"></i> <span>Add User</span> </a> </li>
+                    <li id="Manage_User" style="display:none"> <a href='@Url.Action("List_Of_Users", "User")'> <i class="fa fa-arrow-circle-left"></i> <span>Manage Users</span> </a> </li>
+                    <li id="Add_Category" style="display:none"> <a href='@Url.Action("AddCategory", "Category")'> <i class="fa fa-arrow-circle-left"></i> <span>Add Category</span> </a> </li>
+                    <li id="Manage_Category" style="display:none"> <a href='@Url.Action("List_Of_Category", "Category")'> <i class="fa fa-arrow-circle-left"></i> <span>Manage Category</span> </a> </li>
+
+                    @*<li id="Internet_Billing" style="display:none"> <a href='@Url.Action("Internet_Billing", "User")'> <i class="fa fa-arrow-circle-left"></i> <span>InternetBilling</span> </a> </li>*@
+                    <li id="Report" style="display:none"> <a href='@Url.Action("Report", "Process")'> <i class="fa fa-arrow-circle-left"></i> <span>Report</span> </a> </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            @RenderSection("HeaderSection", false)
+            <!-- Main content -->
+            @RenderBody()
+            <!-- /.content -->
+        </aside>
+        <!-- /.right-side -->
+        <div class="footer-main" style="font-weight:bold; font-family:'Comic Sans MS'; color:#2f5b78; background-color:#f8f5f5">
+           Prime Heath I.T Department
+        </div>
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.0.2 -->
+    @*<script src="../assets/js/googleapis.js"></script>
+
+        <script src="~/Scripts/jq/JS.js"></script>
+
+        <script src="~/Scripts/jquery.min.js"></script>
+        <!-- Bootstrap -->
+
+        <!-- Director App -->
+    *@
+
+    @RenderSection("ScriptSection", false)
+</body>
+</html>
+<
+<script>
+    $(document).ready(function () {
+        if('@Request.Cookies["usertype"].Value'=='Manager')
+        {
+            $('#Add_User').show();
+            $('#Add_Category').show();
+            $('#Manage_User').show();
+            $('#Manage_Category').show();
+            //$('#Internet_Billing').show();
+            $('#Report').show();
+
+        }
+    
+    });
+</script>

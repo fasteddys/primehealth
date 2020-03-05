@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Maps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/framework.css">
+  <link rel="stylesheet" type="text/css" href="css/washington.css">
+  <script src="js/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+  <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+
+  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="w-section mobile-wrapper">
+
+      <div class="page-content" id="main-stack">
+          <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+              <div class="w-container">
+                  <nav class="w-nav-menu nav-menu" role="navigation">
+                      <div class="nav-menu-header">
+                          <div class="logo">Welcome ,</div>
+                          <div class="slogan" id="medicalid"></div>
+                      </div>
+
+                      <a class="w-clearfix w-inline-block nav-menu-link" id="home" data-load="1">
+                          <div class="icon-list-menu">
+                              <div class="icon ion-ios-keypad-outline"></div>
+                          </div>
+                          <div class="nav-menu-titles">Home</div>
+
+                      </a>
+
+
+                      <a class="w-clearfix w-inline-block nav-menu-link" id="contactus" data-load="1">
+                          <div class="icon-list-menu">
+                              <div class="icon ion-ios-location-outline"></div>
+                          </div>
+                          <div class="nav-menu-titles">Contact us</div>
+                      </a>
+                      <a class="w-clearfix w-inline-block nav-menu-link" id="forgotpw" data-load="1">
+
+                          <div class="icon-list-menu">
+                              <div class="icon ion-ios-person-outline"></div>
+                          </div>
+                          <div class="nav-menu-titles">Change Password</div>
+                      </a>
+
+                      <a class="w-clearfix w-inline-block nav-menu-link last" id="login" data-load="1">
+                          <div class="icon-list-menu">
+                              <div class="icon ion-ios-bookmarks-outline"></div>
+                          </div>
+                          <div class="nav-menu-titles">Logout</div>
+                      </a>
+
+                      <div class="separator-bottom"></div>
+                      <div class="separator-bottom"></div>
+                      <div class="separator-bottom"></div>
+                  </nav>
+                  <div class="wrapper-mask" data-ix="menu-mask"></div>
+                  <div class="navbar-title">Contact Us</div>
+                  <div class="navbar-button left">
+                      <a id="back"><</a>
+                  </div>
+              </div>
+          </div>
+          <div class="body">
+              <div class="news-container item-new">
+                  <div>
+                      <div class="grey-header">
+                          <h2 class="grey-heading-title">Our Prime concern is your Health</h2>
+                      </div>
+
+
+                      <div class="w-widget w-widget-map hero-map" data-widget-latlng="30.029232, 31.458806" data-widget-style="roadmap" data-widget-zoom="17" data-widget-tooltip="Prime Health"></div>
+                      <div class="text-new">
+                          <div class="separator-fields"></div>
+                          <h2 class="title-new">Get in contact</h2>
+                          <br>Call Center:<p style="-webkit-user-select:auto">16950</p>
+                          <div class="separator-fields"></div>
+                          <br>Work Times:<p style="-webkit-user-select:auto"> 24 hours, seven days a week including holidays</p>
+                          <br>Website:<p style="-webkit-user-select:auto">www.prime-health.org</p>
+                          <br>Tel:<p style="-webkit-user-select:auto">+(020) 28111030</p>
+                          <br>Fax:<p style="-webkit-user-select:auto"> 02-28111031</p>
+                          <br>Email:<p style="-webkit-user-select:auto">callcenter@prime-health.org</p>
+                          <div class="separator-button"></div>
+                          <div class="text-new">
+                              <div class="separator-fields"></div>
+                              <h2 class="title-new">Prime Health Contacts</h2>
+                              <h5>Head Office</h5>
+                              <div class="separator-fields"></div>
+                              <br>Address:<p style="-webkit-user-select:auto">Building 233, 2nd Sector City Center, Fifth Settlement, Cairo, Egypt</p>
+                              <br>Work Times:<p style="-webkit-user-select:auto">All week days from 8:30 to 5:00 except Friday & Saturday</p>
+                              <br>Tel:<p style="-webkit-user-select:auto">+(020) 28111030</p>
+                              <h5>Alexandria Office</h5>
+                              <div class="separator-fields"></div>
+                              <br>Address:<p style="-webkit-user-select:auto">14 Street Ptolemy El-Falaky from the Corniche - Saba Basha</p>
+                              <br>Tel:<p style="-webkit-user-select:auto">035841794/5</p>
+                              <br>Fax:<p style="-webkit-user-select:auto">035841790</p>
+                              <br>Mobile: <p style="-webkit-user-select:auto">01000035042</p>
+                              <div class="separator-button"></div>
+
+                              <!--<div class="separator-fields"></div><a class="action-button" id="sendemail">Contact Us</a>-->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="page-content loading-mask" id="new-stack">
+              <div class="loading-icon">
+                  <div class="navbar-button-icon icon ion-load-d"></div>
+              </div>
+          </div>
+          <div class="shadow-layer"></div>
+</section>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/framework.js"></script>
+    <script src="cordova.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //$("#medicalid").val(localStorage.getItem("medical"));
+            var name = localStorage.getItem("Name");
+            $("#medicalid").append(name);
+        });
+        //document.addEventListener('deviceready', function () {
+
+        //    cordova.plugins.email;
+
+        //}, false);
+        //$("#sendemail").click(function () {
+          
+        //    cordova.plugins.email.open({
+        //        to: 'callcenter@prime-health.org',
+        //        cc: 'info@prime-health.org',
+        //        bcc: ['', ''],
+        //        subject: '',
+        //        body: ''
+        //    });
+        //});
+        $("#back").click(function () {
+            window.location.href = ("home.html");
+        });
+        $("#home").click(function () {
+            window.location.href = ("home.html");
+        });
+        $("#contactus").click(function () {
+            window.location.href = ("contactus.html");
+        });
+        $("#forgotpw").click(function () {
+            window.location.href = ("forgot.html");
+        });
+        $("#login").click(function () {
+            localStorage.setItem("loged", "out");
+            window.location.href = ("login.html");
+        });
+    </script>
+        </body>
+</html>
+   
+          

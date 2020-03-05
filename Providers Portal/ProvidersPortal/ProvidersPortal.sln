@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvidersPortal.BLL", "ProvidersPortal.BLL\ProvidersPortal.BLL.csproj", "{6C9144C4-4708-497F-9A0B-4C26B1327AF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvidersPortal.DAL", "ProvidersPortal.DAL\ProvidersPortal.DAL.csproj", "{3956E46B-34AA-4CFB-8AF0-B14153FDEE20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvidersPortal.Entities", "ProvidersPortal.Entities\ProvidersPortal.Entities.csproj", "{E3108C68-20BA-471F-97CB-2B4840DF450D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C9144C4-4708-497F-9A0B-4C26B1327AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C9144C4-4708-497F-9A0B-4C26B1327AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C9144C4-4708-497F-9A0B-4C26B1327AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C9144C4-4708-497F-9A0B-4C26B1327AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3956E46B-34AA-4CFB-8AF0-B14153FDEE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3956E46B-34AA-4CFB-8AF0-B14153FDEE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3956E46B-34AA-4CFB-8AF0-B14153FDEE20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3956E46B-34AA-4CFB-8AF0-B14153FDEE20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3108C68-20BA-471F-97CB-2B4840DF450D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3108C68-20BA-471F-97CB-2B4840DF450D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3108C68-20BA-471F-97CB-2B4840DF450D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3108C68-20BA-471F-97CB-2B4840DF450D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2BFCE1E-FE8C-4699-8BF1-40E1F513C6C8}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ProvidersPortal.BLL\\ProvidersPortal.BLL.csproj
+		SccProjectName1 = ProvidersPortal.BLL
+		SccLocalPath1 = ProvidersPortal.BLL
+		SccProjectUniqueName2 = ProvidersPortal.DAL\\ProvidersPortal.DAL.csproj
+		SccProjectName2 = ProvidersPortal.DAL
+		SccLocalPath2 = ProvidersPortal.DAL
+		SccProjectUniqueName3 = ProvidersPortal.Entities\\ProvidersPortal.Entities.csproj
+		SccProjectName3 = ProvidersPortal.Entities
+		SccLocalPath3 = ProvidersPortal.Entities
+	EndGlobalSection
+EndGlobal

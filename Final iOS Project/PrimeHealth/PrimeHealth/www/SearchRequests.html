@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Forgot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="js/webfont.js"></script>
+    <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section class="w-section mobile-wrapper">
+        <div class="page-content" id="main-stack" data-scroll="0">
+            <div class="body padding">
+                <a id="back"><</a> 
+                <div class="logo-login bigger"></div>
+                <div class="bottom-section padding">
+                    <div class="w-form">
+                        <form id="submit-form" name="email-form" data-name="Email Form" action="#">
+                            <div>
+                                <h5 >Search Value:</h5>
+                                <div class="separator-button"></div>
+                                <input class="w-input input-form" placeholder="Enter Request ID, Title, Message or The Reply " id="SearchSubject" type="text" name="SearchSubject" required="required">
+                                <div class="separator-button"></div>
+                            </div>
+                            <br />
+                            <div style="position: absolute;top:45%;left:42%;width: 30px;height:30px;margin-top:15px;margin-left:15px">
+                                <img id="loadimg" alt="LOADING..." src="images/Loading.gif" style="display:none" />
+                            </div>
+                            <input class="w-button action-button" id="SearchByTitSub" type="submit" value="Search" data-wait="Please wait...">
+                        </form>
+                        <div class="w-form-done">
+                            <p>Thank you! Your submission has been received!</p>
+                        </div>
+                        <div class="w-form-fail">
+                            <p>Oops! Something went wrong while submitting the form</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="page-content loading-mask" id="new-stack">
+          <div class="loading-icon">
+            <div class="navbar-button-icon icon ion-load-d"></div>
+          </div>
+        </div>-->
+        <div class="shadow-layer"></div>
+    </section>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/framework.js"></script>
+    <script>
+        $("#back").click(function () {
+            window.location.href = ("claimsrequests.html");
+        });
+        $("#SearchByTitSub").click(function () {
+         var id = localStorage.getItem("medical");
+         if ($("#SearchSubject").val() == "")
+         {
+             navigator.notification.alert(
+             "Please enter search value",
+              callBackFunctionB,
+               'Alert',
+               "OK");
+             function callBackFunctionB() {
+                 console.log('OK');
+             }
+         }
+         else
+         {   var newpsw = $("#SearchSubject").val();
+             localStorage.setItem("SearchKeyWord", newpsw);
+             window.location.href = ("SearchRequestList.html");
+         }
+     });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿
+#tableEdit{
+    text-align:center;
+    font-family:"Times New Roman", Times, serif;
+    font-size:x-large;
+    font-weight:bold;
+    background-color:#830F30;
+    color:white;
+}
+#tableEdit caption{
+    text-align:center;
+    text-align:center;
+    font-family:Algerian;
+    font-size:large;
+    font-weight:bold;
+    background-color:#581845;
+    color:white;
+}
+#tableEdit tr:last-child{
+    background-color:#C70039;
+    text-align:center;
+}
+#tableEdit captiopn{
+    font-family:Algerian;
+    font-weight:bold;
+}

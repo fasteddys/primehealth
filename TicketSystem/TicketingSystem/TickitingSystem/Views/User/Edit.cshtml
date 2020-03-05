@@ -1,0 +1,179 @@
+﻿@model TickitingSystem.Models.UserRole
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit User:</h2>
+
+
+<form>
+    {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.HiddenFor(model => model.user.User_ID)*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.users.User_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.users.User_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.users.User_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <input type="hidden" value="@Model.users.User_ID" id="UserID" />
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Dept_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Dept_ID, new SelectList(ViewBag.DepartmentID, "Dept_ID", "Dept_Name"))
+
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.users.User_Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownListFor(model => model.user.User_Status, new SelectList(ViewBag.status))*@
+
+                <select class="form-control" id="Dropdownactive" name="StudentGender">
+                    <option>active</option>
+                    <option>not active</option>
+                </select>
+
+
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.E_mail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.E_mail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.E_mail, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>*@
+    </div>
+    }
+
+
+    <div class="form-check">
+
+        @{
+            int count = 0;
+
+            <div id="allcheck">
+
+                @foreach (var item in Model.Roles)
+                {
+
+                    @*<input type="checkbox" />  <b>   @item.ID</b><b>   @item.Name  </b><br />*@
+                    <div>
+                        <input id="check_@count" onclick="check('check_@count')" name="Remember" type="checkbox" checked="true" /><b id="lbl_@count">@item.ID</b><b>   @item.Name  </b><br />
+                    </div>
+                    count++;
+
+
+                }
+            </div>
+
+        }
+
+    </div>
+    <button id="create" class="btn btn-primary">Submit</button>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+<script>
+
+
+
+    function check(value)
+    {
+        debugger;
+        if(   document.getElementById(value) .getAttribute("checked")=="true")
+        {
+
+          var  check= document.getElementById(value)
+          check .setAttribute("checked", "false");
+        }
+        {
+            var  check= document.getElementById(value)
+            check .setAttribute("checked", "false");         }
+
+
+    }
+
+
+
+
+
+
+
+
+    $("#create").click(function () {
+        debugger;
+        var items= [];
+
+        var count =document.getElementById("allcheck").children.length;
+        for(var i=0 ;i<count ;i++)
+        {
+            if(   document.getElementById("check_"+i) .getAttribute("checked")=="true")
+               {
+                var item = document.getElementById("lbl_" + i);
+                var it = {
+                    ID: item.innerHTML,
+                    Name: "Doe"
+                }
+                items.push(it);
+              }
+
+
+        }
+
+
+
+
+        var data_1 = items;
+
+        var data_2 = {
+            User_ID: document.getElementById("UserID").value,
+            //Name:"weaea",
+            User_Status: document.getElementById("Dropdownactive").value
+        };
+        //var x = JSON.stringify(data);
+        $.ajax({
+            url: "/User/Edit",
+            type: "Post",
+            contentType: 'application/json',
+            data: JSON.stringify({ users: data_2 , Roles: data_1}),
+
+            success: function (result)
+            { }
+        });
+
+
+    })
+</script>

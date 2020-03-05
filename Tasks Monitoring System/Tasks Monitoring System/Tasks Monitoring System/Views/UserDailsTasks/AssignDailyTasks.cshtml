@@ -1,0 +1,117 @@
+﻿@model IEnumerable<TasksMonitoringSystem.UserDailsTask>
+
+@{
+    ViewBag.Title = "AssignDailyTasks";
+    ViewBag.ControllerName = "UserDailsTasks";
+    ViewBag.DailyTask = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class=" headerPage text-center text-primary wow fadeInDown" data-wow-duration="1s">Assign Tasks</h2>
+
+@{
+    Html.RenderPartial("_CompanyDropDown");
+}
+
+<table class="table table-striped table-bordered">
+    <tr class="thead-dark">
+        <th>
+            @*@Html.DisplayNameFor(model => model.UserDailyTasksID)*@
+            ID
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Task.CompanyDIM.CompanyName)*@
+            Company
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Task.TaskName)
+        </th>
+        <th>
+            Priority  <!--4-->
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TasksStatusDIM.TaskStatusName)*@
+            Status
+        </th>
+
+        <th>
+            @*@Html.DisplayNameFor(model => model.User.UserName)*@
+            User Name
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.DateOfTask)*@
+            Task Data
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AssignTime)*@
+            Assign Time
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompletedOn)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.ClosingComment)*@
+            Comment
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDailyTasksID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task.CompanyDIM.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task.TaskName)
+            </td>
+            @if (item.Task.PriorityFK == 1)
+            {
+                <td class="text-primary">
+                    @Html.DisplayFor(modelItem => item.Task.PriorityTypeDIM.PriorityTypeName)
+                </td>
+            }
+            else if (item.Task.PriorityFK == 2)
+            {
+                <td class="text-warning">
+                    @Html.DisplayFor(modelItem => item.Task.PriorityTypeDIM.PriorityTypeName)
+                </td>
+            }
+            else if (item.Task.PriorityFK == 3)
+            {
+                <td class="text-danger">
+                    @Html.DisplayFor(modelItem => item.Task.PriorityTypeDIM.PriorityTypeName)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.TasksStatusDIM.TaskStatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfTask)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingComment)
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("Assigned", "", new { id = item.UserDailyTasksID }, new { @class = "btn btn-primary hvr-wobble-horizontal", @onclick = "javascript:return false;" })
+
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TicketingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Attachments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ticket_Details_ID" Type="int" />
+          <Property Name="Path" Type="nvarchar(max)" />
+          <Property Name="Ticket_ID" Type="int" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Dept_Id" />
+          </Key>
+          <Property Name="Dept_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dept_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Status_ID" />
+          </Key>
+          <Property Name="Status_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status_Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="SubDeparments">
+          <Key>
+            <PropertyRef Name="SubDept_ID" />
+          </Key>
+          <Property Name="SubDept_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubDept_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dept_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Ticket_Details">
+          <Key>
+            <PropertyRef Name="TicketDetails_ID" />
+          </Key>
+          <Property Name="TicketDetails_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ticket_ID" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Seen_By_User" Type="nvarchar" MaxLength="20" />
+          <Property Name="Seen_By_IT" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Ticket_Types">
+          <Key>
+            <PropertyRef Name="Ticket_Type_ID" />
+          </Key>
+          <Property Name="Ticket_Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ticket_type_Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ticket_ID" Type="int" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="70" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Ticket_type_ID" Type="int" />
+          <Property Name="Status_ID" Type="int" />
+          <Property Name="Assign_Person_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="15" />
+          <Property Name="Dept_ID" Type="int" />
+          <Property Name="Sub_Dept_ID" Type="int" />
+          <Property Name="E_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="User_Status" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityContainer Name="TicketingDBModelStoreContainer">
+          <EntitySet Name="Attachments" EntityType="Self.Attachments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubDeparments" EntityType="Self.SubDeparments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket_Details" EntityType="Self.Ticket_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket_Types" EntityType="Self.Ticket_Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TicketingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Attachment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ticket_Details_ID" Type="Int32" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ticket_ID" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Dept_Id" />
+          </Key>
+          <Property Name="Dept_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dept_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Status_ID" />
+          </Key>
+          <Property Name="Status_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SubDeparment">
+          <Key>
+            <PropertyRef Name="SubDept_ID" />
+          </Key>
+          <Property Name="SubDept_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubDept_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dept_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Ticket_Details">
+          <Key>
+            <PropertyRef Name="TicketDetails_ID" />
+          </Key>
+          <Property Name="TicketDetails_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ticket_ID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Seen_By_User" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Seen_By_IT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ticket_Types">
+          <Key>
+            <PropertyRef Name="Ticket_Type_ID" />
+          </Key>
+          <Property Name="Ticket_Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ticket_type_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ticket_ID" Type="Int32" />
+          <Property Name="Subject" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Ticket_type_ID" Type="Int32" />
+          <Property Name="Status_ID" Type="Int32" />
+          <Property Name="Assign_Person_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Dept_ID" Type="Int32" />
+          <Property Name="Sub_Dept_ID" Type="Int32" />
+          <Property Name="E_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="TicketingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attachments" EntityType="Self.Attachment" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="SubDeparments" EntityType="Self.SubDeparment" />
+          <EntitySet Name="Ticket_Details" EntityType="Self.Ticket_Details" />
+          <EntitySet Name="Ticket_Types" EntityType="Self.Ticket_Types" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TicketingDBModelStoreContainer" CdmEntityContainer="TicketingDBEntities">
+          <EntitySetMapping Name="Attachments">
+            <EntityTypeMapping TypeName="TicketingDBModel.Attachment">
+              <MappingFragment StoreEntitySet="Attachments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ticket_Details_ID" ColumnName="Ticket_Details_ID" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Ticket_ID" ColumnName="Ticket_ID" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="TicketingDBModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="Dept_Id" ColumnName="Dept_Id" />
+                <ScalarProperty Name="Dept_Name" ColumnName="Dept_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="TicketingDBModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubDeparments">
+            <EntityTypeMapping TypeName="TicketingDBModel.SubDeparment">
+              <MappingFragment StoreEntitySet="SubDeparments">
+                <ScalarProperty Name="SubDept_ID" ColumnName="SubDept_ID" />
+                <ScalarProperty Name="SubDept_Name" ColumnName="SubDept_Name" />
+                <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket_Details">
+            <EntityTypeMapping TypeName="TicketingDBModel.Ticket_Details">
+              <MappingFragment StoreEntitySet="Ticket_Details">
+                <ScalarProperty Name="TicketDetails_ID" ColumnName="TicketDetails_ID" />
+                <ScalarProperty Name="Ticket_ID" ColumnName="Ticket_ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Seen_By_User" ColumnName="Seen_By_User" />
+                <ScalarProperty Name="Seen_By_IT" ColumnName="Seen_By_IT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket_Types">
+            <EntityTypeMapping TypeName="TicketingDBModel.Ticket_Types">
+              <MappingFragment StoreEntitySet="Ticket_Types">
+                <ScalarProperty Name="Ticket_Type_ID" ColumnName="Ticket_Type_ID" />
+                <ScalarProperty Name="Ticket_type_Name" ColumnName="Ticket_type_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="TicketingDBModel.Ticket">
+              <MappingFragment StoreEntitySet="Tickets">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ticket_ID" ColumnName="Ticket_ID" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Ticket_type_ID" ColumnName="Ticket_type_ID" />
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="Assign_Person_ID" ColumnName="Assign_Person_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TicketingDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+                <ScalarProperty Name="Sub_Dept_ID" ColumnName="Sub_Dept_ID" />
+                <ScalarProperty Name="E_mail" ColumnName="E_mail" />
+                <ScalarProperty Name="User_Status" ColumnName="User_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

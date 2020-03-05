@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Configurations">
+          <Key>
+            <PropertyRef Name="ConfigurationID" />
+          </Key>
+          <Property Name="ConfigurationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigurationKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConfigurationValue" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TimeAttendances">
+          <Key>
+            <PropertyRef Name="TimeAttendanceID" />
+          </Key>
+          <Property Name="TimeAttendanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeAttendanceSerial" Type="int" Nullable="false" />
+          <Property Name="UserAccessControlID" Type="int" Nullable="false" />
+          <Property Name="PersonName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ActionTypeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ActionDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="DeviceFK" Type="int" />
+        </EntityType>
+        <EntityContainer Name="HRMSModelStoreContainer">
+          <EntitySet Name="Configurations" EntityType="Self.Configurations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeAttendances" EntityType="Self.TimeAttendances" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ConfigurationID" />
+          </Key>
+          <Property Name="ConfigurationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigurationKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfigurationValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TimeAttendance">
+          <Key>
+            <PropertyRef Name="TimeAttendanceID" />
+          </Key>
+          <Property Name="TimeAttendanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeAttendanceSerial" Type="Int32" Nullable="false" />
+          <Property Name="UserAccessControlID" Type="Int32" Nullable="false" />
+          <Property Name="PersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActionTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <Property Name="DeviceFK" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="HRMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="TimeAttendances" EntityType="Self.TimeAttendance" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRMSModelStoreContainer" CdmEntityContainer="HRMSEntities">
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="HRMSModel.Configuration">
+              <MappingFragment StoreEntitySet="Configurations">
+                <ScalarProperty Name="ConfigurationID" ColumnName="ConfigurationID" />
+                <ScalarProperty Name="ConfigurationKey" ColumnName="ConfigurationKey" />
+                <ScalarProperty Name="ConfigurationValue" ColumnName="ConfigurationValue" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeAttendances">
+            <EntityTypeMapping TypeName="HRMSModel.TimeAttendance">
+              <MappingFragment StoreEntitySet="TimeAttendances">
+                <ScalarProperty Name="TimeAttendanceID" ColumnName="TimeAttendanceID" />
+                <ScalarProperty Name="TimeAttendanceSerial" ColumnName="TimeAttendanceSerial" />
+                <ScalarProperty Name="UserAccessControlID" ColumnName="UserAccessControlID" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="ActionTypeName" ColumnName="ActionTypeName" />
+                <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+                <ScalarProperty Name="DeviceFK" ColumnName="DeviceFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

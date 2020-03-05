@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Forgot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="js/webfont.js"></script>
+    <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section class="w-section mobile-wrapper">
+        <div class="page-content" id="main-stack" data-scroll="0">
+            <div class="body padding">
+                <a id="back"><</a>
+                <div class="logo-login bigger"></div>
+                <div class="bottom-section padding">
+                    <div class="w-form">
+                        <form id="submit-form" name="email-form" data-name="Email Form" action="#">
+                            <div>
+                                <label class="label-form" for="email-field">New Password</label>
+                                <input class="w-input input-form" id="newpass" type="password" name="newpass" required="required">
+                                <div class="separator-button"></div>
+                            </div>
+                            <br />
+                            <div style="position: absolute;top:45%;left:42%;width: 30px;height:30px;margin-top:15px;margin-left:15px">
+                                <img id="loadimg" alt="LOADING..." src="images/Loading.gif" style="display:none" />
+                            </div>
+                            <input class="w-button action-button" id="updatepass" type="submit" value="Update Password" data-wait="Please wait...">
+                        </form>
+                        <div class="w-form-done">
+                            <p>Thank you! Your submission has been received!</p>
+                        </div>
+                        <div class="w-form-fail">
+                            <p>Oops! Something went wrong while submitting the form</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="page-content loading-mask" id="new-stack">
+          <div class="loading-icon">
+            <div class="navbar-button-icon icon ion-load-d"></div>
+          </div>
+        </div>-->
+        <div class="shadow-layer"></div>
+    </section>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/framework.js"></script>
+     <script type="text/javascript">
+     $(document).ready(function () {
+         if (localStorage.getItem("loged") == "passwordupdated") {
+             window.location.href = "login.html";
+         }
+         $("#back").click(function () {
+             window.location.href = ("home.html");
+         });
+         $("#updatepass").click(function () {
+             var result = "";
+             var id = localStorage.getItem("medical");
+             var data = {
+                 medical:id
+             }
+             $("#loadimg").show();
+             $.ajax({
+                 url: 'http://41.128.147.164:1212/api/data/GetActivationStatus',
+                 type: 'Get',
+                 data: data,
+                 async: false,
+                 success: function (data) {
+                     result = data;
+                 },
+                 complete: function () {
+                     $('#loadimg').hide();
+                 },
+                 error: function (error) {
+                     navigator.notification.alert(
+                                             "Please check your internet connection",
+                                              callBackFunctionB,
+                                               'Alert',
+                                                   "OK");
+                     function callBackFunctionB() {
+                         console.log('OK');
+                     }
+                 }
+             });
+             if (result != "Activated")
+             {
+                 navigator.notification.alert(
+                                         "Your account is either disabled or being activated... \r Please try again in 10 minutes",
+                                          callBackFunctionB,
+                                           'Alert',
+                                               "OK");
+                 function callBackFunctionB() {
+                     console.log('OK');
+                 }
+             }
+              else if ($("#newpass").val() == "")
+              {
+                  navigator.notification.alert(
+                         "Please fill in all required fields",
+                          callBackFunctionB,
+                           'Alert',
+                               "OK");
+                  function callBackFunctionB() {
+                      console.log('OK');
+                  }
+              }
+              else
+              {
+                  var newpsw = $("#newpass").val();
+                  var url = "http://41.128.147.164:1212/api/Data/Update_New_Password";
+                  var data = {
+                      medid: id,
+                      pass: newpsw
+                  };
+                  $("#loadimg").show();
+                  $.ajax({
+                      url: url,
+                      type: 'Get',
+                      data: data,
+                      success: function (data) {
+                          if (data == "Success") {
+                        navigator.notification.alert(
+                         "Password updated successfully ",
+                          callBackFunctionB,
+                           'Alert',
+                               "OK");
+                              function callBackFunctionB() {
+                                  console.log('OK');
+                              }
+
+                              localStorage.setItem("loged", "passwordupdated");
+                              window.location.href = ("login.html");
+                          }
+                          else {
+                              navigator.notification.alert(
+                                                      "Error , Please try again",
+                                                       callBackFunctionB,
+                                                        'Alert',
+                                                            "OK");
+                              function callBackFunctionB() {
+                                  console.log('OK');
+                              }
+                          }
+                      },
+                      complete: function () {
+                          $('#loadimg').hide();
+                      },
+                      error: function (error) {
+                          navigator.notification.alert(
+                                                  "Please check your internet connection",
+                                                   callBackFunctionB,
+                                                    'Alert',
+                                                        "OK");
+                          function callBackFunctionB() {
+                              console.log('OK');
+                          }
+                      }
+                  });
+              }
+         })
+     })
+    </script>
+</body>
+</html>

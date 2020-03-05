@@ -1,0 +1,196 @@
+﻿@model  IEnumerable<Stock_System2.Models.User>
+
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+      rel="stylesheet" type="text/css" />
+<link href="~/Content/Ahmed.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Edit</title>
+</head>
+
+<body class="modal fade" id="M2" tabindex="-1" role="dialog"
+      aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="alert alert-danger alert-dismissable" id="div_Error2" style="display:none; text-align:center">
+
+    </div>
+    
+    <div class="alert alert-success alert-dismissable" id="div_Success" style="display:none">
+         User Data is Updated  Successfully
+    </div>
+    <table id="tableEdit" class="table table-bordered">
+        <caption>
+            Update User Data
+        </caption>
+        <tr>
+            <td>
+                User Name
+            </td>
+            <td>
+                @foreach (var item in Model)
+                {
+                    @Html.TextBoxFor(m => item.user_name, new { @id = "UserName",style="color:black" })
+                }
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Password
+            </td>
+            <td>
+                @foreach (var item in Model)
+                {
+                    @Html.TextBoxFor(m => item.password, new { @id = "Password", style = "color:black" })
+                }
+            </td>
+
+        </tr>
+        <tr >
+            <td>
+                <label class="col-sm-6 col-sm-6 control-label" style="margin-top:15px; font-weight:bold; ">User Type</label>
+            </td>
+            <td>
+
+                <select class="form-control input-lg m-b-10" id="UserType">
+                    <option value="Manager">Manager</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="TPA">TPA</option>
+                    <option value="Issuance">Issuance</option>
+                    <option value="Archiving">Archiving</option>
+                    <option value="Normal">Normal</option>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Department(opt*)
+            </td>
+            <td>
+                @foreach (var item in Model)
+                {
+                    @Html.TextBoxFor(m => item.department, new { @id = "Department", style = "color:black" })
+                }
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                User Email(opt*)
+            </td>
+            <td>
+                @foreach (var item in Model)
+                {
+                    @Html.TextBoxFor(m => item.user_email, new { @id = "Email", style = "color:black" })
+                }
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                User Role(opt*)
+            </td>
+            <td>
+                @foreach (var item in Model)
+                {
+                    @Html.TextBoxFor(m => item.user_role, new { @id = "UserRole", style = "color:black" })
+                }
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="btn btn-primary"  id="submit2">
+                    <span class="badge">5</span>
+                    Update User 
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-default" id="ll" onclick="window.location.reload();">
+                    Close
+                </button>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
+<script type="text/javascript">
+
+    $('#submit2').on('click', function () {
+            
+           if ($("#UserName").val() == "" || $("#Password").val() == "" || $("#UserType").val() == "") {
+               $('#div_Error2').show();
+               $('#div_Error2').text("Please complete Field");
+               $('#div_Success').hide();
+           }
+           else if ($("#Password").val().length < 5) {
+               $('#div_Error2').show();
+               $('#div_Error2').text("Password is weak");
+               $('#div_Success').hide();
+           }
+           else {
+               var UserData =
+                   {
+                       UserName: $("#UserName").val(),
+                       Password: $("#Password").val(),
+                       UserType: $("#UserType").val(),
+                       Email: $("#Email").val(),
+                       UserRole: $("#UserRole").val(),
+                       Department: $("#Department").val()
+                   };
+               var orderx = JSON.stringify(UserData);
+               $.ajax({
+                   url: '@Url.Action("Edit","User")',
+                   type: 'POST',
+                   dataType: "json",
+                   contentType: 'application/json; charset=utf-8',
+                   data: orderx,
+                   success: function (message) {
+                       if (message == "EditSuccessfully") {
+                           $('#div_Success').show();
+                           $('#div_Error2').hide();
+                           @*window.location = '@Url.Action("Dash", "Admin2")'*@
+
+                       }
+                       else {
+                           $("#div_Error2").show();
+                           //$("#div_Error2").append("a7a");
+                           $("#div_Error2").text("Updating User Data is Faild");
+                           $('#div_Success').hide();
+
+                       }
+
+                   }
+
+               });
+           }
+            
+        });
+   
+
+</script>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DAL.DataBase.Department>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deparments :</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Dept_Id)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Dept_Name)
+        </th>
+      
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Dept_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dept_Name)
+        </td>
+
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Dept_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Dept_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Dept_Id })
+        </td>
+    </tr>
+}
+
+</table>
