@@ -1,0 +1,33 @@
+﻿@model Pricing.Models.LoginTB
+ 
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<html>
+<head>
+    <title>Pricing System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <meta name="keywords" content="Pinterest Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
+    <link href="~/Content/style.css" rel='stylesheet' type='text/css' />
+    <!--webfonts-->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <!--//webfonts-->
+</head>
+<body>
+    <!--login-->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+
+    <form action="/Login/Login" method="post">
+        <h4> Pricing </h4>
+        <input type="text" id="UserName" class="name" name="UserName" placeholder="Enter Username" maxlength="30" required>
+        <input type="password" id="password" class="pw" name="password" placeholder="Enter Password" maxlength="15" required>
+        <span style="color:#154db1;font-size:large;font-style:italic">@ViewBag.error</span>
+        <input type="submit" class="button" value="Log in" name="Login" id="LoginBtn">
+    </form>
+</body>
+</html>

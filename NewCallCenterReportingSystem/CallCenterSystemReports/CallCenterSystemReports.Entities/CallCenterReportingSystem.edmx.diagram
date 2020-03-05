@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="24ab14faa5e044fca1d86b97973ee4ee" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="PhNetworkModel.CallCenterAppUser" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.ColorAlert" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalRequest" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsCategoryDIM" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsConfiguration" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailApprovalsPriorityDIM" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.EmailRequestStatusDIM" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhNetworkModel.TicketType" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="PhNetworkModel.FK_ColorAlert_TicketType" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_ColorAlert" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_EmailApprovalsCategoryDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_EmailApprovalsPriorityDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_EmailRequestStatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_EmailApprovalRequests_TicketType" ManuallyRouted="false" />
+        <AssociationConnector Association="PhNetworkModel.FK_CallCenterAppUser_EmailApprovalsCategoryDIM" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

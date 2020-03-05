@@ -1,0 +1,285 @@
+﻿
+@{
+    Layout = null;
+    var apiurl = ViewBag.ServiceUrl + "getloginer";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="~/css/btnloader.css" rel="stylesheet" />
+    @*<script src="~/js/lib/sweetalert/sweetalert.min.js"></script>*@
+    <script src="~/js/sweetalert2.js"></script>
+    <link href="~/css/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <!--Modal Style -->
+    <style>
+       
+        #container .modal.fade {
+            /*left: -25%;*/
+            -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+            transition: opacity 0.3s linear, left 0.3s ease-out;
+        }
+
+            #container .modal.fade.in {
+                left: 50%;
+            }
+
+        #container .modal-body {
+            max-height: 50px;
+        }
+
+        #article-editor {
+            width: 600px;
+            margin-left: -300px;
+            margin-right: -300px;
+        }
+    </style>
+
+</head>
+<body style="background-color: #666666;">
+    <div class="btnloaderbg" id="LoadingDivlogin" style="display:none">
+        <div class="btnloader">Loading...</div>
+    </div>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form validate-form" style="padding-top:50px">
+                    <div>
+                        <img src="~/images/prime1.png" alt='Prime Health' class="img-fluid " />
+                    </div>
+                    <br />
+                    <span class="login100-form-title p-b-3" style="font-size:large;color:gray">
+                        Login to continue ..
+                    </span>
+                    <br />
+
+                    <span style="padding-left:10px"><a href="#" id="WhatIsMedicalId">What Is Medical ID <span class="fa fa-question-circle-o"></span></a></span>
+                    <div class="wrap-input100 validate-input " data-validate="Valid Medical ID is required">
+
+                        <input class="input100" type="text" id="medicalid" placeholder="Medical ID">
+                        <span class="focus-input100"> <i class="glyphicon glyphicon-search"></i></span>
+                    </div>
+
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" id="password-field" placeholder="Password">
+                        <span class="focus-input100"></span>
+                    </div>
+
+
+
+                    <br />
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" style="background-color:#8958a0" id="login">
+                            Login
+                        </button>
+                    </div>
+                    <br />
+                    <span><input id="RememberPassword" type="checkbox" /><strong> Remember Password</strong></span>
+                    <span class="login100-form-title p-b-3" style="font-size:small;color:gray">In case your password is not changed yet please enter <strong class="b-link">your year of birth</strong> or <strong class="b-link"><a href="/Home/Index/#contact">Contact Us</a></strong></span>
+
+
+                </div>
+
+                <div class="login100-more" style="background-image: url('/images/bg-01.jpg')">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+   
+    <script>
+        var URL = window.location.origin ;
+        
+
+
+        $("#WhatIsMedicalId").click(function () {
+
+            swal({
+                title: 'Whats Is Medical ID ?',
+                text: 'The Number Under Your Photo On Medical Card',
+                imageUrl: URL+'/images/medicalcard.jpg',
+                imageWidth: 400,
+                imageHeight: 400,
+                imageAlt: 'Custom image',
+                animation: true
+            })
+        
+
+        });
+        var medical = $("#medicalid").val();
+        var password = $("#password-field").val();
+        $("#login").click(function () {
+
+
+
+            if ($("#password-field").val() == '' || $("medicalid").val() == '')
+            {
+                //alert("Please fill in all required fields");
+
+                swal({
+                    title: "error",
+                    text: "Please fill in all required fields!",
+                    type: "warning",
+                    //type: "error",
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                    closeOnConfirm: true
+                });
+            }
+            else
+            {
+
+
+                var url = "@apiurl";
+                var data = {
+                    medid: $("#medicalid").val(),
+                    pass: $("#password-field").val()
+                };
+                $("#LoadingDivlogin").show();
+                $.ajax({
+                    url: url,
+                    type: 'Get',
+                    data: data,
+                    success: function (data)
+                    {
+                        if (JSON.stringify(data) != "[]")
+                        {
+                            debugger;
+
+                            if ((data[0].Activated) == null || (data[0].Activated) == "Deactivated" || (data[0].Activated) == "" || (data[0].Activated) == " ")
+                            {
+                               // alert("Your account is either disabled or being activated... \r Please try again in 10 minutes");
+
+                                swal({
+                                    title: "warning",
+                                    text: "Your account is either disabled or being activated... \r Please try again in 10 minutes",
+                                    type: "warning",
+                                    //type: "error",
+                                    confirmButtonClass: "btn-danger",
+                                    confirmButtonText: "OK",
+                                    closeOnConfirm: true
+                                });
+                            }
+                            else
+                            {
+
+
+                                    if (document.getElementById("RememberPassword").checked) {
+                                        debugger;
+                                        var exdays = 1;
+                                        var d = new Date();
+                                        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                                        var expires = ";expires=" + d.toUTCString();
+
+                                        document.cookie = "Medical_id=" + data[0].Medical_id + expires + ";path=/";
+                                        document.cookie = "Activated=" + data[0].Activated + expires + ";path=/";
+                                        document.cookie = "BranchName=" + data[0].BranchName + expires + ";path=/";
+                                        document.cookie = "ClientName=" + data[0].ClientName + expires +";path=/";
+                                        document.cookie = "Email=" + data[0].Email + expires +";path=/";
+                                        document.cookie = "Name=" + data[0].Name + expires+ ";path=/";
+                                        document.cookie = "id=" + data[0].id + expires +";path=/";
+                                        document.cookie = "ReqStatus=" + data[0].ReqStatus + expires+";path=/";
+
+                                    }
+                                    else {
+                                        debugger;
+
+                                        document.cookie = "Medical_id=" + data[0].Medical_id  + ";path=/";
+                                        document.cookie = "Activated=" + data[0].Activated  +";path=/";
+                                        document.cookie = "BranchName=" + data[0].BranchName + ";path=/";
+                                        document.cookie = "ClientName=" + data[0].ClientName + ";path=/";
+                                        document.cookie = "Email=" + data[0].Email +";path=/";
+                                        document.cookie = "Name=" + data[0].Name +";path=/";
+                                        document.cookie = "id=" + data[0].id + ";path=/";
+                                        document.cookie = "ReqStatus=" + data[0].ReqStatus + ";path=/";
+
+                                    }
+                                window.location.href = '@Url.Action("Index","Approvals")';
+                            }
+                        }
+                        else {
+
+                         //   alert("Please review your medical ID and/or your password");
+                            swal({
+                                title: "error",
+                                text: "Please review your medical ID and/or your password",
+                                //type: "warning",
+                                type: "error",
+                                confirmButtonClass: "btn-danger",
+                                confirmButtonText: "OK",
+                                closeOnConfirm: true
+                            });
+                        }
+                    },
+                    complete: function () {
+                        $('#LoadingDivlogin').delay(1000).hide(0);
+                    },
+                    error: function (data)
+                    {
+                       // alert("Please check your internet connection");
+                        swal({
+                            title: "error",
+                            text: "Please check your internet connection",
+                            //type: "warning",
+                            type: "error",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "OK",
+                            closeOnConfirm: true
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+    </html>

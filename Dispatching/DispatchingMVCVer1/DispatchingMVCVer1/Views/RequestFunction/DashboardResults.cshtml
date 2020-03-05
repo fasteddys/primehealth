@@ -1,0 +1,257 @@
+﻿@model DispatchingMVCVer1.Models.Request
+
+@{
+    ViewBag.Title = "DashboardResults";
+}
+@*<script src="~/Scripts/jquery.min.js"></script>*@
+<script src="~/Scripts/jq/JS.js"></script>
+<script src="~/Scripts/jq/JSS.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Dashboard</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+
+ <section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel" id="Stock" style="display:none">
+                <header class="panel-heading">Stock</header>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" role="form">
+                        <div class="row" style="margin-bottom:5px;">
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-red"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="Medical">
+                                            <span>@ViewBag.MedicalPass</span>
+                                            Medical Pass
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-violet"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="QNB">
+                                            <span>@ViewBag.QNB</span>
+                                            QNB
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-blue"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="Claim3">
+                                            <span>@ViewBag.ClaimForm3</span>
+                                            Claims Forms Copy 3
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-green"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="Claim5">
+                                            <span>@ViewBag.ClaimForm5</span>
+                                            Claims Forms Copy 5
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon " style="background-color:gray"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="Hospital">
+                                            <span>@ViewBag.HospitalStamp</span>
+                                            Hospital Stamp
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </form>
+                    <form class="form-horizontal tasi-form" role="form">
+                        <div class="row" style="margin-bottom:5px;">
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-red"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="Medical">
+                                            <span>@ViewBag.MedicalPassMedGulf</span>
+                                            Medical Pass (MedGulf)
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-blue"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="Claim3">
+                                            <span>@ViewBag.ClaimForm3MedGulf</span>
+                                            Claims Forms Copy 3 (MedGulf)
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-green"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="Claim5">
+                                            <span>@ViewBag.ClaimForm5MedGulf</span>
+                                            Claims Forms Copy 5 (MedGulf)
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("StockView", "Stock")'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon " style="background-color:gray"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info" id="Hospital">
+                                            <span>@ViewBag.HospitalStampMedGulf</span>
+                                        Hospital Stamp (MedGulf)
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">Dashboard Results </header>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" role="form">
+                        <div class="row" style="margin-bottom:5px;">
+                            <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "Closed" })'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
+                                        <div class="sm-st-info">
+                                            <span>@ViewBag.NumberOfClosedRequests</span>
+                                            Total " Closed " Requests
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "Rejected" })'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-violet"><i class="fa fa-ban"></i></span>
+                                        <div class="sm-st-info">
+                                            <span>@ViewBag.NumberOfRejectedRequests</span>
+                                            Total " Rejected " Requests
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingAccountApproval" })'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-blue"><i class="fa fa-bell"></i></span>
+                                        <div class="sm-st-info">
+                                            <span>@ViewBag.NumberOfPendingAccount</span>
+                                            Total Pending Account Approval Requests
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingStockAssign" })'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
+                                        <div class="sm-st-info">
+                                            <span>@ViewBag.NumberOfPendingAssign</span>
+                                            Total Pending Stock Assign
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingStockPrepared" })'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon" style="background-color:cadetblue"><i class="fa fa-archive"></i></span>
+                                        <div class="sm-st-info">
+                                            <span>@ViewBag.NumberOfPendingPrepare</span>
+                                            Total Pending Stock Prepare
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingCreatorApproval" })'>
+                                <div class="col-md-4">
+                                    <div class="sm-st clearfix">
+                                        <span class="sm-st-icon" style="background-color:salmon"><i class="fa fa-check-circle"></i></span>
+                                        <div class="sm-st-info">
+                                            <span>@ViewBag.NumberOfPendingApproval</span>
+                                            Total Pending Closing
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <section class="panel">
+                <header class="panel-heading">Search Form</header>
+                <div class="panel-body">
+                    <br />
+                    <form class="form-horizontal tasi-form" action="/RequestFunction/SearchRequest" method="post" role="form">
+                        <div style="width:1500px; margin:0 auto;align-content:center">
+                            <label style="font-size:x-large" class="col-sm-3 col-sm-3 control-label">Search Rquests</label>
+                            <div class="col-sm-3" style="text-align:end;float:left">
+                                <input type="text" class="form-control input-lg m-b-10" id="SearchText" name="SearchChar">
+                            </div>
+                            <div class="col-sm-3" style="text-align:left;float:left;height:45.99px;width:100px">
+                                <input type="submit" style="float:none;height:45.99px;width:100px" value="Search" class="btn btn-primary" id="Search" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<script>
+    setTimeout("window.location.reload();", /* time you want to refresh in milliseconds */ 10000)
+    $(document).ready(function () {
+        if (@ViewBag.MedicalPass<500) {
+            $("#Medical").attr("style","color:red");
+        }
+        if (@ViewBag.QNB<500) {
+            $("#QNB").attr("style","color:red");
+        }
+        if (@ViewBag.ClaimForm3<500) {
+            $("#Claim3").attr("style","color:red");
+        }
+        if (@ViewBag.ClaimForm5<500) {
+            $("#Claim5").attr("style","color:red");
+        }
+        if (@ViewBag.ClaimForm3<500) {
+            $("#Hospital").attr("style","color:red");
+        }
+        if ("@Request.Cookies["UserTypeCookie"].Value" == "StockAdmin" || "@Request.Cookies["UserTypeCookie"].Value" == "Admin" ||"@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin") {
+            $("#Stock").show();
+        }
+    });
+
+</script>

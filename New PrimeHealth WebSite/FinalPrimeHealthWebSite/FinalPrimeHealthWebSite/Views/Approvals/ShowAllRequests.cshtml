@@ -1,0 +1,249 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var apiurlsearch = ViewBag.ServiceUrl + "GetClaimsRequests";
+}
+
+
+
+@*<link rel="stylesheet" type="text/css" href="css/normalize.css">
+<link rel="stylesheet" type="text/css" href="css/framework.css">
+<link rel="stylesheet" type="text/css" href="css/washington.css">*@
+
+    <div class="card card-outline-primary">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white">View Your Requests Status</h4>
+        </div>
+        <div class="card-body" id="contaner">
+            <div class="form-body">
+                <h3 class="card-title m-t-15">Search Info</h3>
+                <div class="alert alert-primary " id="div_Success" style="display:none">
+                    Ticket Added Successfully
+                </div>
+                <hr>
+                <div>
+
+                    @*<h5>Search Value:</h5>
+                        <div class="separator-button"></div>
+
+                        <select id="status" required="required">
+                            <option>Approved</option>
+                            <option>Rejected</option>
+                        </select>*@
+
+                    <div class="form-group">
+                        <label class="control-label">Request Status</label>
+                        <select class="form-control " id="Status" style="height:40px" required="required">
+                            <option value="">--Select Status--</option>
+                            <option>Approved</option>
+                            <option>Rejected</option>
+                            <option>PendingApproval</option>
+                        </select>
+                        <br />
+                        <br />
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-success" id="SearchByStatus"> <i class="fa fa-check"></i> Search </button>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-body">
+                   
+                        <div class="table-responsive" id="TableContaner">
+
+                            <table id="mytable" class="table table-bordred table-striped">
+
+                                <thead>
+
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Subject</th>
+                                        <th>Title</th>
+                                        <th>Creation Time</th>
+                                        <th>CallCenter Name</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="SearchResult"></tbody>
+
+                            </table>
+                            <div class="clearfix"></div>
+                            <ul class="pagination pull-right" id="Pages"></ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/js/custom.min.js"></script>
+    <script src="js/webfont.js"></script>
+    <script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/js/custom.min.js"></script>
+    <script src="~/js/lib/datatables/datatables.min.js"></script>
+    <script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="~/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="~/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="~/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>*@
+    @*<script src="~/js/lib/datatables/datatables-init.js"></script>*@
+<script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+<script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/js/jquery.slimscroll.js"></script>
+<!--Menu sidebar -->
+<script src="~/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!--Custom JavaScript -->
+<script src="~/js/custom.min.js"></script>
+    <script>
+        $("#SearchByStatus").click(function () {
+            if ($("#status").val() == "") {
+               // alert("Please enter search value");
+                swal({
+                    title: "warning",
+                    text: "Please enter search value",
+                    //type: "warning",
+                    type: "warning",
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                    closeOnConfirm: true
+                });
+            }
+            else {
+
+                $("#Pages").empty();
+
+                GetByStatus();
+            }
+        });
+    </script>
+
+
+    <script>
+        function GetByStatus() {
+            var medical = getcookie("Medical_id");
+            var Status = $("#Status").val();
+            var data;
+            var url = "@apiurlsearch";
+
+
+              data = {
+                  medical: medical,
+                  reqstatus: Status
+              }
+        $.ajax({
+            type: 'Get',
+            dataType: 'json',
+            data:data,
+            url: url,
+            success: function (data) {
+                $("#list").empty();
+                if (data.length==0) {
+                   // alert("No data was found");
+
+                    swal({
+                        title: "warning",
+                        text: "No data was found",
+                        type: "warning",
+                        //type: "error",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                        closeOnConfirm: true
+                    });
+
+
+
+
+
+                    $("#SearchResult").empty();
+                }
+            else {
+                        $("#SearchResult").empty();
+               
+
+                        for (var i = 0; i < data.length; i++)
+                        {
+                      
+                            $("#SearchResult").append("<tr><td>" + data[i].id + "</td><td><a href='@Url.Action("RequestDetails", "Approvals")?Id=" + data[i].id + "' >" + data[i].ReqSubject + "</a></td><td>" + data[i].ReqTitle + "</td><td>" + data[i].CreationTime + "</td><td> " + data[i].CallCenterName + "</td><td>" + data[i].ReqStatus +
+             "</td><td><a href='@Url.Action("RequestDetails", "Approvals")?Id=" + data[i].id + "' ><p data-placement='top' data-toggle='tooltip' title='Edit'><button class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit'><span class='glyphicon glyphicon-pencil'></span></button></p></a ></td ></tr > ");
+
+
+
+                        }
+                    jQuery(document).ready(function ($) {
+                        for (var i = 1; i <= 150; i++) {
+                            $('.list-group').append('<li class="list-group-item"> Item ' + i + '</li>');
+                        }
+
+                        $('.list-group').paginathing({
+                            perPage: 5,
+                            limitPagination: 9,
+                            containerClass: 'panel-footer',
+                            pageNumbers: true
+                        })
+
+                        $('.table tbody').paginathing({
+                            perPage: 10,
+                            insertAfter: '.table',
+                            pageNumbers: true
+                        });
+                    });
+
+              
+                    }
+                },
+                error: function (error) {
+                   // alert("Please check your internet connection");
+
+                    swal({
+                        title: "warning",
+                        text: "Please check your internet connection",
+                        type: "warning",
+                        //type: "error",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                        closeOnConfirm: true
+                    });
+
+                }
+        });
+
+            $('.pagination-container').remove();
+              
+
+        }
+
+
+    
+
+
+
+
+    </script>
+<script src="~/js/paginathing.js"></script>
+

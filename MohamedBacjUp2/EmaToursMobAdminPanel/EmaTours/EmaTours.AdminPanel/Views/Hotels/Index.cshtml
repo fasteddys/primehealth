@@ -1,0 +1,86 @@
+﻿@model IEnumerable<EmaTours.DTOs.Business.HotelDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Bootstrap Core CSS -->
+<link href="~/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="~/css/helper.css" rel="stylesheet">
+<link href="~/css/style.css" rel="stylesheet">
+@{ 
+    List<EmaTours.DTOs.Business.LanguageDTO> Languages = ViewBag.Languages;
+    List<EmaTours.DTOs.Business.OperatingCountryDTO> Countries = ViewBag.Countries;
+    List<EmaTours.DTOs.Business.OperatingLocationDTO> Locations = ViewBag.Locations;
+
+}
+
+<!-- Start Page Content -->
+<div class="card card-outline-info">
+    <div class="card-header">
+        <h4 class="m-b-0 text-white">Hotels</h4>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive m-t-40">
+                <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Hotel ID</th>
+                            <th>Name</th>
+                            <th>Language</th>
+                            <th>Operating Country</th>
+                            <th>Operating Location</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            string LanguageName = Languages.Find(x => x.LanguageID == item.LanguageFK).LanguageName;
+                            string CountryName = Countries.Find(x => x.OperatingCountryID == item.OperatingCountryFK).OperatingCountryName;
+                            string LocationName = Locations.Find(x => x.OperatingLocationID == item.OperatingLocationFK).OperatingLocationName;
+
+                        <tr>
+                            <td>@item.HotelID</td>
+                            <td>@item.Name</td>
+                            <td>@LanguageName</td>
+                            <td>@CountryName</td>
+                            <td>@LocationName</td>
+                            <td><a href="~/Hotels/edit?id=@item.HotelID">Edit</a> @*| <a href="~/Hotels/Details?id=@item.HotelID">Details</a> | <a href="~/Hotels/Delete?id=@item.HotelID">Delete</a>*@</td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End PAge Content -->
+<!-- End Wrapper -->
+<!-- All Jquery -->
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+<script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/js/jquery.slimscroll.js"></script>
+<!--Menu sidebar -->
+<script src="~/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!--Custom JavaScript -->
+<script src="~/js/custom.min.js"></script>
+
+
+<script src="~/js/lib/datatables/datatables.min.js"></script>
+<script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="~/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="~/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="~/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="~/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<script src="~/js/lib/datatables/datatables-init.js"></script>
+

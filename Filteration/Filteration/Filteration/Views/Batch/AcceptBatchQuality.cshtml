@@ -1,0 +1,415 @@
+﻿@model Filteration.Models.Batch
+@{
+    ViewBag.Title = "AcceptBatchQuality";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Theme/assets/css/sweetalert.css" rel="stylesheet" type="text/css" />
+<div hidden="hidden">
+    @Html.HiddenFor(model => model.Id, new { @id = "id" })
+</div>
+
+<div hidden="hidden">
+    @Html.HiddenFor(model => model.ReqId, new { @id = "ReqId" })
+</div>
+
+<div class="row mt">
+    <div class="col-md-12">
+        <div class="table table-striped table-advance table-hover">
+
+            <div class="panel-body table-responsive">
+                <table class="table table-hover" id="table">
+                    <tr hidden="hidden">
+                        @Html.HiddenFor(model => model.Id, new { @id = "id" })
+                    </tr>
+
+                    <tr hidden="hidden">
+                        @Html.HiddenFor(model => model.ReqId, new { @id = "ReqId" })
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.BatchNumber)
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="display-field">
+                                @Html.DisplayFor(model => model.BatchNumber)
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.BatchStatus)
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="display-field">
+                                @Html.DisplayFor(model => model.BatchStatus)
+                                @Html.HiddenFor(model => model.BatchStatus, new { @id = "Batchstatus" })
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.TicketNumber)
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="display-field">
+                                @Html.DisplayFor(model => model.TicketNumber)
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.NumberOfClaims)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                @Html.DisplayFor(model => model.NumberOfClaims)
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr id="Qualityclaimnum" style="display:none">
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.QualityClaimsNumber)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                @Html.DisplayFor(model => model.QualityClaimsNumber)
+                            </div>
+
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.AssignedPerson)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                @Html.DisplayFor(model => model.AssignedPerson)
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <tr class="QualityClaims">
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.QualityClaimsNumber)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                <input type="number" onkeypress="return IsNumPositive(event)" id="Quality_Claims_Number" name="QualityClaimsNumber" required="required">
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <tr class="BadStamp">
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.NumOfBadStamp)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                <input type="number" onkeypress="return IsNumPositive(event)" id="num_of_bad_stamp" name="NumOfBadStamp" required>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <tr class="NoStamp">
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.NumOfNoStamp)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                <input type="number" onkeypress="return IsNumPositive(event)" id="num_of_no_stamp" name="NumOfNoStamp" required>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <tr class="BadPhoto">
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.NumOfBadPhoto)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                <input type="number" onkeypress="return IsNumPositive(event)" id="num_of_bad_photo" name="NumOfBadPhoto" required>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <tr class="NoPhoto">
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.NumOfNoPhoto)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                <input type="number" onkeypress="return IsNumPositive(event)" id="num_of_no_photo" name="NumOfNoPhoto" required>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<input type="button" class="btn btn-theme04" id="AssignBatchBTN" value="Assign Batch">
+
+<input type="button" class="btn btn-theme" id="SubmitBatchBTN" value="Submit Batch">
+
+
+<input type="button" class="btn btn-theme" id="Reviewbtn"
+       value="Review Batch" />
+
+
+<script type="text/javascript">
+
+
+    $("#AssignBatchBTN").on("click", function () {
+       debugger;
+        var info= {
+            id:$("#id").val(),
+        }
+
+        var x = JSON.stringify(info);
+        $.ajax({
+            url: '@Url.Action("AssignQualityBatch", "Batch")',
+            data: x,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            success: function (data, status) {
+
+            }
+        });
+
+
+        $("#AssignBatchBTN").hide();
+
+    });
+</script>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        if ($("#Batchstatus").val() == "ReadyToQuality")
+        {
+            var info = {
+                id: $("#id").val(),
+
+            }
+            $("#SubmitBatchBTN").hide();
+            $("#Reviewbtn").hide();
+            $(".QualityClaims").hide();
+            $(".BadStamp").hide();
+            $(".NoStamp").hide();
+            $(".BadPhoto").hide();
+            $(".NoPhoto").hide();
+        }
+
+        if($("#Batchstatus").val() == "AssignedByQuality" && "@Model.AssignedQuality" == "@Request.Cookies["TPAUserNameCookie"].Value")
+        {
+            var info = {
+                id: $("#id").val(),
+
+            }
+            $("#AssignBatchBTN").hide();
+            $("#Reviewbtn").show();
+            $("#SubmitBatchBTN").show();
+            $(".QualityClaims").show();
+            $(".BadStamp").show();
+            $(".NoStamp").show();
+            $(".BadPhoto").show();
+            $(".NoPhoto").show();
+        }
+        if($("#Batchstatus").val() == "AssignedByQuality" && "@Model.AssignedQuality" != "@Request.Cookies["TPAUserNameCookie"].Value")
+        {
+            var info = {
+                id: $("#id").val(),
+
+            }
+            $("#AssignBatchBTN").hide();
+            $("#Reviewbtn").hide();
+            $("#SubmitBatchBTN").hide();
+            $(".QualityClaims").hide();
+            $(".BadStamp").hide();
+            $(".NoStamp").hide();
+            $(".BadPhoto").hide();
+            $(".NoPhoto").hide();
+        }
+        if ($("#Batchstatus").val() == "QualityFinished" || $("#Batchstatus").val() == "UnderReview")
+        {
+            var info = {
+                id: $("#id").val(),
+
+            }
+            $("#Qualityclaimnum").show();
+            $("#AssignBatchBTN").hide();
+            $("#SubmitBatchBTN").hide();
+            $("#Reviewbtn").hide();
+            $(".QualityClaims").hide();
+            $(".BadStamp").hide();
+            $(".NoStamp").hide();
+            $(".BadPhoto").hide();
+            $(".NoPhoto").hide();
+        }
+
+
+});
+</script>
+
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $("#SubmitBatchBTN").on("click", function () {
+        debugger;
+        if ($("#Quality_Claims_Number").val() != "" && $("#num_of_bad_stamp").val() != "" && $("#num_of_no_stamp").val() != "" &&
+        $("#num_of_bad_photo").val() != "" && $("#num_of_no_photo").val() != "") {
+            var info = {
+                id: $("#id").val(),
+                QualityClaimNum: $("#Quality_Claims_Number").val(),
+                NumberOfBadStamp: $("#num_of_bad_stamp").val(),
+                NumberOfNoStamp: $("#num_of_no_stamp").val(),
+                NumberOfBadPhoto: $("#num_of_bad_photo").val(),
+                NumberOfNoPhoto: $("#num_of_no_photo").val(),
+            }
+
+            var x = JSON.stringify(info);
+            $.ajax({
+                url: '@Url.Action("FinishBatch", "Batch")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+
+
+                }
+            });
+
+            window.location = '@Url.Action("ListRequestedBatches", new RouteValueDictionary
+      (new { controller = "Request", action = "ListRequestedBatches", Id = Model.ReqId, status = ViewBag.Status }))'
+
+            $("#SubmitBatchBTN").hide();
+            $("#Reviewbtn").hide();
+            $(".QualityClaims").hide();
+            $(".BadStamp").hide();
+            $(".NoStamp").hide();
+            $(".BadPhoto").hide();
+            $(".NoPhoto").hide();
+        }
+        else
+        {
+            swal({
+                title: "Error!",
+                text: "Make sure all fields are filled!",
+                type: "warning"
+
+            });
+            return false;
+        }
+    });
+
+</script>
+
+
+
+<script type="text/javascript">
+    $("#Reviewbtn").on("click", function () {
+        if ($("#Quality_Claims_Number").val() != "" && $("#num_of_bad_stamp").val() != "" && $("#num_of_no_stamp").val() != "" &&
+        $("#num_of_bad_photo").val() != "" && $("#num_of_no_photo").val() != "") {
+            var info = {
+                id: $("#id").val(),
+                REvQualityClaimNum: $("#Quality_Claims_Number").val(),
+                REvNumberOfBadstamps: $("#num_of_bad_stamp").val(),
+                REvNumberofNoStamps: $("#num_of_no_stamp").val(),
+                REvNumberOfBadPhoto: $("#num_of_bad_photo").val(),
+                REvNumberOfNophoto: $("#num_of_no_photo").val(),
+            }
+            var x = JSON.stringify(info);
+            $.ajax({
+                url: '@Url.Action("ReviewBatch", "Batch")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+
+                }
+
+            });
+
+            window.location = '@Url.Action("ListRequestedBatches", new RouteValueDictionary
+      (new { controller = "Request", action = "ListRequestedBatches", Id = Model.ReqId, status = ViewBag.Status }))'
+
+            //new
+            $("#SubmitBatchBTN").hide();
+            $("#Reviewbtn").hide();
+            $(".QualityClaims").hide();
+            $(".BadStamp").hide();
+            $(".NoStamp").hide();
+            $(".BadPhoto").hide();
+            $(".NoPhoto").hide();
+
+
+
+        }
+        else {
+            swal({
+                title: "Error!",
+                text: "Make sure all fields are filled!",
+                type: "warning"
+
+            });
+            return false;
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+    function IsNumPositive(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            alert("Insert right positive number");
+            return false;
+        }
+        return true;
+    }
+</script>

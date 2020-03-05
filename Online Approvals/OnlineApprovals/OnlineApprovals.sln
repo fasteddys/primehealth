@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineApprovals.Client", "OnlineApprovals.Client\OnlineApprovals.Client.csproj", "{E4D51736-0044-4DCE-88F8-28F9E314F171}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineApprovals.BLL", "OnlineApprovals.BLL\OnlineApprovals.BLL.csproj", "{AD6DC237-B1F7-473C-B86E-3E5393172786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineApprovals.DAL", "OnlineApprovals.DAL\OnlineApprovals.DAL.csproj", "{834F5230-3019-4787-B1D3-501A20A7ABF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineApprovals.Entities", "OnlineApprovals.Entities\OnlineApprovals.Entities.csproj", "{575765F5-B0AA-4635-B174-11081EB77FE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineApprovals.DTOs", "OnlineApprovals.DTOs\OnlineApprovals.DTOs.csproj", "{BD1B7050-C484-4DD1-8C27-F1D1EF5A01EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineApprovals.Utilities", "OnlineApprovals.Utilities\OnlineApprovals.Utilities.csproj", "{FB6F3D62-EAE2-4C3D-9357-631497B7235A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4D51736-0044-4DCE-88F8-28F9E314F171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D51736-0044-4DCE-88F8-28F9E314F171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D51736-0044-4DCE-88F8-28F9E314F171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D51736-0044-4DCE-88F8-28F9E314F171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD6DC237-B1F7-473C-B86E-3E5393172786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD6DC237-B1F7-473C-B86E-3E5393172786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD6DC237-B1F7-473C-B86E-3E5393172786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD6DC237-B1F7-473C-B86E-3E5393172786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{834F5230-3019-4787-B1D3-501A20A7ABF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{834F5230-3019-4787-B1D3-501A20A7ABF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{834F5230-3019-4787-B1D3-501A20A7ABF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{834F5230-3019-4787-B1D3-501A20A7ABF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{575765F5-B0AA-4635-B174-11081EB77FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{575765F5-B0AA-4635-B174-11081EB77FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{575765F5-B0AA-4635-B174-11081EB77FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{575765F5-B0AA-4635-B174-11081EB77FE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD1B7050-C484-4DD1-8C27-F1D1EF5A01EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1B7050-C484-4DD1-8C27-F1D1EF5A01EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1B7050-C484-4DD1-8C27-F1D1EF5A01EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1B7050-C484-4DD1-8C27-F1D1EF5A01EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB6F3D62-EAE2-4C3D-9357-631497B7235A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB6F3D62-EAE2-4C3D-9357-631497B7235A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB6F3D62-EAE2-4C3D-9357-631497B7235A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB6F3D62-EAE2-4C3D-9357-631497B7235A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EE4962C-1B4C-4EAC-A762-A2D17B489000}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = OnlineApprovals.Client\\OnlineApprovals.Client.csproj
+		SccProjectName1 = OnlineApprovals.Client
+		SccLocalPath1 = OnlineApprovals.Client
+		SccProjectUniqueName2 = OnlineApprovals.BLL\\OnlineApprovals.BLL.csproj
+		SccProjectName2 = OnlineApprovals.BLL
+		SccLocalPath2 = OnlineApprovals.BLL
+		SccProjectUniqueName3 = OnlineApprovals.DAL\\OnlineApprovals.DAL.csproj
+		SccProjectName3 = OnlineApprovals.DAL
+		SccLocalPath3 = OnlineApprovals.DAL
+		SccProjectUniqueName4 = OnlineApprovals.Entities\\OnlineApprovals.Entities.csproj
+		SccProjectName4 = OnlineApprovals.Entities
+		SccLocalPath4 = OnlineApprovals.Entities
+		SccProjectUniqueName5 = OnlineApprovals.DTOs\\OnlineApprovals.DTOs.csproj
+		SccProjectName5 = OnlineApprovals.DTOs
+		SccLocalPath5 = OnlineApprovals.DTOs
+		SccProjectUniqueName6 = OnlineApprovals.Utilities\\OnlineApprovals.Utilities.csproj
+		SccProjectName6 = OnlineApprovals.Utilities
+		SccLocalPath6 = OnlineApprovals.Utilities
+	EndGlobalSection
+EndGlobal

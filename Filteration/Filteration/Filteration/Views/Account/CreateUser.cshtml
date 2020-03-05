@@ -1,0 +1,226 @@
+﻿@model Filteration.Models.User
+@{
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .form-style-1 {
+        margin: 10px auto;
+        max-width: 400px;
+        padding: 20px 12px 10px 20px;
+        font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    }
+
+        .form-style-1 li {
+            padding: 0;
+            display: block;
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+
+        .form-style-1 label {
+            margin: 0 0 3px 0;
+            padding: 0px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-style-1 input[type=text],
+        .form-style-1 input[type=date],
+        .form-style-1 input[type=datetime],
+        .form-style-1 input[type=number],
+        .form-style-1 input[type=search],
+        .form-style-1 input[type=time],
+        .form-style-1 input[type=url],
+        .form-style-1 input[type=email],
+        textarea,
+        select {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border: 1px solid #BEBEBE;
+            padding: 7px;
+            margin: 0px;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;
+        }
+
+            .form-style-1 input[type=text]:focus,
+            .form-style-1 input[type=date]:focus,
+            .form-style-1 input[type=datetime]:focus,
+            .form-style-1 input[type=number]:focus,
+            .form-style-1 input[type=search]:focus,
+            .form-style-1 input[type=time]:focus,
+            .form-style-1 input[type=url]:focus,
+            .form-style-1 input[type=email]:focus,
+            .form-style-1 textarea:focus,
+            .form-style-1 select:focus {
+                -moz-box-shadow: 0 0 8px #88D5E9;
+                -webkit-box-shadow: 0 0 8px #88D5E9;
+                box-shadow: 0 0 8px #88D5E9;
+                border: 1px solid #88D5E9;
+            }
+
+        .form-style-1 .field-divided {
+            width: 49%;
+        }
+
+        .form-style-1 .field-long {
+            width: 100%;
+        }
+
+        .form-style-1 .field-select {
+            width: 100%;
+        }
+
+        .form-style-1 .field-textarea {
+            height: 100px;
+        }
+
+        .form-style-1 input[type=submit], .form-style-1 input[type=button] {
+            background: #4B99AD;
+            padding: 8px 15px 8px 15px;
+            border: none;
+            color: #fff;
+        }
+
+            .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover {
+                background: #4691A4;
+                box-shadow: none;
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+
+        .form-style-1 .required {
+            color: red;
+        }
+</style>
+
+
+
+<h3 style="color:black; font-family:'Segoe UI'; font-size:xx-large;font-weight:200;">
+    Create User
+</h3>
+
+        <div class="form-panel" >
+            <form method="post">
+                <ul class="form-style-1">
+                    <li><label>Full Name <span class="required">*</span>
+                     </label><input type="text" name="UserName" id="NewUsername" class="field-long" required/>
+                    @Html.ValidationMessageFor(model=>model.UserName)
+                    </li>
+                    
+                    <li>
+                        <label>Password <span class="required">*</span>
+                        </label><input type="text" name="Password" id="newPass" class="field-long" onchange="return validatemail();" value="Prime@123" required readonly/>
+
+                    </li>
+                    <li>
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" name="Email" class="field-long" id="Newmail" required />
+                        @Html.ValidationMessageFor(model=>model.Email)
+                    </li>
+                    <li>
+                        <label>Type <span class="required">*</span></label>
+                        <select name="Type" class="field-select" id="type">
+                            <option value="TPA">TPA</option>
+                            <option value="Quality">Quality</option>
+                            <option value="TPAadmin">TPAadmin</option>
+                            <option value="QualityAdmin">QualityAdmin</option>
+                        </select>
+                        @Html.ValidationMessageFor(model=>model.Type)
+                    </li>
+                    <li>
+                        
+                        <label>Role <span class="required">*</span></label>
+                        <select name="Role" class="field-select" id="Role">
+                            <option value=null>Normal</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                        @Html.ValidationMessageFor(model=>model.Role)
+                    </li>
+                    
+                    <li>
+                        <input type="button" value="Create" id="Createnewuseer" />
+                    </li>
+                </ul>
+            </form>
+            </div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Theme/assets/css/sweetalert.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $("#Createnewuseer").on("click", function () {
+           
+            if ($("#NewUsername").val() != "" && $("#newPass").val() != "" && $("#Newmail").val() != "" && $("#type").val() != ""
+                && $("#Role").val() != "") {
+                if (isValidEmailAddress()) {
+                    var info = {
+                        NewUsername: $("#NewUsername").val(),
+                        newPass: $("#newPass").val(),
+                        Newmail: $("#Newmail").val(),
+                        type: $("#type").val(),
+                        Role: $("#Role").val(),
+                    }
+                    var x = JSON.stringify(info);
+                    $.ajax({
+                        url: '@Url.Action("CreateNewUser","Account")',
+                        data: x,
+                        cache: false,
+                        contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        success: function (data) {
+                            
+                        },
+                        error: function (data) {
+                            alert(data);
+                        }
+                    });
+                    swal("User created successfully", "", "success")
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                swal({
+                    title: "Error!",
+                    text: "Something went wrong!",
+                    type: "error"
+
+                });
+                return false;
+            }
+        });
+
+        function isValidEmailAddress()
+        {
+           
+            var email = $("#Newmail").val();
+           var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+           if(pattern.test(email))
+           {               
+               return true;
+           }
+           else
+           {
+               swal({
+                   title: "Hey!",
+                   text: "Are you sure you entered a correct email address!",
+                   type: "warning"
+
+               });
+               
+           }
+        }
+        
+    });
+</script>  

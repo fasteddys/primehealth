@@ -1,0 +1,139 @@
+﻿@using OnlineApprovals.DTOs;
+@using OnlineApprovals.BLL.StaticData;
+@model OnlineApprovals.DTOs.ALLRequestDataDTO
+
+
+<ul class="list-feed">
+    @{ foreach (var item in Model.RequestDetails)
+        {
+
+            string Tittle = "";
+            string CssClass = "";
+
+            if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.Assign)
+            {
+                Tittle = "Request Assigned By Dr." + Model.Request.CallCenterAssignee;
+                CssClass = "icon-user-check";
+            }
+            else if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.Approve)
+            {
+                if (Model.Request.IVRNumber == null)
+                {
+                    Tittle = "Dr." + Model.Request.CallCenterAssignee + " has Approved Your Request ";
+                    CssClass = "icon-stack-check";
+
+                }
+                else
+                {
+                    Tittle = "Dr." + Model.Request.CallCenterAssignee + " has Approved Your Request with IVR number  " + Model.Request.IVRNumber;
+                    CssClass = "icon-stack-check";
+
+                }
+
+            }
+            else if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.ReplyFromCallCenter)
+            {
+                Tittle = "Dr." + Model.Request.CallCenterAssignee + " has Added a Reply to Your Request";
+                CssClass = "icon-bubbles3";
+
+            }
+            else if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.Reject)
+            {
+                Tittle = "Dr." + Model.Request.CallCenterAssignee + " has Rejected Your Request";
+                CssClass = "icon-stack-cancel";
+
+            }
+            else if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.Reopen)
+            {
+                Tittle = Model.Request.ProviderName + " has Reopend his Request";
+                CssClass = "icon-warning22";
+
+            }
+            else if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.ReplyFromProvider)
+            {
+                Tittle = Model.Request.ProviderName + " has Added a Reply to his Request";
+                CssClass = "icon-bubbles3";
+
+            }
+            else if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.Terminate)
+            {
+                Tittle = Model.Request.ProviderName + " has Terminated his Request";
+                CssClass = "icon-trash";
+
+            }
+
+            else if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.Onhold)
+            {
+                Tittle = Model.Request.CallCenterAssignee + " onHold Request";
+                CssClass = "fa fa-hourglass-end";
+
+            }
+            else if (item.RequestDetailsType == (int)StaticEnums.RequestDetailsType.EndOnhold)
+            {
+                Tittle = Model.Request.CallCenterAssignee + " End The Hold Request";
+                CssClass = "fa fa-hourglass-end";
+
+            }
+
+            <li>
+                <div class="text-muted">@item.DetailsDate.ToString("dd/MM/yyyy hh:mm:ss tt")</div>
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" href="#@item.ID">
+                                <i class="@CssClass position-left text-slate"></i>@Tittle
+                                @{ var AttachList = Model.Attachments.Where(P => P.RequestDetailsID == item.ID).ToList();
+                                    if (item.Notes != null || AttachList.Count() > 0)
+                                    {
+                                        <i class="icon-plus2 position-right pull-right text-slate"></i>
+                                    }
+                                }
+
+                            </a>
+                        </h6>
+                    </div>
+                    @{
+                        if (item.Notes != null || AttachList.Count() > 0)
+                        {
+                            <div id="@item.ID" class="panel-collapse collapse" style="padding:20px">
+                                <div class="panel-body ">
+                                    <div class="row">
+                                        <div class="appandnote">
+                                            @item.Notes
+                                        </div>
+                                    </div>
+                                    @{
+                                        if (AttachList.Count() > 0)
+                                        {
+
+                                            <div style="width:100%;background-color:gray;height:1px ;margin:7px"></div>
+                                                <div class="row">
+                                                    @{
+
+                                                        foreach (var attach in AttachList)
+                                                        {
+
+                                                            <a href="/Request/FileDownload?path=@attach.AttachmentPath&name=@attach.AttachmentName">@attach.AttachmentName</a>
+                                                        }
+                                                    }
+                                                </div>
+
+                                                        }
+                                    }
+
+                                </div>
+                            </div>
+                                                        }
+                    }
+
+                </div>
+            </li>
+                                                        }
+    }
+</ul>
+
+<script>
+    $(document).ready(function () {
+        appandnotes();
+    })
+</script>

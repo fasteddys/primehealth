@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>TPA Filteration</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/Theme/assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="/Theme/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="/Theme/assets/css/style.css" rel="stylesheet">
+    <link href="/Theme/assets/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+   @* [if lt IE 9]>*@
+   
+    @*<![endif]*@
+</head>
+
+<body>
+
+    <section id="container">
+        <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+        <!--header start-->
+        <header class="header black-bg" style="background-color: #424a5d">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            </div>
+            <!--logo start-->
+            <a href="/Theme/index.html" class="logo"><b>TPA Filteration</b></a>
+            <!--logo end-->
+
+            <div class="top-menu">
+                <ul class="nav pull-right top-menu">
+                    @*<li><a class="logout" href="/Login/Login">Logout</a></li>*@
+                    @*<li><a class="logout" onclick="window.location='/Login/Logout'">Logout</a></li>*@
+                    <button class="btn btn-theme" onclick="window.location='/Login/Logout'" style="margin-top:13px">Logout</button>
+                </ul>
+            </div>
+        </header>
+        <!--header end-->
+        <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+        <!--sidebar start-->
+
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+
+                    <p class="centered">
+                        <a href="profile.html">
+                            <img src="/Theme/assets/img/User_icon_BLACK-01.png"
+                                 class="img-circle" width="60">
+                        </a>
+                    </p>
+                    <h5 class="centered"> @Request.Cookies["TPAUserNameCookie"].Value</h5>
+
+                    @if (ViewBag.Status == "TPA")
+                    {
+
+                        <li class="mt" id="Dashboard">
+
+
+                            @Html.ActionLink("Dashboard", "Dashboard", "Request", new { status = ViewBag.Status }, null)
+
+                        </li>
+                    }
+                    else if (ViewBag.Status == "Quality")
+                    {
+                        <li class="mt" id="Dashboard">
+
+                            @Html.ActionLink("Dashboard", "Dashboard", "Request", new { status = ViewBag.Status }, null)
+                        </li>
+                    }
+                    else if (Request.Cookies["UserTypeCookie"].Value == "TPA" || Request.Cookies["UserTypeCookie"].Value == "TPAadmin")
+                   
+                    {
+                        <li class="mt" id="Dashboard">
+                            <a href="/Request/Dashboard">
+
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                    }
+
+
+
+
+                    <li class="mt" id="ReportAll" style="display:none">
+
+                        @Html.ActionLink("Report", "Report", "Request", new { status = ViewBag.Status }, null)
+
+                    </li>
+
+                    <li class="mt" id="Assigned" style="display:none">
+
+                        @Html.ActionLink("Assigned Batches", "AssignedBatches", "Batch",
+        new { UserName = @Request.Cookies["TPAUserNameCookie"].Value, status = ViewBag.Status }, null)
+
+                    </li>
+
+                    <li class="mt" id="AssignedQua" style="display:none">
+                        @Html.ActionLink("Assigned Batches for Quality", "AssignedBatchesPerQuality", "Batch",
+        new { UserName = @Request.Cookies["TPAUserNameCookie"].Value, status = ViewBag.Status }, null)
+
+                    </li>
+
+                    <li class="mt" id="ReviewBatches" style="display:none">
+
+
+                        @Html.ActionLink("Review", "Review", "Batch",
+                        new { status = ViewBag.Status }, null)
+                    </li>
+
+
+
+                    <li class="mt" id="AddRequest" style="display:none">
+                        <a href="/Request/AddRequest">
+
+                            <span>Add New Request</span>
+                        </a>
+                    </li>
+
+                    @*<li class="mt" id="AddBatch" style="display:none">
+                        <a href="/Batch/AddBatch">
+
+                            <span>Add Batch</span>
+                        </a>
+                    </li>*@
+
+
+                    <li class="mt" id="TPAClosedRequests" style="display:none">
+
+                        @Html.ActionLink("TPA Closed Requests", "TPAClosedRequest", "Request",
+                        new { status = ViewBag.Status }, null)
+
+
+
+
+
+
+                    <li class="mt" id="QualityClosedRequests" style="display:none">
+
+                        @Html.ActionLink("Quality Closed Requests", "QualityClosedRequest", "Request",
+                        new { status = ViewBag.Status }, null)
+
+                    </li>
+
+
+                    <li class="mt" id="profile">
+                        @Html.ActionLink("Edit Profile", "EditProfile", "Request",
+   new { ID = @Request.Cookies["IDCookie"].Value, status = ViewBag.Status }, null)
+
+                    </li>
+
+                    <li class="mt" id="CreateUser" style="display:none">
+                        @Html.ActionLink("Create user", "CreateUser", "Account", new { status = ViewBag.Status }, null)
+
+                    </li>
+
+                </ul>
+
+                <div class="row mt" id="SideSearch" style="display:none">
+                    <form role="form" action="/Request/Search" style="width:200px; height:70px;">
+                        <label for="BatchNumber" style="margin-left:35px; color:white">Batch Number</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="BatchNumber" style="padding-left:18px;margin-left:20px "
+                                   name="BatchNumber" placeholder="BatchNumber">
+                        </div>
+                        <button type="submit" id="Search" class="btn btn-theme" style="display:none">Search</button>
+                    </form>
+                </div>
+
+
+
+
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper site-min-height">
+
+                <div class="row mt">
+                    <div class="col-lg-12">
+                        @RenderBody()
+                    </div>
+                </div>
+
+            </section><! --/wrapper -->
+        </section><!-- /MAIN CONTENT -->
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                Development Team - Prime-Health
+                <a href="/Theme/blank.html" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="/Theme/assets/js/jquery.js"></script>
+    <script src="/Theme/assets/js/bootstrap.min.js"></script>
+    <script src="/Theme/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="/Theme/assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script class="include" type="text/javascript" src="/Theme/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/Theme/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="/Theme/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <!--common script for all pages-->
+    <script src="/Theme/assets/js/common-scripts.js"></script>
+
+    <!--script for this page-->
+
+    <script>
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+    </script>
+
+</body>
+</html>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        if (localStorage['Type'] == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin"
+            || "@Request.Cookies["UserTypeCookie"].Value" == "Deputy Manager") {
+
+            $("#Assigned").show();
+            $("#TPAClosedRequests").show();
+        }
+        else if (localStorage['Type'] == "Quality" || "@Request.Cookies["UserTypeCookie"].Value" == "Deputy Manager") {
+            $("#AssignedQua").show();
+
+        }
+       @*if("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin")
+        {
+            $("#AssignedQua").hide();
+        }*@
+
+
+    });
+</script>
+<script type="text/javascript">
+    if("@Request.Cookies["RoleCookie"].Value" =="Admin")
+    {
+        $("#SideSearch").show();
+        $("#ReviewBatches").show();
+    }
+
+    if ("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin" ||
+        "@Request.Cookies["UserTypeCookie"].Value" == "Deputy Manager" ||
+        "@Request.Cookies["RoleCookie"].Value" == "AdminAssistant")
+    {
+        $("#AddRequest").show();
+        $("#AddBatch").show();
+        $("#AssignedQua").hide();
+    }
+    if ("@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin" || "@Request.Cookies["UserTypeCookie"].Value" == "Quality"
+    || "@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin" || "@Request.Cookies["UserTypeCookie"].Value" == "Deputy Manager") {
+        $("#QualityClosedRequests").show();
+    }
+    if ("@Request.Cookies["RoleCookie"].Value" == "Admin")
+    {
+        $("#ReportAll").show();
+    }
+    if("@Request.Cookies["RoleCookie"].Value"=="ITAdmin")
+    {
+
+        $("#ReportAll").show();
+        $("#SideSearch").show();
+    }
+
+    @*if("@Request.Cookies["UserTypeCookie"].Value" == "Quality" || "@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin")
+    {
+        $("#AssignedQua").show();
+    }*@
+    if("@Request.Cookies["UserTypeCookie"].Value" == "Deputy Manager")
+    {
+        $("#CreateUser").show();
+    }
+
+
+
+</script>
+<Script>
+    document.onload=
+    function fun() {
+        var item = document.getElementById("datepicker");
+
+        //   $("#datepicker").datepicker(
+         }
+
+
+
+</Script>
+
+
+
+
+
+
+
+
+

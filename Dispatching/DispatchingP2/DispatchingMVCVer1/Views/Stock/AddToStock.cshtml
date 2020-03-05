@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "AddToStock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Add To Stock</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading"> Select Your Data </header>
+                <div class="alert alert-success alert-dismissable" id="div_Success" style="display:none">
+                    Data Inserted Successfully
+                </div>
+                <div class="alert alert-danger alert-dismissable" id="div_Error" style="display:none">
+                    Some or all of this bocklets exist in stock
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Item Name</label>
+                            <div class="col-sm-3">
+                                <select class="form-control input-lg m-b-10" id="ItemType">
+                                    <option value="Medical Pass">Medical Pass</option>
+                                    <option value="QNB">QNB</option>
+                                    <option value="Claims Forms Copy 3">Claims Forms Copy 3</option>
+                                    <option value="Claims Forms Copy 5">Claims Forms Copy 5</option>
+                                    <option value="Hospital Stamp">Hospital Stamp</option>
+                                    <option value="Medical Pass (Medgulf)">Medical Pass (Medgulf)</option>
+                                    <option value="Claims Forms Copy 3  (Medgulf)">Claims Forms Copy 3  (Medgulf)</option>
+                                    <option value="Claims Forms Copy 5 (Medgulf)">Claims Forms Copy 5 (Medgulf)</option>
+                                    <option value="Hospital Stamp (Medgulf)">Hospital Stamp (Medgulf)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">#Boocklets</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control input-lg m-b-10" id="BoockletsNum">
+                            </div>
+                            <div class="col-sm-3">
+                                <span id="BockletsNumValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                            </div>
+                        </div>
+                        <div class="form-group" id="StartClaimField">
+                            <label class="col-sm-2 col-sm-2 control-label">Start Claim</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control input-lg m-b-10" id="StartC">
+                            </div>
+                            <div class="col-sm-3">
+                                <span id="StartClaimValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                                <span id="StartClaimLengthValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert Correct number</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="text-align:center;">
+                            <div class="toolbar-btn-action">
+                                <button type="button" class="btn btn-primary" id="btn_Submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+        $("#btn_Submit").click(function () {
+            debugger;
+            var StartClaimLength = $("#StartC").val()
+            if ($("#BoockletsNum").val() == "") {
+                $("#BockletsNumValidator").show();
+            }
+            else if ($("#StartC").val() == "" || StartClaimLength.length < 7 || StartClaimLength.length > 7) {
+                if (StartClaimLength.length < 7 || StartClaimLength.length > 7) {
+                    $("#StartClaimLengthValidator").show();
+                }
+                else if ($("#StartC").val() == "") {
+                    $("#StartClaimValidator").show();
+                }
+            }
+            else {
+                var data =
+                    {
+                        ItemType: $("#ItemType").val(),
+                        NumOfBocklets: $("#BoockletsNum").val(),
+                        StartClaims: $("#StartC").val()
+                    };
+                var x = JSON.stringify(data);
+                $.ajax({
+                    url: "/Stock/AddItem",
+                    type: "Post",
+                    contentType: "application/json;charset=utf-8",
+                    data: x,
+                    success: function (message) {
+                        if (message == "Success") {
+                            $("#BoockletsNum").val("");
+                            $("#StartC").val("");
+                            $("#div_Success").show();
+                            $("#div_Error").hide();
+                        } else {
+                            $("#div_Error").show();
+                            $("#div_Success").hide();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

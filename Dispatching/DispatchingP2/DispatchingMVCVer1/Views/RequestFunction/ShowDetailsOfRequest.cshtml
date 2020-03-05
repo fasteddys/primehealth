@@ -1,0 +1,459 @@
+﻿@model DispatchingMVCVer1.Models.Request
+
+@{
+    ViewBag.Title = "ShowDetailsOfRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jq/JS.js"></script>
+<script src="~/Scripts/jq/JSS.js"></script>
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Request Details</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Show Details Of Request
+                </header>
+                <div class="alert alert-success alert-dismissable" id="div_Success" style="display:none">
+                    Request Updated Successfully
+                </div>
+                <div class="panel-body">
+                    <div class="form-group" style="display:none" id="TransferToField" >
+                        @*<label class="control-label col-sm-3 col-sm-3 col-md-12"     style="margin-left:250px;margin-top:7px" for="ReqSubType">
+                            Transfer To<span class="required"></span>
+                        </label>*@
+                        <span class="pull-left" style="font-size:large;margin-top:4px">Transfer To</span>
+                        <div class="col-md-3 col-sm-3 col-xs-12" >
+                            
+                            <select tabindex="-1" class="select2_group form-control" style="display: normal;" name="TransferablePerson" id="TransferablePerson">
+                                <optgroup label="Choose One">
+                                    <option value="----">----</option>
+                                    @foreach (var item in ViewBag.StockAdmins)
+                                    {
+                                        <option value="@item.UserName">@item.UserName</option>
+                                    }
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <button type="button" id="Transfer" class="btn btn-danger">Transfer</button>
+                        <br />
+                        <br />
+                    </div>
+
+                        <table class="table table-hover">
+                            <caption style="margin-bottom:15px"><div class="col-lg-12 col-sm-12 control-label " style="font-weight:bold;font-size:40px;">@Html.DisplayTextFor(m => m.ReqID) </div></caption>
+
+                            <tr>
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Provider Type</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.ProviderType) </div> </td>
+                            </tr>
+                            <tr>
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> ProviderName</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;"> @Html.DisplayTextFor(m => m.ProviderName) </div> </td>
+                            </tr>
+                            <tr>
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> #Bocklets</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;"> @Html.DisplayTextFor(m => m.NumOfBocklets) </div> </td>
+                            </tr>
+                            <tr>
+                                <td> <label class="col-lg-12 col-sm-12 control-label">Original Provider ID</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;"> @Html.DisplayTextFor(m => m.OriginalProviderID) </div> </td>
+                            </tr>
+                            <tr>
+                                <td> <label class="col-lg-12 col-sm-12 control-label">Original Provider Name</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;"> @Html.DisplayTextFor(m => m.OriginalProviderName) </div> </td>
+                            </tr>
+                            <tr>
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Claims Type </label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.ClaimsType) </div> </td>
+                            </tr>
+                            <tr>
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Notes</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;"> @Html.DisplayTextFor(m => m.Notes) </div> </td>
+                            </tr>
+                            <tr>
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Status</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.ReqStatues) </div> </td>
+                            </tr>
+                            <tr id="AgreementPerson" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Confirm Person</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.AgreementPerson) </div> </td>
+                            </tr>
+                            <tr id="AgreementDate" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Confirm Date</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.AgreementDate) </div> </td>
+                            </tr>
+                            <tr id="RejectPerson" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Rejected By</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.AgreementPerson) </div> </td>
+                            </tr>
+                            <tr id="RejectDate" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Reject Date</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.AgreementDate) </div> </td>
+                            </tr>
+                            <tr id="AssignPerson" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Assign Person</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.AssignPerson) </div> </td>
+                            </tr>
+                            <tr id="AssignDate" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Assign Date</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.AssignDate) </div> </td>
+                            </tr>
+                            <tr id="PreparingPerson" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> PreparingPerson</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.PreparingPerson) </div> </td>
+                            </tr>
+                            <tr id="PreparationData" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Preparing Date</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.PreparationData) </div> </td>
+                            </tr>
+                            <tr id="StartClaims" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Start Claims</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;">  @Html.DisplayTextFor(m => m.StartClaims) </div> </td>
+                            </tr>
+                            <tr id="EndClaims" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> End Claims</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.EndClaims) </div> </td>
+                            </tr>
+                            <tr id="ClosedPerson" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Closed Person</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.ClosedPerson) </div> </td>
+                            </tr>
+                            <tr id="ClosedDate" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Closed Date</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold; "> @Html.DisplayTextFor(m => m.ClosedDate) </div> </td>
+                            </tr>
+                            <tr id="ReqjectComment" style="display:none">
+                                <td> <label class="col-lg-12 col-sm-12 control-label"> Reject Reasons</label> </td>
+                                <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @Html.DisplayTextFor(m => m.ReqjectComment) </div> </td>
+                            </tr>                           
+                            <tr>
+                                <td>
+                                    <br />
+                                    <button type="button" id="ApproveAccount" class="btn btn-danger" data-toggle="modal" data-target="#AccountApproveModal" style="display:none;">Approve</button>
+                                    <button type="button" id="Assign" class="btn btn-danger" style="display:none;">Assign To Me</button>
+                                    <button type="button" id="Close" class="btn btn-danger" style="display:none;">Close</button>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <button type="button" id="Edit" class="btn btn-danger" style="display:none;">Edit</button>
+                                    @*<button type="button" id="Delete" class="btn btn-warning" style="display:none;">Delete</button>*@
+                                    <button type="button" id="ReturnToStock" class="btn btn-danger" style="display:none;">Return To Stock</button>
+                                    <a href="~/Report/Report/@Model.ReqID" target="_blank"> <label type="button" id="Print" class="btn btn-danger" style="display:none;">Print PH </label></a>
+                                    <a href="~/Report/ReportMG/@Model.ReqID" target="_blank"> <label type="button" id="PrintMG" class="btn btn-danger" style="display:none;">Print MG</label></a>
+                                    <div style="float: right">
+                                        <button type="button" id="ViewModal" name="Reject" style="display:none" value="Decline" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Reject</button>
+                                        <button type="button" id="ViewModal" name="Prepare" style="display:none" value="Prepare" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Prepare</button>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <!-- Modal -->
+                        <div class="modal fade" id="declineModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="alert alert-danger alert-dismissable" id="div_ErrorStartClaim" style="display:none">
+                                            Please Insert Start Claim
+                                        </div>
+                                        <div class="alert alert-danger alert-dismissable" id="div_ErrorStartClaimLength" style="display:none">
+                                            Please Insert Correct Start Claim Number
+                                        </div>
+                                        
+                                        <div class="alert alert-danger alert-dismissable" id="div_ErrorRejectComment" style="display:none">
+                                            Please Insert Rejection Comment
+                                        </div>
+                                        <div class="alert alert-danger alert-dismissable" id="div_ErrorClaimOutOfStock" style="display:none">
+                                            <p id="Eror Paragraph"></p>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title" id="ModalComment" style="display:none">Please Enter Rejection Comments</h4>
+                                        <h4 class="modal-title" id="ModalClaim" style="display:none">Start Claim</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea id="RejectComment" class="form-control input-lg m-b-10" style="display:none"></textarea>
+                                        <input type="number"  id="StartC" class="form-control input-lg m-b-5" style="display:none">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="CloseModal" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" id="Reject" class="btn btn-danger" style="display:none;">Reject</button>
+                                        <button type="button" id="Prepare" class="btn btn-danger" style="display:none;">Prepare</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="modal fade" id="AccountApproveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="alert alert-danger alert-dismissable" id="div_ErrorProvider" style="display:none">
+                                        Please Insert Provider ID & Provider Name
+                                    </div>
+                                    <div class="alert alert-danger alert-dismissable" id="div_ErrorClaimOutOfStock" style="display:none">
+                                        <p id="Eror Paragraph"></p>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="ModalProvider" style="display:none">Please Enter Provider ID & Name</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="number" id="ProviderID" class="form-control input-lg m-b-5" placeholder="Provider ID" style="display:none">
+                                    <br />
+                                    <input type="text" id="ProviderName" class="form-control input-lg m-b-5" placeholder="Provider Name" style="display:none">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="AccountApprove" class="btn btn-danger" style="display:none;">Approve</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div><!-- /.panel-body -->
+            </div><!-- /.panel -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section>
+@*-As every user has a single role so the buttons will appear only to the one authorized to do its action 
+-if the request status is PendingAccountApproval it will have three user to appear to according to its type 
+-the button approve and reject will appear to the account users , approve move it to the next level .. reject will appear a modal that asks for the reject comment and close it 
+-edit button appears to the creatoradmin if no one approved the request yet
+-if the status is pending stock assign the agreement person and date will appear in the details and button asign(which assign the request to the stockadmin user) to stock admin users
+-if status is PendingStockPrepared then the button prepare will appear to the user who assigned the request to himself ..when prepare clicked a modal with the start claim number appears and it's a required field
+-if the status is PendingCreatorApproval then the button approve will appear to the creatoradmin to close the request and the assign stock and assign date will apear in the details
+-print button appears to the creatoradimn when the request is closed to print it 
+-at any button click "Approve""assign""Prepare""Close""reject" the value of the button is returned to the manage request action to work according to the action taken*@  
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#StartC").keyup(function (event) {
+            if (event.keyCode == 13) {
+                $("#Prepare").click();
+            }
+        });
+        if ("@ViewBag.State" == "PendingAccountApproval") {
+            if ("@Request.Cookies["UserTypeCookie"].Value" == "Provider" || "@Request.Cookies["UserTypeCookie"].Value" == "InHouse" || "@Request.Cookies["UserTypeCookie"].Value" == "CallCenter" || "@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin") {
+                $("#ApproveAccount").show();
+                $("button[name~='Reject']").show();
+                $("#ModalComment").show();
+                $("#RejectComment").show();
+                $("#Reject").show();
+                $("#Edit").show();
+                $("#AccountApprove").show();
+                if ("@Model.ApprovalType" == "Provider" || "@Model.ApprovalType" == "InHouse" || "@Model.ApprovalType" == "CallCenter") {
+                    $("#ModalProvider").show();
+                    $("#ProviderName").show();
+                    $("#ProviderID").show();
+                }
+
+            }
+
+            else if ("@Request.Cookies["UserTypeCookie"].Value" == "CreatorAdmin" || "@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin") {
+                $("#Edit").show();
+                //$("#Delete").show();
+            }
+        }
+
+        else if ("@ViewBag.State" == "PendingStockAssign") {
+            $("#AgreementPerson").show(); $("#AgreementDate").show();
+            if ("@Request.Cookies["UserTypeCookie"].Value" == "StockAdmin") {
+                $("#Assign").show();
+                $("#Reject").show();
+
+
+            }
+            if ("@Request.Cookies["UserERoleCookie"].Value" == "Admin") {
+                $("#Reject").show();
+                $("button[name~='Reject']").show();
+            }
+        }
+        else if ("@ViewBag.State" == "PendingStockPrepared") {
+            $("#AgreementPerson").show(); $("#AgreementDate").show(); $("#AssignPerson").show(); $("#AssignDate").show();
+            if ("@Request.Cookies["UserTypeCookie"].Value" == "StockAdmin" || "@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin") {
+                if ("@Model.AssignPerson" == "@Request.Cookies["UserNameCookie"].Value") {
+                    $("#ModalClaim").show();
+                    $("#StartC").show();
+                    $("button[name~='Prepare']").show();
+                    $("#Prepare").show();
+                }
+                if ("@Request.Cookies["UserRoleCookie"].Value" == "Team Leader" || "@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin") {
+                    $("#TransferToField").show();
+                }
+            }
+
+        }
+        else if ('@ViewBag.State' == "PendingCreatorApproval") {
+            $("#AgreementPerson").show(); $("#AgreementDate").show(); $("#AssignPerson").show();
+            $("#AssignDate").show(); $("#StartClaims").show(); $("#EndClaims").show(); $("#PreparingPerson").show(); $("#PreparationData").show();
+            if ("@Request.Cookies["UserTypeCookie"].Value" == "CreatorAdmin" || "@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin") {
+                $("#Close").show();
+            }
+        }
+        else if ("@ViewBag.State" == "Closed"){
+            $("#AgreementPerson").show(); $("#AgreementDate").show(); $("#AssignPerson").show(); $("#AssignDate").show();
+            $("#StartClaims").show(); $("#EndClaims").show(); $("#ClosedPerson").show(); $("#ClosedDate").show();
+            if ("@Request.Cookies["UserTypeCookie"].Value" == "CreatorAdmin" || "@Request.Cookies["UserTypeCookie"].Value" == "StockAdmin" || "@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin") {
+                $("#Print").show();
+                $("#PrintMG").show();
+            }
+        }
+   
+    
+    else if ('@ViewBag.State' == "Rejected"){
+        $("#RejectPerson").show(); $("#RejectDate").show(); $("#ReqjectComment").show();
+    }
+    else if ('@ViewBag.State' == "Returned"){
+        $("#StartClaims").show();
+        $("#EndClaims").show();
+        if("@Request.Cookies["UserTypeCookie"].Value"=="StockAdmin" || "@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin"){
+            $("#ReturnToStock").show();
+        }
+    }
+    else if ('@ViewBag.State' == "returned-Closed"){
+        $("#StartClaims").show();
+        $("#EndClaims").show();
+        $("#ClosedPerson").show();
+        $("#ClosedDate").show();
+    }
+    $("#Print").click(function(){
+        window.location='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingCreatorApproval" })'
+    });
+    $("#PrintMG").click(function(){
+        window.location='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingCreatorApproval" })'
+    });
+
+    // Start Claim Field Validation to be not more than 7 digits
+    $("#StartC").keypress(function(e) {
+        if($(this).val().length > 6) {
+            this.value = this.value.substring(0, 7);
+            e.preventDefault();
+        }
+    });
+    $('button').click(function () {
+        var id = @Model.ReqID;
+        var ButtonClicked = $(this).attr('id');
+        if(ButtonClicked=="AccountApprove" || ButtonClicked=="Assign" || ButtonClicked=="Prepare" || ButtonClicked=="Close" || ButtonClicked=="Reject" || ButtonClicked=="ReturnToStock" || ButtonClicked=="Transfer" ){
+
+            var StartClaimLength = $("#StartC").val()
+            if($("#StartC").is(":visible") && ($("#StartC").val()=="" || StartClaimLength.length < 7 || StartClaimLength.length > 7)){
+                if( StartClaimLength.length < 7 || StartClaimLength.length > 7){
+                    $("#div_ErrorStartClaimLength").show();
+                }
+                else if($("#StartC").val()==""){
+                    $("#div_ErrorStartClaim").show();
+                }
+            }
+            else if ($("#RejectComment").is(":visible") && $("#RejectComment").val()==""){
+                $("#div_ErrorRejectComment").show();
+            }
+            else if (($("#ProviderID").is(":visible") && $("#ProviderID").val()=="")||($("#ProviderName").is(":visible") && $("#ProviderName").val()=="")) {
+                $("#div_ErrorProvider").show();
+            }
+            else{
+                $.ajax({
+                    url: "/RequestFunction/ManageRequest",
+                    Type: "POST",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    data: {
+                        RejectComment: $("#RejectComment").val(),
+                        StartClaim: $("#StartC").val(),
+                        TransferTo: $("#TransferablePerson").val(),
+                        ProviderID : $("#ProviderID").val(),
+                        ProviderName: $("#ProviderName").val(),
+                        Button:ButtonClicked,
+                        ReqID:id
+                    },
+                    success: function (data) {
+                        if (data.message=="Approved") {
+                            $("#ApproveAccount").hide();
+                            $("#Reject").hide();
+                            alert("Request Approved Successfully");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+
+                        }
+                        else if (data.message=="Assigned") {
+                            $("#Assign").hide();
+                            $("#Prepare").show();
+                            alert("Request Assigned Successfully");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+                        }
+                        else if (data.message=="Prepared") {
+                            $("#Prepare").hide();
+                            alert("Request Prepared Successfully");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+                        }
+                        else if (data.message=="Not Prepared") {
+                            $("#Prepare").hide();
+                            alert("Request Prepared Faild because type of Request is not equal Stock");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+                        }
+                        else if(data.message=="ClaimIsOut"){
+
+                            $("#div_ErrorClaimOutOfStock").html("");
+                            $("#div_ErrorClaimOutOfStock").append("There is  ",data.ClaimsOutOfStock,"  Bocklets out of stock between the start entered and the end  ",data.EndClaim);
+                            $("#div_ErrorClaimOutOfStock").show();
+                        }
+                        else if (data.message=="Closed") {
+                            debugger;
+                            $("#Close").hide();
+                            $("#Print").show();
+                            $("#PrintMG").show();
+                            alert("Request Closed Successfully");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+                        }
+                        else if (data.message=="Rejected") {
+                            $("#ApproveAccount").hide();
+                            $("#Reject").hide();
+                            alert("Request Rejected Successfully");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+                        }
+                        else if(data.message=="returned-Closed"){
+                            $("#ReturnToStock").hide();
+                            alert("Request Closed Successfully");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+                        }
+                        else if(data.message=="Transfered"){
+                            alert("Request Transfered Successfully");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+                        }
+                        else if (data.message=="ClaimNotInStock") {
+                            $("#div_ErrorClaimOutOfStock").html("");
+                            $("#div_ErrorClaimOutOfStock").append("There is  ",data.ClaimsInStock,"  Bocklets Doesn't exsist in stock between the start entered and the end  ",data.EndClaim);
+                            $("#div_ErrorClaimOutOfStock").show();
+                        }
+                        else{
+                            alert(message);
+                            window.location = '@Url.Action("ShowDetailsOfRequest", "RequestFunction")'
+                        }
+                    }
+                });
+            }
+        }
+        else if(ButtonClicked=="Edit"){
+            window.location='@Url.Action("EditClaimsRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+        }
+   
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+

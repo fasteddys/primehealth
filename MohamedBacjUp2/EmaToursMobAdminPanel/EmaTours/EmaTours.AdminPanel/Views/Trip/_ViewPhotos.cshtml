@@ -1,0 +1,9 @@
+﻿@model IEnumerable<EmaTours.DTOs.Business.PhotoDTO>
+@foreach (var item in Model)
+{
+    <div class="Photo" id="@item.PhotoID">
+        <a href="@item.PhotoPath" >@item.PhotoName</a>
+        @Html.CheckBoxFor(model => item.IsActive)
+    </div>
+
+}

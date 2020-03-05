@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dispatching System</title>
+    <link rel="shortcut icon" href="../LoginAssets/img/clipboard.ico" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="description" content="Developed By M Abdur Rokib Promy">
+    <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
+    <!-- bootstrap 3.0.2 -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- font Awesome -->
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="../assets/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/Fonts.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body class="skin-black">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <a href="#" class="logo">
+            <!-- Add the class icon to your logo image or logo icon to add the margining -->
+            Dispatching APP
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i>
+                            <span  id="UserNameLbl2">@Request.Cookies["UserNameCookie"].Value <i class="caret"></i></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+                            <li class="dropdown-header text-center">Account</li>
+                            <li>
+                                <a href="~/User/ChangePassword"> <i class="fa fa-user fa-fw pull-right"></i> Change Password </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href=@Url.Action("Logout", "Login")><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="../assets/img/ss.png" id="imagepath" class="img-circle" alt="User Image" />
+                    </div>
+                    <div class="pull-left info">
+                        <p  id="UserNameLbl">@Request.Cookies["UserNameCookie"].Value </p>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form class="sidebar-form" action="/RequestFunction/SearchRequest" method="post" role="form">
+                    <div class="input-group">
+                        <input type="text"  class="form-control" style="color:#ffffff" id="SearchField" name="SearchChar" placeholder="Search..." />
+                        <span class="input-group-btn">
+                            <button type="submit"  id="search_btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">                   
+                    <li id="AddNewUser" style="display:none" > <a href="/User/Adduser"> <i class="fa fa-dashboard"></i> <span> Add User </span> </a> </li>
+                    <li id="DashboardID"> <a href='@Url.Action("DashboardResults", "RequestFunction")'> <i class="fa fa-arrow-circle-left"></i> <span> Dashboard </span> </a> </li>
+                    <li id="AddNewRequestID" style="display:none"> <a href='@Url.Action("CreatClaimsRequest", "RequestFunction")'> <i class="fa fa-arrow-circle-left"></i> <span> Add New Request </span> </a> </li>
+                    <li id="PendingApprovalID"> <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingAccountApproval" })'> <i class="fa fa-arrow-circle-left"></i> <span> Pending Approval </span> </a> </li>
+                    <li id="PendingAssignID"> <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingStockAssign" })'> <i class="fa fa-arrow-circle-left"></i> <span> Pending Assign </span> </a> </li>
+                    <li id="PendingPreparingID"> <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingStockPrepared" })'> <i class="fa fa-arrow-circle-left"></i> <span> Pending Preparing </span> </a> </li>
+                    <li id="PendingReceivingID"> <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "PendingCreatorApproval" })'> <i class="fa fa-arrow-circle-left"></i> <span> Pending Closing </span> </a> </li>
+                    <li id="PendingReturningID"> <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "Returned" })'> <i class="fa fa-arrow-circle-left"></i> <span> Pending Returning </span> </a> </li>
+                    <li id="RejectedRequestID"> <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "Rejected" })'> <i class="fa fa-arrow-circle-left"></i> <span> Rejected Request </span> </a> </li>
+                    <li id="ClosedRequestID"> <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "Closed" })'> <i class="fa fa-arrow-circle-left"></i> <span> Closed Request </span> </a> </li>
+                    <li id="ReturnedClosedRequestID"> <a href='@Url.Action("ShowSpecificRequest", "RequestFunction", new { Status = "returned-Closed" })'> <i class="fa fa-arrow-circle-left"></i> <span>Returned-Closed Request </span> </a> </li>
+                    <li id="AddToStock" style="display:none"> <a href='@Url.Action("AddToStock", "Stock")'> <i class="fa fa-arrow-circle-left"></i> <span>Add To Stock</span> </a> </li>
+                    <li id="StockView" style="display:none"> <a href='@Url.Action("StockView", "Stock")'> <i class="fa fa-arrow-circle-left"></i> <span>Stock</span> </a> </li>
+                    <li id="StockRequest" style="display:none"> <a href='@Url.Action("StockRequests", "Stock")'> <i class="fa fa-arrow-circle-left"></i> <span>Stock Requests</span> </a> </li>
+                    <li id="UserReports" style="display:none"> <a href='@Url.Action("UserReports", "RequestFunction")'> <i class="fa fa-arrow-circle-left"></i> <span>User Reports </span> </a> </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            
+            @RenderSection("HeaderSection" , false)
+            <!-- Main content -->
+
+            @RenderBody()
+            <!-- /.content -->
+        </aside>
+        <!-- /.right-side -->
+        <div class="footer-main">
+            Copyright &copy Prime-Health , IT Department, 2017 -- Developed By "Amr Reda & Moustafa Mahmoud"
+        </div>
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.0.2 -->
+   @*<script src="../assets/js/googleapis.js"></script>
+
+    <script src="~/Scripts/jq/JS.js"></script>
+    
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    
+    <!-- Director App -->
+    *@
+
+            @RenderSection("ScriptSection", false)</body>
+</html>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/googleapis.js"></script>
+<script src="~/Scripts/jq/JSS.js"></script>
+<script src="~/assets/js/Director/app.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        if ("@Request.Cookies["UserTypeCookie"].Value" == "SuperAdmin") {
+            $("#AddNewUser").show();
+            $("#UserReports").show();
+            $("#AddToStock").show();
+            $("#StockView").show();
+            $("#StockRequest").show();
+        }
+        @*else if ("@Request.Cookies["UserTypeCookie"].Value" == "Admin") {
+            $("#UserReports").show();
+            $("#AddToStock").show();
+            $("#StockView").show();
+            $("#StockRequest").show();
+        }*@
+        else if ("@Request.Cookies["UserTypeCookie"].Value" == "CreatorAdmin") {
+            $("#AddNewRequestID").show();
+        }
+        else if ("@Request.Cookies["UserTypeCookie"].Value" == "StockAdmin") {
+            if ("@Request.Cookies["UserRoleCookie"].Value" == "Team Leader") {
+                $("#AddToStock").show();
+            }
+            $("#StockView").show();
+            $("#StockRequest").show();
+        }
+        else if ("@Request.Cookies["UserTypeCookie"].Value" == "InHouse" || "@Request.Cookies["UserTypeCookie"].Value" == "CallCenter" || "@Request.Cookies["UserTypeCookie"].Value" == "Provider") {
+            $("#ReturnedClosedRequestID").hide();
+            $("#PendingReturningID").hide();
+        }
+    });
+    </script>

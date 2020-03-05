@@ -1,0 +1,115 @@
+﻿@model EmaTours.DTOs.Business.ClientDTO
+@{
+    ViewBag.Title = "Client Details - "+Model.ClientName;
+}
+@using (Html.BeginForm("AddRequestDetails", "Trip", "post"))
+{
+    <div class="card card-outline-info">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white">Client: @Model.ClientID - @Model.ClientName</h4>
+        </div>
+        <div class="card-body">
+            @Html.HiddenFor(model => model.ClientID)
+
+            <!--/span-->
+            <!--/span-->
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Client Name:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static">
+                            @Html.TextBoxFor(model => model.ClientName, new { @class = "form-control", @readonly = "readonly" })
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">ClientEmail:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static">
+                            @Html.TextBoxFor(model => model.ClientEmail, new { @class = "form-control", @readonly = "readonly" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Client Passport:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static">
+                            @Html.TextBoxFor(model => model.ClientPassport, new { @class = "form-control", @readonly = "readonly" })
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Client Phone:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static">
+                            @Html.TextBoxFor(model => model.ClientPhone, new { @class = "form-control", @readonly = "readonly" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Country Name:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static">
+                            @Html.TextBoxFor(model => model.CountryName, new { @class = "form-control", @readonly = "readonly" })
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Hotel Name:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static">
+                            @Html.TextBoxFor(model => model.HotelName, new { @class = "form-control", @readonly = "readonly" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3">Client DeviceID:</label>
+                    <div class="col-md-9">
+                        <p class="form-control-static">
+                            @Html.TextBoxFor(model => model.ClientDeviceID, new { @class = "form-control", @readonly = "readonly" })
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <!--/span-->
+        </div>
+    </div>
+}
+

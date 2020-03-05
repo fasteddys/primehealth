@@ -1,0 +1,75 @@
+﻿@model Filteration.Models.Batch
+@{
+    ViewBag.Title = "DeleteBatchNumber";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 id="title">Are you sure you want to delete this?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal" id="list">
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignedPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignedPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchStatus)
+            @Html.HiddenFor(model => model.BatchStatus, new { @id = "BatchStatus" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Request.UploaderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Request.UploaderName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" id="delete" class="btn btn-default" />
+
+        </div>
+    }
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        if ($("#BatchStatus").val() == "NEW" || $("#BatchStatus").val() == "QualityFinished" ||
+           $("#BatchStatus").val() == "ReadyToQuality" || $("#BatchStatus").val() == "Assigned" ||
+            $("#BatchStatus").val() == "AssignedByQuality") {
+
+                $("#delete").show();
+                $("#list").show();
+
+            }
+
+
+    });
+
+</script>

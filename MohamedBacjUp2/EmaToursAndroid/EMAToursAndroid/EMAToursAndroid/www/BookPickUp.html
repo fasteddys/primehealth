@@ -1,0 +1,277 @@
+﻿<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="icon" type="image/png" href="images/splash/android-chrome-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="196x196" href="images/splash/apple-touch-icon-196x196.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/splash/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/splash/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/splash/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/splash/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/splash/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/splash/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/splash/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/splash/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/splash/apple-touch-icon-57x57.png">
+    <link rel="icon" type="image/png" href="images/splash/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="images/splash/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/splash/favicon-16x16.png" sizes="16x16">
+    <link rel="shortcut icon" href="images/splash/favicon.ico" type="image/x-icon" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+    <title>Home Page</title>
+
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/skin.css">
+    <link rel="stylesheet" type="text/css" href="styles/framework.css">
+    <link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+    <link href="bootstrap-multiselect/bootstrap-multiselect.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div id="page-transitions">
+
+        <div class="page-preloader page-preloader-dark">
+            <img class="page-preload" src="images/preload.gif">
+        </div>
+
+        <div class="header header-transparent">
+            <a href="#" class="header-icon header-icon-1 open-left-sidebar"><i class="fa fa-navicon"></i></a>
+            <a href="#" class="header-logo scale-hover"></a>
+            <a href="#" onclick="NotificationPopup.Show();" id="NotificationIcon" class="header-icon header-icon-3 ">
+                <i class="fa fa-bell">
+                    <span class="NotificationPadge"></span>
+                </i>
+            </a>
+            <!--<a href="#" class="header-icon header-icon-1 open-left-sidebar"><i class="fa fa-navicon"></i></a>
+            <a href="#" class="header-logo scale-hover"></a>
+            <a href="#" id="ShowSignUp" class="header-icon header-icon-3 open-modal-menu"><i class="fa fa-plus"></i></a>
+            <a href="#" class="header-icon header-icon-4 open-right-sidebar"><i class="fa fa-envelope-o"></i></a>-->
+        </div>
+
+        <div id="page-content" class="page-content header-clear">
+            <div id="page-content-scroll">
+                <div class="heading-strip bg-1">
+                    <h3 id="Header1" class="HTML_BookPickup_AddPickUpRequest">Add PickUp Request</h3>
+                    <i class="fa fa-star-o"></i>
+                    <div class="overlay dark-overlay"></div>
+                </div>
+                <div class="content material-full-top full-top">
+                    <h3 id="Header2" class="HTML_BookPickup_FillPickUpData"></h3>
+                    <!--<i class="active-modal-item fa fa-calendar" style="margin:5%"></i><em>Please fill visit start and end date</em>-->
+                    <div style="margin:10%">
+                        <div class="one-half" style="width:90%">
+                            <div class="store-input">
+                                <h6 class="HTML_BookPickup_BackFlight">Back Flight Time</h6>
+                                <input id="BackFlightTime" type="date" class="IsRequirdField PH_BookPickup_BackFlightInput" placeholder="XX/XX/XXX">
+                            </div>
+                        </div>
+                        <!--<div class="one-half last-column" style="width:90%">
+                            <div class="store-input HTML_BookPickup_DesiredPickupTime">
+                                <h6>Desired Pickup Time</h6>
+                                <input id="DesiredPickupTime" type="date" class="IsRequirdField PH_BookPickup_DesiredTimeInput" placeholder="XX/XX/XXX">
+                            </div>
+                        </div>-->
+                        <div class="one-half last-column" style="width:90%">
+                            <div class="store-input">
+                                <h6 class="HTML_BookPickup_NumberOfMembers">Number Of Members</h6>
+                                <input id="NumberOfMembers" type="number" class="IsRequirdField PH_BookPickup_NumberOfMembersInput" placeholder="">
+                            </div>
+                        </div>
+                        <div class="one-half last-column" style="width:90%">
+                            <div class="store-input">
+                                <h6 class="HTML_BookPickup_Note">Note</h6>
+                                <input id="Note" type="text" class="PH_BookPickup_NoteInput" placeholder="Note">
+                            </div>
+                        </div>
+                        <!--<div class="decoration"></div>-->
+                        <!--<a href="#" id="StartVisit" class="button button-ghost button-green button-center" style="color:white !important ; height:15% !important">Confirm</a>-->
+                        <div class="decoration"></div>
+                        <a href="#" id="BookPickUp" class="button button-ghost button-green button-center" style="color:white !important ; height:15% !important">Confirm</a>
+                        <!--<a href="#" class="button button-ghost button-red button-center" style="color:white !important ; height:15% !important">Cancel</a>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="ModelConfirmation" class="modal-menu modal-menu-dark">
+            <div style="margin:10%">
+                <p><b id="CountryName"></b> <span class="HTML_EditPickUpModal_Text"><!--your current visit country and--> </span></p>
+            </div>
+            <div class="decoration"></div>
+            <a href="#" id="ConfirmEdit" class="button button-ghost button-green HTML_btn_Confirm" style="color:white !important ; height:15% !important; margin-left: 50px !important">OK</a>
+            <a href="#" id="CancelEdit" class="button button-ghost button-green HTML_btn_Cancel" style="color:white !important ; height:15% !important">Cancel</a>
+        </div>
+
+        <div id="ModelEdit" class="modal-menu modal-menu-dark">
+            <i class="active-modal-item fa fa-user" style="margin:5%"></i><em class="HTML_ModelEdit_CompleteProfile"><!--Please Complete your profile data--></em>
+            <div style="margin:10%">
+                <div class="one-half" style="width:90%">
+                    <div class="store-input">
+                        <h6 class="HTML_ModelSignUp_ProfileName"><!--Name--></h6>
+                        <input type="text" id="EditUserName" class="PH_ModelSignUp_ProfileNameInput" placeholder="John do">
+                    </div>
+                </div>
+                <div class="one-half" style="width:90%">
+                    <div class="store-input">
+                        <h6 class="HTML_ModalEnterPhone_Code"><!--Code--></h6>
+                        <!--<input type="tel" placeholder="+2" id="PhoneNumberCode">-->
+
+                        <select id="EditPhoneNumberCode"></select>
+
+                    </div>
+                </div>
+                <div class="one-half" style="width:90%">
+                    <div class="store-input">
+                        <h6 class="HTML_ModelSignUp_Phone"><!--Phone--></h6>
+                        <input type="tel" id="EditPhone" class="PH_ModelSignUp_PhoneInput" placeholder="+X01XX">
+                    </div>
+                </div>
+                <div class="one-half" style="width:90%">
+                    <div class="store-input">
+                        <h6 class="HTML_ModelSignUp_Email"><!--Email--></h6>
+                        <input type="email" id="EditEmail" class="PH_ModelSignUp_EmailInput" placeholder="Ex@me.XX">
+                    </div>
+                </div>
+                <div class="one-half" style="width:90%">
+                    <div class="store-input">
+                        <h6 class="HTML_ModelSignUp_Passport"><!--Passport No.--></h6>
+                        <input type="text" id="EditPassport" class="PH_ModelSignUp_PassportInput" placeholder="01XXXX">
+                    </div>
+                </div>
+                <div class="one-half" style="width:90%">
+                    <div class="store-input">
+                        <h6 class="HTML_ModelSignUp_OrginalCountry"><!--Orginal Country--></h6>
+                        <select id="EditCountry">
+                            <!--<option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>-->
+                        </select>
+                    </div>
+                </div>
+                <!--<div class="one-half" style="width:90%">
+                    <div class="store-input">
+                        <h6>Hotel Name</h6>
+                        <input id="Hotel" type="text" placeholder="01XXXX">
+                    </div>
+                </div>-->
+            </div>
+            <div class="decoration"></div>
+
+            <a href="#" id="Edit" class="button button-ghost button-green button-center HTML_btn_Confirm" style="color:white !important ; height:15% !important">Confirm</a>
+        </div>
+
+
+        <div id="LayoutDiv">
+
+        </div>
+        <div class="modal-menu-background modal-menu-dark-background"></div>
+
+        <div class="sidebar-left sidebar-dark">
+            <div class="sidebar-scroll">
+                <div class="sidebar-header">
+                    <a href="#" class="sidebar-logo"></a>
+                </div>
+                <div class="sidebar-divider HTML_SideView_Navigation"><!--Navigation--></div>
+                <div class="sidebar-menu">
+                    <a class="menu-item" id="Welcome" href="#">
+                        <i class="EditWelcome fa fa-star-o"></i><span class="HTML_SideView_Welcome" id="WelcomeText"><!--Welcome--></span> <b id="ClientName"></b><i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item" id="HomePage" href="#">
+                        <!-- active-item -->
+                        <i class="fa fa-home"></i><span class="HTML_SideView_Home"><!--Home--></span><i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item" style="display:none" id="PreviousVisits" href="#">
+                        <i class="fa fa-suitcase"></i>
+                        <span class="HTML_SideView_PreviousVisits"> <!--Previous visits--></span>
+                        <i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item" id="AboutUs" href="#">
+                        <!-- active-item -->
+                        <i class="fa fa-info-circle"></i><span class="HTML_SideView_AboutUs"><!--About us--></span><i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item" id="ContactUs" href="#">
+                        <!-- active-item -->
+                        <i class="fa fa-envelope-o"></i><span class="HTML_SideView_Contact"><!--Contact--></span><i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item" href="https://www.facebook.com/ematoursinegypt/">
+                        <!-- active-item -->
+                        <i class="fa fa-facebook-official"></i><span class="">Facebook</span><i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item" id="" href="https://www.ematours.com/">
+                        <!-- active-item -->
+                        <i class="fa fa-globe"></i><span class="">WebSite</span><i class="fa fa-circle"></i>
+                    </a>
+                    <a class="close-sidebar menu-item" href="#">
+                        <i class="fa fa-times"></i> <span class="HTML_SideView_Close"><!--Close--></span><i class="fa fa-circle"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-right sidebar-dark">
+            <div class="sidebar-scroll">
+                <div class="sidebar-header">
+                    <a href="#" class="sidebar-logo"></a>
+                </div>
+                <div class="sidebar-divider">Let's get social</div>
+                <div class="sidebar-menu">
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-facebook"></i>Facebook<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-twitter"></i>Twitter<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-google-plus"></i>Google<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-linkedin"></i>LinkedIn<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-youtube-play"></i>YouTube<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-pinterest-p"></i>Pinterest<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-instagram"></i>Instagram<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-phone"></i>Call Us<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-skype"></i>Skype Us<i class="fa fa-circle"></i>
+                    </a>
+                    <a class="menu-item default-link" href="#">
+                        <i class="fa fa-envelope-o"></i>Mail Us<i class="fa fa-circle"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-tap-close"></div>
+        <a href="#" class="back-to-top-badge"><i class="fa fa-caret-up"></i><span class="HTML_btn_BackToTop">Back to Top</span></a>
+
+    </div>
+</body>
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/plugins.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+<script src="bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="select2/js/select2.min.js"></script>
+<script src="CustomJavaScript/Helpers/Helpers.js"></script>
+<script src="CustomJavaScript/Layout/Layout.js"></script>
+<script src="CustomJavaScript/Chooselanguage/Loadlanguage.js"></script>
+<script src="CustomJavaScript/BookPickUp/BookPickUp.js"></script>
+<script src="scripts/moment.min.js"></script>
+
+
+

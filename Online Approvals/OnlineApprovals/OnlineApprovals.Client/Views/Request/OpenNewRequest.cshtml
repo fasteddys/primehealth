@@ -1,0 +1,309 @@
+﻿@{
+    ViewBag.Title = "Open New Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">*@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="~/Content/TestTable/DrugTable1.css" rel="stylesheet" />
+<link href="~/Content/TestTable/DrugTable3.css" rel="stylesheet" />
+
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Open New Request</h4>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="alert alert-success no-border" id="Success-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Success-Div-Text"></span>
+    </div>
+    <div class="alert alert-warning no-border" id="Warning-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Warning-Div-Text"></span>
+    </div>
+    <div class="alert alert-danger no-border" id="Alert-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Alert-Div-Text"></span>
+    </div>
+
+    <!-- Form horizontal -->
+    <div class="panel panel-flat">
+        <div class="panel-body">
+            <form class="form-horizontal" id="contact" action="#">
+                <fieldset class="content-group">
+                    <legend class="text-bold">Request Data</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 ">Medical ID <span class="text-danger">*</span></label>
+                                <div class="col-lg-8">
+                                    <input onkeypress="return isNumberKey(event)" id="MedicalID" type="number" name="digits" required="required" class="form-control ClearInputFields">
+
+                                    <span id="mobile-valid" class="hidden mob" style="display:none">
+                                        <i class="fa fa-check pwd-valid"></i>Valid Mobile No
+                                    </span>
+                                    <span id="folio-invalid" class="hidden mob-helpers" style="display:none">
+                                        <i class="fa fa-times mobile-invalid"></i>Invalid mobile No
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Member Name <span class="text-danger">*</span></label>
+                                <div class="col-lg-8">
+                                    <input id="MemberName" type="text" required="required" class="form-control ClearInputFields">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Client Name <span class="text-danger">*</span></label>
+                                <div class="col-lg-8">
+                                    <input id="ClientName" type="text" required="required" class="form-control ClearInputFields">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">CoInsurance Percentage<span class="text-danger">*</span></label>
+                                <div class="col-lg-8">
+                                    <input onkeypress="return isNumberKey(event)" id="CoInsurancePercentage" type="tel" name="digits" required="required" class="form-control ClearInputFields" placeholder="%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Phone Number <span class="text-danger">*</span></label>
+                                <div class="col-lg-8">
+                                    <input onkeypress="return isNumberKey(event)" id="PhoneNumber" type="tel" name="digits" required="required" class="form-control ClearInputFields">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Claim Number <span class="text-danger">*</span></label>
+                                <div class="col-lg-8">
+                                    <input onkeypress="return isNumberKey(event)" id="ClaimNumber" type="number" name="digits" required="required" class="form-control ClearInputFields">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Claim Date<span class="text-danger">*</span></label>
+                                <div class="col-lg-8">
+                                    <input id="ClaimDate" type="text" required="required" placeholder="dd/mm/yyyy" class="form-control ClearInputFields">
+                                    <label id="display_error" class="display_error"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Approval Type <span class="text-danger">*</span></label>
+                                <div class="col-lg-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="MedicalApproval" type="checkbox" class="styled ClearCheckBoxes">
+                                            Medical Approval
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="FinancialApproval" type="checkbox" class="styled ClearCheckBoxes">
+                                            Financial Approval
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Diagnose<span class="text-danger">*</span></label>
+                        <div class="col-lg-10">
+                            <textarea id="Diagnose" rows="2" cols="2" required="required" class="form-control ClearInputFields" placeholder="Type Diagnose"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Notes<span class="text-danger">*</span></label>
+                        <div class="col-lg-10">
+                            <textarea id="Note" rows="5" cols="5" class="form-control ClearInputFields" placeholder="Type Notes"></textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Upload File(s) (Optional)</label>
+                                <div class="col-lg-8">
+                                    <input type="file" name="styled_file" id="FileUploader" multiple class="btn btn-default MyUploader ClearInputFields">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+
+    @*AutoComplete and select Drug*@
+    <div class="panel panel-flat">
+        <div class="panel-body">
+            <legend class="text-bold">
+                Demanded Drug(s)
+                <span class="text-center" style="color:red;margin-left:20%" id="SpanCoInsuarnceNote">Please fill Co-Insurance Percentage first to enable "Add Drugs" Buttons</span>
+
+            </legend>
+            <div class="container">
+                <div class="row">
+                    <div class="ui-widget">
+
+                        <label>Drugs List </label>
+                        <select id="DrugListSelect" style="max-height:20px !important"></select>
+                    </div>
+                </div>
+            </div>
+
+
+            @using (Html.BeginForm("ListDrugsInTable", "Request", FormMethod.Post))
+            {
+                @*<input type="text" id="txtCustomer" name="CustomerName" />*@
+                <input type="hidden" id="hfCustomer" name="CustomerId" />
+                <br /><br />
+                <input type="button" style="background-color:#00a9be" class="btn btn-primary" id="btnSubmit" onclick="AppendRow()" value="Add Drug From Drugs List" />
+                <br /><br />
+                @ViewBag.Message
+            }
+            @*Table To Insert Drugs*@
+
+            <div class="container" style="max-width:100%">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-8"><h5>Demanded Drug(s) Table</h5></div>
+                            <div class="col-sm-4">
+                                <button type="button" id="AddNewManual" class="btn btn-info add-new"<i class="fas fa-plus"></i> Add UnListed Drug</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-responsive" id="DrugTable">
+                        <thead>
+                            <tr>
+                                <th>Drug ID</th>
+                                <th>Drug Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Quantity</th>
+                                <th>Demanded Quantity</th>
+                                <th>price</th>
+                                <th>Total price</th>
+                                <th>Co-price</th>
+                                <th>Listed/Not</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="TableBody1">
+                            <tr style="display:none">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a class="add" id="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                    @*<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>*@
+                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    @*<div class="form-group">
+                            <label class="control-label col-lg-4">Total Payments<span></span></label>
+                            <div class="col-lg-8">
+                                <input id="TotalPayments" type="text">
+                            </div>
+                        </div>*@
+                    <div class="panel-body">
+                        <div class="row invoice-payment">
+                            <div class="col-sm-7">
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="content-group">
+                                    <h6><b>Total due</b></h6>
+                                    <div class="table-responsive no-border">
+                                        <div class="table">
+                                            <div>
+                                                <div>
+                                                    <div><b>Total Price:</b></div>
+                                                    <div class="text-right ClearCalculators" id="TotalPayments"></div>
+                                                </div>
+                                                <div>
+                                                    <div><b>Total Approval Price:</b></div>
+                                                    <div class="text-right ClearCalculators" id="TotalApprovalPrice"></div>
+                                                </div>
+                                                <div>
+                                                    <div><b>Total Member pays:</b></div>
+                                                    <div class="text-right text-primary ClearCalculators" id="TotalMemberPays"><h5 class="text-semibold"></h5></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    @*<span class="text-semibold" id="Success-Div-Text">TotalPayments</span>
+                        <input type="text" name="TotalPayment" style="  height: 32px;line-height: 32px;border-radius: 2px;margin-left:550px">*@
+                    @*<input type="text" name="TotalConsurance" style="  height: 32px;line-height: 32px;border-radius: 2px;margin-left:550px">*@
+                </div>
+            </div>
+
+
+            <br />
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary" id="SubmitRequest">Submit <i class="icon-arrow-right14 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/TestTable/JavaScript.js"></script>
+<script src="~/Content/TestTable/JavaScript1.js"></script>
+<script src="~/Scripts/ManualSelect.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+<script src="~/global_assets/js/demo_pages/form_inputs.js"></script>
+<script src="~/global_assets/js/plugins/forms/styling/switch.min.js"></script>
+<script src="~/global_assets/js/demo_pages/form_checkboxes_radios.js"></script>
+<script src="~/global_assets/js/demo_pages/form_validation.js"></script>
+<script src="~/Scripts/Helpers/HelperScript.js"></script>
+<script src="~/global_assets/js/plugins/notifications/sweet_alert.min.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/ViewsJS/Request/OpenNewRequest.js"></script>

@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmaTours.AdminPanel", "EmaTours.AdminPanel\EmaTours.AdminPanel.csproj", "{9794591F-840E-4181-B3CC-8B9300BB1F0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmaTours.BLL", "EmaTours.BLL\EmaTours.BLL.csproj", "{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmaTours.DAL", "EmaTours.DAL\EmaTours.DAL.csproj", "{3EA492CA-6DCB-477E-94A0-51EF10192535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmaTours.DTOs", "EmaTours.DTOs\EmaTours.DTOs.csproj", "{AE54F77A-E3F1-4710-8592-6B5A88534888}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmaTours.Entities", "EmaTours.Entities\EmaTours.Entities.csproj", "{82416B4F-C731-401D-9D4F-30F939114D1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmaTours.Exceptions", "EmaTours.Exceptions\EmaTours.Exceptions.csproj", "{4828D52D-414A-428C-A37B-8A3624679A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmaTours.Utilities", "EmaTours.Utilities\EmaTours.Utilities.csproj", "{AE8A1B7B-3EF8-44B5-A346-238611D53407}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9794591F-840E-4181-B3CC-8B9300BB1F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9794591F-840E-4181-B3CC-8B9300BB1F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9794591F-840E-4181-B3CC-8B9300BB1F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9794591F-840E-4181-B3CC-8B9300BB1F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A72BB378-DE0A-4A02-B9B8-DDEA1055E991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA492CA-6DCB-477E-94A0-51EF10192535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE54F77A-E3F1-4710-8592-6B5A88534888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82416B4F-C731-401D-9D4F-30F939114D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82416B4F-C731-401D-9D4F-30F939114D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82416B4F-C731-401D-9D4F-30F939114D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82416B4F-C731-401D-9D4F-30F939114D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4828D52D-414A-428C-A37B-8A3624679A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4828D52D-414A-428C-A37B-8A3624679A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4828D52D-414A-428C-A37B-8A3624679A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4828D52D-414A-428C-A37B-8A3624679A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE8A1B7B-3EF8-44B5-A346-238611D53407}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32C370AD-5ACF-4350-B15C-E2E67A4F99BC}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/ematours
+		SccProjectUniqueName0 = EmaTours.AdminPanel\\EmaTours.AdminPanel.csproj
+		SccProjectName0 = EmaTours.AdminPanel
+		SccLocalPath0 = EmaTours.AdminPanel
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = EmaTours.BLL\\EmaTours.BLL.csproj
+		SccProjectName2 = EmaTours.BLL
+		SccLocalPath2 = EmaTours.BLL
+		SccProjectUniqueName3 = EmaTours.DAL\\EmaTours.DAL.csproj
+		SccProjectName3 = EmaTours.DAL
+		SccLocalPath3 = EmaTours.DAL
+		SccProjectUniqueName4 = EmaTours.DTOs\\EmaTours.DTOs.csproj
+		SccProjectName4 = EmaTours.DTOs
+		SccLocalPath4 = EmaTours.DTOs
+		SccProjectUniqueName5 = EmaTours.Entities\\EmaTours.Entities.csproj
+		SccProjectName5 = EmaTours.Entities
+		SccLocalPath5 = EmaTours.Entities
+		SccProjectUniqueName6 = EmaTours.Exceptions\\EmaTours.Exceptions.csproj
+		SccProjectName6 = EmaTours.Exceptions
+		SccLocalPath6 = EmaTours.Exceptions
+		SccProjectUniqueName7 = EmaTours.Utilities\\EmaTours.Utilities.csproj
+		SccProjectName7 = EmaTours.Utilities
+		SccLocalPath7 = EmaTours.Utilities
+	EndGlobalSection
+EndGlobal

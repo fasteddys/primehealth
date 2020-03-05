@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4356523b1e024eb5ba99d561405ef582" Name="Diagram1">
+        <EntityTypeShape EntityType="EMAToursModel.ClientPickUpRequest" Width="1.5" PointX="8.25" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.ClientRequestsDIM" Width="1.5" PointX="6" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.Client" Width="1.5" PointX="6" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.ClientServicesRating" Width="1.5" PointX="11.25" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.ClientTripRequest" Width="1.5" PointX="11.25" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.ClientVisit" Width="1.5" PointX="14.25" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.Configuration" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.CountriesDIM" Width="1.5" PointX="3.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.Currency" Width="1.5" PointX="11.25" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.EMAService" Width="1.5" PointX="3" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.EMAUserActionDIM" Width="1.5" PointX="6" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.EMAUser" Width="1.5" PointX="6" PointY="48.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.EMAUserTypesDIM" Width="1.5" PointX="3.75" PointY="49.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.Hotel" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.InternalApplicationText" Width="1.5" PointX="3" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.LanguageDIM" Width="1.5" PointX="0.75" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.NotificationDirectionDIM" Width="1.5" PointX="6.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.NotificationMethodsDIM" Width="1.5" PointX="3.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.Notification" Width="1.5" PointX="9" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.OperatingCountry" Width="1.5" PointX="3" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.OperatingLocation" Width="1.5" PointX="5.25" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.StatusDIM" Width="1.5" PointX="3" PointY="44.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.TripCurrency" Width="1.5" PointX="15.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.TripPhoto" Width="1.5" PointX="16.75" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMAToursModel.Trip" Width="1.5" PointX="13.5" PointY="34.375" IsExpanded="true" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientPickUpRequests_ClientRequestsDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientPickUpRequests_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientPickUpRequests_ClientVisits" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientPickUpRequests_EMAUserActionDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientPickUpRequests_EMAUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientPickUpRequests_EMAUsers1" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientPickUpRequests_StatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientTripRequests_ClientRequestsDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Notifications_ClientRequestsDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Clients_AllCountries" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Clients_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Clients_NotificationMethodsDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientServicesRating_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientTripRequests_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientVisits_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientServicesRating_ClientVisits" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientServicesRating_EMAServices" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientTripRequests_ClientVisits" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientTripRequests_EMAUserActionDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientTripRequests_EMAUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientTripRequests_EMAUsers1" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientTripRequests_StatusDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientTripRequests_Trips" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientVisits_OperatingCountries" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_ClientVisits_OperatingLocations" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Configurations_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_TripCurrencies_Currencies" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Trips_Currencies" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_EMAServices_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_EMAUsers_EMAUserTypesDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_InternalApplicationTexts_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Countries_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Locations_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Notifications_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_StatusDIM_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_TripPhotos_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Trips_LanguageDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Notifications_NotificationDirectionDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Notifications_NotificationMethodsDIM" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Locations_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Trips_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_Trips_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_TripCurrencies_Trips" ManuallyRouted="false" />
+        <AssociationConnector Association="EMAToursModel.FK_TripPhotos_Trips" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EMAToursModel.LogsDetail" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EMAToursModel.LogsTypesDIM" Width="1.5" PointX="3.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

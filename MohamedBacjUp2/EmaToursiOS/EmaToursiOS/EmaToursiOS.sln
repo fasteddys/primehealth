@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "EmaToursiOS", "EmaToursiOS\EmaToursiOS.jsproj", "{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Android = Debug|Android
+		Debug|iOS = Debug|iOS
+		Debug|Windows-ARM = Debug|Windows-ARM
+		Debug|Windows-x64 = Debug|Windows-x64
+		Debug|Windows-x86 = Debug|Windows-x86
+		Release|Android = Release|Android
+		Release|iOS = Release|iOS
+		Release|Windows-ARM = Release|Windows-ARM
+		Release|Windows-x64 = Release|Windows-x64
+		Release|Windows-x86 = Release|Windows-x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Android.ActiveCfg = Debug|Android
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Android.Build.0 = Debug|Android
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Android.Deploy.0 = Debug|Android
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|iOS.ActiveCfg = Debug|iOS
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|iOS.Build.0 = Debug|iOS
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|iOS.Deploy.0 = Debug|iOS
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-ARM.ActiveCfg = Debug|Windows-ARM
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-ARM.Build.0 = Debug|Windows-ARM
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-ARM.Deploy.0 = Debug|Windows-ARM
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-x64.ActiveCfg = Debug|Windows-x64
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-x64.Build.0 = Debug|Windows-x64
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-x64.Deploy.0 = Debug|Windows-x64
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-x86.ActiveCfg = Debug|Windows-x86
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-x86.Build.0 = Debug|Windows-x86
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Debug|Windows-x86.Deploy.0 = Debug|Windows-x86
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Android.ActiveCfg = Release|Android
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Android.Build.0 = Release|Android
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Android.Deploy.0 = Release|Android
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|iOS.ActiveCfg = Release|iOS
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|iOS.Build.0 = Release|iOS
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|iOS.Deploy.0 = Release|iOS
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-ARM.ActiveCfg = Release|Windows-ARM
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-ARM.Build.0 = Release|Windows-ARM
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-ARM.Deploy.0 = Release|Windows-ARM
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-x64.ActiveCfg = Release|Windows-x64
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-x64.Build.0 = Release|Windows-x64
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-x64.Deploy.0 = Release|Windows-x64
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-x86.ActiveCfg = Release|Windows-x86
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-x86.Build.0 = Release|Windows-x86
+		{FD52C4FF-6E03-449B-AE98-A3E404EAACF8}.Release|Windows-x86.Deploy.0 = Release|Windows-x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10359206-EDEB-46C9-BC61-E6889FF182D2}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/ematours
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = EmaToursiOS\\EmaToursiOS.jsproj
+		SccProjectName1 = EmaToursiOS
+		SccLocalPath1 = EmaToursiOS
+	EndGlobalSection
+EndGlobal

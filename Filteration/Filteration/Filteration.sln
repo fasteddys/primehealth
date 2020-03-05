@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filteration", "Filteration\Filteration.csproj", "{B881A2E1-B6A6-4810-9EBB-86FCC85D6199}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B881A2E1-B6A6-4810-9EBB-86FCC85D6199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B881A2E1-B6A6-4810-9EBB-86FCC85D6199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B881A2E1-B6A6-4810-9EBB-86FCC85D6199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B881A2E1-B6A6-4810-9EBB-86FCC85D6199}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medgulfdevteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Filteration\\Filteration.csproj
+		SccProjectName1 = Filteration
+		SccLocalPath1 = Filteration
+	EndGlobalSection
+EndGlobal

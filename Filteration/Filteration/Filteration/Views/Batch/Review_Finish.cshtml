@@ -1,0 +1,189 @@
+﻿@model Filteration.Models.Batch
+@{
+    ViewBag.Title = "Review_Finish";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<h2>Review and Finish batch</h2>
+
+<div id="normal">
+    <hr />
+    <div class="row mt">
+        <div class="col-md-12">
+            <div class="table table-striped table-advance table-hover">
+
+                <div class="panel-body table-responsive">
+                    <table class="table table-hover" id="table">
+
+                        <tr hidden="hidden">
+                            @Html.HiddenFor(model => model.Id, new { @id = "id" })
+                        </tr>
+
+                        <tr hidden="hidden">
+                            @Html.HiddenFor(model => model.ReqId, new { @id = "ReqId" })
+                        </tr>
+
+
+
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.BatchNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.BatchNumber)
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.BatchStatus)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.BatchStatus)
+                                    @Html.HiddenFor(model => model.BatchStatus, new { @id = "BatchStatus" })
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.TicketNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.TicketNumber)
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model=>model.NumberOfClaims)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    
+                                    @Html.DisplayFor(model=>model.NumberOfClaims)
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.QualityClaimsNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    
+                                    @Html.DisplayFor(model => model.QualityClaimsNumber)
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr id="ReviewedClaimNumberTR" >
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.ReviewedClaimNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" onkeypress="return IsNumPositive(event)" class="txtReviewedClaimNumber" maxlength="4" />
+
+                                    @Html.DisplayFor(model => model.ReviewedClaimNumber, new { @id = "ReviewedClaimNumber" })
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                        
+
+                    </table>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="button" class="btn btn-theme" id="ReviewFinishBtn" value="Review">
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script type="text/javascript">
+   
+    $("#ReviewFinishBtn").on("click", function () {
+       
+            var info = {
+                id: $("#id").val(),
+                RevClaimNum : $(".txtReviewedClaimNumber").val(),
+            }
+            var x = JSON.stringify(info);
+            $.ajax({
+                url: '@Url.Action("ReviewAndFinishBatch", "Batch")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data) {
+                    
+                }
+                
+
+
+            });
+        $("#ReviewFinishBtn").hide();
+           
+            
+            
+        });
+
+    
+
+    </script>
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($("#BatchStatus").val() == "QualityFinished")
+        {
+           
+            $(".txtReviewedClaimNumber").hide();
+            $("#ReviewFinishBtn").hide();
+        }
+    });
+    </script>
+
+<script type="text/javascript">
+    function IsNumPositive(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            alert("Insert right positive number");
+            return false;
+        }
+        return true;
+    }
+</script>

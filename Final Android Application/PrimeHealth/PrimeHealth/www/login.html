@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="js/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ["Montserrat:400,700"]
+            }
+        });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section class="w-section mobile-wrapper">
+        <div class="page-content" id="main-stack" data-scroll="0">
+            <div class="body padding">
+                <div class="logo-login"></div>
+                <div class="bottom-section padding ">
+                    <div class="w-form">
+                        <form id="submit-form" name="email-form" data-name="Email Form" action="#">
+                            <div>
+                                <label class="label-form" for="email-field">Medical ID</label>
+                                <input class="w-input input-form" id="medicalid" required="required"><a class="right-input-link" id="medinfo" data-load="1">What's Medical ID?</a>
+                            </div>
+                            <br />
+                            <div style="position: absolute;top:35%;left:45%;width: 30px;height:30px;">
+                                <img id="loadimg" alt="LOADING..." src="images/Loading.gif" style="display:none" />
+                            </div>
+                            <div>
+                                <label class="label-form" for="email"> Password</label>
+                                <div class="w-clearfix block-input-combined">
+                                    <input class="w-input input-form left" id="password-field" type="password" name="password" data-name="password" required="required">
+                                </div>
+                                <a class="link-upper" href="contactus.html" data-load="1">In case your password is not changed yet please enter <strong class="b-link">your year of birth</strong> or <strong class="b-link"> Contact Us</strong></a>
+                            </div>
+                            <div class="separator-button-input"></div>
+                            <input class="w-button action-button" id="login" type="submit" value="Sign In" data-wait="Please wait...">
+
+                            <!--<div class="separator-button"> </div>-->
+
+                        </form>
+                        <!--<div class="w-form-done">
+                          <p>Thank you! Your submission has been received!</p>
+                        </div>
+                        <div class="w-form-fail">
+                          <p>Oops! Something went wrong while submitting the form</p>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content loading-mask" id="new-stack">
+          <div class="loading-icon">
+            <div class="navbar-button-icon icon ion-load-d"></div>
+          </div>
+        </div>
+        <div class="shadow-layer"></div>
+    </section>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/framework.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function ()
+        {
+            if (localStorage.getItem("loged") == "passwordupdated")
+            {
+
+            }
+          else if (localStorage.getItem("loged") == "loged")
+            {
+                window.location.href = "home.html";
+            }
+            else
+            {
+                $("#medicalid").html = '';
+                $("#password-field").html = '';
+            }   
+        });
+        var medical = $("#medicalid").val();
+        var password = $("#password-field").val();
+        $("#login").click(function () {
+            if ($("#password-field").val() == '' || $("medicalid").val() == '')
+            {
+                alert("Please fill in all required fields");
+            }
+            else
+            {
+                $("#loadimg").show();
+
+                var url = "http://41.128.147.164:1212/api/Data/getloginer";
+                var data = {
+                    medid: $("#medicalid").val(),
+                    pass: $("#password-field").val()
+                };
+                $("#loadimg").show();
+
+                $.ajax({
+                    url: url,
+                    type: 'Get',
+                    data: data,
+                    success: function (data)
+                    {
+                        if (JSON.stringify(data) != "[]")
+                        {
+                            $("#loadimg").show();
+                            if ((data[0].Activated) == null || (data[0].Activated) == "Deactivated" || (data[0].Activated) == "" || (data[0].Activated) == " ")
+                            {
+                                alert("Your account is either disabled or being activated... \r Please try again in 10 minutes");
+                            }
+                            else
+                            {
+                                localStorage.setItem("medical", (data[0].Medical_id));
+                                localStorage.setItem("Type", (data[0].Type));
+                                localStorage.setItem("Name", (data[0].Name));
+                                localStorage.setItem("Special", (data[0].gender));
+                                localStorage.setItem("ClientName", (data[0].ClientName));
+                                localStorage.setItem("loged", "loged");
+                                $("#loadimg").show();
+                                window.location.href = "home.html";
+                            }
+                        }
+                        else {
+
+                            alert("Please review your medical ID and/or your password");
+                        }
+                    },
+                    complete: function () {
+                        $('#loadimg').hide();
+                    },
+                    error: function (data)
+                    {
+                        alert("Please check your internet connection");
+                    }
+                });
+            }
+        });
+        $("#medinfo").click(function () {
+            window.location.href = ("aboutmedicalid.html");
+        });
+    </script>
+</body>
+</html>

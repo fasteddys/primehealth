@@ -1,0 +1,11 @@
+{
+     "android": {
+         "release": {
+             "keystore": "c:\\my-androidrelease-key.keystore",
+             "storePassword": "pw123456",
+             "alias": "BodyM",
+             "password" : "pw123456",
+             "keystoreType": ""
+         }
+     }
+ }

@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "StockView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Stock
+                </header>
+                <div class="panel-body">
+                    <table class="table table-bordered " id="Req" align="center">
+                        <tr>
+                            <th style="text-align:center">Item Name</th>
+                            <th style="text-align:center">Available Bocklets</th>
+                            <th style="text-align:center">Last Added</th>
+                            <th style="text-align:center">Last Withdraw</th>
+
+                        </tr>
+                        @foreach (var item in ViewBag.Items)
+                        {
+                            <tr>
+                                <td align="center"> @item.ItemName {@item.Resposibility} </td>
+                                <td align="center"> @item.AvailableQuantity  </td>
+                                <td align="center"> @item.LastAdd  </td>
+                                <td align="center"> @item.LastWithdraw  </td>
+                            </tr>
+                        }
+                    </table>
+                </div><!-- /.panel-body -->
+                <div class="panel-body" style="align-content:center">
+                </div>
+            </div><!-- /.panel -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section>
+

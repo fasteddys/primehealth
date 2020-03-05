@@ -1,0 +1,100 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<DispatchingMVCVer1.Models.Request>
+@section HeaderSection
+     {
+<head>
+    <title></title>
+    <meta http-equiv="refresh" content="10" />
+</head>
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Show Requests</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+<script src="~/Scripts/googleapis.js"></script>
+<script src="~/Scripts/DataTable.js"></script>
+<link href="~/Content/Datatable.css" rel="stylesheet" />
+<script src="~/Scripts/SortScript.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Bordered Table
+                </header>
+                <div class="panel-body">
+                    <table class="table table-bordered " id="Req" align="center">
+                        <tr>
+                            <th style="width: 10px ; text-align:center">ID</th>
+                            <th style="text-align:center">Provider Name</th>
+                            <th style="text-align:center">Provider Type</th>
+                            <th style="text-align:center">#Boocklets</th>                           
+                            <th style="text-align:center">ClaimsType</th>
+                            @if (ViewBag.Status=="Closed" || ViewBag.Status== "PendingCreatorApproval")
+                            {
+                            <th style="text-align:center" id="PreparedBy">Prepared By</th>
+                            }
+                            <th style="width: 200px ; text-align:center">Actions</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td align="center"> @item.ReqID  </td>
+                                @if (item.ReqStatues == "PendingAccountApproval" || item.OriginalProviderName==null)
+                                {
+                                    <td align="center"> @item.ProviderName</td>
+                                }
+                                else
+                                {
+                                    <td align="center"> @item.OriginalProviderName</td>
+                                }
+                                <td align="center"> @item.ProviderType  </td>
+                                <td align="center"> @item.NumOfBocklets  </td>
+                                <td align="center"> @item.ClaimsType  </td>
+                                @if (item.ReqStatues == "Closed" || item.ReqStatues == "PendingCreatorApproval")
+                                {
+                                <td align="center"> @item.PreparingPerson  </td>
+                                }
+                                <td align="center">
+                                    <button class="btn btn-default btn-xs" onclick="window.location.href='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = @item.ReqID })';"><i class="fa fa-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    @if (@Request.Cookies["UserERoleCookie"].Value == "Admin")
+                                    {
+                                        if (item.ReqStatues == "PendingAccountApproval" || item.ReqStatues == "PendingStockAssign" || item.ReqStatues == "PendingStockPrepared" || item.ReqStatues == "PendingCreatorApproval")
+                                        {
+                                            <button class="btn btn-default btn-xs" id="EditR" onclick="window.location.href='@Url.Action("EditClaimsRequest", "RequestFunction", new { ReqID = @item.ReqID })';"><i class="fa fa-edit"></i></button>
+                                        }
+                                    }
+                                    @if (item.ReqStatues == "Closed" && ( @Request.Cookies["UserTypeCookie"].Value == "CreatorAdmin" || @Request.Cookies["UserTypeCookie"].Value == "SuperAdmin" ))
+                                    {
+                                        <button class="btn btn-default btn-xs" onclick="window.location.href='@Url.Action("CreatClaimsRequest", "RequestFunction", new { ReqID = @item.ReqID })';">Back To Stock</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div><!-- /.panel-body -->
+                <div class="panel-body" style="align-content:center">
+                    <div>
+                        <br />
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("ShowSpecificRequest",
+                        new { page, PageSize=Model.PageSize, Status = ViewBag.Status }))
+                    </div>
+                </div>
+            </div><!-- /.panel -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>

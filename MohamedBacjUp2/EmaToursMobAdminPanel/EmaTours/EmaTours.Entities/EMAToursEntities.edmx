@@ -1,0 +1,2692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EMAToursModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClientPickUpRequests">
+          <Key>
+            <PropertyRef Name="ClientPickUpRequestID" />
+          </Key>
+          <Property Name="ClientPickUpRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientFK" Type="int" />
+          <Property Name="ClientVisitFK" Type="int" />
+          <Property Name="RequestTypeFK" Type="int" />
+          <Property Name="ClientBackFlightTime" Type="datetime" />
+          <Property Name="ClientDesiredPickupTime" Type="datetime" />
+          <Property Name="NumberOfMembersPerRequest" Type="int" />
+          <Property Name="ClientNotes" Type="nvarchar(max)" />
+          <Property Name="AssignedUserFK" Type="int" />
+          <Property Name="AssignTime" Type="datetime" />
+          <Property Name="StatusFK" Type="int" />
+          <Property Name="AssignedUserActionFK" Type="int" />
+          <Property Name="AssignedUserActionTime" Type="datetime" />
+          <Property Name="AssignedUserComment" Type="nvarchar(max)" />
+          <Property Name="AssignedAgentFK" Type="int" />
+          <Property Name="DeterminedPickupTime" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CloseTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClientRequestsDIM">
+          <Key>
+            <PropertyRef Name="ClientRequestTypeID" />
+          </Key>
+          <Property Name="ClientRequestTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientRequestName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="300" />
+          <Property Name="LanguageFK" Type="int" />
+          <Property Name="ClientCountryFK" Type="int" />
+          <Property Name="ClientPreferredNotificationMethodFK" Type="int" />
+          <Property Name="ClientPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientDeviceID" Type="nvarchar(max)" />
+          <Property Name="ClientEmail" Type="nvarchar" MaxLength="400" />
+          <Property Name="ClientPassportNumber" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClientServicesRating">
+          <Key>
+            <PropertyRef Name="ClientServiceRatingID" />
+          </Key>
+          <Property Name="ClientServiceRatingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientFK" Type="int" />
+          <Property Name="ClientVisitFK" Type="int" />
+          <Property Name="ServiceFK" Type="int" />
+          <Property Name="RatingScale" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ClientCommentPerService" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClientTripRequests">
+          <Key>
+            <PropertyRef Name="ClientTripRequestID" />
+          </Key>
+          <Property Name="ClientTripRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientFK" Type="int" />
+          <Property Name="ClientVisitFK" Type="int" />
+          <Property Name="RequestTypeFK" Type="int" />
+          <Property Name="TripFK" Type="int" />
+          <Property Name="ClientDesiredTripDate" Type="datetime" />
+          <Property Name="NumberOfAdults" Type="int" />
+          <Property Name="NumberOfChildren" Type="int" />
+          <Property Name="ClientNotes" Type="nvarchar(max)" />
+          <Property Name="AssigneeUserFK" Type="int" />
+          <Property Name="StatusFK" Type="int" />
+          <Property Name="AssignTime" Type="datetime" />
+          <Property Name="AssignedUserActionFK" Type="int" />
+          <Property Name="AssignedUserActionTime" Type="datetime" />
+          <Property Name="AssignedUserComment" Type="nvarchar(max)" />
+          <Property Name="AssignedAgentFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ReachedAgreement" Type="bit" />
+          <Property Name="CloseTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClientVisits">
+          <Key>
+            <PropertyRef Name="ClientVisitID" />
+          </Key>
+          <Property Name="ClientVisitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientFK" Type="int" />
+          <Property Name="OperatingCountryFK" Type="int" />
+          <Property Name="OperatingLocationFK" Type="int" />
+          <Property Name="ClientHotelName" Type="nvarchar" MaxLength="100" />
+          <Property Name="VisitStartDate" Type="date" />
+          <Property Name="VisitEndDate" Type="date" />
+          <Property Name="ClientOverallVisitComment" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="HotelID" Type="int" />
+        </EntityType>
+        <EntityType Name="Configurations">
+          <Key>
+            <PropertyRef Name="ConfigurationID" />
+          </Key>
+          <Property Name="ConfigurationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigurationKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConfigurationValue" Type="nvarchar(max)" />
+          <Property Name="LangauageFK" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="DeletionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CountriesDIM">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="CurrencyID" />
+          </Key>
+          <Property Name="CurrencyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrencyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CurrencySign" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageFK" Type="int" />
+        </EntityType>
+        <EntityType Name="EMAServices">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LangauageFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EMAUserActionDIM">
+          <Key>
+            <PropertyRef Name="UserActionID" />
+          </Key>
+          <Property Name="UserActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserActionName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EMAUsers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="UserTypeFK" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EMAUserTypesDIM">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'EMATours.dbo.FailedTransactions' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="FailedTransactions">
+          <Property Name="LogDetails" Type="nvarchar" MaxLength="50" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MethodName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ErrorSource" Type="nvarchar(max)" />
+          <Property Name="LogDate" Type="datetime" />
+        </EntityType>-->
+        <EntityType Name="Hotels">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="LanguageFK" Type="int" />
+          <Property Name="OperatingCountryFK" Type="int" />
+          <Property Name="OperatingLocationFK" Type="int" />
+        </EntityType>
+        <EntityType Name="InternalApplicationTexts">
+          <Key>
+            <PropertyRef Name="InternalApplicationTextID" />
+          </Key>
+          <Property Name="InternalApplicationTextID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LangugeFK" Type="int" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="SelectorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SelectorIsTageID" Type="bit" />
+        </EntityType>
+        <EntityType Name="LanguageDIM">
+          <Key>
+            <PropertyRef Name="LanaguageID" />
+          </Key>
+          <Property Name="LanaguageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LogsDetails">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestFK" Type="int" />
+          <Property Name="LogTypeFK" Type="int" />
+          <Property Name="UserFK" Type="int" />
+          <Property Name="LogTime" Type="datetime" />
+          <Property Name="OldValue" Type="nvarchar(max)" />
+          <Property Name="NewValue" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LogsTypesDIM">
+          <Key>
+            <PropertyRef Name="LogTypeID" />
+          </Key>
+          <Property Name="LogTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogTypeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NotificationDirectionDIM">
+          <Key>
+            <PropertyRef Name="NotificationDirectionID" />
+          </Key>
+          <Property Name="NotificationDirectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NotificationMethodsDIM">
+          <Key>
+            <PropertyRef Name="NotificationMethodTypeID" />
+          </Key>
+          <Property Name="NotificationMethodTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationMethodName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationDirectionFK" Type="int" />
+          <Property Name="SenderFK" Type="int" />
+          <Property Name="RecipientFK" Type="int" />
+          <Property Name="NotificationMethodFK" Type="int" />
+          <Property Name="RequestTypeFK" Type="int" />
+          <Property Name="RequestFK" Type="int" />
+          <Property Name="IsSent" Type="bit" />
+          <Property Name="SentTime" Type="datetime" />
+          <Property Name="IsReceived" Type="bit" />
+          <Property Name="ReceivedTime" Type="datetime" />
+          <Property Name="IsViewed" Type="bit" />
+          <Property Name="ViewedPersonFK" Type="int" />
+          <Property Name="ViewedTime" Type="datetime" />
+          <Property Name="DeviceID" Type="nvarchar(max)" />
+          <Property Name="NotificationHeader" Type="nvarchar" MaxLength="100" />
+          <Property Name="NotificationBody" Type="nvarchar(max)" />
+          <Property Name="NotificationLink" Type="nvarchar" MaxLength="400" />
+          <Property Name="LanguageFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="VisitFK" Type="int" />
+        </EntityType>
+        <EntityType Name="OperatingCountries">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConutryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LanguageFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OperatingLocations">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="100" />
+          <Property Name="OperatingCountryFK" Type="int" />
+          <Property Name="LanguageFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StatusDIM">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TripCurrencies">
+          <Key>
+            <PropertyRef Name="TripCurrencyID" />
+          </Key>
+          <Property Name="TripCurrencyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TripFK" Type="int" Nullable="false" />
+          <Property Name="CurrencyFK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TripPhotos">
+          <Key>
+            <PropertyRef Name="TripPhotoID" />
+          </Key>
+          <Property Name="TripPhotoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TripFK" Type="int" />
+          <Property Name="LanguageFK" Type="int" />
+          <Property Name="PhotoName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhotoInfo" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhotoPath" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Trips">
+          <Key>
+            <PropertyRef Name="TripID" />
+          </Key>
+          <Property Name="TripID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TripName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LanguageFK" Type="int" />
+          <Property Name="TripShortDesc" Type="nvarchar" MaxLength="200" />
+          <Property Name="TripDetailedDesc" Type="nvarchar(max)" />
+          <Property Name="LocationFK" Type="int" />
+          <Property Name="CountryFK" Type="int" />
+          <Property Name="CurrencyFK" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_ClientPickUpRequests_ClientRequestsDIM">
+          <End Role="ClientRequestsDIM" Type="Self.ClientRequestsDIM" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientRequestsDIM">
+              <PropertyRef Name="ClientRequestTypeID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="RequestTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="ClientFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_ClientVisits">
+          <End Role="ClientVisits" Type="Self.ClientVisits" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientVisits">
+              <PropertyRef Name="ClientVisitID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="ClientVisitFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_EMAUserActionDIM">
+          <End Role="EMAUserActionDIM" Type="Self.EMAUserActionDIM" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUserActionDIM">
+              <PropertyRef Name="UserActionID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="AssignedUserActionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_EMAUsers">
+          <End Role="EMAUsers" Type="Self.EMAUsers" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="AssignedUserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_EMAUsers1">
+          <End Role="EMAUsers" Type="Self.EMAUsers" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="AssignedAgentFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_StatusDIM">
+          <End Role="StatusDIM" Type="Self.StatusDIM" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusDIM">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="StatusFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_AllCountries">
+          <End Role="CountriesDIM" Type="Self.CountriesDIM" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountriesDIM">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="ClientCountryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_NotificationMethodsDIM">
+          <End Role="NotificationMethodsDIM" Type="Self.NotificationMethodsDIM" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationMethodsDIM">
+              <PropertyRef Name="NotificationMethodTypeID" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="ClientPreferredNotificationMethodFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientServicesRating_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="ClientServicesRating" Type="Self.ClientServicesRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientServicesRating">
+              <PropertyRef Name="ClientFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientServicesRating_ClientVisits">
+          <End Role="ClientVisits" Type="Self.ClientVisits" Multiplicity="0..1" />
+          <End Role="ClientServicesRating" Type="Self.ClientServicesRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientVisits">
+              <PropertyRef Name="ClientVisitID" />
+            </Principal>
+            <Dependent Role="ClientServicesRating">
+              <PropertyRef Name="ClientVisitFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientServicesRating_EMAServices">
+          <End Role="EMAServices" Type="Self.EMAServices" Multiplicity="0..1" />
+          <End Role="ClientServicesRating" Type="Self.ClientServicesRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAServices">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="ClientServicesRating">
+              <PropertyRef Name="ServiceFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_ClientRequestsDIM">
+          <End Role="ClientRequestsDIM" Type="Self.ClientRequestsDIM" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientRequestsDIM">
+              <PropertyRef Name="ClientRequestTypeID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="RequestTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="ClientFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_ClientVisits">
+          <End Role="ClientVisits" Type="Self.ClientVisits" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientVisits">
+              <PropertyRef Name="ClientVisitID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="ClientVisitFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_EMAUserActionDIM">
+          <End Role="EMAUserActionDIM" Type="Self.EMAUserActionDIM" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUserActionDIM">
+              <PropertyRef Name="UserActionID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="AssignedUserActionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_EMAUsers">
+          <End Role="EMAUsers" Type="Self.EMAUsers" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="AssigneeUserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_EMAUsers1">
+          <End Role="EMAUsers" Type="Self.EMAUsers" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="AssignedAgentFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_StatusDIM">
+          <End Role="StatusDIM" Type="Self.StatusDIM" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusDIM">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="StatusFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_Trips">
+          <End Role="Trips" Type="Self.Trips" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="TripFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientVisits_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="ClientVisits" Type="Self.ClientVisits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientVisits">
+              <PropertyRef Name="ClientFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientVisits_OperatingCountries">
+          <End Role="OperatingCountries" Type="Self.OperatingCountries" Multiplicity="0..1" />
+          <End Role="ClientVisits" Type="Self.ClientVisits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="ClientVisits">
+              <PropertyRef Name="OperatingCountryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientVisits_OperatingLocations">
+          <End Role="OperatingLocations" Type="Self.OperatingLocations" Multiplicity="0..1" />
+          <End Role="ClientVisits" Type="Self.ClientVisits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingLocations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="ClientVisits">
+              <PropertyRef Name="OperatingLocationFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configurations_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="Configurations" Type="Self.Configurations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="Configurations">
+              <PropertyRef Name="LangauageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Countries_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="OperatingCountries" Type="Self.OperatingCountries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="OperatingCountries">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMAServices_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="EMAServices" Type="Self.EMAServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="EMAServices">
+              <PropertyRef Name="LangauageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMAUsers_EMAUserTypesDIM">
+          <End Role="EMAUserTypesDIM" Type="Self.EMAUserTypesDIM" Multiplicity="0..1" />
+          <End Role="EMAUsers" Type="Self.EMAUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUserTypesDIM">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="EMAUsers">
+              <PropertyRef Name="UserTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InternalApplicationTexts_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="InternalApplicationTexts" Type="Self.InternalApplicationTexts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="InternalApplicationTexts">
+              <PropertyRef Name="LangugeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locations_Countries">
+          <End Role="OperatingCountries" Type="Self.OperatingCountries" Multiplicity="0..1" />
+          <End Role="OperatingLocations" Type="Self.OperatingLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="OperatingLocations">
+              <PropertyRef Name="OperatingCountryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locations_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="OperatingLocations" Type="Self.OperatingLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="OperatingLocations">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_ClientRequestsDIM">
+          <End Role="ClientRequestsDIM" Type="Self.ClientRequestsDIM" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientRequestsDIM">
+              <PropertyRef Name="ClientRequestTypeID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="RequestTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_NotificationDirectionDIM">
+          <End Role="NotificationDirectionDIM" Type="Self.NotificationDirectionDIM" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationDirectionDIM">
+              <PropertyRef Name="NotificationDirectionID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="NotificationDirectionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_NotificationMethodsDIM">
+          <End Role="NotificationMethodsDIM" Type="Self.NotificationMethodsDIM" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationMethodsDIM">
+              <PropertyRef Name="NotificationMethodTypeID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="NotificationMethodFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatusDIM_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="StatusDIM" Type="Self.StatusDIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="StatusDIM">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripCurrencies_Currencies">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="TripCurrencies" Type="Self.TripCurrencies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="TripCurrencies">
+              <PropertyRef Name="CurrencyFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripCurrencies_Trips">
+          <End Role="Trips" Type="Self.Trips" Multiplicity="1" />
+          <End Role="TripCurrencies" Type="Self.TripCurrencies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="TripCurrencies">
+              <PropertyRef Name="TripFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripPhotos_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="TripPhotos" Type="Self.TripPhotos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="TripPhotos">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripPhotos_Trips">
+          <End Role="Trips" Type="Self.Trips" Multiplicity="0..1" />
+          <End Role="TripPhotos" Type="Self.TripPhotos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="TripPhotos">
+              <PropertyRef Name="TripFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_Countries">
+          <End Role="OperatingCountries" Type="Self.OperatingCountries" Multiplicity="0..1" />
+          <End Role="Trips" Type="Self.Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="CountryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_Currencies">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="0..1" />
+          <End Role="Trips" Type="Self.Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="CurrencyFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="Trips" Type="Self.Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_Locations">
+          <End Role="OperatingLocations" Type="Self.OperatingLocations" Multiplicity="0..1" />
+          <End Role="Trips" Type="Self.Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingLocations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="LocationFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMAToursModelStoreContainer">
+          <EntitySet Name="ClientPickUpRequests" EntityType="Self.ClientPickUpRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientRequestsDIM" EntityType="Self.ClientRequestsDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientServicesRating" EntityType="Self.ClientServicesRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientTripRequests" EntityType="Self.ClientTripRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientVisits" EntityType="Self.ClientVisits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configurations" EntityType="Self.Configurations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountriesDIM" EntityType="Self.CountriesDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMAServices" EntityType="Self.EMAServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMAUserActionDIM" EntityType="Self.EMAUserActionDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMAUsers" EntityType="Self.EMAUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMAUserTypesDIM" EntityType="Self.EMAUserTypesDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InternalApplicationTexts" EntityType="Self.InternalApplicationTexts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LanguageDIM" EntityType="Self.LanguageDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogsDetails" EntityType="Self.LogsDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogsTypesDIM" EntityType="Self.LogsTypesDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationDirectionDIM" EntityType="Self.NotificationDirectionDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationMethodsDIM" EntityType="Self.NotificationMethodsDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperatingCountries" EntityType="Self.OperatingCountries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperatingLocations" EntityType="Self.OperatingLocations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusDIM" EntityType="Self.StatusDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TripCurrencies" EntityType="Self.TripCurrencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TripPhotos" EntityType="Self.TripPhotos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trips" EntityType="Self.Trips" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ClientPickUpRequests_ClientRequestsDIM" Association="Self.FK_ClientPickUpRequests_ClientRequestsDIM">
+            <End Role="ClientRequestsDIM" EntitySet="ClientRequestsDIM" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_Clients" Association="Self.FK_ClientPickUpRequests_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_ClientVisits" Association="Self.FK_ClientPickUpRequests_ClientVisits">
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_EMAUserActionDIM" Association="Self.FK_ClientPickUpRequests_EMAUserActionDIM">
+            <End Role="EMAUserActionDIM" EntitySet="EMAUserActionDIM" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_EMAUsers" Association="Self.FK_ClientPickUpRequests_EMAUsers">
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_EMAUsers1" Association="Self.FK_ClientPickUpRequests_EMAUsers1">
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_StatusDIM" Association="Self.FK_ClientPickUpRequests_StatusDIM">
+            <End Role="StatusDIM" EntitySet="StatusDIM" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_AllCountries" Association="Self.FK_Clients_AllCountries">
+            <End Role="CountriesDIM" EntitySet="CountriesDIM" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_LanguageDIM" Association="Self.FK_Clients_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_NotificationMethodsDIM" Association="Self.FK_Clients_NotificationMethodsDIM">
+            <End Role="NotificationMethodsDIM" EntitySet="NotificationMethodsDIM" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientServicesRating_Clients" Association="Self.FK_ClientServicesRating_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientServicesRating" EntitySet="ClientServicesRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientServicesRating_ClientVisits" Association="Self.FK_ClientServicesRating_ClientVisits">
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+            <End Role="ClientServicesRating" EntitySet="ClientServicesRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientServicesRating_EMAServices" Association="Self.FK_ClientServicesRating_EMAServices">
+            <End Role="EMAServices" EntitySet="EMAServices" />
+            <End Role="ClientServicesRating" EntitySet="ClientServicesRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_ClientRequestsDIM" Association="Self.FK_ClientTripRequests_ClientRequestsDIM">
+            <End Role="ClientRequestsDIM" EntitySet="ClientRequestsDIM" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_Clients" Association="Self.FK_ClientTripRequests_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_ClientVisits" Association="Self.FK_ClientTripRequests_ClientVisits">
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_EMAUserActionDIM" Association="Self.FK_ClientTripRequests_EMAUserActionDIM">
+            <End Role="EMAUserActionDIM" EntitySet="EMAUserActionDIM" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_EMAUsers" Association="Self.FK_ClientTripRequests_EMAUsers">
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_EMAUsers1" Association="Self.FK_ClientTripRequests_EMAUsers1">
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_StatusDIM" Association="Self.FK_ClientTripRequests_StatusDIM">
+            <End Role="StatusDIM" EntitySet="StatusDIM" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_Trips" Association="Self.FK_ClientTripRequests_Trips">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientVisits_Clients" Association="Self.FK_ClientVisits_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientVisits_OperatingCountries" Association="Self.FK_ClientVisits_OperatingCountries">
+            <End Role="OperatingCountries" EntitySet="OperatingCountries" />
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientVisits_OperatingLocations" Association="Self.FK_ClientVisits_OperatingLocations">
+            <End Role="OperatingLocations" EntitySet="OperatingLocations" />
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configurations_LanguageDIM" Association="Self.FK_Configurations_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="Configurations" EntitySet="Configurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Countries_LanguageDIM" Association="Self.FK_Countries_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="OperatingCountries" EntitySet="OperatingCountries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMAServices_LanguageDIM" Association="Self.FK_EMAServices_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="EMAServices" EntitySet="EMAServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMAUsers_EMAUserTypesDIM" Association="Self.FK_EMAUsers_EMAUserTypesDIM">
+            <End Role="EMAUserTypesDIM" EntitySet="EMAUserTypesDIM" />
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InternalApplicationTexts_LanguageDIM" Association="Self.FK_InternalApplicationTexts_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="InternalApplicationTexts" EntitySet="InternalApplicationTexts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locations_Countries" Association="Self.FK_Locations_Countries">
+            <End Role="OperatingCountries" EntitySet="OperatingCountries" />
+            <End Role="OperatingLocations" EntitySet="OperatingLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locations_LanguageDIM" Association="Self.FK_Locations_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="OperatingLocations" EntitySet="OperatingLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_ClientRequestsDIM" Association="Self.FK_Notifications_ClientRequestsDIM">
+            <End Role="ClientRequestsDIM" EntitySet="ClientRequestsDIM" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_LanguageDIM" Association="Self.FK_Notifications_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_NotificationDirectionDIM" Association="Self.FK_Notifications_NotificationDirectionDIM">
+            <End Role="NotificationDirectionDIM" EntitySet="NotificationDirectionDIM" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_NotificationMethodsDIM" Association="Self.FK_Notifications_NotificationMethodsDIM">
+            <End Role="NotificationMethodsDIM" EntitySet="NotificationMethodsDIM" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatusDIM_LanguageDIM" Association="Self.FK_StatusDIM_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="StatusDIM" EntitySet="StatusDIM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripCurrencies_Currencies" Association="Self.FK_TripCurrencies_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="TripCurrencies" EntitySet="TripCurrencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripCurrencies_Trips" Association="Self.FK_TripCurrencies_Trips">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="TripCurrencies" EntitySet="TripCurrencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripPhotos_LanguageDIM" Association="Self.FK_TripPhotos_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="TripPhotos" EntitySet="TripPhotos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripPhotos_Trips" Association="Self.FK_TripPhotos_Trips">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="TripPhotos" EntitySet="TripPhotos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_Countries" Association="Self.FK_Trips_Countries">
+            <End Role="OperatingCountries" EntitySet="OperatingCountries" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_Currencies" Association="Self.FK_Trips_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_LanguageDIM" Association="Self.FK_Trips_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIM" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_Locations" Association="Self.FK_Trips_Locations">
+            <End Role="OperatingLocations" EntitySet="OperatingLocations" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EMAToursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClientPickUpRequest">
+          <Key>
+            <PropertyRef Name="ClientPickUpRequestID" />
+          </Key>
+          <Property Name="ClientPickUpRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientFK" Type="Int32" />
+          <Property Name="ClientVisitFK" Type="Int32" />
+          <Property Name="RequestTypeFK" Type="Int32" />
+          <Property Name="ClientBackFlightTime" Type="DateTime" Precision="3" />
+          <Property Name="ClientDesiredPickupTime" Type="DateTime" Precision="3" />
+          <Property Name="NumberOfMembersPerRequest" Type="Int32" />
+          <Property Name="ClientNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedUserFK" Type="Int32" />
+          <Property Name="AssignTime" Type="DateTime" Precision="3" />
+          <Property Name="StatusFK" Type="Int32" />
+          <Property Name="AssignedUserActionFK" Type="Int32" />
+          <Property Name="AssignedUserActionTime" Type="DateTime" Precision="3" />
+          <Property Name="AssignedUserComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedAgentFK" Type="Int32" />
+          <Property Name="DeterminedPickupTime" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CloseTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientRequestsDIM" Relationship="Self.FK_ClientPickUpRequests_ClientRequestsDIM" FromRole="ClientPickUpRequests" ToRole="ClientRequestsDIM" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_ClientPickUpRequests_Clients" FromRole="ClientPickUpRequests" ToRole="Clients" />
+          <NavigationProperty Name="ClientVisit" Relationship="Self.FK_ClientPickUpRequests_ClientVisits" FromRole="ClientPickUpRequests" ToRole="ClientVisits" />
+          <NavigationProperty Name="EMAUserActionDIM" Relationship="Self.FK_ClientPickUpRequests_EMAUserActionDIM" FromRole="ClientPickUpRequests" ToRole="EMAUserActionDIM" />
+          <NavigationProperty Name="EMAUser" Relationship="Self.FK_ClientPickUpRequests_EMAUsers" FromRole="ClientPickUpRequests" ToRole="EMAUsers" />
+          <NavigationProperty Name="EMAUser1" Relationship="Self.FK_ClientPickUpRequests_EMAUsers1" FromRole="ClientPickUpRequests" ToRole="EMAUsers" />
+          <NavigationProperty Name="StatusDIM" Relationship="Self.FK_ClientPickUpRequests_StatusDIM" FromRole="ClientPickUpRequests" ToRole="StatusDIM" />
+        </EntityType>
+        <EntityType Name="ClientRequestsDIM">
+          <Key>
+            <PropertyRef Name="ClientRequestTypeID" />
+          </Key>
+          <Property Name="ClientRequestTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientRequestName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientPickUpRequests" Relationship="Self.FK_ClientPickUpRequests_ClientRequestsDIM" FromRole="ClientRequestsDIM" ToRole="ClientPickUpRequests" />
+          <NavigationProperty Name="ClientTripRequests" Relationship="Self.FK_ClientTripRequests_ClientRequestsDIM" FromRole="ClientRequestsDIM" ToRole="ClientTripRequests" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_ClientRequestsDIM" FromRole="ClientRequestsDIM" ToRole="Notifications" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <Property Name="ClientCountryFK" Type="Int32" />
+          <Property Name="ClientPreferredNotificationMethodFK" Type="Int32" />
+          <Property Name="ClientPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientDeviceID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientEmail" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="ClientPassportNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientPickUpRequests" Relationship="Self.FK_ClientPickUpRequests_Clients" FromRole="Clients" ToRole="ClientPickUpRequests" />
+          <NavigationProperty Name="CountriesDIM" Relationship="Self.FK_Clients_AllCountries" FromRole="Clients" ToRole="CountriesDIM" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_Clients_LanguageDIM" FromRole="Clients" ToRole="LanguageDIM" />
+          <NavigationProperty Name="NotificationMethodsDIM" Relationship="Self.FK_Clients_NotificationMethodsDIM" FromRole="Clients" ToRole="NotificationMethodsDIM" />
+          <NavigationProperty Name="ClientServicesRatings" Relationship="Self.FK_ClientServicesRating_Clients" FromRole="Clients" ToRole="ClientServicesRating" />
+          <NavigationProperty Name="ClientTripRequests" Relationship="Self.FK_ClientTripRequests_Clients" FromRole="Clients" ToRole="ClientTripRequests" />
+          <NavigationProperty Name="ClientVisits" Relationship="Self.FK_ClientVisits_Clients" FromRole="Clients" ToRole="ClientVisits" />
+        </EntityType>
+        <EntityType Name="ClientServicesRating">
+          <Key>
+            <PropertyRef Name="ClientServiceRatingID" />
+          </Key>
+          <Property Name="ClientServiceRatingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientFK" Type="Int32" />
+          <Property Name="ClientVisitFK" Type="Int32" />
+          <Property Name="ServiceFK" Type="Int32" />
+          <Property Name="RatingScale" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ClientCommentPerService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_ClientServicesRating_Clients" FromRole="ClientServicesRating" ToRole="Clients" />
+          <NavigationProperty Name="ClientVisit" Relationship="Self.FK_ClientServicesRating_ClientVisits" FromRole="ClientServicesRating" ToRole="ClientVisits" />
+          <NavigationProperty Name="EMAService" Relationship="Self.FK_ClientServicesRating_EMAServices" FromRole="ClientServicesRating" ToRole="EMAServices" />
+        </EntityType>
+        <EntityType Name="ClientTripRequest">
+          <Key>
+            <PropertyRef Name="ClientTripRequestID" />
+          </Key>
+          <Property Name="ClientTripRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientFK" Type="Int32" />
+          <Property Name="ClientVisitFK" Type="Int32" />
+          <Property Name="RequestTypeFK" Type="Int32" />
+          <Property Name="TripFK" Type="Int32" />
+          <Property Name="ClientDesiredTripDate" Type="DateTime" Precision="3" />
+          <Property Name="NumberOfAdults" Type="Int32" />
+          <Property Name="NumberOfChildren" Type="Int32" />
+          <Property Name="ClientNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssigneeUserFK" Type="Int32" />
+          <Property Name="StatusFK" Type="Int32" />
+          <Property Name="AssignTime" Type="DateTime" Precision="3" />
+          <Property Name="AssignedUserActionFK" Type="Int32" />
+          <Property Name="AssignedUserActionTime" Type="DateTime" Precision="3" />
+          <Property Name="AssignedUserComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedAgentFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ReachedAgreement" Type="Boolean" />
+          <Property Name="CloseTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientRequestsDIM" Relationship="Self.FK_ClientTripRequests_ClientRequestsDIM" FromRole="ClientTripRequests" ToRole="ClientRequestsDIM" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_ClientTripRequests_Clients" FromRole="ClientTripRequests" ToRole="Clients" />
+          <NavigationProperty Name="ClientVisit" Relationship="Self.FK_ClientTripRequests_ClientVisits" FromRole="ClientTripRequests" ToRole="ClientVisits" />
+          <NavigationProperty Name="EMAUserActionDIM" Relationship="Self.FK_ClientTripRequests_EMAUserActionDIM" FromRole="ClientTripRequests" ToRole="EMAUserActionDIM" />
+          <NavigationProperty Name="EMAUser" Relationship="Self.FK_ClientTripRequests_EMAUsers" FromRole="ClientTripRequests" ToRole="EMAUsers" />
+          <NavigationProperty Name="EMAUser1" Relationship="Self.FK_ClientTripRequests_EMAUsers1" FromRole="ClientTripRequests" ToRole="EMAUsers" />
+          <NavigationProperty Name="StatusDIM" Relationship="Self.FK_ClientTripRequests_StatusDIM" FromRole="ClientTripRequests" ToRole="StatusDIM" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_ClientTripRequests_Trips" FromRole="ClientTripRequests" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="ClientVisit">
+          <Key>
+            <PropertyRef Name="ClientVisitID" />
+          </Key>
+          <Property Name="ClientVisitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientFK" Type="Int32" />
+          <Property Name="OperatingCountryFK" Type="Int32" />
+          <Property Name="OperatingLocationFK" Type="Int32" />
+          <Property Name="ClientHotelName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="VisitStartDate" Type="DateTime" Precision="0" />
+          <Property Name="VisitEndDate" Type="DateTime" Precision="0" />
+          <Property Name="ClientOverallVisitComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="HotelID" Type="Int32" />
+          <NavigationProperty Name="ClientPickUpRequests" Relationship="Self.FK_ClientPickUpRequests_ClientVisits" FromRole="ClientVisits" ToRole="ClientPickUpRequests" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_ClientVisits_Clients" FromRole="ClientVisits" ToRole="Clients" />
+          <NavigationProperty Name="ClientServicesRatings" Relationship="Self.FK_ClientServicesRating_ClientVisits" FromRole="ClientVisits" ToRole="ClientServicesRating" />
+          <NavigationProperty Name="ClientTripRequests" Relationship="Self.FK_ClientTripRequests_ClientVisits" FromRole="ClientVisits" ToRole="ClientTripRequests" />
+          <NavigationProperty Name="OperatingCountry" Relationship="Self.FK_ClientVisits_OperatingCountries" FromRole="ClientVisits" ToRole="OperatingCountries" />
+          <NavigationProperty Name="OperatingLocation" Relationship="Self.FK_ClientVisits_OperatingLocations" FromRole="ClientVisits" ToRole="OperatingLocations" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ConfigurationID" />
+          </Key>
+          <Property Name="ConfigurationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigurationKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfigurationValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LangauageFK" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_Configurations_LanguageDIM" FromRole="Configurations" ToRole="LanguageDIM" />
+        </EntityType>
+        <EntityType Name="CountriesDIM">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Clients_AllCountries" FromRole="CountriesDIM" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyID" />
+          </Key>
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencySign" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <NavigationProperty Name="TripCurrencies" Relationship="Self.FK_TripCurrencies_Currencies" FromRole="Currencies" ToRole="TripCurrencies" />
+          <NavigationProperty Name="Trips" Relationship="Self.FK_Trips_Currencies" FromRole="Currencies" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="EMAService">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LangauageFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientServicesRatings" Relationship="Self.FK_ClientServicesRating_EMAServices" FromRole="EMAServices" ToRole="ClientServicesRating" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_EMAServices_LanguageDIM" FromRole="EMAServices" ToRole="LanguageDIM" />
+        </EntityType>
+        <EntityType Name="EMAUserActionDIM">
+          <Key>
+            <PropertyRef Name="UserActionID" />
+          </Key>
+          <Property Name="UserActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientPickUpRequests" Relationship="Self.FK_ClientPickUpRequests_EMAUserActionDIM" FromRole="EMAUserActionDIM" ToRole="ClientPickUpRequests" />
+          <NavigationProperty Name="ClientTripRequests" Relationship="Self.FK_ClientTripRequests_EMAUserActionDIM" FromRole="EMAUserActionDIM" ToRole="ClientTripRequests" />
+        </EntityType>
+        <EntityType Name="EMAUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="UserTypeFK" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientPickUpRequests" Relationship="Self.FK_ClientPickUpRequests_EMAUsers" FromRole="EMAUsers" ToRole="ClientPickUpRequests" />
+          <NavigationProperty Name="ClientPickUpRequests1" Relationship="Self.FK_ClientPickUpRequests_EMAUsers1" FromRole="EMAUsers" ToRole="ClientPickUpRequests" />
+          <NavigationProperty Name="ClientTripRequests" Relationship="Self.FK_ClientTripRequests_EMAUsers" FromRole="EMAUsers" ToRole="ClientTripRequests" />
+          <NavigationProperty Name="ClientTripRequests1" Relationship="Self.FK_ClientTripRequests_EMAUsers1" FromRole="EMAUsers" ToRole="ClientTripRequests" />
+          <NavigationProperty Name="EMAUserTypesDIM" Relationship="Self.FK_EMAUsers_EMAUserTypesDIM" FromRole="EMAUsers" ToRole="EMAUserTypesDIM" />
+        </EntityType>
+        <EntityType Name="EMAUserTypesDIM">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EMAUsers" Relationship="Self.FK_EMAUsers_EMAUserTypesDIM" FromRole="EMAUserTypesDIM" ToRole="EMAUsers" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <Property Name="OperatingCountryFK" Type="Int32" />
+          <Property Name="OperatingLocationFK" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InternalApplicationText">
+          <Key>
+            <PropertyRef Name="InternalApplicationTextID" />
+          </Key>
+          <Property Name="InternalApplicationTextID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LangugeFK" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SelectorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SelectorIsTageID" Type="Boolean" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_InternalApplicationTexts_LanguageDIM" FromRole="InternalApplicationTexts" ToRole="LanguageDIM" />
+        </EntityType>
+        <EntityType Name="LanguageDIM">
+          <Key>
+            <PropertyRef Name="LanaguageID" />
+          </Key>
+          <Property Name="LanaguageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Clients_LanguageDIM" FromRole="LanguageDIM" ToRole="Clients" />
+          <NavigationProperty Name="Configurations" Relationship="Self.FK_Configurations_LanguageDIM" FromRole="LanguageDIM" ToRole="Configurations" />
+          <NavigationProperty Name="EMAServices" Relationship="Self.FK_EMAServices_LanguageDIM" FromRole="LanguageDIM" ToRole="EMAServices" />
+          <NavigationProperty Name="InternalApplicationTexts" Relationship="Self.FK_InternalApplicationTexts_LanguageDIM" FromRole="LanguageDIM" ToRole="InternalApplicationTexts" />
+          <NavigationProperty Name="OperatingCountries" Relationship="Self.FK_Countries_LanguageDIM" FromRole="LanguageDIM" ToRole="OperatingCountries" />
+          <NavigationProperty Name="OperatingLocations" Relationship="Self.FK_Locations_LanguageDIM" FromRole="LanguageDIM" ToRole="OperatingLocations" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_LanguageDIM" FromRole="LanguageDIM" ToRole="Notifications" />
+          <NavigationProperty Name="StatusDIMs" Relationship="Self.FK_StatusDIM_LanguageDIM" FromRole="LanguageDIM" ToRole="StatusDIM" />
+          <NavigationProperty Name="TripPhotos" Relationship="Self.FK_TripPhotos_LanguageDIM" FromRole="LanguageDIM" ToRole="TripPhotos" />
+          <NavigationProperty Name="Trips" Relationship="Self.FK_Trips_LanguageDIM" FromRole="LanguageDIM" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="LogsDetail">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestFK" Type="Int32" />
+          <Property Name="LogTypeFK" Type="Int32" />
+          <Property Name="UserFK" Type="Int32" />
+          <Property Name="LogTime" Type="DateTime" Precision="3" />
+          <Property Name="OldValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LogsTypesDIM">
+          <Key>
+            <PropertyRef Name="LogTypeID" />
+          </Key>
+          <Property Name="LogTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="NotificationDirectionDIM">
+          <Key>
+            <PropertyRef Name="NotificationDirectionID" />
+          </Key>
+          <Property Name="NotificationDirectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_NotificationDirectionDIM" FromRole="NotificationDirectionDIM" ToRole="Notifications" />
+        </EntityType>
+        <EntityType Name="NotificationMethodsDIM">
+          <Key>
+            <PropertyRef Name="NotificationMethodTypeID" />
+          </Key>
+          <Property Name="NotificationMethodTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationMethodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Clients_NotificationMethodsDIM" FromRole="NotificationMethodsDIM" ToRole="Clients" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_NotificationMethodsDIM" FromRole="NotificationMethodsDIM" ToRole="Notifications" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationDirectionFK" Type="Int32" />
+          <Property Name="SenderFK" Type="Int32" />
+          <Property Name="RecipientFK" Type="Int32" />
+          <Property Name="NotificationMethodFK" Type="Int32" />
+          <Property Name="RequestTypeFK" Type="Int32" />
+          <Property Name="RequestFK" Type="Int32" />
+          <Property Name="IsSent" Type="Boolean" />
+          <Property Name="SentTime" Type="DateTime" Precision="3" />
+          <Property Name="IsReceived" Type="Boolean" />
+          <Property Name="ReceivedTime" Type="DateTime" Precision="3" />
+          <Property Name="IsViewed" Type="Boolean" />
+          <Property Name="ViewedPersonFK" Type="Int32" />
+          <Property Name="ViewedTime" Type="DateTime" Precision="3" />
+          <Property Name="DeviceID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotificationHeader" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NotificationBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotificationLink" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="VisitFK" Type="Int32" />
+          <NavigationProperty Name="ClientRequestsDIM" Relationship="Self.FK_Notifications_ClientRequestsDIM" FromRole="Notifications" ToRole="ClientRequestsDIM" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_Notifications_LanguageDIM" FromRole="Notifications" ToRole="LanguageDIM" />
+          <NavigationProperty Name="NotificationDirectionDIM" Relationship="Self.FK_Notifications_NotificationDirectionDIM" FromRole="Notifications" ToRole="NotificationDirectionDIM" />
+          <NavigationProperty Name="NotificationMethodsDIM" Relationship="Self.FK_Notifications_NotificationMethodsDIM" FromRole="Notifications" ToRole="NotificationMethodsDIM" />
+        </EntityType>
+        <EntityType Name="OperatingCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConutryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientVisits" Relationship="Self.FK_ClientVisits_OperatingCountries" FromRole="OperatingCountries" ToRole="ClientVisits" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_Countries_LanguageDIM" FromRole="OperatingCountries" ToRole="LanguageDIM" />
+          <NavigationProperty Name="OperatingLocations" Relationship="Self.FK_Locations_Countries" FromRole="OperatingCountries" ToRole="OperatingLocations" />
+          <NavigationProperty Name="Trips" Relationship="Self.FK_Trips_Countries" FromRole="OperatingCountries" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="OperatingLocation">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OperatingCountryFK" Type="Int32" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientVisits" Relationship="Self.FK_ClientVisits_OperatingLocations" FromRole="OperatingLocations" ToRole="ClientVisits" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_Locations_LanguageDIM" FromRole="OperatingLocations" ToRole="LanguageDIM" />
+          <NavigationProperty Name="OperatingCountry" Relationship="Self.FK_Locations_Countries" FromRole="OperatingLocations" ToRole="OperatingCountries" />
+          <NavigationProperty Name="Trips" Relationship="Self.FK_Trips_Locations" FromRole="OperatingLocations" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="StatusDIM">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="ClientPickUpRequests" Relationship="Self.FK_ClientPickUpRequests_StatusDIM" FromRole="StatusDIM" ToRole="ClientPickUpRequests" />
+          <NavigationProperty Name="ClientTripRequests" Relationship="Self.FK_ClientTripRequests_StatusDIM" FromRole="StatusDIM" ToRole="ClientTripRequests" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_StatusDIM_LanguageDIM" FromRole="StatusDIM" ToRole="LanguageDIM" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TripCurrency">
+          <Key>
+            <PropertyRef Name="TripCurrencyID" />
+          </Key>
+          <Property Name="TripCurrencyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TripFK" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyFK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_TripCurrencies_Currencies" FromRole="TripCurrencies" ToRole="Currencies" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_TripCurrencies_Trips" FromRole="TripCurrencies" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="TripPhoto">
+          <Key>
+            <PropertyRef Name="TripPhotoID" />
+          </Key>
+          <Property Name="TripPhotoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TripFK" Type="Int32" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <Property Name="PhotoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_TripPhotos_LanguageDIM" FromRole="TripPhotos" ToRole="LanguageDIM" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_TripPhotos_Trips" FromRole="TripPhotos" ToRole="Trips" />
+        </EntityType>
+        <EntityType Name="Trip">
+          <Key>
+            <PropertyRef Name="TripID" />
+          </Key>
+          <Property Name="TripID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TripName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageFK" Type="Int32" />
+          <Property Name="TripShortDesc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TripDetailedDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocationFK" Type="Int32" />
+          <Property Name="CountryFK" Type="Int32" />
+          <Property Name="CurrencyFK" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientTripRequests" Relationship="Self.FK_ClientTripRequests_Trips" FromRole="Trips" ToRole="ClientTripRequests" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_Trips_Currencies" FromRole="Trips" ToRole="Currencies" />
+          <NavigationProperty Name="LanguageDIM" Relationship="Self.FK_Trips_LanguageDIM" FromRole="Trips" ToRole="LanguageDIM" />
+          <NavigationProperty Name="OperatingCountry" Relationship="Self.FK_Trips_Countries" FromRole="Trips" ToRole="OperatingCountries" />
+          <NavigationProperty Name="OperatingLocation" Relationship="Self.FK_Trips_Locations" FromRole="Trips" ToRole="OperatingLocations" />
+          <NavigationProperty Name="TripCurrencies" Relationship="Self.FK_TripCurrencies_Trips" FromRole="Trips" ToRole="TripCurrencies" />
+          <NavigationProperty Name="TripPhotos" Relationship="Self.FK_TripPhotos_Trips" FromRole="Trips" ToRole="TripPhotos" />
+        </EntityType>
+        <Association Name="FK_ClientPickUpRequests_ClientRequestsDIM">
+          <End Role="ClientRequestsDIM" Type="Self.ClientRequestsDIM" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientRequestsDIM">
+              <PropertyRef Name="ClientRequestTypeID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="RequestTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_Clients">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="ClientFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_ClientVisits">
+          <End Role="ClientVisits" Type="Self.ClientVisit" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientVisits">
+              <PropertyRef Name="ClientVisitID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="ClientVisitFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_EMAUserActionDIM">
+          <End Role="EMAUserActionDIM" Type="Self.EMAUserActionDIM" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUserActionDIM">
+              <PropertyRef Name="UserActionID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="AssignedUserActionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_EMAUsers">
+          <End Role="EMAUsers" Type="Self.EMAUser" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="AssignedUserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_EMAUsers1">
+          <End Role="EMAUsers" Type="Self.EMAUser" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="AssignedAgentFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPickUpRequests_StatusDIM">
+          <End Role="StatusDIM" Type="Self.StatusDIM" Multiplicity="0..1" />
+          <End Role="ClientPickUpRequests" Type="Self.ClientPickUpRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusDIM">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ClientPickUpRequests">
+              <PropertyRef Name="StatusFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_ClientRequestsDIM">
+          <End Role="ClientRequestsDIM" Type="Self.ClientRequestsDIM" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientRequestsDIM">
+              <PropertyRef Name="ClientRequestTypeID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="RequestTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_ClientRequestsDIM">
+          <End Role="ClientRequestsDIM" Type="Self.ClientRequestsDIM" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientRequestsDIM">
+              <PropertyRef Name="ClientRequestTypeID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="RequestTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_AllCountries">
+          <End Role="CountriesDIM" Type="Self.CountriesDIM" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountriesDIM">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="ClientCountryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_NotificationMethodsDIM">
+          <End Role="NotificationMethodsDIM" Type="Self.NotificationMethodsDIM" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationMethodsDIM">
+              <PropertyRef Name="NotificationMethodTypeID" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="ClientPreferredNotificationMethodFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientServicesRating_Clients">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="ClientServicesRating" Type="Self.ClientServicesRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientServicesRating">
+              <PropertyRef Name="ClientFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_Clients">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="ClientFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientVisits_Clients">
+          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="ClientVisits" Type="Self.ClientVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="ClientVisits">
+              <PropertyRef Name="ClientFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientServicesRating_ClientVisits">
+          <End Role="ClientVisits" Type="Self.ClientVisit" Multiplicity="0..1" />
+          <End Role="ClientServicesRating" Type="Self.ClientServicesRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientVisits">
+              <PropertyRef Name="ClientVisitID" />
+            </Principal>
+            <Dependent Role="ClientServicesRating">
+              <PropertyRef Name="ClientVisitFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientServicesRating_EMAServices">
+          <End Role="EMAServices" Type="Self.EMAService" Multiplicity="0..1" />
+          <End Role="ClientServicesRating" Type="Self.ClientServicesRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAServices">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="ClientServicesRating">
+              <PropertyRef Name="ServiceFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_ClientVisits">
+          <End Role="ClientVisits" Type="Self.ClientVisit" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientVisits">
+              <PropertyRef Name="ClientVisitID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="ClientVisitFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_EMAUserActionDIM">
+          <End Role="EMAUserActionDIM" Type="Self.EMAUserActionDIM" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUserActionDIM">
+              <PropertyRef Name="UserActionID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="AssignedUserActionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_EMAUsers">
+          <End Role="EMAUsers" Type="Self.EMAUser" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="AssigneeUserFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_EMAUsers1">
+          <End Role="EMAUsers" Type="Self.EMAUser" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="AssignedAgentFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_StatusDIM">
+          <End Role="StatusDIM" Type="Self.StatusDIM" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusDIM">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="StatusFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientTripRequests_Trips">
+          <End Role="Trips" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="ClientTripRequests" Type="Self.ClientTripRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="ClientTripRequests">
+              <PropertyRef Name="TripFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientVisits_OperatingCountries">
+          <End Role="OperatingCountries" Type="Self.OperatingCountry" Multiplicity="0..1" />
+          <End Role="ClientVisits" Type="Self.ClientVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="ClientVisits">
+              <PropertyRef Name="OperatingCountryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientVisits_OperatingLocations">
+          <End Role="OperatingLocations" Type="Self.OperatingLocation" Multiplicity="0..1" />
+          <End Role="ClientVisits" Type="Self.ClientVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingLocations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="ClientVisits">
+              <PropertyRef Name="OperatingLocationFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configurations_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="Configurations" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="Configurations">
+              <PropertyRef Name="LangauageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripCurrencies_Currencies">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="TripCurrencies" Type="Self.TripCurrency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="TripCurrencies">
+              <PropertyRef Name="CurrencyFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_Currencies">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Trips" Type="Self.Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="CurrencyFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMAServices_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="EMAServices" Type="Self.EMAService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="EMAServices">
+              <PropertyRef Name="LangauageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMAUsers_EMAUserTypesDIM">
+          <End Role="EMAUserTypesDIM" Type="Self.EMAUserTypesDIM" Multiplicity="0..1" />
+          <End Role="EMAUsers" Type="Self.EMAUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMAUserTypesDIM">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="EMAUsers">
+              <PropertyRef Name="UserTypeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InternalApplicationTexts_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="InternalApplicationTexts" Type="Self.InternalApplicationText" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="InternalApplicationTexts">
+              <PropertyRef Name="LangugeFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Countries_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="OperatingCountries" Type="Self.OperatingCountry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="OperatingCountries">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locations_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="OperatingLocations" Type="Self.OperatingLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="OperatingLocations">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatusDIM_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="StatusDIM" Type="Self.StatusDIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="StatusDIM">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripPhotos_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="TripPhotos" Type="Self.TripPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="TripPhotos">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_LanguageDIM">
+          <End Role="LanguageDIM" Type="Self.LanguageDIM" Multiplicity="0..1" />
+          <End Role="Trips" Type="Self.Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageDIM">
+              <PropertyRef Name="LanaguageID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_NotificationDirectionDIM">
+          <End Role="NotificationDirectionDIM" Type="Self.NotificationDirectionDIM" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationDirectionDIM">
+              <PropertyRef Name="NotificationDirectionID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="NotificationDirectionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_NotificationMethodsDIM">
+          <End Role="NotificationMethodsDIM" Type="Self.NotificationMethodsDIM" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationMethodsDIM">
+              <PropertyRef Name="NotificationMethodTypeID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="NotificationMethodFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locations_Countries">
+          <End Role="OperatingCountries" Type="Self.OperatingCountry" Multiplicity="0..1" />
+          <End Role="OperatingLocations" Type="Self.OperatingLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="OperatingLocations">
+              <PropertyRef Name="OperatingCountryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_Countries">
+          <End Role="OperatingCountries" Type="Self.OperatingCountry" Multiplicity="0..1" />
+          <End Role="Trips" Type="Self.Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingCountries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="CountryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trips_Locations">
+          <End Role="OperatingLocations" Type="Self.OperatingLocation" Multiplicity="0..1" />
+          <End Role="Trips" Type="Self.Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingLocations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Trips">
+              <PropertyRef Name="LocationFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripCurrencies_Trips">
+          <End Role="Trips" Type="Self.Trip" Multiplicity="1" />
+          <End Role="TripCurrencies" Type="Self.TripCurrency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="TripCurrencies">
+              <PropertyRef Name="TripFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripPhotos_Trips">
+          <End Role="Trips" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="TripPhotos" Type="Self.TripPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trips">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="TripPhotos">
+              <PropertyRef Name="TripFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMAToursEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClientPickUpRequests" EntityType="Self.ClientPickUpRequest" />
+          <EntitySet Name="ClientRequestsDIMs" EntityType="Self.ClientRequestsDIM" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="ClientServicesRatings" EntityType="Self.ClientServicesRating" />
+          <EntitySet Name="ClientTripRequests" EntityType="Self.ClientTripRequest" />
+          <EntitySet Name="ClientVisits" EntityType="Self.ClientVisit" />
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="CountriesDIMs" EntityType="Self.CountriesDIM" />
+          <EntitySet Name="Currencies" EntityType="Self.Currency" />
+          <EntitySet Name="EMAServices" EntityType="Self.EMAService" />
+          <EntitySet Name="EMAUserActionDIMs" EntityType="Self.EMAUserActionDIM" />
+          <EntitySet Name="EMAUsers" EntityType="Self.EMAUser" />
+          <EntitySet Name="EMAUserTypesDIMs" EntityType="Self.EMAUserTypesDIM" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+          <EntitySet Name="InternalApplicationTexts" EntityType="Self.InternalApplicationText" />
+          <EntitySet Name="LanguageDIMs" EntityType="Self.LanguageDIM" />
+          <EntitySet Name="LogsDetails" EntityType="Self.LogsDetail" />
+          <EntitySet Name="LogsTypesDIMs" EntityType="Self.LogsTypesDIM" />
+          <EntitySet Name="NotificationDirectionDIMs" EntityType="Self.NotificationDirectionDIM" />
+          <EntitySet Name="NotificationMethodsDIMs" EntityType="Self.NotificationMethodsDIM" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
+          <EntitySet Name="OperatingCountries" EntityType="Self.OperatingCountry" />
+          <EntitySet Name="OperatingLocations" EntityType="Self.OperatingLocation" />
+          <EntitySet Name="StatusDIMs" EntityType="Self.StatusDIM" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TripCurrencies" EntityType="Self.TripCurrency" />
+          <EntitySet Name="TripPhotos" EntityType="Self.TripPhoto" />
+          <EntitySet Name="Trips" EntityType="Self.Trip" />
+          <AssociationSet Name="FK_ClientPickUpRequests_ClientRequestsDIM" Association="Self.FK_ClientPickUpRequests_ClientRequestsDIM">
+            <End Role="ClientRequestsDIM" EntitySet="ClientRequestsDIMs" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_Clients" Association="Self.FK_ClientPickUpRequests_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_ClientVisits" Association="Self.FK_ClientPickUpRequests_ClientVisits">
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_EMAUserActionDIM" Association="Self.FK_ClientPickUpRequests_EMAUserActionDIM">
+            <End Role="EMAUserActionDIM" EntitySet="EMAUserActionDIMs" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_EMAUsers" Association="Self.FK_ClientPickUpRequests_EMAUsers">
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_EMAUsers1" Association="Self.FK_ClientPickUpRequests_EMAUsers1">
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPickUpRequests_StatusDIM" Association="Self.FK_ClientPickUpRequests_StatusDIM">
+            <End Role="StatusDIM" EntitySet="StatusDIMs" />
+            <End Role="ClientPickUpRequests" EntitySet="ClientPickUpRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_ClientRequestsDIM" Association="Self.FK_ClientTripRequests_ClientRequestsDIM">
+            <End Role="ClientRequestsDIM" EntitySet="ClientRequestsDIMs" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_ClientRequestsDIM" Association="Self.FK_Notifications_ClientRequestsDIM">
+            <End Role="ClientRequestsDIM" EntitySet="ClientRequestsDIMs" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_AllCountries" Association="Self.FK_Clients_AllCountries">
+            <End Role="CountriesDIM" EntitySet="CountriesDIMs" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_LanguageDIM" Association="Self.FK_Clients_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_NotificationMethodsDIM" Association="Self.FK_Clients_NotificationMethodsDIM">
+            <End Role="NotificationMethodsDIM" EntitySet="NotificationMethodsDIMs" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientServicesRating_Clients" Association="Self.FK_ClientServicesRating_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientServicesRating" EntitySet="ClientServicesRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_Clients" Association="Self.FK_ClientTripRequests_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientVisits_Clients" Association="Self.FK_ClientVisits_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientServicesRating_ClientVisits" Association="Self.FK_ClientServicesRating_ClientVisits">
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+            <End Role="ClientServicesRating" EntitySet="ClientServicesRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientServicesRating_EMAServices" Association="Self.FK_ClientServicesRating_EMAServices">
+            <End Role="EMAServices" EntitySet="EMAServices" />
+            <End Role="ClientServicesRating" EntitySet="ClientServicesRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_ClientVisits" Association="Self.FK_ClientTripRequests_ClientVisits">
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_EMAUserActionDIM" Association="Self.FK_ClientTripRequests_EMAUserActionDIM">
+            <End Role="EMAUserActionDIM" EntitySet="EMAUserActionDIMs" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_EMAUsers" Association="Self.FK_ClientTripRequests_EMAUsers">
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_EMAUsers1" Association="Self.FK_ClientTripRequests_EMAUsers1">
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_StatusDIM" Association="Self.FK_ClientTripRequests_StatusDIM">
+            <End Role="StatusDIM" EntitySet="StatusDIMs" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientTripRequests_Trips" Association="Self.FK_ClientTripRequests_Trips">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="ClientTripRequests" EntitySet="ClientTripRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientVisits_OperatingCountries" Association="Self.FK_ClientVisits_OperatingCountries">
+            <End Role="OperatingCountries" EntitySet="OperatingCountries" />
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientVisits_OperatingLocations" Association="Self.FK_ClientVisits_OperatingLocations">
+            <End Role="OperatingLocations" EntitySet="OperatingLocations" />
+            <End Role="ClientVisits" EntitySet="ClientVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configurations_LanguageDIM" Association="Self.FK_Configurations_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="Configurations" EntitySet="Configurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripCurrencies_Currencies" Association="Self.FK_TripCurrencies_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="TripCurrencies" EntitySet="TripCurrencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_Currencies" Association="Self.FK_Trips_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMAServices_LanguageDIM" Association="Self.FK_EMAServices_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="EMAServices" EntitySet="EMAServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMAUsers_EMAUserTypesDIM" Association="Self.FK_EMAUsers_EMAUserTypesDIM">
+            <End Role="EMAUserTypesDIM" EntitySet="EMAUserTypesDIMs" />
+            <End Role="EMAUsers" EntitySet="EMAUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InternalApplicationTexts_LanguageDIM" Association="Self.FK_InternalApplicationTexts_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="InternalApplicationTexts" EntitySet="InternalApplicationTexts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Countries_LanguageDIM" Association="Self.FK_Countries_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="OperatingCountries" EntitySet="OperatingCountries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locations_LanguageDIM" Association="Self.FK_Locations_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="OperatingLocations" EntitySet="OperatingLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_LanguageDIM" Association="Self.FK_Notifications_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatusDIM_LanguageDIM" Association="Self.FK_StatusDIM_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="StatusDIM" EntitySet="StatusDIMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripPhotos_LanguageDIM" Association="Self.FK_TripPhotos_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="TripPhotos" EntitySet="TripPhotos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_LanguageDIM" Association="Self.FK_Trips_LanguageDIM">
+            <End Role="LanguageDIM" EntitySet="LanguageDIMs" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_NotificationDirectionDIM" Association="Self.FK_Notifications_NotificationDirectionDIM">
+            <End Role="NotificationDirectionDIM" EntitySet="NotificationDirectionDIMs" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_NotificationMethodsDIM" Association="Self.FK_Notifications_NotificationMethodsDIM">
+            <End Role="NotificationMethodsDIM" EntitySet="NotificationMethodsDIMs" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locations_Countries" Association="Self.FK_Locations_Countries">
+            <End Role="OperatingCountries" EntitySet="OperatingCountries" />
+            <End Role="OperatingLocations" EntitySet="OperatingLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_Countries" Association="Self.FK_Trips_Countries">
+            <End Role="OperatingCountries" EntitySet="OperatingCountries" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trips_Locations" Association="Self.FK_Trips_Locations">
+            <End Role="OperatingLocations" EntitySet="OperatingLocations" />
+            <End Role="Trips" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripCurrencies_Trips" Association="Self.FK_TripCurrencies_Trips">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="TripCurrencies" EntitySet="TripCurrencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripPhotos_Trips" Association="Self.FK_TripPhotos_Trips">
+            <End Role="Trips" EntitySet="Trips" />
+            <End Role="TripPhotos" EntitySet="TripPhotos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EMAToursModelStoreContainer" CdmEntityContainer="EMAToursEntities">
+          <EntitySetMapping Name="ClientPickUpRequests">
+            <EntityTypeMapping TypeName="EMAToursModel.ClientPickUpRequest">
+              <MappingFragment StoreEntitySet="ClientPickUpRequests">
+                <ScalarProperty Name="ClientPickUpRequestID" ColumnName="ClientPickUpRequestID" />
+                <ScalarProperty Name="ClientFK" ColumnName="ClientFK" />
+                <ScalarProperty Name="ClientVisitFK" ColumnName="ClientVisitFK" />
+                <ScalarProperty Name="RequestTypeFK" ColumnName="RequestTypeFK" />
+                <ScalarProperty Name="ClientBackFlightTime" ColumnName="ClientBackFlightTime" />
+                <ScalarProperty Name="ClientDesiredPickupTime" ColumnName="ClientDesiredPickupTime" />
+                <ScalarProperty Name="NumberOfMembersPerRequest" ColumnName="NumberOfMembersPerRequest" />
+                <ScalarProperty Name="ClientNotes" ColumnName="ClientNotes" />
+                <ScalarProperty Name="AssignedUserFK" ColumnName="AssignedUserFK" />
+                <ScalarProperty Name="AssignTime" ColumnName="AssignTime" />
+                <ScalarProperty Name="StatusFK" ColumnName="StatusFK" />
+                <ScalarProperty Name="AssignedUserActionFK" ColumnName="AssignedUserActionFK" />
+                <ScalarProperty Name="AssignedUserActionTime" ColumnName="AssignedUserActionTime" />
+                <ScalarProperty Name="AssignedUserComment" ColumnName="AssignedUserComment" />
+                <ScalarProperty Name="AssignedAgentFK" ColumnName="AssignedAgentFK" />
+                <ScalarProperty Name="DeterminedPickupTime" ColumnName="DeterminedPickupTime" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientRequestsDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.ClientRequestsDIM">
+              <MappingFragment StoreEntitySet="ClientRequestsDIM">
+                <ScalarProperty Name="ClientRequestTypeID" ColumnName="ClientRequestTypeID" />
+                <ScalarProperty Name="ClientRequestName" ColumnName="ClientRequestName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="EMAToursModel.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+                <ScalarProperty Name="ClientCountryFK" ColumnName="ClientCountryFK" />
+                <ScalarProperty Name="ClientPreferredNotificationMethodFK" ColumnName="ClientPreferredNotificationMethodFK" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="ClientDeviceID" ColumnName="ClientDeviceID" />
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="ClientPassportNumber" ColumnName="ClientPassportNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientServicesRatings">
+            <EntityTypeMapping TypeName="EMAToursModel.ClientServicesRating">
+              <MappingFragment StoreEntitySet="ClientServicesRating">
+                <ScalarProperty Name="ClientServiceRatingID" ColumnName="ClientServiceRatingID" />
+                <ScalarProperty Name="ClientFK" ColumnName="ClientFK" />
+                <ScalarProperty Name="ClientVisitFK" ColumnName="ClientVisitFK" />
+                <ScalarProperty Name="ServiceFK" ColumnName="ServiceFK" />
+                <ScalarProperty Name="RatingScale" ColumnName="RatingScale" />
+                <ScalarProperty Name="ClientCommentPerService" ColumnName="ClientCommentPerService" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientTripRequests">
+            <EntityTypeMapping TypeName="EMAToursModel.ClientTripRequest">
+              <MappingFragment StoreEntitySet="ClientTripRequests">
+                <ScalarProperty Name="ClientTripRequestID" ColumnName="ClientTripRequestID" />
+                <ScalarProperty Name="ClientFK" ColumnName="ClientFK" />
+                <ScalarProperty Name="ClientVisitFK" ColumnName="ClientVisitFK" />
+                <ScalarProperty Name="RequestTypeFK" ColumnName="RequestTypeFK" />
+                <ScalarProperty Name="TripFK" ColumnName="TripFK" />
+                <ScalarProperty Name="ClientDesiredTripDate" ColumnName="ClientDesiredTripDate" />
+                <ScalarProperty Name="NumberOfAdults" ColumnName="NumberOfAdults" />
+                <ScalarProperty Name="NumberOfChildren" ColumnName="NumberOfChildren" />
+                <ScalarProperty Name="ClientNotes" ColumnName="ClientNotes" />
+                <ScalarProperty Name="AssigneeUserFK" ColumnName="AssigneeUserFK" />
+                <ScalarProperty Name="StatusFK" ColumnName="StatusFK" />
+                <ScalarProperty Name="AssignTime" ColumnName="AssignTime" />
+                <ScalarProperty Name="AssignedUserActionFK" ColumnName="AssignedUserActionFK" />
+                <ScalarProperty Name="AssignedUserActionTime" ColumnName="AssignedUserActionTime" />
+                <ScalarProperty Name="AssignedUserComment" ColumnName="AssignedUserComment" />
+                <ScalarProperty Name="AssignedAgentFK" ColumnName="AssignedAgentFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ReachedAgreement" ColumnName="ReachedAgreement" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientVisits">
+            <EntityTypeMapping TypeName="EMAToursModel.ClientVisit">
+              <MappingFragment StoreEntitySet="ClientVisits">
+                <ScalarProperty Name="ClientVisitID" ColumnName="ClientVisitID" />
+                <ScalarProperty Name="ClientFK" ColumnName="ClientFK" />
+                <ScalarProperty Name="OperatingCountryFK" ColumnName="OperatingCountryFK" />
+                <ScalarProperty Name="OperatingLocationFK" ColumnName="OperatingLocationFK" />
+                <ScalarProperty Name="ClientHotelName" ColumnName="ClientHotelName" />
+                <ScalarProperty Name="VisitStartDate" ColumnName="VisitStartDate" />
+                <ScalarProperty Name="VisitEndDate" ColumnName="VisitEndDate" />
+                <ScalarProperty Name="ClientOverallVisitComment" ColumnName="ClientOverallVisitComment" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="EMAToursModel.Configuration">
+              <MappingFragment StoreEntitySet="Configurations">
+                <ScalarProperty Name="ConfigurationID" ColumnName="ConfigurationID" />
+                <ScalarProperty Name="ConfigurationKey" ColumnName="ConfigurationKey" />
+                <ScalarProperty Name="ConfigurationValue" ColumnName="ConfigurationValue" />
+                <ScalarProperty Name="LangauageFK" ColumnName="LangauageFK" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountriesDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.CountriesDIM">
+              <MappingFragment StoreEntitySet="CountriesDIM">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="EMAToursModel.Currency">
+              <MappingFragment StoreEntitySet="Currencies">
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="CurrencySign" ColumnName="CurrencySign" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMAServices">
+            <EntityTypeMapping TypeName="EMAToursModel.EMAService">
+              <MappingFragment StoreEntitySet="EMAServices">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="LangauageFK" ColumnName="LangauageFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMAUserActionDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.EMAUserActionDIM">
+              <MappingFragment StoreEntitySet="EMAUserActionDIM">
+                <ScalarProperty Name="UserActionID" ColumnName="UserActionID" />
+                <ScalarProperty Name="UserActionName" ColumnName="UserActionName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMAUsers">
+            <EntityTypeMapping TypeName="EMAToursModel.EMAUser">
+              <MappingFragment StoreEntitySet="EMAUsers">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserTypeFK" ColumnName="UserTypeFK" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMAUserTypesDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.EMAUserTypesDIM">
+              <MappingFragment StoreEntitySet="EMAUserTypesDIM">
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="EMAToursModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotels">
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+                <ScalarProperty Name="OperatingCountryFK" ColumnName="OperatingCountryFK" />
+                <ScalarProperty Name="OperatingLocationFK" ColumnName="OperatingLocationFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InternalApplicationTexts">
+            <EntityTypeMapping TypeName="EMAToursModel.InternalApplicationText">
+              <MappingFragment StoreEntitySet="InternalApplicationTexts">
+                <ScalarProperty Name="InternalApplicationTextID" ColumnName="InternalApplicationTextID" />
+                <ScalarProperty Name="LangugeFK" ColumnName="LangugeFK" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="SelectorName" ColumnName="SelectorName" />
+                <ScalarProperty Name="SelectorIsTageID" ColumnName="SelectorIsTageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LanguageDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.LanguageDIM">
+              <MappingFragment StoreEntitySet="LanguageDIM">
+                <ScalarProperty Name="LanaguageID" ColumnName="LanaguageID" />
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogsDetails">
+            <EntityTypeMapping TypeName="EMAToursModel.LogsDetail">
+              <MappingFragment StoreEntitySet="LogsDetails">
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="RequestFK" ColumnName="RequestFK" />
+                <ScalarProperty Name="LogTypeFK" ColumnName="LogTypeFK" />
+                <ScalarProperty Name="UserFK" ColumnName="UserFK" />
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogsTypesDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.LogsTypesDIM">
+              <MappingFragment StoreEntitySet="LogsTypesDIM">
+                <ScalarProperty Name="LogTypeID" ColumnName="LogTypeID" />
+                <ScalarProperty Name="LogTypeName" ColumnName="LogTypeName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationDirectionDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.NotificationDirectionDIM">
+              <MappingFragment StoreEntitySet="NotificationDirectionDIM">
+                <ScalarProperty Name="NotificationDirectionID" ColumnName="NotificationDirectionID" />
+                <ScalarProperty Name="NotificationName" ColumnName="NotificationName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationMethodsDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.NotificationMethodsDIM">
+              <MappingFragment StoreEntitySet="NotificationMethodsDIM">
+                <ScalarProperty Name="NotificationMethodTypeID" ColumnName="NotificationMethodTypeID" />
+                <ScalarProperty Name="NotificationMethodName" ColumnName="NotificationMethodName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="EMAToursModel.Notification">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+                <ScalarProperty Name="NotificationDirectionFK" ColumnName="NotificationDirectionFK" />
+                <ScalarProperty Name="SenderFK" ColumnName="SenderFK" />
+                <ScalarProperty Name="RecipientFK" ColumnName="RecipientFK" />
+                <ScalarProperty Name="NotificationMethodFK" ColumnName="NotificationMethodFK" />
+                <ScalarProperty Name="RequestTypeFK" ColumnName="RequestTypeFK" />
+                <ScalarProperty Name="RequestFK" ColumnName="RequestFK" />
+                <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+                <ScalarProperty Name="SentTime" ColumnName="SentTime" />
+                <ScalarProperty Name="IsReceived" ColumnName="IsReceived" />
+                <ScalarProperty Name="ReceivedTime" ColumnName="ReceivedTime" />
+                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
+                <ScalarProperty Name="ViewedPersonFK" ColumnName="ViewedPersonFK" />
+                <ScalarProperty Name="ViewedTime" ColumnName="ViewedTime" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="NotificationHeader" ColumnName="NotificationHeader" />
+                <ScalarProperty Name="NotificationBody" ColumnName="NotificationBody" />
+                <ScalarProperty Name="NotificationLink" ColumnName="NotificationLink" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="VisitFK" ColumnName="VisitFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperatingCountries">
+            <EntityTypeMapping TypeName="EMAToursModel.OperatingCountry">
+              <MappingFragment StoreEntitySet="OperatingCountries">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ConutryName" ColumnName="ConutryName" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperatingLocations">
+            <EntityTypeMapping TypeName="EMAToursModel.OperatingLocation">
+              <MappingFragment StoreEntitySet="OperatingLocations">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="OperatingCountryFK" ColumnName="OperatingCountryFK" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusDIMs">
+            <EntityTypeMapping TypeName="EMAToursModel.StatusDIM">
+              <MappingFragment StoreEntitySet="StatusDIM">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EMAToursModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TripCurrencies">
+            <EntityTypeMapping TypeName="EMAToursModel.TripCurrency">
+              <MappingFragment StoreEntitySet="TripCurrencies">
+                <ScalarProperty Name="TripCurrencyID" ColumnName="TripCurrencyID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="TripFK" ColumnName="TripFK" />
+                <ScalarProperty Name="CurrencyFK" ColumnName="CurrencyFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TripPhotos">
+            <EntityTypeMapping TypeName="EMAToursModel.TripPhoto">
+              <MappingFragment StoreEntitySet="TripPhotos">
+                <ScalarProperty Name="TripPhotoID" ColumnName="TripPhotoID" />
+                <ScalarProperty Name="TripFK" ColumnName="TripFK" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+                <ScalarProperty Name="PhotoName" ColumnName="PhotoName" />
+                <ScalarProperty Name="PhotoInfo" ColumnName="PhotoInfo" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trips">
+            <EntityTypeMapping TypeName="EMAToursModel.Trip">
+              <MappingFragment StoreEntitySet="Trips">
+                <ScalarProperty Name="TripID" ColumnName="TripID" />
+                <ScalarProperty Name="TripName" ColumnName="TripName" />
+                <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
+                <ScalarProperty Name="TripShortDesc" ColumnName="TripShortDesc" />
+                <ScalarProperty Name="TripDetailedDesc" ColumnName="TripDetailedDesc" />
+                <ScalarProperty Name="LocationFK" ColumnName="LocationFK" />
+                <ScalarProperty Name="CountryFK" ColumnName="CountryFK" />
+                <ScalarProperty Name="CurrencyFK" ColumnName="CurrencyFK" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

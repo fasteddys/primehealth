@@ -1,0 +1,2153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhNetworkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CallCenterAppUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="MACAddress" Type="nvarchar(max)" />
+          <Property Name="IsFirstLogin" Type="bit" />
+          <Property Name="PcName" Type="nvarchar" MaxLength="70" />
+          <Property Name="DoctorCategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_AttachmentTypeDIM">
+          <Key>
+            <PropertyRef Name="AttachmentTypeID" />
+          </Key>
+          <Property Name="AttachmentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttachmentTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_Configrations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConfigrationKey" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Configration" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_DemandedDrugsDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrugID" Type="int" />
+          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="DrugName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="UnitQuantity" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="DemandedQuantity" Type="int" />
+          <Property Name="TotalPrice" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsDrugList" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_DrugsListDIM">
+          <Key>
+            <PropertyRef Name="DrugID" />
+          </Key>
+          <Property Name="DrugID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrugName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Quaninty" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UnitQuaninty" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_FailedTransactions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogDetails" Type="nvarchar(max)" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="200" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="200" />
+          <Property Name="MethodName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LogDate" Type="datetime" />
+          <Property Name="ErrorSource" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_Inovices">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="MedicalID" Type="bigint" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProviderType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Diagnose" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GrandTotal" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="CoInsuranceValue" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+          <Property Name="ClaimNumber" Type="bigint" Nullable="false" />
+          <Property Name="IVRNumber" Type="bigint" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="RequestCloseTime" Type="datetime" />
+          <Property Name="AssignedUser" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_LoginKeys">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProviderID" Type="int" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ProviderTypeID" Type="int" Nullable="false" />
+          <Property Name="GenerationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_LogsDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestID" Type="int" />
+          <Property Name="LogTime" Type="datetime" />
+          <Property Name="OldValue" Type="nvarchar(max)" />
+          <Property Name="NewValue" Type="nvarchar(max)" />
+          <Property Name="LogTypeID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="300" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_LogTypeDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_ProviderTypeDIM">
+          <Key>
+            <PropertyRef Name="ProviderTypeID" />
+          </Key>
+          <Property Name="ProviderTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProviderTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestAttachment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestDetailsID" Type="int" />
+          <Property Name="AttachmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AttachmentPath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="AttachmentTypeID" Type="int" Nullable="false" />
+          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="IsBackUpTaken" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestDetails">
+          <Key>
+            <PropertyRef Name="RequestDetailsID" />
+          </Key>
+          <Property Name="RequestDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="RequestDetailsTypeID" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="DetailsDate" Type="datetime" Nullable="false" />
+          <Property Name="Delivered" Type="bit" Nullable="false" />
+          <Property Name="Seen" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestDetailsTypeDIM">
+          <Key>
+            <PropertyRef Name="RequestDetailsTypeID" />
+          </Key>
+          <Property Name="RequestDetailsTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestDetailsTypeName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_Requests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProviderID" Type="int" />
+          <Property Name="ProviderTypeID" Type="int" />
+          <Property Name="MedicalID" Type="bigint" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ClaimNumber" Type="bigint" />
+          <Property Name="ClaimDate" Type="date" />
+          <Property Name="CoInsurancePercentage" Type="int" />
+          <Property Name="Diagnose" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="RequestCreationTime" Type="datetime" />
+          <Property Name="RequestStatusID" Type="int" />
+          <Property Name="IsFinnacialApproval" Type="bit" />
+          <Property Name="IsMedicalApproval" Type="bit" />
+          <Property Name="IVRNumber" Type="bigint" />
+          <Property Name="Delivered" Type="bit" />
+          <Property Name="Seen" Type="bit" />
+          <Property Name="SeenByUserID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="RequestTypeID" Type="int" />
+          <Property Name="CallCenterAssignee" Type="nvarchar" MaxLength="100" />
+          <Property Name="CloseTime" Type="datetime" />
+          <Property Name="TotalPayments" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="TotalApprovalPrice" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="TotalMemberpays" Type="decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestStatusDIM">
+          <Key>
+            <PropertyRef Name="RequestSatsusID" />
+          </Key>
+          <Property Name="RequestSatsusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestStatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestTypeDIM">
+          <Key>
+            <PropertyRef Name="RequestTypeID" />
+          </Key>
+          <Property Name="RequestTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PharmacyTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PharmName" Type="nvarchar(max)" />
+          <Property Name="PharmAddressCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PharmAddress" Type="nvarchar(max)" />
+          <Property Name="LocID" Type="int" />
+          <Property Name="PharmSublocationName" Type="nvarchar(max)" />
+          <Property Name="PharmPhone" Type="nvarchar(max)" />
+          <Property Name="PharmPhone1" Type="nvarchar(max)" />
+          <Property Name="PharmPhone2" Type="nvarchar(max)" />
+          <Property Name="PharmPhone3" Type="nvarchar(max)" />
+          <Property Name="PharmNotes" Type="nvarchar(max)" />
+          <Property Name="PharmLong" Type="nvarchar(max)" />
+          <Property Name="PharmLat" Type="nvarchar(max)" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="nvarchar" MaxLength="80" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="IsDefaultPassowrd" Type="bit" />
+          <Property Name="IsOnline" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Logs_CallCenterAppUser1_OnlineApproval">
+          <End Role="CallCenterAppUser" Type="Self.CallCenterAppUser" Multiplicity="0..1" />
+          <End Role="OnlineApprovals_LogsDetails" Type="Self.OnlineApprovals_LogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CallCenterAppUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LogsDetails">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_EmailApprovalRequests_OnlineApproval">
+          <End Role="OnlineApprovals_Requests" Type="Self.OnlineApprovals_Requests" Multiplicity="0..1" />
+          <End Role="OnlineApprovals_LogsDetails" Type="Self.OnlineApprovals_LogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LogsDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_LogTypeDIM_OnlineApproval">
+          <End Role="OnlineApprovals_LogTypeDIM" Type="Self.OnlineApprovals_LogTypeDIM" Multiplicity="1" />
+          <End Role="OnlineApprovals_LogsDetails" Type="Self.OnlineApprovals_LogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_LogTypeDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LogsDetails">
+              <PropertyRef Name="LogTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM">
+          <End Role="OnlineApprovals_DrugsListDIM" Type="Self.OnlineApprovals_DrugsListDIM" Multiplicity="0..1" />
+          <End Role="OnlineApprovals_DemandedDrugsDetails" Type="Self.OnlineApprovals_DemandedDrugsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_DrugsListDIM">
+              <PropertyRef Name="DrugID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_DemandedDrugsDetails">
+              <PropertyRef Name="DrugID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests">
+          <End Role="OnlineApprovals_Requests" Type="Self.OnlineApprovals_Requests" Multiplicity="1" />
+          <End Role="OnlineApprovals_DemandedDrugsDetails" Type="Self.OnlineApprovals_DemandedDrugsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_DemandedDrugsDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices">
+          <End Role="OnlineApprovals_Requests" Type="Self.OnlineApprovals_Requests" Multiplicity="1" />
+          <End Role="OnlineApprovals_Inovices" Type="Self.OnlineApprovals_Inovices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_Inovices">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM">
+          <End Role="OnlineApprovals_AttachmentTypeDIM" Type="Self.OnlineApprovals_AttachmentTypeDIM" Multiplicity="1" />
+          <End Role="OnlineApprovals_RequestAttachment" Type="Self.OnlineApprovals_RequestAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_AttachmentTypeDIM">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestAttachment">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment">
+          <End Role="OnlineApprovals_Requests" Type="Self.OnlineApprovals_Requests" Multiplicity="1" />
+          <End Role="OnlineApprovals_RequestAttachment" Type="Self.OnlineApprovals_RequestAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestAttachment">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails">
+          <End Role="OnlineApprovals_RequestDetails" Type="Self.OnlineApprovals_RequestDetails" Multiplicity="0..1" />
+          <End Role="OnlineApprovals_RequestAttachment" Type="Self.OnlineApprovals_RequestAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_RequestDetails">
+              <PropertyRef Name="RequestDetailsID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestAttachment">
+              <PropertyRef Name="RequestDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM">
+          <End Role="OnlineApprovals_RequestDetailsTypeDIM" Type="Self.OnlineApprovals_RequestDetailsTypeDIM" Multiplicity="1" />
+          <End Role="OnlineApprovals_RequestDetails" Type="Self.OnlineApprovals_RequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_RequestDetailsTypeDIM">
+              <PropertyRef Name="RequestDetailsTypeID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestDetails">
+              <PropertyRef Name="RequestDetailsTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests">
+          <End Role="OnlineApprovals_Requests" Type="Self.OnlineApprovals_Requests" Multiplicity="1" />
+          <End Role="OnlineApprovals_RequestDetails" Type="Self.OnlineApprovals_RequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM">
+          <End Role="OnlineApprovals_ProviderTypeDIM" Type="Self.OnlineApprovals_ProviderTypeDIM" Multiplicity="1" />
+          <End Role="OnlineApprovals_LoginKeys" Type="Self.OnlineApprovals_LoginKeys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_ProviderTypeDIM">
+              <PropertyRef Name="ProviderTypeID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LoginKeys">
+              <PropertyRef Name="ProviderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovalsLoginKeys_PharmacyTB">
+          <End Role="PharmacyTB" Type="Self.PharmacyTB" Multiplicity="1" />
+          <End Role="OnlineApprovals_LoginKeys" Type="Self.OnlineApprovals_LoginKeys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PharmacyTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LoginKeys">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_MyOnlineApprovals_CountRequestsByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StatusID" Type="int" Mode="In" />
+          <Parameter Name="DoctorAssignee" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_MyOnlineApprovals_RequestsByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StatusID" Type="int" Mode="In" />
+          <Parameter Name="DoctorAssignee" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_ClaimsPerCurrentMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="providerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_CountRequestsByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StatusID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_CountRequestsByStatusAndProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="providerID" Type="int" Mode="In" />
+          <Parameter Name="StatusID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_CountTotalRequestsByProviderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="providerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_InovicesByInvoiceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InvoiceID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_InovicesByMedicalID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MedicalID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_InovicesByRequestID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RequestID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_RequestsByprovider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="providerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_RequestsByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StatusID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_RequestsByStatusAndProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="providerID" Type="int" Mode="In" />
+          <Parameter Name="StatusID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovals_Total_Members" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP_OnlineApprovals_Total Members">
+          <Parameter Name="providerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OnlineApprovalsSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MemberName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClientName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClaimNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Diagnose" Type="nvarchar" Mode="In" />
+          <Parameter Name="RequestCreationTime" Type="nvarchar" Mode="In" />
+          <Parameter Name="CloseTime" Type="nvarchar" Mode="In" />
+          <Parameter Name="IVRNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="RequestTypeID" Type="nvarchar" Mode="In" />
+          <Parameter Name="RequestStatusID" Type="nvarchar" Mode="In" />
+          <Parameter Name="DrugName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Provider_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Select_OnlineApprovalByAccountID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Select_OnlineApprovalsAttachment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Select_OnlineApprovalsDemandDrugs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RequestID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Select_OnlineApprovalsDrugList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Select_OnlineApprovalsProvidersByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Select_OnlineApprovalsRequestDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Select_OnlineApprovalsRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="PhNetworkModelStoreContainer">
+          <EntitySet Name="CallCenterAppUser" EntityType="Self.CallCenterAppUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_AttachmentTypeDIM" EntityType="Self.OnlineApprovals_AttachmentTypeDIM" Schema="dbo" Table="OnlineApprovals.AttachmentTypeDIM" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_Configrations" EntityType="Self.OnlineApprovals_Configrations" Schema="dbo" Table="OnlineApprovals.Configrations" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_DemandedDrugsDetails" EntityType="Self.OnlineApprovals_DemandedDrugsDetails" Schema="dbo" Table="OnlineApprovals.DemandedDrugsDetails" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_DrugsListDIM" EntityType="Self.OnlineApprovals_DrugsListDIM" Schema="dbo" Table="OnlineApprovals.DrugsListDIM" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_FailedTransactions" EntityType="Self.OnlineApprovals_FailedTransactions" Schema="dbo" Table="OnlineApprovals.FailedTransactions" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_Inovices" EntityType="Self.OnlineApprovals_Inovices" Schema="dbo" Table="OnlineApprovals.Inovices" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_LoginKeys" EntityType="Self.OnlineApprovals_LoginKeys" Schema="dbo" Table="OnlineApprovals.LoginKeys" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_LogsDetails" EntityType="Self.OnlineApprovals_LogsDetails" Schema="dbo" Table="OnlineApprovals.LogsDetails" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_LogTypeDIM" EntityType="Self.OnlineApprovals_LogTypeDIM" Schema="dbo" Table="OnlineApprovals.LogTypeDIM" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_ProviderTypeDIM" EntityType="Self.OnlineApprovals_ProviderTypeDIM" Schema="dbo" Table="OnlineApprovals.ProviderTypeDIM" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_RequestAttachment" EntityType="Self.OnlineApprovals_RequestAttachment" Schema="dbo" Table="OnlineApprovals.RequestAttachment" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_RequestDetails" EntityType="Self.OnlineApprovals_RequestDetails" Schema="dbo" Table="OnlineApprovals.RequestDetails" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_RequestDetailsTypeDIM" EntityType="Self.OnlineApprovals_RequestDetailsTypeDIM" Schema="dbo" Table="OnlineApprovals.RequestDetailsTypeDIM" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_Requests" EntityType="Self.OnlineApprovals_Requests" Schema="dbo" Table="OnlineApprovals.Requests" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_RequestStatusDIM" EntityType="Self.OnlineApprovals_RequestStatusDIM" Schema="dbo" Table="OnlineApprovals.RequestStatusDIM" store:Type="Tables" />
+          <EntitySet Name="OnlineApprovals_RequestTypeDIM" EntityType="Self.OnlineApprovals_RequestTypeDIM" Schema="dbo" Table="OnlineApprovals.RequestTypeDIM" store:Type="Tables" />
+          <EntitySet Name="PharmacyTB" EntityType="Self.PharmacyTB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Logs_CallCenterAppUser1_OnlineApproval" Association="Self.FK_Logs_CallCenterAppUser1_OnlineApproval">
+            <End Role="CallCenterAppUser" EntitySet="CallCenterAppUser" />
+            <End Role="OnlineApprovals_LogsDetails" EntitySet="OnlineApprovals_LogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_EmailApprovalRequests_OnlineApproval" Association="Self.FK_Logs_EmailApprovalRequests_OnlineApproval">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_LogsDetails" EntitySet="OnlineApprovals_LogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_LogTypeDIM_OnlineApproval" Association="Self.FK_Logs_LogTypeDIM_OnlineApproval">
+            <End Role="OnlineApprovals_LogTypeDIM" EntitySet="OnlineApprovals_LogTypeDIM" />
+            <End Role="OnlineApprovals_LogsDetails" EntitySet="OnlineApprovals_LogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM" Association="Self.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM">
+            <End Role="OnlineApprovals_DrugsListDIM" EntitySet="OnlineApprovals_DrugsListDIM" />
+            <End Role="OnlineApprovals_DemandedDrugsDetails" EntitySet="OnlineApprovals_DemandedDrugsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests" Association="Self.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_DemandedDrugsDetails" EntitySet="OnlineApprovals_DemandedDrugsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices" Association="Self.FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_Inovices" EntitySet="OnlineApprovals_Inovices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM" Association="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM">
+            <End Role="OnlineApprovals_AttachmentTypeDIM" EntitySet="OnlineApprovals_AttachmentTypeDIM" />
+            <End Role="OnlineApprovals_RequestAttachment" EntitySet="OnlineApprovals_RequestAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment" Association="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_RequestAttachment" EntitySet="OnlineApprovals_RequestAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails" Association="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails">
+            <End Role="OnlineApprovals_RequestDetails" EntitySet="OnlineApprovals_RequestDetails" />
+            <End Role="OnlineApprovals_RequestAttachment" EntitySet="OnlineApprovals_RequestAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM" Association="Self.FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM">
+            <End Role="OnlineApprovals_RequestDetailsTypeDIM" EntitySet="OnlineApprovals_RequestDetailsTypeDIM" />
+            <End Role="OnlineApprovals_RequestDetails" EntitySet="OnlineApprovals_RequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests" Association="Self.FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_RequestDetails" EntitySet="OnlineApprovals_RequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM" Association="Self.FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM">
+            <End Role="OnlineApprovals_ProviderTypeDIM" EntitySet="OnlineApprovals_ProviderTypeDIM" />
+            <End Role="OnlineApprovals_LoginKeys" EntitySet="OnlineApprovals_LoginKeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovalsLoginKeys_PharmacyTB" Association="Self.FK_OnlineApprovalsLoginKeys_PharmacyTB">
+            <End Role="PharmacyTB" EntitySet="PharmacyTB" />
+            <End Role="OnlineApprovals_LoginKeys" EntitySet="OnlineApprovals_LoginKeys" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhNetworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CallCenterAppUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="MACAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsFirstLogin" Type="Boolean" />
+          <Property Name="PcName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorCategoryID" Type="Int32" />
+          <NavigationProperty Name="OnlineApprovals_LogsDetails" Relationship="Self.FK_Logs_CallCenterAppUser1_OnlineApproval" FromRole="CallCenterAppUser" ToRole="OnlineApprovals_LogsDetails" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_AttachmentTypeDIM">
+          <Key>
+            <PropertyRef Name="AttachmentTypeID" />
+          </Key>
+          <Property Name="AttachmentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttachmentTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="OnlineApprovals_RequestAttachment" Relationship="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM" FromRole="OnlineApprovals_AttachmentTypeDIM" ToRole="OnlineApprovals_RequestAttachment" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_Configrations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigrationKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Configration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_DemandedDrugsDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrugID" Type="Int32" />
+          <Property Name="RequestID" Type="Int32" Nullable="false" />
+          <Property Name="DrugName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitQuantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="DemandedQuantity" Type="Int32" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsDrugList" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OnlineApprovals_DrugsListDIM" Relationship="Self.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM" FromRole="OnlineApprovals_DemandedDrugsDetails" ToRole="OnlineApprovals_DrugsListDIM" />
+          <NavigationProperty Name="OnlineApprovals_Requests" Relationship="PhNetworkModel.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests" FromRole="OnlineApprovals_DemandedDrugsDetails" ToRole="OnlineApprovals_Requests" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_DrugsListDIM">
+          <Key>
+            <PropertyRef Name="DrugID" />
+          </Key>
+          <Property Name="DrugID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrugName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quaninty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitQuaninty" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OnlineApprovals_DemandedDrugsDetails" Relationship="Self.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM" FromRole="OnlineApprovals_DrugsListDIM" ToRole="OnlineApprovals_DemandedDrugsDetails" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_FailedTransactions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ClassName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MethodName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LogDate" Type="DateTime" Precision="3" />
+          <Property Name="ErrorSource" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_Inovices">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestID" Type="Int32" Nullable="false" />
+          <Property Name="MedicalID" Type="Int64" Nullable="false" />
+          <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Diagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GrandTotal" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="CoInsuranceValue" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClaimNumber" Type="Int64" Nullable="false" />
+          <Property Name="IVRNumber" Type="Int64" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestCloseTime" Type="DateTime" Precision="3" />
+          <Property Name="AssignedUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OnlineApprovals_Requests" Relationship="PhNetworkModel.FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices" FromRole="OnlineApprovals_Inovices" ToRole="OnlineApprovals_Requests" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_LoginKeys">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProviderID" Type="Int32" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ProviderTypeID" Type="Int32" Nullable="false" />
+          <Property Name="GenerationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OnlineApprovals_ProviderTypeDIM" Relationship="Self.FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM" FromRole="OnlineApprovals_LoginKeys" ToRole="OnlineApprovals_ProviderTypeDIM" />
+          <NavigationProperty Name="PharmacyTB" Relationship="Self.FK_OnlineApprovalsLoginKeys_PharmacyTB" FromRole="OnlineApprovals_LoginKeys" ToRole="PharmacyTB" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_LogsDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestID" Type="Int32" />
+          <Property Name="LogTime" Type="DateTime" Precision="3" />
+          <Property Name="OldValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogTypeID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CallCenterAppUser" Relationship="Self.FK_Logs_CallCenterAppUser1_OnlineApproval" FromRole="OnlineApprovals_LogsDetails" ToRole="CallCenterAppUser" />
+          <NavigationProperty Name="OnlineApprovals_LogTypeDIM" Relationship="Self.FK_Logs_LogTypeDIM_OnlineApproval" FromRole="OnlineApprovals_LogsDetails" ToRole="OnlineApprovals_LogTypeDIM" />
+          <NavigationProperty Name="OnlineApprovals_Requests" Relationship="PhNetworkModel.FK_Logs_EmailApprovalRequests_OnlineApproval" FromRole="OnlineApprovals_LogsDetails" ToRole="OnlineApprovals_Requests" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_LogTypeDIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OnlineApprovals_LogsDetails" Relationship="Self.FK_Logs_LogTypeDIM_OnlineApproval" FromRole="OnlineApprovals_LogTypeDIM" ToRole="OnlineApprovals_LogsDetails" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_ProviderTypeDIM">
+          <Key>
+            <PropertyRef Name="ProviderTypeID" />
+          </Key>
+          <Property Name="ProviderTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProviderTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="OnlineApprovals_LoginKeys" Relationship="Self.FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM" FromRole="OnlineApprovals_ProviderTypeDIM" ToRole="OnlineApprovals_LoginKeys" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestAttachment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestDetailsID" Type="Int32" />
+          <Property Name="AttachmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttachmentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="AttachmentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="RequestID" Type="Int32" Nullable="false" />
+          <Property Name="IsBackUpTaken" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OnlineApprovals_AttachmentTypeDIM" Relationship="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM" FromRole="OnlineApprovals_RequestAttachment" ToRole="OnlineApprovals_AttachmentTypeDIM" />
+          <NavigationProperty Name="OnlineApprovals_RequestDetails" Relationship="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails" FromRole="OnlineApprovals_RequestAttachment" ToRole="OnlineApprovals_RequestDetails" />
+          <NavigationProperty Name="OnlineApprovals_Requests" Relationship="PhNetworkModel.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment" FromRole="OnlineApprovals_RequestAttachment" ToRole="OnlineApprovals_Requests" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestDetails">
+          <Key>
+            <PropertyRef Name="RequestDetailsID" />
+          </Key>
+          <Property Name="RequestDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestID" Type="Int32" Nullable="false" />
+          <Property Name="RequestDetailsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DetailsDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Delivered" Type="Boolean" Nullable="false" />
+          <Property Name="Seen" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OnlineApprovals_RequestAttachment" Relationship="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails" FromRole="OnlineApprovals_RequestDetails" ToRole="OnlineApprovals_RequestAttachment" />
+          <NavigationProperty Name="OnlineApprovals_RequestDetailsTypeDIM" Relationship="Self.FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM" FromRole="OnlineApprovals_RequestDetails" ToRole="OnlineApprovals_RequestDetailsTypeDIM" />
+          <NavigationProperty Name="OnlineApprovals_Requests" Relationship="PhNetworkModel.FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests" FromRole="OnlineApprovals_RequestDetails" ToRole="OnlineApprovals_Requests" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestDetailsTypeDIM">
+          <Key>
+            <PropertyRef Name="RequestDetailsTypeID" />
+          </Key>
+          <Property Name="RequestDetailsTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestDetailsTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OnlineApprovals_RequestDetails" Relationship="Self.FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM" FromRole="OnlineApprovals_RequestDetailsTypeDIM" ToRole="OnlineApprovals_RequestDetails" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_Requests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProviderID" Type="Int32" />
+          <Property Name="ProviderTypeID" Type="Int32" />
+          <Property Name="MedicalID" Type="Int64" />
+          <Property Name="MemberName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimNumber" Type="Int64" />
+          <Property Name="ClaimDate" Type="DateTime" Precision="0" />
+          <Property Name="CoInsurancePercentage" Type="Int32" />
+          <Property Name="Diagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestCreationTime" Type="DateTime" Precision="3" />
+          <Property Name="RequestStatusID" Type="Int32" />
+          <Property Name="IsFinnacialApproval" Type="Boolean" />
+          <Property Name="IsMedicalApproval" Type="Boolean" />
+          <Property Name="IVRNumber" Type="Int64" />
+          <Property Name="Delivered" Type="Boolean" />
+          <Property Name="Seen" Type="Boolean" />
+          <Property Name="SeenByUserID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="RequestTypeID" Type="Int32" />
+          <Property Name="CallCenterAssignee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CloseTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OnlineApprovals_DemandedDrugsDetails" Relationship="Self.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests" FromRole="OnlineApprovals_Requests" ToRole="OnlineApprovals_DemandedDrugsDetails" />
+          <NavigationProperty Name="OnlineApprovals_Inovices" Relationship="Self.FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices" FromRole="OnlineApprovals_Requests" ToRole="OnlineApprovals_Inovices" />
+          <NavigationProperty Name="OnlineApprovals_LogsDetails" Relationship="Self.FK_Logs_EmailApprovalRequests_OnlineApproval" FromRole="OnlineApprovals_Requests" ToRole="OnlineApprovals_LogsDetails" />
+          <NavigationProperty Name="OnlineApprovals_RequestAttachment" Relationship="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment" FromRole="OnlineApprovals_Requests" ToRole="OnlineApprovals_RequestAttachment" />
+          <NavigationProperty Name="OnlineApprovals_RequestDetails" Relationship="Self.FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests" FromRole="OnlineApprovals_Requests" ToRole="OnlineApprovals_RequestDetails" />
+          <Property Name="TotalPayments" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="TotalApprovalPrice" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="TotalMemberpays" Type="Decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="OnlineApprovals_RequestStatusDIM">
+          <Key>
+            <PropertyRef Name="RequestSatsusID" />
+          </Key>
+          <Property Name="RequestSatsusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PharmacyTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PharmName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmAddressCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PharmAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocID" Type="Int32" />
+          <Property Name="PharmSublocationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmPhone1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmPhone2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmPhone3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmLong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PharmLat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefaultPassowrd" Type="Boolean" />
+          <Property Name="IsOnline" Type="Boolean" />
+          <NavigationProperty Name="OnlineApprovals_LoginKeys" Relationship="Self.FK_OnlineApprovalsLoginKeys_PharmacyTB" FromRole="PharmacyTB" ToRole="OnlineApprovals_LoginKeys" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Logs_CallCenterAppUser1_OnlineApproval">
+          <End Role="CallCenterAppUser" Type="Self.CallCenterAppUser" Multiplicity="0..1" />
+          <End Role="OnlineApprovals_LogsDetails" Type="Self.OnlineApprovals_LogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CallCenterAppUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LogsDetails">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM">
+          <End Role="OnlineApprovals_AttachmentTypeDIM" Type="Self.OnlineApprovals_AttachmentTypeDIM" Multiplicity="1" />
+          <End Role="OnlineApprovals_RequestAttachment" Type="Self.OnlineApprovals_RequestAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_AttachmentTypeDIM">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestAttachment">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM">
+          <End Role="OnlineApprovals_DrugsListDIM" Type="Self.OnlineApprovals_DrugsListDIM" Multiplicity="0..1" />
+          <End Role="OnlineApprovals_DemandedDrugsDetails" Type="Self.OnlineApprovals_DemandedDrugsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_DrugsListDIM">
+              <PropertyRef Name="DrugID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_DemandedDrugsDetails">
+              <PropertyRef Name="DrugID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM">
+          <End Role="OnlineApprovals_ProviderTypeDIM" Type="Self.OnlineApprovals_ProviderTypeDIM" Multiplicity="1" />
+          <End Role="OnlineApprovals_LoginKeys" Type="Self.OnlineApprovals_LoginKeys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_ProviderTypeDIM">
+              <PropertyRef Name="ProviderTypeID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LoginKeys">
+              <PropertyRef Name="ProviderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovalsLoginKeys_PharmacyTB">
+          <End Role="PharmacyTB" Type="Self.PharmacyTB" Multiplicity="1" />
+          <End Role="OnlineApprovals_LoginKeys" Type="Self.OnlineApprovals_LoginKeys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PharmacyTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LoginKeys">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_LogTypeDIM_OnlineApproval">
+          <End Role="OnlineApprovals_LogTypeDIM" Type="Self.OnlineApprovals_LogTypeDIM" Multiplicity="1" />
+          <End Role="OnlineApprovals_LogsDetails" Type="Self.OnlineApprovals_LogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_LogTypeDIM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LogsDetails">
+              <PropertyRef Name="LogTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails">
+          <End Role="OnlineApprovals_RequestDetails" Type="Self.OnlineApprovals_RequestDetails" Multiplicity="0..1" />
+          <End Role="OnlineApprovals_RequestAttachment" Type="Self.OnlineApprovals_RequestAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_RequestDetails">
+              <PropertyRef Name="RequestDetailsID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestAttachment">
+              <PropertyRef Name="RequestDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM">
+          <End Role="OnlineApprovals_RequestDetailsTypeDIM" Type="Self.OnlineApprovals_RequestDetailsTypeDIM" Multiplicity="1" />
+          <End Role="OnlineApprovals_RequestDetails" Type="Self.OnlineApprovals_RequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_RequestDetailsTypeDIM">
+              <PropertyRef Name="RequestDetailsTypeID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestDetails">
+              <PropertyRef Name="RequestDetailsTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhNetworkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CallCenterAppUsers" EntityType="Self.CallCenterAppUser" />
+          <EntitySet Name="OnlineApprovals_AttachmentTypeDIM" EntityType="Self.OnlineApprovals_AttachmentTypeDIM" />
+          <EntitySet Name="OnlineApprovals_Configrations" EntityType="Self.OnlineApprovals_Configrations" />
+          <EntitySet Name="OnlineApprovals_DemandedDrugsDetails" EntityType="Self.OnlineApprovals_DemandedDrugsDetails" />
+          <EntitySet Name="OnlineApprovals_DrugsListDIM" EntityType="Self.OnlineApprovals_DrugsListDIM" />
+          <EntitySet Name="OnlineApprovals_FailedTransactions" EntityType="Self.OnlineApprovals_FailedTransactions" />
+          <EntitySet Name="OnlineApprovals_Inovices" EntityType="Self.OnlineApprovals_Inovices" />
+          <EntitySet Name="OnlineApprovals_LoginKeys" EntityType="Self.OnlineApprovals_LoginKeys" />
+          <EntitySet Name="OnlineApprovals_LogsDetails" EntityType="Self.OnlineApprovals_LogsDetails" />
+          <EntitySet Name="OnlineApprovals_LogTypeDIM" EntityType="Self.OnlineApprovals_LogTypeDIM" />
+          <EntitySet Name="OnlineApprovals_ProviderTypeDIM" EntityType="Self.OnlineApprovals_ProviderTypeDIM" />
+          <EntitySet Name="OnlineApprovals_RequestAttachment" EntityType="Self.OnlineApprovals_RequestAttachment" />
+          <EntitySet Name="OnlineApprovals_RequestDetails" EntityType="Self.OnlineApprovals_RequestDetails" />
+          <EntitySet Name="OnlineApprovals_RequestDetailsTypeDIM" EntityType="Self.OnlineApprovals_RequestDetailsTypeDIM" />
+          <EntitySet Name="OnlineApprovals_RequestStatusDIM" EntityType="Self.OnlineApprovals_RequestStatusDIM" />
+          <EntitySet Name="PharmacyTBs" EntityType="Self.PharmacyTB" />
+          <AssociationSet Name="FK_Logs_CallCenterAppUser1_OnlineApproval" Association="Self.FK_Logs_CallCenterAppUser1_OnlineApproval">
+            <End Role="CallCenterAppUser" EntitySet="CallCenterAppUsers" />
+            <End Role="OnlineApprovals_LogsDetails" EntitySet="OnlineApprovals_LogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM" Association="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_AttachmentTypeDIM">
+            <End Role="OnlineApprovals_AttachmentTypeDIM" EntitySet="OnlineApprovals_AttachmentTypeDIM" />
+            <End Role="OnlineApprovals_RequestAttachment" EntitySet="OnlineApprovals_RequestAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM" Association="Self.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_DrugsListDIM">
+            <End Role="OnlineApprovals_DrugsListDIM" EntitySet="OnlineApprovals_DrugsListDIM" />
+            <End Role="OnlineApprovals_DemandedDrugsDetails" EntitySet="OnlineApprovals_DemandedDrugsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM" Association="Self.FK_OnlineApprovalsLoginKeys_OnlineApprovals_ProviderTypeDIM">
+            <End Role="OnlineApprovals_ProviderTypeDIM" EntitySet="OnlineApprovals_ProviderTypeDIM" />
+            <End Role="OnlineApprovals_LoginKeys" EntitySet="OnlineApprovals_LoginKeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovalsLoginKeys_PharmacyTB" Association="Self.FK_OnlineApprovalsLoginKeys_PharmacyTB">
+            <End Role="PharmacyTB" EntitySet="PharmacyTBs" />
+            <End Role="OnlineApprovals_LoginKeys" EntitySet="OnlineApprovals_LoginKeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_LogTypeDIM_OnlineApproval" Association="Self.FK_Logs_LogTypeDIM_OnlineApproval">
+            <End Role="OnlineApprovals_LogTypeDIM" EntitySet="OnlineApprovals_LogTypeDIM" />
+            <End Role="OnlineApprovals_LogsDetails" EntitySet="OnlineApprovals_LogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails" Association="Self.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestDetails">
+            <End Role="OnlineApprovals_RequestDetails" EntitySet="OnlineApprovals_RequestDetails" />
+            <End Role="OnlineApprovals_RequestAttachment" EntitySet="OnlineApprovals_RequestAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM" Association="Self.FK_OnlineApprovals_RequestDetails_OnlineApprovals_RequestDetailsTypeDIM">
+            <End Role="OnlineApprovals_RequestDetailsTypeDIM" EntitySet="OnlineApprovals_RequestDetailsTypeDIM" />
+            <End Role="OnlineApprovals_RequestDetails" EntitySet="OnlineApprovals_RequestDetails" />
+          </AssociationSet>
+          <FunctionImport Name="SP_MyOnlineApprovals_CountRequestsByStatus" ReturnType="Collection(Int32)">
+            <Parameter Name="StatusID" Mode="In" Type="Int32" />
+            <Parameter Name="DoctorAssignee" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MyOnlineApprovals_RequestsByStatus" ReturnType="Collection(PhNetworkModel.SP_MyOnlineApprovals_RequestsByStatus_Result)">
+            <Parameter Name="StatusID" Mode="In" Type="Int32" />
+            <Parameter Name="DoctorAssignee" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_ClaimsPerCurrentMonth" ReturnType="Collection(Int32)">
+          <Parameter Name="providerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_CountRequestsByStatus" ReturnType="Collection(Int32)">
+          <Parameter Name="StatusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_CountRequestsByStatusAndProvider" ReturnType="Collection(Int32)">
+            <Parameter Name="providerID" Mode="In" Type="Int32" />
+            <Parameter Name="StatusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_CountTotalRequestsByProviderID" ReturnType="Collection(Int32)">
+          <Parameter Name="providerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_InovicesByInvoiceID" ReturnType="Collection(PhNetworkModel.SP_OnlineApprovals_InovicesByInvoiceID_Result)">
+          <Parameter Name="InvoiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_InovicesByMedicalID" ReturnType="Collection(PhNetworkModel.SP_OnlineApprovals_InovicesByMedicalID_Result)">
+          <Parameter Name="MedicalID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_InovicesByRequestID" ReturnType="Collection(PhNetworkModel.SP_OnlineApprovals_InovicesByRequestID_Result)">
+          <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_RequestsByprovider" ReturnType="Collection(PhNetworkModel.SP_OnlineApprovals_RequestsByprovider_Result)">
+          <Parameter Name="providerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_RequestsByStatus" ReturnType="Collection(PhNetworkModel.SP_OnlineApprovals_RequestsByStatus_Result)">
+          <Parameter Name="StatusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_RequestsByStatusAndProvider" ReturnType="Collection(PhNetworkModel.SP_OnlineApprovals_RequestsByStatusAndProvider_Result)">
+            <Parameter Name="providerID" Mode="In" Type="Int32" />
+            <Parameter Name="StatusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovals_Total_Members" ReturnType="Collection(Int32)">
+          <Parameter Name="providerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OnlineApprovalsSearch" ReturnType="Collection(PhNetworkModel.SP_OnlineApprovalsSearch_Result)">
+            <Parameter Name="MemberName" Mode="In" Type="String" />
+            <Parameter Name="ClientName" Mode="In" Type="String" />
+            <Parameter Name="ClaimNumber" Mode="In" Type="String" />
+            <Parameter Name="Diagnose" Mode="In" Type="String" />
+            <Parameter Name="RequestCreationTime" Mode="In" Type="String" />
+            <Parameter Name="CloseTime" Mode="In" Type="String" />
+            <Parameter Name="IVRNumber" Mode="In" Type="String" />
+            <Parameter Name="RequestTypeID" Mode="In" Type="String" />
+            <Parameter Name="RequestStatusID" Mode="In" Type="String" />
+            <Parameter Name="DrugName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Select_OnlineApprovalByAccountID" ReturnType="Collection(PhNetworkModel.SP_Select_OnlineApprovalByAccountID_Result)">
+          <Parameter Name="AccountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Select_OnlineApprovalsAttachment" ReturnType="Collection(PhNetworkModel.SP_Select_OnlineApprovalsAttachment_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Select_OnlineApprovalsDemandDrugs" ReturnType="Collection(PhNetworkModel.SP_Select_OnlineApprovalsDemandDrugs_Result)">
+          <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Select_OnlineApprovalsDrugList" ReturnType="Collection(PhNetworkModel.SP_Select_OnlineApprovalsDrugList_Result)" />
+          <FunctionImport Name="SP_Select_OnlineApprovalsProvidersByID" ReturnType="Collection(PhNetworkModel.SP_Select_OnlineApprovalsProvidersByID_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Select_OnlineApprovalsRequestDetails" ReturnType="Collection(PhNetworkModel.SP_Select_OnlineApprovalsRequestDetails_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Select_OnlineApprovalsRequests" ReturnType="Collection(PhNetworkModel.SP_Select_OnlineApprovalsRequests_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="OnlineApprovals_RequestTypeDIM" EntityType="PhNetworkModel.OnlineApprovals_RequestTypeDIM" />
+          <FunctionImport Name="SP_Provider_Login" ReturnType="Collection(PhNetworkModel.SP_Provider_Login_Result)">
+            <Parameter Name="AccountID" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="OnlineApprovals_Requests" EntityType="PhNetworkModel.OnlineApprovals_Requests" />
+          <AssociationSet Name="FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests" Association="PhNetworkModel.FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_DemandedDrugsDetails" EntitySet="OnlineApprovals_DemandedDrugsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices" Association="PhNetworkModel.FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_Inovices" EntitySet="OnlineApprovals_Inovices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logs_EmailApprovalRequests_OnlineApproval" Association="PhNetworkModel.FK_Logs_EmailApprovalRequests_OnlineApproval">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_LogsDetails" EntitySet="OnlineApprovals_LogsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment" Association="PhNetworkModel.FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_RequestAttachment" EntitySet="OnlineApprovals_RequestAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests" Association="PhNetworkModel.FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests">
+            <End Role="OnlineApprovals_Requests" EntitySet="OnlineApprovals_Requests" />
+            <End Role="OnlineApprovals_RequestDetails" EntitySet="OnlineApprovals_RequestDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="SP_MyOnlineApprovals_RequestsByStatus_Result">
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int32" Name="ProviderID" Nullable="true" />
+          <Property Type="Int32" Name="ProviderTypeID" Nullable="true" />
+          <Property Type="Int64" Name="MedicalID" Nullable="true" />
+          <Property Type="String" Name="MemberName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="true" />
+          <Property Type="DateTime" Name="ClaimDate" Nullable="true" />
+          <Property Type="Int32" Name="CoInsurancePercentage" Nullable="true" />
+          <Property Type="String" Name="Diagnose" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCreationTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="RequestStatusID" Nullable="true" />
+          <Property Type="Boolean" Name="IsFinnacialApproval" Nullable="true" />
+          <Property Type="Boolean" Name="IsMedicalApproval" Nullable="true" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="true" />
+          <Property Type="Boolean" Name="Delivered" Nullable="true" />
+          <Property Type="Boolean" Name="Seen" Nullable="true" />
+          <Property Type="Int32" Name="SeenByUserID" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="Int32" Name="RequestTypeID" Nullable="true" />
+          <Property Type="String" Name="CallCenterAssignee" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CloseTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_OnlineApprovals_InovicesByInvoiceID_Result">
+          <Property Type="Int32" Name="InvoiceID" Nullable="false" />
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int64" Name="MedicalID" Nullable="false" />
+          <Property Type="String" Name="ClientName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MemberName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProviderName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProviderType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Diagnose" Nullable="false" />
+          <Property Type="Decimal" Name="GrandTotal" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Decimal" Name="CoInsuranceValue" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="DateTime" Name="InvoiceDate" Nullable="false" Precision="23" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="false" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCloseTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="AssignedUser" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_OnlineApprovals_InovicesByMedicalID_Result">
+          <Property Type="Int32" Name="InvoiceID" Nullable="false" />
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int64" Name="MedicalID" Nullable="false" />
+          <Property Type="String" Name="ClientName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MemberName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProviderName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProviderType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Diagnose" Nullable="false" />
+          <Property Type="Decimal" Name="GrandTotal" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Decimal" Name="CoInsuranceValue" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="DateTime" Name="InvoiceDate" Nullable="false" Precision="23" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="false" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCloseTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="AssignedUser" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_OnlineApprovals_InovicesByRequestID_Result">
+          <Property Type="Int32" Name="InvoiceID" Nullable="false" />
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int64" Name="MedicalID" Nullable="false" />
+          <Property Type="String" Name="ClientName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MemberName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProviderName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProviderType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Diagnose" Nullable="false" />
+          <Property Type="Decimal" Name="GrandTotal" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Decimal" Name="CoInsuranceValue" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="DateTime" Name="InvoiceDate" Nullable="false" Precision="23" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="false" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCloseTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="AssignedUser" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_OnlineApprovals_RequestsByprovider_Result">
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int32" Name="ProviderID" Nullable="true" />
+          <Property Type="Int32" Name="ProviderTypeID" Nullable="true" />
+          <Property Type="Int64" Name="MedicalID" Nullable="true" />
+          <Property Type="String" Name="MemberName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="true" />
+          <Property Type="DateTime" Name="ClaimDate" Nullable="true" />
+          <Property Type="Int32" Name="CoInsurancePercentage" Nullable="true" />
+          <Property Type="String" Name="Diagnose" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCreationTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="RequestStatusID" Nullable="true" />
+          <Property Type="Boolean" Name="IsFinnacialApproval" Nullable="true" />
+          <Property Type="Boolean" Name="IsMedicalApproval" Nullable="true" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="true" />
+          <Property Type="Boolean" Name="Delivered" Nullable="true" />
+          <Property Type="Boolean" Name="Seen" Nullable="true" />
+          <Property Type="Int32" Name="SeenByUserID" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="Int32" Name="RequestTypeID" Nullable="true" />
+          <Property Type="String" Name="CallCenterAssignee" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CloseTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_OnlineApprovals_RequestsByStatus_Result">
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int32" Name="ProviderID" Nullable="true" />
+          <Property Type="Int32" Name="ProviderTypeID" Nullable="true" />
+          <Property Type="Int64" Name="MedicalID" Nullable="true" />
+          <Property Type="String" Name="MemberName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="true" />
+          <Property Type="DateTime" Name="ClaimDate" Nullable="true" />
+          <Property Type="Int32" Name="CoInsurancePercentage" Nullable="true" />
+          <Property Type="String" Name="Diagnose" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCreationTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="RequestStatusID" Nullable="true" />
+          <Property Type="Boolean" Name="IsFinnacialApproval" Nullable="true" />
+          <Property Type="Boolean" Name="IsMedicalApproval" Nullable="true" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="true" />
+          <Property Type="Boolean" Name="Delivered" Nullable="true" />
+          <Property Type="Boolean" Name="Seen" Nullable="true" />
+          <Property Type="Int32" Name="SeenByUserID" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="Int32" Name="RequestTypeID" Nullable="true" />
+          <Property Type="String" Name="CallCenterAssignee" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CloseTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_OnlineApprovals_RequestsByStatusAndProvider_Result">
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int32" Name="ProviderID" Nullable="true" />
+          <Property Type="Int32" Name="ProviderTypeID" Nullable="true" />
+          <Property Type="Int64" Name="MedicalID" Nullable="true" />
+          <Property Type="String" Name="MemberName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="true" />
+          <Property Type="DateTime" Name="ClaimDate" Nullable="true" />
+          <Property Type="Int32" Name="CoInsurancePercentage" Nullable="true" />
+          <Property Type="String" Name="Diagnose" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCreationTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="RequestStatusID" Nullable="true" />
+          <Property Type="Boolean" Name="IsFinnacialApproval" Nullable="true" />
+          <Property Type="Boolean" Name="IsMedicalApproval" Nullable="true" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="true" />
+          <Property Type="Boolean" Name="Delivered" Nullable="true" />
+          <Property Type="Boolean" Name="Seen" Nullable="true" />
+          <Property Type="Int32" Name="SeenByUserID" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="Int32" Name="RequestTypeID" Nullable="true" />
+          <Property Type="String" Name="CallCenterAssignee" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CloseTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_OnlineApprovalsSearch_Result">
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int32" Name="RequestID1" Nullable="false" />
+          <Property Type="Int32" Name="ProviderID" Nullable="true" />
+          <Property Type="Int32" Name="ProviderTypeID" Nullable="true" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="true" />
+          <Property Type="Int64" Name="MedicalID" Nullable="true" />
+          <Property Type="String" Name="MemberName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="ClaimDate" Nullable="true" />
+          <Property Type="Int32" Name="CoInsurancePercentage" Nullable="true" />
+          <Property Type="String" Name="Diagnose" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCreationTime" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsFinnacialApproval" Nullable="true" />
+          <Property Type="Boolean" Name="IsMedicalApproval" Nullable="true" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="true" />
+          <Property Type="Boolean" Name="Delivered" Nullable="true" />
+          <Property Type="Boolean" Name="Seen" Nullable="true" />
+          <Property Type="Int32" Name="SeenByUserID" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="Int32" Name="RequestTypeID" Nullable="true" />
+          <Property Type="Int32" Name="RequestStatusID" Nullable="true" />
+          <Property Type="String" Name="CallCenterAssignee" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CloseTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="DrugID" Nullable="true" />
+          <Property Type="String" Name="DrugName" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="UnitQuantity" Nullable="false" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Int32" Name="DemandedQuantity" Nullable="true" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Boolean" Name="IsDeleted1" Nullable="false" />
+          <Property Type="Boolean" Name="IsDrugList" Nullable="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_OnlineApprovalByAccountID_Result">
+          <Property Type="String" Name="PharmName" Nullable="true" />
+          <Property Type="String" Name="PharmAddressCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PharmAddress" Nullable="true" />
+          <Property Type="Int32" Name="LocID" Nullable="true" />
+          <Property Type="String" Name="PharmSublocationName" Nullable="true" />
+          <Property Type="String" Name="PharmPhone" Nullable="true" />
+          <Property Type="String" Name="PharmPhone1" Nullable="true" />
+          <Property Type="String" Name="PharmPhone2" Nullable="true" />
+          <Property Type="String" Name="PharmPhone3" Nullable="true" />
+          <Property Type="String" Name="PharmNotes" Nullable="true" />
+          <Property Type="String" Name="PharmLong" Nullable="true" />
+          <Property Type="String" Name="PharmLat" Nullable="true" />
+          <Property Type="Int32" Name="Discount" Nullable="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="AccountID" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Password" Nullable="true" />
+          <Property Type="Boolean" Name="IsDefaultPassowrd" Nullable="true" />
+          <Property Type="Boolean" Name="IsOnline" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_OnlineApprovalsAttachment_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="RequestDetailsID" Nullable="true" />
+          <Property Type="String" Name="AttachmentName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="AttachmentPath" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Int32" Name="AttachmentTypeID" Nullable="false" />
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Boolean" Name="IsBackUpTaken" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_OnlineApprovalsDemandDrugs_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="DrugID" Nullable="true" />
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="String" Name="DrugName" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="UnitQuantity" Nullable="false" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Int32" Name="DemandedQuantity" Nullable="true" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Boolean" Name="IsDrugList" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_OnlineApprovalsDrugList_Result">
+          <Property Type="Int32" Name="DrugID" Nullable="false" />
+          <Property Type="String" Name="DrugName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Quaninty" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="UnitQuaninty" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_OnlineApprovalsProvidersByID_Result">
+          <Property Type="String" Name="PharmName" Nullable="true" />
+          <Property Type="String" Name="PharmAddressCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PharmAddress" Nullable="true" />
+          <Property Type="Int32" Name="LocID" Nullable="true" />
+          <Property Type="String" Name="PharmSublocationName" Nullable="true" />
+          <Property Type="String" Name="PharmPhone" Nullable="true" />
+          <Property Type="String" Name="PharmPhone1" Nullable="true" />
+          <Property Type="String" Name="PharmPhone2" Nullable="true" />
+          <Property Type="String" Name="PharmPhone3" Nullable="true" />
+          <Property Type="String" Name="PharmNotes" Nullable="true" />
+          <Property Type="String" Name="PharmLong" Nullable="true" />
+          <Property Type="String" Name="PharmLat" Nullable="true" />
+          <Property Type="Int32" Name="Discount" Nullable="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="AccountID" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Password" Nullable="true" />
+          <Property Type="Boolean" Name="IsDefaultPassowrd" Nullable="true" />
+          <Property Type="Boolean" Name="IsOnline" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_OnlineApprovalsRequestDetails_Result">
+          <Property Type="Int32" Name="RequestDetailsID" Nullable="false" />
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int32" Name="RequestDetailsTypeID" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="DetailsDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="Delivered" Nullable="false" />
+          <Property Type="Boolean" Name="Seen" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Int32" Name="UserTypeID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Select_OnlineApprovalsRequests_Result">
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="Int32" Name="ProviderID" Nullable="true" />
+          <Property Type="Int32" Name="ProviderTypeID" Nullable="true" />
+          <Property Type="Int64" Name="MedicalID" Nullable="true" />
+          <Property Type="String" Name="MemberName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ClaimNumber" Nullable="true" />
+          <Property Type="DateTime" Name="ClaimDate" Nullable="true" />
+          <Property Type="Int32" Name="CoInsurancePercentage" Nullable="true" />
+          <Property Type="String" Name="Diagnose" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="DateTime" Name="RequestCreationTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="RequestStatusID" Nullable="true" />
+          <Property Type="Boolean" Name="IsFinnacialApproval" Nullable="true" />
+          <Property Type="Boolean" Name="IsMedicalApproval" Nullable="true" />
+          <Property Type="Int64" Name="IVRNumber" Nullable="true" />
+          <Property Type="Boolean" Name="Delivered" Nullable="true" />
+          <Property Type="Boolean" Name="Seen" Nullable="true" />
+          <Property Type="Int32" Name="SeenByUserID" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="Int32" Name="RequestTypeID" Nullable="true" />
+          <Property Type="String" Name="CallCenterAssignee" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CloseTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="OnlineApprovals_RequestTypeDIM">
+          <Key>
+            <PropertyRef Name="RequestTypeID" />
+          </Key>
+          <Property Name="RequestTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="SP_Provider_Login_Result">
+          <Property Type="String" Name="PharmName" Nullable="true" />
+          <Property Type="String" Name="PharmAddressCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PharmAddress" Nullable="true" />
+          <Property Type="Int32" Name="LocID" Nullable="true" />
+          <Property Type="String" Name="PharmSublocationName" Nullable="true" />
+          <Property Type="String" Name="PharmPhone" Nullable="true" />
+          <Property Type="String" Name="PharmPhone1" Nullable="true" />
+          <Property Type="String" Name="PharmPhone2" Nullable="true" />
+          <Property Type="String" Name="PharmPhone3" Nullable="true" />
+          <Property Type="String" Name="PharmNotes" Nullable="true" />
+          <Property Type="String" Name="PharmLong" Nullable="true" />
+          <Property Type="String" Name="PharmLat" Nullable="true" />
+          <Property Type="Int32" Name="Discount" Nullable="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="AccountID" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Password" Nullable="true" />
+          <Property Type="Boolean" Name="IsDefaultPassowrd" Nullable="true" />
+          <Property Type="Boolean" Name="IsOnline" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+ 
+        <Association Name="FK_OnlineApprovals_DemandedDrugsDetails_OnlineApprovals_Requests">
+          <End Type="PhNetworkModel.OnlineApprovals_Requests" Role="OnlineApprovals_Requests" Multiplicity="1" />
+          <End Type="PhNetworkModel.OnlineApprovals_DemandedDrugsDetails" Role="OnlineApprovals_DemandedDrugsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_DemandedDrugsDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_Inovices_OnlineApprovals_Inovices">
+          <End Type="PhNetworkModel.OnlineApprovals_Requests" Role="OnlineApprovals_Requests" Multiplicity="1" />
+          <End Type="PhNetworkModel.OnlineApprovals_Inovices" Role="OnlineApprovals_Inovices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_Inovices">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logs_EmailApprovalRequests_OnlineApproval">
+          <End Type="PhNetworkModel.OnlineApprovals_Requests" Role="OnlineApprovals_Requests" Multiplicity="0..1" />
+          <End Type="PhNetworkModel.OnlineApprovals_LogsDetails" Role="OnlineApprovals_LogsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_LogsDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestAttachment_OnlineApprovals_RequestAttachment">
+          <End Type="PhNetworkModel.OnlineApprovals_Requests" Role="OnlineApprovals_Requests" Multiplicity="1" />
+          <End Type="PhNetworkModel.OnlineApprovals_RequestAttachment" Role="OnlineApprovals_RequestAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestAttachment">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OnlineApprovals_RequestDetails_OnlineApprovals_Requests">
+          <End Type="PhNetworkModel.OnlineApprovals_Requests" Role="OnlineApprovals_Requests" Multiplicity="1" />
+          <End Type="PhNetworkModel.OnlineApprovals_RequestDetails" Role="OnlineApprovals_RequestDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineApprovals_Requests">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="OnlineApprovals_RequestDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhNetworkModelStoreContainer" CdmEntityContainer="PhNetworkEntities">
+          <EntitySetMapping Name="CallCenterAppUsers">
+            <EntityTypeMapping TypeName="PhNetworkModel.CallCenterAppUser">
+              <MappingFragment StoreEntitySet="CallCenterAppUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AdditionDate" ColumnName="AdditionDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MACAddress" ColumnName="MACAddress" />
+                <ScalarProperty Name="IsFirstLogin" ColumnName="IsFirstLogin" />
+                <ScalarProperty Name="PcName" ColumnName="PcName" />
+                <ScalarProperty Name="DoctorCategoryID" ColumnName="DoctorCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_AttachmentTypeDIM">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_AttachmentTypeDIM">
+              <MappingFragment StoreEntitySet="OnlineApprovals_AttachmentTypeDIM">
+                <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
+                <ScalarProperty Name="AttachmentTypeName" ColumnName="AttachmentTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_Configrations">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_Configrations">
+              <MappingFragment StoreEntitySet="OnlineApprovals_Configrations">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ConfigrationKey" ColumnName="ConfigrationKey" />
+                <ScalarProperty Name="Configration" ColumnName="Configration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_DemandedDrugsDetails">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_DemandedDrugsDetails">
+              <MappingFragment StoreEntitySet="OnlineApprovals_DemandedDrugsDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DrugID" ColumnName="DrugID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+                <ScalarProperty Name="UnitQuantity" ColumnName="UnitQuantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="DemandedQuantity" ColumnName="DemandedQuantity" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsDrugList" ColumnName="IsDrugList" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_DrugsListDIM">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_DrugsListDIM">
+              <MappingFragment StoreEntitySet="OnlineApprovals_DrugsListDIM">
+                <ScalarProperty Name="DrugID" ColumnName="DrugID" />
+                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+                <ScalarProperty Name="Quaninty" ColumnName="Quaninty" />
+                <ScalarProperty Name="UnitQuaninty" ColumnName="UnitQuaninty" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_FailedTransactions">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_FailedTransactions">
+              <MappingFragment StoreEntitySet="OnlineApprovals_FailedTransactions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LogDetails" ColumnName="LogDetails" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="ErrorSource" ColumnName="ErrorSource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_Inovices">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_Inovices">
+              <MappingFragment StoreEntitySet="OnlineApprovals_Inovices">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="ProviderType" ColumnName="ProviderType" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="CoInsuranceValue" ColumnName="CoInsuranceValue" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCloseTime" ColumnName="RequestCloseTime" />
+                <ScalarProperty Name="AssignedUser" ColumnName="AssignedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_LoginKeys">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_LoginKeys">
+              <MappingFragment StoreEntitySet="OnlineApprovals_LoginKeys">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="GenerationTime" ColumnName="GenerationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_LogsDetails">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_LogsDetails">
+              <MappingFragment StoreEntitySet="OnlineApprovals_LogsDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="LogTypeID" ColumnName="LogTypeID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_LogTypeDIM">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_LogTypeDIM">
+              <MappingFragment StoreEntitySet="OnlineApprovals_LogTypeDIM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_ProviderTypeDIM">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_ProviderTypeDIM">
+              <MappingFragment StoreEntitySet="OnlineApprovals_ProviderTypeDIM">
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="ProviderTypeName" ColumnName="ProviderTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_RequestAttachment">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_RequestAttachment">
+              <MappingFragment StoreEntitySet="OnlineApprovals_RequestAttachment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RequestDetailsID" ColumnName="RequestDetailsID" />
+                <ScalarProperty Name="AttachmentName" ColumnName="AttachmentName" />
+                <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="IsBackUpTaken" ColumnName="IsBackUpTaken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_RequestDetails">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_RequestDetails">
+              <MappingFragment StoreEntitySet="OnlineApprovals_RequestDetails">
+                <ScalarProperty Name="RequestDetailsID" ColumnName="RequestDetailsID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="RequestDetailsTypeID" ColumnName="RequestDetailsTypeID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="DetailsDate" ColumnName="DetailsDate" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_RequestDetailsTypeDIM">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_RequestDetailsTypeDIM">
+              <MappingFragment StoreEntitySet="OnlineApprovals_RequestDetailsTypeDIM">
+                <ScalarProperty Name="RequestDetailsTypeID" ColumnName="RequestDetailsTypeID" />
+                <ScalarProperty Name="RequestDetailsTypeName" ColumnName="RequestDetailsTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_Requests">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_Requests">
+              <MappingFragment StoreEntitySet="OnlineApprovals_Requests">
+                <ScalarProperty Name="TotalMemberpays" ColumnName="TotalMemberpays" />
+                <ScalarProperty Name="TotalApprovalPrice" ColumnName="TotalApprovalPrice" />
+                <ScalarProperty Name="TotalPayments" ColumnName="TotalPayments" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+                <ScalarProperty Name="CoInsurancePercentage" ColumnName="CoInsurancePercentage" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCreationTime" ColumnName="RequestCreationTime" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="IsFinnacialApproval" ColumnName="IsFinnacialApproval" />
+                <ScalarProperty Name="IsMedicalApproval" ColumnName="IsMedicalApproval" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="CallCenterAssignee" ColumnName="CallCenterAssignee" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineApprovals_RequestStatusDIM">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_RequestStatusDIM">
+              <MappingFragment StoreEntitySet="OnlineApprovals_RequestStatusDIM">
+                <ScalarProperty Name="RequestSatsusID" ColumnName="RequestSatsusID" />
+                <ScalarProperty Name="RequestStatusName" ColumnName="RequestStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PharmacyTBs">
+            <EntityTypeMapping TypeName="PhNetworkModel.PharmacyTB">
+              <MappingFragment StoreEntitySet="PharmacyTB">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PharmName" ColumnName="PharmName" />
+                <ScalarProperty Name="PharmAddressCode" ColumnName="PharmAddressCode" />
+                <ScalarProperty Name="PharmAddress" ColumnName="PharmAddress" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="PharmSublocationName" ColumnName="PharmSublocationName" />
+                <ScalarProperty Name="PharmPhone" ColumnName="PharmPhone" />
+                <ScalarProperty Name="PharmPhone1" ColumnName="PharmPhone1" />
+                <ScalarProperty Name="PharmPhone2" ColumnName="PharmPhone2" />
+                <ScalarProperty Name="PharmPhone3" ColumnName="PharmPhone3" />
+                <ScalarProperty Name="PharmNotes" ColumnName="PharmNotes" />
+                <ScalarProperty Name="PharmLong" ColumnName="PharmLong" />
+                <ScalarProperty Name="PharmLat" ColumnName="PharmLat" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsDefaultPassowrd" ColumnName="IsDefaultPassowrd" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_MyOnlineApprovals_CountRequestsByStatus" FunctionName="PhNetworkModel.Store.SP_MyOnlineApprovals_CountRequestsByStatus" />
+          <FunctionImportMapping FunctionImportName="SP_MyOnlineApprovals_RequestsByStatus" FunctionName="PhNetworkModel.Store.SP_MyOnlineApprovals_RequestsByStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_MyOnlineApprovals_RequestsByStatus_Result">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+                <ScalarProperty Name="CoInsurancePercentage" ColumnName="CoInsurancePercentage" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCreationTime" ColumnName="RequestCreationTime" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="IsFinnacialApproval" ColumnName="IsFinnacialApproval" />
+                <ScalarProperty Name="IsMedicalApproval" ColumnName="IsMedicalApproval" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="CallCenterAssignee" ColumnName="CallCenterAssignee" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_ClaimsPerCurrentMonth" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_ClaimsPerCurrentMonth" />
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_CountRequestsByStatus" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_CountRequestsByStatus" />
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_CountRequestsByStatusAndProvider" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_CountRequestsByStatusAndProvider" />
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_CountTotalRequestsByProviderID" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_CountTotalRequestsByProviderID" />
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_InovicesByInvoiceID" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_InovicesByInvoiceID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_OnlineApprovals_InovicesByInvoiceID_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="ProviderType" ColumnName="ProviderType" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="CoInsuranceValue" ColumnName="CoInsuranceValue" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCloseTime" ColumnName="RequestCloseTime" />
+                <ScalarProperty Name="AssignedUser" ColumnName="AssignedUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_InovicesByMedicalID" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_InovicesByMedicalID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_OnlineApprovals_InovicesByMedicalID_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="ProviderType" ColumnName="ProviderType" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="CoInsuranceValue" ColumnName="CoInsuranceValue" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCloseTime" ColumnName="RequestCloseTime" />
+                <ScalarProperty Name="AssignedUser" ColumnName="AssignedUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_InovicesByRequestID" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_InovicesByRequestID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_OnlineApprovals_InovicesByRequestID_Result">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="ProviderType" ColumnName="ProviderType" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="CoInsuranceValue" ColumnName="CoInsuranceValue" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCloseTime" ColumnName="RequestCloseTime" />
+                <ScalarProperty Name="AssignedUser" ColumnName="AssignedUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_RequestsByprovider" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_RequestsByprovider">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_OnlineApprovals_RequestsByprovider_Result">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+                <ScalarProperty Name="CoInsurancePercentage" ColumnName="CoInsurancePercentage" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCreationTime" ColumnName="RequestCreationTime" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="IsFinnacialApproval" ColumnName="IsFinnacialApproval" />
+                <ScalarProperty Name="IsMedicalApproval" ColumnName="IsMedicalApproval" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="CallCenterAssignee" ColumnName="CallCenterAssignee" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_RequestsByStatus" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_RequestsByStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_OnlineApprovals_RequestsByStatus_Result">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+                <ScalarProperty Name="CoInsurancePercentage" ColumnName="CoInsurancePercentage" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCreationTime" ColumnName="RequestCreationTime" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="IsFinnacialApproval" ColumnName="IsFinnacialApproval" />
+                <ScalarProperty Name="IsMedicalApproval" ColumnName="IsMedicalApproval" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="CallCenterAssignee" ColumnName="CallCenterAssignee" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_RequestsByStatusAndProvider" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_RequestsByStatusAndProvider">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_OnlineApprovals_RequestsByStatusAndProvider_Result">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+                <ScalarProperty Name="CoInsurancePercentage" ColumnName="CoInsurancePercentage" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCreationTime" ColumnName="RequestCreationTime" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="IsFinnacialApproval" ColumnName="IsFinnacialApproval" />
+                <ScalarProperty Name="IsMedicalApproval" ColumnName="IsMedicalApproval" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="CallCenterAssignee" ColumnName="CallCenterAssignee" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovals_Total_Members" FunctionName="PhNetworkModel.Store.SP_OnlineApprovals_Total_Members" />
+          <FunctionImportMapping FunctionImportName="SP_OnlineApprovalsSearch" FunctionName="PhNetworkModel.Store.SP_OnlineApprovalsSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_OnlineApprovalsSearch_Result">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="RequestID1" ColumnName="RequestID1" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+                <ScalarProperty Name="CoInsurancePercentage" ColumnName="CoInsurancePercentage" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCreationTime" ColumnName="RequestCreationTime" />
+                <ScalarProperty Name="IsFinnacialApproval" ColumnName="IsFinnacialApproval" />
+                <ScalarProperty Name="IsMedicalApproval" ColumnName="IsMedicalApproval" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="CallCenterAssignee" ColumnName="CallCenterAssignee" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+                <ScalarProperty Name="DrugID" ColumnName="DrugID" />
+                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+                <ScalarProperty Name="UnitQuantity" ColumnName="UnitQuantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="DemandedQuantity" ColumnName="DemandedQuantity" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="IsDeleted1" ColumnName="IsDeleted1" />
+                <ScalarProperty Name="IsDrugList" ColumnName="IsDrugList" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_OnlineApprovalByAccountID" FunctionName="PhNetworkModel.Store.SP_Select_OnlineApprovalByAccountID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_Select_OnlineApprovalByAccountID_Result">
+                <ScalarProperty Name="PharmName" ColumnName="PharmName" />
+                <ScalarProperty Name="PharmAddressCode" ColumnName="PharmAddressCode" />
+                <ScalarProperty Name="PharmAddress" ColumnName="PharmAddress" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="PharmSublocationName" ColumnName="PharmSublocationName" />
+                <ScalarProperty Name="PharmPhone" ColumnName="PharmPhone" />
+                <ScalarProperty Name="PharmPhone1" ColumnName="PharmPhone1" />
+                <ScalarProperty Name="PharmPhone2" ColumnName="PharmPhone2" />
+                <ScalarProperty Name="PharmPhone3" ColumnName="PharmPhone3" />
+                <ScalarProperty Name="PharmNotes" ColumnName="PharmNotes" />
+                <ScalarProperty Name="PharmLong" ColumnName="PharmLong" />
+                <ScalarProperty Name="PharmLat" ColumnName="PharmLat" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsDefaultPassowrd" ColumnName="IsDefaultPassowrd" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_OnlineApprovalsAttachment" FunctionName="PhNetworkModel.Store.SP_Select_OnlineApprovalsAttachment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_Select_OnlineApprovalsAttachment_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RequestDetailsID" ColumnName="RequestDetailsID" />
+                <ScalarProperty Name="AttachmentName" ColumnName="AttachmentName" />
+                <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="IsBackUpTaken" ColumnName="IsBackUpTaken" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_OnlineApprovalsDemandDrugs" FunctionName="PhNetworkModel.Store.SP_Select_OnlineApprovalsDemandDrugs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_Select_OnlineApprovalsDemandDrugs_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DrugID" ColumnName="DrugID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+                <ScalarProperty Name="UnitQuantity" ColumnName="UnitQuantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="DemandedQuantity" ColumnName="DemandedQuantity" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsDrugList" ColumnName="IsDrugList" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_OnlineApprovalsDrugList" FunctionName="PhNetworkModel.Store.SP_Select_OnlineApprovalsDrugList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_Select_OnlineApprovalsDrugList_Result">
+                <ScalarProperty Name="DrugID" ColumnName="DrugID" />
+                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+                <ScalarProperty Name="Quaninty" ColumnName="Quaninty" />
+                <ScalarProperty Name="UnitQuaninty" ColumnName="UnitQuaninty" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_OnlineApprovalsProvidersByID" FunctionName="PhNetworkModel.Store.SP_Select_OnlineApprovalsProvidersByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_Select_OnlineApprovalsProvidersByID_Result">
+                <ScalarProperty Name="PharmName" ColumnName="PharmName" />
+                <ScalarProperty Name="PharmAddressCode" ColumnName="PharmAddressCode" />
+                <ScalarProperty Name="PharmAddress" ColumnName="PharmAddress" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="PharmSublocationName" ColumnName="PharmSublocationName" />
+                <ScalarProperty Name="PharmPhone" ColumnName="PharmPhone" />
+                <ScalarProperty Name="PharmPhone1" ColumnName="PharmPhone1" />
+                <ScalarProperty Name="PharmPhone2" ColumnName="PharmPhone2" />
+                <ScalarProperty Name="PharmPhone3" ColumnName="PharmPhone3" />
+                <ScalarProperty Name="PharmNotes" ColumnName="PharmNotes" />
+                <ScalarProperty Name="PharmLong" ColumnName="PharmLong" />
+                <ScalarProperty Name="PharmLat" ColumnName="PharmLat" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsDefaultPassowrd" ColumnName="IsDefaultPassowrd" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_OnlineApprovalsRequestDetails" FunctionName="PhNetworkModel.Store.SP_Select_OnlineApprovalsRequestDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_Select_OnlineApprovalsRequestDetails_Result">
+                <ScalarProperty Name="RequestDetailsID" ColumnName="RequestDetailsID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="RequestDetailsTypeID" ColumnName="RequestDetailsTypeID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="DetailsDate" ColumnName="DetailsDate" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Select_OnlineApprovalsRequests" FunctionName="PhNetworkModel.Store.SP_Select_OnlineApprovalsRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_Select_OnlineApprovalsRequests_Result">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+                <ScalarProperty Name="CoInsurancePercentage" ColumnName="CoInsurancePercentage" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestCreationTime" ColumnName="RequestCreationTime" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="IsFinnacialApproval" ColumnName="IsFinnacialApproval" />
+                <ScalarProperty Name="IsMedicalApproval" ColumnName="IsMedicalApproval" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="CallCenterAssignee" ColumnName="CallCenterAssignee" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="OnlineApprovals_RequestTypeDIM">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_RequestTypeDIM">
+              <MappingFragment StoreEntitySet="OnlineApprovals_RequestTypeDIM">
+                <ScalarProperty Name="RequestTypeName" ColumnName="RequestTypeName" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Provider_Login" FunctionName="PhNetworkModel.Store.SP_Provider_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PhNetworkModel.SP_Provider_Login_Result">
+                <ScalarProperty Name="PharmName" ColumnName="PharmName" />
+                <ScalarProperty Name="PharmAddressCode" ColumnName="PharmAddressCode" />
+                <ScalarProperty Name="PharmAddress" ColumnName="PharmAddress" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="PharmSublocationName" ColumnName="PharmSublocationName" />
+                <ScalarProperty Name="PharmPhone" ColumnName="PharmPhone" />
+                <ScalarProperty Name="PharmPhone1" ColumnName="PharmPhone1" />
+                <ScalarProperty Name="PharmPhone2" ColumnName="PharmPhone2" />
+                <ScalarProperty Name="PharmPhone3" ColumnName="PharmPhone3" />
+                <ScalarProperty Name="PharmNotes" ColumnName="PharmNotes" />
+                <ScalarProperty Name="PharmLong" ColumnName="PharmLong" />
+                <ScalarProperty Name="PharmLat" ColumnName="PharmLat" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsDefaultPassowrd" ColumnName="IsDefaultPassowrd" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="OnlineApprovals_Requests">
+            <EntityTypeMapping TypeName="PhNetworkModel.OnlineApprovals_Requests">
+              <MappingFragment StoreEntitySet="OnlineApprovals_Requests">
+                <ScalarProperty Name="TotalMemberpays" ColumnName="TotalMemberpays" />
+                <ScalarProperty Name="TotalApprovalPrice" ColumnName="TotalApprovalPrice" />
+                <ScalarProperty Name="TotalPayments" ColumnName="TotalPayments" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+                <ScalarProperty Name="CallCenterAssignee" ColumnName="CallCenterAssignee" />
+                <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SeenByUserID" ColumnName="SeenByUserID" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="IVRNumber" ColumnName="IVRNumber" />
+                <ScalarProperty Name="IsMedicalApproval" ColumnName="IsMedicalApproval" />
+                <ScalarProperty Name="IsFinnacialApproval" ColumnName="IsFinnacialApproval" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="RequestCreationTime" ColumnName="RequestCreationTime" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Diagnose" ColumnName="Diagnose" />
+                <ScalarProperty Name="CoInsurancePercentage" ColumnName="CoInsurancePercentage" />
+                <ScalarProperty Name="ClaimDate" ColumnName="ClaimDate" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+                <ScalarProperty Name="ProviderTypeID" ColumnName="ProviderTypeID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

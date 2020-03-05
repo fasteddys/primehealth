@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{82416B4F-C731-401D-9D4F-30F939114D1B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EmaTours.Entities</RootNamespace>
+    <AssemblyName>EmaTours.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientPickUpRequest.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientRequestsDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientServicesRating.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientTripRequest.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientVisit.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountriesDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currency.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMAService.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMAToursEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EMAToursEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMAToursEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMAToursEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EMAToursEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EMAUser.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMAUserActionDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMAUserTypesDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotel.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InternalApplicationText.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogsDetail.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogsTypesDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Notification.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationDirectionDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationMethodsDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperatingCountry.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperatingLocation.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatusDIM.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Trip.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TripCurrency.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TripPhoto.cs">
+      <DependentUpon>EMAToursEntities.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="EMAToursEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EMAToursEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EMAToursEntities.edmx.diagram">
+      <DependentUpon>EMAToursEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EMAToursEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EMAToursEntities.edmx</DependentUpon>
+      <LastGenOutput>EMAToursEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EMAToursEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EMAToursEntities.edmx</DependentUpon>
+      <LastGenOutput>EMAToursEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

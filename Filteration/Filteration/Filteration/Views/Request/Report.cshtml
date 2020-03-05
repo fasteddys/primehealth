@@ -1,0 +1,360 @@
+﻿@*@using PagedList;
+    @using PagedList.Mvc;
+    @model IPagedList<Filteration.Models.Batch>*@
+@model IEnumerable<Filteration.Models.Batch>
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Report</h2>
+@using (Html.BeginForm("Report", "Request", new { status = ViewBag.Status }, FormMethod.Post, new { enctype = "multipart/form-data", }))
+{
+    <div id="normal">
+        <hr />
+        <div class="row mt">
+            <div class="col-lg-12" style="width:750px; display:flexbox">
+
+                <div style="width:200px;float:left;border:thin">
+                    <h4 class="mb">Select User</h4>
+
+
+                    <select required id="UserName" name="UserName" tabindex="-1" style="display:normal" class="form-control">
+                        <option value="" disabled selected>Select..</option>
+                        @foreach (var user in (SelectList)ViewBag.UserName)
+                        {
+                            <option id="userinput" value="@user.Value">@user.Text</option>
+                        }
+
+                    </select>
+
+                </div>
+
+                <div style="width:200px;margin-left:50px;flex-grow:1;display:inline-block;float:left">
+                    <h4 class="mb">From</h4>
+
+                    <input type="text" id="FromDate" name="FromDate" style="width:auto" class="form-control" >
+                    
+                </div>
+
+                <div style="width: 200px; flex-grow: 2; margin-left: 50px; display: inline-block; float: left;">
+                    <h4 class="mb">To</h4>
+
+                    <input type="text" id="ToDate" name="ToDate" style="width:auto" class="form-control" >
+                </div>
+                <input name="status" id="status" style="display:none" type="text" disabled value="@ViewBag.Status" />
+                <br style="clear: left;" />
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <button type="submit" value="submit" id="FindInfo" class="btn btn-theme" style="width:183px" >Search</button>
+
+}
+@*report here*@
+<div class="row mt" id="TPATodayWork" style="display:none">
+    <div class="col-md-12">
+        <div class="content-panel">
+
+            <h4 class="mb">@ViewBag.SelectedPerson Work</h4> <br />
+            <h6 style="margin-left:5px"> Total work days 
+                <input id="dateoutput1" disabled value="@ViewBag.TotalDays">
+            </h6><br />
+                <h6 style="margin-left:5px">
+                    Number of batches <input name="NumberOfbatches" type="text" id="InputBatches" value="@ViewBag.TotlBatch" disabled />
+                </h6> <br />
+                <h6 style="margin-left:5px">
+                    Total number of claims <input name="Total number of claims" value="@ViewBag.Totalclaim" type="text" id="InputClaims"
+                                                  disabled />
+                </h6>
+          
+
+</div>
+    </div>
+</div>
+
+<div class="row mt" id="QualityTodayWork" style="display:none">
+    <div class="col-md-12">
+        <div class="content-panel">
+
+            <h4 class="mb">Person's Work</h4> <br />
+            <h6 style="margin-left:5px">
+                Total work days
+                <input id="dateoutput1" disabled value="@ViewBag.TotalDays">
+            </h6><br />
+            <h6 style="margin-left:5px">
+                Number of batches <input name="NumberOfbatches" type="text" id="InputBatches" value="@ViewBag.TotalQualitylBatch" disabled />
+            </h6> <br />
+            <h6 style="margin-left:5px">
+                Total number of claims <input name="Total number of claims" value="@ViewBag.TotalQualityclaim" type="text" id="InputClaims"
+                                              disabled />
+            </h6>
+
+        </div>
+    </div>
+</div>
+
+<div class="error message" style="display:none" id="fail">
+    <h1 style="color:black; font-family:'Segoe UI'; font-size:xx-large;font-weight:200;
+        margin-left:400px;margin-top:100px">
+        No results found
+    </h1>
+</div>
+
+<div class="row mt" id="TPADetailsClass" style="display:none">
+    <div class="col-md-12">
+        <div class="content-panel">
+
+            <h4 class="mb">Details</h4>
+            @using (Html.BeginForm("ExportReport", "Request", new RouteValueDictionary(new { controller = "Request", action = "Report", status = ViewBag.Status }), FormMethod.Post))
+            {
+                <button type="submit" id="reportme" class="btn btn-theme" onclick="window.location = '/Request/ExportReport'"
+                        style=" position: relative; width: initial; height: initial;left:40%;">
+                    Export to Excel
+                </button>
+            }
+
+
+            <table class="table table-striped table-advance table-hover" id="TPAtable">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().TicketNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().BatchNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedPerson)
+                        @*@Html.ActionLink("Assigned Person", "Report", new { sortOrder = ViewBag.NameSorting, UserName = ViewBag.SelectedPerson })*@
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedDate)
+                        @*@Html.ActionLink("Assigned date", "Report", new { sortOrder = ViewBag.DateSorting, UserName = ViewBag.SelectedPerson })*@
+                      
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().TPAFinshedTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().NumberOfClaims)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().BatchStatus)
+                    </th>
+                    
+
+                </tr>
+                @if (ViewBag.ComplexInfo != null)
+                {
+                    foreach (var item in ViewBag.ComplexInfo)
+                    {
+                        <tr>
+                            <td>
+                                @item.TicketNumber
+                            </td>
+                            <td>
+                                @item.BatchNumber
+                            </td>
+                            <td>
+                                @item.AssignedPerson
+                            </td>
+                            <td>
+                                @item.AssignedDate
+                            </td>
+                            <td>
+                                @item.TPAFinshedTime
+                            </td>
+                            <td>
+                                @item.NumberOfClaims
+                            </td>
+                            <td>
+                                @item.BatchStatus
+                            </td>
+                            
+
+                        </tr>
+                    }
+                }
+                
+
+
+            </table>
+            
+
+
+            @*@if (ViewBag.ComplexInfo != null)
+                 {
+                     @Html.PagedListPager((IPagedList)ViewBag.ComplexInfo, page => Url.Action("Report","Request",
+                                                     new
+                                                     {
+                                                         page=page,
+                                                         UserName = ViewBag.User,
+                                                         FromDate = ViewBag.Fromdate,
+                                                         ToDate = ViewBag.Todate
+                                                     }),
+                         new PagedListRenderOptions()
+                         {
+                             Display = PagedListDisplayMode.IfNeeded,
+                             DisplayPageCountAndCurrentLocation = true,
+                             DisplayItemSliceAndTotal = true
+                         }
+                )
+                 }*@
+        </div>
+    </div>
+</div>
+
+<div class="row mt" id="QualityDetailsClass" style="display:none">
+    <div class="col-md-12">
+        <div class="content-panel">
+
+            <h4 class="mb">Details</h4>
+            @using (Html.BeginForm("ExportReport", "Request", new RouteValueDictionary(new { controller = "Request", action = "Report", status = ViewBag.Status }), FormMethod.Post))
+            {
+                <button type="submit" id="reportme" class="btn btn-theme" onclick="window.location = '/Request/ExportReport'"
+                        style=" position: relative; width: initial; height: initial;left:40%;">
+                    Export to Excel
+                </button>
+            }
+            <table class="table table-striped table-advance table-hover" id="Qualitytable">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().TicketNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().BatchNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedQuality)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedQualityDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().QualityClaimsNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().NumberOfClaims)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().BatchStatus)
+                    </th>
+
+
+                </tr>
+                @if (ViewBag.ComplexQualityInfo != null)
+                {
+                    foreach (var item in ViewBag.ComplexQualityInfo)
+                    {
+                        <tr>
+                            <td>
+                                @item.TicketNumber
+                            </td>
+                            <td>
+                                @item.BatchNumber
+                            </td>
+                            <td>
+                                @item.AssignedQuality
+                            </td>
+                            <td>
+                                @item.AssignedQualityDate
+                            </td>
+
+                            <td>
+                                @item.QualityClaimsNumber
+                            </td>
+                            <td>
+                                @item.NumberOfClaims
+                            </td>
+                            <td>
+                                @item.BatchStatus
+                            </td>
+
+                        </tr>
+                    }
+                }
+                
+
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<link type="text/css" href="~/Theme/assets/css/bootstrap.css" rel="stylesheet" />
+<link href="~/Scripts/newDate/jqu.css" rel="stylesheet" />
+<script src="~/Scripts/newDate/JS.js"></script>
+<script src="~/Scripts/newDate/JSS.js"></script>
+@*<link href="~/Content/jquery.ptTimeSelect.css" rel="stylesheet" />
+<script src="~/Content/jquery.ptTimeSelect.js"></script>*@
+<link href="~/Theme/assets/css/sweetalert.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script language="javascript" type="text/javascript">
+
+    $("#FromDate").datepicker({
+        dateFormat: 'yy/mm/dd',
+        changeMonth: true,
+        changeYear: true,
+        maxDate: '1'
+       
+
+    });
+    
+    $("#ToDate").datepicker({
+        dateFormat: 'yy/mm/dd',
+        changeMonth: true,
+        changeYear: true,
+        maxDate: '1'
+    });
+
+    if (localStorage['Type'] == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin"){
+    if ("@ViewBag.TotlBatch" > "0" && "@ViewBag.Totalclaim" > "0") {
+
+            $("#TPATodayWork").show();
+            $("#TPADetailsClass").show();
+            $("#reportme").show();
+            swal("Information retrieved","", "success")
+
+        }
+        
+    }
+    if (localStorage['Type'] == "Quality") {
+        if ("@ViewBag.TotalQualitylBatch" > "0" && "@ViewBag.TotalQualityclaim" > "0") {
+            $("#QualityTodayWork").show();
+            $("#QualityDetailsClass").show();
+            swal("Information retrieved", "", "success")
+        }
+
+    }
+    if ("@ViewBag.TotlBatch" == "0" && "@ViewBag.Totalclaim" == "0") {
+        $("#fail").show();
+    }
+
+    
+    $("#FindInfo").on("click", function () {
+       
+        if ($("#ToDate").val() == "" || $("#FromDate").val() == "" || document.getElementById('UserName').value =='')
+        {
+            swal({
+                title: "Error!",
+                text: "Make sure all fields are filled!",
+                type: "warning"
+
+            });
+            return false;
+        }
+       
+    });
+    
+   
+
+    
+    //});
+</script>
+
+    

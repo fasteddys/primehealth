@@ -1,0 +1,97 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Pricing.Models.ContractsDetail>
+@{
+    ViewBag.Title = "ViewContracts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Show Contracts</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+<script src="~/Scripts/googleapis.js"></script>
+<script src="~/Scripts/DataTable.js"></script>
+<link href="~/Content/Datatable.css" rel="stylesheet" />
+<script src="~/Scripts/SortScript.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">Search Form</header>
+                <div class="panel-body">
+                    <br />
+@using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "form - horizontal tasi - form" }))
+{
+                    
+                        <div style="width:1500px; margin:0 auto;align-content:center">
+                            <label style="font-size:x-large" class="col-sm-3 col-sm-3 control-label">Search Rquests</label>
+                            <div class="col-sm-3" style="text-align:end;float:left">
+                                <input type="text" class="form-control input-lg m-b-10" name="SearchText" id="SearchText">
+                            </div>
+                            <div class="col-sm-3" style="text-align:left;float:left;height:45.99px;width:100px">
+                                <input type="submit" style="float:none;height:45.99px;width:100px" value="Search" class="btn btn-primary" id="Search2" />
+                            </div>
+                        </div>
+                   
+}
+                </div>
+            </section>
+            <div class="panel">
+                <header class="panel-heading">
+                    Contracts
+                </header>
+                <div class="panel-body">
+                    <table class="table table-bordered " id="Req" align="center">
+                        <tr>
+                            <th style="width: 10px ; text-align:center">ID</th>
+                            <th style="text-align:center">Client Name</th>
+                            <th style="text-align:center">Contract Type</th>
+                            <th style="text-align:center">Contract Version</th>
+                            <th style="text-align:center">Contract Notes</th>
+                            <th style="width: 200px ; text-align:center">Actions</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td align="center"> @item.ID  </td>
+                                <td align="center"> @item.ProviderName  </td>
+                                <td align="center"> @item.ContractType  </td>
+                                <td align="center"> @item.ContractVersion  </td>
+                                <td align="center"> @item.ContractNotes  </td>
+                                
+                                <td align="center">
+                                    <button class="btn btn-default btn-xs" onclick="window.location.href = '/Home/ShowDetailsOfContract/@item.ID';"><i class="fa fa-pencil"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div><!-- /.panel-body -->
+                <div class="panel-body" style="align-content:center">
+                    <div>
+                        <br />
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("ViewContracts",
+                        new { page, PageSize = Model.PageSize, Status = ViewBag.Status }))
+                    </div>
+                </div>
+            </div><!-- /.panel -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section>
+@*<script>
+        $(document).ready(function () {
+            $("#Req")
+            .tablesorter({ widthFixed: true, widgets: ['zebra'] })
+            .tablesorterPager({ container: $("#pager") });
+        });
+    </script>*@

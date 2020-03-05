@@ -1,0 +1,182 @@
+﻿@model DispatchingMVCVer1.Models.Request
+@using System.Linq
+@{
+    ViewBag.Title = "Edit Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Edit Request</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading"> Select Your Data </header>
+                <div class="alert alert-danger alert-dismissable" id="div_Error" style="display:none">
+                    Nothing Changed
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Provider Type</label>
+                            <div class="col-sm-3">
+                                <select class="form-control input-lg m-b-10" id="ProviderType">
+                                    <option value="Doctors">Doctors</option>
+                                    <option value="Hospitals">Hospitals</option>
+                                    <option value="Special Center">Special Center</option>
+                                    <option value="Alexandria Office">Alexandria Office</option>
+                                    <option value="In House Doctor">In House Doctor</option>
+                                    <option value="QNB">QNB</option>
+                                    <option value="Call Center">Call Center</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Provider Name</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control input-lg m-b-10" id="ProviderName" required>
+                            </div>
+                            <div class="col-sm-3">
+                                <span style="color:#154db1;font-size:large;font-style:italic;display:none" id="ProviderNameValidator">Please Insert This Field</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Claim Type</label>
+                            <div class="col-sm-3">
+                                <select class="form-control input-lg m-b-10" id="ClaimType">
+                                    <option value="Medical Pass">Medical Pass</option>
+                                    <option value="QNB">QNB</option>
+                                    <option value="Claims Forms Copy 3">Claims Forms Copy 3</option>
+                                    <option value="Claims Forms Copy 5">Claims Forms Copy 5</option>
+                                    <option value="Hospital Stamp">Hospital Stamp</option>
+                                    <option value="Medical Pass (Medgulf)">Medical Pass (Medgulf)</option>
+                                    <option value="Claims Forms Copy 3  (Medgulf)">Claims Forms Copy 3  (Medgulf)</option>
+                                    <option value="Claims Forms Copy 5 (Medgulf)">Claims Forms Copy 5 (Medgulf)</option>
+                                    <option value="Hospital Stamp (Medgulf)">Hospital Stamp (Medgulf)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">#Boocklets</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control input-lg m-b-10" id="BoockletsNum" required >
+                            </div>
+                            <div class="col-sm-3">
+                                <span id="BockletsNumValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Original Provider ID</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control input-lg m-b-10" id="ORProviderID" >
+                            </div>
+                            <div class="col-sm-3">
+                                <span id="" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Original Provider Name</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control input-lg m-b-10" id="ORProviderName" >
+                            </div>
+                            <div class="col-sm-3">
+                                <span id="" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                            </div>
+                         </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">Notes</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control input-lg m-b-10" id="Notes" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="text-align:center;">
+                                <div class="toolbar-btn-action">
+                                    <button type="button" value="Submit" class="btn btn-primary" id="btn_Submit">Submit Client Notes</button>
+                                </div>
+                            </div>
+</form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+@*Takes the data of the request wanted to be edited and view it in the fields 
+All field are required except the notes field
+Send this data to the action to save it*@ 
+<script>
+    debugger;
+    if ("@Model.ReqStatues" == "PendingCreatorApproval") {
+        document.getElementById('ClaimType').disabled = true;
+        document.getElementById('BoockletsNum').disabled = true;
+        
+    }
+
+    $(document).ready(function () {
+        $("#ProviderType").val("@Model.ProviderType");
+        $("#ClaimType").val("@Model.ClaimsType");
+        $("#ProviderName").val("@Model.ProviderName");
+        $("#BoockletsNum").val("@Model.NumOfBocklets");
+        $("#ORProviderID").val("@Model.OriginalProviderID");
+        $("#ORProviderName").val("@Model.OriginalProviderName");
+        $("#Notes").val("@Model.Notes");
+
+
+        $("#btn_Submit").click(function () {
+            //debugger;
+            if ( $("#ProviderName").val() == "") {
+                $("#ProviderNameValidator").show();
+            }
+            else if ($("#BoockletsNum").val() == "") {
+                $("#BockletsNumValidator").show();
+            }
+            else{
+                var data =
+                    {
+                        ReqID:@Model.ReqID,
+                        ProviderType: $("#ProviderType").val(),
+                        ProviderName: $("#ProviderName").val(),
+                        ClaimsType: $("#ClaimType").val(),
+                        NumOfBocklets: $("#BoockletsNum").val(),
+                        OriginalProviderID: $("#ORProviderID").val(),
+                        OriginalProviderName: $("#ORProviderName").val(),
+                        Notes: $("#Notes").val()
+
+                    };
+                var x = JSON.stringify(data);
+                $.ajax({
+                    url: "/RequestFunction/EditRequest",
+                    type: "Post",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    data: x,
+                    success: function (Message) {
+                        debugger;
+                        if (Message == "success") {
+                            alert("Data Edited Successfully");
+                            window.location='@Url.Action("ShowDetailsOfRequest", "RequestFunction", new { ReqID = Model.ReqID })'
+                        }
+                        else if (Message == "Fail"){
+                            $("#div_Error").show();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
+

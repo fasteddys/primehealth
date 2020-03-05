@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title id="mytitle">Providers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="phonegap.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="js/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ["Montserrat:400,700"]
+            }
+        });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section class="w-section mobile-wrapper">
+
+        <div class="page-content" id="main-stack">
+            <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+                <div class="w-container">
+                    <nav class="w-nav-menu nav-menu" role="navigation">
+                        <div class="nav-menu-header">
+                            <div class="logo">Welcome ,</div>
+                            <div class="slogan" id="medicalid"></div>
+                        </div>
+
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="home" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-keypad-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Home</div>
+
+                        </a>
+
+
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="contactus" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-location-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Contact us</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="forgotpw" data-load="1">
+
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-person-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Change Password</div>
+                        </a>
+
+                        <a class="w-clearfix w-inline-block nav-menu-link last" id="login" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-bookmarks-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Logout</div>
+                        </a>
+
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                    </nav>
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title"></div>
+                    <!--<div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
+                        <div class="navbar-button-icon home-icon">
+                            <div class="bar-home-icon"></div>
+                            <div class="bar-home-icon"></div>
+                            <div class="bar-home-icon"></div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="body">
+                <ul class="list list-messages" id="list"></ul>
+                <div style="position: absolute;top:45%;left:42%;width: 30px;height:30px;margin-top:15px;margin-left:15px">
+                    <img id="loadimg" alt="LOADING..." src="images/Loading.gif" style="display:none" />
+                </div>
+
+            </div>
+        </div>
+        <!--<div class="page-content loading-mask" id="new-stack">
+          <div class="loading-icon">
+            <div class="navbar-button-icon icon ion-load-d"></div>
+          </div>
+        </div>-->
+        <div class="shadow-layer"></div>
+    </section>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/framework.js"></script>
+    <script type="CSS/javascript" src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".navbar-title").html(localStorage.getItem("Provider"));
+            var name = localStorage.getItem("Name");
+            $("#medicalid").append(name);
+            var locid = localStorage.getItem("SubLocID");
+            var Network = localStorage.getItem("Network");
+            var Provider = localStorage.getItem("Provider");
+            var DoctorsCategory = localStorage.getItem("DoctorsCategory");
+            var data;
+            var url;
+
+            if ((Provider == "Doctors") & (Network == "M")) {
+                url = 'http://41.128.147.164:1212/api/data/GetDoctorsByTownForMeduim_categories';
+
+                data = {
+
+                    LocID: locid,
+                    _cat: 1,
+                    cat: DoctorsCategory
+                };
+            } else if ((Provider == "Doctors") & (Network == "L")) {
+                url = 'http://41.128.147.164:1212/api/data/GetDoctorsByTownForLarge_categories';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                    cat: DoctorsCategory
+                };
+            }
+            else if ((Provider == "Doctors") & (Network == "Q")) {
+                url = 'http://41.128.147.164:1212/api/data/GetDoctorsByTownForQNB_categories';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                    cat: DoctorsCategory
+                };
+            }
+            else if ((Provider == "Doctors") & (Network == "D")) {
+                url = 'http://41.128.147.164:1212/api/data/GetDoctorsByTownForDiscount_categories';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                    cat: DoctorsCategory
+                };
+            }
+            else if ((Provider == "Hospitals") & (Network == "M")) {
+                url = 'http://41.128.147.164:1212/api/data/GetHospitalsByTownForMeduim';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+
+                };
+            } else if ((Provider == "Hospitals") & (Network == "L")) {
+                url = 'http://41.128.147.164:1212/api/data/GetHospitalsByTownForLarge';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                };
+            }
+            else if ((Provider == "Hospitals") & (Network == "Q")) {
+                url = 'http://41.128.147.164:1212/api/data/GetHospitalsByTownForQNB';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                };
+            }
+            else if ((Provider == "Hospitals") & (Network == "D")) {
+                url = 'http://41.128.147.164:1212/api/data/GetHospitalsByTownForDiscount';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                };
+            }
+            else if ((Provider == "Pharmacies") & (Network == "D")) {
+                url = 'http://41.128.147.164:1212/api/data/GetPharmaciesByID_For_Discount';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                };
+            }
+            else if ((Provider == "Laboratories") & (Network == "D")) {
+                url = 'http://41.128.147.164:1212/api/data/GetLabsByID_For_Discount';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                };
+            }
+            else if ((Provider == "Optical Retails") & (Network == "D")) {
+                url = 'http://41.128.147.164:1212/api/data/GetOpticalByID_For_Discount';
+                data = {
+                    LocID: locid,
+                    _cat: 1,
+                };
+            }
+            else if ((Provider == "Pharmacies") & (Network != "D")) {
+                url = 'http://41.128.147.164:1212/api/data/GetPharmaciesByID';
+                data = {
+                    LocID: locid,
+
+                };
+            }
+            else if ((Provider == "Laboratories") & (Network != "D")) {
+                url = 'http://41.128.147.164:1212/api/data/GetLaboratoriesByID';
+                data = {
+                    LocID: locid,
+
+                };
+            }
+            else if ((Provider == "Optical Retails") & (Network != "D")) {
+                url = 'http://41.128.147.164:1212/api/data/GetOpticalsByID';
+                data = {
+                    LocID: locid,
+
+                };
+            }
+            else {
+                alert("No data was found");
+            }
+            $("#loadimg").show();
+            $.ajax({
+                type: 'Get',
+                dataType: 'json',
+                data: data,
+                url: url,
+                success: function (data) {
+                    $("#list").empty();
+                    if (data.length == 0) {
+                        alert("No data was found")
+                    }
+                    else {
+                        for (var i = 0; i < data.length; i++) {
+                            if ((Provider == "Doctors")) {
+                                $("#list").append('<li class="list-message" ><a class="w-clearfix w-inline-block" href="javascript:ProviderDetails(\'Doctors\',\'' + data[i].DoctorName + '\',\'' + data[i].DoctorAddressCode + '\',\'' + data[i].DoctorAddress + '\',\'' + data[i].DoctorPhone + '\',\'' + data[i].DoctorPhone2 + '\',\'' + data[i].DoctorPhone3 + '\',\'' + data[i].DoctorPhone4 + '\',\'' + data[i].DocLat + '\',\'' + data[i].DocLong + '\',\'' + data[i].DoctorNotes + '\',\'' + data[i].Category + '\');" data-load="1"><div class="w-clearfix column-left"><div class="image-message"><img src="images/Doctors.png"></div></div><div class="column-right"><div class="message-title">' + data[i].DoctorName + '</div><div class="message-text">' + '</div></div></a></li>');
+                            }
+                            else if ((Provider == "Hospitals")) {
+                                $("#list").append('<li class="list-message" ><a class="w-clearfix w-inline-block"  href="javascript:ProviderDetails(\'Hospitals\',\'' + data[i].HospName + '\',\'' + data[i].AddressNum + '\',\'' + data[i].HospAddress + '\',\'' + data[i].HospPhone + '\',\'' + data[i].HospPhone2 + '\',\'' + data[i].HospPhone3 + '\',\'' + data[i].HospPhone4 + '\',\'' + data[i].HospLat + '\',\'' + data[i].HospLong + '\',\'' + data[i].HospNotes + '\',\'' + data[i].Category + '\');" data-load="1"><div class="w-clearfix column-left"><div class="image-message"><img src="images/Hospitals.png"></div></div><div class="column-right"><div class="message-title">' + data[i].HospName + '</div><div class="message-text">' + '</div></div></a></li>');
+
+                            } else if (Provider == "Laboratories") {
+                                $("#list").append('<li class="list-message" ><a class="w-clearfix w-inline-block" href="javascript:ProviderDetails(\'Laboratories\',\'' + data[i].LabName + '\',\'' + data[i].LabAddressCode + '\',\'' + data[i].LabAddress + '\',\'' + data[i].LabPhone + '\',\'' + data[i].Labphone2 + '\',\'' + data[i].Labphone3 + '\',\'' + data[i].Labphone4 + '\',\'' + data[i].LabLat + '\',\'' + data[i].LabLong + '\',\'' + data[i].LabNotes + '\',\' \');" data-load="1"><div class="w-clearfix column-left"><div class="image-message"><img src="images/pharmacy.png"></div></div><div class="column-right"><div class="message-title">' + data[i].LabName + '</div><div class="message-text">' + '</div></div></a></li>');
+
+                            }
+                            else if (Provider == "Pharmacies") {
+                                $("#list").append('<li class="list-message" ><a class="w-clearfix w-inline-block" href="javascript:ProviderDetails(\'Pharmacies\',\'' + data[i].PharmName + '\',\'' + data[i].PharmAddressCode + '\',\'' + data[i].PharmAddress + '\',\'' + data[i].PharmPhone + '\',\'' + data[i].PharmPhone1 + '\',\'' + data[i].PharmPhone2 + '\',\'' + data[i].PharmPhone3 + '\',\'' + data[i].PharmLat + '\',\'' + data[i].PharmLong + '\',\'' + data[i].PharmNotes + '\',\' \');" data-load="1"><div class="w-clearfix column-left"><div class="image-message"><img src="images/pharmacy.png"></div></div><div class="column-right"><div class="message-title">' + data[i].PharmName + '</div><div class="message-text">' + '</div></div></a></li>');
+                            }
+                            else if (Provider == "Optical Retails") {
+                                $("#list").append('<li class="list-message" ><a class="w-clearfix w-inline-block" href="javascript:ProviderDetails(\'Optical Retails\',\'' + data[i].OpticalName + '\',\'' + data[i].OpticalAddressCode + '\',\'' + data[i].OpticalAddress + '\',\'' + data[i].OpticalPhone + '\',\'' + data[i].Opticalphone2 + '\',\'' + data[i].Opticalphone3 + '\',\'' + data[i].Opticalphone4 + '\',\'' + data[i].OpticalLat + '\',\'' + data[i].OpticalLong + '\',\'' + data[i].OpticalNotes + '\',\' \');" data-load="1"><div class="w-clearfix column-left"><div class="image-message"><img src="images/Glasses.jpg"></div></div><div class="column-right"><div class="message-title">' + data[i].OpticalName + '</div><div class="message-text">' + '</div></div></a></li>');
+                            }
+                            else {
+                                alert("No data was found");
+                            }
+                        }
+                    }
+                },
+                complete: function () {
+                    $('#loadimg').hide();
+                },
+            });
+        });
+        function ProviderDetails(providertype, Name, AddressCode, Address, Tel, Phone2, Phone3, Phone4, Lat, Lang, Notes, Category) {
+            localStorage.setItem("providertype", providertype);
+            localStorage.setItem("PName", Name);
+            localStorage.setItem("AddressCode", AddressCode);
+            localStorage.setItem("Address", Address);
+            localStorage.setItem("Tel", Tel);
+            localStorage.setItem("Phone2", Phone2);
+            localStorage.setItem("Phone3", Phone3);
+            localStorage.setItem("Phone4", Phone4);
+            localStorage.setItem("Lat", Lat);
+            localStorage.setItem("Lang", Lang);
+            localStorage.setItem("Notes", Notes);
+            localStorage.setItem("Category", Category);
+            window.location.href = "providerdetails.html";
+        }
+        //Slide Menu
+        $("#home").click(function () {
+            window.location.href = ("home.html");
+        });
+        $("#contactus").click(function () {
+            window.location.href = ("contactus.html");
+        });
+        $("#forgotpw").click(function () {
+            window.location.href = ("forgot.html");
+        });
+        $("#login").click(function () {
+            localStorage.setItem("loged", "out");
+            window.location.href = ("login.html");
+        });
+    </script>
+</body>
+</html>

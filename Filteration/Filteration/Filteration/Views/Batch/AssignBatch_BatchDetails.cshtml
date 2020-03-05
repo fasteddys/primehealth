@@ -1,0 +1,355 @@
+﻿@model Filteration.Models.Batch
+@{
+    ViewBag.Title = "AssignBatch_BatchDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AssignBatch</h2>
+
+<div id="normal">
+    <hr />
+    <div class="row mt">
+        <div class="col-md-12">
+            <div class="table table-striped table-advance table-hover">
+
+                <div class="panel-body table-responsive">
+                    <table class="table table-hover" id="table">
+                        
+                        <tr hidden="hidden">
+                            @Html.HiddenFor(model => model.Id, new { @id = "id" })
+                        </tr>
+
+                        <tr hidden="hidden">
+                            @Html.HiddenFor(model => model.ReqId, new { @id = "ReqId" })
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.BatchNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.BatchNumber)
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.BatchStatus)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.BatchStatus)
+                                    @Html.HiddenFor(model => model.BatchStatus, new { @id = "BatchStatus" })
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.TicketNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.TicketNumber)
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr id="AssignedPersonTR" style="display:none">
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.AssignedPerson)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.AssignedPerson)
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr id="NumberOfClaimsTR" style="display:none">
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.NumberOfClaims)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" min="0" id="claimNo" onkeypress="return IsNumPositive(event)" class="txtclaims" maxlength="4">
+                                    @*<label id="NumberOfClaims"></label>*@
+
+                                    @Html.DisplayFor(model => model.NumberOfClaims, new {@id="NumberOfClaims"})
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <!--Boxes--------------------------------------------------------------------->
+
+                        <tr id="NumberOfBoxesTR" style="display:none">
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Boxes)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" min="0" id="BoxNo" onkeypress="return IsNumPositive(event)" class="txtclaims" maxlength="4">                                
+
+                                    @Html.DisplayFor(model => model.Boxes, new { @id = "NumberOfBoxes", required = "required" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                                @Html.ActionLink("Back", "ListRequestedBatches", "Request", new { @id = Model.ReqId, status = ViewBag.Status }, null)
+                            </tr>
+
+                    </table>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<input type="button" class="btn btn-theme" id="AssignBatchBtn" value="Assign Batch">
+@*<button type="submit" class="btn btn-theme" id="AssignBatchBtn">Assign Batch</button>*@
+
+
+
+
+<input type="button" value="Finish Batch" id="FinsishBatchBtn" class="btn btn-theme04">
+
+
+
+
+
+
+<br /><br />
+<div class="Transferabatch" style="display:none">
+    @using (Html.BeginForm("TransferBatch", "Batch", new { status = ViewBag.Status, id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data", }))
+    {
+        <div style="width:400px;float:left;border:thin">
+            <h4 class="mb">Transfer batch to another User</h4>
+            <select required id="UserName" name="UserName" tabindex="-1" style="display:normal" class="form-control">
+                <option value="" disabled selected>Select..</option>
+                @foreach (var user in (SelectList)ViewBag.UserName)
+                {
+                    <option id="userinput" value="@user.Value">@user.Text</option>
+                }
+
+            </select>
+
+        </div>
+        <br /><br /><br />
+        <div style="width:400px;float:right;border:thin">
+            <input type="submit" value="Transfer Batch" id="TransferBatchBtn" class="btn btn-theme">
+        </div>
+    }
+</div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#normal").show();
+
+            if ($("#BatchStatus").val() == "Assigned" && "@Model.AssignedPerson" == "@Request.Cookies["TPAUserNameCookie"].Value") {
+
+                var info = {
+                    id: $("#id").val(),
+
+                }
+                $("#AssignBatchBtn").hide();
+                //$("#FinsishBatchBtn").show();
+                $("#AssignedPersonTR").show();
+                $("#NumberOfClaimsTR").show();
+                $("#NumberOfBoxesTR").show();
+
+            }
+            else if ($("#BatchStatus").val() == "Assigned" && "@Request.Cookies["RoleCookie"].Value" == "Admin") {
+                $("#AssignBatchBtn").hide();
+                $("#FinsishBatchBtn").hide();
+                $("#AssignedPersonTR").show();
+                $("#claimNo").hide();
+                $("#BoxNo").hide();
+                $("#NumberOfClaims").show();
+                $("#NumberOfBoxes").show();
+                
+            }
+            else {
+                $("#AssignBatchBtn").hide();
+                $("#FinsishBatchBtn").hide();
+                $("#AssignedPersonTR").hide();
+                $("#claimNo").hide();
+                $("#BoxNo").hide();
+                $("#NumberOfClaims").show();
+                $("#NumberOfBoxes").show();
+            }
+
+
+
+            if ($("#BatchStatus").val() == "NEW") {
+
+                $("#AssignBatchBtn").show();
+                $("#NumberOfClaims").hide();
+                $("#FinsishBatchBtn").hide();
+                $("#AssignedPersonTR").hide();
+                $("#NumberOfClaimsTR").hide();
+                $("#NumberOfBoxesTR").hide();
+            }
+
+            if ($("#BatchStatus").val() == "ReadyToQuality") {
+                if ("@Model.AssignedPerson" == "@Request.Cookies["TPAUserNameCookie"].Value") {
+
+                    $("#AssignedPersonTR").show();
+                    $("#NumberOfClaimsTR").show();
+                    $("#NumberOfBoxesTR").show();
+                    $("#NumberOfClaims").show();
+                    $("#NumberOfBoxes").show();
+                    $("#AssignBatchBtn").hide();
+                    $("#FinsishBatchBtn").hide();
+                }
+
+                else if ("@Request.Cookies["RoleCookie"].Value" == "Admin") {
+                    $("#AssignedPersonTR").show();
+                    $("#NumberOfClaimsTR").show();
+                    $("#NumberOfBoxesTR").show();
+                    $("#NumberOfClaims").show();
+                    $("#NumberOfBoxes").show();
+                    $("#AssignBatchBtn").hide();
+                    $("#FinsishBatchBtn").hide();
+                }
+            }
+
+            //new
+            $("#AssignBatchBtn").on("click", function () {
+                var info = {
+                    id: $("#id").val(),
+                    RequestID: $("#id").val(),//new
+
+                }
+                var x = JSON.stringify(info);
+                $.ajax({
+                    url: '@Url.Action("Assign", "Batch")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    //success: function (data, status) {
+                    success: function (data) {
+                    }
+
+                });
+                $("#AssignBatchBtn").hide();
+                //location.reload(true);
+                @*var url4 = "/Batch/AssignBatch_BatchDetails/@Model.Id";
+            window.location.href = url4;*@
+
+
+
+
+            });
+
+
+            //new......
+            $("#FinsishBatchBtn").on("click", function () {
+
+                if ($("#BatchStatus").val() == "Assigned"
+                    && "@Model.AssignedPerson" == "@Request.Cookies["TPAUserNameCookie"].Value") {
+                    var info = {
+                        id: $("#id").val(),
+                        txt: $("#claimNo").val(),
+
+                        id: $("#id").val(),
+                        TXXT: $("#BoxNo").val()
+
+
+                    }
+                }
+                
+
+               
+                var x = JSON.stringify(info);
+                $.ajax({
+                    url: '@Url.Action("SendToQuality", "Batch")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data) {
+                    }
+
+
+                });
+                $("#FinsishBatchBtn").hide();
+                
+
+            });
+            
+            if ($("#BatchStatus").val() == "ReadyToQuality" || $("#BatchStatus").val() == "Assigned") {
+                if ("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin")
+                { $(".Transferabatch").show(); }
+            }
+        });
+
+    </script>
+
+
+
+    <script type="text/javascript">
+        function IsNumPositive(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                alert("Insert right positive number");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+
+
+
+
+
+@*button "FinishBatch" Disable untill user enter number of boxes *@
+
+<script>
+    $(document).ready(function () {
+        $("#FinsishBatchBtn").attr('disabled', true);
+        $( "#claimNo"&&"#BoxNo").keyup(function (){
+
+            if ($(this).val().length != 0)
+                $("#FinsishBatchBtn").attr('disabled', false);
+            else
+                $("#FinsishBatchBtn").attr('disabled', true);
+        })
+    });
+</script>
+
+
+
+
+
+
+
+

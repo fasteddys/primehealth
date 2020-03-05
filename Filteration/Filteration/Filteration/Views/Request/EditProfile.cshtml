@@ -1,0 +1,120 @@
+﻿@model Filteration.Models.User
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Theme/assets/css/sweetalert.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+}
+
+@*<div class="error message" style="display:none">
+    <h4>Error</h4>
+</div>*@
+
+
+
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Edit Profile</h4>
+            <form class="form-inline" role="form" id="Editpas">
+                <div class="form-group">
+                    <label class="sr-only" for="UserName">User Name</label>
+                    <input type="text" name="UserName" value="@Request.Cookies["TPAUserNameCookie"].Value" class="form-control" id="exampleInputEmail2" disabled="disabled">
+                </div>
+                <br />
+                <div class="form-group">
+                    @*<label class="sr-only" for="CurrentPasword">Current Password</label>*@
+                    <input type="password" class="form-control" id="CurrentPasword" placeholder="Current Password" autofocus required="required">
+                </div>
+                <br />
+                <div class="form-group">
+                    @*<label class="sr-only" for="NewPassword">New Password</label>*@
+                    <input type="password" class="form-control" id="NewPasword" placeholder="New Password" required="required">
+                </div>
+                <br />
+                <div class="form-group">
+                    @*<label class="sr-only" for="ConNewPasword">Confirm New Password</label>*@
+                    <input type="password" class="form-control" id="ConfnewPasword" placeholder="Confirm new password" required="required">
+                </div>
+                <br />
+                <button type="button" id="ChangePas" class="btn btn-theme" style="width:171px">Change Password</button>
+                @*<div class="success message" style="display:none" id="succ">
+                    <h4>Password changed successfully</h4>
+                </div>*@
+                @*<div class="error message" style="display:none" id="fail">
+                    <h4>Error</h4>
+                </div>*@
+            </form>
+        </div>
+    </div>
+</div>
+@Html.HiddenFor(model => model.Id, new { @id = "Id" })
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $("#ChangePas").on("click", function () {
+            if ("@Model.Password" == $("#CurrentPasword").val()) {
+            if ($("#NewPasword").val() == $("#ConfnewPasword").val()) {
+                
+                var info = {
+                    id:"@Request.Cookies["IDCookie"].Value",
+                    CurrentPassword: $("#CurrentPasword").val(),
+                    NewPassword: $("#NewPasword").val(),
+                    ConfirmNewPassword: $("#ConfnewPasword").val(),
+
+                }
+                var x = JSON.stringify(info);
+                $.ajax({
+                    url: '@Url.Action("ChangePassword", "Request")',
+                    data: x,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (data, status) {
+
+
+                    }
+
+
+                });
+                $("#ChangePas").hide();
+                //$("#succ").show();
+                swal("Password changed successfully", "", "success")
+            }
+            else {
+                //$("#fail").show();
+                swal({
+                    title: "Error!",
+                    text: "Passwords do not match!",
+                    type: "error"
+
+                });
+                return false;
+            }
+        }
+            else
+            {
+                //$("#fail").show();
+                swal({
+                    title: "Error!",
+                    text: "Are you sure this is your current password!",
+                    type: "error"
+
+                });
+                return false;
+            }
+
+    });
+        
+        
+    });
+</script>
+
+
+
+

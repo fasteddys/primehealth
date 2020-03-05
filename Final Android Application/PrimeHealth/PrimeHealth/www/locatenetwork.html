@@ -1,0 +1,420 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Please Locate Your Network </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-eval' 'unsafe-inline'">-->
+
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="js/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ["Montserrat:400,700"]
+            }
+        });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section class="w-section mobile-wrapper">
+
+        <div class="page-content" id="main-stack">
+            <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+                <div class="w-container">
+                    <nav class="w-nav-menu nav-menu" role="navigation">
+                        <div class="nav-menu-header">
+                            <div class="logo">Welcome ,</div>
+                            <div class="slogan" id="medicalid"></div>
+                        </div>
+
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="home" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-keypad-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Home</div>
+
+                        </a>
+
+
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="contactus" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-location-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Contact us</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="forgotpw" data-load="1">
+
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-person-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Change Password</div>
+                        </a>
+
+                        <a class="w-clearfix w-inline-block nav-menu-link last" id="login" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-bookmarks-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Logout</div>
+                        </a>
+
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                    </nav>
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title">Locate Your Network</div>
+                    <!--<div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
+                        <div class="navbar-button-icon home-icon">
+                            <div class="bar-home-icon"></div>
+                            <div class="bar-home-icon"></div>
+                            <div class="bar-home-icon"></div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="body padding">
+                <div>
+                    <br />
+                    <br />
+                </div>
+                <div class="w-form">
+                    <form id="-form" name="email-form" data-name="Email Form" action="#">
+
+                        <br />
+                        <br />
+                        <div>
+                            <!--<label class="label-form" for="email-field">Please Select Your Provider Name</label>-->
+                            <br />
+                            <select id="providers" tabindex="-1" class="w-input input-form in-grey">
+                                <option selected disabled value="0">
+                                    Please select provider type
+                                </option>
+                                <option value="Hospitals">Hospitals</option>
+                                <option value="Doctors">Doctors</option>
+                                <option value="Pharmacies">Pharmacies</option>
+                                <option value="Laboratories">Laboratories</option>
+                                <option value="Optical Retails">Optical Retails</option>
+                            </select>
+                        </div>
+                        <div class="separator-fields"></div>
+
+                        <div>
+                            <!--<label class="label-form" for="email-field">Please Select Your State</label>-->
+                            <br />
+                            <select tabindex="-1" class="w-input input-form in-grey" name="countries" id="countries">
+                                <option selected disabled value="0">
+                                    Please select your city
+                                </option>
+                                <optgroup label="Covered Cites" id="main"></optgroup>
+
+                            </select>
+
+                            <div class="separator-fields"></div>
+                        </div>
+                        <div>
+                            <!--<label class="label-form" for="password-ield">Please Select Yor City</label>-->
+                            <br />
+
+                            <select tabindex="-1" class="w-input input-form in-grey" name="subcountries" id="subcountries">
+                                <option selected disabled value="0">
+                                    Please select location
+                                </option>
+                                <optgroup label="Covered Locations  " id="sub"></optgroup>
+                            </select>
+
+                            <div class="separator-fields"></div>
+                        </div>
+                        <div id="doccat">
+                            <!--<label class="label-form" for="password-ield">Please Select Doctor Category </label>-->
+                            <br />
+                            <select tabindex="-1" class="w-input input-form in-grey" id="doc-category">
+                                <option selected disabled value="0">
+                                    Please select doctor category
+                                </option>
+                                <optgroup label=" Category  " id="Category"></optgroup>
+                            </select>
+
+                            <div class="separator-fields"></div>
+                        </div>
+                        <div>
+
+                            <div class="separator-fields"></div>
+                            <div style="position: absolute;top:45%;left:42%;width: 30px;height:30px;margin-top:15px;margin-left:15px">
+                                <img id="loadimg" alt="LOADING..." src="images/Loading.gif" style="display:none" />
+                            </div>
+                            <div class="separator-fields"></div>
+                        </div>
+
+                        <input class="w-button action-button" type="button" id="LocateNetwork" value="Locate My Network" data-wait="Please wait..." />
+
+                    </form>
+                    <div class="w-form-done">
+                        <p>Thank you! Your submission has been received!</p>
+                    </div>
+                    <div class="w-form-fail">
+                        <p>Oops! Something went wrong while submitting the form</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="page-content loading-mask" id="new-stack">
+          <div class="loading-icon">
+            <div class="navbar-button-icon icon ion-load-d"></div>
+          </div>
+        </div>-->
+        <div class="shadow-layer"></div>
+    </section>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/framework.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            var name = localStorage.getItem("Name");
+            $("#medicalid").append(name);
+            $("#doccat").hide();
+            $("#countries").val(0);
+            $("#providers").val(0);
+            $("#subcountries").val(0);
+            $("#doc-category").val(0);
+            $("#loadimg").show();
+            $.ajax({
+                type: 'Get',
+                url: 'http://41.128.147.164:1212/api/data/getalllocations',
+                success: function (data) {
+                    var SubDropdown = $("#main");
+                    for (var i = 0; i < data.length; i++) {
+                        SubDropdown.append('<option value="' + data[i].LocID + '">' + data[i].LocationName + '</option>');
+                    }
+                },
+                complete: function () {
+                    $('#loadimg').hide();
+                },
+            });
+
+        });
+
+        $("#countries").change(function () {
+            var id = ($("#countries").val());
+            var url = "http://41.128.147.164:1212/api/data/GetSubLocByID";
+            var data = {
+                LocID: id
+            };
+            $("#loadimg").show();
+            $.ajax({
+                url: url,
+                type: 'Get',
+                data: data,
+                success: function (data) {
+
+                    var SubDropdown = $("#sub");
+                    SubDropdown.empty();
+                    for (var i = 0; i < data.length; i++) {
+                        SubDropdown.append('<option value="' + data[i].SubLocID + '">' + data[i].SubLocName + '</option>');
+                    }
+                },
+                complete: function () {
+                    $('#loadimg').hide();
+                },
+            });
+        });
+
+        $("#LocateNetwork").click(function () {
+            var DoctorsCategory = ($("#doc-category").val());
+            var subid = ($("#subcountries").val());
+            var network = localStorage.getItem("Type");
+            //    alert(network);
+
+            if ((network == "M") && (($("#providers").val()) == "Doctors")) {
+                localStorage.setItem("Provider", "Doctors");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "M");
+                localStorage.setItem("DoctorsCategory", DoctorsCategory);
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "M")) && (($("#providers").val()) == "Hospitals")) {
+
+                localStorage.setItem("Provider", "Hospitals");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "M");
+                window.location.href = "providerslist.html";
+            } else if (((network == "M")) && (($("#providers").val()) == "Pharmacies")) {
+
+                localStorage.setItem("Provider", "Pharmacies");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "M");
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "M")) && (($("#providers").val()) == "Laboratories")) {
+
+                localStorage.setItem("Provider", "Laboratories");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "M");
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "M")) && (($("#providers").val()) == "Optical Retails")) {
+
+                localStorage.setItem("Provider", "Optical Retails");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "M");
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "L")) && (($("#providers").val()) == "Doctors")) {
+
+                localStorage.setItem("Provider", "Doctors");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "L");
+                localStorage.setItem("DoctorsCategory", DoctorsCategory);
+                window.location.href = "providerslist.html";
+            } else if (((network == "L")) && (($("#providers").val()) == "Hospitals")) {
+
+                localStorage.setItem("Provider", "Hospitals");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "L");
+                window.location.href = "providerslist.html";
+            } else if (((network == "L")) && (($("#providers").val()) == "Pharmacies")) {
+
+                localStorage.setItem("Provider", "Pharmacies");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "L");
+                window.location.href = "providerslist.html";
+            } else if (((network == "L")) && (($("#providers").val()) == "Laboratories")) {
+
+                localStorage.setItem("Provider", "Laboratories");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "L");
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "L")) && (($("#providers").val()) == "Optical Retails")) {
+
+                localStorage.setItem("Provider", "Optical Retails");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "L");
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "Q")) && (($("#providers").val()) == "Doctors")) {
+
+                localStorage.setItem("Provider", "Doctors");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "Q");
+                localStorage.setItem("DoctorsCategory", DoctorsCategory);
+                window.location.href = "providerslist.html";
+            } else if (((network == "Q")) && (($("#providers").val()) == "Hospitals")) {
+
+                localStorage.setItem("Provider", "Hospitals");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "Q");
+                window.location.href = "providerslist.html";
+            } else if (((network == "Q")) && (($("#providers").val()) == "Pharmacies")) {
+
+                localStorage.setItem("Provider", "Pharmacies");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "Q");
+                window.location.href = "providerslist.html";
+            } else if (((network == "Q")) && (($("#providers").val()) == "Laboratories")) {
+
+                localStorage.setItem("Provider", "Laboratories");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "Q");
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "Q")) && (($("#providers").val()) == "Optical Retails")) {
+
+                localStorage.setItem("Provider", "Optical Retails");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "Q");
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "D")) && (($("#providers").val()) == "Doctors")) {
+
+                localStorage.setItem("Provider", "Doctors");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "D");
+                localStorage.setItem("DoctorsCategory", DoctorsCategory);
+                window.location.href = "providerslist.html";
+            } else if (((network == "D")) && (($("#providers").val()) == "Hospitals")) {
+
+                localStorage.setItem("Provider", "Hospitals");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "D");
+                window.location.href = "providerslist.html";
+            } else if (((network == "D")) && (($("#providers").val()) == "Pharmacies")) {
+
+                localStorage.setItem("Provider", "Pharmacies");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "D");
+                window.location.href = "providerslist.html";
+            } else if (((network == "D")) && (($("#providers").val()) == "Laboratories")) {
+
+                localStorage.setItem("Provider", "Laboratories");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "D");
+                window.location.href = "providerslist.html";
+            }
+            else if (((network == "D")) && (($("#providers").val()) == "Optical Retails")) {
+
+                localStorage.setItem("Provider", "Optical Retails");
+                localStorage.setItem("SubLocID", subid);
+                localStorage.setItem("Network", "D");
+                window.location.href = "providerslist.html";
+            }
+            else {
+                alert("Error occured please try again");
+            }
+        });
+        $("#providers").change(function () {
+            if (($("#providers").val()) == "Doctors") {
+                $("#doccat").show();
+                $("#loadimg").show();
+                $.ajax({
+                    type: 'Get',
+                    url: 'http://41.128.147.164:1212/api/data/GetAllCategories',
+                    success: function (data) {
+                        var SubDropdown = $("#Category");
+                        SubDropdown.empty();
+                        for (var i = 0; i < data.length; i++) {
+                            SubDropdown.append('<option value="' + data[i].Categories_id + '">' + data[i].Categories_name + '</option>');
+                        }
+                    },
+                    complete: function () {
+                        $('#loadimg').hide();
+                    },
+                });
+            }
+            else {
+                $("#doccat").hide();
+            }
+        });
+        $("#logout").click(function () {
+            localStorage.setItem("loged", "notloged");
+            window.location.href = "login.html";
+            return false;
+        });
+        //Slide Menu
+
+        $("#home").click(function () {
+            window.location.href = ("home.html");
+        });
+        $("#contactus").click(function () {
+            window.location.href = ("contactus.html");
+        });
+        $("#forgotpw").click(function () {
+            window.location.href = ("forgot.html");
+        });
+        $("#login").click(function () {
+            localStorage.setItem("loged", "out");
+            window.location.href = ("login.html");
+        });
+    </script>
+</body>
+</html>

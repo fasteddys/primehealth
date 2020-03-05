@@ -1,0 +1,52 @@
+﻿@model EmaTours.DTOs.Business.OperatingCountryDTO
+@{
+    ViewBag.Title = "Add Operating Country ";
+}
+@using (Html.BeginForm("AddNewOperatingCountry", "OperatingCountry", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="card card-outline-info">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white">Add Operating Country</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OperatingCountryName, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.OperatingCountryName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OperatingCountryName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LanguageFK, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @*@Html.(model => model.LanguageFK, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                        @Html.DropDownListFor(model => model.LanguageFK, new SelectList(Model.Languges.Select(x => new { Value = x.LanguageID, Text = x.LanguageName }), "Value", "Text"), new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.LanguageFK, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add Operating Country" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div>
+                @Html.ActionLink("Back to List", "ViewAllOperatingCountry")
+            </div>
+        </div>
+    </div>
+}
+
+

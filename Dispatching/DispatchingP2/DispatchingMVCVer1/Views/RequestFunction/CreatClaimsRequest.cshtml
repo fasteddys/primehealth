@@ -1,0 +1,186 @@
+﻿@model DispatchingMVCVer1.Models.Request
+@{
+    ViewBag.Title = "CreatClaimsRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+
+
+@section HeaderSection
+     {
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Add New Claim Request</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading"> Select Your Data </header>
+                <div class="alert alert-success alert-dismissable" id="div_Success" style="display:none">
+                    Request Inserted Successfully
+                </div>
+                <div class="alert alert-danger alert-dismissable" id="div_Error" style="display:none">
+                    Please Insert All Fields
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" role="form" >
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Provider Type</label>
+                            <div class="col-sm-3">
+                                <select class="form-control input-lg m-b-10"  id="ProviderType">
+                                    <option value="Doctors">Doctors</option>
+                                    <option value="Hospitals">Hospitals</option>
+                                    <option value="Special Center">Special Center</option>
+                                    <option value="Alexandria Office">Alexandria Office</option>
+                                    <option value="In House Doctor">In House Doctor</option>
+                                    <option value="QNB">QNB</option>
+                                    <option value="Call Center">Call Center</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Provider Name</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control input-lg m-b-10" id="ProviderName">
+                            </div>
+                            <div class="col-sm-3">
+                                <span style="color:#154db1;font-size:large;font-style:italic;display:none" id="ProviderNameValidator">Please Insert This Field</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Claim Type</label>
+                            <div class="col-sm-3">
+                                <select class="form-control input-lg m-b-10" id="ClaimType">
+                                    <option value="Medical Pass">Medical Pass</option>
+                                    <option value="QNB">QNB</option>
+                                    <option value="Claims Forms Copy 3">Claims Forms Copy 3</option>
+                                    <option value="Claims Forms Copy 5">Claims Forms Copy 5</option>
+                                    <option value="Hospital Stamp">Hospital Stamp</option>
+                                    <option value="Medical Pass (Medgulf)">Medical Pass (Medgulf)</option>
+                                    <option value="Claims Forms Copy 3  (Medgulf)">Claims Forms Copy 3  (Medgulf)</option>
+                                    <option value="Claims Forms Copy 5 (Medgulf)">Claims Forms Copy 5 (Medgulf)</option>
+                                    <option value="Hospital Stamp (Medgulf)">Hospital Stamp (Medgulf)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">#Boocklets</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control input-lg m-b-10" id="BoockletsNum">
+                            </div>
+                                <div class="col-sm-3">
+                                    <span id="BockletsNumValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                                </div>
+                            </div>
+                        
+                        <div class="form-group" id="StartClaimField" style="display:none">
+                            <label class="col-sm-2 col-sm-2 control-label">Start Claim</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control input-lg m-b-10" id="StartC">
+                            </div>
+                            <div class="col-sm-3">
+                                <span id="StartClaimValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                                <span id="StartClaimLengthValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert Correct number</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Notes</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control input-lg m-b-10" id="Notes">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" style="text-align:center;">
+                            <div class="toolbar-btn-action">
+                                <button type="button" class="btn btn-primary" id="btn_Submit">Submit Request</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+@*if the request type is back to stock then the start claim field will appear and the data sent by viewbags will be in the fields 
+all the fileds are required except for the notes field 
+the start claim filed is re1uired only when visible so it won't confilct with the new request action as it won't appear then 
+all fields are set to null after the operation is complete*@ 
+
+<script>
+    $(document).ready(function () {
+        if ("@ViewBag.State" == "BackToStock") {
+            $("#StartClaimField").show();
+            $("#ProviderType").val("@ViewBag.ProviderType");
+            $("#ProviderName").val("@ViewBag.ProviderName");
+            $("#ClaimType").val("@ViewBag.ClaimType");
+            $("#BoockletsNum").val("@ViewBag.NumOfBocklets");
+            $("#Notes").val("@ViewBag.Notes");
+        }
+        $("#StartC").keypress(function (e) {
+            if ($(this).val().length > 6) {
+                this.value = this.value.substring(0, 7);
+                e.preventDefault();
+            }
+        });
+        $("#btn_Submit").click(function () {
+            debugger;
+            var StartClaimLength = $("#StartC").val()
+            if ( $("#ProviderName").val() == "") {
+                $("#ProviderNameValidator").show();             
+            }
+            else if ($("#BoockletsNum").val() == "") {
+                $("#BockletsNumValidator").show();
+            }            
+            else if ($("#StartC").is(":visible") && ($("#StartC").val() == "" || StartClaimLength.length < 7 || StartClaimLength.length > 7)) {
+                if (StartClaimLength.length < 7 || StartClaimLength.length > 7) {
+                    $("#StartClaimLengthValidator").show();
+                }
+                else if ($("#StartC").val() == "") {
+                    $("#StartClaimValidator").show();
+                }
+            }
+            else {
+                var data =
+                    {
+                        ProviderType: $("#ProviderType").val(),
+                        ProviderName: $("#ProviderName").val(),
+                        ClaimsType: $("#ClaimType").val(),
+                        NumOfBocklets: $("#BoockletsNum").val(),
+                        Notes: $("#Notes").val(),
+                        StartClaims: $("#StartC").val()
+                    };
+                var x = JSON.stringify(data);
+                $.ajax({
+                    url: "/RequestFunction/CreatClaimsRequestWithJson",
+                    type: "Post",
+                    contentType: "application/json;charset=utf-8",
+                    data: x,
+                    success: function () {
+                        $("#div_Success").show();
+                    }
+                });
+                $("#ProviderName").val("");
+                $("#BoockletsNum").val("");
+                $("#Notes").val("");
+                $("#StartC").val("");
+            }
+        });
+    });
+</script>
+
+

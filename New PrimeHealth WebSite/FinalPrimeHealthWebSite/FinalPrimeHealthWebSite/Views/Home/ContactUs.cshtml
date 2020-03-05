@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="sec-title text-center wow animated fadeInDown">
+                <br />
+                <h2>Contacts</h2>
+                <h3 style="color:red">Call Center (16950)&nbsp;&nbsp;&nbsp;&nbsp; </h3>
+            </div>
+
+
+            <div class="col-md-7 contact-form wow animated fadeInLeft">
+                <form action="#" method="post">
+                    <div class="input-field">
+                        <asp:TextBox ID="txtName" CssClass="form-control" placeholder="Your Name..." runat="server"></asp:TextBox>
+
+                    </div>
+                    <div class="input-field">
+                        <asp:TextBox ID="txtemail" CssClass="form-control" placeholder="Your Email..." runat="server"></asp:TextBox>
+                    </div>
+                    <div class="input-field">
+                        <asp:TextBox ID="txtsubject" CssClass="form-control" placeholder="Your Subject..." runat="server"></asp:TextBox>
+                    </div>
+                    <div class="input-field">
+                        <asp:TextBox ID="txtmessage" CssClass="form-control" placeholder="Message..." runat="server" Rows="5" TextMode="MultiLine"></asp:TextBox>
+
+                    </div>
+                    <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-blue btn-effect" Text="Submit"></asp:Button>
+
+                </form>
+                <div class="col-md-5 wow animated fadeInRight">
+                    <address class="contact-details">
+                        <h3>Prime Health Contacts</h3>
+                        <p>Head Office</p>
+                        <p><i class="fa fa-calendar"></i>Address: Building 233, 2nd Sector City Center, Fifth Settlement, Cairo, Egypt</p><br>
+                        <p><i class="fa fa-phone"></i>Tel : +(020) 28111030</p>
+                        <p><i class="fa fa-calendar"></i>Work Times: all week days from 8:30 to 5:00 except Friday & Saturday</p>
+                    </address>
+                    <br />
+                    <address class="contact-details">
+                        <h3>Alexandria Office</h3>
+                        <p><i class="fa fa-calculator"></i>Address : 14 Street Ptolemy El-Falaky from the Corniche - Saba Basha</p><br>
+                        <p><i class="fa fa-phone"></i>Tel : 03-5841794/5</p>
+                        <p><i class="fa fa-fax"></i>Fax : 03-5841790</p>
+                        <p><i class="fa fa-mobile"></i>Mobile : 010-00035042</p>
+                    </address>
+                </div>
+            </div>
+
+            <div class="col-md-5 wow animated fadeInRight">
+                <address class="contact-details">
+                    <h3>Call Center</h3>
+                    <p><i class="fa fa-calendar"></i>Work Times: 24 hours, seven days a week including holidays</p><br>
+                    <p><i class="fa fa-phone"></i>Tel : 16950</p>
+                    <p><i class="fa fa-fax"></i>Fax : 02-28111031</p>
+                    <p><i class="fa fa-envelope"></i>callcenter@prime-health.org</p>
+                    <p><i class=""></i>For any inquiries / Feedback:</p>
+                    <p><i class="fa fa-envelope"></i>info@prime-health.org</p>
+                </address>
+                <br />
+            </div>
+            <div class="col-md-5 wow animated fadeInRight">
+                <address class="contact-details">
+                    <h3>Download Mobile Application</h3>
+                    <a href="https://play.google.com/store/apps/details?id=io.PrimeHealth.PrimeHealth" target="_blank">
+                        <img src="~/img/googlePlayBadgeBig.png" alt='Prime Health' style="height:90px;width:230px">
+
+
+                    </a>
+                </address>
+                <br />
+                <address class="contact-details">
+                    <a href="https://itunes.apple.com/us/app/primehealth/id1074826596?ls=1&mt=8" target="_blank">
+                        <img src="~/img/downloadIOS.jpg" alt='Prime Health' style="height:90px;width:230px">
+                    </a>
+                </address>
+            </div>
+
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,76 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<DispatchingMVCVer1.Models.StockRequest>
+@{
+    ViewBag.Title = "StockRequests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Show Requests</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+<script src="~/Scripts/googleapis.js"></script>
+<script src="~/Scripts/DataTable.js"></script>
+<link href="~/Content/Datatable.css" rel="stylesheet" />
+<script src="~/Scripts/SortScript.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Stock Requests
+                </header>
+                <div class="panel-body">
+                    <table class="table table-bordered " id="Req" align="center">
+                        <tr>
+                            <th style="text-align:center">ID</th>
+                            <th style="text-align:center">Item Name</th>
+                            <th style="text-align:center">NumOfBocklets</th>
+                            <th style="text-align:center">Start Claim Number</th>
+                            <th style="text-align:center">End Claim Number</th>
+                            <th style="text-align:center">Request By</th>
+                            <th style="text-align:center">Request Time</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td align="center"> @item.RequestID  </td>
+                                <td align="center"> @item.ItemName  </td>
+                                <td align="center"> @item.NumOfBocklets  </td>
+                                <td align="center"> @item.StartClaimNo  </td>
+                                <td align="center"> @item.EndClaimNo  </td>
+                                <td align="center"> @item.RequestBy  </td>
+                                <td align="center"> @item.RequestTime  </td>
+                            </tr>
+                        }
+                    </table>
+                </div><!-- /.panel-body -->
+                <div class="panel-body" style="align-content:center">
+                    <div>
+                        <br />
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("StockRequests",
+                        new { page, PageSize = Model.PageSize}))
+                    </div>
+                </div>
+            </div><!-- /.panel -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section>
+@*<script>
+        $(document).ready(function () {
+            $("#Req")
+            .tablesorter({ widthFixed: true, widgets: ['zebra'] })
+            .tablesorterPager({ container: $("#pager") });
+        });
+    </script>*@

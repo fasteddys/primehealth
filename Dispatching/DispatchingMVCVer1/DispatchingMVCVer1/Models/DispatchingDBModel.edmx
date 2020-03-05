@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DisPatchingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ReqID" />
+          </Key>
+          <Property Name="ReqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationRequestDate" Type="datetime" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProviderType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClaimsType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovalType" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumOfBocklets" Type="int" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="ReqStatues" Type="nvarchar" MaxLength="50" />
+          <Property Name="AgreementPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="AgreementDate" Type="datetime" />
+          <Property Name="AssignPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignDate" Type="datetime" />
+          <Property Name="StartClaims" Type="int" />
+          <Property Name="EndClaims" Type="int" />
+          <Property Name="PreparingPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="PreparationData" Type="datetime" />
+          <Property Name="ClosedPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClosedDate" Type="datetime" />
+          <Property Name="ReqjectComment" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransferedFrom" Type="nvarchar" MaxLength="50" />
+          <Property Name="WasAssignedAT" Type="datetime" />
+          <Property Name="TransferPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="OriginalProviderName" Type="nvarchar" MaxLength="100" />
+          <Property Name="OriginalProviderID" Type="int" />
+        </EntityType>
+        <EntityType Name="StockItems">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AvailableQuantity" Type="int" />
+          <Property Name="LastAdd" Type="datetime" />
+          <Property Name="LastWithdraw" Type="datetime" />
+          <Property Name="Notification" Type="nvarchar" MaxLength="50" />
+          <Property Name="Resposibility" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StockItemsDetails">
+          <Key>
+            <PropertyRef Name="StockItemsDetailsID" />
+          </Key>
+          <Property Name="StockItemsDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockItemsName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StockItemsFK" Type="int" />
+          <Property Name="StockItemsBefore" Type="int" />
+          <Property Name="StockItemsAfter" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="RequestFK" Type="int" />
+          <Property Name="StockRequestFK" Type="int" />
+          <Property Name="AddedByFK" Type="int" />
+        </EntityType>
+        <EntityType Name="StockRequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumOfBocklets" Type="int" />
+          <Property Name="StartClaimNo" Type="int" />
+          <Property Name="EndClaimNo" Type="int" />
+          <Property Name="RequestBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="RequestTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="EditRole" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="DisPatchingDBModelStoreContainer">
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockItems" EntityType="Self.StockItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockItemsDetails" EntityType="Self.StockItemsDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockRequest" EntityType="Self.StockRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DisPatchingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DisPatchingDBEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="GetAllEmployees" ReturnType="Collection(DisPatchingDBModel.GetAllEmployees_Result)">
+            <Parameter Name="ID_Param" Mode="In" Type="Int32" />
+            <Parameter Name="Name_param" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InserEmpData">
+            <Parameter Name="Name_param" Mode="In" Type="String" />
+            <Parameter Name="Pass_param" Mode="In" Type="String" />
+            <Parameter Name="type_param" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Requests" EntityType="DisPatchingDBModel.Request" />
+          <EntitySet Name="Users" EntityType="DisPatchingDBModel.User" />
+          <EntitySet Name="StockItems" EntityType="DisPatchingDBModel.StockItem" />
+          <EntitySet Name="StockRequests" EntityType="DisPatchingDBModel.StockRequest" />
+          <EntitySet Name="StockItemsDetails" EntityType="DisPatchingDBModel.StockItemsDetail" />
+        </EntityContainer>
+        <ComplexType Name="GetAllEmployees_Result">
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="start" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ReqID" />
+          </Key>
+          <Property Name="ReqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationRequestDate" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimsType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumOfBocklets" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReqStatues" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AgreementPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AgreementDate" Type="DateTime" Precision="3" />
+          <Property Name="AssignPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssignDate" Type="DateTime" Precision="3" />
+          <Property Name="StartClaims" Type="Int32" />
+          <Property Name="EndClaims" Type="Int32" />
+          <Property Name="PreparingPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PreparationData" Type="DateTime" Precision="3" />
+          <Property Name="ClosedPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClosedDate" Type="DateTime" Precision="3" />
+          <Property Name="ReqjectComment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransferedFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WasAssignedAT" Type="DateTime" Precision="3" />
+          <Property Name="TransferPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalProviderID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EditRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StockItem">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AvailableQuantity" Type="Int32" />
+          <Property Name="LastAdd" Type="DateTime" Precision="3" />
+          <Property Name="LastWithdraw" Type="DateTime" Precision="3" />
+          <Property Name="Notification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Resposibility" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StockRequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumOfBocklets" Type="Int32" />
+          <Property Name="StartClaimNo" Type="Int32" />
+          <Property Name="EndClaimNo" Type="Int32" />
+          <Property Name="RequestBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RequestTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="StockItemsDetail">
+          <Key>
+            <PropertyRef Name="StockItemsDetailsID" />
+          </Key>
+          <Property Name="StockItemsDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockItemsName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StockItemsBefore" Type="Int32" />
+          <Property Name="StockItemsAfter" Type="Int32" />
+          <Property Name="RequestFK" Type="Int32" />
+          <Property Name="AddedByFK" Type="Int32" />
+          <Property Name="StockRequestFK" Type="Int32" />
+          <Property Name="StockItemsFK" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DisPatchingDBModelStoreContainer" CdmEntityContainer="DisPatchingDBEntities">
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="DisPatchingDBModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="OriginalProviderID" ColumnName="OriginalProviderID" />
+                <ScalarProperty Name="OriginalProviderName" ColumnName="OriginalProviderName" />
+                <ScalarProperty Name="TransferPerson" ColumnName="TransferPerson" />
+                <ScalarProperty Name="WasAssignedAT" ColumnName="WasAssignedAT" />
+                <ScalarProperty Name="TransferedFrom" ColumnName="TransferedFrom" />
+                <ScalarProperty Name="ApprovalType" ColumnName="ApprovalType" />
+                <ScalarProperty Name="ReqjectComment" ColumnName="ReqjectComment" />
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="ClosedPerson" ColumnName="ClosedPerson" />
+                <ScalarProperty Name="PreparationData" ColumnName="PreparationData" />
+                <ScalarProperty Name="PreparingPerson" ColumnName="PreparingPerson" />
+                <ScalarProperty Name="EndClaims" ColumnName="EndClaims" />
+                <ScalarProperty Name="StartClaims" ColumnName="StartClaims" />
+                <ScalarProperty Name="AssignDate" ColumnName="AssignDate" />
+                <ScalarProperty Name="AssignPerson" ColumnName="AssignPerson" />
+                <ScalarProperty Name="AgreementDate" ColumnName="AgreementDate" />
+                <ScalarProperty Name="AgreementPerson" ColumnName="AgreementPerson" />
+                <ScalarProperty Name="ReqStatues" ColumnName="ReqStatues" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="NumOfBocklets" ColumnName="NumOfBocklets" />
+                <ScalarProperty Name="ClaimsType" ColumnName="ClaimsType" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="ProviderType" ColumnName="ProviderType" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreationRequestDate" ColumnName="CreationRequestDate" />
+                <ScalarProperty Name="ReqID" ColumnName="ReqID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DisPatchingDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="EditRole" ColumnName="EditRole" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockItems">
+            <EntityTypeMapping TypeName="DisPatchingDBModel.StockItem">
+              <MappingFragment StoreEntitySet="StockItems">
+                <ScalarProperty Name="Resposibility" ColumnName="Resposibility" />
+                <ScalarProperty Name="Notification" ColumnName="Notification" />
+                <ScalarProperty Name="LastWithdraw" ColumnName="LastWithdraw" />
+                <ScalarProperty Name="LastAdd" ColumnName="LastAdd" />
+                <ScalarProperty Name="AvailableQuantity" ColumnName="AvailableQuantity" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockRequests">
+            <EntityTypeMapping TypeName="DisPatchingDBModel.StockRequest">
+              <MappingFragment StoreEntitySet="StockRequest">
+                <ScalarProperty Name="RequestTime" ColumnName="RequestTime" />
+                <ScalarProperty Name="RequestBy" ColumnName="RequestBy" />
+                <ScalarProperty Name="EndClaimNo" ColumnName="EndClaimNo" />
+                <ScalarProperty Name="StartClaimNo" ColumnName="StartClaimNo" />
+                <ScalarProperty Name="NumOfBocklets" ColumnName="NumOfBocklets" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockItemsDetails">
+            <EntityTypeMapping TypeName="DisPatchingDBModel.StockItemsDetail">
+              <MappingFragment StoreEntitySet="StockItemsDetails">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="StockItemsFK" ColumnName="StockItemsFK" />
+                <ScalarProperty Name="StockRequestFK" ColumnName="StockRequestFK" />
+                <ScalarProperty Name="AddedByFK" ColumnName="AddedByFK" />
+                <ScalarProperty Name="RequestFK" ColumnName="RequestFK" />
+                <ScalarProperty Name="StockItemsAfter" ColumnName="StockItemsAfter" />
+                <ScalarProperty Name="StockItemsBefore" ColumnName="StockItemsBefore" />
+                <ScalarProperty Name="StockItemsName" ColumnName="StockItemsName" />
+                <ScalarProperty Name="StockItemsDetailsID" ColumnName="StockItemsDetailsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

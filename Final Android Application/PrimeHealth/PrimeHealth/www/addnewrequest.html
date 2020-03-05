@@ -1,0 +1,594 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/washington.css">
+    <script src="js/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ["Montserrat:400,700"]
+            }
+        });
+    </script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+    <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/JquryMobile.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="w-section mobile-wrapper">
+        <div class="page-content" id="main-stack">
+            <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+                <div class="w-container">
+                    <nav class="w-nav-menu nav-menu" role="navigation">
+                        <div class="nav-menu-header">
+                            <div class="logo">Welcome ,</div>
+                            <div class="slogan" id="medicalid"></div>
+                        </div>
+
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="home" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-keypad-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Home</div>
+
+                        </a>
+
+
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="contactus" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-location-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Contact us</div>
+                        </a>
+                        <a class="w-clearfix w-inline-block nav-menu-link" id="forgotpw" data-load="1">
+
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-person-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Change Password</div>
+                        </a>
+
+                        <a class="w-clearfix w-inline-block nav-menu-link last" id="login" data-load="1">
+                            <div class="icon-list-menu">
+                                <div class="icon ion-ios-bookmarks-outline"></div>
+                            </div>
+                            <div class="nav-menu-titles">Logout</div>
+                        </a>
+
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                        <div class="separator-bottom"></div>
+                    </nav>
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title">Add New Request</div>
+                    <!--<div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
+                        <div class="navbar-button-icon home-icon">
+                            <div class="bar-home-icon"></div>
+                            <div class="bar-home-icon"></div>
+                            <div class="bar-home-icon"></div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="body padding">
+                <div class="pic-add smaller"></div>
+                <div class="slogan">
+                    <h5 style="color:green">You can track your request by adding/updating your E-mail.<a id="addemail" style="color:blue">Click here</a> to add/update your Email</h5>
+                </div>
+<br />
+                <div class="w-form">
+                    <form id="email-form" name="email-form" data-name="Email Form" action="#">
+                        <div>
+                            <label class="label-form" for="full-name-field">Request Title</label>
+                            <input class="w-input input-form" id="title" type="text" name="title" data-name="full-name" required="required">
+                            <div class="separator-fields"></div>
+                        </div>
+                        <div>
+                            <label class="label-form" for="email-field">Request Message </label>
+                            <!--<input class="w-input input-form" id="email-field" type="text" name="email" data-name="email" required="required">-->
+                            <textarea class="w-input input-form" id="subject" name="subject" required="required"></textarea>
+
+                            <div class="separator-fields"></div>
+                            <div style="position: absolute;top:45%;left:42%;width: 30px;height:30px;margin-top:15px;margin-left:15px">
+                                <img id="loadimg" alt="LOADING..." src="images/Loading.gif" style="display:none" />
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label-form" for="password-ield">>Please attach your claim(s) </label>
+                            <br />
+                            <label class="label-form" for="password-ield">>You can upload up to 5 photos per request</label>
+                            <br />
+                            <div>
+                                <a class="category-link" onclick="capturePhoto();">Capture by camera</a>
+                                <a class="category-link" onclick="getPhoto();">Upload from gallery</a>
+                                <div class="separator-fields"></div>
+                                <img class="image-default-new " id="smallImage" src="" />
+                                <br />
+                                <br />
+                                <strong id="Addphoto1">Add another photo</strong>
+                            </div>
+                            <div class="separator-fields"></div>
+                            <div id="photo2" style="display:none">
+                                <a class="category-link" onclick="capturePhoto2();">Capture by camera</a>
+                                <a class="category-link" onclick="getPhoto2();">Upload from gallery</a>
+                                <div class="separator-fields"></div>
+                                <img class="image-default-new " id="smallImage2" src="" />
+                                <br />
+                                <br />
+                                <strong id="Addphoto2">Add another photo</strong>
+
+                            </div>
+                            <div class="separator-fields"></div>
+                            <div id="photo3" style="display:none">
+                                <a class="category-link" onclick="capturePhoto3();">Capture by camera</a>
+                                <a class="category-link" onclick="getPhoto3();">Upload from gallery</a>
+                                <div class="separator-fields"></div>
+                                <img class="image-default-new " id="smallImage3" src="" />
+                                <br />
+                                <br />
+                                <strong id="Addphoto3">Add another photo</strong>
+
+                            </div>
+                            <div class="separator-fields"></div>
+                            <div id="photo4" style="display:none">
+                                <a class="category-link" onclick="capturePhoto4();">Capture by camera</a>
+                                <a class="category-link" onclick="getPhoto4();">Upload from gallery</a>
+                                <div class="separator-fields"></div>
+                                <img class="image-default-new " id="smallImage4" src="" />
+                                <br />
+                                <br />
+                                <strong id="Addphoto4">Add another photo</strong>
+
+                            </div>
+                            <div class="separator-fields"></div>
+                            <div id="photo5" style="display:none">
+                                <a class="category-link" onclick="capturePhoto5();">Capture by camera</a>
+                                <a class="category-link" onclick="getPhoto5();">Upload from gallery</a>
+                                <div class="separator-fields"></div>
+                                <img class="image-default-new " id="smallImage5" src="" />
+                            </div>
+                        </div>
+                        <br />
+                        <div>
+                           <a class="w-button action-button" id="sendclaim">Send Approval Request</a>
+                        </div>
+                    </form>
+                    <!--<div class="w-form-done">
+                        <p>Thank you! Your submission has been received!</p>
+                    </div>
+                    <div class="w-form-fail">
+                        <p>Oops! Something went wrong while submitting the form</p>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="js/jquery.mobile-1.3.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            //alert(localStorage.getItem("Special"));
+            var name = localStorage.getItem("Name");
+            $("#medicalid").append(name);
+        });
+        var imgurl = "";
+        var imgNme;
+        var imgurl2 = "";
+        var imgNme2;
+        var imgurl3 = "";
+        var imgNme3;
+        var imgurl4 = "";
+        var imgNme4;
+        var imgurl5 = "";
+        var imgNme5;
+        function capturePhoto() {
+
+            navigator.camera.getPicture(onPhotoURISuccess,
+                                                function (message) { alert('Camera cancelled'); },
+                                                {
+                                                    quality: 80,
+                                                    destinationType: Camera.DestinationType.NATIVE_URI,
+                                                    sourceType: Camera.PictureSourceType.CAMERA,
+                                                    allowEdit: false,
+                                                    encodingType: Camera.EncodingType.JPEG,
+                                                    correctOrientation: true,
+                                                    cameraDirection: Camera.Direction.BACK,
+
+                                                });
+        }
+        function getPhoto() {
+
+            navigator.camera.getPicture(onPhotoURISuccess,
+                                              function (message) { alert('No image was selected'); },
+                                              {
+                                                  quality: 80,
+                                                  destinationType: navigator.camera.DestinationType.FILE_URI,
+                                                  sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+                                                 
+                                              }
+                                              );
+
+        }
+        function onPhotoURISuccess(imageUri) {
+            var largeImage = document.getElementById('smallImage');
+            largeImage.style.display = 'block';
+            largeImage.src = imageUri;
+            imgurl = imageUri;
+            localStorage.setItem("tt", imageUri);
+            getBase64FromImageUrl(imageUri, "1");
+        }
+        function capturePhoto2() {
+
+            navigator.camera.getPicture(onPhotoURISuccess2,
+                                                function (message) { alert('Camera cancelled'); },
+                                                {
+                                                    quality: 80,
+                                                    destinationType: Camera.DestinationType.NATIVE_URI,
+                                                    sourceType: Camera.PictureSourceType.CAMERA,
+                                                    allowEdit: false,
+                                                    encodingType: Camera.EncodingType.JPEG,
+                                                    correctOrientation: true,
+                                                    cameraDirection: Camera.Direction.BACK,
+
+                                                });
+        }
+        function getPhoto2() {
+
+            navigator.camera.getPicture(onPhotoURISuccess2,
+                                              function (message) { alert('No image was selected'); },
+                                              {
+                                                  quality: 80,
+                                                  destinationType: navigator.camera.DestinationType.FILE_URI,
+                                                  sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+
+                                              }
+                                              );
+
+        }
+        function onPhotoURISuccess2(imageUri2) {
+            var largeImage = document.getElementById('smallImage2');
+            largeImage.style.display = 'block';
+            largeImage.src = imageUri2;
+            imgurl2 = imageUri2;
+            localStorage.setItem("yy", imageUri2);
+            getBase64FromImageUrl(imageUri2, "2");
+        }
+        function capturePhoto3() {
+
+            navigator.camera.getPicture(onPhotoURISuccess3,
+                                                function (message) { alert('Camera cancelled'); },
+                                                {
+                                                    quality: 80,
+                                                    destinationType: Camera.DestinationType.NATIVE_URI,
+                                                    sourceType: Camera.PictureSourceType.CAMERA,
+                                                    allowEdit: false,
+                                                    encodingType: Camera.EncodingType.JPEG,
+                                                    correctOrientation: true,
+                                                    cameraDirection: Camera.Direction.BACK,
+
+                                                });
+        }
+        function getPhoto3() {
+
+            navigator.camera.getPicture(onPhotoURISuccess3,
+                                              function (message) { alert('No image was selected'); },
+                                              {
+                                                  quality: 80,
+                                                  destinationType: navigator.camera.DestinationType.FILE_URI,
+                                                  sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+
+                                              }
+                                              );
+
+        }
+        function onPhotoURISuccess3(imageUri3) {
+            var largeImage = document.getElementById('smallImage3');
+            largeImage.style.display = 'block';
+            largeImage.src = imageUri3;
+            imgurl3 = imageUri3;
+            localStorage.setItem("zz", imageUri3);
+            getBase64FromImageUrl(imageUri3, "3");
+        }
+        function capturePhoto4() {
+
+            navigator.camera.getPicture(onPhotoURISuccess4,
+                                                function (message) { alert('Camera cancelled'); },
+                                                {
+                                                    quality: 80,
+                                                    destinationType: Camera.DestinationType.NATIVE_URI,
+                                                    sourceType: Camera.PictureSourceType.CAMERA,
+                                                    allowEdit: false,
+                                                    encodingType: Camera.EncodingType.JPEG,
+                                                    correctOrientation: true,
+                                                    cameraDirection: Camera.Direction.BACK,
+
+                                                });
+
+        }
+        function getPhoto4() {
+
+            navigator.camera.getPicture(onPhotoURISuccess4,
+                                              function (message) { alert('No image was selected'); },
+                                              {
+                                                  quality: 80,
+                                                  destinationType: navigator.camera.DestinationType.FILE_URI,
+                                                  sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+
+                                              }
+                                              );
+        }
+        function onPhotoURISuccess4(imageUri4) {
+            var largeImage = document.getElementById('smallImage4');
+            largeImage.style.display = 'block';
+            largeImage.src = imageUri4;
+            imgurl4 = imageUri4;
+            localStorage.setItem("xx", imageUri4);
+            getBase64FromImageUrl(imageUri4, "4");
+        }
+        function capturePhoto5() {
+            navigator.camera.getPicture(onPhotoURISuccess5,
+                                                function (message) { alert('Camera cancelled'); },
+                                                {
+                                                    quality: 80,
+                                                    destinationType: Camera.DestinationType.NATIVE_URI,
+                                                    sourceType: Camera.PictureSourceType.CAMERA,
+                                                    allowEdit: false,
+                                                    encodingType: Camera.EncodingType.JPEG,
+                                                    correctOrientation: true,
+                                                    cameraDirection: Camera.Direction.BACK,
+
+                                                });
+        }
+        function getPhoto5() {
+            navigator.camera.getPicture(onPhotoURISuccess5,
+                                              function (message) { alert('No image was selected'); },
+                                              {
+                                                  quality: 80,
+                                                  destinationType: navigator.camera.DestinationType.FILE_URI,
+                                                  sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+                                              }
+                                              );
+        }
+        function onPhotoURISuccess5(imageUri5) {
+            var largeImage = document.getElementById('smallImage5');
+            largeImage.style.display = 'block';
+            largeImage.src = imageUri5;
+            imgurl5 = imageUri5;
+            localStorage.setItem("uu", imageUri5);
+            getBase64FromImageUrl(imageUri5, "5");
+        }
+        function win(r) {
+            console.log("Code = " + r.responseCode);
+            console.log("Response = " + r.response);
+            console.log("Sent = " + r.bytesSent);
+        }
+        function fail(error) {
+            //alert("An error has occurred: Code = " + error.code);
+            //console.log("upload error source " + error.source);
+            //console.log("upload error target " + error.target);
+        }
+        $("#Addphoto1").click(function () {
+            $("#photo2").show();
+        });
+        $("#Addphoto2").click(function () {
+            $("#photo3").show();
+        });
+        $("#Addphoto3").click(function () {
+            $("#photo4").show();
+        });
+        $("#Addphoto4").click(function () {
+            $("#photo5").show();
+        });
+        $("#sendclaim").click(function ()
+        {
+            var result = "";
+            var medicalID = localStorage.getItem("medical");
+            var data = {
+                medical:medicalID
+            }
+            var sub = $("#subject").val();
+            var title = $("#title").val();
+            $("#loadimg").show();
+            $.ajax({
+                url: 'http://41.128.147.164:1212/api/data/GetActivationStatus',
+                type: 'Get',
+                data: data,
+                async: false,
+                success: function (data) {
+                    result = data;
+                },
+                complete: function () {
+                    $('#loadimg').hide();
+                },
+                error: function (error) {
+                    alert("Please check your internet connection");
+                }
+            });
+            if (result != "Activated") {
+                alert("Your account is either disabled or being activated... \r Please try again in 10 minutes");
+            }
+            else if (sub == "" || title == "" || imgurl == "") {
+                alert("Please fill in all required fields");
+            }
+            else {
+                $("#sendclaim").hide();
+                if ($("#smallImage2").attr('src') == '') {
+                    imgNme2 = null;
+                }
+               
+                if ($("#smallImage3").attr('src') == '') {
+                    imgNme3 = null;
+                }
+               
+                if ($("#smallImage4").attr('src') == '') {
+                    imgNme4 = null;
+
+                }
+                
+                if ($("#smallImage5").attr('src') == '') {
+                    imgNme5 = null;
+                }
+                var requestDTO;
+                var medical = localStorage.getItem("medical");
+                var name = localStorage.getItem("Name");
+                var url = "http://41.128.147.164:1212/api/Data/GetClaims";
+                if ((localStorage.getItem("Special") == "Special")) {
+                    requestDTO = {
+                        Medical: medical,
+                        ImgName: imgNme,
+                        Imgname2: imgNme2,
+                        Imgname3: imgNme3,
+                        Imgname4: imgNme4,
+                        Imgname5: imgNme5,
+                        User: name,
+                        Sub: sub,
+                        Title: title,
+                        ReqType: "Special",
+                        Platform: "Android"
+                    };
+                }
+                else {
+                    requestDTO = {
+                        Medical: medical,
+                        ImgName: imgNme,
+                        Imgname2: imgNme2,
+                        Imgname3: imgNme3,
+                        Imgname4: imgNme4,
+                        Imgname5: imgNme5,
+                        User: name,
+                        Sub: sub,
+                        Title: title,
+                        ReqType: "Normal",
+                        Platform: "Android"
+                    };
+                }
+                $("#loadimg").show();
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: requestDTO,
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "Success") {
+                            SendMailToCallCenter();
+                            SendMail_Approval_For_User();
+                            localStorage.setItem("status", "Pending Requests");
+                            alert("Your request has been sent successfully");
+                            window.location.href = ("requestlist.html");
+                        }
+                        else {
+                            alert("Error , Please try again");
+                        }
+                    },
+                    error: function (error)
+                    {
+                        alert("Error , Please check your internet connection");
+                    }
+                });
+            }
+        });
+        function SendMailToCallCenter() {
+            var medical = localStorage.getItem("medical");
+            var username = localStorage.getItem("Name");
+            var subject = $("#title").val();
+            var type = localStorage.getItem("Special");
+            var data = {
+                username: username,
+                medicalID: medical,
+                subject: subject,
+                type: type
+            };
+            $.ajax({
+                url: "http://41.128.147.164:1212/api/Data/SendMail_FeedBack_For_Approvals",
+                type: 'Get',
+                data: data,
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (data == "Success") {
+                    }
+                },
+                error: function (error) {
+                }
+            });
+        }
+        function SendMail_Approval_For_User() {
+            var medical = localStorage.getItem("medical");
+            var username = localStorage.getItem("Name");
+            var data = {
+                medicalID: medical,
+                username: username
+            };
+            $.ajax({
+                url: "http://41.128.147.164:1212/api/Data/SendMail_Approval_For_User",
+                type: 'Get',
+                data: data,
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (data == "Success") {
+                    }
+                },
+                error: function (error) {
+                }
+            });
+        }
+        $("#home").click(function () {
+            window.location.href = ("home.html");
+        });
+        $("#contactus").click(function () {
+            window.location.href = ("contactus.html");
+        });
+        $("#forgotpw").click(function () {
+            window.location.href = ("forgot.html");
+        });
+        $("#addemail").click(function () {
+            window.location.href = ("emailaddress.html");
+        });
+        $("#login").click(function () {
+            localStorage.setItem("loged", "out");
+            window.location.href = ("login.html");
+        });
+        function getBase64FromImageUrl(url, imageNo) {
+            
+            var img = new Image();
+            img.onload = function () {
+                
+                var canvas = document.createElement("canvas");
+                canvas.width = this.width;
+                canvas.height = this.height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(this, 0, 0);
+                var dataURL = canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpeg);base64,/, '');
+                if (imageNo == "1") {
+                    imgNme = dataURL;
+                }
+                else if (imageNo == "2") {
+                    imgNme2 = dataURL;
+                }
+                else if (imageNo == "3") {
+                    imgNme3 = dataURL;
+                }
+                else if (imageNo == "4") {
+                    imgNme4 = dataURL;
+                }
+                else {
+                    imgNme5 = dataURL;
+                }
+            };
+            img.src = url;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+﻿@model EmaTours.DTOs.Business.ClientTripDTO
+@{
+    ViewBag.Title = "Manage Trip";
+}
+<link href="~/css/bootstrap-datetimepicker.min.css.css" rel="stylesheet" />
+<script src="~/js/lib/datepicker/bootstrap-datetimepicker.min.js"></script>
+@using (Html.BeginForm("AddRequestDetails", "Trip", "post"))
+{
+    <div class="card card-outline-info">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white">Trip Request: @Model.ClientTripID</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="form-body">
+                @Html.HiddenFor(model => model.ClientTripID)
+                <div class="row">
+                    <div class="center-block">
+
+                        @*<h1 style="   font-size: 50px;" class="form-control-static text-warning">*@
+
+                        @Html.HiddenFor(model => model.ClientTripID)
+                        @*</h1>*@
+
+                    </div>
+                    <!--/span-->
+                    <!--/span-->
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">Client Name:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.ClientName, new { @class = "form-control", @readonly = "readonly" })
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">User Assignee:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.UserAssigneeName, new { @class = "form-control", @readonly = "readonly" })
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">Trip Name:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.TripName, new { @class = "form-control", @readonly = "readonly" })
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">Client Desired Trip Date:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.ClientDesiredTripDate, new { @class = "form-control", @readonly = "readonly" })
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">Number Of Adults:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.NumberOfAdults, new { @class = "form-control", @readonly = "readonly" })
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">Number Of Children:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.NumberOfChildren, new { @class = "form-control", @readonly = "readonly" })
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">Status:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.Status, new { @class = "form-control", @readonly = "readonly" })
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">ClientNotes:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.ClientNotes, new { @class = "form-control", @readonly = "readonly" })
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-4">ClientVisitID:</label>
+                            <div class="col-md-8">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.ClientVisitID, new { @class = "form-control", @readonly = "readonly" })
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="control-label text-right col-md-2">Comment:</label>
+                            @Html.TextAreaFor(model => model.UserComment, new {
+                           rows = "15", placeholder = "Enter Problem Description ...",
+                           @class= "textarea_editor form-control col-md-10 "
+
+                       })
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-6">
+
+                            @if (Model.StatusID == (int)EmaTours.BLL.StaticData.StaticEnums.RequestStatus.Pending)
+                            {<button type="submit" class="btn btn-danger" @*style="display:none;"*@> <i class="fa fa-reply"></i> Save</button>
+                            }
+                            @if (Model.StatusID == (int)EmaTours.BLL.StaticData.StaticEnums.RequestStatus.New)
+                            {
+                                <button type="button" onclick="location.href='@Url.Action("AssignRequest", "Trip", new { TripRequestID = Model.ClientTripID })'" class="btn btn-warning"><i class="fa fa-check"></i> Assign</button>
+                            }
+                            @if (Model.StatusID == (int)EmaTours.BLL.StaticData.StaticEnums.RequestStatus.Pending)
+                            {
+                                <button type="button" onclick="location.href='@Url.Action("CloseRequest", "Trip", new { TripRequestID = Model.ClientTripID })'" class="btn btn-dark"><i class="fa fa-lock"></i> Close</button>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'DD/MM/YYYY hh:mm A',
+
+
+            });
+        });
+    </script>
+
+<script>
+
+</script>
+<script src="~/CustomJS/AddTrip.js"></script>

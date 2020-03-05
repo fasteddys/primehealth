@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "928772347403",
+    "firebase_url": "https://ema-tours.firebaseio.com",
+    "project_id": "ema-tours",
+    "storage_bucket": "ema-tours.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928772347403:android:e1e39a715b743cce",
+        "android_client_info": {
+          "package_name": "com.android.EmaTours"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928772347403-fm0q225fso0rmqr249cdld2ge279ld4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2QfcTMELTLasVpA8J-zTcW7VOXmZf4j4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928772347403-fm0q225fso0rmqr249cdld2ge279ld4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

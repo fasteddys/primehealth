@@ -1,0 +1,259 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Pricing.Models.Attachment>
+@{
+    ViewBag.Title = "ShowDetailsOfContract";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jq/JS.js"></script>
+<script src="~/Scripts/jq/JSS.js"></script>
+<link href="~/Scripts/jq/jqu.css" rel="stylesheet" />
+<link href="~/Scripts/jq/sheet.css" rel="stylesheet" />
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Contract Details</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Show Details Of Contract
+                </header>
+                <div class="alert alert-success alert-dismissable" id="div_success" style="display:none">
+                    @ViewBag.Success
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <td> <label class="col-lg-12 col-sm-12 control-label"> Creator</label> </td>
+                            <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;">@ViewBag.ContractDetails.Creator </div> </td>
+                        </tr>
+                        <tr>
+                            <td> <label class="col-lg-12 col-sm-12 control-label"> Creation Time</label> </td>
+                            <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;"> @ViewBag.ContractDetails.CreationTime </div> </td>
+                        </tr>
+                        <tr>
+                            <td> <label class="col-lg-12 col-sm-12 control-label"> Client Name</label> </td>
+                            <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;"> @ViewBag.ContractDetails.ProviderName </div> </td>
+                        </tr>
+                        <tr>
+                            <td> <label class="col-lg-12 col-sm-12 control-label"> Contract Type </label> </td>
+                            <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @ViewBag.ContractDetails.ContractType </div> </td>
+                        </tr>
+                        <tr>
+                            <td> <label class="col-lg-12 col-sm-12 control-label"> Policy</label> </td>
+                            <td> <div class="col-lg-12 col-sm-12 control-label" style="font-weight: bold;"> @ViewBag.ContractDetails.Policy </div> </td>
+                        </tr>
+                        <tr>
+                            <td> <label class="col-lg-12 col-sm-12 control-label"> Contract Version</label> </td>
+                            <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @ViewBag.ContractDetails.ContractVersion </div> </td>
+                        </tr>
+                        <tr>
+                            <td> <label class="col-lg-12 col-sm-12 control-label"> Contract Notes</label> </td>
+                            <td> <div class="col-lg-12 col-sm-12 control-label " style="font-weight: bold;"> @ViewBag.ContractDetails.ContractNotes </div> </td>
+                        </tr>
+                        <tr id="AddFile" style="display:none">
+
+                            @using (Html.BeginForm("AddAttach", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal tasi-form", ID = ViewBag.ContractDetails.ID }))
+                            {
+                                <td>
+
+                                    <label class="col-sm-2 col-sm-2 control-label" style="margin-top:5px">File</label>
+                                    <div class="col-sm-3">
+                                        <input name="ID" id="ID" style="display:none" value="@ViewBag.ContractDetails.ID" />
+                                        <input type="file" style="width:220px;margin-left:0px" class="form-control input-group-sm m-b-5" name="file" id="file" required />
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary" id="btn_Submit">Submit</button>
+
+                                </td>
+                            }
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" style="display:none" id="Editbtn" onclick="@("window.location.href='" + @Url.Action("Edit", "Home") + '/' + ViewBag.ContractDetails.ID + "'");" class="btn btn-danger"> Edit</button>
+                                <button type="button" style="display:none" id="DeleteModal" class="btn btn-danger" data-toggle="modal" data-target="#declineModal"> Delete</button>
+                                <button type="button" style="display:none" id="AddAttach" class="btn btn-primary">Add Atachment</button>
+                                <a  href="#SectionAttachments" id="ShowAttaches"  class="btn btn-success"> Show Attachments </a>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <!-- Modal -->
+                    <div class="modal fade" id="declineModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header"> 
+
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="ModalComment" >Are you sure</h4>
+                                </div>
+                                <div class="modal-body" align="center" style="align-items:center">
+                                    <button type="button" id="Deletebtn" onclick="window.location.href = ' + @Url.Action("Delete", "Home") + ' / ' + @ViewBag.ContractDetails.ID + '" class="btn btn-danger btn-lg">Yes</button> 
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="button" id="DeleteNo" data-dismiss="modal" class="btn btn-danger btn-lg">No</button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="CloseModal" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.panel -->
+            </div><!-- /.panel-body -->
+        </div><!-- /.panel -->
+    </div><!-- /.col -->
+</section>
+<section class="content" id="SectionAttachments" style="display:none">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Attachments
+                </header>
+                <div class="panel-body">
+
+                    <div class="panel">
+                        <form class="form-horizontal tasi-form" method="post"  id="FromToAttachments" action="/Home/ShowDetailsOfContract/@ViewBag.ContractDetails.ID">
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">From</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" name="From" id="datepicker" required>
+                                </div>
+                                <label class="col-sm-2 col-sm-2 control-label">To</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control " name="To" id="datepicker1" required>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="toolbar-btn-action"><i class="glyphicon glyphicon-ok"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <br />
+                        <br />
+                        <div class="alert alert-danger alert-dismissable" id="div_Empty" style="display:none">
+                            @ViewBag.Empty
+                        </div>
+                        <div class="panel-body" id="Attachments" style="display:none">
+                            <table class="table table-bordered " id="Req" align="center">
+                                <tr>
+                                    <th style="text-align:center">File Name</th>
+                                    <th style="text-align:center">Upload Date</th>
+                                    <th style="text-align:center">Download</th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td align="center"> @item.FileName  </td>
+                                        <td align="center"> @String.Format("{0:d}", item.UploadDate)  </td>
+                                        <td align="center">
+                                            <button class="btn btn-default btn-xs" onclick="window.location.href = '/Home/Download/@item.AttachID';"><i class="glyphicon glyphicon-download-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div><!-- /.panel-body -->
+                        <div class="panel-body" style="align-content:center">
+                            <div>
+                                <br />
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("ShowDetailsOfContract",
+                                    new { page, PageSize = Model.PageSize, ID = ViewBag.ContractDetails.ID, From = ViewBag.IntervalFrom, To = ViewBag.IntervalTo, Status = "Display" }))
+                            </div>
+                        </div>
+                    </div><!-- /.panel -->
+                </div><!-- /.panel-body -->
+            </div><!-- /.panel -->
+    </div><!-- /.col -->
+    </div><!-- /.row -->
+</section>
+<script>
+    $(document).ready(function () {
+        if ("@Request.Cookies["UserTypeCookie"].Value" == "PricingAdmin") {
+            $("#DeleteModal").show();
+            $("#Editbtn").show();
+            $("#AddAttach").show();
+        }
+        else {
+            $("#Editbtn").show();
+            $("#AddAttach").show();
+        }
+        if ("@ViewBag.Empty" == "No Attachments To show") {
+            $("#div_Empty").show();
+
+        }
+        $("#Deletebtn").click(function () {
+            window.location = '@Url.Action("Delete", "Home", new { ID = ViewBag.ContractDetails.ID })'
+        })
+        $("#ShowAttaches").click(function () {
+            $("#SectionAttachments").show();
+            document.getElementById("FromToAttachments").focus();
+            if ("@ViewBag.Empty" == "No Attachments To show") {
+                $("#div_Empty").show();
+                $("#Attachments").hide();
+            }
+            else {
+                $("#Attachments").show();
+                $("#FromToAttachments").show();
+            }
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // Store hash
+                var hash = this.hash;
+
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function () {
+
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+            } // End if
+        });
+
+        $("#AddAttach").click(function () {
+            $("#AddFile").show();
+        });
+
+        if ("@ViewBag.Success" != "") {
+            $("#div_success").show();
+        }
+        debugger;
+        if ("@ViewBag.Status" == "Display") {
+            $("#SectionAttachments").show();
+            $("#FromToAttachments").show();
+            $("#Attachments").show();
+        }
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'mm/dd/yy'
+        });
+        $("#datepicker1").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'mm/dd/yy'
+        });
+
+    });
+</script>

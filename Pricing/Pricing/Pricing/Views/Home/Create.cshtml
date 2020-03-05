@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+<script src="~/Scripts/googleapis 3.1.1.js"></script>
+<script src="~/Scripts/googleapis.js"></script>
+@section HeaderSection
+     {
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Add New Claim Request</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading"> Select Your Data </header>
+                <div class="alert alert-success alert-dismissable" id="div_success" style="display:none">
+                    @ViewBag.Success
+                </div>
+                <div class="alert alert-danger alert-dismissable" id="div_Error" style="display:none">
+                    Please Insert All Fields
+                </div>
+                <div class="panel-body">
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" , @class="form-horizontal tasi-form" }))
+{
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">Client Name</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control input-lg m-b-10" name="ProviderName" id="ProviderName" required>
+                                </div>
+                                <div class="col-sm-3">
+                                    <span style="color:#154db1;font-size:large;font-style:italic;display:none" id="ProviderNameValidator">Please Insert This Field</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">Contract Type</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control input-lg m-b-10" name="ContractType" id="ContractType" required>
+                                        <option value="Contract">Contract</option>
+                                        <option value="Offer">Offer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">Policy</label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control input-lg m-b-10" name="Policy" id="Policy">
+                                </div>
+                                <div class="col-sm-3">
+                                    <span id="PolicyValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">Contract Version</label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control input-lg m-b-10" name="ContractVersion" id="ContractVersion" >
+                                </div>
+                                <div class="col-sm-3">
+                                    <span id="ContractVersionValidator" style="color:#154db1;font-size:large;font-style:italic;display:none">Please Insert This Field</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">Notes</label>
+                                <div class="col-sm-3">
+                                    <textarea type="text" class="form-control input-lg m-b-10" name="Notes" id="Notes" ></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">File</label>
+                                <div class="col-sm-3">
+                                    <input type="file" class="form-control input-lg m-b-10" name="file" id="file" required />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" style="text-align:center;">
+                                <div class="toolbar-btn-action">
+                                    <button type="submit" class="btn btn-primary" id="btn_Submit">Submit Request</button>
+                                </div>
+                            </div>
+                      
+}
+</div>
+            </section>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+        debugger;
+        if ("@ViewBag.Success" != "") {
+            $("#div_success").show();
+        }
+    });
+</script>

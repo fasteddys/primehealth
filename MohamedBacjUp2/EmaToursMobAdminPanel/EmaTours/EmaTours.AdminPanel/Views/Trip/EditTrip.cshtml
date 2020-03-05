@@ -1,0 +1,114 @@
+﻿
+@model EmaTours.DTOs.Business.TripDTO
+@{
+    ViewBag.Title = "Edit Trip "+ @Model.TripName;
+}
+@using (Html.BeginForm("EditTrip", "Trip", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="card card-outline-info">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white">Edit Trip:  @Model.TripID - @Model.TripName</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.HiddenFor(model => model.TripID, new { htmlAttributes = new { @class = "form-control", @id = "TripID" } })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TripName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TripName, new { htmlAttributes = new { @class = "form-control", @id = "TripName" } })
+                        @Html.ValidationMessageFor(model => model.TripName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TripShortDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TripShortDesc, new { htmlAttributes = new { @class = "form-control", @id = "TripShortDesc" } })
+                        @Html.ValidationMessageFor(model => model.TripShortDesc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TripDetailedDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TripDetailedDesc, new { htmlAttributes = new { @class = "form-control", @id = "TripDetailedDesc" } })
+                        @Html.ValidationMessageFor(model => model.TripDetailedDesc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id = "Price" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LangugeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@Html.(model => model.LanguageFK, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                        @Html.DropDownListFor(model => model.LangugeID, new SelectList(Model.Languges.Select(x => new { Value = x.LanguageID, Text = x.LanguageName }), "Value", "Text"), new { @class = "form-control", @id = "LangugeID" })
+
+                        @Html.ValidationMessageFor(model => model.LangugeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LocationID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@Html.(model => model.LanguageFK, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                        @Html.DropDownListFor(model => model.LocationID, new SelectList(Model.Locations.Select(x => new { Value = x.OperatingLocationID, Text = x.OperatingLocationName }), "Value", "Text"), new { @class = "form-control", @id = "LocationID" })
+
+                        @Html.ValidationMessageFor(model => model.LocationID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Countries, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@Html.(model => model.LanguageFK, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                        @Html.DropDownListFor(model => model.CountryID, new SelectList(Model.Countries.Select(x => new { Value = x.OperatingCountryID, Text = x.OperatingCountryName }), "Value", "Text"), new { @class = "form-control", @id = "CountryID" })
+
+                        @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Photos, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Partial("_ViewPhotos", Model.Photos)
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Upload More Images</label>
+                    <div class="col-md-10">
+                        <input id="File1" type="file" multiple class="test" />
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" id="UpdateTrip" value="Update Trip" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("Back to List", "ViewAllTrip")
+            </div>
+        </div>
+    </div>
+}
+<script src="~/CustomJS/UpdateTrip.js"></script>

@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="~/image/ico" sizes="16x16" href="~/img/member-2.jpg" />
+    <!-- Bootstrap Core CSS -->
+    <link href="~/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
+    <link href="~/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="~/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/css/lib/dropzone/dropzone.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/css/helper.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/css/themify-icons.css" rel="stylesheet" />
+    <link href="~/icons/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link href="~/css/btnloader.css" rel="stylesheet" />
+    <script src="~/js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <!-- scripit init-->
+    <!--Custom JavaScript -->
+    <script src="~/js/custom.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/js/lib/sweetalert/sweetalert.min.js"></script>
+
+    <script src="~/js/paginathing.js"></script>
+    @*<script src="~/js/paginathing.min.js"></script>*@
+    @*<script src="~/js/Gruntfile.js"></script>*@
+    <style>
+        .profilepic {
+            /*position: relative;*/
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            /*background-image: url('../img/index.png');*/
+            background-position: 50% 0px;
+            background-size: cover;
+            background-repeat: no-repeat;
+
+        }
+
+
+    </style>
+    <link href="~/css/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <!--Modal Style -->
+    <style>
+        #container .modal.fade {
+            /*left: -25%;*/
+            -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+            transition: opacity 0.3s linear, left 0.3s ease-out;
+        }
+
+            #container .modal.fade.in {
+                left: 50%;
+            }
+
+        #container .modal-body {
+            max-height: 50px;
+        }
+
+        #article-editor {
+            width: 600px;
+            margin-left: -300px;
+            margin-right: -300px;
+        }
+    </style>
+
+
+
+</head>
+
+<body class="fix-header fix-sidebar" style="overflow-anchor: none;">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div id="LoadingDiv" class="btnloaderbg" style="display:none;">
+        <div class="btnloader">Loading...</div>
+    </div>
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="~/Approvals/Index">
+                        <img src="~/img/prime.png" alt="Prime Health" style="width:132px;height:35px;" />
+                    </a>
+
+                </div>
+
+                <!-- End Logo -->
+                <div class="navbar-collapse" style="padding-left:95px;">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="~/home/index" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-arrow-left"> Back To WebSite</i>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <br />
+                    <ul id="sidebarnav">
+                        @*<li class="nav-devider"></li>*@
+
+                        <li style="text-align:center;padding-top:25px;">
+                            <img class="profilepic" src="~/img/index.png" />
+                        </li>
+                        <li class="nav-label">Personal Data</li>
+                        <li>
+                            <a>
+                                <i class="fa fa-user"></i>
+
+                                <span id="Name" class="hide-menu" style="position: unset;">Mohamed Minaisy</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a class="">
+                                <i class="fa fa-id-card"></i>
+
+                                <span id="MedicalID" class="hide-menu" style="position: unset;">Medical ID</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a class="">
+                                <i class="fa fa-building"></i>
+
+                                <span id="CompanyName" class="hide-menu" style="position: unset;">Company Name</span>
+                            </a>
+
+                        </li>
+
+                        @*@{
+                            var foo = new System.ComponentModel.DataAnnotations.EmailAddressAttribute();
+                            if (foo.IsValid(Request.Cookies["Email"].Value.ToString()))
+                            {
+                                <li>
+                                    <a class="">
+                                        <i class="fa fa-envelope-o"></i>
+
+                                        <span id="Email" class="hide-menu" style="position: unset;text-justify:inherit;">@Request.Cookies["Email"].Value</span>
+                                    </a>
+
+                                </li>
+                            }
+
+                        }*@
+                        <li class="nav-label">Navigation</li>
+                        <li>
+                            <a class="" href="/Approvals/AddRequest">
+                                <i class="fa fab fa-wpforms"></i>
+
+                                <span class="hide-menu" style="position: unset;">Add Request</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a class="" href="/Approvals/SearchRequest">
+                                <i class="fa fas fa-search"></i>
+
+                                <span class="hide-menu" style="position: unset;">Search Requests</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="/Approvals/ShowAllRequests">
+                                <i class="fa fa fa-tasks"></i>
+
+                                <span class="hide-menu" style="position: unset;">Review Approvals</span>
+                            </a>
+
+                        </li>
+                        <li class="nav-label">Account Settings</li>
+                        <li>
+                            <a class="" href="#">
+                                <i class="fa fa-key"></i>
+
+                                <span id="ChangePassword" class="hide-menu" style="position: unset;">Change Password</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a class="" href="#">
+                                <i class="fa fa-envelope"></i>
+
+                                <span  class="hide-menu ChangeEmail" style="position: unset;">Add/Update Your Email</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-sign-out"></i>
+
+                                <span id="SignOut" class="hide-menu" style="position: unset;">Sign Out</span>
+                            </a>
+
+                        </li>
+
+                        <!--USERS-->
+                        <!--Departments-->
+                        <!--SubDepartments-->
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+
+            <!-- Container fluid  -->
+            <!-- Start Page Content -->
+            @RenderBody()
+            <!-- End PAge Content -->
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <br />
+            <br />
+
+            <footer class="footer nav navbar " style="height:15px"> © 2018 All rights reserved Prime Health Egypt. </footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+
+
+
+</body>
+
+</html>
+<script>
+
+    document.getElementById("Name").innerHTML = getcookie("Name");
+    document.getElementById("MedicalID").innerHTML = getcookie("Medical_id");
+
+    document.getElementById("CompanyName").innerHTML = getcookie("ClientName");
+    if (getcookie("Email") == null)
+    { document.getElementById("Email").innerHTML = getcookie("Email"); }
+
+    $(document).ajaxStart(function ()
+    {
+        $("#LoadingDiv").show();
+    });
+    $(document).ajaxStop(function () {
+        $("#LoadingDiv").delay(50).hide(0); 
+    });
+
+
+
+
+    function getcookie(cname) {
+        var name = cname + '=';
+        var decodedcookie = decodeURIComponent(document.cookie);
+        var ca = decodedcookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+
+
+            }
+            if (c.indexOf(name) == 0)
+            { return c.substring(name.length, c.length); }
+
+
+        }
+        return "";
+
+
+
+
+
+    }
+
+    $("#SignOut").click(function () {
+        debugger;
+        deleteAllCookies();
+
+        window.location.href = "@Url.Action("Login","Approvals")";
+    });
+    function deleteAllCookies() {
+        var cookies = document.cookie.split(";");
+
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT" + ";path=/";
+
+        }
+    }
+
+
+
+
+
+    // Update Email Or ADD New One
+
+
+    $(".ChangeEmail").on("click", function (e) {
+
+        swal({
+            title: "Enter Email",
+            text: "Enter Your New Email:",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            inputPlaceholder: "Email"
+        },
+            function (inputValue) {
+                var x = checkEmail(inputValue)
+                if (checkEmail(inputValue) == false) {
+                    swal.showInputError("You Enter Wrong Email!");
+                    return false
+                }
+                else {
+
+                    var NewEmail = inputValue;
+                    var url = "@System.Configuration.ConfigurationManager.AppSettings["ServiceUrl"]" + "api/Data/UpdateEmail";
+                    var data = {
+                        medid: getcookie("Medical_id"),
+                        mail: NewEmail
+                    };
+                    $("#loadimg").show();
+                    $.ajax({
+                        url: url,
+                        type: 'Get',
+                        data: data,
+                        success: function (data) {
+                            if (data == "Success") {
+                                swal("Done!", "Your Email has been successfully updated To: " + inputValue, "success");
+                                document.cookie = "Email=" + inputValue + ";path=/";
+                                if (document.getElementById("Email") != null)
+                                document.getElementById("Email").innerHTML = inputValue;
+
+                                //window.location.href = ("home.html");
+                               // location.reload();
+
+                            } else {
+
+                                sweetAlert("Error!", "please try again " + inputValue, "danger");
+
+
+                            }
+                        },
+                        complete: function () {
+
+                        },
+                        error: function (error) {
+                          //  swal("", " ", "danger");
+                            sweetAlert("Error...", "Please check your internet connection", "error");
+
+                        }
+                    });
+                }
+            });
+
+    });
+
+    function checkEmail(email) {
+        var reg = /\S+@@\S+\.\S+/;
+        if (!reg.test(email))
+    { return false; }
+    else {
+        return true;
+    }
+
+    }
+
+
+
+
+
+
+
+    $("#ChangePassword").on("click", function () {
+
+        swal({
+            title: "Change Password",
+            text: "Enter Your new Password:",
+            type: "input",
+            inputType: "password",
+            showCancelButton: true,
+            closeOnConfirm: false,
+           
+
+        },
+            function (inputValue) {
+                if (inputValue == "") {
+                    swal.showInputError("RENTER PASSWORD!");
+                    return false
+                }
+                else {
+
+                    var url = "@System.Configuration.ConfigurationManager.AppSettings["ServiceUrl"]" + "api/Data/Update_New_Password";
+                    var data = {
+                        medid: getcookie("Medical_id"),
+                        pass: inputValue
+                    };
+                    $("#loadimg").show();
+                    $.ajax({
+                        url: url,
+                        type: 'Get',
+                        data: data,
+                        success: function (data) {
+                            if (data == "Success") {
+                                swal("Done!", "Your Password has been successfully updated: ", "success");
+                            
+                                //window.location.href = ("home.html");
+                               // location.reload();
+
+                            } else {
+
+                                sweetAlert("Error!", "please try again " + inputValue, "danger");
+
+
+                            }
+                        },
+                        complete: function () {
+
+                        },
+                        error: function (error) {
+                          //  swal("", " ", "danger");
+                            sweetAlert("Error...", "Please check your internet connection", "error");
+
+                        }
+                    });
+                }
+            });
+
+    });
+
+
+
+
+
+ </script>
+

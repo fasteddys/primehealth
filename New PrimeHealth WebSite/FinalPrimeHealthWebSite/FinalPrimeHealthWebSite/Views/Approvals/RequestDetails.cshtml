@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "Request Details";
+    Layout = null;
+    var apiurlsearch = ViewBag.ServiceUrl + "GetClaimDetailsByID";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ImgesUrl = ViewBag.ImgesUrl;
+
+}
+<link href="~/dist/css/lightboxgallery-min.css" rel="stylesheet" />
+<link href="~/css/styleGallary.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-outline-primary">
+            <div class="card-header">
+                <h4 class="m-b-0 text-white">Request Details</h4>
+            </div>
+            <div class="card-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-body">
+                        <h3 class="box-title m-t-15">Request Info</h3>
+                        <hr class="m-t-0 m-b-40">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Request No:</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right"><b id="id">545787</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Request Title:</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right"><b id="ReqTitle">tes test</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Creation Time:</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right"><b id="CreationTime">4/8/2018</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Request Body:</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right" ><b @*class="text-left"*@ id="ReqSubject">The b element represents a span of text to which attention is being drawn for utilitarian purposes without conveying any extra importance and with no implication of an alternate voice or mood, such as key words in a document abstract, product names in a review, actionable words in interactive text-driven software, or an article lede.</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4"><a style="color:blue;text-decoration:underline!important" href="#attachedphotos" >View Attached Photos</a></label>
+
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <h3 class="box-title">Call Center Reply Details</h3>
+                        <hr class="m-t-0 m-b-40">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Call Center Agent :</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right"><b id="CallCenterName">Mohamed Minaisy</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Reply Time :</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right"><b  id="ApproveOrRejectTime">4/8/2018</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Request Status:</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right"><b id="Reqstatus">Approved</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Call Center Comment:</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right"><b id="CallCenterComment">5od fyha rabak yswyha</b> </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <!--/span-->
+                            
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="control-label  col-md-4">Call Center Reply:</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static text-right" id="CallCenterReply"><img src="~/images/glow.gif" alt="Prime Health" style="max-height:40px;max-width:40px"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<section id="attachedphotos">
+    <div class="container">
+        <div class="card">
+            <h3 class="box-title">Attached Photos</h3>
+            <hr class="m-t-0 m-b-40">
+            <div class="lightboxgallery-gallery clearfix" id="contanner">
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+<script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/js/jquery.slimscroll.js"></script>
+<!--Menu sidebar -->
+<script src="~/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!--Custom JavaScript -->
+<script src="~/js/custom.min.js"></script>
+
+
+<script>
+
+
+            $.ajax({
+                url: "@apiurlsearch?ID=@ViewBag.Id",
+                type: 'Get',
+                success: function (data) {
+                    document.getElementById("id").innerHTML=data.id;
+                    document.getElementById("ApproveOrRejectTime").innerHTML=data.ApproveOrRejectTime;
+                    document.getElementById("CallCenterComment").innerHTML = data.CallCenterComment;
+                    document.getElementById("CallCenterName").innerHTML = data.CallCenterName;
+                    document.getElementById("CreationTime").innerHTML = data.CreationTime;
+                    document.getElementById("ReqSubject").innerHTML = data.ReqSubject;
+                    document.getElementById("ReqTitle").innerHTML = data.ReqTitle;
+                    document.getElementById("Reqstatus").innerHTML = data.ReqStatus;
+
+
+                    
+                    if (data.RepliedImageStrg != null)
+                        document.getElementById("CallCenterReply").innerHTML = "<a href='" + data.RepliedImageStrg + "' target='_blank'> <img src='/images/PDF.png' height='70px' width='70px' /></a>";
+
+
+                    if (data.imageName != null)
+                        $("#contanner").append(" <a class='lightboxgallery-gallery-item' target='_blank' href='@ImgesUrl" + data.imageName + ".jpg' data-title='Prime Health' data-alt='Prime Health' data-desc='Our Prime Concern is your Health'><div><img alt='Prime Health' src='@ImgesUrl" + data.imageName + ".jpg' title='Prime Health' alt='Prime Health'><div class='lightboxgallery-gallery-item-content'><span class='lightboxgallery-gallery-item-title'>Prime Health</span></div></div></a>");
+                    if (data.ImgName2 != null)
+                        $("#contanner").append(" <a class='lightboxgallery-gallery-item' target='_blank' href='@ImgesUrl" + data.ImgName2 + ".jpg' data-title='Prime Health' data-alt='Prime Health' data-desc='Our Prime Concern is your Health'><div><img alt='Prime Health' src='@ImgesUrl" + data.ImgName2 + ".jpg' title='Prime Health' alt='Prime Health'><div class='lightboxgallery-gallery-item-content'><span class='lightboxgallery-gallery-item-title'>Prime Health</span></div></div></a>");
+                    if (data.ImgName3 != null)
+                        $("#contanner").append(" <a class='lightboxgallery-gallery-item' target='_blank' href='@ImgesUrl" + data.ImgName3 + ".jpg' data-title='Prime Health' data-alt='Prime Health' data-desc='Our Prime Concern is your Health'><div><img alt='Prime Health' src='@ImgesUrl" + data.ImgName3 + ".jpg' title='Prime Health' alt='Prime Health'><div class='lightboxgallery-gallery-item-content'><span class='lightboxgallery-gallery-item-title'>Prime Health</span></div></div></a>");
+                    if (data.ImgName4 != null)
+                        $("#contanner").append(" <a class='lightboxgallery-gallery-item' target='_blank' href='@ImgesUrl" + data.ImgName4 + ".jpg' data-title='Prime Health' data-alt='Prime Health' data-desc='Our Prime Concern is your Health'><div><img alt='Prime Health' src='@ImgesUrl" + data.ImgName4 + ".jpg' title='Prime Health' alt='Prime Health'><div class='lightboxgallery-gallery-item-content'><span class='lightboxgallery-gallery-item-title'>Prime Health</span></div></div></a>");
+                    if (data.ImgName5 != null)
+                        $("#contanner").append(" <a class='lightboxgallery-gallery-item' target='_blank' href='@ImgesUrl" + data.ImgName4 + ".jpg' data-title='Prime Health' data-alt='Prime Health' data-desc='Our Prime Concern is your Health'><div><img alt='Prime Health' src='@ImgesUrl" + data.ImgName5 + ".jpg' title='Prime Health' alt='Prime Health'><div class='lightboxgallery-gallery-item-content'><span class='lightboxgallery-gallery-item-title'>Prime Health</span></div></div></a>");
+
+
+
+
+                },
+                error: function (error) {
+                }
+            });
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    jQuery(function ($) {
+        $(document).on('click', '.lightboxgallery-gallery-item', function (event) {
+            event.preventDefault();
+            $(this).lightboxgallery({
+                showCounter: true,
+                showTitle: true,
+                showDescription: true
+            });
+        });
+    });
+</script>
+
+<script src="~/dist/js/lightboxgallery-min.js"></script>

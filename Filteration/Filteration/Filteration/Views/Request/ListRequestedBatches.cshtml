@@ -1,0 +1,392 @@
+﻿@model List<Filteration.Models.Batch>
+@{
+    ViewBag.Title = "ListRequestedBatches";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<style>
+    #container .modal.fade {
+        left: -25%;
+        -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+        -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+        -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+        transition: opacity 0.3s linear, left 0.3s ease-out;
+    }
+
+        #container .modal.fade.in {
+            left: 50%;
+        }
+    #container .modal-body {
+        max-height: 50px;
+    }
+    #article-editor {
+        width: 600px;
+        margin-left: -300px;
+        margin-right: -300px;
+    }
+    
+</style>
+<meta content="15">
+
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Total batshes</h4>
+            <input type="text" class="form-control-static" readonly="readonly" id="showhide3" style="text-align:center;" value="@ViewBag.BatchesNumber " />
+        </div>
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Assigned batshes</h4>
+            <input type="text" class="form-control-static" readonly="readonly" id="showhide2" style="text-align:center;" value="@ViewBag.DynamicFinishedBatch" />
+        </div>
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Unassigned batshes</h4>
+            <input type="text" class="form-control-static" readonly="readonly" id="showhide" style="text-align:center;" value="@ViewBag.DynamicNewBatchesCounter" />
+        </div>
+    </div>
+</div>
+@*@using (Html.BeginForm("Search", "Request", new {BatchNumber = Model.FirstOrDefault().BatchNumber, status = ViewBag.Status }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {*@ 
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel" id="FilterForm">
+            <h4 class="mb"><i class="fa fa-angle-right"></i>Filter based on Batch status in this ticket</h4>
+
+                <input type="text" style="width:200px" class="form-control" id="BatchNumber2" placeholder="Batch Number" onkeyup="myfunc()">
+          
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div>
+@*}*@
+<input type="button" value="Send To Quality" style="display: none; margin-left: 500px; width:140px" id="SendQuality" class="btn btn-theme" />
+<input type="button" value="Close Request" class="bg-theme03" style="width:initial;height:initial;display:none; margin-left:500px" id="CloseRequest" />
+@*NEW*@
+
+@*END*@
+<div class="row mt">
+    <div class="col-md-12">
+        <div class="content-panel">
+
+            <h4><i class="fa fa-angle-right"></i> Batch Details</h4>
+            <input type="button" value="Add Batch" class="btn btn-theme"  style="width: initial; display:none; height: initial; margin-left: 500px; width: 140px" id="AddNewBat" />
+
+            <table class="table table-striped table-advance table-hover" id="tableb">
+
+               
+                <tr hidden="hidden">
+                    @Html.HiddenFor(model => model.FirstOrDefault().ReqId, new { @id = "Rid" })
+                </tr>
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().TicketNumber)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().BatchNumber)
+                    </th>
+
+                    <th class="Number_of_claimsTH">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().NumberOfClaims)
+                    </th>
+
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().BatchStatus)
+                    </th>
+
+                    <th class="Assigned_QualityTH">
+                        @Html.DisplayNameFor(model=>model.FirstOrDefault().AssignedQuality)
+                    </th>
+
+                    <th class="Admin_assigned_person" style="display:none" >
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedPerson)
+                    </th>
+                    <th class="AssignedDateAdminTh" style="display:none" >
+                        @Html.DisplayNameFor(model=>model.FirstOrDefault().AssignedDate)
+                    </th>
+
+
+                    <th class="AssignBatchTH">Details</th>
+                    <th class="ActionTH">Action</th>
+                    <th class="Edit">Edit</th>
+                    <th class="Delete">Delete</th>
+                    
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketNumber)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BatchNumber)
+                        </td>
+
+                        <td class="Number_of_claimsTD">
+                            @Html.DisplayFor(modelItem => item.NumberOfClaims)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BatchStatus)
+                            @Html.HiddenFor(modelItem => item.BatchStatus, new { @id = "Batchstatus" })
+
+
+                        </td>
+                        <td class="Assigned_QualityTD">
+                            @Html.DisplayFor(modelItem=>item.AssignedQuality)
+                        </td>
+
+                        <td class="Admin_assigned_person_td" style="display:none">
+                            @Html.DisplayFor(modelItem => item.AssignedPerson)
+                        </td>
+                        <td class="AssignedDateAdminTd" style="display:none">
+                            @Html.DisplayFor(modelItem=>item.AssignedDate)
+                        </td>
+
+
+
+                        <td class="AssignBatchBTN">
+                            <button class="btn btn-primary btn-xs"
+                                    @*onclick="window.location = '/Batch/AssignBatch_BatchDetails/@item.Id?status=@ViewBag.Status';">*@
+                                    @*onclick="window.location = '/Batch/AssignBatch_BatchDetails/@item.Id&_@item.ReqId?status=@ViewBag.Status';">*@
+                                onclick="window.location ='@Url.Action("AssignBatch_BatchDetails", "Batch", 
+                                new { id = item.Id, RequestID = item.ReqId, status = ViewBag.Status })';">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+       
+                        </td>
+
+                        <td class="ActionBTN">
+                            <button class="btn btn-primary btn-xs" onclick="window.location = '/Batch/AcceptBatchQuality/@item.Id?status=@ViewBag.Status';"><i class="fa fa-pencil"></i></button>
+                        </td>
+
+                        <td class="EditBatchNumberBTN">
+                            <button class="btn btn-primary btn-xs" onclick="window.location = '/Batch/EditBatchNumber/@item.Id?status=@ViewBag.Status';"><i class="fa fa-pencil"></i></button>
+                        </td>
+
+                        <td class="DeleteBatchNumberBTN">
+                            <button class="btn btn-primary btn-xs" onclick="window.location = '/Batch/DeleteBatchNumber/@item.Id?status=@ViewBag.Status';"><i class="fa fa-pencil"></i></button>
+                        </td>
+
+                        
+
+                    </tr>
+                }
+
+            </table>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Theme/assets/css/sweetalert.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script type="text/javascript">
+    //new
+    
+    function myfunc() {
+       
+        // Declare variables 
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("BatchNumber2");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("tableb");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    
+    //end
+    $(document).ready(function () {
+        //NEW
+        var inptValue;
+        $("#AddNewBat").on("click", function (e) {
+            e.preventDefault();
+           
+        swal({
+            title: "Do you wanna add a new batch to this ticket?",
+            text: "Enter batch number",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+        },
+function (inputValue) {
+    if (inputValue === false) return false;
+
+    if (inputValue === "") {
+        swal.showInputError("Dude!, where is the batch number?");
+        return false;
+    }
+   
+    var info = {
+        id: $("#Rid").val(),
+        BatchNumber: inputValue,
+
+    }
+    var x = JSON.stringify(info);
+    $.ajax({
+        url: '@Url.Action("AddnewBatch", "Request")',
+        data: x,
+        contentType: 'application/json; charset=utf-8',
+        type: 'POST',
+        success: function (data) {
+            //$("#tableb").load("/Request/ListRequestedBatches");
+            // $("#tableb").load("/Request/ListRequestedBatches/", { ListRequestedBatches: data });
+            //$("#tableb").append(html);
+            
+        }
+
+
+    });
+    swal("Batch added", "", "success")
+    
+    
+});
+            //location.reload(true);
+            });
+        
+        //END
+        if ("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin")
+        {
+            $("#AddNewBat").show();
+        }
+        if (localStorage['Type'] == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPA"
+            || "@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin") {
+
+
+
+            if ("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin" ||
+                "@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {
+                $(".Admin_assigned_person").show();
+                $(".Admin_assigned_person_td").show();
+                $(".AssignedDateAdminTh").show();
+                $(".AssignedDateAdminTd").show();
+                $(".Assigned_QualityTD").hide();
+                $(".Assigned_QualityTH").hide();
+                $(".ActionTH").hide();
+                $(".ActionBTN").hide();
+
+            }
+            else if (localStorage['Type'] == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPA") {
+                $(".Admin_assigned_person").hide();
+                $(".Admin_assigned_person_td").hide();
+                $(".EditBatchNumberBTN").hide();
+                $(".DeleteBatchNumberBTN").hide();
+                //$("#SearchForm").hide();
+                $(".Edit").hide();
+                $(".Delete").hide();
+                $(".Assigned_QualityTD").hide();
+                $(".Assigned_QualityTH").hide();
+                $(".ActionTH").hide();
+                $(".ActionBTN").hide();
+            }
+        }
+        if (localStorage['Type'] == "Quality" && "@Request.Cookies["UserTypeCookie"].Value" == "Quality") {
+            $(".DeleteBatchNumberBTN").hide();
+            $(".Delete").hide();
+            $(".Number_of_claimsTH").hide();
+            $(".Number_of_claimsTD").hide();
+            $(".AssignBatchBTN").hide();
+            $(".AssignBatchTH").hide();
+            $(".Edit").hide();
+            $(".EditBatchNumberBTN").hide();
+        }
+        else if (localStorage['Type'] == "Quality" && "@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {
+            $(".DeleteBatchNumberBTN").hide();
+            $(".Delete").hide();
+            $(".Number_of_claimsTH").hide();
+            $(".Number_of_claimsTD").hide();
+            $(".AssignBatchBTN").hide();
+            $(".AssignBatchTH").hide();
+        }
+        //new
+        if ("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin" && "@ViewBag.Ready" == "ShowButton") {
+            $("#SendQuality").show();
+        }
+
+        if ("@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin" && "@ViewBag.Quality" == "ShowCloseTicketButton") {
+            $("#CloseRequest").show();
+        }
+        //end
+
+    });
+
+</script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+   
+    if("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin"){
+        $("#SendQuality").on("click", function () {
+
+            var info = {
+                id: $("#Rid").val(),
+
+            }
+
+            var x = JSON.stringify(info);
+            $.ajax({
+                url: '@Url.Action("PendingQuality", "Request")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+
+                }
+            });
+            $("#SendQuality").hide();
+            window.location = '@Url.Action("Dashboard", "Request")'
+        
+        });
+    }
+   
+</script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    @*if ("@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {*@
+        $("#CloseRequest").on("click", function () {
+
+            var info = {
+                id: $("#Rid").val(),
+
+            }
+
+            var x = JSON.stringify(info);
+            $.ajax({
+                url: '@Url.Action("CloseQuality", "Request")',
+                data: x,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                success: function (data, status) {
+
+                }
+            });
+            $("#CloseRequest").hide();
+            window.location = '@Url.Action("Dashboard", "Request", new { status = "Quality"})'
+        
+        });
+    //}
+
+    
+    </script>

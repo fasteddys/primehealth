@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<!--<style>
+    body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.fixed-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+img {
+    height: auto;
+    width: auto;
+    min-width: 100%;
+    min-height: 100%;
+}
+</style>-->
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="reqRepliedImageStrg">
+
+
+    </div>
+</body>
+</html>
+
+<script src="cordova.js"></script>
+<script src="scripts/platformOverrides.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+
+        $("<img>", { "src": "data:image/jpeg;base64," + localStorage.getItem("reqRepliedImageStrg"), "height": "100%", "width": "100%" }).appendTo("#reqRepliedImageStrg");
+
+        if (localStorage.getItem("status") == "Pending Requests") {
+
+            $("#reqRepliedImageStrg").hide();
+
+        }
+    });
+    </script>

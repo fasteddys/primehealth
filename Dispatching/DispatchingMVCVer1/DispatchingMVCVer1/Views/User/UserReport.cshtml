@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "UserReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jq/JS.js"></script>
+<script src="~/Scripts/jq/JSS.js"></script>
+@section HeaderSection
+     {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#">Reports</a></li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Report
+                </header>
+                <div>
+                    <button type="button" id="Reject" class="btn btn-danger">Users</button>
+                    <button type="button" id="Prepare" class="btn btn-danger">Providers</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content" id="Users" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Report
+                </header>
+                <div class="panel">
+                    <form class="form-horizontal tasi-form" method="post" id="FromToAttachments" action="/Home/ShowDetailsOfContract/@ViewBag.ContractDetails.ID">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">From</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" name="From" id="datepicker" required>
+                            </div>
+                            <label class="col-sm-2 col-sm-2 control-label">To</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control " name="To" id="datepicker1" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="toolbar-btn-action"><i class="glyphicon glyphicon-ok"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content" id="Providers" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    Report
+                </header>
+                <div class="panel">
+                    <form class="form-horizontal tasi-form" method="post" id="FromToAttachments" action="/Home/ShowDetailsOfContract/@ViewBag.ContractDetails.ID">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">From</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" name="From" id="datepicker" required>
+                            </div>
+                            <label class="col-sm-2 col-sm-2 control-label">To</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control " name="To" id="datepicker1" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="toolbar-btn-action"><i class="glyphicon glyphicon-ok"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("#datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'mm/dd/yy'
+    });
+    $("#datepicker1").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'mm/dd/yy'
+    });
+</script>
+

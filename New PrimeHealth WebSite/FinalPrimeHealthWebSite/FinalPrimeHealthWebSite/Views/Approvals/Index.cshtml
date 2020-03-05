@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "Approvals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    section.cms-boxes .cms-boxes-outer {
+        text-align: left;
+        margin-bottom: 6px;
+        padding: 0 3px;
+    }
+
+        section.cms-boxes .cms-boxes-outer .cms-boxes-items {
+            height: 300px;
+            display: table;
+            width: 100%;
+        }
+
+            section.cms-boxes .cms-boxes-outer .cms-boxes-items p {
+                color: #fff;
+            }
+
+    section.cms-boxes .cms-features {
+        background-color: #21a747;
+    }
+
+    section.cms-boxes .cms-security {
+        background-color: #c97eec;
+    }
+
+    section.cms-boxes .boxes-align {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    section.cms-boxes .small-box,
+    section.cms-boxes .large-box {
+        max-width: 350px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    section.cms-boxes .cms-boxes-items h2 {
+        font-size: 35px;
+        color: #fff;
+        font-weight: 400;
+        line-height: 37px;
+        text-align: center;
+        margin: 20px 0 10px;
+        text-transform: uppercase;
+    }
+
+
+
+    section.cms-boxes .cms-security,
+    section.cms-boxes .cms-documentation {
+        background-color: rgb(66, 16, 88);
+    }
+
+    section.cms-boxes .cms-boxes-items:hover {
+        opacity: .2;
+        cursor: pointer;
+    }
+</style>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div>
+                <div id="Main">
+                    <div class="container" style="padding-top:6%">
+                        <section class="cms-boxes">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4 cms-boxes-outer">
+                                        <a href="/Approvals/AddRequest">
+                                            <div class="cms-boxes-items cms-features">
+                                                <div class="boxes-align">
+                                                    <div class="small-box">
+
+                                                        <i class="fa fa-4x fab fa-wpforms">&nbsp;</i>
+                                                        <h2>Add Request</h2>
+                                                        <p>You Can Add a New approval request from here .</p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4 cms-boxes-outer">
+                                        <a href="/Approvals/SearchRequest">
+                                            <div class="cms-boxes-items cms-security">
+                                                <div class="boxes-align">
+                                                    <div class="small-box">
+
+                                                        <i class="fa fa-4x fas fa-search">&nbsp;</i>
+                                                        <h2>Search Requests</h2>
+                                                        <p>Search your approvals requests.</p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4 cms-boxes-outer">
+                                        <a href="/Approvals/ShowAllRequests">
+                                            <div class="cms-boxes-items cms-features">
+                                                <div class="boxes-align">
+                                                    <div class="small-box">
+
+                                                        <i class="fa fa-4x fa fa-tasks">&nbsp;</i>
+                                                        <h2>Review Approvals</h2>
+                                                        <p>Review All your approvals (Approved-Rejected-Pending)</p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<script src="~/js/lib/bootstrap/js/popper.min.js"></script>
+<script src="~/js/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/js/jquery.slimscroll.js"></script>
+<!--Menu sidebar -->
+<script src="~/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="~/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!--Custom JavaScript -->
+<script src="~/js/custom.min.js"></script>
+

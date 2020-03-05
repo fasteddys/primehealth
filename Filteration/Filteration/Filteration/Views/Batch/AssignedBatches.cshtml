@@ -1,0 +1,73 @@
+﻿@model List<Filteration.Models.Batch>
+
+@{
+    ViewBag.Title = "AssignedBatches";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt">
+    <div class="col-md-12">
+        <div class="content-panel">
+            <h4><i class="fa fa-angle-right"></i>Assigned Batches</h4>
+            <table class="table table-striped table-advance table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model=>model.FirstOrDefault().TicketNumber)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model=>model.FirstOrDefault().BatchNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model=>model.FirstOrDefault().BatchStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model=>model.FirstOrDefault().NumberOfClaims)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Boxes)
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(model => model.First().AssignedPerson)*@
+                        @Html.ActionLink("AssignedPerson", "AssignedBatches", new { sortOrder = ViewBag.SortNameParam, username = ViewBag.Nusername })
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(model=>model.First().AssignedDate)*@
+                        @Html.ActionLink("AssignedDate", "AssignedBatches", new { sortOrder = ViewBag.SortDateParam, username = ViewBag.Nusername })
+                    </th>
+                    </tr>
+                @if(Model != null)
+                { 
+                    //......
+                foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.TicketNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.BatchNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.BatchStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.NumberOfClaims)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Boxes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssignedPerson)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.AssignedDate)
+                        </td>
+
+                    </tr>
+                }
+                }
+            </table>
+        </div>
+    </div>
+</div>

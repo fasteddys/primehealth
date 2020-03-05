@@ -1,0 +1,110 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Online Approvals</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="~/image/png" sizes="16x16" href="~/global_assets/images/Medgulf-Logo.png">
+    <link href="~/assets/css/core.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/btnloader.css" rel="stylesheet" />
+
+    <!-- /global stylesheets -->
+</head>
+<body class="login-container login-cover  pace-done" style="background-color:#006D88">
+    <div id="LoadingDiv" class="btnloaderbg" style="display:none;">
+        <div class="btnloader">Loading...</div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Content area -->
+                <div class="content pb-20">
+                    <!-- Form with validation -->
+                    <form action="Login" method="post">
+
+                        <div class="panel panel-body login-form">
+                            <div class="text-center">
+                                <div class="icon-object border-slate-300 text-slate-300"><i class="icon-lock2"></i></div>
+                                <h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
+                            </div>
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="text" class="form-control" id="UserNameTxt" placeholder="Username" name="username" required="required">
+                                @*<div class="form-control-feedback">
+                                        <i class="icon-user text-muted"></i>
+                                    </div>*@
+                            </div>
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="password" id="PasswordTxt" class="form-control" placeholder="Password" name="password" required="required">
+                                @*<div class="form-control-feedback">
+                                        <i class="icon-lock2 text-muted"></i>
+                                    </div>*@
+                            </div>
+                            @*<div class="form-group login-options">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="RememberMe" class="styled">
+                                            Remember
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <a href="">Forgot password?</a>
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                <button type="button" id="LoginBtn" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+                            </div>
+
+
+                            @*<span class="help-block text-center no-margin">If You Forgot your Password Contact our <a href="#">Call Cneter</a> To Reset It For You</span>*@
+                        </div>
+                    </form>
+                    <!-- /form with validation -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <div class="content text-center">
+            <!-- Footer -->
+            <div class="footer text-muted" style="color:white">
+                &copy; @DateTime.Now.Year. <a href="#" style="color:wheat">MedGulf Egypt </a> by <a href="#" style="color:wheat">Software Development Team</a>
+            </div>
+            <!-- /footer -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+</body>
+</html>
+<!-- Core JS files -->
+<script src="~/global_assets/js/plugins/loaders/pace.min.js"></script>
+<script src="~/global_assets/js/core/libraries/jquery.min.js"></script>
+<script src="~/global_assets/js/core/libraries/bootstrap.min.js"></script>
+<script src="~/global_assets/js/plugins/loaders/blockui.min.js"></script>
+<!-- /core JS files -->
+<!-- Theme JS files -->
+<script src="~/global_assets/js/plugins/forms/validation/validate.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+<script src="~/assets/js/app.js"></script>
+<script src="~/global_assets/js/demo_pages/login_validation.js"></script>
+<!-- /theme JS files -->
+<script src="~/Scripts/Helpers/HelperScript.js"></script>
+<script src="~/global_assets/js/plugins/notifications/sweet_alert.min.js"></script>
+<script src="~/Scripts/ViewsJS/Login/IndexJS.js"></script>

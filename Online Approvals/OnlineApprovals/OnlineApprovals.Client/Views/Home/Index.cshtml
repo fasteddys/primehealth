@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model OnlineApprovals.DTOs.Business.DashboardDTO
+
+<script src="~/Scripts/Helpers/HelperScript.js"></script>
+<br />
+<br />
+
+<div class="panel panel-flat" style="margin:1%">
+    <div class="panel-heading">
+        <h4 class="panel-title">Dashboard</h4>
+    </div>
+
+    <div class="row" style="margin:1%">
+        <div class="col-lg-4" >
+            <!-- Members online -->
+            <div class="panel bg-teal-400" >
+                <div class="panel-body">
+                    
+                    <div class="heading-elements">    
+                        <br />
+                        <h3 class="has-margin">@Model.TotalTickets</h3>
+                    </div>
+                    <br />
+                    <h3 class="has-margin">Total Tickets</h3>
+                    
+                </div>
+                <br />
+
+            </div>
+            <!-- /members online -->
+        </div>
+        <div class="col-lg-4">
+            <!-- Current server load -->
+            <div class="panel bg-pink-400">
+                <div class="panel-body">
+
+                    <div class="heading-elements">
+                        <br />
+                        <h3 class="has-margin">@Model.PendingApprovalTickets</h3>
+                    </div>
+                    <br />
+                    <h3 class="has-margin">Pending Approval Tickets</h3>
+
+                </div>
+                <br />
+            </div>
+            <!-- /current server load -->
+        </div>
+        <div class="col-lg-4">
+            <!-- Today's revenue -->
+            <div class="panel bg-blue-400">
+                <div class="panel-body">
+
+                    <div class="heading-elements">
+                        <br />
+                        <h3 class="has-margin">@Model.ApprovedTickets</h3>
+                    </div>
+                    <br />
+                    <h3 class="has-margin">Approved Tickets</h3>
+
+                </div>
+                <br />
+            </div>
+            <!-- /today's revenue -->
+        </div>
+    </div>
+    <div class="row" style="margin:1%">
+        <div class="col-lg-4">
+            <!-- Members online -->
+            <div class="panel bg-warning-400">
+                <div class="panel-body">
+
+                    <div class="heading-elements">
+                        <br />
+                        <h3 class="has-margin">@Model.RejectedTickets</h3>
+                    </div>
+                    <br />
+                    <h3 class="has-margin">Rejected Tickets</h3>
+
+                </div>
+                <br />
+            </div>
+            <!-- /members online -->
+        </div>
+        <div class="col-lg-4">
+            <!-- Current server load -->
+            <div class="panel bg-grey-400">
+                <div class="panel-body">
+
+                    <div class="heading-elements">
+                        <br />
+                        <h3 class="has-margin">@Model.TotalMembers</h3>
+                    </div>
+                    <br />
+                    <h3 class="has-margin">Total Members</h3>
+
+                </div>
+                <br />
+            </div>
+            <!-- /current server load -->
+        </div>
+        <div class="col-lg-4">
+            <!-- Today's revenue -->
+            <div class="panel bg-indigo-400">
+                <div class="panel-body">
+
+                    <div class="heading-elements">
+                        <br />
+                        <h3 class="has-margin">@Model.ClaimsPerCurrentMonth</h3>
+                    </div>
+                    <br />
+                    <h3 class="has-margin">Claims Per Current Month</h3>
+
+                </div>
+                <br />
+            </div>
+            <!-- /today's revenue -->
+        </div>
+    </div>
+    </div>
+
+<script>
+
+    function saveData() {
+
+
+
+        var url = '';
+        var dataToPost = { ID: 1 }
+
+        
+        url = '/Home/Test'; // MVC Action Name
+ 
+
+        // For Post Method
+        Common.Ajax('POST', url, dataToPost, 'json', successUserCreateHandler);
+    }
+
+    function successUserCreateHandler(response) {
+        if (response.type == 'Success') {
+            Common.DisplaySuccess('Employee details saved successfully.');
+        }
+    }
+
+
+</script>
+    

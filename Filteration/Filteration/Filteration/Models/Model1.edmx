@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TpaManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Batches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BatchNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignedPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="BatchStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReqId" Type="int" />
+          <Property Name="TicketNumber" Type="int" />
+          <Property Name="NumberOfClaims" Type="int" />
+          <Property Name="AssignedDate" Type="datetime" />
+          <Property Name="ClosedDate" Type="datetime" />
+          <Property Name="ClosedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumOfBadStamp" Type="int" />
+          <Property Name="NumOfNoStamp" Type="int" />
+          <Property Name="NumOfBadPhoto" Type="int" />
+          <Property Name="NumOfNoPhoto" Type="int" />
+          <Property Name="NumberOfMissingClaims" Type="int" />
+          <Property Name="QualityClaimsNumber" Type="int" />
+          <Property Name="TPAFinshedTime" Type="datetime" />
+          <Property Name="MissingClaims" Type="int" />
+          <Property Name="BatshFinishedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignedQuality" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignedQualityDate" Type="datetime" />
+          <Property Name="ReviewedClaimNumber" Type="int" />
+          <Property Name="Boxes" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UploaderName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RequestDate" Type="datetime" />
+          <Property Name="NumberOfBatches" Type="int" />
+          <Property Name="ClosedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartBatch" Type="bigint" />
+          <Property Name="EndBatch" Type="bigint" />
+          <Property Name="TicketNumber" Type="int" />
+          <Property Name="RequestStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReqClosedQualityDate" Type="datetime" />
+          <Property Name="SentToQualityBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="FinishedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="RequestClosedTicketDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsOnline" Type="bit" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="RememberMe" Type="bit" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Batches_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+          <End Role="Batches" Type="Self.Batches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Batches">
+              <PropertyRef Name="ReqId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TpaManagerModelStoreContainer">
+          <EntitySet Name="Batches" EntityType="Self.Batches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Batches_Request" Association="Self.FK_Batches_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Batches" EntitySet="Batches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TpaManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BatchStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReqId" Type="Int32" />
+          <Property Name="TicketNumber" Type="Int32" />
+          <Property Name="NumberOfClaims" Type="Int32" />
+          <Property Name="AssignedDate" Type="DateTime" Precision="3" />
+          <Property Name="ClosedDate" Type="DateTime" Precision="3" />
+          <Property Name="ClosedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumOfBadStamp" Type="Int32" />
+          <Property Name="NumOfNoStamp" Type="Int32" />
+          <Property Name="NumOfBadPhoto" Type="Int32" />
+          <Property Name="NumOfNoPhoto" Type="Int32" />
+          <Property Name="NumberOfMissingClaims" Type="Int32" />
+          <Property Name="QualityClaimsNumber" Type="Int32" />
+          <Property Name="TPAFinshedTime" Type="DateTime" Precision="3" />
+          <Property Name="MissingClaims" Type="Int32" />
+          <Property Name="BatshFinishedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedQuality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedQualityDate" Type="DateTime" Precision="3" />
+          <Property Name="ReviewedClaimNumber" Type="Int32" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Batches_Request" FromRole="Batches" ToRole="Request" />
+          <Property Name="Boxes" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UploaderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RequestDate" Type="DateTime" Precision="3" />
+          <Property Name="NumberOfBatches" Type="Int32" />
+          <Property Name="ClosedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartBatch" Type="Int64" />
+          <Property Name="EndBatch" Type="Int64" />
+          <Property Name="TicketNumber" Type="Int32" />
+          <Property Name="RequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReqClosedQualityDate" Type="DateTime" Precision="3" />
+          <Property Name="SentToQualityBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FinishedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="RequestClosedTicketDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Batches" Relationship="Self.FK_Batches_Request" FromRole="Request" ToRole="Batches" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsOnline" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RememberMe" Type="Boolean" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Batches_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+          <End Role="Batches" Type="Self.Batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Batches">
+              <PropertyRef Name="ReqId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TpaManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Batches" EntityType="Self.Batch" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Batches_Request" Association="Self.FK_Batches_Request">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="Batches" EntitySet="Batches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TpaManagerModelStoreContainer" CdmEntityContainer="TpaManagerEntities">
+          <EntitySetMapping Name="Batches">
+            <EntityTypeMapping TypeName="TpaManagerModel.Batch">
+              <MappingFragment StoreEntitySet="Batches">
+                <ScalarProperty Name="Boxes" ColumnName="Boxes" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+                <ScalarProperty Name="AssignedPerson" ColumnName="AssignedPerson" />
+                <ScalarProperty Name="BatchStatus" ColumnName="BatchStatus" />
+                <ScalarProperty Name="ReqId" ColumnName="ReqId" />
+                <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+                <ScalarProperty Name="NumberOfClaims" ColumnName="NumberOfClaims" />
+                <ScalarProperty Name="AssignedDate" ColumnName="AssignedDate" />
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="ClosedBy" ColumnName="ClosedBy" />
+                <ScalarProperty Name="NumOfBadStamp" ColumnName="NumOfBadStamp" />
+                <ScalarProperty Name="NumOfNoStamp" ColumnName="NumOfNoStamp" />
+                <ScalarProperty Name="NumOfBadPhoto" ColumnName="NumOfBadPhoto" />
+                <ScalarProperty Name="NumOfNoPhoto" ColumnName="NumOfNoPhoto" />
+                <ScalarProperty Name="NumberOfMissingClaims" ColumnName="NumberOfMissingClaims" />
+                <ScalarProperty Name="QualityClaimsNumber" ColumnName="QualityClaimsNumber" />
+                <ScalarProperty Name="TPAFinshedTime" ColumnName="TPAFinshedTime" />
+                <ScalarProperty Name="MissingClaims" ColumnName="MissingClaims" />
+                <ScalarProperty Name="BatshFinishedBy" ColumnName="BatshFinishedBy" />
+                <ScalarProperty Name="AssignedQuality" ColumnName="AssignedQuality" />
+                <ScalarProperty Name="AssignedQualityDate" ColumnName="AssignedQualityDate" />
+                <ScalarProperty Name="ReviewedClaimNumber" ColumnName="ReviewedClaimNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="TpaManagerModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UploaderName" ColumnName="UploaderName" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="NumberOfBatches" ColumnName="NumberOfBatches" />
+                <ScalarProperty Name="ClosedBy" ColumnName="ClosedBy" />
+                <ScalarProperty Name="StartBatch" ColumnName="StartBatch" />
+                <ScalarProperty Name="EndBatch" ColumnName="EndBatch" />
+                <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="ReqClosedQualityDate" ColumnName="ReqClosedQualityDate" />
+                <ScalarProperty Name="SentToQualityBy" ColumnName="SentToQualityBy" />
+                <ScalarProperty Name="FinishedBy" ColumnName="FinishedBy" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="RequestClosedTicketDate" ColumnName="RequestClosedTicketDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TpaManagerModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RememberMe" ColumnName="RememberMe" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

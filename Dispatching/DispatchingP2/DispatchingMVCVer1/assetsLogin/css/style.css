@@ -1,0 +1,309 @@
+/*--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+body{
+	background: url(../images/bg-23.png);
+font-family: 'Lato', sans-serif;
+	text-align: center;
+}
+.wrap{
+	margin: 0 auto;
+	width: 80%;
+}
+body a,form li,input[type="submit"],input[type="text"],.sixth-login input[type="submit"],.third-login input[type="submit"]{
+	transition: 0.1s all;
+	-webkit-transition: 0.1s all;
+	-moz-transition: 0.1s all;
+	-o-transition: 0.1s all;
+}
+h1 {
+  font-weight: 400;
+  font-size: 3em;
+  color: #b82020;
+  padding-top: 47px;
+}
+h2 {
+	font-family: 'Lobster', cursive;
+	font-weight: 100;
+	font-size: 5.8em;
+	color: #b82020;
+ 	 padding: 110px 0 25px;
+	text-shadow: 2px 4px 1px#000;
+	-webkit-text-shadow: 2px 4px 1px#000;
+	-moz-text-shadow: 2px 4px 1px#000;
+	-o-text-shadow: 2px 4px 1px#000;
+}
+.login-form{
+  background: url(../images/bg.jpg) no-repeat 0px 0px;
+  width: 31%;
+  margin: 3% auto 0;
+  height: 630px;
+  display: block;
+  background-size: 100%;
+}
+.login-info {
+	background: rgba(0, 0, 0, 0.56);
+	width: 100%;
+	height: 35px;
+}
+.form-info {
+	width: 80%;
+	margin: 0 auto;
+}
+input.text {
+	font-family: 'Lato', sans-serif;
+	width: 89%;
+	margin: 0 auto 7%;
+	outline: none;
+	background: none;
+	border: 2px solid#fff;
+	color: #fff;
+	padding: 1em 1em 1em 1em;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	font-size: 1.2em;
+	font-weight: 600;
+}
+input[type="password"] {
+	font-family: 'Lato', sans-serif;
+	width: 89%;
+	margin: 0 auto 7%;
+	outline: none;
+	background: none;
+	border: 2px solid#fff;
+	color: #fff;
+	padding: 1em 1em 1em 1em;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	font-size: 1.2em;
+	font-weight: 600;
+}
+input[type="submit"] {
+	font-family: 'Lato', sans-serif;
+	font-size: 28px;
+	cursor: pointer;
+	outline: none;
+	-webkit-appearance: none;
+	border: none;
+	width: 100%;
+	height: 55px;
+	background: #d41d1d;
+	color: #fff;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-bottom: 7px solid#970404;
+}
+input[type="submit"]:hover {
+	background: #970404;
+	border-bottom: 7px solid#d41d1d;
+	transition: 0.7s all;
+	-webkit-transition: 0.7s all;
+	-moz-transition: 0.7s all;
+	-o-transition: 0.7s all;
+}
+.form-info p {
+	text-align: right;
+	margin-top: 15px;
+}
+.form-info p a {
+	color: #fff;
+	font-size: 22px;
+}
+.form-info p a:hover {
+	color: #d41d1d;
+}
+/*--copyrights--*/
+.copyrights {
+	padding: 3em 0;
+}
+.copyrights p a {
+	color: #d41d1d;
+}
+/*--/copyrights--*/
+/*--start-responsive design--*/
+@media (max-width:1440px){
+	 h2 {
+	 	 font-size: 5em;
+	 	 padding: 89px 0 25px;
+	}
+	input.text {
+		  width: 88%;
+	}
+	input[type="password"] {
+	 	 width: 88%;
+	}
+	.copyrights {
+	 	 padding: 3em 0;
+	}
+	.login-info {
+		  height: 29px;
+	}
+}
+@media (max-width:1366px){
+	h2 {
+		  font-size: 4.7em;
+	  	padding: 85px 0 25px;
+	}
+	.login-form {
+		  height: 560px;
+	}
+	.login-info {
+	 	 height: 28px;
+	}
+}
+@media (max-width:1280px){
+	h2 {
+		  font-size: 4.5em;
+		  padding: 75px 0 25px;
+	}
+	.login-form {
+	 	 height: 535px;
+	}
+}
+@media (max-width:1024px){
+	.login-form {
+	 	 width: 36%;
+	}
+	h2 {
+	  	font-size: 4.3em;
+	 	 padding: 70px 0 25px;
+	}
+}
+@media (max-width:768px){
+	.login-form {
+		  width: 50%;
+		  margin: 4% auto 0;
+	}
+	h1 {
+	  font-size: 3em;
+	  padding-top: 2.5em;
+	}
+	h2 {
+	 	 font-size: 4.3em;
+	  	padding: 77px 0 25px;
+	}
+}
+@media (max-width:640px){
+	.login-form {
+		  width: 60%;
+	}
+	h1 {
+	  font-size: 2.5em;
+	  padding-top: 2.5em;
+	}
+}
+@media (max-width:480px){
+	.login-form {
+		  width: 78%;
+	}
+	h1 {
+	  font-size: 2.5em;
+	  padding-top: 2.5em;
+	}
+	h2 {
+	 	 font-size: 4.3em;
+	 	 padding: 75px 0 25px;
+	}
+}
+@media (max-width:375px){
+	h2 {
+	  font-size: 3.3em;
+	  padding: 45px 0 25px;
+	}
+	input.text {
+	  padding: 10px 10px 10px 10px !important;
+	  font-size: 1em !important;
+	}
+	h1 {
+	  font-size: 1.5em;
+	  padding-top: 0.5em;
+	}
+	input[type="password"]{
+			  padding: 10px 10px 10px 10px !important;
+	  font-size: 1em !important;
+	}
+	.login-form {
+	  height: 424px;
+	}
+}
+@media (max-width:320px){
+	.login-form {
+	 	 width: 90%;
+		 height: 410px;
+	 	 margin: 5% auto 0;
+	}
+	h1 {
+  font-size: 1.4em;
+  padding-top: 0.5em;
+	}
+	h2 {
+		font-size: 3.3em;
+		padding: 57px 0 25px;
+	}
+	.form-info {
+	  width: 86%;
+	  margin: 0 auto;
+	}
+	input.text {
+		  padding: 10px 10px 10px 10px;
+		  font-size: 18px;
+	 	 width: 89%;
+	}
+	input[type="password"] {
+		  padding: 10px 10px 10px 10px;
+		  font-size: 18px;
+		  width: 89%;
+	}
+	input[type="submit"] {
+		  font-size: 24px;
+		  height: 0;
+	 	 padding: 2px 0 37px;
+		  border-bottom: 5px solid#970404;
+	}
+	input[type="submit"]:hover {
+	  	background: #970404;
+	  	border-bottom: 5px solid#d41d1d;
+	}
+	.login-info {
+	 	 height: 19px;
+	}
+	.form-info p a {
+	 	 font-size: 14px;
+	}
+	.copyrights {
+	  	 padding: 1.5em 0 1em;
+	}
+}
+/*--/start-responsive design--*/

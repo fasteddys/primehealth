@@ -1,0 +1,142 @@
+﻿@model DispatchingMVCVer1.Models.User
+
+@{
+    ViewBag.Title = "Adduser";
+    HtmlHelper.ClientValidationEnabled = true;
+
+}
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script src="script.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+@section HeaderSection
+     {
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--breadcrumbs start -->
+                        <ul class="breadcrumb">
+                            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li><a href="#">Add User</a></li>
+                        </ul>
+                        <!--breadcrumbs end -->
+                    </div>
+                </div>
+    }
+
+
+    <section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div class="alert alert-danger alert-dismissable" id="div_Error" style="display:none">
+                    Please Insert the Correct Full Data of Client Notes
+                </div>
+                <div class="alert alert-success alert-dismissable" id="div_Success" style="display:none">
+                    New User Added Successfully
+                </div>
+                <header class="panel-heading"> Select User Data </header>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" role="form" >
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">User Name</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-lg m-b-10", placeholder = "Username", required = "required" })
+                                @Html.ValidationMessageFor(Model => Model.UserName)
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">User Password</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control input-lg m-b-10", placeholder = "Password" , @type = "password", required = "required" })
+                                @Html.ValidationMessageFor(Model => Model.Password)
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">User Type</label>
+                            <div class="col-sm-4" >
+
+                                <select class="form-control input-lg m-b-10" id="UserTypeID">
+                                    <option value="CreatorAdmin">Creator User</option>
+                                    <option value="StockAdmin">Stock User</option>
+                                    <option value="Provider">Provider User</option>
+                                    <option value="CallCenter">CallCenter User</option>
+                                    <option value="InHouse">InHouse User</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">User Email</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-lg m-b-10", placeholder = "Email", required = "required" })
+                                @Html.ValidationMessageFor(Model => Model.Email)
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-12" style="text-align:center;">
+                            <div class="toolbar-btn-action">
+                                <button type="button" class="btn btn-primary" id="btn_Submit"  >Submit New User</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        var $UserName = $('#UserName');
+        var $UserPasswordID = $('#Password');
+        var UserTypeID = $('#UserTypeID').val();
+        var $UserEmailID = $('#Email');
+
+        $('#btn_Submit').on('click', function () {
+            if ($UserName.val() == "" || $UserPasswordID.val() == "" || $UserEmailID.val() == "") {
+                alert("Insert All Fields")
+            }
+            else {
+                var UserData = {
+                    UserName: $UserName.val(),
+                    Password: $UserPasswordID.val(),
+                    UserType: UserTypeID,
+                    Email: $UserEmailID.val()
+
+                };
+                var orderx = JSON.stringify(UserData);
+                alert(orderx)
+                $.ajax({
+                    url: '@Url.Action("Adduser", "User")',
+                    data: orderx,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    success: function (message, status) {
+                        if (message == "Inserted Successfully") {
+                            $('#div_Success').show();
+                            $('#div_Error').hide();
+                        }
+                        else {
+                            $('#div_Error').show();
+                            $('#div_Success').hide();
+
+                        }
+
+                    }
+
+
+                });
+            }
+        });
+    });
+</script>
+

@@ -1,0 +1,122 @@
+﻿@model OnlineApprovals.DTOs.Invoice_DrugDetailsDTO
+@{
+    var PrintBtnID = Model.Invoice.RequestIDs.ToString() + "PrintBtn";
+    var PrintAreaID = Model.Invoice.RequestIDs.ToString() + "PrintArea";
+}
+<div class="panel panel-white">
+    @*<button type="button" id="@PrintBtnID" class="btn btn-default btn-xs heading-btn"><i class="icon-printer position-left"></i> Print</button>*@
+    @*<div class="panel-heading">
+ 
+        <div class="heading-elements">           
+            
+        </div>
+    </div>*@
+    <div id="@PrintAreaID">
+        <div class="panel-body no-padding-bottom" >
+            <div class="row">
+                <div class="col-md-6  content-group">
+                    <span class="text-muted">Summary To:</span>
+                    <ul class="list-condensed list-unstyled">
+                        <li><h5>@Model.Invoice.MemberName</h5></li>
+                        <li><span class="text-semibold">Medical ID : @Model.Invoice.MedicalID</span></li>
+                        <li>CoInsurance Percentage : @Model.Invoice.CoInsuranceValue %</li>
+                        <li>Claim number : @Model.Invoice.ClaimNumber</li>
+                        <li>Client Name : @Model.Invoice.ClientName</li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 content-group">
+                    <div class="invoice-details">
+                        <h5 class="text-uppercase text-semibold">Report #@Model.Invoice.ID</h5>
+                        <ul class="list-condensed list-unstyled">
+                            <li>Date: <span class="text-semibold">@Model.Invoice.InvoiceDate.ToLongDateString()</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="table-responsive">
+            <table class="table table-lg">
+                <thead>
+                    <tr>
+                        <th>Drug Name</th>
+                        <th class="col-sm-1">Unit Quantity</th>
+                        <th class="col-sm-1">Unit Price</th>
+                        <th class="col-sm-1">Demanded Quantity</th>
+                        <th class="col-sm-1">Total Price</th>
+                        <th class="col-sm-1">Total Member Pays</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{foreach (var item in Model.ListDrugsDetail)
+                    {
+                        var temp = (item.TotalPrice / (100-Model.Invoice.CoInsuranceValue)) * 100;
+                            <tr>
+                                <td>
+                                    <h6 class="no-margin">@item.DrugName</h6>
+                                </td>
+                                <td>@item.UnitQuantity</td>
+                                <td>@item.UnitPrice</td>
+                                <td>@item.DemandedQuantity</td>
+                                <td>@item.TotalPrice</td>
+                                <td><span class="text-semibold">@temp</span></td>
+
+                            </tr>
+                    } }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-body">
+            <div class="row invoice-payment">
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-sm-5">
+                    <div class="content-group">
+                        <h6>Total Due</h6>
+                        <div class="table-responsive no-border">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Total:</th>
+                                        <td class="text-right">@Model.Invoice.GrandTotal</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Member Pays:</th>
+                                        <td class="text-right text-primary"><h5 class="text-semibold">@Model.Invoice.Total</h5></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $('#@PrintBtnID').click(function () {
+
+ 
+    var prtContent = document.getElementById("@PrintAreaID");
+    var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+    debugger;
+    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', '../global_assets/css/icons/icomoon/styles.css'));
+    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', '../assets/css/bootstrap.min.css'));
+    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', '../assets/css/core.min.css'));
+    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', '../assets/css/components.min.css'));
+    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', '../assets/css/colors.min.css'));
+    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css'));
+
+
+    WinPrint.document.write(prtContent.innerHTML);
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+    })
+</script>

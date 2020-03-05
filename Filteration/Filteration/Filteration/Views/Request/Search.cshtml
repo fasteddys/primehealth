@@ -1,0 +1,646 @@
+﻿@model List<Filteration.Models.Batch>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<link href="~/Theme/assets/css/sweetalert.css" rel="stylesheet" type="text/css" />
+
+<div class="row mt">
+    <div class="col-md-12">
+        <div class="content-panel">
+
+            <h4><i class="fa fa-angle-right"></i> Batch Details</h4>
+
+            <table class="table table-striped table-advance table-hover">
+                <tr hidden="hidden"></tr>
+                <tr style="font-weight:100">
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().TicketNumber)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().BatchNumber)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().NumberOfClaims)
+                    </th>
+                    <th class="Reviewclaim" style="display: none">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().ReviewedClaimNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedPerson)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedDate)
+                    </th>
+                    <th class="AssignedQualityTHClass">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedQuality)
+                    </th>
+                    <th class="AssignedQualityDateTHClass">
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedQualityDate)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().BatchStatus)
+                    </th>
+
+                    <th id="TPAassign" style="display:none">Assign TPA</th>
+                    <th id="Qualityassign" style="display:none">Assign Quality</th>
+                    <th id="ReviewsearchFinish" style="display:none">Review</th>
+                    @*new*@
+                    <th class="Edit" style="display:none">Edit</th>
+                    <th class="Delete" style="display:none">Delete</th>
+                    @*end*@
+                </tr>
+               
+                    @if (ViewBag.RetrievedBatches != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TicketNumber)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BatchNumber)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NumberOfClaims)
+                                </td>
+                                <td class="ReviewclaimTD" style="display:none">
+                                    @Html.DisplayFor(modelItem => item.ReviewedClaimNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AssignedPerson)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AssignedDate)
+                                </td>
+                                <td class="AssignedQualityTDClass">
+                                    @Html.DisplayFor(modelItem => item.AssignedQuality)
+                                </td>
+                                <td class="AssignedQualityDateTDClass">
+                                    @Html.DisplayFor(modelItem => item.AssignedQualityDate)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BatchStatus)
+                                    @Html.HiddenFor(modelItem => item.BatchStatus, new { ID = "Batchstatus" })
+
+
+                                </td>
+                                <td id="AssignNewBatch">
+                                    <button class="btn btn-primary btn-xs" id="ASsignNewBTN"
+                                            onclick="window.location ='@Url.Action("AssignBatch_BatchDetails", "Batch",
+                                    new { id = item.Id, RequestID = item.ReqId, status = ViewBag.Status })';">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </td>
+                                @*new*@
+                                <td id="AssignReadyToQualityBatch">
+                                    <button class="btn btn-primary btn-xs" id="AssignReadyToQualityBatch"
+                                            onclick="window.location ='@Url.Action("AcceptBatchQuality", "Batch",
+                                    new { id = item.Id, RequestID = item.ReqId, status = ViewBag.Status })';">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </td>
+                                <td id="SearchReview" style="display:none">
+                                    <button class="btn btn-primary btn-xs"
+                                            onclick="window.location ='@Url.Action("Review_Finish", "Batch",
+                                    new { id = item.Id, RequestID = item.ReqId, status = ViewBag.Status })';">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </td>
+                                <td class="EditBatchNumberBTN" style="display:none">
+                                    <button class="btn btn-primary btn-xs"
+                                            onclick="window.location ='@Url.Action("EditBatchNumber", "Batch",
+                                    new { id = item.Id, RequestID = item.ReqId, status = ViewBag.Status })';">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </td>
+
+                                <td class="DeleteBatchNumberBTN" style="display:none">
+                                    <button class="btn btn-primary btn-xs"
+                                            onclick="window.location ='@Url.Action("DeleteBatchNumber", "Batch",
+                                    new { id = item.Id, RequestID = item.ReqId, status = ViewBag.Status })';">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </td>
+                                @*end*@
+                            </tr>
+                        }
+                    }
+
+                </table>
+
+        </div>
+    </div>
+</div>
+<input type="hidden" value="@ViewBag.RetrievedBatchess" id="mode" />
+@*<div id="testthing">
+        <h4><i class="fa fa-angle-right"></i> Test</h4>
+    </div>*@
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+
+
+
+<!-- New Search-->
+@*<script>
+    $(document).ready(function () {
+        $("#Search").click(function () {
+            var SearchBy = $("#SearchBy").val();
+            var SearchValue = $("#Search").val();
+            var SetData = $("#DataSearching");
+            SetData.html("");
+            $.ajax({
+                type: "post",
+                url: "/Request/Search?SearchBy=" + SearchBy + "&SearchValue=" + SearchValue,
+                contentType: "html",
+                success: function (result) {
+                    if (result.length == 0) {
+                        SetData.append('<tr style="color:red"><td colspan="3">No Match Data</td></tr>')
+                    }
+                    else {
+                        $.each(result, function (index, value) {
+                            var Data = "<tr>" +
+                                "<td>" + value.TicketNumber + "</td>" +
+                                "<td>" + value.BatchNumber + "</td>" +
+                                "<td>" + value.NumberOfClaims + "</td>" +
+                                "<td>" + value.AssignedPerson + "</td>" +
+                                "<td>" + value.AssignedDate + "</td>" +
+                                "</tr>";
+                            SetData.append(Data);
+
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>*@
+
+
+<script type="text/javascript">
+
+
+
+
+
+
+    $(document).ready(function () {
+
+        @*var AllBatches = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RetrievedBatchess))
+        AllBatches = JSON.parse(AllBatches);*@
+        @*var AllBatches= @Html.Raw(ViewBag.RetrievedBatchess)
+        $.each(AllBatches, function (value) {
+           if(value.Selected !=true)
+            {*@
+
+        //var SimilarBatches = document.getElementById('mode').value;
+        //$.each(SimilarBatches, function (data) {
+        //while (SimilarBatches != null) {
+        @*if (localStorage['Type'] == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPA" ||
+                "@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin") {
+
+                    if ("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin" ||
+                        "@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {
+                        $(".Reviewclaim").show();
+                        $(".ReviewclaimTD").show();
+                        $(".AssignedQualityTHClass").hide();
+                        $(".AssignedQualityDateTHClass").hide();
+                        $(".AssignedQualityTDClass").hide();
+                        $(".AssignedQualityDateTDClass").hide();
+
+                        if ($("#Batchstatus").val() == "NEW") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").show();
+                            $(".DeleteBatchNumberBTN").show();
+                            $(".Delete").show();
+
+
+                        }
+                        if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" == "@Request.Cookies["TPAUserNameCookie"].Value") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").show();
+                            $(".DeleteBatchNumberBTN").show();
+                            $(".Delete").show();
+                        }
+                        if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" != "@Request.Cookies["TPAUserNameCookie"].Value") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").show();
+                            ////$("#AssignNewBatch").hide();
+                            $(".DeleteBatchNumberBTN").show();
+                            $(".Delete").show();
+                        }
+                        if ($("#Batchstatus").val() == "ReadyToQuality") {
+                            $(".EditBatchNumberBTN").show();
+                            $(".DeleteBatchNumberBTN").show();
+                            $(".Edit").show();
+                            $(".Delete").show();
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").show();
+                            ////$("#AssignNewBatch").hide();
+                        }
+
+                        if ($("#Batchstatus").val() == "AssignedByQuality") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#AssignNewBatch").hide();
+
+
+                        }
+                        if ($("#Batchstatus").val() == "QualityFinished") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#AssignNewBatch").hide();
+
+                        }
+                    }
+
+                    else if (localStorage['Type'] == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPA") {
+
+                        $(".AssignedQualityTHClass").hide();
+                        $(".AssignedQualityDateTHClass").hide();
+                        $(".AssignedQualityTDClass").hide();
+                        $(".AssignedQualityDateTDClass").hide();
+
+                        if ($("#Batchstatus").val() == "NEW") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").show();
+                        }
+                        if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" == "@Request.Cookies["TPAUserNameCookie"].Value") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").show();
+                        }
+                        if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" != "@Request.Cookies["TPAUserNameCookie"].Value") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").hide();
+                            $("#AssignNewBatch").hide();
+                        }
+                        if ($("#Batchstatus").val() == "ReadyToQuality" || $("#Batchstatus").val() == "QualityFinished"
+                            || $("#Batchstatus").val() == "AssignedByQuality") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#AssignNewBatch").hide();
+                        }
+
+                    }
+                }
+                if (localStorage['Type'] == "Quality" && "@Request.Cookies["UserTypeCookie"].Value" == "Quality") {
+                    if ("@ViewBag.TicketStatus" == "PendingQuality") {
+
+
+                        if ($("#Batchstatus").val() == "ReadyToQuality") {
+                            $("#AssignNewBatch").hide();
+                            $("#Qualityassign").show();
+                        }
+
+                        if ($("#Batchstatus").val() == "AssignedByQuality" && "@Model.FirstOrDefault().AssignedQuality" ==
+                            "@Request.Cookies["TPAUserNameCookie"].Value") {
+                            $("#AssignNewBatch").hide();
+                            $("#Qualityassign").show();
+                        }
+                        if ($("#Batchstatus").val() == "AssignedByQuality" && "@Model.FirstOrDefault().AssignedQuality" !=
+                            "@Request.Cookies["TPAUserNameCookie"].Value") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").hide();
+                            $("#AssignNewBatch").hide();
+                        }
+                        if ($("#Batchstatus").val() == "QualityFinished") {
+                            $("#AssignNewBatch").hide();
+                            $("#AssignReadyToQualityBatch").hide();
+                        }
+                    }
+                    else {
+                        $("#AssignNewBatch").hide();
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").hide();
+                    }
+                }
+
+                else if (localStorage['Type'] == "Quality" && "@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {
+                    if ("@ViewBag.TicketStatus" == "PendingQuality") {
+
+                        if ($("#Batchstatus").val() == "ReadyToQuality") {
+                            $("#AssignNewBatch").hide();
+                            $("#Qualityassign").show();
+                        }
+
+                        if ($("#Batchstatus").val() == "AssignedByQuality" && "@Model.FirstOrDefault().AssignedQuality" ==
+                            "@Request.Cookies["TPAUserNameCookie"].Value") {
+                            $("#AssignNewBatch").hide();
+                            $("#Qualityassign").show();
+                        }
+                        if ($("#Batchstatus").val() == "AssignedByQuality" && "@Model.FirstOrDefault().AssignedQuality" !=
+                            "@Request.Cookies["TPAUserNameCookie"].Value") {
+                            $("#AssignReadyToQualityBatch").hide();
+                            $("#TPAassign").hide();
+                            $("#AssignNewBatch").hide();
+                            $(".EditBatchNumberBTN").show();
+                            $(".Edit").show();
+
+
+                        }
+                        if ($("#Batchstatus").val() == "QualityFinished") {
+                            $("#AssignNewBatch").hide();
+                            $("#AssignReadyToQualityBatch").hide();
+                            $(".EditBatchNumberBTN").show();
+                            $(".Edit").show();
+
+
+                        }
+                    }
+                    else {
+                        $("#AssignNewBatch").hide();
+                        $("#AssignReadyToQualityBatch").hide();
+                    }
+                }
+
+
+                if ($("#Batchstatus").val() == "UnderReview" && "@Request.Cookies["RoleCookie"].Value" == "Admin") {
+                    $("#AssignReadyToQualityBatch").hide();
+                    $("#AssignNewBatch").hide();
+                    $("#ReviewsearchFinish").show();
+                    $("#SearchReview").show();
+                }
+                if ($("#Batchstatus").val() == "UnderReview" && "@Request.Cookies["RoleCookie"].Value" != "Admin") {
+                    $("#AssignReadyToQualityBatch").hide();
+                    $("#AssignNewBatch").hide();
+
+
+                }
+
+        }*@
+
+        //})
+
+
+
+        @*@*if("@ViewBag.RetrievedBatches" != null)
+        {*@
+
+        //comment
+
+
+        if ("@ViewBag.RetrievedBatches" != null) {
+            if (localStorage['Type'] == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPA" ||
+                    "@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin") {
+
+
+
+                if ("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin") {
+                    $(".Reviewclaim").show();
+                    $(".ReviewclaimTD").show();
+                    $(".AssignedQualityTHClass").hide();
+                    $(".AssignedQualityDateTHClass").hide();
+                    $(".AssignedQualityTDClass").hide();
+                    $(".AssignedQualityDateTDClass").hide();
+
+                    if ($("#Batchstatus").val() == "NEW") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").show();
+                        $(".DeleteBatchNumberBTN").show();
+                        $(".Delete").show();
+
+
+                    }
+                    if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" == "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").show();
+                        $(".DeleteBatchNumberBTN").show();
+                        $(".Delete").show();
+                    }
+                    if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" != "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").hide();
+                        //$("#AssignNewBatch").hide();
+                        $("#TPAassign").show();
+                        $(".DeleteBatchNumberBTN").show();
+                        $(".Delete").show();
+                    }
+                    if ($("#Batchstatus").val() == "ReadyToQuality") {
+                        if ("@ViewBag.TicketStatus" == "New") {
+                            $(".EditBatchNumberBTN").show();
+                            $(".DeleteBatchNumberBTN").show();
+                            $(".Edit").show();
+                            $(".Delete").show();
+                            $("#AssignReadyToQualityBatch").hide();
+                            //$("#AssignNewBatch").hide();
+                            $("#TPAassign").show();
+                        }
+                        if ("@ViewBag.TicketStatus" == "PendingQuality") {
+                            //$(".EditBatchNumberBTN").show();
+                            //$(".DeleteBatchNumberBTN").show();
+                            //$(".Edit").show();
+                            //$(".Delete").show();
+                            //$("#AssignReadyToQualityBatch").hide();
+                            //$("#AssignNewBatch").hide();
+                            //$("#TPAassign").show();
+                            $("#ASsignNewBTN").hide();
+                            $("#AssignReadyToQualityBatch").hide();
+                        }
+                    }
+                    //if Batch status AssignedByQuality
+
+                    if ($("#Batchstatus").val() == "AssignedByQuality") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#AssignNewBatch").hide();
+
+                        //if Batch status Quality Finished
+                    }
+                    if ($("#Batchstatus").val() == "QualityFinished") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#AssignNewBatch").hide();
+
+                    }
+                }
+                //if user Quality admin
+                if ("@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {
+                    $(".Reviewclaim").show();
+                    $(".ReviewclaimTD").show();
+                    $(".AssignedQualityTHClass").hide();
+                    $(".AssignedQualityDateTHClass").hide();
+                    $(".AssignedQualityTDClass").hide();
+                    $(".AssignedQualityDateTDClass").hide();
+
+                    if ($("#Batchstatus").val() == "NEW") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").show();
+                        $(".DeleteBatchNumberBTN").show();
+                        $(".Delete").show();
+
+
+                    }
+                    if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" == "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").show();
+                        $(".DeleteBatchNumberBTN").show();
+                        $(".Delete").show();
+                    }
+                    if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" != "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").hide();
+                        $("#AssignNewBatch").hide();
+                        $(".DeleteBatchNumberBTN").show();
+                        $(".Delete").show();
+                    }
+                    if ($("#Batchstatus").val() == "ReadyToQuality") {
+
+                        $(".EditBatchNumberBTN").show();
+                        $(".DeleteBatchNumberBTN").show();
+                        $(".Edit").show();
+                        $(".Delete").show();
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#AssignNewBatch").hide();
+
+                    }
+
+                    if ($("#Batchstatus").val() == "AssignedByQuality") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#AssignNewBatch").hide();
+
+
+                    }
+                    if ($("#Batchstatus").val() == "QualityFinished") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#AssignNewBatch").hide();
+
+                    }
+                }
+
+                else if (localStorage['Type'] == "TPA" || "@Request.Cookies["UserTypeCookie"].Value" == "TPA") {
+
+                    $(".AssignedQualityTHClass").hide();
+                    $(".AssignedQualityDateTHClass").hide();
+                    $(".AssignedQualityTDClass").hide();
+                    $(".AssignedQualityDateTDClass").hide();
+
+                    if ($("#Batchstatus").val() == "NEW") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").show();
+                    }
+                    if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" == "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").show();
+                    }
+                    if ($("#Batchstatus").val() == "Assigned" && "@Model.FirstOrDefault().AssignedPerson" != "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").hide();
+                        $("#AssignNewBatch").hide();
+                    }
+                    if ($("#Batchstatus").val() == "ReadyToQuality" || $("#Batchstatus").val() == "QualityFinished"
+                        || $("#Batchstatus").val() == "AssignedByQuality") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#AssignNewBatch").hide();
+                    }
+
+                }
+
+
+            }
+
+
+
+            if (localStorage['Type'] == "Quality" && "@Request.Cookies["UserTypeCookie"].Value" == "Quality") {
+                if ("@ViewBag.TicketStatus" == "PendingQuality") {
+
+
+                    if ($("#Batchstatus").val() == "ReadyToQuality") {
+                        $("#AssignNewBatch").hide();
+                        $("#Qualityassign").show();
+                    }
+
+                    if ($("#Batchstatus").val() == "AssignedByQuality" && "@Model.FirstOrDefault().AssignedQuality" ==
+                        "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignNewBatch").hide();
+                        $("#Qualityassign").show();
+                    }
+                    if ($("#Batchstatus").val() == "AssignedByQuality" && "@Model.FirstOrDefault().AssignedQuality" !=
+                        "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").hide();
+                        $("#AssignNewBatch").hide();
+                    }
+                    if ($("#Batchstatus").val() == "QualityFinished") {
+                        $("#AssignNewBatch").hide();
+                        $("#AssignReadyToQualityBatch").hide();
+                    }
+                }
+                else {
+                    $("#AssignNewBatch").hide();
+                    $("#AssignReadyToQualityBatch").hide();
+                    $("#TPAassign").hide();
+                }
+            }
+
+            else if (localStorage['Type'] == "Quality" && "@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {
+                if ("@ViewBag.TicketStatus" == "PendingQuality") {
+
+                    if ($("#Batchstatus").val() == "ReadyToQuality") {
+                        $("#AssignNewBatch").hide();
+                        $("#Qualityassign").show();
+                    }
+
+                    if ($("#Batchstatus").val() == "AssignedByQuality" && "@Model.FirstOrDefault().AssignedQuality" ==
+                        "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignNewBatch").hide();
+                        $("#Qualityassign").show();
+                    }
+                    if ($("#Batchstatus").val() == "AssignedByQuality" && "@Model.FirstOrDefault().AssignedQuality" !=
+                        "@Request.Cookies["TPAUserNameCookie"].Value") {
+                        $("#AssignReadyToQualityBatch").hide();
+                        $("#TPAassign").hide();
+                        $("#AssignNewBatch").hide();
+                        $(".EditBatchNumberBTN").show();
+                        $(".Edit").show();
+
+
+                    }
+                    if ($("#Batchstatus").val() == "QualityFinished") {
+                        $("#AssignNewBatch").hide();
+                        $("#AssignReadyToQualityBatch").hide();
+                        $(".EditBatchNumberBTN").show();
+                        $(".Edit").show();
+
+
+                    }
+                }
+                else {
+                    $("#AssignNewBatch").hide();
+                    $("#AssignReadyToQualityBatch").hide();
+                }
+            }
+
+
+            if ($("#Batchstatus").val() == "UnderReview" && "@Request.Cookies["RoleCookie"].Value" == "Admin") {
+                $("#AssignReadyToQualityBatch").hide();
+                $("#AssignNewBatch").hide();
+                $("#ReviewsearchFinish").show();
+                $("#SearchReview").show();
+            }
+            if ($("#Batchstatus").val() == "UnderReview" && "@Request.Cookies["RoleCookie"].Value" != "Admin") {
+                $("#AssignReadyToQualityBatch").hide();
+                $("#AssignNewBatch").hide();
+
+
+            }
+
+            //end comment
+
+            //}
+            //else
+            //{
+            //    swal({
+            //        title: "Sorry!",
+            //        text: "No Results Found!",
+            //        type: "warning"
+
+            //    });
+            //}
+        }
+    });
+</script>

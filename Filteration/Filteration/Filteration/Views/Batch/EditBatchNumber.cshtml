@@ -1,0 +1,363 @@
+﻿@model Filteration.Models.Batch
+@{
+    ViewBag.Title = "EditBatchNumber";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+
+
+    <div class="row mt">
+        <div class="col-md-12">
+            <div class="table table-striped table-advance table-hover">
+
+                <div class="panel-body table-responsive">
+                    <table class="table table-hover" id="table">
+                        
+                        <tr hidden="hidden">
+                            @Html.HiddenFor(model => model.Id, new { @id = "id" })
+                        </tr>
+
+                        <tr hidden="hidden">
+                            @Html.HiddenFor(model => model.ReqId, new { @id = "ReqId" })
+                        </tr>
+                        
+
+
+
+                       
+
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.BatchStatus)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.BatchStatus)
+                                    @Html.HiddenFor(model => model.BatchStatus, new { @id = "BatchStatus" })
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.TicketNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.TicketNumber)
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.BatchNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" id="BatchNumber2" onkeypress="return IsNumPositive(event)" value="@Model.BatchNumber" name="BatchNumber">
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.NumberOfClaims)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" id="NumberOfClaims" onkeypress="return IsNumPositive(event)" value="@Model.NumberOfClaims" name="NumberOfClaims">
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                    </table>
+
+                    <table class="table table-hover" id="tableQuality">
+                        <tr hidden="hidden">
+                            @Html.HiddenFor(model => model.Id, new { @id = "id" })
+                        </tr>
+
+                        <tr hidden="hidden">
+                            @Html.HiddenFor(model => model.ReqId, new { @id = "ReqId" })
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.BatchNumber)
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="display-field">
+                                    @*@Html.DisplayFor(model => model.BatchNumber)*@
+                                    <input type="number" id="BatchNumber3" onkeypress="return IsNumPositive(event)"
+                                            value="@Model.BatchNumber" name="BatchNumber">
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.BatchStatus)
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.BatchStatus)
+                                    @Html.HiddenFor(model => model.BatchStatus, new { @id = "Batchstatus" })
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.TicketNumber)
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.TicketNumber)
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.NumberOfClaims)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @*@Html.DisplayFor(model => model.NumberOfClaims)*@
+                                    <input type="number" id="numofclaims2" onkeypress="return IsNumPositive(event)"
+                                           value="@Model.NumberOfClaims" name="NumberOfClaims">
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.AssignedPerson)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.AssignedPerson)
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr class="QualityClaims">
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.QualityClaimsNumber)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" id="Quality_Claims_Number" onkeypress="return IsNumPositive(event)" value="@Model.QualityClaimsNumber" name="QualityClaimsNumber">
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr class="BadStamp">
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.NumOfBadStamp)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" id="num_of_bad_stamp" onkeypress="return IsNumPositive(event)" value="@Model.NumOfBadStamp" name="NumOfBadStamp">
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr class="NoStamp">
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.NumOfNoStamp)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" id="num_of_no_stamp" onkeypress="return IsNumPositive(event)" value="@Model.NumOfNoStamp" name="NumOfNoStamp">
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr class="BadPhoto">
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.NumOfBadPhoto)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" id="num_of_bad_photo" onkeypress="return IsNumPositive(event)" value="@Model.NumOfBadPhoto" name="NumOfBadPhoto">
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr class="NoPhoto">
+                            <td>
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.NumOfNoPhoto)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    <input type="number" id="num_of_no_photo" onkeypress="return IsNumPositive(event)" value="@Model.NumOfNoPhoto" name="NumOfNoPhoto">
+                                </div>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<input type="button" class="btn btn-theme" id="ConfirmEditbtn" value="Confirm Edit">
+
+<input type="button" class="btn btn-theme" id="ConfirmQualityEditbtn" value="Confirm Edit">
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+       
+        if (localStorage['Type'] == "TPA" && "@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {
+            $("#tableQuality").hide();
+            $("#ConfirmQualityEditbtn").hide();
+        }
+
+        else if (localStorage['Type'] == "Quality" && "@Request.Cookies["UserTypeCookie"].Value" == "QualityAdmin") {
+            $("#table").hide();
+            $("#ConfirmEditbtn").hide();
+        }
+        else if("@Request.Cookies["UserTypeCookie"].Value" == "TPAadmin")
+        {
+            $("#tableQuality").hide();
+            $("#ConfirmQualityEditbtn").hide();
+        }
+        });
+
+    </script>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    $("#ConfirmEditbtn").on("click", function () {
+        
+        
+            var info = {
+                id: $("#id").val(),
+                batchnumber: $("#BatchNumber2").val(),
+                NumberOfClaims: $("#NumberOfClaims").val(),
+
+            }
+        
+       
+        var x = JSON.stringify(info);
+        $.ajax({
+            url: '@Url.Action("EditConfirmed", "Batch")',
+            data: x,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            success: function (data, status) {
+
+
+
+            }
+
+
+        });
+        $("#ConfirmEditbtn").hide();
+
+    });
+
+    $("#ConfirmQualityEditbtn").on("click", function () {
+       
+        var data = {
+            id: $("#id").val(),
+            batchNumber: $("#BatchNumber3").val(),
+            Numclaim: $("#numofclaims2").val(),
+            QualityClaimsNum: $("#Quality_Claims_Number").val(),
+            NumofbadStamp: $("#num_of_bad_stamp").val(),
+            NumofnoStamp: $("#num_of_no_stamp").val(),
+            NumofbadPhoto: $("#num_of_bad_photo").val(),
+            NumofnoPhoto: $("#num_of_no_photo").val(),
+        }
+
+        var y = JSON.stringify(data);
+        $.ajax({
+            url: '@Url.Action("EditQualityConfirmed", "Batch")',
+            data: y,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            success: function (data, status) {
+
+            }
+        });
+        var url6 = "/Batch/EditBatchNumber/@Model.Id";
+        window.location.href = url6;
+        $("#ConfirmQualityEditbtn").hide();
+
+    });
+
+</script>
+
+
+
+<script type="text/javascript">
+    function IsNumPositive(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            alert("Insert right positive number");
+            return false;
+        }
+        return true;
+    }
+</script>
+

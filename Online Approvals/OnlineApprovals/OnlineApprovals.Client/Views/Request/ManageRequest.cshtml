@@ -1,0 +1,344 @@
+﻿@using OnlineApprovals.DTOs;
+@using OnlineApprovals.BLL.StaticData;
+@model OnlineApprovals.DTOs.ALLRequestDataDTO
+@{
+    ViewBag.Title = "ManageRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Manage Request / Request <span class="text-info-800 text-bold"># @Model.Request.ID</span></h4>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="content">
+    <div class="alert alert-success no-border" id="Success-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Success-Div-Text">Morning!</span>
+    </div>
+    <div class="alert alert-warning no-border" id="Warning-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Warning-Div-Text">Morning!</span>
+    </div>
+    <div class="alert alert-danger no-border" id="Alert-Div" style="display:none">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <span class="text-semibold" id="Alert-Div-Text">Morning!</span>
+    </div>
+    <!-- Form horizontal -->
+    <div id="PartialViewDiv">
+        <div class="panel panel-flat">
+            <div class="panel-body">
+                <form class="form-horizontal" action="#">
+                    <fieldset class="content-group">
+                        <legend class="text-bold">Request Data</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Medical ID <span class="text-danger">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input id="MedicalID" type="text" name="digits" value="@Model.Request.MedicalID" readonly required="required" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Member Name <span class="text-danger">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input id="MemberName" type="text" value="@Model.Request.MemberName" readonly required="required" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Client Name <span class="text-danger">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input id="ClientName" type="text" readonly value="@Model.Request.ClientName" required="required" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">CoInsurance Percentage <span class="text-danger">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input id="CoInsurancePercentage" type="number" value="@Model.Request.CoInsurancePerc" readonly name="digits" required="required" class="form-control" placeholder="%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Phone Number <span class="text-danger">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input id="PhoneNumber" type="tel" readonly value="@Model.Request.MobileNumber" name="digits" required="required" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Claim Number <span class="text-danger">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input id="ClaimNumber" type="number" readonly value="@Model.Request.ClaimNumber" name="digits" required="required" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Claim Date<span class="text-danger">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input id="ClaimDate" type="text" readonly value="@Model.Request.ClaimDate.ToShortDateString()" required="required" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Approval Type <span class="text-danger">*</span></label>
+                                    <div class="col-lg-4">
+                                        <div class="checkbox">
+                                            @{ if (Model.Request.MedicalApproval == true)
+                                                {
+                                                    <label>
+                                                        <input id="MedicalApproval" type="checkbox" disabled class="styled" checked>
+                                                        Medical Approval
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label>
+                                                        <input id="MedicalApproval" type="checkbox" disabled class="styled">
+                                                        Medical Approval
+                                                    </label>
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="checkbox">
+                                            @{
+                                                if (Model.Request.FinnacialApproval == true)
+                                                {
+                                                    <label>
+                                                        <input id="FinancialApproval" type="checkbox" disabled class="styled" checked>
+                                                        Financial Approval
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label>
+                                                        <input id="FinancialApproval" type="checkbox" disabled class="styled">
+                                                        Financial Approval
+                                                    </label>
+                                                }
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Dignose <span class="text-danger">*</span></label>
+                            <div class="col-lg-10">
+                                <textarea rows="3" cols="5" required="required" readonly class="form-control" placeholder="Default textarea">@Model.Request.Diagnose</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Notes <span class="text-danger">*</span></label>
+                            <div class="col-lg-10">
+                                <textarea rows="3" cols="5" required="required" readonly class="form-control" placeholder="Default textarea">@Model.Request.Note</textarea>
+                            </div>
+                        </div>
+                        @{ var AttachList = Model.Attachments.Where(P => P.RequestDetailsID == null).ToList();
+                            if (AttachList.Count() > 0)
+                            {
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2">Request Attachment(s) <span class="text-danger">*</span></label>
+                                    <div class="col-lg-10">
+                                        @foreach (var Requestattach in AttachList)
+                                        {
+
+                                            <a href="/Request/FileDownload?path=@Requestattach.AttachmentPath&name=@Requestattach.AttachmentName">@Requestattach.AttachmentName</a>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </fieldset>
+                </form>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#DemandedDrugs">View Demanded Drugs <i class="icon-three-bars position-right"></i></button>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Top aligned -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        @*<h5 class="panel-title">Request Details</h5>*@
+                        <legend class="text-bold">Request Details</legend>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="PartialView1">
+
+                        </div>
+                    </div>
+                    <!-- /top aligned -->
+                </div>
+
+            </div>
+        </div>
+        <div class="panel panel-flat">
+            <div class="panel-body">
+                <fieldset class="content-group">
+                    <legend class="text-bold">Append a Comment & Attachment</legend>
+
+                    <div class="form-group">
+                        <textarea cols="18" rows="6" class="wysihtml5 wysihtml5-min form-control ClearTextFields" id="AppendedNotes" placeholder="Type Your Comment here ...">
+									</textarea>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">Upload file(s)</label>
+                    <div class="col-lg-5">
+                        <input type="file" name="styled_file" id="FileUploader" multiple class="btn btn-default MyUploader ClearInputFields" required="required">
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="form-group text-center">
+                    <div class="col-md-12">
+                        <button type="submit" id="SubmitComment" class="btn btn-info legitRipple " style="display:none">Submit Comment <i class="icon-check2 position-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-flat" id="ButtonsDiv" style="display:none">
+            <div class="panel-body text-center">
+                <button type="button" class="btn btn-warning legitRipple" id="Reopen" style="display:none">Reopen <i class="icon-warning2 position-right"></i></button>
+                <button type="button" class="btn btn-danger legitRipple" id="Terminate" style="display:none">Terminate <i class="icon-warning2 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="DemandedDrugs" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title">Demanded Drugs List</h6>
+            </div>
+            <div class="modal-body">
+                <table class="table datatable-save-state">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Drug Name</th>
+                            <th>Unit Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Demanded Quantity</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in Model.DemandedDrugs)
+                            {
+                                <tr>
+                                    <td>@item.ID</td>
+                                    <td>@item.DrugName</td>
+                                    <td>@item.UnitQuantity</td>
+                                    <td>@item.UnitPrice</td>
+                                    <td>@item.DemandedQuantity</td>
+                                    <td>@item.TotalPrice</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@{
+    int DetailstypeID = (int)StaticEnums.RequestDetailsType.ReplyFromProvider;
+    int UserTypeID = (int)StaticEnums.UserType.Provider;
+    int StatusApproved = (int)StaticEnums.RequestStatus.Approved;
+    int StatusRejected = (int)StaticEnums.RequestStatus.Rejected;
+    int StatusNew = (int)StaticEnums.RequestStatus.New;
+    int StatusTerminated = (int)StaticEnums.RequestStatus.Terminated;
+
+
+
+}
+<input id="RequestIDHidden" value="@Model.Request.ID" type="hidden" />
+<input id="StatusIDHidden" value="@Model.Request.StatusID" type="hidden" />
+<input id="DetailsTypeHidden" value="@DetailstypeID" type="hidden" />
+<input id="UserTypeHidden" value="@UserTypeID" type="hidden" />
+<input id="StatusApprovedHidden" value="@StatusApproved" type="hidden" />
+<input id="StatusRejectedHidden" value="@StatusRejected" type="hidden" />
+<input id="StatusNewHidden" value="@StatusNew" type="hidden" />
+<input id="StatusTerminatedHidden" value="@StatusTerminated" type="hidden" />
+<input id="USerID" value="@Model.Request.ProviderID" type="hidden" />
+<input id="UrlAddReply" value="@Url.Action("AddReply", "Request")" type="hidden" />
+<input id="UrlAddReplyAttach" value="@Url.Action("AddReplyAttach", "Request")" type="hidden" />
+<input id="UrlReopen" value="@Url.Action("ReopenRequest", "Request")" type="hidden" />
+<input id="UrlTerminate" value="@Url.Action("TerminateRequest", "Request")" type="hidden" />
+<script>
+    $(document).ready(function () {
+        AccessControl();
+        $('#PartialView1').load('@Url.Action("_ManageRequest", "Request", new { @id = Model.Request.ID })');
+
+    })
+
+    function UpdatePartial() {
+        $("#PartialView1").empty();
+        $('#PartialView1').load('@Url.Action("_ManageRequest", "Request", new { @id = Model.Request.ID })');
+
+    }
+</script>
+<script src="~/global_assets/js/plugins/editors/wysihtml5/wysihtml5.min.js"></script>
+<script src="~/global_assets/js/plugins/editors/wysihtml5/toolbar.js"></script>
+<script src="~/global_assets/js/plugins/editors/wysihtml5/parsers.js"></script>
+<script src="~/global_assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ua-UA.js"></script>
+<script src="~/global_assets/js/demo_pages/editor_wysihtml5.js"></script>
+
+<script src="~/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+<script src="~/global_assets/js/demo_pages/form_inputs.js"></script>
+@*<script src="~/global_assets/js/plugins/forms/styling/switch.min.js"></script>*@
+<script src="~/global_assets/js/demo_pages/form_checkboxes_radios.js"></script>
+@*<script src="~/global_assets/js/demo_pages/form_validation.js"></script>*@
+<script src="~/global_assets/js/plugins/ui/ripple.min.js"></script>
+<script src="~/global_assets/js/plugins/ui/ripple.min.js"></script>
+<script src="~/Scripts/Helpers/HelperScript.js"></script>
+<script src="~/Scripts/ViewsJS/Request/ManageRequestJS.js"></script>
+<script src="~/global_assets/js/plugins/notifications/bootbox.min.js"></script>
+<script src="~/global_assets/js/plugins/notifications/sweet_alert.min.js"></script>
+<script src="~/global_assets/js/demo_pages/components_modals.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/plugins/ui/ripple.min.js"></script>

@@ -1,0 +1,92 @@
+﻿.content-fullscreen {
+    text-align: right
+}
+
+.content-fullscreen .fa {
+    float: right;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.heading-strip {
+    text-align: right;
+    padding-right: 12%;
+}
+
+.heading-strip .fa {
+    float: right;
+    margin-right: 10px;
+    /*margin-top: 5px;*/
+}
+.material-full-top {
+    text-align: right;
+    direction: rtl;
+}
+/*.material-full-top .fa {
+    float: right;
+    margin-left: 5px;
+    margin-top: 5px;
+}*/
+    .material-full-top strong {
+        padding-right: 5%;
+    }
+
+.modal-menu {
+    text-align: right;
+    padding-top:3%
+}
+.modal-menu .fa {
+    float: right;
+    margin-left: 5px;
+    margin-top: -5px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    text-align: right;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    text-align: right;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    text-align: right;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    text-align: right;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    text-align: right;
+}
+
+::placeholder { /* Most modern browsers support this now. */
+    text-align: right;
+}
+
+.store-card-item {
+    text-align: right;
+}
+    .store-card-item em {
+        float: right;
+        margin-left: 80%;
+    }
+
+.store-product-description {
+    text-align: right;
+}
+
+/*.sidebar-menu .menu-item {
+    text-align: right;
+}
+.sidebar-menu .fa {
+    float: right;
+}
+.sidebar-menu .fa-circle {
+    float: left;
+}*/
+.HTML_VisitDetails_VisitInformation {
+    margin-left: 80%;
+    float: right;
+}
