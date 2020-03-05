@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AttendanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="birth_date" Type="datetime2" Precision="7" />
+          <Property Name="stdt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="expiry_datetime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="gender_code" Type="nvarchar" MaxLength="255" />
+          <Property Name="login_id" Type="nvarchar" MaxLength="255" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" />
+          <Property Name="password_exist" Type="bit" />
+          <Property Name="mobile_phone" Type="nvarchar" MaxLength="255" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="photo_exist" Type="bit" />
+          <Property Name="photo" Type="nvarchar" MaxLength="255" />
+          <Property Name="photo_downloaded" Type="bit" />
+          <Property Name="status_code" Type="nvarchar" MaxLength="255" />
+          <Property Name="user_group_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="last_update_version" Type="int" />
+          <Property Name="last_sync_date" Type="datetime2" Precision="7" />
+          <Property Name="createdAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime2" Precision="7" />
+          <Property Name="ugid" Type="bigint" />
+        </EntityType>
+        <EntityContainer Name="AttendanceModelStoreContainer">
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AttendanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="birth_date" Type="DateTime" Precision="7" />
+          <Property Name="stdt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="expiry_datetime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="gender_code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="login_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="password_exist" Type="Boolean" />
+          <Property Name="mobile_phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="photo_exist" Type="Boolean" />
+          <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="photo_downloaded" Type="Boolean" />
+          <Property Name="status_code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="user_group_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="last_update_version" Type="Int32" />
+          <Property Name="last_sync_date" Type="DateTime" Precision="7" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updatedAt" Type="DateTime" Precision="7" />
+          <Property Name="ugid" Type="Int64" />
+        </EntityType>
+        <EntityContainer Name="AttendanceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="users" EntityType="Self.user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AttendanceModelStoreContainer" CdmEntityContainer="AttendanceEntities">
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="AttendanceModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="stdt" ColumnName="stdt" />
+                <ScalarProperty Name="expiry_datetime" ColumnName="expiry_datetime" />
+                <ScalarProperty Name="gender_code" ColumnName="gender_code" />
+                <ScalarProperty Name="login_id" ColumnName="login_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="password_exist" ColumnName="password_exist" />
+                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="photo_exist" ColumnName="photo_exist" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="photo_downloaded" ColumnName="photo_downloaded" />
+                <ScalarProperty Name="status_code" ColumnName="status_code" />
+                <ScalarProperty Name="user_group_name" ColumnName="user_group_name" />
+                <ScalarProperty Name="last_update_version" ColumnName="last_update_version" />
+                <ScalarProperty Name="last_sync_date" ColumnName="last_sync_date" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+                <ScalarProperty Name="ugid" ColumnName="ugid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
